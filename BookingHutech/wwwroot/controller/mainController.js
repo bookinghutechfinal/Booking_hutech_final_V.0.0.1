@@ -5,4 +5,7 @@ mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$mod
        
         $scope.UserName = "Anh"; 
 
+        $scope.logout = function () {
+            toastr.success("Logout");
+        }
     }]);  
