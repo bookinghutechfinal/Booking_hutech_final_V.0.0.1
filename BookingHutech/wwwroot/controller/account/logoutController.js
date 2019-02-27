@@ -3,8 +3,11 @@ mainmodule.controller('LogoutController', ['$scope', '$state', '$rootScope', '$m
     function ($scope, $state, $rootScope, $modal, $http, $cookies, toastr, $dao) {
         $scope.UserName = "Trần Nhựt Anh";
         
-        $scope.logout = function () {
+        $scope.close = function () {
             
+        }
+        $scope.yes = function () {
+
         }
 
 
