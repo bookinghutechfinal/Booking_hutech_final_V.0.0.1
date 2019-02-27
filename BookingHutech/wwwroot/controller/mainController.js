@@ -6,6 +6,24 @@ mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$mod
         $scope.UserName = "Anh"; 
 
         $scope.logout = function () {
-            toastr.success("Logout");
+            //toastr.success("Logout");
+            var modalInstance = $modal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: '/wwwroot/views/pages/account/popupLogout.html',
+                controller: 'LogoutController',
+                controllerAs: 'content',
+                backdrop: 'static',
+                size: 'sm',
+                resolve: {
+                    RequestData: function () {
+                        return null;
+                    },
+                }
+            });
+            modalInstance.result.then(function () {
+
+            });
         }
     }]);  

@@ -1,0 +1,46 @@
+﻿<style>
+    .modal-header {
+        background-color: #2A3F54;
+    }
+</style>
+
+<!-- Modal content-->
+<div class="modal-content">
+    <div class="modal-header">
+        <!--<button type="button"  class="close" data-dismiss="modal">&times;</button>-->
+        <h4 class="modal-title">{{'TitleLogout'| translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <p>{{'Title'| translate}}</p>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-6" style="margin-bottom: 1px;">
+                    <div class="mb15 mt30">
+                        <button class="btn btn-danger btn-round btn-block" type="submit"
+                                data-ng-click="close()">
+                            <!--ng-disabled="!isSubmitingEnable()"-->
+                            <i class="glyphicon glyphicon-remove"></i>
+                            <span>{{'CancelLogout'| translate}}</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="mb15 mt30">
+                        <button class="btn btn-primary btn-round btn-block" type="submit"
+                                data-ng-click="yes()">
+                            <!--ng-disabled="!isSubmitingEnable()"-->
+                            <i class="glyphicon glyphicon-ok"></i>
+                            <span>{{'YesLogout'| translate}}</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+    </div>
+</div>

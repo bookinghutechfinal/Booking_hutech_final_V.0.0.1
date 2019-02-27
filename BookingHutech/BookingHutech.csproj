@@ -1178,6 +1178,7 @@
     <Content Include="script\js\skycons.js" />
     <Content Include="script\css\translateelement.css" />
     <Content Include="wwwroot\views\pages\account\login.html" />
+    <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
