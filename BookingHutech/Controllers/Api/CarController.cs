@@ -53,7 +53,8 @@ namespace BookingHutech.Controllers.Api
                 LogWriter.WriteException(ex);
                 return ApiResponse.ApiNotPermissionCall(); 
             }
-            // Login2
+           // Login2
+
         }
  
     }
