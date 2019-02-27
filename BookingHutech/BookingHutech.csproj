@@ -1177,6 +1177,7 @@
     <Content Include="script\js\nprogress.js" />
     <Content Include="script\js\skycons.js" />
     <Content Include="script\css\translateelement.css" />
+    <Content Include="wwwroot\views\pages\account\changePassword.html" />
     <Content Include="wwwroot\views\pages\account\login.html" />
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />

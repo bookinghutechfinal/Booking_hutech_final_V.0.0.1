@@ -37,9 +37,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             //},
 
         })
-
-
-
+        .state('changePassword', {
+            url: '/doi-mat-khau',
+            templateUrl: '/wwwroot/views/pages/account/changePassword.html',
+            controller: 'mainController',
+        })
         .state('main', {
             url: '/main',
             templateUrl: '/wwwroot/views/main.html',
@@ -51,6 +53,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
              templateUrl: '/wwwroot/views/pages/home/home.html',
              controller: 'HomeController',
          })
+
 
         //< script async = "" src = "~/script/js/analytics.js" ></script >
         //    <script src="~/script/js/jquery.min.js"></script>
@@ -118,6 +121,12 @@ mainmodule.config(['$translateProvider',
             'QuestionLogout': 'Bạn có muốn đăng xuất hay không?',
             'CancelLogout': 'Hủy',
             'YesLogout': 'Đồng ý',
+            /* -------- Chang Password ---------- */
+            'UserName': 'Tài khoản',
+            'NewPassWord': 'Mật khẩu mới',
+            'ConfirmPassWord': 'Nhập lại mật khẩu',
+            'MessageChangeAccount': 'Nhập mật khẩu mới cho',
+            'Update': 'Cập nhật'
 
         });
 
