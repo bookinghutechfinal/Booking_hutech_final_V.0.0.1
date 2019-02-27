@@ -1,0 +1,156 @@
+﻿<div class="container body" ng-controller="mainController">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="" class="site_title">
+                        <i class="fa fa-paw"></i>
+                        <span>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Booking Hutech</font>
+                            </font>
+                        </span>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="../../images/avt/avt.png" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xin chào</font></font></span>
+                        <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{UserName}}</font></font></h2>
+                    </div>
+                </div>
+
+                <br>
+
+                <!--<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" ng-include="'wwwroot/views/common/sidebar/sidebar.html'">
+                  
+                </div>--> 
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <!--// Menu-->
+                    <div class="menu_section">
+                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Chung</font></font></h3>
+                        <ul class="nav side-menu">
+                            <li ng-show="menu">
+                                <a><i class="fa fa-table"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Những cái bàn </font></font><span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="">
+                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Những cái bàn</font></font></a></li>
+                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bảng động</font></font></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-bar-chart-o"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Trình bày dữ liệu </font></font><span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="">
+                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Biểu đồ JS</font></font></a></li>
+                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Biểu đồ JS2</font></font></a></li>
+                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Moris JS</font></font></a></li>
+                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ECharts</font></font></a></li>
+                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Biểu đồ khác</font></font></a></li>
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a><i class="fa fa-clone"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bố cục </font></font><span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: none;">
+                                    <li><a href="https://colorlib.com/polygon/gentelella/fixed_sidebar.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Thanh bên cố định</font></font></a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/fixed_footer.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Chân trang cố định</font></font></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu_section">
+                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sống dựa vào</font></font></h3>
+                        <ul class="nav side-menu">
+                            <li>
+                                <a><i class="fa fa-bug"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Trang bổ sung </font></font><span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="">
+                                    <li><a href="https://colorlib.com/polygon/gentelella/e_commerce.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Thương mại điện tử</font></font></a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/projects.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dự án</font></font></a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/project_detail.html">Project Detail</a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/contacts.html">Contacts</a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/profile.html">Profile</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-windows"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Ngoài ra </font></font><span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="">
+                                    <li><a href="https://colorlib.com/polygon/gentelella/page_403.html">403 Error</a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/page_404.html">404 Error</a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/page_500.html">500 Error</a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/plain_page.html">Plain Page</a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/login.html">Login Page</a></li>
+                                    <li><a href="https://colorlib.com/polygon/gentelella/pricing_tables.html">Pricing Tables</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-sitemap"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Menu đa cấp </font></font><span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="">
+                                    <li>
+                                        <a href="https://colorlib.com/polygon/gentelella/?fbclid=IwAR194BQMDDQn73t46s-rFn6UoFRCYj7CDk9DIryFznOWXA6EGH0o4wQxrwo#level1_1">Level One</a>
+                                    </li>
+                                    <li>
+                                        <a>Level One<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="">
+                                            <li class="sub_menu">
+                                                <a href="https://colorlib.com/polygon/gentelella/level2.html">Level Two</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://colorlib.com/polygon/gentelella/?fbclid=IwAR194BQMDDQn73t46s-rFn6UoFRCYj7CDk9DIryFznOWXA6EGH0o4wQxrwo#level2_1">Level Two</a>
+                                            </li>
+                                            <li>
+                                                <a href="https://colorlib.com/polygon/gentelella/?fbclid=IwAR194BQMDDQn73t46s-rFn6UoFRCYj7CDk9DIryFznOWXA6EGH0o4wQxrwo#level2_2">Level Two</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="https://colorlib.com/polygon/gentelella/?fbclid=IwAR194BQMDDQn73t46s-rFn6UoFRCYj7CDk9DIryFznOWXA6EGH0o4wQxrwo#level1_2">Level One</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Trang đích </font></font><span class="label label-success pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sắp ra mắt</font></font></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="" data-original-title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="" href="https://colorlib.com/polygon/gentelella/login.html" data-original-title="Logout">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <nav ng-include="'wwwroot/views/common/header/header.html'">   </nav>
+                </nav>
+            </div>
+        </div>
+
+        <div class="right_col" role="main" style="min-height: 1780px;">
+            <h2>{{titleMain}}</h2>
+            <div ui-view></div>
+        </div> 
+        <footer ng-include="'wwwroot/views/common/footer/footer.html'"></footer> 
+    </div>
+</div> 
+
+<script src="../../script/js/custom.min.js"></script>
+<script src="../../script/js/jquery.min.js"></script>

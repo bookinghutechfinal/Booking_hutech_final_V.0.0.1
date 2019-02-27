@@ -1,0 +1,788 @@
+﻿/* Primary Button Style */
+.btn {
+    padding-right: 15px;
+    padding-left: 15px;
+    outline: 0;
+    font-size: 12px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: all 300ms linear;
+    -moz-transition: all 300ms linear;
+    -o-transition: all 300ms linear;
+    transition: all 300ms linear;
+    line-height: 20px;
+    position: relative;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+}
+
+.btn-primary {
+    color: white;
+    background-image: linear-gradient(to right, #f2a23a, #f8cd46);
+    border-color: transparent;
+    background-color: transparent;
+}
+
+    .btn-primary:visited {
+        color: white;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary.focus,
+    .btn-primary:active,
+    .btn-primary.active,
+    .open > .dropdown-toggle.btn-primary {
+        color: white;
+        background-image: linear-gradient(to right, #f2a23a, #f8cd46);
+        border-color: transparent;
+        background-color: transparent !important;
+    }
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        background-image: linear-gradient(to right, #c98732, #dbb53d);
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        opacity: 0;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0 * 100);
+        filter: alpha(opacity=0 * 100);
+        -webkit-transform: scale3d(0.7, 1, 1);
+        -moz-transform: scale3d(0.7, 1, 1);
+        -o-transform: scale3d(0.7, 1, 1);
+        -ms-transform: scale3d(0.7, 1, 1);
+        transform: scale3d(0.7, 1, 1);
+        -webkit-transition: transform 0.4s, opacity 0.4s;
+        -moz-transition: transform 0.4s, opacity 0.4s;
+        -o-transition: transform 0.4s, opacity 0.4s;
+        transition: transform 0.4s, opacity 0.4s;
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+    }
+
+    .btn-primary,
+    .btn-primary::before {
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+        .btn-primary:hover::before {
+            -moz-opacity: 1;
+            -khtml-opacity: 1;
+            -webkit-opacity: 1;
+            opacity: 1;
+            -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+            filter: alpha(opacity=1 * 100);
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        .btn-primary:active,
+        .btn-primary.active,
+        .open > .dropdown-toggle.btn-primary {
+            background-image: none;
+            border-color: #006b8f;
+        }
+
+            .btn-primary:active::before,
+            .btn-primary.active::before,
+            .open > .dropdown-toggle.btn-primary::before {
+                -moz-opacity: 1;
+                -khtml-opacity: 1;
+                -webkit-opacity: 1;
+                opacity: 1;
+                -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+                filter: alpha(opacity=1 * 100);
+                -webkit-transform: translate3d(0, 0, 0);
+                -moz-transform: translate3d(0, 0, 0);
+                -o-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                background-color: #007399;
+            }
+
+        .btn-primary.disabled::before,
+        .btn-primary[disabled]::before {
+            z-index: 1;
+        }
+
+        .btn-primary.disabled,
+        .btn-primary[disabled],
+        fieldset[disabled] .btn-primary,
+        .btn-primary.disabled:hover,
+        .btn-primary[disabled]:hover,
+        fieldset[disabled] .btn-primary:hover,
+        .btn-primary.disabled:focus,
+        .btn-primary[disabled]:focus,
+        fieldset[disabled] .btn-primary:focus,
+        .btn-primary.disabled.focus,
+        .btn-primary[disabled].focus,
+        fieldset[disabled] .btn-primary.focus,
+        .btn-primary.disabled:active,
+        .btn-primary[disabled]:active,
+        fieldset[disabled] .btn-primary:active,
+        .btn-primary.disabled.active,
+        .btn-primary[disabled].active,
+        fieldset[disabled] .btn-primary.active {
+            background-color: #0099cc;
+            border-color: transparent;
+        }
+
+        .btn-primary .badge {
+            color: #0099cc;
+            background-color: white;
+        }
+
+        .btn-primary.btn-outline {
+            background-color: transparent;
+            background-image: none;
+            border-color: #0099cc;
+            color: #0099cc;
+        }
+
+            .btn-primary.btn-outline:hover,
+            .btn-primary.btn-outline:focus,
+            .btn-primary.btn-outline:active,
+            .btn-primary.btn-outline.active {
+                background-color: #0099cc;
+                color: white;
+            }
+/* Warning Button Style */
+/* Rounded button styles */
+.btn-round,
+.btn-round a,
+.btn-round .btn,
+.input-round {
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+}
+
+    .btn-round::before,
+    .btn-round a::before,
+    .btn-round .btn::before,
+    .input-round::before {
+        -webkit-border-radius: 40px !important;
+        -moz-border-radius: 40px !important;
+        border-radius: 40px !important;
+    }
+
+.btn-group-vertical > .btn:first-child:not(:last-child) {
+    border-top-right-radius: 2px;
+}
+
+.btn-group-vertical > .btn:last-child:not(:first-child) {
+    border-bottom-left-radius: 2px;
+}
+
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group {
+    margin-right: -2px;
+}
+/* Warning Button Style */
+.btn-warning {
+    color: white;
+    background-color: #ffc65d;
+    border-color: #ffc65d;
+}
+
+    .btn-warning:visited {
+        color: white;
+    }
+
+    .btn-warning:hover,
+    .btn-warning:focus,
+    .btn-warning.focus,
+    .btn-warning:active,
+    .btn-warning.active,
+    .open > .dropdown-toggle.btn-warning {
+        color: white;
+        background-color: #ffc65d;
+        border-color: #ffb42a;
+    }
+
+    .btn-warning::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: #ffb42a;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        opacity: 0;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0 * 100);
+        filter: alpha(opacity=0 * 100);
+        -webkit-transform: scale3d(0.7, 1, 1);
+        -moz-transform: scale3d(0.7, 1, 1);
+        -o-transform: scale3d(0.7, 1, 1);
+        -ms-transform: scale3d(0.7, 1, 1);
+        transform: scale3d(0.7, 1, 1);
+        -webkit-transition: transform 0.4s, opacity 0.4s;
+        -moz-transition: transform 0.4s, opacity 0.4s;
+        -o-transition: transform 0.4s, opacity 0.4s;
+        transition: transform 0.4s, opacity 0.4s;
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+    }
+
+    .btn-warning,
+    .btn-warning::before {
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+        .btn-warning:hover::before {
+            -moz-opacity: 1;
+            -khtml-opacity: 1;
+            -webkit-opacity: 1;
+            opacity: 1;
+            -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+            filter: alpha(opacity=1 * 100);
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        .btn-warning:active,
+        .btn-warning.active,
+        .open > .dropdown-toggle.btn-warning {
+            background-image: none;
+            border-color: #ffb020;
+        }
+
+            .btn-warning:active::before,
+            .btn-warning.active::before,
+            .open > .dropdown-toggle.btn-warning::before {
+                -moz-opacity: 1;
+                -khtml-opacity: 1;
+                -webkit-opacity: 1;
+                opacity: 1;
+                -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+                filter: alpha(opacity=1 * 100);
+                -webkit-transform: translate3d(0, 0, 0);
+                -moz-transform: translate3d(0, 0, 0);
+                -o-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                background-color: #ffb42a;
+            }
+
+        .btn-warning.disabled::before,
+        .btn-warning[disabled]::before {
+            z-index: 1;
+        }
+
+        .btn-warning.disabled,
+        .btn-warning[disabled],
+        fieldset[disabled] .btn-warning,
+        .btn-warning.disabled:hover,
+        .btn-warning[disabled]:hover,
+        fieldset[disabled] .btn-warning:hover,
+        .btn-warning.disabled:focus,
+        .btn-warning[disabled]:focus,
+        fieldset[disabled] .btn-warning:focus,
+        .btn-warning.disabled.focus,
+        .btn-warning[disabled].focus,
+        fieldset[disabled] .btn-warning.focus,
+        .btn-warning.disabled:active,
+        .btn-warning[disabled]:active,
+        fieldset[disabled] .btn-warning:active,
+        .btn-warning.disabled.active,
+        .btn-warning[disabled].active,
+        fieldset[disabled] .btn-warning.active {
+            background-color: #ffc65d;
+            border-color: #ffc65d;
+        }
+
+        .btn-warning .badge {
+            color: #ffc65d;
+            background-color: white;
+        }
+
+        .btn-warning.btn-outline {
+            background-color: transparent;
+            background-image: none;
+            border-color: #ffc65d;
+            color: #ffc65d;
+        }
+
+            .btn-warning.btn-outline:hover,
+            .btn-warning.btn-outline:focus,
+            .btn-warning.btn-outline:active,
+            .btn-warning.btn-outline.active {
+                background-color: #ffc65d;
+                color: white;
+            }
+/* Success Button Style */
+.btn-success {
+    color: white;
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+}
+
+    .btn-success:visited {
+        color: white;
+    }
+
+    .btn-success:hover,
+    .btn-success:focus,
+    .btn-success.focus,
+    .btn-success:active,
+    .btn-success.active,
+    .open > .dropdown-toggle.btn-success {
+        color: white;
+        background-color: #2ecc71;
+        border-color: #25a25a;
+    }
+
+    .btn-success::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: #25a25a;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        opacity: 0;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0 * 100);
+        filter: alpha(opacity=0 * 100);
+        -webkit-transform: scale3d(0.7, 1, 1);
+        -moz-transform: scale3d(0.7, 1, 1);
+        -o-transform: scale3d(0.7, 1, 1);
+        -ms-transform: scale3d(0.7, 1, 1);
+        transform: scale3d(0.7, 1, 1);
+        -webkit-transition: transform 0.4s, opacity 0.4s;
+        -moz-transition: transform 0.4s, opacity 0.4s;
+        -o-transition: transform 0.4s, opacity 0.4s;
+        transition: transform 0.4s, opacity 0.4s;
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+    }
+
+    .btn-success,
+    .btn-success::before {
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+        .btn-success:hover::before {
+            -moz-opacity: 1;
+            -khtml-opacity: 1;
+            -webkit-opacity: 1;
+            opacity: 1;
+            -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+            filter: alpha(opacity=1 * 100);
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        .btn-success:active,
+        .btn-success.active,
+        .open > .dropdown-toggle.btn-success {
+            background-image: none;
+            border-color: #239a55;
+        }
+
+            .btn-success:active::before,
+            .btn-success.active::before,
+            .open > .dropdown-toggle.btn-success::before {
+                -moz-opacity: 1;
+                -khtml-opacity: 1;
+                -webkit-opacity: 1;
+                opacity: 1;
+                -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+                filter: alpha(opacity=1 * 100);
+                -webkit-transform: translate3d(0, 0, 0);
+                -moz-transform: translate3d(0, 0, 0);
+                -o-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                background-color: #25a25a;
+            }
+
+        .btn-success.disabled::before,
+        .btn-success[disabled]::before {
+            z-index: 1;
+        }
+
+        .btn-success.disabled,
+        .btn-success[disabled],
+        fieldset[disabled] .btn-success,
+        .btn-success.disabled:hover,
+        .btn-success[disabled]:hover,
+        fieldset[disabled] .btn-success:hover,
+        .btn-success.disabled:focus,
+        .btn-success[disabled]:focus,
+        fieldset[disabled] .btn-success:focus,
+        .btn-success.disabled.focus,
+        .btn-success[disabled].focus,
+        fieldset[disabled] .btn-success.focus,
+        .btn-success.disabled:active,
+        .btn-success[disabled]:active,
+        fieldset[disabled] .btn-success:active,
+        .btn-success.disabled.active,
+        .btn-success[disabled].active,
+        fieldset[disabled] .btn-success.active {
+            background-color: #2ecc71;
+            border-color: #2ecc71;
+        }
+
+        .btn-success .badge {
+            color: #2ecc71;
+            background-color: white;
+        }
+
+        .btn-success.btn-outline {
+            background-color: transparent;
+            background-image: none;
+            border-color: #2ecc71;
+            color: #2ecc71;
+        }
+
+            .btn-success.btn-outline:hover,
+            .btn-success.btn-outline:focus,
+            .btn-success.btn-outline:active,
+            .btn-success.btn-outline.active {
+                background-color: #2ecc71;
+                color: white;
+            }
+/* Info Button Style */
+.btn-info {
+    color: white;
+    background-color: #4cc3d9;
+    border-color: #4cc3d9;
+}
+
+    .btn-info:visited {
+        color: white;
+    }
+
+    .btn-info:hover,
+    .btn-info:focus,
+    .btn-info.focus,
+    .btn-info:active,
+    .btn-info.active,
+    .open > .dropdown-toggle.btn-info {
+        color: white;
+        background-color: #4cc3d9;
+        border-color: #2aafc8;
+    }
+
+    .btn-info::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: #2aafc8;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        opacity: 0;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0 * 100);
+        filter: alpha(opacity=0 * 100);
+        -webkit-transform: scale3d(0.7, 1, 1);
+        -moz-transform: scale3d(0.7, 1, 1);
+        -o-transform: scale3d(0.7, 1, 1);
+        -ms-transform: scale3d(0.7, 1, 1);
+        transform: scale3d(0.7, 1, 1);
+        -webkit-transition: transform 0.4s, opacity 0.4s;
+        -moz-transition: transform 0.4s, opacity 0.4s;
+        -o-transition: transform 0.4s, opacity 0.4s;
+        transition: transform 0.4s, opacity 0.4s;
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+    }
+
+    .btn-info,
+    .btn-info::before {
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+        .btn-info:hover::before {
+            -moz-opacity: 1;
+            -khtml-opacity: 1;
+            -webkit-opacity: 1;
+            opacity: 1;
+            -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+            filter: alpha(opacity=1 * 100);
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        .btn-info:active,
+        .btn-info.active,
+        .open > .dropdown-toggle.btn-info {
+            background-image: none;
+            border-color: #29a8bf;
+        }
+
+            .btn-info:active::before,
+            .btn-info.active::before,
+            .open > .dropdown-toggle.btn-info::before {
+                -moz-opacity: 1;
+                -khtml-opacity: 1;
+                -webkit-opacity: 1;
+                opacity: 1;
+                -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+                filter: alpha(opacity=1 * 100);
+                -webkit-transform: translate3d(0, 0, 0);
+                -moz-transform: translate3d(0, 0, 0);
+                -o-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                background-color: #2aafc8;
+            }
+
+        .btn-info.disabled::before,
+        .btn-info[disabled]::before {
+            z-index: 1;
+        }
+
+        .btn-info.disabled,
+        .btn-info[disabled],
+        fieldset[disabled] .btn-info,
+        .btn-info.disabled:hover,
+        .btn-info[disabled]:hover,
+        fieldset[disabled] .btn-info:hover,
+        .btn-info.disabled:focus,
+        .btn-info[disabled]:focus,
+        fieldset[disabled] .btn-info:focus,
+        .btn-info.disabled.focus,
+        .btn-info[disabled].focus,
+        fieldset[disabled] .btn-info.focus,
+        .btn-info.disabled:active,
+        .btn-info[disabled]:active,
+        fieldset[disabled] .btn-info:active,
+        .btn-info.disabled.active,
+        .btn-info[disabled].active,
+        fieldset[disabled] .btn-info.active {
+            background-color: #4cc3d9;
+            border-color: #4cc3d9;
+        }
+
+        .btn-info .badge {
+            color: #4cc3d9;
+            background-color: white;
+        }
+
+        .btn-info.btn-outline {
+            background-color: transparent;
+            background-image: none;
+            border-color: #4cc3d9;
+            color: #4cc3d9;
+        }
+
+            .btn-info.btn-outline:hover,
+            .btn-info.btn-outline:focus,
+            .btn-info.btn-outline:active,
+            .btn-info.btn-outline.active {
+                background-color: #4cc3d9;
+                color: white;
+            }
+/* Danger Button Style */
+.btn-danger {
+    color: white;
+    background-color: #d96557;
+    border-color: #d96557;
+}
+
+    .btn-danger:visited {
+        color: white;
+    }
+
+    .btn-danger:hover,
+    .btn-danger:focus,
+    .btn-danger.focus,
+    .btn-danger:active,
+    .btn-danger.active,
+    .open > .dropdown-toggle.btn-danger {
+        color: white;
+        background-color: #d96557;
+        border-color: #ce402f;
+    }
+
+    .btn-danger::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: #ce402f;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        opacity: 0;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0 * 100);
+        filter: alpha(opacity=0 * 100);
+        -webkit-transform: scale3d(0.7, 1, 1);
+        -moz-transform: scale3d(0.7, 1, 1);
+        -o-transform: scale3d(0.7, 1, 1);
+        -ms-transform: scale3d(0.7, 1, 1);
+        transform: scale3d(0.7, 1, 1);
+        -webkit-transition: transform 0.4s, opacity 0.4s;
+        -moz-transition: transform 0.4s, opacity 0.4s;
+        -o-transition: transform 0.4s, opacity 0.4s;
+        transition: transform 0.4s, opacity 0.4s;
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+    }
+
+    .btn-danger,
+    .btn-danger::before {
+        -webkit-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -moz-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        -o-animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+        .btn-danger:hover::before {
+            -moz-opacity: 1;
+            -khtml-opacity: 1;
+            -webkit-opacity: 1;
+            opacity: 1;
+            -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+            filter: alpha(opacity=1 * 100);
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        .btn-danger:active,
+        .btn-danger.active,
+        .open > .dropdown-toggle.btn-danger {
+            background-image: none;
+            border-color: #c63d2d;
+        }
+
+            .btn-danger:active::before,
+            .btn-danger.active::before,
+            .open > .dropdown-toggle.btn-danger::before {
+                -moz-opacity: 1;
+                -khtml-opacity: 1;
+                -webkit-opacity: 1;
+                opacity: 1;
+                -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=1 * 100);
+                filter: alpha(opacity=1 * 100);
+                -webkit-transform: translate3d(0, 0, 0);
+                -moz-transform: translate3d(0, 0, 0);
+                -o-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                background-color: #ce402f;
+            }
+
+        .btn-danger.disabled::before,
+        .btn-danger[disabled]::before {
+            z-index: 1;
+        }
+
+        .btn-danger.disabled,
+        .btn-danger[disabled],
+        fieldset[disabled] .btn-danger,
+        .btn-danger.disabled:hover,
+        .btn-danger[disabled]:hover,
+        fieldset[disabled] .btn-danger:hover,
+        .btn-danger.disabled:focus,
+        .btn-danger[disabled]:focus,
+        fieldset[disabled] .btn-danger:focus,
+        .btn-danger.disabled.focus,
+        .btn-danger[disabled].focus,
+        fieldset[disabled] .btn-danger.focus,
+        .btn-danger.disabled:active,
+        .btn-danger[disabled]:active,
+        fieldset[disabled] .btn-danger:active,
+        .btn-danger.disabled.active,
+        .btn-danger[disabled].active,
+        fieldset[disabled] .btn-danger.active {
+            background-color: #d96557;
+            border-color: #d96557;
+        }
+
+        .btn-danger .badge {
+            color: #d96557;
+            background-color: white;
+        }
+
+        .btn-danger.btn-outline {
+            background-color: transparent;
+            background-image: none;
+            border-color: #d96557;
+            color: #d96557;
+        }
+
+            .btn-danger.btn-outline:hover,
+            .btn-danger.btn-outline:focus,
+            .btn-danger.btn-outline:active,
+            .btn-danger.btn-outline.active {
+                background-color: #d96557;
+                color: white;
+            }
