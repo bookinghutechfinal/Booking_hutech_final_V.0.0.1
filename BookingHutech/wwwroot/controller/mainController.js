@@ -15,7 +15,7 @@ mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$mod
                 controller: 'LogoutController',
                 controllerAs: 'content',
                 backdrop: 'static',
-                size: 'lg',
+                size: 'sm',
                 resolve: {
                     RequestData: function () {
                         return null;

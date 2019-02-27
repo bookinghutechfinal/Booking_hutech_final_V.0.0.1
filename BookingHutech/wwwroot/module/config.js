@@ -113,7 +113,11 @@ mainmodule.config(['$translateProvider',
         $translateProvider.translations('vn', {
             /* --------  Menu Name ---------- */
             'ManageProfile': 'Quản lý hồ sơ',
-
+            /* -------- Logout ---------- */
+            'TitleLogout': 'Đăng xuất',
+            'QuestionLogout': 'Bạn có muốn đăng xuất hay không?',
+            'CancelLogout': 'Hủy',
+            'YesLogout': 'Đồng ý',
 
         });
 
