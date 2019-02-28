@@ -11,6 +11,9 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                 method: request.method,
                 url: "/Api/" + request.operater,
                 data: request.data,
+                headers: {
+                    'BHAPIWebCall': 'Web'
+                }
             }).then(function mySucces(response) {
                 $rootScope.isLoading = false;
                 $rootScope.$emit('showLoading', false);
@@ -19,7 +22,10 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                 }  
                 else if (response.data.ReturnCode === 2) {
                     toastr.error('Hệ thống có lỗi trong quá trình xử lý!');
-                } 
+                }
+                else if (response.data.ReturnCode === 3) {
+                    toastr.error('Danh nhap that bai'); 
+                }
                 else {
                     success(response);
                 }

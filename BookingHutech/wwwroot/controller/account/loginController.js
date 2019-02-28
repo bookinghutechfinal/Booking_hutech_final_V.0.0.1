@@ -1,6 +1,6 @@
 ﻿ 
-mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$modal', '$http', '$cookies', 'toastr', '$dao',  
-    function ($scope, $state, $rootScope, $modal, $http, $cookies, toastr, $dao) {
+mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$modal', '$http', '$cookies', 'toastr', '$dao','$account',
+    function ($scope, $state, $rootScope, $modal, $http, $cookies, toastr, $dao, $account) {
         $scope.UserName = "Trần Nhựt Anh";
         $scope.goToHome = function () {
             $state.go('main.home');
@@ -24,8 +24,19 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$mo
                     return;
                     break;
             }
+            $account.Login($scope.accountLoginRequest, function (response) { 
+                switch (response.data.ReturnCode) {
+                    case 2:
+                        toastr.error($rootScope.initMessage('LoginFail'));
+                        break;
+                    case 1:
+                        toastr.success($rootScope.initMessage('LoginSuccess'));
+                        $scope.goToHome();
+                        break; 
+                }
+            });
 
-            $scope.goToHome();
+          
         }
 
 

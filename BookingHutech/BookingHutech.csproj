@@ -145,6 +145,7 @@
   <ItemGroup>
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarManagerServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarServices.cs" />
+    <Compile Include="Api_BHutech\Lib\Utils\EncodePassword.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\Permissions.cs" />
     <Compile Include="Api_BHutech\DAO\DataAccess.cs" />
     <Compile Include="Api_BHutech\DAO\CarManagerDAO\CarDAO.cs" />
@@ -922,6 +923,7 @@
     <Content Include="wwwroot\controller\mainController.js" />
     <Content Include="wwwroot\module\config.js" />
     <Content Include="wwwroot\module\module.js" />
+    <Content Include="wwwroot\service\account.js" />
     <Content Include="wwwroot\service\dao.js" />
     <Content Include="wwwroot\extensions\alert.js" />
     <Content Include="wwwroot\service\dataEntity.js" />

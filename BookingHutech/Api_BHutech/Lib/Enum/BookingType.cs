@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BookingHutech.Api_BHutech.Lib.Enum
 {
-    public class BookingType
+    public static class BookingType
     {
         /// <summary>
         /// Trang thái xe
@@ -28,5 +28,14 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
         {
             BHAPIWebCall = 1,
         }
+        public static String Salt()
+        {
+            return "BOOKINGHUTECHFINAL"; 
+        }
+        public static string BookingKey()
+        {
+            return "123456789"; 
+        }
+
     }
 }

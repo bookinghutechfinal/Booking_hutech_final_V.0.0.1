@@ -39,6 +39,7 @@ namespace BookingHutech.Controllers.Api
                             return ApiResponse.ErrorInputDataEntity(); 
                         else
                         {
+                            request.Password = EncodePassword.CreateSHA256(request.Password); 
                             //var Response = carServices.GetListCarDAL(request);
                             return ApiResponse.Success();
                         } 

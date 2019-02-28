@@ -9,5 +9,6 @@ namespace BookingHutech.Api_BHutech.Models.Request.AccountRequest
     {
         public string UserName { get; set; }
         public string Password { get; set; }
+         
     }
 }

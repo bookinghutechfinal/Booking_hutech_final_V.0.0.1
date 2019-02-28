@@ -70,8 +70,8 @@ mainmodule.config(['$translateProvider',
         }]);
 
         $translateProvider.translations('en', {
-            /* -------- Menu Name ---------- */
-            'ManageProfile': 'Quản lý hồ sơ',
+            /* -------- Menu Name 'Key': 'Valuse' ---------- */
+            'Login': 'Login',
         });
 
 
@@ -79,8 +79,11 @@ mainmodule.config(['$translateProvider',
             /* --------  Menu Name ---------- */
             'ManageProfile': 'Quản lý hồ sơ',
             /* -------- Login ---------- */
+            'Login' : 'Đăng Nhập',
             'PleaseInputAccountName' : 'Vui lòng nhập tên đăng nhập!',
             'PleaseInputPassword' : 'Vui lòng nhập mật khẩu!',
+            'LoginFail' : 'Tài khoản hoặc mật khẩu không đúng. Vui lòng kiểm tra lại!',
+            'LoginSuccess' : 'Đăng nhập thành công.',
             /* -------- Logout ---------- */
             'TitleLogout': 'Đăng xuất',
             'QuestionLogout': 'Bạn có muốn đăng xuất hay không?',
