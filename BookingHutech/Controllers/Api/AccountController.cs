@@ -35,14 +35,18 @@ namespace BookingHutech.Controllers.Api
                     try
                     {
                         // Kiểm tra UserName, Password
-                        if (DataEntity.CheckDataLogin(request.UserName) == false && DataEntity.CheckDataLogin(request.Password) == false)
-                            return ApiResponse.ErrorInputDataEntity(); 
-                        else
-                        {
-                            request.Password = EncodePassword.CreateSHA256(request.Password); 
-                            //var Response = carServices.GetListCarDAL(request);
-                            return ApiResponse.Success();
-                        } 
+                        //if (DataEntity.CheckDataLogin(request.UserName) == false && DataEntity.CheckDataLogin(request.Password) == false)
+                        //    return ApiResponse.ErrorInputDataEntity(); 
+                        //else
+                        //{
+                        //    request.Password = EncodePassword.CreateSHA256(request.Password); 
+                        //    //var Response = carServices.GetListCarDAL(request);
+                        //    return ApiResponse.Success();
+                        //} 
+
+                        request.Password = EncodePassword.CreateSHA256(request.Password);
+                        //var Response = carServices.GetListCarDAL(request);
+                        return ApiResponse.Success();
                     }
                     catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                     {
