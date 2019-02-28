@@ -143,8 +143,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api_BHutech\BHutech_Services\AccountServices\AccountServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarManagerServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarServices.cs" />
+    <Compile Include="Api_BHutech\DAO\AccountDAO\AccountDAO.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\EncodePassword.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\Permissions.cs" />
     <Compile Include="Api_BHutech\DAO\DataAccess.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Api_BHutech\Lib\Utils\DataEntity.cs" />
     <Compile Include="Api_BHutech\Models\AccountInfo.cs" />
     <Compile Include="Api_BHutech\Models\Car.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLogoutRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\ListCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />

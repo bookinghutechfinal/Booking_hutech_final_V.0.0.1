@@ -9,6 +9,10 @@ namespace BookingHutech.Api_BHutech.Prototype
     {
         // Get list car by Car Status. Anh.Tran Create 23/2/2018. 
         public const string uspGetListCarByCarStatus = "uspGetListCarByCarStatus";
+        // Login
+        public const string uspAccountLogin = "uspAccountLogin";
+        // Logout
+        public const string uspAccountLogout = "uspAccountLogout";
     }
 
 }
