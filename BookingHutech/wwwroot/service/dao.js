@@ -16,11 +16,10 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                 $rootScope.$emit('showLoading', false);
                 if (response.data === null) {
                     toastr.success('Không tìm thấy kết quả!');
-                } //User is delete
+                }  
                 else if (response.data.ReturnCode === 2) {
                     toastr.error('Hệ thống có lỗi trong quá trình xử lý!');
-                }
-               
+                } 
                 else {
                     success(response);
                 }

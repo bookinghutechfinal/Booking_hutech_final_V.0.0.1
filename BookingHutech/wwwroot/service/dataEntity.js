@@ -29,8 +29,8 @@ var KiemTraIsChangePassword = function (request) {
     }
 }
 
-// Hàm 3: Kiểm tra request
-var KiemTraNull = function (request) {
+// Hàm 3: Kiểm tra UserName và Password
+var CheckDataLogin = function (request) {
     if (checkNull(request.UserName) === true) { //Vui lòng nhập tên đăng nhập!
         return 137;
     } else if (checkNull(request.Password) === true) { //Vui lòng nhập mật khẩu!

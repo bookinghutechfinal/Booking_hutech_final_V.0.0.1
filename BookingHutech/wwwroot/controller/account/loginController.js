@@ -7,6 +7,24 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$mo
             return;
         };
         $scope.Login = function () {
+            // Login Response
+            $scope.accountLoginRequest = {
+                UserName: $scope.UserName,
+                Password: $scope.Password,
+            }
+            // Check UserName && password != null
+            var CheckDataLoginResponse = CheckDataLogin($scope.accountLoginRequest);
+            switch (CheckDataLoginResponse) {
+                case 137:
+                    toastr.error($rootScope.initMessage('PleaseInputAccountName'));
+                    return;
+                    break;
+                case 138:
+                    toastr.error($rootScope.initMessage('PleaseInputPassword'));
+                    return;
+                    break;
+            }
+
             $scope.goToHome();
         }
 

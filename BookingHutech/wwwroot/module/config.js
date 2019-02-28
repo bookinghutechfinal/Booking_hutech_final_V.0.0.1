@@ -53,45 +53,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
              templateUrl: '/wwwroot/views/pages/home/home.html',
              controller: 'HomeController',
          })
-
-
-        //< script async = "" src = "~/script/js/analytics.js" ></script >
-        //    <script src="~/script/js/jquery.min.js"></script>
-        //    <script src="~/script/js/bootstrap.min.js"></script>
-        //    <script src="~/script/js/fastclick.js"></script>
-        //    <script src="~/script/js/nprogress.js"></script>
-        //    <script src="~/script/js/Chart.min.js"></script>
-        //    <script src="~/script/js/gauge.min.js"></script>
-        //    <script src="~/script/js/bootstrap-progressbar.min.js"></script>
-        //    <script src="~/script/js/icheck.min.js"></script>
-        //    <script src="~/script/js/skycons.js"></script>
-        //    <script src="~/script/js/jquery.flot.js"></script>
-        //    <script src="~/script/js/jquery.flot.pie.js"></script>
-        //    <script src="~/script/js/jquery.flot.time.js"></script>
-        //    <script src="~/script/js/jquery.flot.stack.js"></script>
-        //    <script src="~/script/js/jquery.flot.resize.js"></script>
-        //    <script src="~/script/js/jquery.flot.orderBars.js"></script>
-        //    <script src="~/script/js/jquery.flot.spline.min.js"></script>
-        //    <script src="~/script/js/curvedLines.js"></script>
-        //< script src = "~/script/js/jquery.vmap.js" ></script >
-        //    <script src="~/script/js/jquery.vmap.world.js"></script>
-        //    <script src="~/script/js/jquery.vmap.sampledata.js"></script>
-        //    <script src="~/script/js/moment.min.js"></script>
-        //    <script src="~/script/js/daterangepicker.js"></script>
-
-        //.state('home', {
-        //    url: '/trang-chu',
-        //    templateUrl: '/wwwroot/views/pages/home/home.html',
-        //    controller: 'HomeController',
-        //})
-
-
-        //.state('main.dashboard', {
-        //    url: '/Trang-chu',
-        //    templateUrl: '/wwwroot/views/pages/home/dashboard.html',
-        //    controller: 'dashboardController',
-        //})
-
+         
         .state('error404', {
             url: '/error404',
             templateUrl: '/wwwroot/views/common/error404.html',
@@ -116,6 +78,9 @@ mainmodule.config(['$translateProvider',
         $translateProvider.translations('vn', {
             /* --------  Menu Name ---------- */
             'ManageProfile': 'Quản lý hồ sơ',
+            /* -------- Login ---------- */
+            'PleaseInputAccountName' : 'Vui lòng nhập tên đăng nhập!',
+            'PleaseInputPassword' : 'Vui lòng nhập mật khẩu!',
             /* -------- Logout ---------- */
             'TitleLogout': 'Đăng xuất',
             'QuestionLogout': 'Bạn có muốn đăng xuất hay không?',
