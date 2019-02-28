@@ -88,7 +88,8 @@ namespace BookingHutech.Api_BHutech.Models.Response
             return new ApiResponse()
             {
                 Data = null,
-                ReturnCode = (int)BHutechExceptionType.ERROR_INPUT_DATA_ENTITY
+                ReturnCode = (int)BHutechExceptionType.ERROR_INPUT_DATA_ENTITY,
+                Message = "Tài khoản hoặc mật khẩu không hợp lệ",
             };
         }
 
