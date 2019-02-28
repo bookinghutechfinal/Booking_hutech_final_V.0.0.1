@@ -1,0 +1,56 @@
+﻿
+<div class="clearfix" ng-controller="BookingCarController">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><i class="fa fa-home"></i> Trang chủ / Tìm kiếm xe</h2> 
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" style="display: block;">
+
+
+                <div class="panel">
+                    <div class="box-body">
+                        <!--START:  Loại xe -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>{{'TypeCar'| translate}}</label>
+                                <select class="form-control select2" ng-model="searchModel.CarTypeID" style="width: 100%;">
+                                    <option selected="selected" value="">{{'All' | translate }}</option>
+                                    <option selected="selected" value="">4 chổ</option>
+                                    <option selected="selected" value="">16 chổ</option>
+                                    <option selected="selected" value="">32 chổ</option>
+                                     
+                                    <!--<option ng-repeat="index in ListCarTypeInfo" value="{{index.CarTypeID}}">{{index.CarTypeName}}</option>-->
+                                </select>
+                            </div>
+                        </div>
+                        <!--END:  Loại xe -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>.</label>
+                                <button class="btn btn-primary btn-round btn-block"
+                                        data-ng-click="searchCar(searchModel)">
+                                    <!--ng-disabled="!isSubmitingEnable()"-->
+                                    <i class="glyphicon glyphicon-search"></i>
+                                    <span>{{'Search'| translate}}</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-6">
+
+                            <button class="btn btn-primary btn-round btn-block"
+                                    data-ng-click="searchCar(searchModel)">
+                                <i class="glyphicon glyphicon-search"></i>
+                                <span>{{'Search'| translate}}</span>
+                            </button>
+
+                        </div>-->
+                        <!-- </Button>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

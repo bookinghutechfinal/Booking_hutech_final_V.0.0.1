@@ -1,11 +1,12 @@
 ﻿mainmodule.controller('HomeController', ['$scope','$state',
     function($scope, $state) {
 
-        $scope.goToLogin = function () {
-            $state.go('main.login');
-            return;
+        $scope.goToBookingCar = function () {
+            $state.go('main.bookingcar'); 
         };
-        $scope.titleHome = 'Hello Trang chủ'; 
+        $scope.bookingCar = function () {
+            $scope.goToBookingCar(); 
+        }
 
     }]);
            

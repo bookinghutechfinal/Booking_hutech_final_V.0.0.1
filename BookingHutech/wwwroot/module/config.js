@@ -53,7 +53,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
              templateUrl: '/wwwroot/views/pages/home/home.html',
              controller: 'HomeController',
          })
-         
+        .state('main.bookingcar', {
+            url: '/dat-xe',
+            templateUrl: '/wwwroot/views/pages/bookingCar/bookingCar.html',
+            controller: 'BookingCarController',
+        })
         .state('error404', {
             url: '/error404',
             templateUrl: '/wwwroot/views/common/error404.html',
@@ -94,7 +98,10 @@ mainmodule.config(['$translateProvider',
             'NewPassWord': 'Mật khẩu mới',
             'ConfirmPassWord': 'Nhập lại mật khẩu',
             'MessageChangeAccount': 'Nhập mật khẩu mới cho',
-            'Update': 'Cập nhật'
+            'Update': 'Cập nhật',
+            /* -------- Home Booking car ---------- */
+            'TypeCar': 'Loại xe',
+            'All':'-- Tất cả --',
 
         });
 

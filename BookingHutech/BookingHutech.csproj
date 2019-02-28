@@ -730,6 +730,7 @@
     <Content Include="wwwroot\controller\account\logoutController.js" />
     <Content Include="wwwroot\controller\account\loginController.js" />
     <Content Include="wwwroot\controller\app\appController.js" />
+    <Content Include="wwwroot\controller\bookingCar\bookingCarController.js" />
     <Content Include="wwwroot\controller\home\homeController.js" />
     <Content Include="wwwroot\extensions\maps.js" />
     <Content Include="Scripts\moment\js\moment.min.js" />
@@ -1187,6 +1188,7 @@
     <Content Include="wwwroot\views\pages\account\changePassword.html" />
     <Content Include="wwwroot\views\pages\account\login.html" />
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
+    <Content Include="wwwroot\views\pages\bookingCar\bookingCar.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
