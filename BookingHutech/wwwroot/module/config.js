@@ -80,8 +80,8 @@ mainmodule.config(['$translateProvider',
 
 
         $translateProvider.translations('vn', {
-            /* --------  Menu Name ---------- */
-            'ManageProfile': 'Quản lý hồ sơ',
+            /* --------  Menu Main App ---------- */
+            'Home': 'Trang chủ',
             /* -------- Login ---------- */
             'Login' : 'Đăng Nhập',
             'PleaseInputAccountName' : 'Vui lòng nhập tên đăng nhập!',
@@ -102,6 +102,9 @@ mainmodule.config(['$translateProvider',
             /* -------- Home Booking car ---------- */
             'TypeCar': 'Loại xe',
             'All':'-- Tất cả --',
+            'TitileSerachCar':'Tìm kiếm xe',
+            'SearchBookingCar':'Tìm Kiếm',
+            'ResultSerachBookingCar':'Kết quả tìm kiếm',
 
         });
 
