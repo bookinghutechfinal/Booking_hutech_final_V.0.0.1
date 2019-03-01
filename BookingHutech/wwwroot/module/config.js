@@ -99,12 +99,13 @@ mainmodule.config(['$translateProvider',
             'ConfirmPassWord': 'Nhập lại mật khẩu',
             'MessageChangeAccount': 'Nhập mật khẩu mới cho',
             'Update': 'Cập nhật',
-            /* -------- Home Booking car ---------- */
+            /* --------  Booking car ---------- */
             'TypeCar': 'Loại xe',
             'All':'-- Tất cả --',
             'TitileSerachCar':'Tìm kiếm xe',
             'SearchBookingCar':'Tìm Kiếm',
             'ResultSerachBookingCar':'Kết quả tìm kiếm',
+            'ListCar':'Danh sách xe',
 
         });
 
