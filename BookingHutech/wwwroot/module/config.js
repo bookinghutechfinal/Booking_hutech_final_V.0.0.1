@@ -115,7 +115,8 @@ mainmodule.config(['$translateProvider',
             'SearchBookingCar': 'Tìm Kiếm',
             'ResultSerachBookingCar': 'Kết quả tìm kiếm',
             'ListCar': 'Danh sách xe',
-
+            /* --------  Booking Hall ---------- */
+            'TitileSerachHall':'Hội trường'
         });
 
         var language = $cookies.get('language');
