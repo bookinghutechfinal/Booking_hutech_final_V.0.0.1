@@ -1,15 +1,27 @@
-﻿ 
-mainmodule.controller('ChangePasswordController', ['$scope', '$state', '$rootScope', '$modal', '$http', '$cookies', 'toastr', '$dao',  
-    function ($scope, $state, $rootScope, $modal, $http, $cookies, toastr, $dao) {
-        $scope.UserName = "Trần Nhựt Anh";
+﻿
+mainmodule.controller('ChangePasswordController', ['$scope', '$state', '$rootScope', '$modal', '$http', '$cookies', 'toastr', '$dao', '$account',
+    function ($scope, $state, $rootScope, $modal, $http, $cookies, toastr, $dao, $account) {
+
+        $scope.goToLogin = function () {
+            $state.go('login');
+            return;
+        };
         $scope.goToHome = function () {
-            debugger
             $state.go('main.home');
             return;
         };
-        $scope.ChangePassword = function () {
-            $scope.goToHome();
+        var AccountInfo = $account.getAccountInfo();
+        var result = CheckAccountLoginAndChangePass(AccountInfo);
+        switch (result) {
+            case 1:
+                $scope.goToLogin();
+                break;
+            case 2:
+                $scope.AccountName = AccountInfo.ObjAccountInfo.FullName;
+                break;
+            case 3:
+                $scope.goToHome();
+                break;
         }
-
 
     }]);  

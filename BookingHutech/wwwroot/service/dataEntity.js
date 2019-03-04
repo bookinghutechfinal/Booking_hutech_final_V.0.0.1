@@ -29,6 +29,19 @@ var KiemTraIsChangePassword = function (request) {
     }
 }
 
+var CheckAccountLoginAndChangePass = function (accountInfo) {
+    if (checkNull(accountInfo) == true) {
+        return 1; // chưa đăng nhập. 
+    }
+    else if (!checkNull(accountInfo) && accountInfo.ObjAccountInfo.IsChangePassword === false) {
+        return 2; // đăng nhập rồi. chưa change
+    }
+    else if (checkNull(accountInfo) !== true) {
+        return 3; // đã đăng nhập. 
+    }
+}
+
+
 // Hàm 3: Kiểm tra UserName và Password
 var CheckDataLogin = function (request) {
     if (checkNull(request.UserName) === true) { //Vui lòng nhập tên đăng nhập!
@@ -38,40 +51,14 @@ var CheckDataLogin = function (request) {
     }
 }
 
-// Hàm 4: Kiểm tra kết quả đăng nhập
-var KiemTraDangNhap = function (request) {
-    if (checkNull(request) === true) {
-        return 102;     // tk, mk không chính xát. 
-    } else if (request.Verify == false) { //Tài khoản này chưa được quản trị viên duyệt. Vui lòng đăng nhập tài khoản khác!
-        return 136;
-    } else if (request.Account_Status == 0) { //Tài khoản này đã bị khóa. Vui lòng đăng nhập tài khoản khác!
-        return 104;
-    } else if (request.IsChangePassword === false) {
-        return 135;     // Vui lòng đổi mật khẩu cho lần đầu tiên đăng nhập vào hệ thống!
-    } else {
-        return 101;     // Đăng nhập thành công. 
-    }
-}
-
-// Hàm 5: check change Password. 
-var KiemTraChangePassword = function (request, OldPassword) {
-    if (checkNull(request.Password)) {
-        return 137;   //Vui lòng nhập mật khẩu mới!
-    } else if (checkNull(request.ConfirmPassWord)) {
-        return 138; //Vui lòng nhập xác nhận mật khẩu!
-    } else if (request.Password !== request.ConfirmPassWord) {
-        return 139;   //Mật khẩu mới và xác snhận mật khẩu không khớp nhau. Vui lòng kiểm tra lại!
-    } else if (OldPassword === request.Password) {
-        return 140;   //Mật khẩu mới và xác snhận mật khẩu không khớp nhau. Vui lòng kiểm tra lại!
-    }
-}
-
 // Hàm 6: Kiểm tra loại tài khoản. 
-var KiemTraLoaiTaiKhoan = function (accountType) {
+var CheckAccountType = function (accountType) {
     if (accountType === '1') {
-        return 1; // admin
+        return 1; // thư ký khoa
+    } else if (accountType === '2') {
+        return 2; // trưởng khoa
     } else {
-        return 0; // user
+        return 1;  // mặt định
     }
 }
 
@@ -82,9 +69,9 @@ var KiemTraLoaiTaiKhoan = function (accountType) {
 var FormatDateTime = function (date) {
     return moment(date, 'MM/DD/YYYY HH:mm').format('YYYY-MM-DD HH:mm')
 }
- 
+
 var FormatDateAdminSearchTime = function (date) { // Update
-    return moment(date, 'HH:mm:ss DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')  
+    return moment(date, 'HH:mm:ss DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
 }
 
 // Input từ layout
@@ -101,17 +88,17 @@ var FormatTimeFromToToNumber = function (date) {
 }
 
 
-var FormatDateTime_ = function (date) { 
+var FormatDateTime_ = function (date) {
     return moment(date, 'YYYY-DD-MM HH:mm:ss').format('HH:mm:ss MM-DD-YYYY')
 }
-var FormatDateTime2 = function (date) { 
+var FormatDateTime2 = function (date) {
     return moment(date, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss DD/MM/YYYY')
 }
 // Tách ngày giờ trả lên từ DB
-var FormatToDate = function (date) { 
-    return moment(date,'MM/DD/YYYY HH:mm:ss').format('MM-DD-YYYY')
+var FormatToDate = function (date) {
+    return moment(date, 'MM/DD/YYYY HH:mm:ss').format('MM-DD-YYYY')
 }
-var FormatToTime = function (time) { 
+var FormatToTime = function (time) {
     return moment(time, 'MM/DD/YYYY HH:mm:ss').format('HH:mm')
 }
 //var FormatDateTime_ = function (date) { 
@@ -129,11 +116,11 @@ var FormatTimeToNumber = function (time) {
 
 var convertDateTime = function (str) {
     var date = new Date(str),
-        mnth = ("0" + (date.getMonth()+1)).slice(-2),
-        day  = ("0" + date.getDate()).slice(-2);
-        hours  = ("0" + date.getHours()).slice(-2);
-        minutes = ("0" + date.getMinutes()).slice(-2);
-    return date.getFullYear() + "-" + mnth + "-" +day+ " "+hours +":"+minutes ;
+        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+        day = ("0" + date.getDate()).slice(-2);
+    hours = ("0" + date.getHours()).slice(-2);
+    minutes = ("0" + date.getMinutes()).slice(-2);
+    return date.getFullYear() + "-" + mnth + "-" + day + " " + hours + ":" + minutes;
     //return [ date.getFullYear(), mnth, day, hours, minutes ].join("-");
 }
 
@@ -142,7 +129,7 @@ var convertDateTime = function (str) {
 
 
 
- 
+
 //var checkFromToDate = function (fromDate, toDate) {
 //    return moment(toDate, 'DD-MM-YYYY HH:mm') > moment(fromDate, 'DD-MM-YYYY HH:mm');
 //}
@@ -190,12 +177,11 @@ var checkSearchCar = function (request) {
         return 146;
     } else if (So_Sanh_TimeInput(request.FormTime, request.ToTime)) {
         return 147;
-    }  
+    }
 }
 
-var CheckRegistration = function (request) { 
+var CheckRegistration = function (request) {
     if (checkNull(request.FormDate) == true) {
         return 1;
     }
 }
- 

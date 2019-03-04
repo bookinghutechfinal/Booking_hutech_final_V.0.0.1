@@ -5,14 +5,15 @@ using System.Web;
 
 namespace BookingHutech.Api_BHutech.Models.Response.AccountResponse
 {
-    public class AccountLoginResponseModel
+    public class AccountInfoResponseModel
     {
-        public string Account_ID { get; set; } 
-        public string FullName { get; set; } 
+        public string Account_ID { get; set; }
+        public string FullName { get; set; }
         public int Gender { get; set; }
-        public DateTime Birthday { get; set; } 
-        public string IDCard { get; set; }
-        public string Addres { get; set; } 
+
+        public DateTime Birthday { get; set; }
+        public string Addres { get; set; }
+
         public DateTime CreateDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
         public string Session { get; set; }
@@ -22,4 +23,17 @@ namespace BookingHutech.Api_BHutech.Models.Response.AccountResponse
         public bool? Verify { get; set; }
         public string AccountType { get; set; }
     }
+    public class AccountLoginResponseModel
+    {
+        public List<AccountInfoResponseModel> GetAccountInfo { get; set; }
+        public List<GetRoleCode> GetRoleCode { get; set; }
+    }
+    public class GetRoleCode
+    {
+        public int RoleCode { get; set; }
+
+        public GetRoleCode() { }
+
+    }
+
 }

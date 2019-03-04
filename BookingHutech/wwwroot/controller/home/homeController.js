@@ -7,6 +7,15 @@
         $scope.bookingCar = function () {
             $scope.goToBookingCar(); 
         }
+        
+        
+
+        $scope.goTobookingMeetingHall = function () {
+            $state.go('main.bookingMeetingHall');
+        };
+        $scope.bookingMeetingHall = function () {
+            $scope.goTobookingMeetingHall();
+        }
 
     }]);
            

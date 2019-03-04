@@ -1,0 +1,301 @@
+﻿<style>
+    .x_title li{
+        display:inline-block;
+    }
+    .x_title ul{
+        margin-left:-45px;
+    }
+</style>
+<div class="clearfix" ng-controller="bookingMeetingHallController">
+
+    <!--Strat: Tim kiem -->
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <ul>
+                    <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                    <li><a href="#/main/dat-hoi-truong"><h5>/ {{'TitileSerachHall' | translate}}</h5></a></li>
+               </ul>
+            </div>
+            <div class="x_content" style="display: block;">
+                <!--START:  Loại phòng -->
+                <div class="col-lg-6 col-xs-6">
+                    <div class="form-group">
+                        <label>Số ghế</label>
+                        <select class="form-control select2" ng-model="searchModel.CarTypeID" style="width: 100%;">
+                            <option selected="selected" value="">{{'All' | translate }}</option>
+                            <option ng-repeat="index in ListCarTypeInfo" value="{{index.CarTypeID}}">{{index.CarTypeName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <!--END:  Loại xe -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>.</label>
+                        <button class="btn btn-primary btn-round btn-block"
+                                data-ng-click="searchCar(searchModel)">
+                            <!--ng-disabled="!isSubmitingEnable()"-->
+                            <i class="glyphicon glyphicon-search"></i>
+                            <span>{{'Search'| translate}}</span>
+                        </button>
+                    </div>
+                </div>
+                <!--<div class="col-sm-6">
+
+                    <button class="btn btn-primary btn-round btn-block"
+                            data-ng-click="searchCar(searchModel)">
+                        <i class="glyphicon glyphicon-search"></i>
+                        <span>{{'Search'| translate}}</span>
+                    </button>
+
+                </div>-->
+                <!-- </Button>-->
+            </div>
+        </div>
+    </div>
+    <!-- End Tim Kiem -->
+
+    <!-- star: Danh sách hội trường -->
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h4>Danh sách hội trường</h4>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <!--<div class="clearfix"></div>-->
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                        <div class="well profile_view">
+                            <div class="col-sm-12">
+                                <div class="left col-xs-7">
+                                    <h2>Hội Trường A-08.20</h2>
+                                    <p>Số Ghế: 1000</p>
+                                    <p>Đ/c: Khu A, 475A, Điện Biên Phủ, P25 Q.Bình Thạnh, TP.HCM</p>
+                                </div>
+                                <div class="right col-xs-5 text-center">
+                                    <img src="../../../../images/img/hoi_truong.jpg"  alt="" class="img-circle img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bottom text-center">
+                                <div class="col-xs-12 col-sm-6 emphasis">
+                                    <button type="button" class="btn btn-primary btn-xs">
+                                        <i class="glyphicon glyphicon-check"> </i>{{'BookHall' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                        <div class="well profile_view">
+                            <div class="col-sm-12">
+                                <div class="left col-xs-7">
+                                    <h2>Hội Trường A-08.20</h2>
+                                    <p>Số Ghế: 1000</p>
+                                    <p>Đ/c: Khu A, 475A, Điện Biên Phủ, P25 Q.Bình Thạnh, TP.HCM</p>
+                                </div>
+                                <div class="right col-xs-5 text-center">
+                                    <img src="../../../../images/img/hoi_truong.jpg" alt="" class="img-circle img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bottom text-center">
+                                <div class="col-xs-12 col-sm-6 emphasis">
+                                    <button type="button" class="btn btn-primary btn-xs">
+                                        <i class="glyphicon glyphicon-check"> </i>{{'BookHall' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                        <div class="well profile_view">
+                            <div class="col-sm-12">
+                                <div class="left col-xs-7">
+                                    <h2>Hội Trường A-08.20</h2>
+                                    <p>Số Ghế: 1000</p>
+                                    <p>Đ/c: Khu A, 475A, Điện Biên Phủ, P25 Q.Bình Thạnh, TP.HCM</p>
+                                </div>
+                                <div class="right col-xs-5 text-center">
+                                    <img src="../../../../images/img/hoi_truong.jpg" alt="" class="img-circle img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bottom text-center">
+                                <div class="col-xs-12 col-sm-6 emphasis">
+                                    <button type="button" class="btn btn-primary btn-xs">
+                                        <i class="glyphicon glyphicon-check"> </i>{{'BookHall' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                        <div class="well profile_view">
+                            <div class="col-sm-12">
+                                <div class="left col-xs-7">
+                                    <h2>Hội Trường A-08.20</h2>
+                                    <p>Số Ghế: 1000</p>
+                                    <p>Đ/c: Khu A, 475A, Điện Biên Phủ, P25 Q.Bình Thạnh, TP.HCM</p>
+                                </div>
+                                <div class="right col-xs-5 text-center">
+                                    <img src="../../../../images/img/hoi_truong.jpg" alt="" class="img-circle img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bottom text-center">
+                                <div class="col-xs-12 col-sm-6 emphasis">
+                                    <button type="button" class="btn btn-primary btn-xs">
+                                        <i class="glyphicon glyphicon-check"> </i>{{'BookHall' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                        <div class="well profile_view">
+                            <div class="col-sm-12">
+                                <div class="left col-xs-7">
+                                    <h2>Hội Trường A-08.20</h2>
+                                    <p>Số Ghế: 1000</p>
+                                    <p>Đ/c: Khu A, 475A, Điện Biên Phủ, P25 Q.Bình Thạnh, TP.HCM</p>
+                                </div>
+                                <div class="right col-xs-5 text-center">
+                                    <img src="../../../../images/img/hoi_truong.jpg" alt="" class="img-circle img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bottom text-center">
+                                <div class="col-xs-12 col-sm-6 emphasis">
+                                    <button type="button" class="btn btn-primary btn-xs">
+                                        <i class="glyphicon glyphicon-check"> </i>{{'BookHall' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                        <div class="well profile_view">
+                            <div class="col-sm-12">
+                                <div class="left col-xs-7">
+                                    <h2>Hội Trường A-08.20</h2>
+                                    <p>Số Ghế: 1000</p>
+                                    <p>Đ/c: Khu A, 475A, Điện Biên Phủ, P25 Q.Bình Thạnh, TP.HCM</p>
+                                </div>
+                                <div class="right col-xs-5 text-center">
+                                    <img src="../../../../images/img/hoi_truong.jpg" alt="" class="img-circle img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bottom text-center">
+                                <div class="col-xs-12 col-sm-6 emphasis">
+                                    <button type="button" class="btn btn-primary btn-xs">
+                                        <i class="glyphicon glyphicon-check"> </i>{{'BookHall' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                        <div class="well profile_view">
+                            <div class="col-sm-12">
+                                <div class="left col-xs-7">
+                                    <h2>Hội Trường A-08.20</h2>
+                                    <p>Số Ghế: 1000</p>
+                                    <p>Đ/c: Khu A, 475A, Điện Biên Phủ, P25 Q.Bình Thạnh, TP.HCM</p>
+                                </div>
+                                <div class="right col-xs-5 text-center">
+                                    <img src="../../../../images/img/hoi_truong.jpg" alt="" class="img-circle img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bottom text-center">
+                                <div class="col-xs-12 col-sm-6 emphasis">
+                                    <button type="button" class="btn btn-primary btn-xs">
+                                        <i class="glyphicon glyphicon-check"> </i>{{'BookHall' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                        <div class="well profile_view">
+                            <div class="col-sm-12">
+                                <div class="left col-xs-7">
+                                    <h2>Hội Trường A-08.20</h2>
+                                    <p>Số Ghế: 1000</p>
+                                    <p>Đ/c: Khu A, 475A, Điện Biên Phủ, P25 Q.Bình Thạnh, TP.HCM</p>
+                                </div>
+                                <div class="right col-xs-5 text-center">
+                                    <img src="../../../../images/img/hoi_truong.jpg" alt="" class="img-circle img-responsive">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bottom text-center">
+                                <div class="col-xs-12 col-sm-6 emphasis">
+                                    <button type="button" class="btn btn-primary btn-xs">
+                                        <i class="glyphicon glyphicon-check"> </i>{{'BookHall' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+            <!-- Tim Kiem -->
+        </div>
+ 
+    <!-- end: Danh  hội trường  -->
+
+    <!-- Star: Kết quả tìm kiếm -->
+    <div class="col-sm-12 col-xs-12" ng-show="ShowListCars">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <ol class="breadcrumb">
+                    <li><a href=""><i class="fa fa-dashboard"></i> Kết quả tìm kiếm:</a></li>
+                    <li class="active">{{CountListCar}}</li>
+                </ol>
+                <div class="box-tools pull-right">
+                    <a href="" class="btn btn-success btn-sm ad-click-event" data-ng-click="ListCar()">
+                        <i class="glyphicon glyphicon-refresh"></i>    Danh sách xe.
+                    </a>
+                </div>
+            </div>
+            <div class="box-body">
+                <div>
+                    <div class="row docs-premium-template">
+                        <!--star: item car-->
+                        <div class="col-sm-12 col-md-6" ng-repeat="data in ListCarInfoResult">
+                            <div class="box box-solid">
+                                <div class="box-body">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="" class="ad-click-event inner" ng-click="bookingCar(data)">
+                                                <!-- <img src="../../../../images/img/car.jpg" alt="MaterialPro" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">-->
+                                                <img src="{{'../../../../images/img/'+data.CarImage}}" alt="MaterialPro" class="media-object" style="width: 252px;height: 151px;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="clearfix" style=" margin-left 8%;">
+                                                <h4 style="margin-top: 0">{{data.CarName}}</h4>
+                                                <p>Biển số xe {{data.CarNumber}}</p>
+                                                <p>Loại xe {{data.CarTypeName}}</p>
+                                                <p style="margin-bottom: 0 ;  float: left;">
+                                                    <span class="badge red-bg" ng-style="{'background':data.Color}"><!--i class="fa fa-shopping-cart margin-r5"></i>-->{{data.Car_Status}}</span>
+                                                </p>
+                                                <p class="pull-right">
+                                                    <a href="" class="btn btn-success btn-sm ad-click-event" ng-click="bookingCar(data)">
+                                                        <i class="glyphicon glyphicon-check"></i>  Đặt Xe
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+            <!-- Tim Kiem -->
+        </div>
+    </div>
+    <!-- end: Kết quả tìm kiếm -->
+</div>
+<!--</div>-->
+

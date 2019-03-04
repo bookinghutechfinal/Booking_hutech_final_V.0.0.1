@@ -1,0 +1,242 @@
+﻿
+<style>
+    .x_title li {
+        display: inline-block;
+    }
+    .x_title ul{
+        margin-left:-45px;
+    }
+    
+</style>
+<div class="clearfix" ng-controller="BookingCarController">
+    <div class="row">
+        <!--Start: Tìm kiếm xe-->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul>
+                        <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                        <li><a href="#/main/dat-xe"><h5>/ {{'TitileSerachCar' | translate}}</h5></a></li>
+                    </ul>
+                </div>
+                <div class="x_content" style="display: block;">
+                    <!--START:  Loại xe -->
+                    <div class="col-lg-6 col-xs-6">
+                        <div class="form-group">
+                            <label>{{'TypeCar'| translate}}</label>
+                            <select class="form-control select2" ng-model="searchModel.CarTypeID" style="width: 100%;">
+                                <option selected="selected" value="">{{'All' | translate }}</option>
+                                <option selected="selected" value="">4 chổ</option>
+                                <option selected="selected" value="">16 chổ</option>
+                                <option selected="selected" value="">32 chổ</option>
+
+                                <!--<option ng-repeat="index in ListCarTypeInfo" value="{{index.CarTypeID}}">{{index.CarTypeName}}</option>-->
+                            </select>
+                        </div>
+                    </div>
+                    <!--END:  Loại xe -->
+
+                    <div class="col-lg-6 col-xs-6">
+                        <div class="form-group">
+                            <label>`</label>
+                            <button class="btn btn-primary btn-round btn-block"
+                                    data-ng-click="searchCar(searchModel)">
+                                <!--ng-disabled="!isSubmitingEnable()"-->
+                                <i class="glyphicon glyphicon-search"></i>
+                                <span>{{'SearchBookingCar'| translate}}</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-6">
+                        <button class="btn btn-primary btn-round btn-block"
+                                data-ng-click="searchCar(searchModel)">
+                            <i class="glyphicon glyphicon-search"></i>
+                            <span>{{'Search'| translate}}</span>
+                        </button>
+
+                    </div>-->
+                    <!-- </Button>-->
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--End: Tìm kiếm xe-->
+        <!--Start: Danh sách  xe-->
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h5><i class="glyphicon glyphicon-th-list"></i> {{'ListCar' | translate}}</h5>
+                </div>
+                <div class="x_content">
+                    <div class="row">
+                        <!--<div class="clearfix"></div>-->
+                        
+                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                            <div class="well profile_view">
+                                <div class="col-sm-12">
+                                    <div class="right col-xs-5 text-center">
+                                        <img src="../../../../images/img/xe_16_cho.jpg" alt="" class="img-circle img-responsive">
+                                    </div>
+                                    <div class="left col-xs-7">
+                                        <h2>Audi X</h2>
+                                        <p>Biển số xe: KG-1 0001</p>
+                                        <p>Loại xe: 4 chổ</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-12 bottom text-center">
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+                                        <button type="button" class="btn btn-primary btn-xs">
+                                            <i class="glyphicon glyphicon-check"> </i>{{'BookCar' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                            <div class="well profile_view">
+                                <div class="col-sm-12">
+                                    <div class="left col-xs-7">
+                                        <h2>Audi X</h2>
+                                        <p>Biển số xe: KG-1 0001</p>
+                                        <p>Loại xe: 4 chổ</p>
+                                    </div>
+                                    <div class="right col-xs-5 text-center">
+                                        <img src="../../../../images/img/xe_16_cho.jpg" alt="" class="img-circle img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 bottom text-center">
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+                                        <button type="button" class="btn btn-primary btn-xs">
+                                            <i class="glyphicon glyphicon-check"> </i>{{'BookCar' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                            <div class="well profile_view">
+                                <div class="col-sm-12">
+                                    <div class="left col-xs-7">
+                                        <h2>Audi X</h2>
+                                        <p>Biển số xe: KG-1 0001</p>
+                                        <p>Loại xe: 4 chổ</p>
+                                    </div>
+                                    <div class="right col-xs-5 text-center">
+                                        <img src="../../../../images/img/xe_16_cho.jpg" alt="" class="img-circle img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 bottom text-center">
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+                                        <button type="button" class="btn btn-primary btn-xs">
+                                            <i class="glyphicon glyphicon-check"> </i>{{'BookCar' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                            <div class="well profile_view">
+                                <div class="col-sm-12">
+                                    <div class="left col-xs-7">
+                                        <h2>Audi X</h2>
+                                        <p>Biển số xe: KG-1 0001</p>
+                                        <p>Loại xe: 4 chổ</p>
+                                    </div>
+                                    <div class="right col-xs-5 text-center">
+                                        <img src="../../../../images/img/xe_16_cho.jpg" alt="" class="img-circle img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 bottom text-center">
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+                                        <button type="button" class="btn btn-primary btn-xs">
+                                            <i class="glyphicon glyphicon-check"> </i>{{'BookCar' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                            <div class="well profile_view">
+                                <div class="col-sm-12">
+                                    <div class="left col-xs-7">
+                                        <h2>Audi X</h2>
+                                        <p>Biển số xe: KG-1 0001</p>
+                                        <p>Loại xe: 4 chổ</p>
+                                    </div>
+                                    <div class="right col-xs-5 text-center">
+                                        <img src="../../../../images/img/xe_16_cho.jpg" alt="" class="img-circle img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 bottom text-center">
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+                                        <button type="button" class="btn btn-primary btn-xs">
+                                            <i class="glyphicon glyphicon-check"> </i>{{'BookCar' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                            <div class="well profile_view">
+                                <div class="col-sm-12">
+                                    <div class="left col-xs-7">
+                                        <h2>Audi X</h2>
+                                        <p>Biển số xe: KG-1 0001</p>
+                                        <p>Loại xe: 4 chổ</p>
+                                    </div>
+                                    <div class="right col-xs-5 text-center">
+                                        <img src="../../../../images/img/xe_16_cho.jpg" alt="" class="img-circle img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 bottom text-center">
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+                                        <button type="button" class="btn btn-primary btn-xs">
+                                            <i class="glyphicon glyphicon-check"> </i>{{'BookCar' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                            <div class="well profile_view">
+                                <div class="col-sm-12">
+                                    <div class="left col-xs-7">
+                                        <h2>Audi X</h2>
+                                        <p>Biển số xe: KG-1 0001</p>
+                                        <p>Loại xe: 4 chổ</p>
+                                    </div>
+                                    <div class="right col-xs-5 text-center">
+                                        <img src="../../../../images/img/xe_16_cho.jpg" alt="" class="img-circle img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 bottom text-center">
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+                                        <button type="button" class="btn btn-primary btn-xs">
+                                            <i class="glyphicon glyphicon-check"> </i>{{'BookCar' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--End: Danh sách  xe-->
+        <!--Start: Tìm kiếm xe-->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h5><i class="glyphicon glyphicon-filter"></i> {{'ResultSerachBookingCar' | translate}}</h5>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="display: block;">
+                    Danh sách xe theo kết quả tìm kiếm...
+                </div>
+            </div>
+        </div>
+        <!--End: Tìm kiếm xe-->
+    </div>
+</div>

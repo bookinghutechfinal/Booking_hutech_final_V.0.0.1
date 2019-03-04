@@ -52,7 +52,7 @@ namespace BookingHutech.Controllers.Api
             catch (Exception ex)  // thiếu header. 
             {
                 LogWriter.WriteException(ex);
-                return ApiResponse.ApiNotPermissionCall(); 
+                return ApiResponse.ApiNotPermissionCall();
             }
 
 
@@ -61,7 +61,7 @@ namespace BookingHutech.Controllers.Api
         [HttpPost]
         public ApiResponse Login([FromBody] AccountLoginRequestModel request)
         {
-            CarServices carServices = new CarServices();
+            AccountServices accountServices = new AccountServices();
             try
             {
                 // kiểm tra quyền, và nguồn gọi. 
@@ -70,22 +70,35 @@ namespace BookingHutech.Controllers.Api
                     try
                     {
                         // Kiểm tra UserName, Password
-                        //if (DataEntity.CheckDataLogin(request.UserName) == false && DataEntity.CheckDataLogin(request.Password) == false)
-                        //    return ApiResponse.ErrorInputDataEntity(); 
-                        //else
-                        //{
-                        //    request.Password = EncodePassword.CreateSHA256(request.Password); 
-                        //    //var Response = carServices.GetListCarDAL(request);
-                        //    return ApiResponse.Success();
-                        //} 
+                        if (DataEntity.CheckUserName(request.UserName) == false || DataEntity.CheckUserName(request.Password) == false)
+                            return ApiResponse.LoginFail();
+                        else
+                        {
+                            request.Password = EncodePassword.CreateSHA256(request.Password);
+                            // Kiểm tra đăng nhập và trả về return code.  
+                            var Response = accountServices.AccountLoginServices(request);
 
-                        request.Password = EncodePassword.CreateSHA256(request.Password);
-                        //var Response = carServices.GetListCarDAL(request);
-                        return ApiResponse.Success();
+                            int Result = DataEntity.CheckAccountLogin(Response);
+                            switch (Result)
+                            {
+                                case 152:
+                                    return ApiResponse.LoginFail();
+                                case 102:
+                                    return ApiResponse.AccountDelete();
+                                case 153:
+                                    return ApiResponse.Not_Verify();
+                                case 135:
+                                    return ApiResponse.IsChangePassword(Response);
+                                case 1:
+                                    return ApiResponse.Success(Response);
+                            }
+                            return ApiResponse.Error(); // Có lỗi xử lý. 
+                        }
+
+
                     }
                     catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                     {
-                        LogWriter.WriteException(ex);
                         return ApiResponse.Error();
                     }
                 }
@@ -100,6 +113,68 @@ namespace BookingHutech.Controllers.Api
                 return ApiResponse.ApiNotPermissionCall();
             }
 
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPatch]
+        public ApiResponse ChangePassword([FromBody] AccountChangePasswordRequestModel request)
+        {
+
+            try
+            {
+                // kiểm tra quyền, và nguồn gọi. 
+                if (Permissions.CheckAPIRequest(Request.Headers.GetValues(ApiHeaderKey.BHAPIWebCall.ToString()).First()) == (int)ApiRequestType.Web)
+                {
+                    try
+                    {
+                        // Kiểm tra UserName, Password
+                        if (DataEntity.CheckPassWord(request.Password) == false)
+                            return ApiResponse.ErrorInputDataEntity();
+                        else
+                        {
+                            request.Password = EncodePassword.CreateSHA256(request.Password);
+                            // Kiểm tra đăng nhập và trả về return code.  
+                            //// var Response = accountServices.AccountLoginServices(request);
+
+                            // int Result = DataEntity.CheckAccountLogin(Response);
+                            // switch (Result)
+                            // {
+                            //     case 152:
+                            //         return ApiResponse.LoginFail();
+                            //     case 102:
+                            //         return ApiResponse.AccountDelete();
+                            //     case 153:
+                            //         return ApiResponse.Not_Verify();
+                            //     case 135:
+                            //         return ApiResponse.IsChangePassword(Response);
+                            //     case 1:
+                            //         return ApiResponse.Success(Response);
+                            // }
+                            return ApiResponse.Error(); // Có lỗi xử lý. 
+                        }
+
+
+                    }
+                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    {
+                        return ApiResponse.Error();
+                    }
+                }
+                else  // sai header .
+                {
+                    return ApiResponse.ApiNotPermissionCall();
+                }
+            }
+            catch (Exception ex)  // thiếu header. 
+            {
+                LogWriter.WriteException(ex);
+                return ApiResponse.ApiNotPermissionCall();
+            }
 
         }
     }

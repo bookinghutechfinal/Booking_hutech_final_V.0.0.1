@@ -159,6 +159,7 @@
     <Compile Include="Api_BHutech\Lib\Utils\DataEntity.cs" />
     <Compile Include="Api_BHutech\Models\AccountInfo.cs" />
     <Compile Include="Api_BHutech\Models\Car.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountChangePasswordRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLogoutRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\ListCarRequestModel.cs" />
@@ -734,7 +735,9 @@
     <Content Include="wwwroot\controller\account\logoutController.js" />
     <Content Include="wwwroot\controller\account\loginController.js" />
     <Content Include="wwwroot\controller\app\appController.js" />
-    <Content Include="wwwroot\controller\bookingCar\bookingCarController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\registerBookingCarController.js" />
+    <Content Include="wwwroot\controller\booking\bookingMeetingHall\bookingMeetingHallController.js" />
     <Content Include="wwwroot\controller\home\homeController.js" />
     <Content Include="wwwroot\extensions\maps.js" />
     <Content Include="Scripts\moment\js\moment.min.js" />
@@ -1192,7 +1195,9 @@
     <Content Include="wwwroot\views\pages\account\changePassword.html" />
     <Content Include="wwwroot\views\pages\account\login.html" />
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
-    <Content Include="wwwroot\views\pages\bookingCar\bookingCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\PopupRegisterBookingCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingMeetingHall\meetingHallInfo.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
