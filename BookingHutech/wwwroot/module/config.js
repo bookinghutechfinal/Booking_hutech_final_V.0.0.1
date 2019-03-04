@@ -58,6 +58,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/bookingCar.html',
             controller: 'BookingCarController',
         })
+        .state('main.bookingMeetingHall', {
+            url: '/dat-hoi-truong',
+            templateUrl: '/wwwroot/views/pages/booking/bookingMeetingHall/meetingHallInfo.html',
+            controller: 'bookingMeetingHallController',
+        })
         .state('error404', {
             url: '/error404',
             templateUrl: '/wwwroot/views/common/error404.html',
