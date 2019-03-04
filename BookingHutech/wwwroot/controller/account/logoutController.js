@@ -33,7 +33,9 @@ mainmodule.controller('LogoutController', ['$scope', '$state', '$rootScope', '$c
                         break;
                     case 1:
                         $modalInstance.close();
+                        location.reload(); 
                         $scope.goToLogin();
+
                         break;
                 }
 

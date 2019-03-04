@@ -731,6 +731,7 @@
     <Content Include="Scripts\jquery\src\var\toString.js" />
     <Content Include="Scripts\jquery\src\wrap.js" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap.css" />
+    <Content Include="Scripts\vendor\angular-ui-router\release\angular-ui-router.min.js" />
     <Content Include="wwwroot\controller\account\changePasswordController.js" />
     <Content Include="wwwroot\controller\account\logoutController.js" />
     <Content Include="wwwroot\controller\account\loginController.js" />
@@ -1223,7 +1224,7 @@
     <Content Include="Scripts\vendor\angular-file-upload\angular-file-upload.min.js" />
     <Content Include="Scripts\vendor\angular-sanitize\angular-sanitize.min.js" />
     <Content Include="Scripts\vendor\angular-touch\angular-touch.min.js" />
-    <Content Include="Scripts\vendor\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="Scripts\vendor\angular-ui-router\release\angular-ui-router.min__.js" />
     <Content Include="Scripts\vendor\angular-ui-utils\ui-utils-ieshiv.min.js" />
     <Content Include="Scripts\vendor\angular-ui-utils\ui-utils.min.js" />
     <Content Include="Scripts\vendor\angularjs-dropdown-multiselect.min.js" />
