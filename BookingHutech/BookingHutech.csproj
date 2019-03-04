@@ -1197,7 +1197,7 @@
     <Content Include="wwwroot\views\pages\account\login.html" />
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
-    <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\PopupRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingMeetingHall\meetingHallInfo.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
