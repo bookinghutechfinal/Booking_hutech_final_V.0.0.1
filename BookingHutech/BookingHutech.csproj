@@ -147,10 +147,10 @@
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarManagerServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarServices.cs" />
     <Compile Include="Api_BHutech\DAO\AccountDAO\AccountDAO.cs" />
+    <Compile Include="Api_BHutech\DAO\CarDAO\CarDAO.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\EncodePassword.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\Permissions.cs" />
     <Compile Include="Api_BHutech\DAO\DataAccess.cs" />
-    <Compile Include="Api_BHutech\DAO\CarManagerDAO\CarDAO.cs" />
     <Compile Include="Api_BHutech\Lib\Enum\Account.cs" />
     <Compile Include="Api_BHutech\Lib\Enum\BookingType.cs" />
     <Compile Include="Api_BHutech\Lib\Helper.cs" />
@@ -1197,7 +1197,7 @@
     <Content Include="wwwroot\views\pages\account\login.html" />
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
-    <Content Include="wwwroot\views\pages\booking\bookingCar\PopupRegisterBookingCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingMeetingHall\meetingHallInfo.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
