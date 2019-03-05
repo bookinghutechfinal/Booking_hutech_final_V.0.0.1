@@ -7,7 +7,7 @@ namespace BookingHutech.Api_BHutech.Models.Request.AccountRequest
 {
     public class AccountLogoutRequestModel
     {
-        public int Account_ID { set; get; }
+        public String Account_ID { set; get; }
 
         public AccountLogoutRequestModel() { }
 

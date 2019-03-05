@@ -43,8 +43,13 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     accountLoginResponseModel.Addres = reader["Addres"].ToString();
                     accountLoginResponseModel.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
                     accountLoginResponseModel.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
-                    accountLoginResponseModel.Session = reader["Session"].ToString();
-                    accountLoginResponseModel.SessionDate = DateTime.Parse(reader["SessionDate"].ToString());
+                    accountLoginResponseModel.Session = reader["Session"].ToString(); 
+
+                    if (reader["SessionDate"].ToString() == "")
+                        accountLoginResponseModel.SessionDate = null;
+                    else {
+                        accountLoginResponseModel.SessionDate = DateTime.Parse(reader["SessionDate"].ToString());
+                    } 
                     accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
                     accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
                     accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());

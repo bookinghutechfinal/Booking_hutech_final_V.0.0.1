@@ -15,6 +15,10 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspAccountLogout = "uspAccountLogout";
         // Get GuleCode in Login. Create By Lam Create 28/2/2018. 
         public const string uspGetRuleCodeByAccount = "uspGetRuleCodeByAccount";
+        // Get Account Info By Account_ID. Create By Anh.Trần Create 4/3/2019 
+        public const string uspGetAccountInfoByAccountID = "uspGetAccountInfoByAccountID";
+        // Get Rule Code By AccountID. Create By Anh.Trần Create 4/3/2019 
+        public const string uspGetRuleCodeByAccountID = "uspGetRuleCodeByAccountID";
     }
 
 }

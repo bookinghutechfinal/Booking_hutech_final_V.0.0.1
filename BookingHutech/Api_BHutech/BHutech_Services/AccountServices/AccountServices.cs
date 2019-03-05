@@ -1,5 +1,6 @@
 ﻿using BookingHutech.Api_BHutech.DAO.AccountDAO;
 using BookingHutech.Api_BHutech.Lib;
+using BookingHutech.Api_BHutech.Models.Request;
 using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 using BookingHutech.Api_BHutech.Models.Response;
 using BookingHutech.Api_BHutech.Models.Response.AccountResponse;
@@ -62,5 +63,35 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             }
 
         }
+
+        /// <summary>
+        /// Anh.Tran: Create 24/1/2019 
+        /// GetListCarDAL
+        /// </summary>
+        /// <param name="">ListCarRequestModel</param>
+        /// <returns>ListCarResponseModel</returns> 
+        public CheckPermissionResponseModel CheckPermissionsServices(String Account_ID)
+        {
+
+            CheckPermissionResponseModel checkPermissionResponse = new CheckPermissionResponseModel();
+            try
+            {
+                string uspGetAccountInfoByAccountID = Prototype.SqlCommandStore.uspGetAccountInfoByAccountID + " '" + Account_ID + "' ";
+                string uspGetRuleCodeByAccountID = Prototype.SqlCommandStore.uspGetRuleCodeByAccountID + " '" +  Account_ID + "' ";
+                checkPermissionResponse.GetAccountInfo = accountDAO.GetAccountInfoDAO(uspGetAccountInfoByAccountID);
+                if (checkPermissionResponse.GetAccountInfo.Count != 0)
+                {
+                    checkPermissionResponse.GetRoleCode = accountDAO.GetRoleCodeDAO(uspGetRuleCodeByAccountID);
+                }
+                return checkPermissionResponse;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
+
     }
 }
