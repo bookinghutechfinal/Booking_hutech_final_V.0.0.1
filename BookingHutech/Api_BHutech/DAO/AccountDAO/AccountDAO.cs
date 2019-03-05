@@ -39,17 +39,12 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
                     accountLoginResponseModel.FullName = reader["FullName"].ToString();
                     accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
-                    accountLoginResponseModel.Birthday = DateTime.Parse(reader["Birthday"].ToString());
+                    accountLoginResponseModel.Birthday = reader["Birthday"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["Birthday"].ToString());
                     accountLoginResponseModel.Addres = reader["Addres"].ToString();
-                    accountLoginResponseModel.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
-                    accountLoginResponseModel.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    accountLoginResponseModel.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
+                    accountLoginResponseModel.LastModifiedDate = reader["LastModifiedDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
                     accountLoginResponseModel.Session = reader["Session"].ToString(); 
-
-                    if (reader["SessionDate"].ToString() == "")
-                        accountLoginResponseModel.SessionDate = null;
-                    else {
-                        accountLoginResponseModel.SessionDate = DateTime.Parse(reader["SessionDate"].ToString());
-                    } 
+                    accountLoginResponseModel.SessionDate =  reader["SessionDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["SessionDate"].ToString());
                     accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
                     accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
                     accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
