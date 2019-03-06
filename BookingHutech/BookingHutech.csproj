@@ -158,7 +158,7 @@
     <Compile Include="Api_BHutech\Lib\LogWriter.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\BHutechException.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\DataEntity.cs" />
-    <Compile Include="Api_BHutech\Models\AccountInfo.cs" />
+    <Compile Include="Api_BHutech\Models\AccountModels\AccountInfo.cs" />
     <Compile Include="Api_BHutech\Models\Car.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountChangePasswordRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLogoutRequestModel.cs" />

@@ -8,6 +8,7 @@ using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Models.Response.AccountResponse;
 using BookingHutech.Api_BHutech.Lib.Utils;
+using BookingHutech.Api_BHutech.Models;
 
 namespace BookingHutech.Api_BHutech.DAO.AccountDAO
 {
@@ -23,11 +24,11 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         /// </summary>
         /// <param name="stringSql">stringSql</param>
         /// <returns>AccountLoginResponseModel</returns> 
-        public List<AccountInfoResponseModel> GetAccountInfoDAO(String stringSql)
+        public List<AccountInfo> GetAccountInfoDAO(String stringSql)
         {
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
-            List<AccountInfoResponseModel> request = new List<AccountInfoResponseModel>();
+            List<AccountInfo> request = new List<AccountInfo>();
             try
             {
                 con.Open();
@@ -35,7 +36,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    AccountInfoResponseModel accountLoginResponseModel = new AccountInfoResponseModel();
+                    AccountInfo accountLoginResponseModel = new AccountInfo();
                     accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
                     accountLoginResponseModel.FullName = reader["FullName"].ToString();
                     accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
