@@ -161,6 +161,8 @@
     <Compile Include="Api_BHutech\Models\AccountInfo.cs" />
     <Compile Include="Api_BHutech\Models\BookingCar\CarInfo.cs" />
     <Compile Include="Api_BHutech\Models\BookingCar\CarTypeInfo.cs" />
+    <Compile Include="Api_BHutech\Models\AccountModels\AccountInfo.cs" />
+    <Compile Include="Api_BHutech\Models\Car.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountChangePasswordRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLogoutRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />

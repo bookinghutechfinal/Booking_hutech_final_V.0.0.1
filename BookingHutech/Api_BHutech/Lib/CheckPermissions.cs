@@ -13,6 +13,7 @@ using BookingHutech.Api_BHutech.BHutech_Services.AccountServices;
 using BookingHutech.Api_BHutech.Models.Request;
 using System.Net.Http.Headers;
 using System.Web.Script.Serialization;
+using BookingHutech.Api_BHutech.Models; 
 
 namespace BookingHutech.Api_BHutech.Lib
 {
@@ -41,7 +42,7 @@ namespace BookingHutech.Api_BHutech.Lib
                 }
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 string strAccountInfo = CookieAccountInfo.Cookies[0].Value;
-                AccountInfoResponseModel AccountInfo = js.Deserialize<AccountInfoResponseModel>(strAccountInfo);
+                AccountInfo AccountInfo = js.Deserialize<AccountInfo>(strAccountInfo);
                 checkPermissionResponse = accountServices.CheckPermissionsServices(AccountInfo.Account_ID);
 
                 if (checkPermissionResponse.GetAccountInfo[0].Account_Status == "0")

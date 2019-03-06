@@ -41,6 +41,7 @@ namespace BookingHutech.Controllers.Api
                         //JavaScriptSerializer js = new JavaScriptSerializer();
                         //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
                         //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+
                         //switch (Result)
                         //{
                         //    case 114:
@@ -48,7 +49,7 @@ namespace BookingHutech.Controllers.Api
                         //    case 150:
                         //        return ApiResponse.NotPermission();
                         //    case 102:
-                        //        return ApiResponse.AccountDelete(); 
+                        //        return ApiResponse.AccountDelete();
                         //}
                         // OK -> Đi tiếp. 
                         try
@@ -56,14 +57,14 @@ namespace BookingHutech.Controllers.Api
                             accountServices.AccountLogoutServices(request);
                             return ApiResponse.Success();
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         { 
                             return ApiResponse.Error();
                         }
                         // END: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
 
                     }
-                    catch (Exception ex) // Không thể kiểm tra quyền. 
+                    catch// Không thể kiểm tra quyền. 
                     {
                         return ApiResponse.Error();
                     }
