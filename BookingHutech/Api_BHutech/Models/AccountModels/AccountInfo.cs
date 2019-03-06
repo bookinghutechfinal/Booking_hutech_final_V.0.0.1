@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using BookingHutech.Api_BHutech.Models; 
 
-namespace BookingHutech.Api_BHutech.Models
+namespace BookingHutech.Api_BHutech.Models.AccountModels
 {
     public class AccountInfo 
     {
