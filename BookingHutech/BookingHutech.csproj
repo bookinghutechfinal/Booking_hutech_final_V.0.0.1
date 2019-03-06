@@ -165,6 +165,8 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\ListCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\CarResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\CarTypeResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\CheckPermissionResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\IResponse.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListCarResponseModel.cs" />
@@ -935,6 +937,7 @@
     <Content Include="wwwroot\module\config.js" />
     <Content Include="wwwroot\module\module.js" />
     <Content Include="wwwroot\service\account.js" />
+    <Content Include="wwwroot\service\bookingCar.js" />
     <Content Include="wwwroot\service\dao.js" />
     <Content Include="wwwroot\extensions\alert.js" />
     <Content Include="wwwroot\service\dataEntity.js" />
