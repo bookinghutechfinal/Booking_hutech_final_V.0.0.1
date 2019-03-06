@@ -23,6 +23,9 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspGetListCar = "uspGetListCar {0},{1}";
         // Get List cartype. Create By Lam Create 5/3/2019. 
         public const string uspGetListCarType = "uspGetListCarType";
+        // Get List car by cartypeID. Create By Lam Create 5/3/2019. 
+        public const string uspGetListCarByCarTypeID = "uspGetListCarByCarTypeID {0},{1},{2}";
+        
     }
 
 }

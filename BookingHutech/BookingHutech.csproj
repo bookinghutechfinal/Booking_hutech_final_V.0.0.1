@@ -164,6 +164,7 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLogoutRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\ListCarRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\CarResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\CarTypeResponseModel.cs" />

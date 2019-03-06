@@ -11,6 +11,7 @@ using static BookingHutech.Api_BHutech.Lib.Enum.BookingType;
 using BookingHutech.Api_BHutech.DAO.CarDAO;
 using BookingHutech.Api_BHutech.Lib.Helper;
 using BookingHutech.Api_BHutech.Lib.Utils;
+using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 
 namespace BookingHutech.Controllers.Api
 {
@@ -84,6 +85,21 @@ namespace BookingHutech.Controllers.Api
             }
         }
 
+        [HttpPost]
+        public ApiResponse GetListCarByCartypeID(SearchCarRequestModel request)
+        {
+            try
+            {
+                var listCar = bookingCar.getListCarByCartypeID(request);
+                return ApiResponse.Success(listCar);
+            }
+            catch (BHutechException ex)
+            {
+                LogWriter.WriteException(ex);
+                return ApiResponse.Error(106);  // Có lỗi trong quá trình xử lý
+                // ghi log nhá. 
+            }
+        }
 
     }
 }

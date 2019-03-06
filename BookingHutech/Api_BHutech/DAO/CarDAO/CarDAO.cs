@@ -9,6 +9,7 @@ using BookingHutech.Api_BHutech.Models.Response;
 using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 using BookingHutech.Api_BHutech.Lib.Enum;
 using static BookingHutech.Api_BHutech.Models.Response.BookingCarResponse.CarInfo;
+using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 
 namespace BookingHutech.Api_BHutech.DAO.CarDAO
 {
@@ -166,6 +167,37 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
         }
 
+
+        public ApiResponse getListCarByCartypeID(SearchCarRequestModel request)
+        {
+            try
+            {
+                try
+                {
+                    // Kiểm tra điều hướng lấy danh sách hồ sơ và danh sách xe cho phù hợp. 
+                    if (request.CarTypeID != 0)
+                    {
+                        // TH1:   // Lấy ds xe và đơn cấp phát theo Loại xe. 
+                        string uspGetListCarByCarTypeID = String.Format(Prototype.SqlCommandStore.uspGetListCarByCarTypeID, (int)BookingType.CarType.Delete, (int)BookingType.CarType.Maintenance, request.CarTypeID);
+
+                        res.CarInfo = getCarInfo(uspGetListCarByCarTypeID);
+                        return ApiResponse.Success(res); // lấy thành công. 
+                    }
+                    else
+                        return ApiResponse.Error();
+                }
+                catch (BHutechException ex)
+                {
+                    LogWriter.WriteException(ex);
+                    return ApiResponse.Error(107); //Hệ thống không thể kết nối đến Server!!
+                }
+            }
+            catch (BHutechException ex)
+            {
+                LogWriter.WriteException(ex);
+                return ApiResponse.Error(106); //Hệ thống có lỗi trong quá trình xử lý!
+            }
+        }
     }
 }
  
