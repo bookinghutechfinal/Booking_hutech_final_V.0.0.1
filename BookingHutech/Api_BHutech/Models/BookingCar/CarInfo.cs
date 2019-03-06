@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BookingHutech.Api_BHutech.Models.BookingCar; 
 
-namespace BookingHutech.Api_BHutech.Models.Response.BookingCarResponse
+namespace BookingHutech.Api_BHutech.Models.BookingCar
 {
     public class CarInfo : CarTypeInfo
     {
@@ -14,10 +15,8 @@ namespace BookingHutech.Api_BHutech.Models.Response.BookingCarResponse
         public string CarImage { get; set; }
         public string Description { get; set; }
         public string Color { get; set; }
-        public class CarResponseModel
-        {
-            public List<CarInfo> CarInfo { get; set; }
-            public List<CarTypeInfo> CarTypeInfo { get; set; }
-        }
+
+        public CarInfo() { }
+
     }
 }

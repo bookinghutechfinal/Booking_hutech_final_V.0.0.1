@@ -9,17 +9,25 @@
             $rootScope.ListCarInfoResult = [];    //Danh sách xe-> Kết quả tìm kiếm
 
             $scope.getListCar();
+            $scope.getListCarType();
         }
 
         // Hàm 2: Lấy danh sách xe còn hoạt động và danh sách loại xe. . 
         $scope.getListCar = function () {
             $BookingCar.getListCar({}, function (res) {
-                var listCar = res.data.Data.Data.CarInfo;
-                var listCarType = res.data.Data.Data.CarTypeInfo;
+                var listCar = res.data.Data;
                 if (res.data.ReturnCode === 1) {
-
                     $rootScope.ListCarInfo = listCar;  // danh sách car hoạt động 
-                    $rootScope.ListCarTypeInfo = listCarType;  // danh sách loại xe
+                }
+
+            });
+        }
+
+        $scope.getListCarType = function () {
+            $BookingCar.getListCarType({}, function (res) {
+                var listCarType = res.data.Data;
+                if (res.data.ReturnCode === 1) {
+                    $rootScope.ListCarTypeInfo = listCarType;  // danh sách loại car hoạt động 
                 }
 
             });
@@ -46,7 +54,7 @@
             //     Lấy lên danh sách đơn đăng ký của tất cả các loại xe để kiểm tra thỏa điều kiện hiển thị danh sách xe thỏa điều kiện tìm kiếm.
             $BookingCar.getListCarByCartypeID($scope.SearchModelReq, function (res) { 
                 if (res.data.ReturnCode === 1) { 
-                    $rootScope.ListCarInfoResult = res.data.Data.Data.CarInfo;  // danh sách car hoạt động   
+                    $rootScope.ListCarInfoResult = res.data.Data;  // danh sách car hoạt động   
                 }
                 $scope.CountListCar = $rootScope.ListCarInfoResult.length;
                 if (checkNull_0($scope.CountListCar)) {
