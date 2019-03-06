@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label>{{'TypeCar'| translate}}</label>
                             <select class="form-control select2" ng-model="searchModel.CarTypeID" style="width: 100%;">
-                                <option selected="selected" value="">{{'All' | translate }}</option>
+                                <option selected="selected" value="all">{{'All' | translate }}</option>
                                 <option ng-repeat="index in ListCarTypeInfo" value="{{index.CarTypeID}}">
                                     {{index.CarTypeName}}
                                 </option>

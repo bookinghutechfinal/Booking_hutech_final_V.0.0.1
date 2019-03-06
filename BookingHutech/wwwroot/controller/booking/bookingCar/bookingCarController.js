@@ -52,16 +52,24 @@
             $scope.ShowListCars = true;
             //4.4  Câp nhật lại danh sách xe. 
             //     Lấy lên danh sách đơn đăng ký của tất cả các loại xe để kiểm tra thỏa điều kiện hiển thị danh sách xe thỏa điều kiện tìm kiếm.
-            $BookingCar.getListCarByCartypeID($scope.SearchModelReq, function (res) { 
-                if (res.data.ReturnCode === 1) { 
-                    $rootScope.ListCarInfoResult = res.data.Data;  // danh sách car hoạt động   
-                }
-                $scope.CountListCar = $rootScope.ListCarInfoResult.length;
-                if (checkNull_0($scope.CountListCar)) {
-                    //toastr.success($rootScope.initMessage('LoginSuccess'));
-                    toastr.success("Xin lỗi! Không tìm thấy xe phù hợp.\n Vui lòng chọn lại.");
-                }
-            }); // End get data
+
+            if (request.CarTypeID != 'all') {
+                $BookingCar.getListCarByCartypeID($scope.SearchModelReq, function (res) {
+                    if (res.data.ReturnCode === 1) {
+                        $rootScope.ListCarInfoResult = res.data.Data;  // danh sách car hoạt động   
+                    }
+                    $scope.CountListCar = $rootScope.ListCarInfoResult.length;
+                    if (checkNull_0($scope.CountListCar)) {
+                        //toastr.success($rootScope.initMessage('LoginSuccess'));
+                        toastr.success("Xin lỗi! Không tìm thấy xe phù hợp.\n Vui lòng chọn lại.");
+                    }
+                }); // End get data
+            }
+            else {
+                $scope.getListCar();
+                $scope.ShowListCars = false;
+            }
+        }
 
             $scope.OpenPopupRegisteredBookingCar = function () {
                 var modalInstance = $modal.open({
@@ -83,6 +91,5 @@
 
                 });
             }
-        }
 
     }]);  

@@ -47,6 +47,7 @@ mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$mod
 
             });
         }
+
     }]);
 
 

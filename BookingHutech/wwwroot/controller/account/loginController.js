@@ -31,6 +31,13 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
 
 
 
+        $scope.enter = function ($event) {
+            var keyCode = $event.keyCode;
+            if (keyCode === 13) {
+                $scope.Login();
+            }
+        }
+
         $scope.Login = function () {
             $scope.IsSubmiting = true;
             // Login Response
