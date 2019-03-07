@@ -20,10 +20,10 @@ namespace BookingHutech.Controllers.Api
         Helper helpe = new Helper();
 
         /// <summary>
-        /// Anh.Tran: Create 24/1/2019
-        /// GetListEmployeeDAL
+        /// Mr.Lam 8/3/2019
+        /// GetListCar
         /// </summary>
-        /// <param name="">ListCarRequestModel</param>
+        /// <param name=""></param>
         /// <returns>ApiResponse</returns> 
         [HttpGet]
         public ApiResponse GetListCar()
@@ -40,7 +40,6 @@ namespace BookingHutech.Controllers.Api
                     }
                     catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                     {
-                        LogWriter.WriteException(ex);
                         return ApiResponse.Error();
                     }
                 }
@@ -57,39 +56,13 @@ namespace BookingHutech.Controllers.Api
 
         }
 
-        [HttpGet]
-        public ApiResponse GetListCarType()
-        {
-            try
-            {
-                // kiểm tra quyền, và nguồn gọi. 
-                if (Permissions.CheckAPIRequest(Request.Headers.GetValues(ApiHeaderKey.BHAPIWebCall.ToString()).First()) == (int)ApiRequestType.Web)
-                {
-                    try
-                    {
-                        var Response = carServices.getListCarTypeServices();
-                        return ApiResponse.Success(Response);
-                    }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
-                    {
-                        LogWriter.WriteException(ex);
-                        return ApiResponse.Error();
-                    }
-                }
-                else  // sai header .
-                {
-                    return ApiResponse.ApiNotPermissionCall();
-                }
-            }
-            catch (Exception ex)  // thiếu header. 
-            {
-                LogWriter.WriteException(ex);
-                return ApiResponse.ApiNotPermissionCall();
-            }
 
-        }
-
-
+        /// <summary>
+        /// GetListCarByCartypeID
+        /// Mr.Lam 8/3/2019
+        /// </summary>
+        /// <param name="request">CarTypeID</param>
+        /// <returns>ApiResponse</returns>
         [HttpPost]
         public ApiResponse GetListCarByCartypeID([FromBody]SearchCarRequestModel request)
         {
@@ -105,7 +78,6 @@ namespace BookingHutech.Controllers.Api
                     }
                     catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                     {
-                        LogWriter.WriteException(ex);
                         return ApiResponse.Error();
                     }
                 }
@@ -121,21 +93,6 @@ namespace BookingHutech.Controllers.Api
             }
 
         }
-        //[HttpPost]
-        //public ApiResponse GetListCarByCartypeID(SearchCarRequestModel request)
-        //{
-        //    try
-        //    {
-        //        var listCar = bookingCar.getListCarByCartypeID(request);
-        //        return ApiResponse.Success(listCar);
-        //    }
-        //    catch (BHutechException ex)
-        //    {
-        //        LogWriter.WriteException(ex);
-        //        return ApiResponse.Error(106);  // Có lỗi trong quá trình xử lý
-        //        // ghi log nhá. 
-        //    }
-        //}
 
     }
 }
