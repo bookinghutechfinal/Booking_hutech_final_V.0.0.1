@@ -27,6 +27,11 @@ namespace BookingHutech.Api_BHutech.Models
         public string Account_Status { get; set; }
         public bool? Verify { get; set; }
         public string AccountType { get; set; }
+        public string DriverLicenseNo { get; set; } // Số bằng lái
+        public string LicenseClass { get; set; } // hạn bằng lái.  
+        public DateTime? LicenseExpires { get; set; } // ngày hết hạn. 
+
+
 
     }
 }
