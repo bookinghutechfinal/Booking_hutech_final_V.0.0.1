@@ -17,8 +17,8 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspGetRuleCodeByAccount = "uspGetRuleCodeByAccount";
         // Get Account Info By Account_ID. Create By Anh.Trần Create 4/3/2019 
         public const string uspGetAccountInfoByAccountID = "uspGetAccountInfoByAccountID";
-        // Get Rule Code By AccountID. Create By Anh.Trần Create 4/3/2019 
-        public const string uspGetRuleCodeByAccountID = "uspGetRuleCodeByAccountID {0}";
+        // Get Rule Code By AccountID. Create By Anh.Trần Create 4/3/2019, update 10/3/2019
+        public const string uspGetDetailRuleCodeByAccountID = "uspGetDetailRuleCodeByAccountID {0}";
         // Get List car. Create By Lam Create 5/3/2019. 
         public const string uspGetListCar = "uspGetListCar {0},{1}";
         // Get List cartype. Create By Lam Create 5/3/2019. 

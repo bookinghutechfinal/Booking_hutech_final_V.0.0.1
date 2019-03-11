@@ -74,6 +74,10 @@ var FormatDateAdminSearchTime = function (date) { // Update
     return moment(date, 'HH:mm:ss DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
 }
 
+var FormatDateTimeByDBResponse = function (date) { // Update
+    return moment(date, 'YYYY-MM-DD HH:mm').format('DD/MM/YYYY HH:mm:ss')
+}
+
 // Input từ layout
 var FormatDateFromTo = function (date) {
     return moment(date, 'MM/DD/YYYY').format('YYYY-MM-DD')

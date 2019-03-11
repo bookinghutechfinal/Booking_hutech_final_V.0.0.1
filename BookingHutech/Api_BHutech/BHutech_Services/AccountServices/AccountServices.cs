@@ -77,7 +77,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             try
             {
                 string uspGetAccountInfoByAccountID = Prototype.SqlCommandStore.uspGetAccountInfoByAccountID + " '" + Account_ID + "' ";
-                string uspGetRuleCodeByAccountID = Prototype.SqlCommandStore.uspGetRuleCodeByAccountID + " '" +  Account_ID + "' ";
+                string uspGetRuleCodeByAccountID = Prototype.SqlCommandStore.uspGetDetailRuleCodeByAccountID + " '" +  Account_ID + "' ";
                 checkPermissionResponse.GetAccountInfo = accountDAO.GetAccountInfoDAO(uspGetAccountInfoByAccountID);
                 if (checkPermissionResponse.GetAccountInfo.Count != 0)
                 {

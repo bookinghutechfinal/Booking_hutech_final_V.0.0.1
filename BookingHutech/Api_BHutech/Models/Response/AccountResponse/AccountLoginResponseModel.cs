@@ -30,6 +30,10 @@ namespace BookingHutech.Api_BHutech.Models.Response.AccountResponse
     public class GetRoleCode
     {
         public int RoleCode { get; set; }
+        public string RoleName { get; set; }
+        public bool RoleDetail_Status { get; set; }
+        public string FullNameUpdate { get; set; }
+
 
         public GetRoleCode() { }
 

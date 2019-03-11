@@ -40,7 +40,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
 
         /// <summary>
         /// Anh.Tran: Create 10/3/2019 
-        /// Manager Get Detail Account By AccountID Services
+        /// Hàm lấy chi tiết thông tin account và chi tiết quyền của 1 account. 
         /// </summary>
         /// <param name="">ManagerGetDetailAccountByAccountIDRequestModel</param>
         /// <returns>ManagerGetDetailAccountByAccountIDResponseModel</returns> 
@@ -50,15 +50,15 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             ManagerGetDetailAccountByAccountIDResponseModel accountDetailResponse = new ManagerGetDetailAccountByAccountIDResponseModel();
             try
             {
-                AccountDAO accountDAO = new AccountDAO();
+                ManagerAccountDAO managerAccountDAO = new ManagerAccountDAO();
                  
                 string stringSqlManagerGetDetailAccountByAccountID = String.Format(Prototype.SqlCommandStore.uspManagerGetDetailAccountByAccountID, request.Account_ID );
-                string stringSqlGetRuleCodeByAccountID = String.Format(Prototype.SqlCommandStore.uspGetRuleCodeByAccountID, request.Account_ID );
+                string stringSqluspGetDetailRuleCodeByAccountID = String.Format(Prototype.SqlCommandStore.uspGetDetailRuleCodeByAccountID, request.Account_ID );
                
-                accountDetailResponse.GetAccountInfo = accountDAO.GetDetailAccountByAccountIDDAO(stringSqlManagerGetDetailAccountByAccountID);
+                accountDetailResponse.GetAccountInfo = managerAccountDAO.GetDetailAccountByAccountIDDAO(stringSqlManagerGetDetailAccountByAccountID);
                 if (accountDetailResponse.GetAccountInfo.Count != 0)
                 {
-                    accountDetailResponse.GetRoleCode = accountDAO.GetRoleCodeDAO(stringSqlGetRuleCodeByAccountID);
+                    accountDetailResponse.GetRoleCode = managerAccountDAO.GetDetailRoleCodeByAccountIDDAO(stringSqluspGetDetailRuleCodeByAccountID);
                 }
                 return accountDetailResponse;
             }
