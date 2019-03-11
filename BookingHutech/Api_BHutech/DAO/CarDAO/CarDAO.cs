@@ -49,7 +49,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     carInfo.LastModifiedDate = reader["LastModifiedDate"].ToString() ==""? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
                     carInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
                     carInfo.Expires = reader["Expires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["Expires"].ToString());
-                    carInfo.InsuranceExpires = DateTime.Parse(reader["InsuranceExpires"].ToString());
+                    carInfo.InsuranceExpires = reader["InsuranceExpires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["InsuranceExpires"].ToString());
 
 
                     result.Add(carInfo) ;
