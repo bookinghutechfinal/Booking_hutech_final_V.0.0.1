@@ -172,12 +172,9 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetAccountByAccountStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />
-
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetAccountByAccountStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetDetailAccountByAccountIDRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetDetailAccountByAccountIDResponseModel.cs" />
-    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\CarTypeResponseModel.cs" />
-
     <Compile Include="Api_BHutech\Models\Response\CheckPermissionResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\IResponse.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListCarResponseModel.cs" />
