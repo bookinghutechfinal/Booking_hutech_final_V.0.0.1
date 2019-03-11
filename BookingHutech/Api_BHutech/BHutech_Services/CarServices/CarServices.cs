@@ -8,71 +8,62 @@ using BookingHutech.Api_BHutech.Lib.Utils;
 using BookingHutech.Api_BHutech.Lib;
 using System.Web.Http;
 using BookingHutech.Api_BHutech.Lib.Enum;
-using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 
 namespace BookingHutech.Api_BHutech.CarServices.CarServices
 {
     public class CarServices  
     {
+        CarDAO carDAO = new CarDAO();
 
         /// <summary>
-        /// Anh.Tran: Create 24/1/2019 
-        /// GetListCarDAL
+        /// Mr.Lam 8/3/2019
+        /// GetListCar + List cartype
         /// </summary>
-        /// <param name="">ListCarRequestModel</param>
+        /// <param name=""></param>
         /// <returns>ListCarResponseModel</returns> 
-        public List<ListCarResponseModel> GetListCarServices()
+        public ListCarResponseModel GetListCarServices()
         {
 
             ListCarResponseModel result = new ListCarResponseModel();
-            EmployeeDAO employeeDAO = new EmployeeDAO();
             try
             { 
                 string uspGetListCar = String.Format(Prototype.SqlCommandStore.uspGetListCar, (int)BookingType.CarType.Delete, (int)BookingType.CarType.Maintenance);
-                return result.listCar = employeeDAO.GetListCarDAO(uspGetListCar); 
- 
-            }
-            catch (Exception ex)
-            {
-                LogWriter.WriteException(ex);
-                return result.listCar = null;
-            }
- 
-        }
-
-        public List<CarTypeResponseModel> getListCarTypeServices()
-        {
-
-            CarTypeResponseModel result = new CarTypeResponseModel();
-            EmployeeDAO employeeDAO = new EmployeeDAO();
-            try
-            {
                 string stringSqlGetCarTypeInfo = Prototype.SqlCommandStore.uspGetListCarType;
-                return result.CarType = employeeDAO.getListCarTypeDAO(stringSqlGetCarTypeInfo);
+                result.ListCarType = carDAO.GetListCarTypeDAO(stringSqlGetCarTypeInfo);
+                result.ListCar = carDAO.GetListCarDAO(uspGetListCar);
+                return result;
             }
             catch (Exception ex)
             {
                 LogWriter.WriteException(ex);
-                return result.CarType = null;
+                throw;
             }
+ 
         }
+        
 
-        public List<ListCarResponseModel> GetListCarByCarTypeIDServices(SearchCarRequestModel request)
+        /// <summary>
+        /// GetListCarByCarTypeID
+        /// Mr.Lam 8/3/2019
+        /// </summary>
+        /// <param name="request">CarTypeID</param>
+        /// <returns>List car</returns>
+        public ListCarResponseModel GetListCarByCarTypeIDServices(SearchCarRequestModel request)
         {
 
             ListCarResponseModel result = new ListCarResponseModel();
-            EmployeeDAO employeeDAO = new EmployeeDAO();
             try
             {
                 string uspGetListCarByCarTypeID = String.Format(Prototype.SqlCommandStore.uspGetListCarByCarTypeID, (int)BookingType.CarType.Delete, (int)BookingType.CarType.Maintenance,request.CarTypeID);
-                return result.listCar = employeeDAO.GetListCarDAO(uspGetListCarByCarTypeID);
+                result.ListCar = carDAO.GetListCarDAO(uspGetListCarByCarTypeID);
+                return result;
 
             }
             catch (Exception ex)
             {
                 LogWriter.WriteException(ex);
-                return result.listCar = null;
+                throw;
             }
 
         }

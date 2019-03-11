@@ -6,14 +6,13 @@ using System.Web;
 using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Lib.Utils;
 using BookingHutech.Api_BHutech.Models.Response;
-using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.BookingCar;
 
 namespace BookingHutech.Api_BHutech.DAO.CarDAO
 {
-    public class EmployeeDAO
+    public class CarDAO
     {
         static DataAccess db;
         static SqlConnection con; 
@@ -21,16 +20,16 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
         static SqlDataAdapter adap;
 
         /// <summary>
-        /// Anh.Tran: Create 23/2/2019 
+        /// 
         /// </summary>
         /// <param name="stringSql">stringSql</param>
-        /// <returns>list ListCarResponseModel</returns> 
-        public List<ListCarResponseModel> GetListCarDAO(String stringSql)
+        /// <returns>list CarInfo</returns> 
+        public List<CarInfo> GetListCarDAO(String stringSql)
         {
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
-            List<ListCarResponseModel> request = new List<ListCarResponseModel>();
-            ListCarResponseModel listCarResponseModel;
+            List<CarInfo> result = new List<CarInfo>();
+            CarInfo carInfo;
             try
             { 
                 con.Open();
@@ -38,23 +37,25 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    listCarResponseModel = new ListCarResponseModel();
-                    listCarResponseModel.CarID = Int32.Parse(reader["CarID"].ToString());
-                    listCarResponseModel.CarNumber = reader["CarNumber"].ToString();
-                    listCarResponseModel.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
-                    listCarResponseModel.CarTypeName = reader["CarTypeName"].ToString();
-                    listCarResponseModel.CarName = reader["CarName"].ToString();
-                    listCarResponseModel.CarImage = reader["CarImage"].ToString();
-                    listCarResponseModel.Description = reader["Description"].ToString();
-                    listCarResponseModel.CarStatus = Int32.Parse(reader["CarStatus"].ToString());
-                    listCarResponseModel.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
-                    listCarResponseModel.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
-                    listCarResponseModel.Account_ID = reader["Account_ID"].ToString();
-                    listCarResponseModel.Color = reader["Color"].ToString();
-                    request.Add(listCarResponseModel) ;
+                    carInfo = new CarInfo();
+                    carInfo.CarID = Int32.Parse(reader["CarID"].ToString());
+                    carInfo.CarName = reader["CarName"].ToString();
+                    carInfo.CarNo = reader["CarNo"].ToString();
+                    carInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    carInfo.CarTypeName = reader["CarTypeName"].ToString();
+                    carInfo.CarImage = reader["CarImage"].ToString();
+                    carInfo.CarStatus =  Int32.Parse(reader["CarStatus"].ToString());
+                    carInfo.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
+                    carInfo.LastModifiedDate = reader["LastModifiedDate"].ToString() ==""? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    carInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
+                    carInfo.Expires = reader["Expires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["Expires"].ToString());
+                    carInfo.InsuranceExpires = DateTime.Parse(reader["InsuranceExpires"].ToString());
+
+
+                    result.Add(carInfo) ;
                 } 
                 con.Close();
-                return request;
+                return result;
             }
             catch (Exception ex)
             {
@@ -70,12 +71,12 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
         /// </summary>
         /// <param name="stringSql"></param>
         /// <returns>listCartype</returns>
-        public List<CarTypeResponseModel> getListCarTypeDAO(String stringSql)
+        public List<CarTypeInfo> GetListCarTypeDAO(String stringSql)
         {
             try
             {
-                List<CarTypeResponseModel> request = new List<CarTypeResponseModel>();
-                CarTypeResponseModel carTypeResponseModel;
+                List<CarTypeInfo> result = new List<CarTypeInfo>();
+                CarTypeInfo carTypeInfo;
                 db = new DataAccess();
                 con = new SqlConnection(db.ConnectionString());
                 con.Open();
@@ -83,16 +84,16 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    carTypeResponseModel = new CarTypeResponseModel();
-                    carTypeResponseModel.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
-                    carTypeResponseModel.CarTypeName = reader["CarTypeName"].ToString();
-                    carTypeResponseModel.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
-                    carTypeResponseModel.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
-                    carTypeResponseModel.Account_ID = reader["Account_ID"].ToString();
-                    request.Add(carTypeResponseModel);
+                    carTypeInfo = new CarTypeInfo();
+                    carTypeInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    carTypeInfo.CarTypeName = reader["CarTypeName"].ToString();
+                    carTypeInfo.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
+                    carTypeInfo.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    carTypeInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
+                    result.Add(carTypeInfo);
                 }
                 con.Close();
-                return request;
+                return result;
             }
             catch (Exception ex)
             {

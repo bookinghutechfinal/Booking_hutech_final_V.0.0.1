@@ -9,9 +9,9 @@ namespace BookingHutech.Api_BHutech.Models.BookingCar
     {
         public int CarTypeID { get; set; }
         public string CarTypeName { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime LastModifiedDate { get; set; }
-        public string Account_ID { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
+        public string FullNameUpdate { get; set; }
 
         public CarTypeInfo() { }
     }

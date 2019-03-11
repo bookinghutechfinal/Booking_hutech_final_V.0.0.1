@@ -10,11 +10,12 @@ namespace BookingHutech.Api_BHutech.Models.BookingCar
     {
         public int CarID { get; set; }
         public String CarName { get; set; }
-        public String CarNumber { get; set; }
+        public String CarNo { get; set; }
         public int CarStatus { get; set; }
         public string CarImage { get; set; }
-        public string Description { get; set; }
-        public string Color { get; set; }
+        public DateTime? Expires { get; set; }
+        public DateTime? InsuranceExpires { get; set; }
+
 
         public CarInfo() { }
 

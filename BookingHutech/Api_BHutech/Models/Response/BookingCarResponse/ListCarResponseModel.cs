@@ -7,12 +7,12 @@ using System.Web;
 namespace BookingHutech.Api_BHutech.Models.Response
 {
     /// <summary>
-    /// anh.tran 
-    /// Create 23/2/2019
+    ///
     /// </summary>
-    public class ListCarResponseModel : CarInfo
+    public class ListCarResponseModel
     {
-        public List<ListCarResponseModel> listCar { get; set;  }
+        public List<CarInfo> ListCar { get; set;  }
+        public List<CarTypeInfo> ListCarType { get; set; }
     }
     
 }
