@@ -58,6 +58,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/bookingCar.html',
             controller: 'BookingCarController',
         })
+        .state('main.drivermanager', {
+            url: '/driver-manager',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/ManagerDriver.html',
+            controller: 'ManagerDriverController',
+        })
         .state('main.managerAccount', {
             url: '/manager-account',
             templateUrl: '/wwwroot/views/pages/account/managerAccount.html',

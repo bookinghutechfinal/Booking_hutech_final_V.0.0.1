@@ -13,7 +13,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
 {
     public class ManagerAccountServices
     {
-        ManagerAccountDAO managerAccountDAO = new ManagerAccountDAO(); 
+        ManagerAccountDAO managerAccountDAO = new ManagerAccountDAO();  
         /// <summary>
         /// Anh.Tran: Create 24/1/2019 
         /// Manager Get Account By Account StatusServices

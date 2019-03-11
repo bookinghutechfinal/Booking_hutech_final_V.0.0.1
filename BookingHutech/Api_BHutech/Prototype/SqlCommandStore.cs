@@ -29,6 +29,8 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspManagerGetAccountByAccountStatus = "uspManagerGetAccountByAccountStatus {0}";
         //Manager Get Detail Account By AccountID. Create By Anh.Trần Create 10/3/2019. 
         public const string uspManagerGetDetailAccountByAccountID = "uspManagerGetDetailAccountByAccountID {0}";
+        //Manager Get List Driver By Driver Status. Create By Anh.Trần Create 10/3/2019. 
+        public const string uspManagerGetListDriverByDriverStatus = "uspManagerGetListDriverByDriverStatus {0}";
         
     }
 

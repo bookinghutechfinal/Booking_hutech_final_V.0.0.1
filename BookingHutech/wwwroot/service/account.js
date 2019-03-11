@@ -68,6 +68,16 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     };
+    // Lấy danh sách lái xe. 
+    this.ManagerGetListDriverByDriverStatus = function (request, success, finish) {
+        $dao.call({
+            method: 'GET',
+            operater: 'ManagerDriver/ManagerGetListDriverByDriverStatus',
+            data: request
+        }, success, finish)
+    };
+
+
 
     this.ManagerUpdateStatusRoleByAccountID = function (request, success, finish) {
         $dao.call({
