@@ -39,17 +39,19 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 {
                     carInfo = new CarInfo();
                     carInfo.CarID = Int32.Parse(reader["CarID"].ToString());
-                    carInfo.CarNumber = reader["CarNumber"].ToString();
+                    carInfo.CarName = reader["CarName"].ToString();
+                    carInfo.CarNo = reader["CarNo"].ToString();
                     carInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
                     carInfo.CarTypeName = reader["CarTypeName"].ToString();
-                    carInfo.CarName = reader["CarName"].ToString();
                     carInfo.CarImage = reader["CarImage"].ToString();
-                    carInfo.Description = reader["Description"].ToString();
-                    carInfo.CarStatus = Int32.Parse(reader["CarStatus"].ToString());
-                    carInfo.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
-                    carInfo.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
-                    carInfo.Account_ID = reader["Account_ID"].ToString();
-                    carInfo.Color = reader["Color"].ToString();
+                    carInfo.CarStatus =  Int32.Parse(reader["CarStatus"].ToString());
+                    carInfo.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
+                    carInfo.LastModifiedDate = reader["LastModifiedDate"].ToString() ==""? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    carInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
+                    carInfo.Expires = reader["Expires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["Expires"].ToString());
+                    carInfo.InsuranceExpires = DateTime.Parse(reader["InsuranceExpires"].ToString());
+
+
                     result.Add(carInfo) ;
                 } 
                 con.Close();
@@ -87,7 +89,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     carTypeInfo.CarTypeName = reader["CarTypeName"].ToString();
                     carTypeInfo.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
                     carTypeInfo.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
-                    carTypeInfo.Account_ID = reader["Account_ID"].ToString();
+                    carTypeInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
                     result.Add(carTypeInfo);
                 }
                 con.Close();

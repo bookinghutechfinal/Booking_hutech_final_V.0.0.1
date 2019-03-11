@@ -9,7 +9,7 @@ namespace BookingHutech.Api_BHutech.Models.Response
     /// <summary>
     ///
     /// </summary>
-    public class ListCarResponseModel : CarInfo
+    public class ListCarResponseModel
     {
         public List<CarInfo> ListCar { get; set;  }
         public List<CarTypeInfo> ListCarType { get; set; }
