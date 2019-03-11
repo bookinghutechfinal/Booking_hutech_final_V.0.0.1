@@ -9,6 +9,7 @@ mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$mod
             return;
         };
         $scope.goToLogin = function () {
+            toastr.error("Vui lòng đăng nhập!");
             $state.go('login');
             return;
         };

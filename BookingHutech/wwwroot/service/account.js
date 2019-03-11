@@ -53,10 +53,10 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
         }
     }
 
-    this.ManagerSearchAccount = function (request, success, finish) {
+    this.ManagerGetDetailAccountByAccountID = function (request, success, finish) {
         $dao.call({
             method: 'PUT',
-            operater: 'AccountManager/ManagerSearchAccount',
+            operater: 'ManagerAccount/ManagerGetDetailAccountByAccountID',
             data: request
         }, success, finish)
     };

@@ -12,7 +12,7 @@
         clear: none;
     }
 </style>
-<div class="clearfix" ng-controller="ManagerAccountController">
+<div class="clearfix">
     <div class="row">
         <!--Start: Tìm kiếm xe-->
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -39,9 +39,18 @@
                                         <ul class="list-unstyled user_data">
                                             <li>
                                                 <i class="fa fa-map-marker user-profile-icon"></i> {{ShowAccountInfo.Addres}}
+                                            </li> 
+                                            <li>
+                                                <i class="fa fa-map-marker user-profile-icon"></i> {{ShowAccountInfo.NumberPhone}}
+                                            </li>  
+                                            <li>
+                                                <i class="fa fa-map-marker user-profile-icon"></i> {{ShowAccountInfo.Email}}
                                             </li>
                                             <li>
                                                 <i class="fa fa-birthday-cake user-profile-icon"></i> {{ShowAccountInfo.Birthday | date:'dd/MM/yyyy'}}
+                                            </li> 
+                                            <li>
+                                                <i class="fa fa-birthday-cake user-profile-icon"></i> Khoa/Viện {{ShowAccountInfo.UnitName | date:'dd/MM/yyyy'}}
                                             </li>
                                             <!--<li class="m-top-xs">
                                                 <i class="fa fa-external-link user-profile-icon"></i>
@@ -62,34 +71,36 @@
                                         <!--<div id="graph_bar" style="width: 100%; height: 280px; position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
 
                                         </div>-->
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" ng-table="tableParams1" >
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
+                                                    <th>#STT</th>
+                                                    <th>Tên quyền</th> 
+                                                    <th>Trạng thái</th> 
+                                                    <th>Người cấp</th> 
+                                                    <th></th>  
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
+                                                <tr ng-repeat="role in $data ">
+                                                    <th>
+                                                        {{$index+1}}
+                                                    </th> 
+                                                    <td >
+                                                        {{role.RoleName}}
+                                                    </td> 
+                                                    <td>
+                                                        {{role.RoleDetail_Status}}
+                                                    </td> 
+                                                    <td>
+                                                        {{role.FullNameUpdate}}
+                                                    </td> 
+                                                    <td>
+                                                        ...
+                                                    </td>  
+                                                    
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
+                                                
                                             </tbody>
                                         </table>
 

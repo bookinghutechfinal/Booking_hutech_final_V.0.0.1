@@ -89,8 +89,8 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     accountLoginResponseModel.AccountType = reader["AccountType"].ToString();
                     accountLoginResponseModel.UnitName = reader["UnitName"].ToString();
                     accountLoginResponseModel.Manager = reader["Manager"].ToString();
-                    accountLoginResponseModel.Email = reader["EmailManager"].ToString();
-                    accountLoginResponseModel.NumberPhone = reader["NumberPhoneManager"].ToString();
+                    accountLoginResponseModel.EmailManager = reader["EmailManager"].ToString();
+                    accountLoginResponseModel.NumberPhoneManager = reader["NumberPhoneManager"].ToString();
                     accountLoginResponseModel.DriverLicenseNo = reader["DriverLicenseNo"].ToString() == "" ? null : reader["DriverLicenseNo"].ToString();
                     accountLoginResponseModel.LicenseClass = reader["LicenseClass"].ToString() == "" ? null : reader["LicenseClass"].ToString();
                     accountLoginResponseModel.LicenseExpires = reader["LicenseExpires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LicenseExpires"].ToString());
