@@ -7,6 +7,7 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
         } 
         this.call = function (request, success, finish) {
             $rootScope.isLoading = true;
+            $rootScope.showError = false; 
             $http({ 
                 method: request.method,
                 url: "/Api/" + request.operater,
@@ -20,7 +21,8 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                 if (response.data === null) {
                     toastr.success('Không tìm thấy kết quả!');
                 }  
-                else if (response.data.ReturnCode === 2) {
+                else if (response.data.ReturnCode === 2) { 
+                    $rootScope.showError = true; 
                     toastr.error('Hệ thống có lỗi trong quá trình xử lý!');
                 }
                 else if (response.data.ReturnCode === 114) {

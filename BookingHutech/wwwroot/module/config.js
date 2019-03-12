@@ -15,7 +15,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
     });
     $stateProvider
         .state('login', {
-            url: '/dang-nhap',
+            url: '/login',
             templateUrl: '/wwwroot/views/pages/account/login.html',
             controller: 'LoginController',
             //resolve: {
@@ -49,12 +49,12 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
 
         })
         .state('main.home', {
-            url: '/trang-chu',
+            url: '/home',
             templateUrl: '/wwwroot/views/pages/home/home.html',
             controller: 'HomeController',
         })
         .state('main.bookingcar', {
-            url: '/dat-xe',
+            url: '/booking-car',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/bookingCar.html',
             controller: 'BookingCarController',
         })

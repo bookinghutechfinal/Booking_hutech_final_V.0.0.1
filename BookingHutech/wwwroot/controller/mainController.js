@@ -13,6 +13,12 @@ mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$mod
             $state.go('login');
             return;
         };
+        $scope.Error = function () { 
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            $state.go('login'); 
+            location.reload(); 
+        }
         var AccountInfo = $account.getAccountInfo();
         var result = CheckAccountLoginAndChangePass(AccountInfo);
         switch (result) {

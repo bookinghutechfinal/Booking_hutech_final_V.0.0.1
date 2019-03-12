@@ -1,7 +1,7 @@
 ﻿
-mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account','NgTableParams',
-    function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account, NgTableParams) {
-       
+mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account', 'NgTableParams', '$modal',
+    function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account, NgTableParams, $modal) {
+
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
         $scope.goToHome = function () {
             $state.go('main.home');
@@ -16,7 +16,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
             return;
         };
 
-        
+
         $scope.RoleStatus = [
             {
                 'RoleStatusName': 'Đã Khóa',
@@ -27,15 +27,15 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
                 'RoleStatusID': 1
             },
         ];
-         
-             
+
+
         // Lấy chi tiết tài khoản của admin và chi tiết quyền. 
-        $scope.ManagerGetListDriver = function () { 
+        $scope.ManagerGetListDriver = function () {
             $account.ManagerGetListDriverByDriverStatus({}, function (res) {
                 debugger
-                switch (res.data.ReturnCode) {  
+                switch (res.data.ReturnCode) {
                     case 1:
-                        $scope.ManagerGetListDriverResponse = res.data.Data.GetDriverInfo; 
+                        $scope.ManagerGetListDriverResponse = res.data.Data.GetDriverInfo;
                         //var RoleResponse = res.data.Data.GetRoleCode; 
                         //// Hiển thị thông tin account
                         //$scope.ShowAccountInfo = {
@@ -56,7 +56,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
                         //    } else {
                         //        RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[1].RoleStatusName;
                         //    }
-                            
+
                         //}
                         //// Hiển thị thông tin quyền  
                         break;
@@ -66,7 +66,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
         }
 
         $scope.main = function () {
-            $scope.ManagerGetListDriverResponse = []; 
+            $scope.ManagerGetListDriverResponse = [];
             $scope.ManagerGetListDriver()
         }
 
@@ -85,5 +85,87 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
                 break;
 
         }
-          
+        $scope.RoleStatus = [
+            {
+                'RoleStatusName': 'Đã Khóa',
+                'RoleStatusID': 0
+            },
+            {
+                'RoleStatusName': 'Hoạt động',
+                'RoleStatusID': 1
+            },
+        ];
+
+        // Lấy thông tin chi tiết lái xe. 
+        $scope.ShowDetailDriver = function (Request) {
+            $scope.Account_IDRequest = {
+                Account_ID: Request,
+            }
+
+            $account.ManagerGetDetailAccountByAccountID($scope.Account_IDRequest, function (res) {
+                debugger
+                switch (res.data.ReturnCode) {
+                    case 1:
+                       
+                        var AccountInfoResponse = res.data.Data.GetAccountInfo[0];
+                        var RoleResponse = res.data.Data.GetRoleCode;
+                        // Hiển thị thông tin account
+                        $scope.ShowAccountInfo = {
+                            FullName: AccountInfoResponse.FullName,
+                            Gender: AccountInfoResponse.Gender,
+                            Birthday: AccountInfoResponse.Birthday,
+                            Addres: AccountInfoResponse.Addres,
+                            AccountType: AccountInfoResponse.AccountType,
+                            NumberPhone: AccountInfoResponse.NumberPhone,
+                            Email: AccountInfoResponse.Email,
+                            UnitName: AccountInfoResponse.UnitName,
+                        }
+                        //Cập nhật trạng thái cho quyền. 
+                        for (var i = 0; i < RoleResponse.length; i++) {
+                            // AccountStatusName
+                            if (RoleResponse[i].RoleDetail_Status === false) {
+                                RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[0].RoleStatusName;
+                            } else {
+                                RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[1].RoleStatusName;
+                            }
+
+                        }
+                        // Truyền dự liệu qua popup. 
+                        $scope.AccountInfoDatail = {
+                            AccountInfo: AccountInfoResponse,
+                            RoleInfo: RoleResponse
+                        }
+                        $scope.OpenPopupDetailDriver($scope.AccountInfoDatail); 
+                        break;
+                }
+
+            });
+
+        }
+
+        // Mỡ popup xem chi tiết 1 lái xe. 
+        $scope.OpenPopupDetailDriver = function (AccountInfoDatailRequest) {
+            var modalInstance = $modal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupDetailDriver.html',
+                controller: 'DetailDriverController',
+                controllerAs: 'content',
+                backdrop: 'static',
+                size: 'lg',
+                resolve: {
+                    AccountInfoDatailRequest: function () {
+                        return AccountInfoDatailRequest;
+                    },
+                }
+            });
+            modalInstance.result.then(function () {
+
+            });
+        }
+
+
+
+
     }]);  

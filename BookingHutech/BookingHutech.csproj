@@ -755,6 +755,7 @@
     <Content Include="wwwroot\controller\app\appController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerDriverController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\detailDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\registerBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingMeetingHall\bookingMeetingHallController.js" />
     <Content Include="wwwroot\controller\home\homeController.js" />
@@ -1218,7 +1219,8 @@
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
-    <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar - Copy.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailDriver.html" />
     <Content Include="wwwroot\views\pages\booking\bookingMeetingHall\meetingHallInfo.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />

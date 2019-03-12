@@ -1,0 +1,155 @@
+﻿<style>
+    .modal-header {
+        background-color: #2A3F54;
+    }
+</style>
+
+<!-- Modal content-->
+<!-- Test  -->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
+        <h4 class="modal-title">{{Titile}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_content">
+                    <div class="profile_title">
+                        <div class="col-md-6">
+                            <h2>Thông tin chi tiết </h2>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                    <div class="x_panel">
+                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <img class="img-responsive avatar-view" src="../../../../../images/avt/user.jpg" alt="Avatar" title="Change the avatar" style="    width: 142px; ">
+                                </div>
+                            </div>
+                            <h3>{{AccountDriverDetail.FullName}}</h3>
+                            <ul class="list-unstyled user_data">
+                                <li>
+                                    <i class="fa fa-envelope"></i> {{AccountDriverDetail.Email}}
+                                </li>
+
+                                <li class="m-top-xs">
+                                    <i class="fa fa-map-marker user-profile-icon"></i>
+                                    <a>{{AccountDriverDetail.Addres}}</a>
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-calendar"></i>
+                                    <a>{{AccountDriverDetail.Birthday | date:'dd/MM/yyyy'}}</a>
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-phone"></i>
+                                    <a>{{AccountDriverDetail.NumberPhone}}</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <table class="table">
+                                <!--<thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Username</th>
+                                    </tr>
+                                </thead>-->
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-compass"></i>
+                                            <label>Đổi mật khẩu:{{AccountDriverDetail.IsChangePassword}}</label>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-cab"></i>
+                                            <label>Chức vụ:{{AccountDriverDetail.AccountType}}</label>
+                                        </td> 
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class=" fa fa-check"></i>
+                                            <label>Phê Duyệt:{{AccountDriverDetail.Verify}}</label>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-external-link user-profile-icon"></i>
+                                            <label>Số bằng lái:{{AccountDriverDetail.DriverLicenseNo}}</label>
+                                        </td>
+                                       
+                                    </tr>
+                                    <tr> 
+                                        <td>
+                                            <i class="fa fa-circle text-success"></i>
+                                            <label>Trạng thái:{{AccountDriverDetail.Account_Status}}</label>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-external-link user-profile-icon"></i>
+                                            <label>Hạn:{{AccountDriverDetail.LicenseClass}}</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-asterisk"></i>
+                                            <label>Giới tính:{{AccountDriverDetail.Gender}}</label>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-external-link user-profile-icon"></i>
+                                            <label>Hết hạn:{{AccountDriverDetail.LicenseExpires | date:'dd/MM/yyyy'}}</label>
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            <!--<form class="form-horizontal form-label-left input_mask">
+                                <div class="form-group" style="margin-top: 10px; ">
+                                    <label class="col-md-6 col-sm-6 "><i class="fa fa-map-marker user-profile-icon"></i> Default Input: kkk kk kkk  k</label>
+                                    <label class="col-md-6 col-sm-6">Default Input: kkk kk kkk  k</label>
+                                    <label class="col-md-6 col-sm-6">Default Input: kkk kk kkk  k</label>
+                                    <label class="col-md-6 col-sm-6">Default Input: kkk kk kkk  k</label>
+                                </div>
+                            </form>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-6" style="margin-bottom: 1px;">
+                    <div class="mb15 mt30">
+                        <button class="btn btn-danger btn-round btn-block" type="submit"
+                                ng-click="ClosePopup()">
+                            <!--ng-disabled="!isSubmitingEnable()"-->
+                            <i class="glyphicon glyphicon-remove"></i>
+                            <span>HỦY</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="mb15 mt30">
+                        <button class="btn btn-primary btn-round btn-block" type="submit"
+                                data-ng-click="yes()">
+                            <!--ng-disabled="!isSubmitingEnable()"-->
+                            <i class="glyphicon glyphicon-ok"></i>
+                            <span>XÁC NHẬN</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+    </div>
+</div>
