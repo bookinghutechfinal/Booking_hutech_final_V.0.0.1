@@ -1261,7 +1261,6 @@
     <Content Include="Scripts\vendor\angular-file-upload\angular-file-upload.min.js" />
     <Content Include="Scripts\vendor\angular-sanitize\angular-sanitize.min.js" />
     <Content Include="Scripts\vendor\angular-touch\angular-touch.min.js" />
-    <Content Include="Scripts\vendor\angular-ui-router\release\angular-ui-router.min__.js" />
     <Content Include="Scripts\vendor\angular-ui-utils\ui-utils-ieshiv.min.js" />
     <Content Include="Scripts\vendor\angular-ui-utils\ui-utils.min.js" />
     <Content Include="Scripts\vendor\angularjs-dropdown-multiselect.min.js" />

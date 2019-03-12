@@ -29,7 +29,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             }
             catch (Exception ex)
             {
-                // LogWriter.WriteException(ex);
+                LogWriter.WriteException(ex);
                 throw;
             }
 
