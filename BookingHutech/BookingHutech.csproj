@@ -768,11 +768,8 @@
     <Content Include="wwwroot\controller\account\loginController.js" />
     <Content Include="wwwroot\controller\app\appController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
-<<<<<<< HEAD
     <Content Include="wwwroot\controller\booking\bookingCar\costManagerController.js" />
-=======
     <Content Include="wwwroot\controller\booking\bookingCar\managerDriverController.js" />
->>>>>>> master
     <Content Include="wwwroot\controller\booking\bookingCar\registerBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingMeetingHall\bookingMeetingHallController.js" />
     <Content Include="wwwroot\controller\home\homeController.js" />
