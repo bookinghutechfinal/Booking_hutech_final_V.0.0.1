@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -24,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -143,14 +145,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api_BHutech\BHutech_Services\AccountServices\ManagerAccountServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\AccountServices\AccountServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarManagerServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarServices.cs" />
+    <Compile Include="Api_BHutech\BHutech_Services\CarServices\DriverManagerService.cs" />
     <Compile Include="Api_BHutech\DAO\AccountDAO\AccountDAO.cs" />
+    <Compile Include="Api_BHutech\DAO\AccountDAO\ManagerAccountDAO.cs" />
+    <Compile Include="Api_BHutech\DAO\CarDAO\CarDAO.cs" />
+    <Compile Include="Api_BHutech\Lib\CheckPermissions.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\EncodePassword.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\Permissions.cs" />
     <Compile Include="Api_BHutech\DAO\DataAccess.cs" />
-    <Compile Include="Api_BHutech\DAO\CarManagerDAO\CarDAO.cs" />
     <Compile Include="Api_BHutech\Lib\Enum\Account.cs" />
     <Compile Include="Api_BHutech\Lib\Enum\BookingType.cs" />
     <Compile Include="Api_BHutech\Lib\Helper.cs" />
@@ -158,15 +164,23 @@
     <Compile Include="Api_BHutech\Lib\Utils\BHutechException.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\DataEntity.cs" />
     <Compile Include="Api_BHutech\Models\AccountInfo.cs" />
-    <Compile Include="Api_BHutech\Models\Car.cs" />
+    <Compile Include="Api_BHutech\Models\BookingCar\CarInfo.cs" />
+    <Compile Include="Api_BHutech\Models\BookingCar\CarTypeInfo.cs" />
+    <Compile Include="Api_BHutech\Models\AccountModels\AccountInfo.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountChangePasswordRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLogoutRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
-    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\ListCarRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetAccountByAccountStatusRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetAccountByAccountStatusResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetDetailAccountByAccountIDRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetDetailAccountByAccountIDResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ManagerGetDriverByAccountStatusResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\CheckPermissionResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\IResponse.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListCarResponseModel.cs" />
-    <Compile Include="Api_BHutech\Models\Unit.cs" />
+    <Compile Include="Api_BHutech\Models\BookingCar\Unit.cs" />
     <Compile Include="Api_BHutech\Prototype\SqlCommandStore.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -200,8 +214,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Api\ManagerAccountController.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\CarController.cs" />
+    <Compile Include="Controllers\Api\ManagerDriverController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -733,10 +749,12 @@
     <Content Include="Scripts\jvectormap\jquery-jvectormap.css" />
     <Content Include="Scripts\vendor\angular-ui-router\release\angular-ui-router.min.js" />
     <Content Include="wwwroot\controller\account\changePasswordController.js" />
+    <Content Include="wwwroot\controller\account\managerAccountController.js" />
     <Content Include="wwwroot\controller\account\logoutController.js" />
     <Content Include="wwwroot\controller\account\loginController.js" />
     <Content Include="wwwroot\controller\app\appController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\managerDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\registerBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingMeetingHall\bookingMeetingHallController.js" />
     <Content Include="wwwroot\controller\home\homeController.js" />
@@ -933,6 +951,7 @@
     <Content Include="wwwroot\module\config.js" />
     <Content Include="wwwroot\module\module.js" />
     <Content Include="wwwroot\service\account.js" />
+    <Content Include="wwwroot\service\bookingCar.js" />
     <Content Include="wwwroot\service\dao.js" />
     <Content Include="wwwroot\extensions\alert.js" />
     <Content Include="wwwroot\service\dataEntity.js" />
@@ -1195,9 +1214,11 @@
     <Content Include="script\css\translateelement.css" />
     <Content Include="wwwroot\views\pages\account\changePassword.html" />
     <Content Include="wwwroot\views\pages\account\login.html" />
+    <Content Include="wwwroot\views\pages\account\managerAccount.html" />
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
-    <Content Include="wwwroot\views\pages\booking\bookingCar\PopupRegisterBookingCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingMeetingHall\meetingHallInfo.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
@@ -2208,11 +2229,15 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

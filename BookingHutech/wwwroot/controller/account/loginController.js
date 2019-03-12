@@ -1,6 +1,6 @@
 ﻿
-mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$modal', '$http', '$cookies', 'toastr', '$dao', '$account',
-    function ($scope, $state, $rootScope, $modal, $http, $cookies, toastr, $dao, $account) {
+mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account',
+    function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account) {
         debugger;
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
         $scope.goToHome = function () {
@@ -23,9 +23,20 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$mo
             case 3:
                 $scope.goToHome();
                 break;
+            case 1:
+                //$modalInstance.close();
+                break;
+
         }
 
 
+
+        $scope.enter = function ($event) {
+            var keyCode = $event.keyCode;
+            if (keyCode === 13) {
+                $scope.Login();
+            }
+        }
 
         $scope.Login = function () {
             $scope.IsSubmiting = true;
@@ -65,6 +76,7 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$mo
                         $scope.PutCookies = function () {
                             var ObjAccountInfo = response.data.Data.GetAccountInfo[0];
                             var ObjRoleCode = response.data.Data.GetRoleCode;
+                            $cookies.putObject("AccountInfoCheckPermissions", ObjAccountInfo);
                             $cookies.putObject("AccountInfo", {
                                 ObjAccountInfo,
                                 ObjRoleCode,
@@ -78,6 +90,7 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$mo
                         $scope.PutCookies = function () {
                             var ObjAccountInfo = response.data.Data.GetAccountInfo[0];
                             var ObjRoleCode = response.data.Data.GetRoleCode;
+                            $cookies.putObject("AccountInfoCheckPermissions", ObjAccountInfo);
                             $cookies.putObject("AccountInfo", {
                                 ObjAccountInfo,
                                 ObjRoleCode,

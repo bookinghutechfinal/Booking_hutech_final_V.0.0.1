@@ -8,6 +8,7 @@ using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Models.Response.AccountResponse;
 using BookingHutech.Api_BHutech.Lib.Utils;
+using BookingHutech.Api_BHutech.Models;
 
 namespace BookingHutech.Api_BHutech.DAO.AccountDAO
 {
@@ -23,11 +24,11 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         /// </summary>
         /// <param name="stringSql">stringSql</param>
         /// <returns>AccountLoginResponseModel</returns> 
-        public List<AccountInfoResponseModel> GetAccountInfoDAO(String stringSql)
+        public List<AccountInfo> GetAccountInfoDAO(String stringSql)
         {
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
-            List<AccountInfoResponseModel> request = new List<AccountInfoResponseModel>();
+            List<AccountInfo> request = new List<AccountInfo>();
             try
             {
                 con.Open();
@@ -35,16 +36,16 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    AccountInfoResponseModel accountLoginResponseModel = new AccountInfoResponseModel();
+                    AccountInfo accountLoginResponseModel = new AccountInfo();
                     accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
                     accountLoginResponseModel.FullName = reader["FullName"].ToString();
                     accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
-                    accountLoginResponseModel.Birthday = DateTime.Parse(reader["Birthday"].ToString());
+                    accountLoginResponseModel.Birthday = reader["Birthday"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["Birthday"].ToString());
                     accountLoginResponseModel.Addres = reader["Addres"].ToString();
-                    accountLoginResponseModel.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
-                    accountLoginResponseModel.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
-                    accountLoginResponseModel.Session = reader["Session"].ToString();
-                    accountLoginResponseModel.SessionDate = DateTime.Parse(reader["SessionDate"].ToString());
+                    accountLoginResponseModel.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
+                    accountLoginResponseModel.LastModifiedDate = reader["LastModifiedDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    accountLoginResponseModel.Session = reader["Session"].ToString(); 
+                    accountLoginResponseModel.SessionDate =  reader["SessionDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["SessionDate"].ToString());
                     accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
                     accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
                     accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
@@ -62,7 +63,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             }
             return request;
         }
-
+ 
         /// <summary>
         /// GetRoleMaster. Anh.Tran: Create 1/3/2019 
         /// </summary>
@@ -81,7 +82,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 while (reader.Read())
                 {
                     GetRoleCode roleCode = new GetRoleCode();
-                    roleCode.RoleCode = Int32.Parse(reader["RoleCode"].ToString());
+                    roleCode.RoleCode = Int32.Parse(reader["RoleCode"].ToString()); 
                     hsRoleCode.Add(roleCode);
                 }
                 con.Close();

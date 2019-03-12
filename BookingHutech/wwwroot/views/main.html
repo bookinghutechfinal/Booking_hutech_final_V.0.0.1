@@ -1,4 +1,4 @@
-﻿ <div class="container body" ng-controller="mainController">
+﻿<div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
@@ -27,50 +27,51 @@
                 <br>
 
                 <!--<div id="sidebar-menu" class="main_menu_side hidden-print main_menu" ng-include="'wwwroot/views/common/sidebar/sidebar.html'">
-                  
-                </div>--> 
+
+                </div>-->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <!--// Menu-->
                     <div class="menu_section">
-                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Chung</font></font></h3>
+                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Car Manager</font></font></h3>
                         <ul class="nav side-menu">
-                            <li ng-show="menu">
+                            <!--<li ng-show="menu">
                                 <a><i class="fa fa-table"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Những cái bàn </font></font><span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu" style="">
                                     <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Những cái bàn</font></font></a></li>
                                     <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bảng động</font></font></a></li>
                                 </ul>
-                            </li>
+                            </li>-->
                             <li>
-                                <a><i class="fa fa-bar-chart-o"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Trình bày dữ liệu </font></font><span class="fa fa-chevron-down"></span></a>
+                                <a><i class="fa fa-car"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Quản lý xe </font></font><span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu" style="">
-                                    <li><a href="#/main/dat-xe"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Biểu đồ JS</font></font></a></li>
-                                    <li><a href="#/main/trang-chu"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Biểu đồ JS2</font></font></a></li>
-                                    <li><a href="#/main/dat-xe"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Moris JS</font></font></a></li>
-                                    <li><a href="#/main/trang-chu"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ECharts</font></font></a></li>
-                                    <li><a href="#/main/trang-chu"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Biểu đồ khác</font></font></a></li>
+                                    <li><a href="#/main/dat-xe"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Danh sách xe</font></font></a></li>
                                 </ul>
                             </li>
                             <li class="">
-                                <a><i class="fa fa-clone"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bố cục </font></font><span class="fa fa-chevron-down"></span></a>
+                                <a><i class="fa fa-money"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Quản lý chi phí </font></font><span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu" style="display: none;">
-                                    <li><a href="#/main/dat-xe"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Thanh bên cố định</font></font></a></li>
-                                    <li><a href="#/main/trang-chu"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Chân trang cố định</font></font></a></li>
+                                    <li><a href="#/main/dat-xe"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nhiên liệu</font></font></a></li>
+                                    <li><a href="#/main/trang-chu"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sữa chữa</font></font></a></li>
+                                    <li><a href="#/main/trang-chu"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Chi phí khác</font></font></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-group"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Quản lý tài khoản </font></font><span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="">
+                                    <li><a href="#/main/manager-account"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Danh sách tài khoản</font></font></a></li>
+                                    <li><a href="#/main/driver-manager"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Quản lý lái xe</font></font></a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <div class="menu_section">
-                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sống dựa vào</font></font></h3>
-                        <ul class="nav side-menu">
+                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MeetingHall Manager</font></font></h3>
+                        <!--<ul class="nav side-menu">
                             <li>
-                                <a><i class="fa fa-bug"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Trang bổ sung </font></font><span class="fa fa-chevron-down"></span></a>
+                                <a><i class="fa fa-bug"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Quản lý tài khoản </font></font><span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu" style="">
-                                    <li><a href="https://colorlib.com/polygon/gentelella/e_commerce.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Thương mại điện tử</font></font></a></li>
-                                    <li><a href="https://colorlib.com/polygon/gentelella/projects.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dự án</font></font></a></li>
-                                    <li><a href="https://colorlib.com/polygon/gentelella/project_detail.html">Project Detail</a></li>
-                                    <li><a href="https://colorlib.com/polygon/gentelella/contacts.html">Contacts</a></li>
-                                    <li><a href="https://colorlib.com/polygon/gentelella/profile.html">Profile</a></li>
+                                    <li><a href="#/main/manager-account"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Quản lý tài khoản</font></font></a></li>
+
                                 </ul>
                             </li>
                             <li>
@@ -110,7 +111,7 @@
                                 </ul>
                             </li>
                             <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Trang đích </font></font><span class="label label-success pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">sắp ra mắt</font></font></span></a></li>
-                        </ul>
+                        </ul>-->
                     </div>
                 </div>
 
@@ -147,10 +148,10 @@
         <div class="right_col " role="main" style="min-height: 619px; background-color: #eaedf0">
             <h2>{{titleMain}}</h2>
             <div ui-view></div>
-        </div> 
-        <footer ng-include="'wwwroot/views/common/footer/footer.html'"></footer> 
+        </div>
+        <footer ng-include="'wwwroot/views/common/footer/footer.html'"></footer>
     </div>
-</div> 
+</div>
 
 <script src="../../script/js/custom.min.js"></script>
 <script src="../../script/js/jquery.min.js"></script>

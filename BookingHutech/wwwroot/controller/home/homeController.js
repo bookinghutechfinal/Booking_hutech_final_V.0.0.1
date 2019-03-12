@@ -1,5 +1,5 @@
-﻿mainmodule.controller('HomeController', ['$scope','$state',
-    function($scope, $state) {
+﻿mainmodule.controller('HomeController', ['$scope', '$state','toastr',
+    function ($scope, $state, toastr) {
 
         $scope.goToBookingCar = function () {
             $state.go('main.bookingcar'); 
@@ -16,6 +16,6 @@
         $scope.bookingMeetingHall = function () {
             $scope.goTobookingMeetingHall();
         }
-
+       
     }]);
            

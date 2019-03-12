@@ -34,7 +34,8 @@ namespace BookingHutech.Api_BHutech.Lib
             {
                 //string strLogPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); 
                 //string strLogPath = Path.GetDirectoryName("E:/BOOKING_HUTECH"); OK
-                string strLogPath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final/BookingHutech/Api_BHutech/Lib/Utils/Log");
+                //string strLogPath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/Api_BHutech/Lib/Utils/Log/Log");
+                string strLogPath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/Api_BHutech/Lib/Utils/Log/Log");
                 // string strLogPath = Path.GetDirectoryName("/Api_BHutech/Lib/Utils/Log/");
                 // string strLogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"/Api_BHutech/Lib/Utils/Log/");
                 strLogPath = Path.Combine(strLogPath, "Ex_BHutechLog.txt");

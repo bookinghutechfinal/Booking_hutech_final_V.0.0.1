@@ -39,7 +39,7 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
 
     this.RemoveAccountInfo = function () {
         $cookies.remove("AccountInfo");
-        //$cookies.remove("AccountInfoCheck");
+        $cookies.remove("AccountInfoCheckPermissions");
         //$cookies.remove("AccountInfo_"); // dùng để kiểm tra account phía dưới 
         //$cookies.remove("ObjRoleCode"); // dùng để kiểm tra Role phía dưới 
         //$cookies.remove("ProfileReqModel"); // 
@@ -53,10 +53,10 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
         }
     }
 
-    this.ManagerSearchAccount = function (request, success, finish) {
+    this.ManagerGetDetailAccountByAccountID = function (request, success, finish) {
         $dao.call({
             method: 'PUT',
-            operater: 'AccountManager/ManagerSearchAccount',
+            operater: 'ManagerAccount/ManagerGetDetailAccountByAccountID',
             data: request
         }, success, finish)
     };
@@ -68,6 +68,16 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     };
+    // Lấy danh sách lái xe. 
+    this.ManagerGetListDriverByDriverStatus = function (request, success, finish) {
+        $dao.call({
+            method: 'GET',
+            operater: 'ManagerDriver/ManagerGetListDriverByDriverStatus',
+            data: request
+        }, success, finish)
+    };
+
+
 
     this.ManagerUpdateStatusRoleByAccountID = function (request, success, finish) {
         $dao.call({
