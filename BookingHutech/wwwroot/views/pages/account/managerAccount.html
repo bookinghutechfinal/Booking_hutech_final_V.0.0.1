@@ -1,4 +1,4 @@
-﻿ 
+﻿
 <style>
     .x_title li {
         display: inline-block;
@@ -39,16 +39,16 @@
                                         <ul class="list-unstyled user_data">
                                             <li>
                                                 <i class="fa fa-map-marker user-profile-icon"></i> {{ShowAccountInfo.Addres}}
-                                            </li> 
+                                            </li>
                                             <li>
                                                 <i class="fa fa-phone user-profile-icon"></i> {{ShowAccountInfo.NumberPhone}}
-                                            </li>  
+                                            </li>
                                             <li>
                                                 <i class="fa fa-envelope-square user-profile-icon"></i> {{ShowAccountInfo.Email}}
                                             </li>
                                             <li>
                                                 <i class="fa fa-birthday-cake user-profile-icon"></i> {{ShowAccountInfo.Birthday | date:'dd/MM/yyyy'}}
-                                            </li> 
+                                            </li>
                                             <li>
                                                 <i class="fa fa-archive user-profile-icon"></i> Khoa/Viện {{ShowAccountInfo.UnitName | date:'dd/MM/yyyy'}}
                                             </li>
@@ -67,89 +67,168 @@
                                                 <h2>Quyền của tôi</h2>
                                             </div>
                                         </div>
-
-                                        <!--<div id="graph_bar" style="width: 100%; height: 280px; position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-
-                                        </div>-->
-                                        <table class="table table-hover" ng-table="tableParams1" >
+                                        <table class="table table-hover" ng-table="tableParams1" fixed-table-headers="scrollable-area">
                                             <thead>
                                                 <tr>
                                                     <th>#STT</th>
-                                                    <th>Tên quyền</th> 
-                                                    <th>Trạng thái</th> 
-                                                    <th>Người cấp</th> 
-                                                    <th></th>  
+                                                    <th>Tên quyền</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Người cấp</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="role in $data ">
                                                     <th>
                                                         {{$index+1}}
-                                                    </th> 
-                                                    <td >
+                                                    </th>
+                                                    <td>
                                                         {{role.RoleName}}
-                                                    </td> 
+                                                    </td>
                                                     <td>
                                                         <i class="fa fa-circle text-success"></i>
                                                         {{role.RoleDetail_Status}}
-                                                    </td> 
+                                                    </td>
                                                     <td>
                                                         {{role.FullNameUpdate}}
-                                                    </td> 
+                                                    </td>
                                                     <td>
                                                         ...
-                                                    </td>  
-                                                    
-                                                </tr>
-                                                
+                                                    </td> 
+                                                </tr> 
                                             </tbody>
-                                        </table>
-                                        <br /><br />
-                                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                                <li role="presentation" class="active">
-                                                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
-                                                </li>
-                                                
-                                            </ul>
-                                            <div id="myTabContent" class="tab-content">
-                                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                                                    <table class="table table-hover" ng-table="tableParams1">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>#STT</th>
-                                                                <th>Tên quyền</th>
-                                                                <th>Trạng thái</th>
-                                                                <th>Người cấp</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr ng-repeat="role in $data ">
-                                                                <th>
-                                                                    {{$index+1}}
-                                                                </th>
-                                                                <td>
-                                                                    {{role.RoleName}}
-                                                                </td>
-                                                                <td>
-                                                                    <i class="fa fa-circle text-success"></i>
-                                                                    {{role.RoleDetail_Status}}
-                                                                </td>
-                                                                <td>
-                                                                    {{role.FullNameUpdate}}
-                                                                </td>
-                                                                <td>
-                                                                    ...
-                                                                </td>
-
-                                                            </tr>
-
-                                                        </tbody>
-                                                    </table>
+                                        </table> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="x_panel">
+                                <div class="x_content">
+                                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                            <li role="presentation" class="active">
+                                                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Danh sách tài khoản</a>
+                                            </li> 
+                                        </ul>
+                                        <div id="myTabContent" class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                                        <div class="well profile_view">
+                                                            <div class="col-sm-12">
+                                                                <h4 class="brief"><i>Nguyễn Tài xế</i></h4>
+                                                                <div class="left col-xs-7">
+                                                                    <h2>Số CMND: 154645421</h2>
+                                                                    <ul class="list-unstyled">
+                                                                        <li><i class="fa fa-calendar"></i> Ngày sinh: 15/5/1995</li>
+                                                                        <li><i class="fa fa-map-marker"></i> Địa chỉ: TP.HCM</li>
+                                                                        <li><i class="fa fa-phone"></i> SDT: 956789789</li>
+                                                                        <li><i class="fa fa-at"></i> Số bằng lái: 635456465</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="right col-xs-5 text-center">
+                                                                    <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/avt/user.jpg" alt="taixe1.png" class="img-responsive"></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 bottom text-center">
+                                                                <div class="col-xs-12 col-sm-6 emphasis">
+                                                                </div>
+                                                                <div class="col-xs-12 col-sm-6 emphasis">
+                                                                    <button type="button" class="btn btn-primary btn-xs" onclick="location.href='/TTTaixe/Chitiettaixe/taixe1'">
+                                                                        <i class="fa fa-automobile"> </i> Xem chi tiết
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                                        <div class="well profile_view">
+                                                            <div class="col-sm-12">
+                                                                <h4 class="brief"><i>Nguyễn Tài xế</i></h4>
+                                                                <div class="left col-xs-7">
+                                                                    <h2>Số CMND: 154645421</h2>
+                                                                    <ul class="list-unstyled">
+                                                                        <li><i class="fa fa-calendar"></i> Ngày sinh: 15/5/1995</li>
+                                                                        <li><i class="fa fa-map-marker"></i> Địa chỉ: TP.HCM</li>
+                                                                        <li><i class="fa fa-phone"></i> SDT: 956789789</li>
+                                                                        <li><i class="fa fa-at"></i> Số bằng lái: 635456465</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="right col-xs-5 text-center">
+                                                                    <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/avt/user.jpg" alt="taixe1.png" class="img-responsive"></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 bottom text-center">
+                                                                <div class="col-xs-12 col-sm-6 emphasis">
+                                                                </div>
+                                                                <div class="col-xs-12 col-sm-6 emphasis">
+                                                                    <button type="button" class="btn btn-primary btn-xs" onclick="location.href='/TTTaixe/Chitiettaixe/taixe1'">
+                                                                        <i class="fa fa-automobile"> </i> Xem chi tiết
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                                        <div class="well profile_view">
+                                                            <div class="col-sm-12">
+                                                                <h4 class="brief"><i>Nguyễn Tài xế</i></h4>
+                                                                <div class="left col-xs-7">
+                                                                    <h2>Số CMND: 154645421</h2>
+                                                                    <ul class="list-unstyled">
+                                                                        <li><i class="fa fa-calendar"></i> Ngày sinh: 15/5/1995</li>
+                                                                        <li><i class="fa fa-map-marker"></i> Địa chỉ: TP.HCM</li>
+                                                                        <li><i class="fa fa-phone"></i> SDT: 956789789</li>
+                                                                        <li><i class="fa fa-at"></i> Số bằng lái: 635456465</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="right col-xs-5 text-center">
+                                                                    <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/avt/user.jpg" alt="taixe1.png" class="img-responsive"></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 bottom text-center">
+                                                                <div class="col-xs-12 col-sm-6 emphasis">
+                                                                </div>
+                                                                <div class="col-xs-12 col-sm-6 emphasis">
+                                                                    <button type="button" class="btn btn-primary btn-xs" onclick="location.href='/TTTaixe/Chitiettaixe/taixe1'">
+                                                                        <i class="fa fa-automobile"> </i> Xem chi tiết
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                                        <div class="well profile_view">
+                                                            <div class="col-sm-12">
+                                                                <h4 class="brief"><i>Nguyễn Tài xế</i></h4>
+                                                                <div class="left col-xs-7">
+                                                                    <h2>Số CMND: 154645421</h2>
+                                                                    <ul class="list-unstyled">
+                                                                        <li><i class="fa fa-calendar"></i> Ngày sinh: 15/5/1995</li>
+                                                                        <li><i class="fa fa-map-marker"></i> Địa chỉ: TP.HCM</li>
+                                                                        <li><i class="fa fa-phone"></i> SDT: 956789789</li>
+                                                                        <li><i class="fa fa-at"></i> Số bằng lái: 635456465</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="right col-xs-5 text-center">
+                                                                    <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/avt/user.jpg" alt="taixe1.png" class="img-responsive"></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-12 bottom text-center">
+                                                                <div class="col-xs-12 col-sm-6 emphasis">
+                                                                </div>
+                                                                <div class="col-xs-12 col-sm-6 emphasis">
+                                                                    <button type="button" class="btn btn-primary btn-xs" onclick="location.href='/TTTaixe/Chitiettaixe/taixe1'">
+                                                                        <i class="fa fa-automobile"> </i> Xem chi tiết
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                
-                                                 
                                             </div>
                                         </div>
                                     </div>

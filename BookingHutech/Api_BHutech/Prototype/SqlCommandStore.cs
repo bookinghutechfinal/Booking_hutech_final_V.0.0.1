@@ -31,7 +31,8 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspManagerGetDetailAccountByAccountID = "uspManagerGetDetailAccountByAccountID {0}";
         //Manager Get list repair cost. Create By Mr.Lam Create 11/3/2019. 
         public const string uspGetListRepairCost = "uspGetListRepairCost";
-
+        //Manager Get List Driver By Driver Status. Create By Anh.Trần Create 10/3/2019. 
+        public const string uspManagerGetListDriverByDriverStatus = "uspManagerGetListDriverByDriverStatus {0}";
     }
 
 }
