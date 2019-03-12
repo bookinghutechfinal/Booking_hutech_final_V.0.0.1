@@ -1,0 +1,66 @@
+﻿
+<style>
+    .x_title li {
+        display: inline-block;
+    }
+
+    .x_title ul {
+        margin-left: -45px;
+    }
+
+    .profile_details:nth-child(3n) {
+        clear: none;
+    }
+</style>
+<div class="clearfix">
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul>
+                        <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                        <li><a href="#/main/quan-ly-chi-phi-sua-chua"><h5>/ {{'RepairCostManager' | translate}}</h5></a></li>
+                    </ul>
+                </div>
+                <div class="x_content" style="display: block;">
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered" ng-table="tableParams1">
+                        <thead>
+                            <tr>
+                                <th>#STT</th>
+                                <th>Mã sửa chữa</th>
+                                <th>Mã xe</th>
+                                <th>Nơi sửa</th>
+                                <th>Thời gian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="cost in ListRepairCost">
+                                <th>
+                                    {{$index+1}}
+                                </th>
+                                <td>
+                                    {{cost.RepairID}}
+                                </td>
+                                <td>
+                                    {{cost.Car_ID}}
+                                </td>
+                                <td>
+                                    {{cost.RepairAddres}} 
+                                </td>
+                                <td>
+                                    {{cost.CreateDate}}
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

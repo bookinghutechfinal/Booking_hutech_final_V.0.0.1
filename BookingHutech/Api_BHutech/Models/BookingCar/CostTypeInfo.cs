@@ -7,7 +7,7 @@ namespace BookingHutech.Api_BHutech.Models.BookingCar
 {
     public class CostTypeInfo
     {
-        public int CostTypeID { get; set; }
+        public int CostsTypeID { get; set; }
         public string CostsTypeName { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }

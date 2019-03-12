@@ -752,6 +752,8 @@
     <Content Include="Scripts\jquery\src\wrap.js" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap.css" />
     <Content Include="Scripts\vendor\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="script\css\img.jpg" />
+    <Content Include="script\css\select2.min.css" />
     <Content Include="script\css\Table\dataTables.bootstrap.min.css" />
     <Content Include="script\css\Table\dataTables.bootstrap.min.js" />
     <Content Include="script\css\Table\dataTables.responsive.min.js" />
@@ -763,6 +765,7 @@
     <Content Include="wwwroot\controller\account\loginController.js" />
     <Content Include="wwwroot\controller\app\appController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\costManagerController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\registerBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingMeetingHall\bookingMeetingHallController.js" />
     <Content Include="wwwroot\controller\home\homeController.js" />
@@ -1226,6 +1229,7 @@
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\repairCostManager.html" />
     <Content Include="wwwroot\views\pages\booking\bookingMeetingHall\meetingHallInfo.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />

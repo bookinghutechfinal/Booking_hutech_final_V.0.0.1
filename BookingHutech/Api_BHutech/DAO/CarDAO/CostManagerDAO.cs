@@ -36,7 +36,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     repairInfo = new RepairInfo();
                     repairInfo.RepairID = reader["RepairID"].ToString();
                     repairInfo.Car_ID = Int32.Parse(reader["Car_ID"].ToString());
-                    repairInfo.CostTypeID = Int32.Parse(reader["CostTypeID"].ToString());
+                    repairInfo.CostsTypeID = Int32.Parse(reader["CostsTypeID"].ToString());
                     repairInfo.RepairAddres = reader["RepairAddres"].ToString();
                     repairInfo.Note = reader["Note"].ToString();
                     repairInfo.ImagerBill = reader["ImagerBill"].ToString();

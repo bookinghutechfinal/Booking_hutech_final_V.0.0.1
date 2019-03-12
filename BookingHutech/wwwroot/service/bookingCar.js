@@ -16,4 +16,12 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+
+    this.getListRepairCost = function (request, success, finish) {
+        $dao.call({
+            method: 'GET',
+            operater: 'CostManager/GetListRepairCost',
+            data: request
+        }, success, finish)
+    };
 }]);
