@@ -1,0 +1,64 @@
+﻿
+<style>
+    .x_title li {
+        display: inline-block;
+    }
+
+    .x_title ul {
+        margin-left: -45px;
+    }
+
+    .profile_details:nth-child(3n) {
+        clear: none;
+    }
+</style>
+<div class="clearfix">
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul>
+                        <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                        <li><a href="#/main/quan-ly-chi-phi-sua-chua"><h5>/ {{'RepairCostManager' | translate}}</h5></a></li>
+                    </ul>
+                </div>
+                <div class="x_content" style="display: block;">
+                    <div>
+                        <button class="btn btn-info" style="float:right">
+                            Thêm sửa chữa
+                        </button>
+                        <div class="clearfix"></div>
+                        </div>
+                        <div class="table-responsive">
+                            <table ng-table="tableParams" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                                <tr ng-repeat="item in $data " role="none" class="hover_" ng-click="popupDetailRepairCost(item.RepairID)">
+                                    <td data-title="'STT'" style="width:2%" role="none" align="center">
+                                        {{$index+1}}
+                                    </td>
+                                    <td data-title="'Mã sửa chữa'" style="width:5%" align="left">
+                                        {{item.RepairID}}
+                                    </td>
+                                    <td data-title="'Xe'" style="width:5%" align="left">
+                                        <!--filter="{CarNo:'text'}"-->
+                                        {{item.CarNo}}
+                                    </td>
+                                    <td data-title="'Nơi sửa'" style="width:5%" align="left">
+                                        {{item.RepairAddres}}
+                                    </td>
+                                    <td data-title="'Ngày sửa'" style="width:5%" align="left">
+                                        {{item.CreateDate | date:'dd/MM/yyyy'}}
+                                    </td>
+                                    <td data-title="'Ghi chú'" style="width:5%" align="left">
+                                        {{item.Note}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>

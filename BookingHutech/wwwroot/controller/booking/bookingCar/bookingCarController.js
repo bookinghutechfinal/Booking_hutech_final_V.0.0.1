@@ -1,5 +1,5 @@
-﻿mainmodule.controller('BookingCarController', ['$scope', '$state', '$rootScope', '$modal', '$http', '$cookies', 'toastr', '$dao','$BookingCar',
-    function ($scope, $state, $rootScope, $modal, $http, $cookies, toastr, $dao, $BookingCar) {
+﻿mainmodule.controller('BookingCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr','$BookingCar',
+    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar) {
 
         // Hàm 1: khai báo các biến tiện ích
         $scope.init = function () {
