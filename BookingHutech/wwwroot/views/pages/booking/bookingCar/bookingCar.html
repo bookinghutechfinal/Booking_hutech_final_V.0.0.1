@@ -76,20 +76,25 @@
                         <div class="col-md-4 col-sm-4 col-xs-12 profile_details" ng-repeat="data in ListCarInfo">
                             <div class="well profile_view">
                                 <div class="col-sm-12">
-                                    <div class="right col-xs-5 text-center">
-                                        <img src="../../../../images/img/{{data.CarImage}}" alt="" class="img-circle img-responsive" style="height:108.75px;width:108.75px">
-                                    </div>
+                                    <!--<h4 class="brief"><i>{{driverInfo.FullName}}</i></h4>-->
                                     <div class="left col-xs-7">
                                         <h2>{{data.CarName}}</h2>
-                                        <p>Biển số xe: {{data.CarNumber}}</p>
-                                        <p>Loại xe: {{data.CarTypeName}}</p>
-                                    </div>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-map-marker"></i> Biển số xe: {{data.CarNo}}</li>
+                                            <li><i class="fa fa-phone"></i> Loại xe: {{data.CarTypeName}}</li>
 
+                                        </ul>
+                                    </div>
+                                    <div class="right col-xs-5 text-center">
+                                        <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/img/{{data.CarImage}}" alt="{{data.CarImage}}" class="img-responsive"></a>
+                                    </div>
                                 </div>
                                 <div class="col-xs-12 bottom text-center">
                                     <div class="col-xs-12 col-sm-6 emphasis">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 emphasis">
                                         <button type="button" class="btn btn-primary btn-xs" ng-click="OpenPopupRegisteredBookingCar()">
-                                            <i class="glyphicon glyphicon-check"> </i>{{'BookCar' | translate}}
+                                            <i class="fa fa-automobile"> </i> Xem chi tiết
                                         </button>
                                     </div>
                                 </div>
@@ -110,30 +115,35 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" style="display: block;">
+                    
 
                     <div class="col-md-4 col-sm-4 col-xs-12 profile_details" ng-repeat="data in ListCarInfoResult">
                         <div class="well profile_view">
                             <div class="col-sm-12">
-                                <div class="right col-xs-5 text-center">
-                                    <img src="../../../../images/img/{{data.CarImage}}" alt="" class="img-circle img-responsive" style="height:108.75px;width:108.75px">
-                                </div>
+                                <!--<h4 class="brief"><i>{{driverInfo.FullName}}</i></h4>-->
                                 <div class="left col-xs-7">
                                     <h2>{{data.CarName}}</h2>
-                                    <p>Biển số xe: {{data.CarNumber}}</p>
-                                    <p>Loại xe: {{data.CarTypeName}}</p>
-                                </div>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fa fa-map-marker"></i> Biển số xe: {{data.CarNo}}</li>
+                                        <li><i class="fa fa-phone"></i> Loại xe: {{data.CarTypeName}}</li>
 
+                                    </ul>
+                                </div>
+                                <div class="right col-xs-5 text-center">
+                                    <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/img/{{data.CarImage}}" alt="{{data.CarImage}}" class="img-responsive"></a>
+                                </div>
                             </div>
                             <div class="col-xs-12 bottom text-center">
                                 <div class="col-xs-12 col-sm-6 emphasis">
+                                </div>
+                                <div class="col-xs-12 col-sm-6 emphasis">
                                     <button type="button" class="btn btn-primary btn-xs" ng-click="OpenPopupRegisteredBookingCar()">
-                                        <i class="glyphicon glyphicon-check"> </i>{{'BookCar' | translate}}
+                                        <i class="fa fa-automobile"> </i> Xem chi tiết
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
 
                 </div>
             </div>
