@@ -3,6 +3,10 @@
         background-color: #2A3F54;
     }
 </style>
+<link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/switchery/dist/switchery.min.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/build/css/custom.min.css" rel="stylesheet" />
 
 <!-- Modal content-->
 <!-- Test  -->
@@ -61,7 +65,7 @@
                                     </tr>
                                 </thead>-->
                                 <tbody>
-                                    
+
                                     <tr>
                                         <td>
                                             <i class="fa fa-compass"></i>
@@ -70,7 +74,7 @@
                                         <td>
                                             <i class="fa fa-cab"></i>
                                             <label>Chức vụ:{{AccountDriverDetail.AccountType}}</label>
-                                        </td> 
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -81,12 +85,14 @@
                                             <i class="fa fa-external-link user-profile-icon"></i>
                                             <label>Số bằng lái:{{AccountDriverDetail.DriverLicenseNo}}</label>
                                         </td>
-                                       
+
                                     </tr>
-                                    <tr> 
+                                    <tr>
                                         <td>
-                                            <i class="fa fa-circle text-success"></i>
-                                            <label>Trạng thái:{{AccountDriverDetail.Account_Status}}</label>
+                                            <label>Trạng thái:</label>
+                                            <input type="checkbox" class="js-switch" ng-show="AccountDriverDetail.Account_Status === '1'" ng-checked="AccountDriverDetail.Account_Status === '1'" />
+                                            <!--<i class="fa fa-circle text-success"></i>
+                                            <label>Trạng thái:{{AccountDriverDetail.Account_Status}}</label>-->
                                         </td>
                                         <td>
                                             <i class="fa fa-external-link user-profile-icon"></i>
@@ -116,7 +122,64 @@
                                     <label class="col-md-6 col-sm-6">Default Input: kkk kk kkk  k</label>
                                 </div>
                             </form>-->
+                            <div class="x_content">
+                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Chi tiết quyền</a>
+                                        </li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                            <div class="row">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped jambo_table bulk_action" ng-table="tableParams1">
+                                                        <thead>
+                                                            <tr class="headings">
+
+                                                                <th class="column-title">#STT</th>
+                                                                <th class="column-title">Tên quyền</th>
+                                                                <th class="column-title">Trạng thái</th>
+                                                                <th class="column-title">Người cấp</th>
+                                                                <th class="column-title no-link last">
+                                                                     
+                                                                </th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="even pointer" ng-repeat="role in $data ">
+                                                                <td class=" ">
+                                                                    {{$index+1}}
+                                                                </td>
+                                                                <td class=" ">
+                                                                    {{role.RoleName}}
+                                                                </td>
+                                                                <td class=" ">
+                                                                    <!--<i class="fa fa-circle text-success" ng-show="role.RoleDetail_Status === 'Hoạt động'"></i>
+                                                                    <i class="fa fa-circle text-success" style="color: #e65b5b" ng-show="role.RoleDetail_Status != 'Hoạt động'"> </i> -->
+                                                                    <i class="fa fa-circle text-success" ng-show="role.RoleDetail_Status"> Hoạt động</i>
+                                                                    <i class="fa fa-circle text-success" style="color: #e65b5b" ng-show="!role.RoleDetail_Status"> Đã khóa</i>
+                                                                </td>
+                                                                <td class=" ">
+                                                                    {{role.FullNameUpdate}}
+                                                                </td>
+                                                                <td class=" ">
+                                                                    <label>
+                                                                        <input type="checkbox" class="js-switch" ng-click="UpdateRole(role)" ng-checked="role.RoleDetail_Status" />
+                                                                    </label>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -153,3 +216,8 @@
         <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
     </div>
 </div>
+<script src="../../../../../script/js/jquery.min.js"></script>
+<script src="../../../../../script/js/bootstrap.min.js"></script>
+<script src="../../../../../script/teamplate/iCheck/icheck.min.js"></script>
+<script src="../../../../../script/teamplate/switchery/dist/switchery.min.js"></script>
+<script src="../../../../../script/teamplate/build/js/custom.min.js"></script>

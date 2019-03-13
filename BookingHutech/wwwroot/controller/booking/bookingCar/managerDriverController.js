@@ -17,16 +17,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
         };
 
 
-        $scope.RoleStatus = [
-            {
-                'RoleStatusName': 'Đã Khóa',
-                'RoleStatusID': 0
-            },
-            {
-                'RoleStatusName': 'Hoạt động',
-                'RoleStatusID': 1
-            },
-        ];
+        
 
 
         // Lấy chi tiết tài khoản của admin và chi tiết quyền. 
@@ -85,16 +76,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
                 break;
 
         }
-        $scope.RoleStatus = [
-            {
-                'RoleStatusName': 'Đã Khóa',
-                'RoleStatusID': 0
-            },
-            {
-                'RoleStatusName': 'Hoạt động',
-                'RoleStatusID': 1
-            },
-        ];
+         
 
         // Lấy thông tin chi tiết lái xe. 
         $scope.ShowDetailDriver = function (Request) {
@@ -120,16 +102,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
                             Email: AccountInfoResponse.Email,
                             UnitName: AccountInfoResponse.UnitName,
                         }
-                        //Cập nhật trạng thái cho quyền. 
-                        for (var i = 0; i < RoleResponse.length; i++) {
-                            // AccountStatusName
-                            if (RoleResponse[i].RoleDetail_Status === false) {
-                                RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[0].RoleStatusName;
-                            } else {
-                                RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[1].RoleStatusName;
-                            }
-
-                        }
+                       
                         // Truyền dự liệu qua popup. 
                         $scope.AccountInfoDatail = {
                             AccountInfo: AccountInfoResponse,

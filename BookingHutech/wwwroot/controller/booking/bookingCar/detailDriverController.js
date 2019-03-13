@@ -1,96 +1,117 @@
 ﻿
-mainmodule.controller('DetailDriverController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'AccountInfoDatailRequest',
-    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountInfoDatailRequest) {
+mainmodule.controller('DetailDriverController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'AccountInfoDatailRequest', 'NgTableParams',
+    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountInfoDatailRequest, NgTableParams) {
         // AccountInfoDatailRequest: Tham số nhận dữ liệu từ màn hình quản lý lái xe.  
-        var AccountDriverDetailResponseModel = AccountInfoDatailRequest;
+        var AccountDriverDetailResponseModel = AccountInfoDatailRequest.AccountInfo;
+        var AccountRoleDriverResponseModel = AccountInfoDatailRequest.RoleInfo;
         $scope.Titile = "Chi tiết tài xế";
-        $scope.ClosePopup = function () { 
+        $scope.ClosePopup = function () {
             $modalInstance.close();
         }
-         
-        $scope.Main = function () {
+        var AccountStatus = [
+            {
+                'AccountStatusName': 'Đã Khóa',
+                'AccountStatusID': 0
+            },
+            {
+                'AccountStatusName': 'Hoạt động',
+                'AccountStatusID': 1
+            },
+        ];
+        var AccountType = [
+            {
+                'AccountTypeName': 'Lái xe',
+                'AccountTypeID': 7
+            },
 
-            var AccountStatus = [
-                {
-                    'AccountStatusName': 'Đã Khóa',
-                    'AccountStatusID': 0
-                },
-                {
-                    'AccountStatusName': 'Hoạt động',
-                    'AccountStatusID': 1
-                },
-            ];
-            var AccountType = [
-                {
-                    'AccountTypeName': 'Lái xe',
-                    'AccountTypeID': 7
-                },
-                
-            ]; 
+        ];
+        var RoleStatus = [
+            {
+                'RoleStatusName': 'Đã Khóa',
+                'RoleStatusID': false
+            },
+            {
+                'RoleStatusName': 'Hoạt động',
+                'RoleStatusID': true
+            },
+        ];
+        $scope.Main = function () {
+            $scope.tableParams1 = $scope.tableParams1 = null;
+           
 
             $scope.AccountDriverDetail = {
-                Account_ID: AccountDriverDetailResponseModel.AccountInfo.Account_ID,
-                FullName: AccountDriverDetailResponseModel.AccountInfo.FullName,
-                Gender: AccountDriverDetailResponseModel.AccountInfo.Gender,
-                Birthday: AccountDriverDetailResponseModel.AccountInfo.Birthday,
-                NumberPhone: AccountDriverDetailResponseModel.AccountInfo.NumberPhone,
-                Addres: AccountDriverDetailResponseModel.AccountInfo.Addres,
-                Email: AccountDriverDetailResponseModel.AccountInfo.Email,
-                CreateDate: AccountDriverDetailResponseModel.AccountInfo.CreateDate,
-                Account_Status: AccountDriverDetailResponseModel.AccountInfo.Account_Status,
-                Verify: AccountDriverDetailResponseModel.AccountInfo.Verify,
-                IsChangePassword: AccountDriverDetailResponseModel.AccountInfo.IsChangePassword,
-                AccountType: AccountDriverDetailResponseModel.AccountInfo.AccountType,
-                UnitName: AccountDriverDetailResponseModel.AccountInfo.UnitName,
-                Manager: AccountDriverDetailResponseModel.AccountInfo.Manager,
-                EmailManager: AccountDriverDetailResponseModel.AccountInfo.EmailManager,
-                NumberPhoneManager: AccountDriverDetailResponseModel.AccountInfo.NumberPhoneManager,
-                DriverLicenseNo: AccountDriverDetailResponseModel.AccountInfo.DriverLicenseNo,
-                LicenseClass: AccountDriverDetailResponseModel.AccountInfo.LicenseClass,
-                LicenseExpires: AccountDriverDetailResponseModel.AccountInfo.LicenseExpires,
+                Account_ID: AccountDriverDetailResponseModel.Account_ID,
+                FullName: AccountDriverDetailResponseModel.FullName,
+                Gender: AccountDriverDetailResponseModel.Gender,
+                Birthday: AccountDriverDetailResponseModel.Birthday,
+                NumberPhone: AccountDriverDetailResponseModel.NumberPhone,
+                Addres: AccountDriverDetailResponseModel.Addres,
+                Email: AccountDriverDetailResponseModel.Email,
+                CreateDate: AccountDriverDetailResponseModel.CreateDate,
+                Account_Status: AccountDriverDetailResponseModel.Account_Status,
+                Verify: AccountDriverDetailResponseModel.Verify,
+                IsChangePassword: AccountDriverDetailResponseModel.IsChangePassword,
+                AccountType: AccountDriverDetailResponseModel.AccountType,
+                UnitName: AccountDriverDetailResponseModel.UnitName,
+                Manager: AccountDriverDetailResponseModel.Manager,
+                EmailManager: AccountDriverDetailResponseModel.EmailManager,
+                NumberPhoneManager: AccountDriverDetailResponseModel.NumberPhoneManager,
+                DriverLicenseNo: AccountDriverDetailResponseModel.DriverLicenseNo,
+                LicenseClass: AccountDriverDetailResponseModel.LicenseClass,
+                LicenseExpires: AccountDriverDetailResponseModel.LicenseExpires,
             }
 
             //Cập nhật trạng thái cho account. 
-            if ($scope.AccountDriverDetail.Account_Status === "1") {
-                $scope.AccountDriverDetail.Account_Status = AccountStatus[1].AccountStatusName;
-            } else {
-                $scope.AccountDriverDetail.Account_Status = AccountStatus[0].AccountStatusName;
-            }
+            //if ($scope.AccountDriverDetail.Account_Status === "1") {
+            //    $scope.AccountDriverDetail.Account_Status = AccountStatus[1].AccountStatusName;
+            //} else {
+            //    $scope.AccountDriverDetail.Account_Status = AccountStatus[0].AccountStatusName;
+            //}
             //Cập nhật loại tài khoản
-            if ($scope.AccountDriverDetail.AccountType  === "7") {
+            if ($scope.AccountDriverDetail.AccountType === "7") {
                 $scope.AccountDriverDetail.AccountType = AccountType[0].AccountTypeName;
             } else {
                 $scope.AccountDriverDetail.AccountType = AccountType[1].AccountTypeName;
             }
             //Cập nhật giới tính
-            if ($scope.AccountDriverDetail.Gender  === 1) {
+            if ($scope.AccountDriverDetail.Gender === 1) {
                 $scope.AccountDriverDetail.Gender = "Nam";
             } else {
                 $scope.AccountDriverDetail.Gender = "Nữ";
             }  //Cập nhật phê duyệt. 
-            if ($scope.AccountDriverDetail.Verify  === true) {
+            if ($scope.AccountDriverDetail.Verify === true) {
                 $scope.AccountDriverDetail.Verify = "Đã duyệt";
             } else {
                 $scope.AccountDriverDetail.Verify = "Chưa duyệt";
             } //Cập nhật đổi mật khẩu. 
-            if ($scope.AccountDriverDetail.IsChangePassword  === true) {
+            if ($scope.AccountDriverDetail.IsChangePassword === true) {
                 $scope.AccountDriverDetail.IsChangePassword = "Đã đổi";
             } else {
                 $scope.AccountDriverDetail.IsChangePassword = "Chưa đổi";
             }
-
-            //for (var i = 0; i < RoleResponse.length; i++) {
+            //Cập nhật trạng thái cho quyền. 
+            //for (var i = 0; i < AccountRoleDriverResponseModel.length; i++) {
             //    // AccountStatusName
-            //    if (RoleResponse[i].RoleDetail_Status === false) {
-            //        RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[0].RoleStatusName;
+            //    if (AccountRoleDriverResponseModel[i].RoleDetail_Status === false) {
+            //        AccountRoleDriverResponseModel[i].RoleDetail_Status = RoleStatus[0].RoleStatusName;
             //    } else {
-            //        RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[1].RoleStatusName;
+            //        AccountRoleDriverResponseModel[i].RoleDetail_Status = RoleStatus[1].RoleStatusName;
             //    }
 
             //}
+            $scope.tableParams1 = new NgTableParams({}, { dataset: AccountRoleDriverResponseModel });
+        }
+        $scope.Main();
+
+        $scope.UpdateRole = function (roleRequestModel) {
+            if (roleRequestModel.RoleDetail_Status === RoleStatus[0].RoleStatusID) {
+                alert("Mở quyền " + roleRequestModel.RoleName);
+                $scope.checkedRule = true;
+            } else
+                alert("Khóa quyền " + roleRequestModel.RoleName);
+            $scope.checkedRule = false;
 
         }
-        $scope.Main(); 
 
 
     }]);  
