@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using BookingHutech.Api_BHutech.DAO.CarDAO;
 using BookingHutech.Api_BHutech.Lib;
+using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 
 namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
 {
     public class CostManagerServices
     {
-        CostManagerDAO costManagerDAO = new CostManagerDAO();
+        ManagerCostDAO managerCostDAO = new ManagerCostDAO();
 
         /// <summary>
         /// GetListRepairCostServices
@@ -23,7 +24,23 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
             try
             {
                 string uspGetListRepairCost = Prototype.SqlCommandStore.uspGetListRepairCost;
-                result.ListRepairCost = costManagerDAO.GetListRepairCostDAO(uspGetListRepairCost);
+                result.ListRepairCost = managerCostDAO.GetListRepairCostDAO(uspGetListRepairCost);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        public ListRepairCostResponseModel GetDetailRepairCostServices(GetDetailRepairCostRequestModel request)
+        {
+            ListRepairCostResponseModel result = new ListRepairCostResponseModel();
+            try
+            {
+                string uspGetDetailRepairCost = String.Format(Prototype.SqlCommandStore.uspGetDetailRepairCost, request.RepairID);
+                result.ListRepairCost = managerCostDAO.GetListRepairCostDAO(uspGetDetailRepairCost);
                 return result;
             }
             catch (Exception ex)
