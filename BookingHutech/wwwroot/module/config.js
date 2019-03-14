@@ -61,7 +61,17 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
         .state('main.repairCost', {
             url: '/manager-repair-Cost',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerRepairCost.html',
-            controller: 'ManagerCostController',
+            controller: 'ManagerRepairCostController',
+        })
+        .state('main.fuelCost', {
+            url: '/manager-fuel-cost',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/ManagerFuelCost.html',
+            controller: 'ManagerFuelCostController',
+        })
+        .state('main.otherCost', {
+            url: '/manager-other-cost',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/ManagerOtherCost.html',
+            controller: 'ManagerOtherCostController',
         })
         .state('main.drivermanager', {
             url: '/driver-manager',
@@ -133,6 +143,10 @@ mainmodule.config(['$translateProvider',
             /* --------  Repair Cost Manager ---------- */
             'RepairCostManager': 'Quản lý chi phí sửa chữa',
             'TitileDetailRepairCost': 'Chi tiết sửa chữa',
+            'TitileAddNewCost': 'Thêm chi phí',
+            'FuelCostManager': 'Quản lý chi phí nhiên liệu',
+            'OtherCostManager': 'Quản lý chi phí khác',
+            
             
 
         });

@@ -15,20 +15,20 @@
         <div class="row">
 
             <div class="table-responsive">
-                <table ng-table="tableParams" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                <table ng-table="tableParams2" class="table table-striped" role="none" show-filter="false" fixed-table-headers="scrollable-area">
                     <tr ng-repeat="item in $data " role="none" class="hover_">
                         <td data-title="'STT'" style="width:2%" role="none" align="center">
                             {{$index+1}}
                         </td>
                         <td data-title="'nội dung'" style="width:5%" align="left">
-                            {{item.RepairID}}
+                            {{item.Content}}
                         </td>
                         <td data-title="'Số lượng'" style="width:5%" align="left">
                             <!--filter="{CarNo:'text'}"-->
-                            {{item.CarNo}}
+                            {{item.Quantity}}
                         </td>
                         <td data-title="'Tổng tiền'" style="width:5%" align="left">
-                            {{item.RepairAddres}}
+                            {{item.TotalMoney | currency : ""}} Đ
                         </td>
                     </tr>
                 </table>

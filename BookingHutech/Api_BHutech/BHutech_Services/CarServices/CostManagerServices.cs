@@ -33,7 +33,12 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 throw;
             }
         }
-
+        /// <summary>
+        /// GetDetailRepairCostServices
+        /// Mr.Lam 13/3/2019
+        /// </summary>
+        /// <param name="request">RepairID</param>
+        /// <returns>List detail repair cost</returns>
         public ListRepairCostResponseModel GetDetailRepairCostServices(GetDetailRepairCostRequestModel request)
         {
             ListRepairCostResponseModel result = new ListRepairCostResponseModel();
@@ -41,6 +46,28 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
             {
                 string uspGetDetailRepairCost = String.Format(Prototype.SqlCommandStore.uspGetDetailRepairCost, request.RepairID);
                 result.ListRepairCost = managerCostDAO.GetListRepairCostDAO(uspGetDetailRepairCost);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// GetListRepairCostServices
+        /// Mr.Lam 13/3/2019
+        /// </summary>
+        /// <param name="request">CostsTypeID</param>
+        /// <returns>List Cost</returns>
+        public ListRepairCostResponseModel GetListCostServices(GetListCostRequestModel request)
+        {
+            ListRepairCostResponseModel result = new ListRepairCostResponseModel();
+            try
+            {
+                string uspGetListCost = String.Format(Prototype.SqlCommandStore.uspGetListCost, request.CostsTypeID);
+                result.ListRepairCost = managerCostDAO.GetListRepairCostDAO(uspGetListCost);
                 return result;
             }
             catch (Exception ex)
