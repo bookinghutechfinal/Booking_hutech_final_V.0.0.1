@@ -151,10 +151,12 @@
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CostManagerServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\DriverManagerService.cs" />
+    <Compile Include="Api_BHutech\BHutech_Services\CarServices\ManagerReportServices.cs" />
     <Compile Include="Api_BHutech\DAO\AccountDAO\AccountDAO.cs" />
     <Compile Include="Api_BHutech\DAO\AccountDAO\ManagerAccountDAO.cs" />
     <Compile Include="Api_BHutech\DAO\CarDAO\CarDAO.cs" />
     <Compile Include="Api_BHutech\DAO\CarDAO\ManagerCostDAO.cs" />
+    <Compile Include="Api_BHutech\DAO\CarDAO\ManagerReportDAO.cs" />
     <Compile Include="Api_BHutech\Lib\CheckPermissions.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\EncodePassword.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\Permissions.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetDetailAccountByAccountIDResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListRepairCostResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ManagerGetDriverByAccountStatusResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ReportCostResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\CheckPermissionResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\IResponse.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListCarResponseModel.cs" />
@@ -227,6 +230,7 @@
     <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\CarController.cs" />
     <Compile Include="Controllers\Api\ManagerDriverController.cs" />
+    <Compile Include="Controllers\Api\ManagerReportController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -910,6 +914,7 @@
     <Content Include="wwwroot\controller\booking\bookingCar\managerRepairCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\detailDriverController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\managerReportController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\registerBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingMeetingHall\bookingMeetingHallController.js" />
     <Content Include="wwwroot\controller\home\homeController.js" />
@@ -1380,6 +1385,7 @@
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailDriver.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\managerRepairCost.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\reportCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingMeetingHall\meetingHallInfo.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />

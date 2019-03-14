@@ -59,7 +59,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             controller: 'BookingCarController',
         })
         .state('main.repairCost', {
-            url: '/manager-repair-Cost',
+            url: '/manager-repair-cost',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerRepairCost.html',
             controller: 'ManagerRepairCostController',
         })
@@ -77,6 +77,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             url: '/driver-manager',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/ManagerDriver.html',
             controller: 'ManagerDriverController',
+        })
+        .state('main.reportCost', {
+            url: '/report-cost',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/reportCost.html',
+            controller: 'ManagerReportController',
         })
         .state('main.managerAccount', {
             url: '/manager-account',
@@ -140,13 +145,14 @@ mainmodule.config(['$translateProvider',
             'SearchBookingCar': 'Tìm Kiếm',
             'ResultSerachBookingCar': 'Kết quả tìm kiếm',
             'ListCar': 'Danh sách xe',
-            /* --------  Repair Cost Manager ---------- */
+            /* --------  Cost Manager ---------- */
             'RepairCostManager': 'Quản lý chi phí sửa chữa',
             'TitileDetailRepairCost': 'Chi tiết sửa chữa',
             'TitileAddNewCost': 'Thêm chi phí',
             'FuelCostManager': 'Quản lý chi phí nhiên liệu',
             'OtherCostManager': 'Quản lý chi phí khác',
-            
+            /* --------  Report Manager ---------- */
+            'ReportCost': 'Thống kê chi phí',
             
 
         });

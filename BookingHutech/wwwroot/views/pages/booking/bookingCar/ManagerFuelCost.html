@@ -24,16 +24,51 @@
                     </ul>
                 </div>
                 <div class="x_content" style="display: block;">
-                    <div>
-                        <div class="col-sm-4"  style="float:right">
-                            <div class="mb15 mt30">
-                                <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
-                                    Thêm mới
-                                </button>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
+
+                    <div class="col-sm-1" style="float:left">
+                        <label class="control-label">Từ ngày</label>
                     </div>
+
+                    <div class="col-sm-2" style="float:left">
+                        <div class='input-group date' id='myDatepicker4'>
+                            <input type='text' class="form-control" readonly="readonly" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-1" style="float:left">
+                        <label class="control-label">Đến ngày</label>
+                    </div>
+
+                    <div class="col-sm-2" style="float:left">
+                        <div class='input-group date' id='myDatepicker4'>
+                            <input type='text' class="form-control" readonly="readonly" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2" style="float:left">
+                        <div class="mb15 mt30">
+                            <button class="btn btn-info btn-round btn-block" ng-click="addNewCost()">
+                                <span class="glyphicon glyphicon-search"></span> Xem
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3" style="float:right">
+                        <div class="mb15 mt30">
+                            <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
+                                Thêm mới
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
                     <div class="table-responsive">
                         <table ng-table="tableParams" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
                             <tr ng-repeat="item in $data " role="none" class="hover_">
@@ -70,6 +105,6 @@
                 </div>
             </div>
         </div>
-
     </div>
+
 </div>

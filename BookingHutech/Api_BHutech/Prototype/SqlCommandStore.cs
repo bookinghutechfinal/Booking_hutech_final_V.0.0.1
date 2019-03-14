@@ -37,6 +37,9 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspGetDetailRepairCost = "uspGetDetailRepairCost {0}";
         //Manager Get List cost by CostsTypeID. Create By Mr.Lam Create 13/3/2019. 
         public const string uspGetListCost = "uspGetListCost {0}";
+        //Report cost by month. Create By Mr.Lam Create 14/3/2019. 
+        public const string uspCostReport = "uspCostReport {0},{1}";
+        
     }
 
 }

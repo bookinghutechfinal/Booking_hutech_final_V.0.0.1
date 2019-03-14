@@ -32,10 +32,17 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
- this.getListCost = function (request, success, finish) {
+    this.getListCost = function (request, success, finish) {
         $dao.call({
             method: 'POST',
             operater: 'ManagerCost/GetListCost',
+            data: request
+        }, success, finish)
+    };
+    this.reportCost = function (request, success, finish) {
+        $dao.call({
+            method: 'Get',
+            operater: 'ManagerReport/ReportCost',
             data: request
         }, success, finish)
     };
