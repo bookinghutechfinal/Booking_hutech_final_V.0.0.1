@@ -59,17 +59,17 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             controller: 'BookingCarController',
         })
         .state('main.repairCost', {
-            url: '/repair-cost-manager',
+            url: '/manager-repair-cost',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerRepairCost.html',
             controller: 'ManagerRepairCostController',
         })
         .state('main.fuelCost', {
-            url: '/fuel-cost-manager',
+            url: '/manager-fuel-cost',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/ManagerFuelCost.html',
             controller: 'ManagerFuelCostController',
         })
         .state('main.otherCost', {
-            url: '/other-cost-manager',
+            url: '/manager-other-cost',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/ManagerOtherCost.html',
             controller: 'ManagerOtherCostController',
         })
