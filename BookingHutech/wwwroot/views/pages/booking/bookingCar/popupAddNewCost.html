@@ -1,0 +1,131 @@
+﻿<style>
+    .modal-header {
+        background-color: #2A3F54;
+    }
+</style>
+
+<!-- Modal content-->
+<!-- Test  -->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
+        <h4 class="modal-title">{{'TitileAddNewCost' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!--Start-->
+            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                        Loại chi phí <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select class="form-control select2" ng-model="" style="width: 100%;">
+                            <option selected="selected" value="1">Nhiên liệu</option>
+                            <option value="2">Sửa chữa</option>
+                            <option value="3">Phí khác</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                        Chọn xe <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select class="form-control select2" ng-model="" style="width: 100%;">
+                            <option selected="selected" value="1">KG-1 0001</option>
+                            <option value="2">KG-1 0002</option>
+                            <option value="3">KG-1 0003</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                        Ngày thực hiện <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class='input-group date' id='myDatepicker4'>
+                            <input type='text' class="form-control" readonly="readonly" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Nội dung</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Tổng tiền</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Ghi chú</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                    </div>
+                </div>
+
+            </form>
+            <!--End-->
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <div class="mb15 mt30">
+                    <button class="btn btn-danger btn-round btn-block"
+                            ng-click="ClosePopup()">
+                        <!--ng-disabled="!isSubmitingEnable()"-->
+                        <i class="glyphicon glyphicon-remove"></i>
+                        <span>Đóng</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="mb15 mt30">
+                    <button class="btn btn-success btn-round btn-block" type="reset"
+                            ng-click="ClosePopup()">
+                        <!--ng-disabled="!isSubmitingEnable()"-->
+                        <i class="glyphicon glyphicon-refresh"></i>
+                        <span>Reset</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="mb15 mt30">
+                    <button class="btn btn-primary btn-round btn-block" type="submit"
+                            ng-click="ClosePopup()">
+                        <!--ng-disabled="!isSubmitingEnable()"-->
+                        <i class="glyphicon glyphicon-ok"></i>
+                        <span>Thêm</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+</div>
+</div>

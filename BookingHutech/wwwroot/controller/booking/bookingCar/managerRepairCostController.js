@@ -1,9 +1,8 @@
-﻿mainmodule.controller('ManagerCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams',
+﻿mainmodule.controller('ManagerRepairCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams) {
 
         $scope.init = function () {
-            $rootScope.ListRepairCost = [];
-            $rootScope.ListDetailRepairCost = [];
+            var ListRepairCost = [];
             $scope.tableParams = $scope.tableParams = null;
 
             $scope.getListRepairCost();
@@ -11,11 +10,11 @@
 
         $scope.getListRepairCost = function () {
             $BookingCar.getListRepairCost({}, function (res) {
-                var ListRepairCost = res.data.Data.ListRepairCost;
+                var List = res.data.Data.ListRepairCost;
                 if (res.data.ReturnCode === 1) {
-                    $rootScope.ListRepairCost = ListRepairCost;
+                    ListRepairCost = List;
                 }
-                $scope.tableParams = new NgTableParams({}, { dataset: $rootScope.ListRepairCost });
+                $scope.tableParams = new NgTableParams({}, { dataset: ListRepairCost });
             });
         }
 
@@ -35,10 +34,10 @@
                             ariaLabelledBy: 'modal-title',
                             ariaDescribedBy: 'modal-body',
                             templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupDetailRepairCost.html',
-                            controller: 'popupManagerCostController',
+                            controller: 'popupManagerRepairCostController',
                             controllerAs: 'content',
                             backdrop: 'static',
-                            size: 'lg',
+                            size: 'md',
                             resolve: {
                                 ListDetailRepairCost: function () {
                                     return ListDetailRepairCostResponseModel;
@@ -55,16 +54,39 @@
                 }
 
             });
+            
+        }
 
+        $scope.addNewCost = function () {
+
+            var modalInstance = $modal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupAddNewCost.html',
+                controller: 'popupManagerRepairCostController',
+                controllerAs: 'content',
+                backdrop: 'static',
+                size: 'md',
+                resolve: {
+                    ListDetailRepairCost: function () {
+                        return null;
+                    },
+                }
+            });
+            modalInstance.result.then(function () {
+
+            });
 
         }
     }]);
 
-mainmodule.controller('popupManagerCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', 'ListDetailRepairCost','$modalInstance',
+mainmodule.controller('popupManagerRepairCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', 'ListDetailRepairCost','$modalInstance',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, ListDetailRepairCost, $modalInstance) {
+
         $scope.init = function () {
             var ListDetailRepairCostResponseModel = ListDetailRepairCost;
-            $scope.tableParams = new NgTableParams({}, { dataset: ListDetailRepairCostResponseModel });
+            $scope.tableParams2 = new NgTableParams({}, { dataset: ListDetailRepairCostResponseModel });
         }
 
         $scope.ClosePopup = function () {
@@ -72,4 +94,5 @@ mainmodule.controller('popupManagerCostController', ['$scope', '$state', '$rootS
         }
 
         $scope.init();
+
     }]);  

@@ -177,6 +177,7 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetAccountByAccountStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetDetailRepairCostRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetAccountByAccountStatusResponseModel.cs" />
@@ -904,7 +905,9 @@
     <Content Include="wwwroot\controller\account\loginController.js" />
     <Content Include="wwwroot\controller\app\appController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
-    <Content Include="wwwroot\controller\booking\bookingCar\managerCostController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\managerOtherCostController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\managerFuelCostController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\managerRepairCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\detailDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\registerBookingCarController.js" />
@@ -1370,6 +1373,9 @@
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerOtherCost.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerFuelCost.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailRepairCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailDriver.html" />
