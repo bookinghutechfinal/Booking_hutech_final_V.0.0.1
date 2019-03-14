@@ -7,6 +7,7 @@ mainmodule.controller('DetailDriverController', ['$scope', '$state', '$rootScope
         $scope.Titile = "Chi tiết tài xế";
         $scope.ClosePopup = function () {
             $modalInstance.close();
+            location.reload();
         }
         var AccountStatus = [
             {
@@ -37,7 +38,7 @@ mainmodule.controller('DetailDriverController', ['$scope', '$state', '$rootScope
         ];
         $scope.Main = function () {
             $scope.tableParams1 = $scope.tableParams1 = null;
-           
+
 
             $scope.AccountDriverDetail = {
                 Account_ID: AccountDriverDetailResponseModel.Account_ID,
@@ -102,6 +103,41 @@ mainmodule.controller('DetailDriverController', ['$scope', '$state', '$rootScope
             $scope.tableParams1 = new NgTableParams({}, { dataset: AccountRoleDriverResponseModel });
         }
         $scope.Main();
+
+        var dataChart = [{
+            "label": "Venezuela",
+            "value": "290"
+        }, {
+            "label": "Saudi",
+            "value": "260"
+        }, {
+            "label": "Canada",
+            "value": "180"
+        }, {
+            "label": "Iran",
+            "value": "140"
+        }, {
+            "label": "Russia",
+            "value": "115"
+        }, {
+            "label": "UAE",
+            "value": "100"
+        }
+        ];
+        // datasource
+        $scope.myDataSource = {
+            "chart": {
+                "caption": "Countries With Most Oil Reserves [2017-18]",
+                "subCaption": "In MMbbl = One Million barrels",
+                "xAxisName": "Country",
+                "yAxisName": "Reserves (MMbbl)",
+                "numberSuffix": "K",
+                "theme": "fusion",
+            },
+            "data": dataChart
+        };
+
+
 
         $scope.UpdateRole = function (roleRequestModel) {
             if (roleRequestModel.RoleDetail_Status === RoleStatus[0].RoleStatusID) {

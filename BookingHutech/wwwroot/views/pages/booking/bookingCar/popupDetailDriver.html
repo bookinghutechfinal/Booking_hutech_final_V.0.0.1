@@ -142,7 +142,7 @@
                                                                 <th class="column-title">Trạng thái</th>
                                                                 <th class="column-title">Người cấp</th>
                                                                 <th class="column-title no-link last">
-                                                                     
+
                                                                 </th>
 
                                                             </tr>
@@ -178,13 +178,37 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="x_content">
+                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Thống kê</a>
+                                        </li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                            <div class="row">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped jambo_table bulk_action" ng-table="tableParams1">
+                                                        <div fusioncharts id="my-chart-id" width="700" height="400" type="column2d" dataSource="{{myDataSource}}">
+                                                        </div>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+
     <div class="modal-footer">
         <div class="row">
             <div class="col-sm-12">

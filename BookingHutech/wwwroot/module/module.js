@@ -12,7 +12,7 @@
         'ngTable',            /*ng-table*/
         'toastr',              /*toastr show messeger*/
         'textAngular',
-
+        'ng-fusioncharts',  /*Anh Create 14/3/2019*/
     ]);
 
 //var teamplate = {
