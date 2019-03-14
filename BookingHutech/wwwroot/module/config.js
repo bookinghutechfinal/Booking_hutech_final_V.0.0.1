@@ -59,7 +59,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             controller: 'BookingCarController',
         })
         .state('main.repairCost', {
-            url: '/quan-ly-chi-phi-sua-chua',
+            url: '/manager-repair-Cost',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerRepairCost.html',
             controller: 'ManagerCostController',
         })
