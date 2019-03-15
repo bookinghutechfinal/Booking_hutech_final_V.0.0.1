@@ -1370,6 +1370,7 @@
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewDriver.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailRepairCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailDriver.html" />
