@@ -20,7 +20,7 @@
                 <div class="x_title">
                     <ul>
                         <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
-                        <li><a href="#/main/repair-cost-manager"><h5>/ {{'RepairCostManager' | translate}}</h5></a></li>
+                        <li><a href="#/main/fuel-cost-manager"><h5>/ {{'FuelCostManager' | translate}}</h5></a></li>
                     </ul>
                 </div>
                 <div class="x_content" style="display: block;">
@@ -71,7 +71,7 @@
 
                     <div class="table-responsive">
                         <table ng-table="tableParams" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
-                            <tr ng-repeat="item in $data " role="none" class="hover_" ng-click="popupDetailRepairCost(item.RepairID)">
+                            <tr ng-repeat="item in $data " role="none" class="hover_">
                                 <td data-title="'STT'" style="width:2%" role="none" align="center">
                                     {{$index+1}}
                                 </td>
@@ -79,10 +79,20 @@
                                     <!--filter="{CarNo:'text'}"-->
                                     {{item.CarNo}}
                                 </td>
-                                <td data-title="'Nơi sửa'" style="width:5%" align="left">
+                                <td data-title="'Địa điểm'" style="width:5%" align="left">
                                     {{item.RepairAddres}}
                                 </td>
-                                <td data-title="'Ngày sửa'" style="width:5%" align="left">
+                                <td data-title="'nội dung'" style="width:5%" align="left">
+                                    {{item.Content}}
+                                </td>
+                                <td data-title="'Số lượng'" style="width:5%" align="left">
+                                    <!--filter="{CarNo:'text'}"-->
+                                    {{item.Quantity}} lit
+                                </td>
+                                <td data-title="'Tổng tiền'" style="width:5%" align="left">
+                                    {{item.TotalMoney | currency : ""}} Đ
+                                </td>
+                                <td data-title="'Ngày thực hiện'" style="width:5%" align="left">
                                     {{item.CreateDate | date:'dd/MM/yyyy'}}
                                 </td>
                                 <td data-title="'Ghi chú'" style="width:5%" align="left">
@@ -95,6 +105,6 @@
                 </div>
             </div>
         </div>
-
     </div>
+
 </div>

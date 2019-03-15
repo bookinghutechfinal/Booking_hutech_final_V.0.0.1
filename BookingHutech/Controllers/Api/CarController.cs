@@ -17,7 +17,7 @@ namespace BookingHutech.Controllers.Api
     public class CarController : ApiController
     {
         CarServices carServices = new CarServices();
-        Helper helpe = new Helper();
+        Helper helper = new Helper();
 
         /// <summary>
         /// Mr.Lam 8/3/2019

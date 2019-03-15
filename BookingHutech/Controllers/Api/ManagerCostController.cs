@@ -89,5 +89,40 @@ namespace BookingHutech.Controllers.Api
             }
         }
 
+        /// <summary>
+        /// GetListRepairCostServices
+        /// Mr.Lam 13/3/2019
+        /// </summary>
+        /// <param name="request">CostsTypeID</param>
+        /// <returns>List Cost</returns>
+        [HttpPost]
+        public ApiResponse GetListCost(GetListCostRequestModel request)
+        {
+            try
+            {
+                // kiểm tra quyền, và nguồn gọi. 
+                if (Permissions.CheckAPIRequest(Request.Headers.GetValues(ApiHeaderKey.BHAPIWebCall.ToString()).First()) == (int)ApiRequestType.Web)
+                {
+                    try
+                    {
+                        var Response = costManagerServices.GetListCostServices(request);
+                        return ApiResponse.Success(Response);
+                    }
+                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    {
+                        return ApiResponse.Error();
+                    }
+                }
+                else  // sai header .
+                {
+                    return ApiResponse.ApiNotPermissionCall();
+                }
+            }
+            catch (Exception ex)  // thiếu header. 
+            {
+                LogWriter.WriteException(ex);
+                return ApiResponse.ApiNotPermissionCall();
+            }
+        }
     }
 }
