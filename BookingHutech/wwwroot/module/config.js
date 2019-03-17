@@ -10,7 +10,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             state.go("login");
         }
         else {
-            state.go("error404");
+            state.go("main.home");
         }
     });
     $stateProvider
@@ -36,6 +36,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             //    }],
             //},
 
+        })
+        .state('supporthome', {
+            url: '/support-home',
+            templateUrl: '/wwwroot/views/pages/support/supporthome.html',
+            controller: 'SupportHomeController',
         })
         .state('changePassword', {
             url: '/doi-mat-khau',
@@ -95,8 +100,8 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
         })
         .state('error404', {
             url: '/error404',
-            templateUrl: '/wwwroot/views/common/error404.html',
-            //controller: '404controller',
+            templateUrl: '/wwwroot/views/common/error/error404.html',
+            controller: 'mainController',
         });
 
 });

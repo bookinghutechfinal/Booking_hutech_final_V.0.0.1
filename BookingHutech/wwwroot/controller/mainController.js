@@ -4,6 +4,11 @@ mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$mod
     function ($scope, $state, $rootScope, $modal, $http, $cookies, toastr, $dao, $account) {
 
 
+        $scope.gotoHome = function () {
+            $state.go('main.home');
+            location.reload(); 
+            return;
+        };
         $scope.goToChangePassword = function () {
             $state.go('changePassword');
             return;

@@ -52,6 +52,23 @@ namespace BookingHutech.Api_BHutech.Lib
             }
         }
 
+
+        public static void WriteLogMsg(string strLogContent)
+        {
+            try
+            {
+
+                string strLogPath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/Api_BHutech/Lib/Utils/Log/Log");
+                strLogPath = Path.Combine(strLogPath, "ExStore_Log.txt");
+                CheckAndSplitFile(strLogPath, UInt32.MaxValue);
+                DoWriteException(strLogPath, strLogContent);
+
+            }
+            catch
+            {
+            }
+        }
+
         public static void WriteException(string str)
         {
             try

@@ -168,6 +168,7 @@
     <Compile Include="Api_BHutech\Lib\Utils\BHutechException.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\DataEntity.cs" />
     <Compile Include="Api_BHutech\Models\AccountInfo.cs" />
+    <Compile Include="Api_BHutech\Models\AccountModels\GroupRole.cs" />
     <Compile Include="Api_BHutech\Models\BookingCar\CarInfo.cs" />
     <Compile Include="Api_BHutech\Models\BookingCar\CarTypeInfo.cs" />
     <Compile Include="Api_BHutech\Models\AccountModels\AccountInfo.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLogoutRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetAccountByAccountStatusRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\UpdateGroupRoleRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetDetailRepairCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
@@ -185,6 +187,8 @@
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetAccountByAccountStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetDetailAccountByAccountIDRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetDetailAccountByAccountIDResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetGroupRoleResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\AccountResponse\UpdateGroupRoleResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListRepairCostResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ManagerGetDriverByAccountStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ReportCostResponseModel.cs" />
@@ -230,6 +234,7 @@
     <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\CarController.cs" />
     <Compile Include="Controllers\Api\ManagerDriverController.cs" />
+    <Compile Include="Controllers\Api\ManagerGroupRoleController.cs" />
     <Compile Include="Controllers\Api\ManagerReportController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Global.asax.cs">
@@ -270,6 +275,13 @@
     <Content Include="images\loading\loading.gif" />
     <Content Include="images\logo\logo.jpg" />
     <Content Include="images\background\car.jpg" />
+    <Content Include="images\logo\logo.png" />
+    <Content Include="images\support\54ab57ffea6b7dc23c3864320e8a4cdc.png" />
+    <Content Include="images\support\99e1e13ab03ae19ef10bc40b7dd42af4.png" />
+    <Content Include="images\support\login.jpg" />
+    <Content Include="images\support\logo-white.png" />
+    <Content Include="images\support\logo.png" />
+    <Content Include="images\support\low_poly_background.jpg" />
     <Content Include="Scripts\angular-translate\angular-translate.js" />
     <Content Include="Scripts\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="Scripts\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
@@ -761,6 +773,14 @@
     <Content Include="Scripts\jquery\src\wrap.js" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap.css" />
     <Content Include="Scripts\vendor\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="script\charts\angular-fusioncharts.js" />
+    <Content Include="script\charts\fusioncharts.charts.js" />
+    <Content Include="script\charts\fusioncharts.js" />
+    <Content Include="script\charts\fusioncharts.theme.fusion.js" />
+    <Content Include="script\css\bootstrap-datetimepicker.css" />
+    <Content Include="script\css\bootstrap-datetimepicker.min.js" />
+    <Content Include="script\support\bootstrap.min.css" />
+    <Content Include="script\support\style.css" />
     <Content Include="script\teamplate\build\css\custom.css" />
     <Content Include="script\teamplate\build\css\custom.min.css" />
     <Content Include="script\teamplate\build\images\back_disabled.png" />
@@ -887,6 +907,10 @@
     <Content Include="script\teamplate\iCheck\skins\square\yellow.css" />
     <Content Include="script\teamplate\iCheck\skins\square\yellow.png" />
     <Content Include="script\teamplate\iCheck\skins\square\_all.css" />
+    <Content Include="script\teamplate\login\metisMenu.min.css" />
+    <Content Include="script\teamplate\login\metisMenu.min.js" />
+    <Content Include="script\teamplate\login\sb-admin-2.css" />
+    <Content Include="script\teamplate\login\sb-admin-2.js" />
     <Content Include="script\teamplate\switchery\dist\switchery.css" />
     <Content Include="script\teamplate\switchery\dist\switchery.js" />
     <Content Include="script\teamplate\switchery\dist\switchery.min.css" />
@@ -918,6 +942,7 @@
     <Content Include="wwwroot\controller\booking\bookingCar\registerBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingMeetingHall\bookingMeetingHallController.js" />
     <Content Include="wwwroot\controller\home\homeController.js" />
+    <Content Include="wwwroot\controller\support\SupportHomeController.js" />
     <Content Include="wwwroot\extensions\maps.js" />
     <Content Include="Scripts\moment\js\moment.min.js" />
     <Content Include="Scripts\morris.js\examples\area-as-line.html" />
@@ -1378,13 +1403,10 @@
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
- 
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewDriver.html" />
- 
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerOtherCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerFuelCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewCost.html" />
- 
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailRepairCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailDriver.html" />
@@ -1392,6 +1414,7 @@
     <Content Include="wwwroot\views\pages\booking\bookingCar\reportCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingMeetingHall\meetingHallInfo.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
+    <Content Include="wwwroot\views\pages\support\supporthome.html" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -2389,6 +2412,9 @@
     <Content Include="script\teamplate\switchery\bower.json" />
     <Content Include="script\teamplate\switchery\CHANGELOG.md" />
     <Content Include="script\teamplate\switchery\package.json" />
+    <Content Include="script\support\jquery-2.1.4.min.js" />
+    <Content Include="script\support\startuply.js" />
+    <Content Include="script\support\bootstrap.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api_BHutech\Lib\Utils\Log\" />

@@ -94,15 +94,72 @@
                                                     </td>
                                                     <td>
                                                         ...
-                                                    </td> 
-                                                </tr> 
+                                                    </td>
+                                                </tr>
                                             </tbody>
-                                        </table> 
+                                        </table>
                                     </div>
+
+                                    <!--Start: Nhóm quyền-->
+                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                        <div class="x_content">
+                                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                                    <li role="presentation" class="active">
+                                                        <a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Nhóm quyền</a>
+                                                    </li>
+                                                </ul>
+                                                <div id="myTabContent" class="tab-content">
+                                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                                        <div class="row">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-striped jambo_table bulk_action">
+                                                                    <!--ng-table="tableParams2"-->
+                                                                    <thead>
+                                                                        <tr class="headings">
+                                                                            <th class="column-title">#STT</th>
+                                                                            <th class="column-title">Tên nhóm quyền</th>
+                                                                            <th class="column-title no-link last" >
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr class="even pointer" ng-repeat="grouprole in GroupRoleResponse ">
+                                                                            <td class=" ">
+                                                                                {{$index+1}}
+                                                                            </td>
+                                                                            <td class="col-sm-12">
+                                                                                <label ng-hide="editorEnabled[$index]">{{grouprole.GroupRoleName}}</label>
+                                                                                <div ng-show="editorEnabled[$index]">
+                                                                                    <input class="form-control" type="text" name="name" value=" {{grouprole.GroupRoleName}} " ng-model="grouprole.GroupRoleName">
+                                                                                </div>
+                                                                                <label ng-show="showmess[$index]" style="color:red">(*)Vui lòng nhập</label>
+                                                                            </td>
+                                                                            <td >
+                                                                                <a ng-hide="editorEnabled[$index]" ng-click="enableEditor($index)" href="" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                                                                                <div ng-show="editorEnabled[$index]" class="col-sm-6">
+                                                                                    <a href="" ng-click="Save(grouprole, $index)" class="btn btn-primary btn-xs"><i class="fa fa-save"></i> Lưu </a>
+                                                                                    <a href="" ng-click="disableEditor($index)" class="btn btn-danger btn-xs"><i class="fa fa-refresh"></i> Hủy </a>
+                                                                                </div>
+                                                                                
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End: nhóm quyền-->
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!--Start: Danh sách tài khoản-->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="x_panel">
@@ -110,11 +167,11 @@
                                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                             <li role="presentation" class="active">
-                                                <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Danh sách tài khoản</a>
-                                            </li> 
+                                                <a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Danh sách tài khoản</a>
+                                            </li>
                                         </ul>
                                         <div id="myTabContent" class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                            <div role="tabpanel" class="tab-pane fade active in" id="" aria-labelledby="home-tab">
                                                 <div class="row">
                                                     <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
                                                         <div class="well profile_view">
@@ -236,6 +293,8 @@
                             </div>
                         </div>
                     </div>
+                    <!--End danh sách tài khoản-->
+
                 </div>
             </div>
         </div>

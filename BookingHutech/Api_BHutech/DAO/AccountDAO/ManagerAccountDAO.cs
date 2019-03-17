@@ -1,11 +1,16 @@
 ﻿using BookingHutech.Api_BHutech.Lib;
+using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.Models;
+using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 using BookingHutech.Api_BHutech.Models.Response.AccountResponse;
+using BookingHutech.Api_BHutech.Prototype;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+//using BookingHutech.Api_BHutech.Models.AccountModels; 
 
 namespace BookingHutech.Api_BHutech.DAO.AccountDAO
 {
@@ -38,12 +43,12 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     accountLoginResponseModel.FullName = reader["FullName"].ToString();
                     accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
                     accountLoginResponseModel.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
-                    accountLoginResponseModel.Addres = reader["Addres"].ToString();  
+                    accountLoginResponseModel.Addres = reader["Addres"].ToString();
                     accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
                     accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
                     accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
                     accountLoginResponseModel.AccountType = reader["AccountType"].ToString();
-                    request.Add(accountLoginResponseModel); 
+                    request.Add(accountLoginResponseModel);
                 }
                 con.Close();
                 return request;
@@ -53,7 +58,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 LogWriter.WriteException(ex);
                 con.Close();
                 throw;
-            } 
+            }
         }
 
         /// <summary>
@@ -104,9 +109,9 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 LogWriter.WriteException(ex);
                 con.Close();
                 throw;
-            } 
+            }
         }
-         
+
 
         /// <summary>
         /// Anh.Tran: Create 11/3/2019 
@@ -127,8 +132,8 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 {
                     GetRoleCode roleCode = new GetRoleCode();
                     roleCode.RoleCode = Int32.Parse(reader["RoleCode"].ToString());
-                    roleCode.RoleName = reader["RoleName"].ToString() == "" ? null : reader["RoleName"].ToString(); 
-                    roleCode.RoleDetail_Status = bool.Parse (reader["RoleDetail_Status"].ToString()  == "" ? null : reader["RoleDetail_Status"].ToString() );
+                    roleCode.RoleName = reader["RoleName"].ToString() == "" ? null : reader["RoleName"].ToString();
+                    roleCode.RoleDetail_Status = bool.Parse(reader["RoleDetail_Status"].ToString() == "" ? null : reader["RoleDetail_Status"].ToString());
                     roleCode.FullNameUpdate = reader["FullNameUpdate"].ToString() == "" ? null : reader["FullNameUpdate"].ToString();
                     hsRoleCode.Add(roleCode);
                 }
@@ -142,5 +147,100 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             }
             return hsRoleCode;
         }
+
+        /// <summary>
+        /// Anh.Trần Create 15/3/2019
+        /// </summary>
+        /// <param name="sqlStore">sqlStore</param>
+        /// <param name="request">UpdateGroupRoleRequestModel</param>
+        /// <returns>UpdateGroupRoleResponseModel</returns>
+        public UpdateGroupRoleResponseModel ManagerUpdateGroupRoleDAO(String sqlStore, UpdateGroupRoleRequestModel request)
+        {
+            UpdateGroupRoleResponseModel res = new UpdateGroupRoleResponseModel();
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@GroupRoleID", SqlDbType.Int).Value = request.GroupRoleID;
+            cmd.Parameters.Add("@GroupRoleName", SqlDbType.NVarChar, 50).Value = request.GroupRoleName;
+
+            cmd.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();
+                res.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                if (res.ReturnCode != GroupRoleResponseType.Success)
+                {
+                    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, res.ReturnCode, (int)res.ReturnCode));
+                    throw new Exception();
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+
+        }
+
+        /// <summary>
+        /// Anh.trần Create 17/3/2019
+        /// </summary> 
+        /// <returns>GroupRole</returns>
+        public List<Models.AccountModels.GroupRole> ManagerGetGroupRoleDAO(String sqlStore)
+        {
+            List<Models.AccountModels.GroupRole> listGroupRoles = new List<Models.AccountModels.GroupRole>(); 
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            //cmd.CommandType = CommandType.StoredProcedure;
+
+            //cmd.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+
+                SqlDataReader reader = cmd.ExecuteReader();
+             //   groupRole.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                //if (groupRole.ReturnCode != GroupRoleResponseType.Success)
+                //{
+                //    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, groupRole.ReturnCode, (int)groupRole.ReturnCode));
+                //    throw new Exception();
+                //}
+                while (reader.Read())
+                {
+                    Models.AccountModels.GroupRole groupRole = new Models.AccountModels.GroupRole();
+                    groupRole.GroupRoleID = Int32.Parse(reader["GroupRoleID"].ToString());
+                    groupRole.GroupRoleName = reader["GroupRoleName"].ToString();
+                    listGroupRoles.Add(groupRole);
+                }
+                return listGroupRoles;
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+
+        }
     }
+
 }

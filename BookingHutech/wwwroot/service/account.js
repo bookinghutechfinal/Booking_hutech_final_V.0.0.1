@@ -77,7 +77,22 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
         }, success, finish)
     };
 
-
+    // Cập nhật nhóm quyền. 
+    this.ManagerUpdateGroupRole = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'ManagerGroupRole/UpdateGroupRole',
+            data: request
+        }, success, finish)
+    }
+    // Lấy danh sách nhóm quyền.
+    this.ManagerGetListGroupRole = function (request, success, finish) {
+        $dao.call({
+            method: 'GET',
+            operater: 'ManagerGroupRole/ManagerGetGroupRole',
+            data: request
+        }, success, finish)
+    }
 
     this.ManagerUpdateStatusRoleByAccountID = function (request, success, finish) {
         $dao.call({

@@ -23,6 +23,10 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
         Admin = 1,
         User = 0
     }
+    public enum GroupRoleResponseType {
+        Fail = 0,
+        Success = 1
+    }
 
 
 }

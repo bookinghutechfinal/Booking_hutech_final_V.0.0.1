@@ -70,5 +70,50 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
 
         }
 
+        /// <summary>
+        /// ManagerUpdateGroupRoleService. Anh.Tran Create 16/3/2019
+        /// </summary>
+        /// <param name="request">UpdateGroupRoleRequestModel</param>
+        /// <returns>UpdateGroupRoleResponseModel</returns>
+        public UpdateGroupRoleResponseModel ManagerUpdateGroupRoleService(UpdateGroupRoleRequestModel request) {
+
+            try
+            {
+                UpdateGroupRoleResponseModel req = new UpdateGroupRoleResponseModel();
+                string stringSqlManagerUpdateRroupRole = String.Format(Prototype.SqlCommandStore.uspManagerUpdateRroupRole);
+                req = managerAccountDAO.ManagerUpdateGroupRoleDAO(stringSqlManagerUpdateRroupRole,request);
+                return req;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+           
+        }
+
+        /// <summary>
+        /// Anh.trần Create 17/3/2019
+        /// </summary> 
+        /// <returns>ManagerGetGroupRoleResponseModel</returns>
+        public ManagerGetGroupRoleResponseModel ManagerGetGroupRoleDAOServices()
+        {
+
+            ManagerGetGroupRoleResponseModel req = new ManagerGetGroupRoleResponseModel();
+            try
+            {
+                string stringSqluspManagerGetGroupRole = String.Format(Prototype.SqlCommandStore.uspManagerGetGroupRole);
+                req.ListGroupRole = managerAccountDAO.ManagerGetGroupRoleDAO(stringSqluspManagerGetGroupRole);
+                return req;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
     }
 }

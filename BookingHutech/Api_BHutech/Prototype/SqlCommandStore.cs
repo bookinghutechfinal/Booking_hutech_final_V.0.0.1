@@ -7,6 +7,7 @@ namespace BookingHutech.Api_BHutech.Prototype
 {
     public static class SqlCommandStore
     {
+        public const string ExcuteSpFail = "Execute store procedure {0} fail. ReturnCode: {1}[{2}].";
         // Get list car by Car Status. Anh.Tran Create 23/2/2018. 
         public const string uspGetListCarByCarStatus = "uspGetListCarByCarStatus";
         // Login . Create By Lam Create 28/2/2018. 
@@ -39,7 +40,11 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspGetListCost = "uspGetListCost {0}";
         //Report cost by month. Create By Mr.Lam Create 14/3/2019. 
         public const string uspCostReport = "uspCostReport {0},{1}";
-        
+        //Manager Update Rroup Role. Create By Anh.Tran Create 15/3/2019. 
+        public const string uspManagerUpdateRroupRole = "uspManagerUpdateRroupRole";
+        //Manager Get Group Role. Create By Anh.Tran Create 17/3/2019. 
+        public const string uspManagerGetGroupRole = "uspManagerGetGroupRole";
+
     }
 
 }

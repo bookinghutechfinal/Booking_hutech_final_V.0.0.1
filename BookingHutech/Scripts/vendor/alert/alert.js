@@ -41,10 +41,10 @@ mainmodule.service('$alert', ['SweetAlert', '$rootScope', function (SweetAlert, 
             showConfirmButton: false
         });
     };
-
+    // thông báo thành công
     this.showWarningWithButton = function (msg) {
         SweetAlert.swal({
-            type: 'warning',
+            type: 'success',
             title: '',
             text: msg,
             showConfirmButton: true
@@ -103,8 +103,8 @@ mainmodule.service('$alert', ['SweetAlert', '$rootScope', function (SweetAlert, 
             type: "warning",
             showConfirmButton: true,
             showCancelButton: true,
-            confirmButtonText: $rootScope.initMessage('Accept'),
-            cancelButtonText: $rootScope.initMessage('Cancel'),
+            confirmButtonText: $rootScope.initMessage('ĐỒNG Ý'),
+            cancelButtonText: $rootScope.initMessage('KHÔNG'),
             closeOnConfirm: true
         }, function (IsOk) {
             if (IsOk) {

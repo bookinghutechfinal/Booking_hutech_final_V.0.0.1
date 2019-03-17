@@ -172,7 +172,8 @@
     width: 70px;
     padding: 0;
     z-index: 9999;
-    position: absolute
+    /*position: absolute*/
+    position: fixed; 
 }
 
     .nav-sm .container.body .col-md-3.left_col.menu_fixed {
@@ -393,7 +394,7 @@
     min-height: 100%;
     width: 230px;
     padding: 0;
-    position: absolute;
+    position: fixed;
     display: -ms-flexbox;
     display: flex;
     z-index: 1
