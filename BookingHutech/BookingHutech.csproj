@@ -779,8 +779,6 @@
     <Content Include="script\charts\fusioncharts.theme.fusion.js" />
     <Content Include="script\css\bootstrap-datetimepicker.css" />
     <Content Include="script\css\bootstrap-datetimepicker.min.js" />
-    <Content Include="script\support\bootstrap.min.css" />
-    <Content Include="script\support\style.css" />
     <Content Include="script\teamplate\build\css\custom.css" />
     <Content Include="script\teamplate\build\css\custom.min.css" />
     <Content Include="script\teamplate\build\images\back_disabled.png" />
@@ -2412,12 +2410,10 @@
     <Content Include="script\teamplate\switchery\bower.json" />
     <Content Include="script\teamplate\switchery\CHANGELOG.md" />
     <Content Include="script\teamplate\switchery\package.json" />
-    <Content Include="script\support\jquery-2.1.4.min.js" />
-    <Content Include="script\support\startuply.js" />
-    <Content Include="script\support\bootstrap.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api_BHutech\Lib\Utils\Log\" />
+    <Folder Include="script\support\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
