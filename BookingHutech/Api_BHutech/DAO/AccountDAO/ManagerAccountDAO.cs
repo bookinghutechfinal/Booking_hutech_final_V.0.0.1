@@ -199,7 +199,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         /// <returns>GroupRole</returns>
         public List<Models.AccountModels.GroupRole> ManagerGetGroupRoleDAO(String sqlStore)
         {
-            List<Models.AccountModels.GroupRole> listGroupRoles = new List<Models.AccountModels.GroupRole>(); 
+            List<Models.AccountModels.GroupRole> listGroupRoles = new List<Models.AccountModels.GroupRole>();
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
             cmd = new SqlCommand(sqlStore, con);
@@ -214,7 +214,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 }
 
                 SqlDataReader reader = cmd.ExecuteReader();
-             //   groupRole.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                //   groupRole.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
                 //if (groupRole.ReturnCode != GroupRoleResponseType.Success)
                 //{
                 //    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, groupRole.ReturnCode, (int)groupRole.ReturnCode));
@@ -228,6 +228,108 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     listGroupRoles.Add(groupRole);
                 }
                 return listGroupRoles;
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+
+        }
+
+        /// <summary>
+        /// Anh.Tran Ceate 19/3/2019.Cập nhật tên quyền
+        /// </summary>
+        /// <param name="sqlStore">sqlStore</param>
+        /// <returns> List<RoleMaster> </returns>
+        public List<Models.AccountModels.RoleMaster> ManagerGetRoleMasterByAccountIDDAO(String sqlStore)
+        {
+            List<Models.AccountModels.RoleMaster> listRoleMasters = new List<Models.AccountModels.RoleMaster>();
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con); 
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+
+                SqlDataReader reader = cmd.ExecuteReader(); 
+                while (reader.Read())
+                {
+                    Models.AccountModels.RoleMaster roleMaster = new Models.AccountModels.RoleMaster();
+                    roleMaster.GroupRoleID = Int32.Parse(reader["GroupRoleID"].ToString());
+                    roleMaster.GroupRoleName = reader["GroupRoleName"].ToString();
+                    roleMaster.RoleMaster_ID = Int32.Parse(reader["RoleMaster_ID"].ToString()); 
+                    roleMaster.RoleName = reader["RoleName"].ToString();
+                    listRoleMasters.Add(roleMaster);
+                }
+                return listRoleMasters;
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// Anh.Trần Create 15/3/2019 Cập nhật tên quyền. trả về ds quyền. 
+        /// </summary>
+        /// <param name="sqlStore">sqlStore</param>
+        /// <param name="request">UpdateGroupRoleRequestModel</param>
+        /// <returns>ManagerUpdateRoleMasterResponseModel</returns>
+        public List<Models.AccountModels.RoleMaster> ManagerUpdateRoleMasterDAO(String sqlStore, ManagerUpdateRoleMasterRequestModel request)
+        {
+            ManagerUpdateRoleMasterResponseModel res = new ManagerUpdateRoleMasterResponseModel();
+            List<Models.AccountModels.RoleMaster> listRoleMasters = new List<Models.AccountModels.RoleMaster>();
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;  
+            cmd.Parameters.Add("@RoleMaster_ID", SqlDbType.Int).Value = request.RoleMaster_ID;
+            cmd.Parameters.Add("@RoleName", SqlDbType.NVarChar, 100).Value = request.RoleName;
+            cmd.Parameters.Add("@UserNameUpdate", SqlDbType.NVarChar, 20).Value = request.UserNameUpdate;
+
+            cmd.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();
+                res.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                if (res.ReturnCode != GroupRoleResponseType.Success)
+                {
+                    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, res.ReturnCode, (int)res.ReturnCode));
+                    throw new Exception();
+                }
+                // #
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Models.AccountModels.RoleMaster roleMaster = new Models.AccountModels.RoleMaster();
+                    roleMaster.RoleMaster_ID = Int32.Parse(reader["RoleMaster_ID"].ToString());
+                    roleMaster.RoleName = reader["RoleName"].ToString();
+                    roleMaster.Role_Status = bool.Parse(reader["Role_Status"].ToString());
+                    roleMaster.LastModifiedDate = reader["LastModifiedDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    roleMaster.UserNameUpdate = reader["UserNameUpdate"].ToString();
+                    listRoleMasters.Add(roleMaster);
+                }
+                return listRoleMasters;
+                // #
             }
             catch (Exception ex)
             {

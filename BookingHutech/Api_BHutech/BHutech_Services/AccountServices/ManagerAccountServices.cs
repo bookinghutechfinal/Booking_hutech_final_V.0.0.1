@@ -98,7 +98,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
         /// Anh.trần Create 17/3/2019
         /// </summary> 
         /// <returns>ManagerGetGroupRoleResponseModel</returns>
-        public ManagerGetGroupRoleResponseModel ManagerGetGroupRoleDAOServices()
+        public ManagerGetGroupRoleResponseModel ManagerGetGroupRoleServices()
         {
 
             ManagerGetGroupRoleResponseModel req = new ManagerGetGroupRoleResponseModel();
@@ -106,6 +106,52 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             {
                 string stringSqluspManagerGetGroupRole = String.Format(Prototype.SqlCommandStore.uspManagerGetGroupRole);
                 req.ListGroupRole = managerAccountDAO.ManagerGetGroupRoleDAO(stringSqluspManagerGetGroupRole);
+                return req;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        ///  Anh.Tran Ceate 19/3/2019. Lấy chi tiết những quyền chưa cấp cho account
+        /// </summary>
+        /// <param name="request">ManagerGetRoleMasterByAccountIDRequestModel</param>
+        /// <returns>ManagerGetRoleMasterByAccountIDResponseModel</returns>
+        public ManagerGetRoleMasterByAccountIDResponseModel ManagerGetRoleMasterByAccountIDServices(ManagerGetRoleMasterByAccountIDRequestModel request)
+        {
+
+            ManagerGetRoleMasterByAccountIDResponseModel req = new ManagerGetRoleMasterByAccountIDResponseModel();
+            try
+            {
+                string stringSqluspManagerGetRoleMasterByAccountID = String.Format(Prototype.SqlCommandStore.uspManagerGetRoleMasterByAccountID, request.Account_ID);
+                req.RoleMasterByAccountID = managerAccountDAO.ManagerGetRoleMasterByAccountIDDAO(stringSqluspManagerGetRoleMasterByAccountID);
+                return req;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        ///  Anh.Tran Ceate 19/3/2019. Cập nhật tên quyền và lấy ds quyền. 
+        /// </summary>
+        /// <param name="request">ManagerUpdateRoleMasterRequestModel</param>
+        /// <returns>ManagerUpdateRoleMasterResponseModel</returns>
+        public ManagerUpdateRoleMasterResponseModel ManagerUpdateRoleMasterServices(ManagerUpdateRoleMasterRequestModel request)
+        {
+
+            ManagerUpdateRoleMasterResponseModel req = new ManagerUpdateRoleMasterResponseModel();
+            try
+            {
+                string stringSqluspManagerUpdateRoleMaster = String.Format(Prototype.SqlCommandStore.uspManagerUpdateRoleMaster);
+                req.ListRoleMaster = managerAccountDAO.ManagerUpdateRoleMasterDAO(stringSqluspManagerUpdateRoleMaster, request);
                 return req;
             }
             catch (Exception ex)

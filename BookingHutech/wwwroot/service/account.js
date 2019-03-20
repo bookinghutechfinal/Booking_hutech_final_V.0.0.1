@@ -93,6 +93,14 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     }
+    // Phân quyền
+    this.ManagerDecentralization = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'ManagerDecentralization/Decentralization',
+            data: request
+        }, success, finish)
+    }
 
     this.ManagerUpdateStatusRoleByAccountID = function (request, success, finish) {
         $dao.call({

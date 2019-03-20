@@ -2,6 +2,38 @@
     .modal-header {
         background-color: #2A3F54;
     }
+
+    /* ng-show animation*/
+    /* ngHide animation */
+    .ngHideSample {
+        padding: 10px;
+        margin: 5px;
+    }
+
+        .ngHideSample.ng-hide-add {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 1;
+        }
+
+        .ngHideSample.ng-hide-add-active {
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove-active {
+            opacity: 1;
+        }
+
 </style>
 <link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
@@ -90,7 +122,9 @@
                                     <tr>
                                         <td>
                                             <label>Trạng thái:</label>
-                                            <input type="checkbox" class="js-switch" ng-show="AccountDriverDetail.Account_Status === '1'" ng-checked="AccountDriverDetail.Account_Status === '1'" />
+                                            <input type="checkbox" class="js-switch"
+                                                   ng-show="AccountDriverDetail.Account_Status === '1'" ng-checked="AccountDriverDetail.Account_Status === '1'" />
+
                                             <!--<i class="fa fa-circle text-success"></i>
                                             <label>Trạng thái:{{AccountDriverDetail.Account_Status}}</label>-->
                                         </td>
@@ -122,11 +156,12 @@
                                     <label class="col-md-6 col-sm-6">Default Input: kkk kk kkk  k</label>
                                 </div>
                             </form>-->
+                            <!--Start: danh sách quyền của account-->
                             <div class="x_content">
                                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                         <li role="presentation" class="active">
-                                            <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Chi tiết quyền</a>
+                                            <a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Chi tiết quyền</a>
                                         </li>
                                     </ul>
                                     <div id="myTabContent" class="tab-content">
@@ -178,45 +213,126 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--End: danh sách quyền của account-->
+                            <!--Start: Phân quyền-->
                             <div class="x_content">
                                 <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                         <li role="presentation" class="active">
-                                            <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Thống kê</a>
+                                            <!--<a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Phân quyền</a>-->
+                                            <button ng-show="!ShowLayoutDecentralization" class="btn btn-primary btn-round btn-block" ng-click="ShowDecentralization()" type="button" name="name" value="Phân Quyền">
+                                                <i class="fa fa-folder"></i>
+                                                <span class="ng-binding">Phân Quyền</span>
+                                            </button>
+                                            <button ng-show="ShowLayoutDecentralization" class="btn btn-primary btn-round btn-block" ng-click="ShowDecentralization()" type="button" name="name" value="Phân Quyền">
+                                                <i class="fa fa-folder-open-o"></i>
+                                                <span class="ng-binding">Hủy</span>
+                                            </button>
                                         </li>
                                     </ul>
-                                    <div id="myTabContent" class="tab-content">
+                                    <div id="myTabContent" class="tab-content ngHideSample">
                                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                                            <div class="row">
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped jambo_table bulk_action" ng-table="tableParams1">
-                                                        <div fusioncharts id="my-chart-id" width="700" height="400" type="column2d" dataSource="{{myDataSource}}">
+                                            <div class="row ngHideSample" ng-show="ShowLayoutDecentralization">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="x_content" style="display: block;">
+                                                        <!--START:  Loại xe -->
+                                                        <div class="col-lg-7 col-xs-7">
+                                                            <div class="form-group">
+                                                                <label class="ng-binding">Nhóm quyền</label>
+                                                                <select class="form-control select2 ng-pristine ng-valid ng-empty ng-touched" style="width: 100%;">
+                                                                    <option value="? undefined:undefined ?"></option>
+                                                                    <option selected="selected" value="all" class="ng-binding">-- Tất cả --</option>
+                                                                    <!-- ngRepeat: index in ListCarTypeInfo -->
+                                                                    <option value="1" class="ng-binding ng-scope" style="">
+                                                                        Nhóm quyền quản lý và đặt xe
+                                                                    </option><!-- end ngRepeat: index in ListCarTypeInfo -->
+                                                                    <option value="2" class="ng-binding ng-scope">
+                                                                        Nhóm quyền quản đặt phòng nghĩ
+                                                                    </option><!-- end ngRepeat: index in ListCarTypeInfo -->
+                                                                    <option value="3" class="ng-binding ng-scope">
+                                                                        Nhóm quyền quản lý tài khoản
+                                                                    </option><!-- end ngRepeat: index in ListCarTypeInfo -->
+                                                                    <option value="4" class="ng-binding ng-scope">
+                                                                        Nhóm quyền quản lý lái xe
+                                                                    </option><!-- end ngRepeat: index in ListCarTypeInfo -->
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </table>
+                                                        <!--END:  Loại xe --> 
+                                                        <div class="col-lg-5 col-xs-5">
+                                                            <div class="form-group">
+                                                                <label>`</label>
+                                                                <button class="btn btn-primary btn-round btn-block" data-ng-click="searchCar(searchModel)">
+                                                                    <!--ng-disabled="!isSubmitingEnable()"-->
+                                                                    <i class="fa fa-filter"></i>
+                                                                    <span class="ng-binding">Lọc</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped jambo_table bulk_action">
+                                                                <!--ng-table="tableParams2"-->
+                                                                <thead>
+                                                                    <tr class="headings">
+                                                                        <th class="column-title">#STT</th>
+                                                                        <th class="column-title">Tên quyền</th>
+                                                                        <th class="column-title">
+                                                                            <input type="checkbox" ng-model="checkall"> Chọn tất cả <!--class="flat" ng-click="checkUncheckAll()"-->
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="even pointer" ng-repeat="listRole in ListRole ">
+                                                                        <!--$data-->
+                                                                        <td class=" ">
+                                                                            {{$index+1}}
+                                                                        </td>
+                                                                        <td class=" ">
+                                                                            {{listRole.RoleName}}
+                                                                        </td>
+                                                                        <td class=" ">
+                                                                            <input type="checkbox" ng-checked="checkall" ng-click='updateCheck(listRole.RoleMaster_ID)' ng-model="listRole.checked">
+                                                                        </td>
+                                                                    </tr> 
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-5 col-xs-12" style="float:right;"> 
+                                                        <div class="form-group">
+                                                            <button class="btn btn-warning btn-round btn-block" ng-click="Decentralization()">
+                                                                <!--ng-disabled="!isSubmitingEnable()"-->
+                                                                <i class="fa fa-plus-circle"></i>
+                                                                <span class="ng-binding">Cấp Quyền</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--End: Phân quyền-->
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal-footer">
+    <!--<div class="modal-footer">
         <div class="row">
             <div class="col-sm-12">
                 <div class="col-sm-6" style="margin-bottom: 1px;">
                     <div class="mb15 mt30">
                         <button class="btn btn-danger btn-round btn-block" type="submit"
                                 ng-click="ClosePopup()">
-                            <!--ng-disabled="!isSubmitingEnable()"-->
                             <i class="glyphicon glyphicon-remove"></i>
                             <span>HỦY</span>
                         </button>
@@ -226,7 +342,6 @@
                     <div class="mb15 mt30">
                         <button class="btn btn-primary btn-round btn-block" type="submit"
                                 data-ng-click="yes()">
-                            <!--ng-disabled="!isSubmitingEnable()"-->
                             <i class="glyphicon glyphicon-ok"></i>
                             <span>XÁC NHẬN</span>
                         </button>
@@ -235,13 +350,11 @@
 
             </div>
         </div>
-
-
-        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-    </div>
+    </div>-->
 </div>
 <script src="../../../../../script/js/jquery.min.js"></script>
 <script src="../../../../../script/js/bootstrap.min.js"></script>
 <script src="../../../../../script/teamplate/iCheck/icheck.min.js"></script>
 <script src="../../../../../script/teamplate/switchery/dist/switchery.min.js"></script>
 <script src="../../../../../script/teamplate/build/js/custom.min.js"></script>
+ 

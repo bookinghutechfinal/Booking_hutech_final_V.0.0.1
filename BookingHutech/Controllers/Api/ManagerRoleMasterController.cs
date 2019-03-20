@@ -12,16 +12,15 @@ using static BookingHutech.Api_BHutech.Lib.Enum.BookingType;
 
 namespace BookingHutech.Controllers.Api
 {
-    public class ManagerGroupRoleController : ApiController
+    public class ManagerRoleMasterController :ApiController
     {
-
         /// <summary>
-        /// UpdateGroupRole Anh.Trần Create 16/3/2019
+        ///  Anh.Tran Ceate 19/3/2019. Lấy chi tiết những quyền chưa cấp cho account
         /// </summary>
         /// <param name="request">UpdateGroupRoleRequestModel</param>
         /// <returns>ApiResponse</returns>
-        [HttpGet]
-        public ApiResponse ManagerGetGroupRole()
+        [HttpPost]
+        public ApiResponse ManagerGetRoleMasterByAccountID(ManagerGetRoleMasterByAccountIDRequestModel request)
         {
             ManagerAccountServices managerAccountServices = new ManagerAccountServices();
             try
@@ -48,7 +47,7 @@ namespace BookingHutech.Controllers.Api
                         // OK -> Đi tiếp. 
                         try
                         {
-                            var result = managerAccountServices.ManagerGetGroupRoleServices();
+                            var result = managerAccountServices.ManagerGetRoleMasterByAccountIDServices(request);
                             return ApiResponse.Success(result);
                         }
                         catch // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
@@ -76,12 +75,13 @@ namespace BookingHutech.Controllers.Api
         }
 
         /// <summary>
-        /// UpdateGroupRole Anh.Trần Create 16/3/2019
+        ///  Anh.Tran Ceate 19/3/2019. Cập nhật tên quyền và lấy ds quyền. 
         /// </summary>
         /// <param name="request">UpdateGroupRoleRequestModel</param>
         /// <returns>ApiResponse</returns>
-        [HttpPost]
-        public ApiResponse UpdateGroupRole(UpdateGroupRoleRequestModel request) {
+        [HttpPut]
+        public ApiResponse ManagerUpdateRoleMaster(ManagerUpdateRoleMasterRequestModel request)
+        {
             ManagerAccountServices managerAccountServices = new ManagerAccountServices();
             try
             {
@@ -107,8 +107,8 @@ namespace BookingHutech.Controllers.Api
                         // OK -> Đi tiếp. 
                         try
                         {
-                            managerAccountServices.ManagerUpdateGroupRoleService(request);
-                            return ApiResponse.Success();
+                            var result = managerAccountServices.ManagerUpdateRoleMasterServices(request);
+                            return ApiResponse.Success(result);
                         }
                         catch // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
@@ -133,5 +133,6 @@ namespace BookingHutech.Controllers.Api
                 return ApiResponse.ApiNotPermissionCall();
             }
         }
+
     }
 }
