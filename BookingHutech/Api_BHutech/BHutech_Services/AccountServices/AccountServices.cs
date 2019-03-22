@@ -1,5 +1,6 @@
 ﻿using BookingHutech.Api_BHutech.DAO.AccountDAO;
 using BookingHutech.Api_BHutech.Lib;
+using BookingHutech.Api_BHutech.Lib.Helper;
 using BookingHutech.Api_BHutech.Models.Request;
 using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 using BookingHutech.Api_BHutech.Models.Response;
@@ -14,7 +15,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
     public class AccountServices
     {
         AccountDAO accountDAO = new AccountDAO();
-
+        Helper helper = new Helper(); 
         /// <summary>
         /// 
         /// </summary>
@@ -93,5 +94,28 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
 
         }
 
+        /// <summary>
+        /// Create by Anh.Trần. 22/3/2019 
+        /// Quản trị có quyền thêm mới tài khoản
+        ///  request.Verify = true; 
+        /// </summary>
+        /// <param name="request"></param>
+        public void ManagerCreateNewAccountServices(CreateNewAccountRequestModel request)
+        {
+
+            try
+            {
+                request.Account_ID = helper.CreateID(); 
+                request.Verify = true; 
+                string stringSqluspCreateNewAccount = String.Format(Prototype.SqlCommandStore.uspCreateNewAccount);
+                accountDAO.CreateNewAccountDAO(stringSqluspCreateNewAccount, request);
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
     }
 }

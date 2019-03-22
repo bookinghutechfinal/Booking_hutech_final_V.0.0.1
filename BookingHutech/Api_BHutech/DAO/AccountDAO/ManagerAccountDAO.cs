@@ -343,6 +343,61 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             }
 
         }
+
+        /// <summary>
+        /// Anh.trần Create 17/3/2019. Xem danh sách khoa/viện/đơn vị
+        /// </summary> 
+        /// <returns>ManagerGetUnitDAO</returns>
+        public List<Models.AccountModels.Unit> ManagerGetUnitDAO(String sqlStore)
+        {
+            List<Models.AccountModels.Unit> listUnits = new List<Models.AccountModels.Unit>();
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            //cmd.CommandType = CommandType.StoredProcedure;
+
+            //cmd.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                //   groupRole.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                //if (groupRole.ReturnCode != GroupRoleResponseType.Success)
+                //{
+                //    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, groupRole.ReturnCode, (int)groupRole.ReturnCode));
+                //    throw new Exception();
+                //}
+                while (reader.Read())
+                {
+                    Models.AccountModels.Unit unit = new Models.AccountModels.Unit();
+                    unit.Unit_ID = Int32.Parse(reader["Unit_ID"].ToString());
+                    unit.UnitName = reader["UnitName"].ToString();
+                    unit.UnitManager = reader["UnitManager"].ToString();
+                    unit.EmailManage = reader["EmailManage"].ToString();
+                    unit.NumberPhoneManager = reader["NumberPhoneManager"].ToString();
+                    listUnits.Add(unit);
+                }
+                return listUnits;
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+
+        }
+
+
+
     }
 
 }

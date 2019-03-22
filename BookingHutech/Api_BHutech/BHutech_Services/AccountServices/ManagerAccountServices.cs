@@ -161,5 +161,28 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             }
 
         }
+
+        /// <summary>
+        ///  Anh.Tran Ceate 19/3/2019. Cập nhật tên quyền và lấy ds quyền. 
+        /// </summary>
+        /// <param name="request">ManagerUpdateRoleMasterRequestModel</param>
+        /// <returns>ManagerUpdateRoleMasterResponseModel</returns>
+        public ManagerGetUnitResponseModel ManagerGetUnitServices()
+        {
+
+            ManagerGetUnitResponseModel req = new ManagerGetUnitResponseModel();
+            try
+            {
+                string stringSqluspManagerGetUnit = String.Format(Prototype.SqlCommandStore.uspManagerGetUnit);
+                req.ListUnit = managerAccountDAO.ManagerGetUnitDAO(stringSqluspManagerGetUnit);
+                return req;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
     }
 }

@@ -21,3 +21,10 @@
 //    footer: 'wwwroot/views/common/footer.html',
 //};
 
+var AccountTypeRequest = [
+    { AccountType: 1, AccountTypeName: "Thư ký" },
+    { AccountType: 2, AccountTypeName: "Trưởng khoa" },
+    { AccountType: 3, AccountTypeName: "Văn phòng trường" },
+    { AccountType: 4, AccountTypeName: "Ban giám hiệu" },
+    { AccountType: 5, AccountTypeName: "Lái xe" },
+]

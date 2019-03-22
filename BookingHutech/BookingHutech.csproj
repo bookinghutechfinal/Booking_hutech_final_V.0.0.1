@@ -170,6 +170,7 @@
     <Compile Include="Api_BHutech\Models\AccountInfo.cs" />
     <Compile Include="Api_BHutech\Models\AccountModels\GroupRole.cs" />
     <Compile Include="Api_BHutech\Models\AccountModels\RoleMaster.cs" />
+    <Compile Include="Api_BHutech\Models\AccountModels\Unit.cs" />
     <Compile Include="Api_BHutech\Models\BookingCar\CarInfo.cs" />
     <Compile Include="Api_BHutech\Models\BookingCar\CarTypeInfo.cs" />
     <Compile Include="Api_BHutech\Models\AccountModels\AccountInfo.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountChangePasswordRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLogoutRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\CreateNewAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\DecentralizationRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetAccountByAccountStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetRoleMasterByAccountIDRequestModel.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetDetailAccountByAccountIDResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetGroupRoleResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetRoleMasterByAccountIDResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetUnitResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerUpdateRoleMasterResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\UpdateGroupRoleResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListRepairCostResponseModel.cs" />
@@ -244,6 +247,7 @@
     <Compile Include="Controllers\Api\ManagerGroupRoleController.cs" />
     <Compile Include="Controllers\Api\ManagerReportController.cs" />
     <Compile Include="Controllers\Api\ManagerRoleMasterController.cs" />
+    <Compile Include="Controllers\Api\ManagerUnitController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -937,6 +941,7 @@
     <Content Include="wwwroot\controller\account\managerAccountController.js" />
     <Content Include="wwwroot\controller\account\logoutController.js" />
     <Content Include="wwwroot\controller\account\loginController.js" />
+    <Content Include="wwwroot\controller\account\ManagerCreateNewAccountController.js" />
     <Content Include="wwwroot\controller\app\appController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerOtherCostController.js" />
@@ -1409,7 +1414,7 @@
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
-    <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewDriver.html" />
+    <Content Include="wwwroot\views\pages\account\popupCreateNewAccount.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerOtherCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerFuelCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewCost.html" />

@@ -9,6 +9,7 @@ using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Models.Response.AccountResponse;
 using BookingHutech.Api_BHutech.Lib.Utils;
 using BookingHutech.Api_BHutech.Models;
+using System.Data;
 
 namespace BookingHutech.Api_BHutech.DAO.AccountDAO
 {
@@ -122,5 +123,62 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             }
         }
 
+        /// <summary>
+        /// Create by Anh.Trần. 22/3/2019 
+        /// Quản trị có quyền thêm mới tài khoản
+        ///  request.Verify = true; 
+        /// </summary>
+        /// <param name="request"></param>
+        public void CreateNewAccountDAO(String sqlStore, CreateNewAccountRequestModel request)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Account_ID", SqlDbType.VarChar, 10).Value = request.Account_ID;
+            cmd.Parameters.Add("@Unit_ID", SqlDbType.Int).Value = request.Unit_ID;
+            cmd.Parameters.Add("@FullName", SqlDbType.NVarChar, 50).Value = request.FullName;
+            cmd.Parameters.Add("@UserName", SqlDbType.Char, 20).Value = request.UserName;
+            cmd.Parameters.Add("@Password", SqlDbType.Char, 200).Value = request.Password;
+            cmd.Parameters.Add("@Gender", SqlDbType.TinyInt).Value = request.Gender;
+            cmd.Parameters.Add("@BirthDay", SqlDbType.DateTime).Value = request.Birthday;
+            cmd.Parameters.Add("@NumberPhone", SqlDbType.Char, 12).Value = request.NumberPhone;
+            cmd.Parameters.Add("@Addres", SqlDbType.NVarChar, 100).Value = request.Addres;
+            cmd.Parameters.Add("@Email", SqlDbType.VarChar, 20).Value = request.Email;
+            cmd.Parameters.Add("@Verify", SqlDbType.Bit).Value = request.Verify;
+            cmd.Parameters.Add("@AccountType", SqlDbType.Char, 1).Value = request.AccountType;
+
+            if (request.DriverLicenseNo == null) 
+                cmd.Parameters.Add("@DriverLicenseNo", SqlDbType.NChar, 20).Value = DBNull.Value; 
+            else 
+                cmd.Parameters.Add("@DriverLicenseNo", SqlDbType.NChar, 20).Value = request.DriverLicenseNo;
+            if (request.LicenseClass == null)
+                cmd.Parameters.Add("@LicenseClass", SqlDbType.NChar, 20).Value = DBNull.Value;
+            else
+                cmd.Parameters.Add("@LicenseClass", SqlDbType.NChar, 20).Value = request.LicenseClass;
+            if (request.LicenseExpires == null)
+                cmd.Parameters.Add("@LicenseExpires", SqlDbType.NChar, 20).Value = DBNull.Value;
+            else
+                cmd.Parameters.Add("@LicenseExpires", SqlDbType.NChar, 20).Value = request.LicenseExpires; 
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();   
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+
+        }
     }
 }

@@ -48,6 +48,10 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspManagerGetRoleMasterByAccountID = "uspManagerGetRoleMasterByAccountID {0}";
         //Manager Update Role Master. Create By Anh.Tran Create 19/3/2019. // Cập nhật tên quyền và lấy ds quyền. 
         public const string uspManagerUpdateRoleMaster = "uspManagerUpdateRoleMaster";
+        //Manager Get Unit. Create By Anh.Tran Create 22/3/2019. // Xem danh sách khoa/viện/đơn vị. 
+        public const string uspManagerGetUnit = "uspManagerGetUnit";
+        //Manager Get Unit. Create By Anh.Tran Create 22/3/2019. 
+        public const string uspCreateNewAccount = "uspCreateNewAccount";
 
     }
 

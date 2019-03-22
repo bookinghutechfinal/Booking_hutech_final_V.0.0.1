@@ -124,6 +124,14 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     };
+    this.ManagerGetUnit = function (request, success, finish) {
+        $dao.call({
+            method: 'GET',
+            operater: 'ManagerUnit/ManagerGetUnit',
+            data: request
+        }, success, finish)
+    }
+
 
 
 
