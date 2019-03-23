@@ -25,45 +25,49 @@
                 </div>
                 <div class="x_content" style="display: block;">
 
-                    <div class="col-sm-1" style="float:left">
-                        <label class="control-label">Từ ngày</label>
-                    </div>
+                    <div class="form-horizontal form-label-left input_mask">
+                        <div class="form-group">
 
-                    <div class="col-sm-2" style="float:left">
-                        <div class='input-group date' id='myDatepicker4'>
-                            <input type='text' class="form-control" readonly="readonly" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
+                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class='input-group date' id='myDatepicker'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
 
-                    <div class="col-sm-1" style="float:left">
-                        <label class="control-label">Đến ngày</label>
-                    </div>
+                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class='input-group date' id='myDatepicker2'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
 
-                    <div class="col-sm-2" style="float:left">
-                        <div class='input-group date' id='myDatepicker4'>
-                            <input type='text' class="form-control" readonly="readonly" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="mb15 mt30">
+                                    <button class="btn btn-info btn-round btn-block" ng-click="addNewCost()">
+                                        <span class="glyphicon glyphicon-search"></span> Xem
+                                    </button>
+                                </div>
+                            </div>
 
-                    <div class="col-sm-2" style="float:left">
-                        <div class="mb15 mt30">
-                            <button class="btn btn-info btn-round btn-block" ng-click="addNewCost()">
-                                <span class="glyphicon glyphicon-search"></span> Xem
-                            </button>
-                        </div>
-                    </div>
+                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                <br />
+                            </div>
 
-                    <div class="col-sm-3" style="float:right">
-                        <div class="mb15 mt30">
-                            <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
-                                Thêm mới
-                            </button>
+                            <div class="col-md-3 col-sm-3 col-xs-12" style="float:right">
+                                <div class="mb15 mt30">
+                                    <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
+                                        <span class="glyphicon glyphicon-plus-sign"></span> Thêm mới
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -108,3 +112,15 @@
 
     </div>
 </div>
+
+<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>
+<script src="../../../../../script/teamplate/daterangepicker/daterangepicker.js"></script>
+<script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
+<script>
+    $('#myDatepicker').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+    $('#myDatepicker2').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+</script>

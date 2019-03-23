@@ -34,7 +34,7 @@
                 controller: 'popupManagerFuelCostController',
                 controllerAs: 'content',
                 backdrop: 'static',
-                size: 'md',
+                size: 'lg',
                 resolve: {
                     ListDetailRepairCost: function () {
                         return null;

@@ -804,6 +804,10 @@
     <Content Include="script\teamplate\build\images\loading.gif" />
     <Content Include="script\teamplate\build\js\custom.js" />
     <Content Include="script\teamplate\build\js\custom.min.js" />
+    <Content Include="script\teamplate\daterangepicker\bootstrap-datetimepicker.css" />
+    <Content Include="script\teamplate\daterangepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="script\teamplate\daterangepicker\daterangepicker.js" />
+    <Content Include="script\teamplate\daterangepicker\moment.min.js" />
     <Content Include="script\teamplate\iCheck\icheck.js" />
     <Content Include="script\teamplate\iCheck\icheck.min.js" />
     <Content Include="script\teamplate\iCheck\skins\all.css" />

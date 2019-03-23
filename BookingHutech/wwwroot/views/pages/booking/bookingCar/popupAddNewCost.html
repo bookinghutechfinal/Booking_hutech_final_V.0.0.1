@@ -2,130 +2,273 @@
     .modal-header {
         background-color: #2A3F54;
     }
-</style>
+    /*-Upload hình-*/
+    .danger {
+        font-weight: bold;
+        /*//padding: 20px;*/
+        color: red;
+    }
 
+    /* vi.ly - button delete */
+    div.show-image {
+        position: relative;
+        /* float: left;  */
+        margin: 5px;
+    }
+
+        div.show-image:hover img {
+            opacity: 0.5;
+        }
+
+        div.show-image:hover input.delete {
+            display: block;
+        }
+
+        div.show-image input.delete {
+            position: absolute;
+            display: none;
+        }
+
+        div.show-image input.update {
+            top: 0;
+            left: 0;
+        }
+
+        div.show-image input.delete {
+            top: 0;
+            left: 60%;
+        }
+
+    #imgremove {
+        position: absolute;
+        margin-left: -35px;
+        margin-top: 5px;
+    }
+    /* ng-show animation*/
+    /* ngHide animation */
+    .ngHideSample {
+        padding: 10px;
+        margin: 5px;
+    }
+
+        .ngHideSample.ng-hide-add {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 1;
+        }
+
+        .ngHideSample.ng-hide-add-active {
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove-active {
+            opacity: 1;
+        }
+</style>
+<!--<link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/switchery/dist/switchery.min.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/build/css/custom.min.css" rel="stylesheet" />-->
 <!-- Modal content-->
 <!-- Test  -->
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
-        <h4 class="modal-title">{{'TitileAddNewCost' | translate}}</h4>
+        <h4 class="modal-title">Thêm mới chi phí</h4>
     </div>
     <div class="modal-body">
         <div class="row">
-            <!--Start-->
-            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_content">
+                    <div class="x_panel">
+                        <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
+                            <div class="form-group" style="text-align: center;">
+                                <!--<div class="control-label">Chân dung: <i style="color:red;">(*)</i></div>-->
+                                <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null &&  isCheckimgUrl " style="color: orangered">Vui lòng chọn!</span>
 
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                        Loại chi phí <span class="required">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select class="form-control select2" ng-model="" style="width: 100%;">
-                            <option selected="selected" value="1">Nhiên liệu</option>
-                            <option value="2">Sửa chữa</option>
-                            <option value="3">Phí khác</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
-                        Chọn xe <span class="required">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select class="form-control select2" ng-model="" style="width: 100%;">
-                            <option selected="selected" value="1">KG-1 0001</option>
-                            <option value="2">KG-1 0002</option>
-                            <option value="3">KG-1 0003</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                        Ngày thực hiện <span class="required">*</span>
-                    </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class='input-group date' id='myDatepicker4'>
-                            <input type='text' class="form-control" readonly="readonly" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                                <div ng-show="!ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
+                                    <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
+                                         width="200" height="200" ng-click="OpenImg(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)" />
+                                    <!--   <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />-->
+
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình"
+                                                onclick="document.getElementById('file1').click();" style="margin-top: 5px;" ng-disabled="ShopInfomation.StatusDisable == 7">
+
+                                            <span class="glyphicon glyphicon-picture"></span>
+                                            Hóa đơn
+                                            <i style="color:red;">(*)</i>
+                                        </button>
+                                        <input style="display:none;" type="file" id="file1" accept="image/*"
+                                               ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
+                                               resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--<div id="crop-avatar">
+                                <img class="img-responsive avatar-view" src="../../../../../images/avt/user.jpg" alt="Avatar" title="Change the avatar" style="    width: 142px; ">
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <span class="field-validation-valid text-danger">Vui lòng chọn!</span>
+                                <div class="col-sm-12 col-md-12">
+                                    <button class="btn Sbtn-primary btn-round btn-block" type="submit"
+                                            data-ng-click="yes()">
+                                        <i class="fa fa-plus-circle"></i>
+                                        <span>Chọn</span>
+                                        <i style="color:red;">(*)</i>
+                                    </button>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_content">
+                                    <div class="form-horizontal form-label-left input_mask">
+                                        <div class="form-group">
+
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Chi phí : <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <select class="form-control " ng-model="CreateNewAccountmModel.AccountType" ng-change="TestInputChange(CreateNewAccountmModel)" style="width: 100%;">
+                                                    <!--<option selected value="all">{{'All' | translate }}</option>-->
+                                                    <option selected value="">-- Vui lòng chọn --</option>
+                                                    <option>
+                                                        Nhiên liệu
+                                                    </option>
+                                                    <option>
+                                                        Sửa chữa, bảo trì
+                                                    </option>
+                                                    <option>
+                                                        Chi phí khác
+                                                    </option>
+                                                </select>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Unit_ID === '' || CreateNewAccountmModel.Unit_ID === null && !TestInputChange">Vui lòng chọn!</span>
+                                            </div>
+
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Chọn xe : <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <select class="form-control " ng-model="CreateNewAccountmModel.AccountType" ng-change="TestInputChange(CreateNewAccountmModel)" style="width: 100%;">
+                                                    <!--<option selected value="all">{{'All' | translate }}</option>-->
+                                                    <option selected value="">-- Vui lòng chọn --</option>
+                                                    <option>
+                                                        KG-1 0001
+                                                    </option>
+                                                    <option>
+                                                        KG-1 0002
+                                                    </option>
+                                                    <option>
+                                                        KG-1 0003
+                                                    </option>
+                                                </select>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Unit_ID === '' || CreateNewAccountmModel.Unit_ID === null && !TestInputChange">Vui lòng chọn!</span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày thực hiện: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class='input-group date' id='myDatepicker3'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.UserName === '' || CreateNewAccountmModel.UserName === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Ghi chú: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Password === '' || CreateNewAccountmModel.Password === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.Addres" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Addres === '' || CreateNewAccountmModel.Addres === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Nội dung: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.Addres" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Addres === '' || CreateNewAccountmModel.Addres === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Số lượng: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="number">
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Password === '' || CreateNewAccountmModel.Password === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Tổng tiền: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="number">
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Password === '' || CreateNewAccountmModel.Password === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group" style="float:right">
+                                        <span ng-show="btndisabled" class="field-validation-valid text-danger" style="color:red;"><i>Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*)</i></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10 col-sm-10 col-xs-12">
+                                            <div class="col-sm-6 col-md-6" style="margin-bottom: 1px;">
+                                                <button class="btn btn-danger btn-round btn-block" type="submit"
+                                                        ng-click="ClosePopup()">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                    <span>HỦY</span>
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <button class="btn Sbtn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                        data-ng-click="CeateNewAccount(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                    <span>THÊM</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Nội dung</label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng</label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Tổng tiền</label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Ghi chú</label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                    </div>
-                </div>
-
-            </form>
-            <!--End-->
-        </div>
-    </div>
-</div>
-<div class="modal-footer">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="col-sm-4">
-                <div class="mb15 mt30">
-                    <button class="btn btn-danger btn-round btn-block"
-                            ng-click="ClosePopup()">
-                        <!--ng-disabled="!isSubmitingEnable()"-->
-                        <i class="glyphicon glyphicon-remove"></i>
-                        <span>Đóng</span>
-                    </button>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="mb15 mt30">
-                    <button class="btn btn-success btn-round btn-block" type="reset"
-                            ng-click="ClosePopup()">
-                        <!--ng-disabled="!isSubmitingEnable()"-->
-                        <i class="glyphicon glyphicon-refresh"></i>
-                        <span>Reset</span>
-                    </button>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="mb15 mt30">
-                    <button class="btn btn-primary btn-round btn-block" type="submit"
-                            ng-click="ClosePopup()">
-                        <!--ng-disabled="!isSubmitingEnable()"-->
-                        <i class="glyphicon glyphicon-ok"></i>
-                        <span>Thêm</span>
-                    </button>
-                </div>
             </div>
         </div>
     </div>
-
-
-    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
 </div>
-</div>
+
+<!--<script src="../../../../../script/js/jquery.min.js"></script>
+<script src="../../../../../script/js/bootstrap.min.js"></script>
+<script src="../../../../../script/teamplate/iCheck/icheck.min.js"></script>
+<script src="../../../../../script/teamplate/switchery/dist/switchery.min.js"></script>
+<script src="../../../../../script/teamplate/build/js/custom.min.js"></script>-->
+
+<script>
+    $('#myDatepicker3').datetimepicker({
+        format: 'DD.MM.YYYY'
+    });
+</script>

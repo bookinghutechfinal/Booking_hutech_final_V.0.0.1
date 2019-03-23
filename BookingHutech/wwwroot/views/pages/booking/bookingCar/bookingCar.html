@@ -76,13 +76,13 @@
                         <div class="col-md-4 col-sm-4 col-xs-12 profile_details" ng-repeat="data in ListCarInfo">
                             <div class="well profile_view">
                                 <div class="col-sm-12">
-                                    <!--<h4 class="brief"><i>{{driverInfo.FullName}}</i></h4>-->
+                                    <h4 class="brief"><i>Xe: {{data.CarNo}}</i></h4>
                                     <div class="left col-xs-7">
                                         <h2>{{data.CarName}}</h2>
                                         <ul class="list-unstyled">
-                                            <li><i class="fa fa-map-marker"></i> Biển số xe: {{data.CarNo}}</li>
-                                            <li><i class="fa fa-phone"></i> Loại xe: {{data.CarTypeName}}</li>
-
+                                            <li><i class="fa fa-car"></i> Loại xe: {{data.CarTypeName}}</li>
+                                            <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{data.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
+                                            <li><i class="fa fa-calendar"></i> Hạn lưu hành: {{data.Expires | date:'dd/MM/yyyy'}}</li>
                                         </ul>
                                     </div>
                                     <div class="right col-xs-5 text-center">
@@ -120,13 +120,13 @@
                     <div class="col-md-4 col-sm-4 col-xs-12 profile_details" ng-repeat="data in ListCarInfoResult">
                         <div class="well profile_view">
                             <div class="col-sm-12">
-                                <!--<h4 class="brief"><i>{{driverInfo.FullName}}</i></h4>-->
+                                <h4 class="brief"><i>Xe: {{data.CarNo}}</i></h4>
                                 <div class="left col-xs-7">
                                     <h2>{{data.CarName}}</h2>
                                     <ul class="list-unstyled">
-                                        <li><i class="fa fa-map-marker"></i> Biển số xe: {{data.CarNo}}</li>
-                                        <li><i class="fa fa-phone"></i> Loại xe: {{data.CarTypeName}}</li>
-
+                                        <li><i class="fa fa-car"></i> Loại xe: {{data.CarTypeName}}</li>
+                                        <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{data.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
+                                        <li><i class="fa fa-calendar"></i> Hạn lưu hành: {{data.Expires | date:'dd/MM/yyyy'}}</li>
                                     </ul>
                                 </div>
                                 <div class="right col-xs-5 text-center">
