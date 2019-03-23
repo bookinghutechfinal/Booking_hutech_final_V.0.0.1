@@ -9,6 +9,7 @@ namespace BookingHutech.Api_BHutech.Models
     public class AccountInfo : Unit
     {
         public string Account_ID { get; set; }
+        public string Avatar { get; set; }
         //public int Unit_ID { get; set; }
         public string FullName { get; set; }
         public string UserName { get; set; }

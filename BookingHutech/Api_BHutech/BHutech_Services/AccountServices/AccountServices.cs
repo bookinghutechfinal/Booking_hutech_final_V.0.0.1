@@ -7,15 +7,18 @@ using BookingHutech.Api_BHutech.Models.Response;
 using BookingHutech.Api_BHutech.Models.Response.AccountResponse;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
+using BookingHutech.Api_BHutech.Lib.Utils;
 
 namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
 {
     public class AccountServices
     {
         AccountDAO accountDAO = new AccountDAO();
-        Helper helper = new Helper(); 
+        Helper helper = new Helper();
         /// <summary>
         /// 
         /// </summary>
@@ -78,7 +81,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             try
             {
                 string uspGetAccountInfoByAccountID = Prototype.SqlCommandStore.uspGetAccountInfoByAccountID + " '" + Account_ID + "' ";
-                string uspGetRuleCodeByAccountID = Prototype.SqlCommandStore.uspGetDetailRuleCodeByAccountID + " '" +  Account_ID + "' ";
+                string uspGetRuleCodeByAccountID = Prototype.SqlCommandStore.uspGetDetailRuleCodeByAccountID + " '" + Account_ID + "' ";
                 checkPermissionResponse.GetAccountInfo = accountDAO.GetAccountInfoDAO(uspGetAccountInfoByAccountID);
                 if (checkPermissionResponse.GetAccountInfo.Count != 0)
                 {
@@ -105,8 +108,10 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
 
             try
             {
-                request.Account_ID = helper.CreateID(); 
-                request.Verify = true; 
+
+                request.Account_ID = helper.CreateID();
+                request.Verify = true;
+                request.Avatar =  UploadFile.UploadImage(request.Avatar, request.Account_ID);   
                 string stringSqluspCreateNewAccount = String.Format(Prototype.SqlCommandStore.uspCreateNewAccount);
                 accountDAO.CreateNewAccountDAO(stringSqluspCreateNewAccount, request);
             }

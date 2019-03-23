@@ -2,6 +2,79 @@
     .modal-header {
         background-color: #2A3F54;
     }
+    /*-Upload hình-*/
+    .danger {
+        font-weight: bold;
+        /*//padding: 20px;*/
+        color: red;
+    }
+
+    /* vi.ly - button delete */
+    div.show-image {
+        position: relative;
+        /* float: left;  */
+        margin: 5px;
+    }
+
+        div.show-image:hover img {
+            opacity: 0.5;
+        }
+
+        div.show-image:hover input.delete {
+            display: block;
+        }
+
+        div.show-image input.delete {
+            position: absolute;
+            display: none;
+        }
+
+        div.show-image input.update {
+            top: 0;
+            left: 0;
+        }
+
+        div.show-image input.delete {
+            top: 0;
+            left: 60%;
+        }
+
+    #imgremove {
+        position: absolute;
+        margin-left: -35px;
+        margin-top: 5px;
+    }
+    /* ng-show animation*/
+    /* ngHide animation */
+    .ngHideSample {
+        padding: 10px;
+        margin: 5px;
+    }
+
+        .ngHideSample.ng-hide-add {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 1;
+        }
+
+        .ngHideSample.ng-hide-add-active {
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove-active {
+            opacity: 1;
+        }
+
 </style>
 <!--<link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
@@ -20,7 +93,34 @@
                 <div class="x_content">
                     <div class="x_panel">
                         <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
-                            <div id="crop-avatar">
+                            <div class="form-group" style="text-align: center;">
+                                <!--<div class="control-label">Chân dung: <i style="color:red;">(*)</i></div>-->
+                                <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null &&  isCheckimgUrl " style="color: orangered">Vui lòng chọn!</span>
+
+                                <div ng-show="!ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
+                                    <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
+                                         width="200" height="200" ng-click="OpenImg(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)" />
+                                    <!--   <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />-->
+
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình"
+                                                onclick="document.getElementById('file1').click();" style="margin-top: 5px;" ng-disabled="ShopInfomation.StatusDisable == 7">
+
+                                            <span class="glyphicon glyphicon-picture"></span>
+                                            Chọn Hình
+                                            <i style="color:red;">(*)</i>
+                                        </button>
+                                        <input style="display:none;" type="file" id="file1" accept="image/*"
+                                               ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
+                                               resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--<div id="crop-avatar">
                                 <img class="img-responsive avatar-view" src="../../../../../images/avt/user.jpg" alt="Avatar" title="Change the avatar" style="    width: 142px; ">
                             </div>
                             <br />
@@ -34,7 +134,7 @@
                                         <i style="color:red;">(*)</i>
                                     </button>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="col-md-10 col-sm-10 col-xs-12">
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -67,7 +167,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Số điện thoại: <i style="color:red;">(*)</i></div>
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Điện thoại: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.NumberPhone" ng-change="TestInputChange(CreateNewAccountmModel)" type="number">
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.NumberPhone === '' || CreateNewAccountmModel.NumberPhone === null && !TestInputChange">Vui lòng nhập!</span>
@@ -94,7 +194,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Tên đăng nhập: <i style="color:red;">(*)</i></div>
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Tài khoản: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.UserName === '' || CreateNewAccountmModel.UserName === null && !TestInputChange">Vui lòng nhập!</span>
@@ -110,6 +210,7 @@
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <select class="form-control " ng-model="CreateNewAccountmModel.Unit_ID" ng-change="TestInputChange(CreateNewAccountmModel)" style="width: 100%;">
                                                     <!--<option selected value="all">{{'All' | translate }}</option>-->
+                                                    <o
                                                     <option selected value="">-- Vui lòng chọn --</option>
                                                     <option ng-repeat="index in ManagerGetListUnitResponse" value="{{index.Unit_ID}}">
                                                         {{index.UnitName}}
@@ -128,7 +229,7 @@
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.AccountType === '' || CreateNewAccountmModel.AccountType === null && !TestInputChange">Vui lòng chọn!</span>
                                             </div>
                                         </div>
-                                        <div class="form-group" ng-show="isDriver">
+                                        <div class="form-group ngHideSample" ng-show="isDriver">
                                             <div class="form-group">
                                                 <div class="control-label col-md-2 col-sm-2 col-xs-12">Số bằng lái: <i style="color:red;">(*)</i></div>
                                                 <div class="col-md-4 col-sm-4 col-xs-12">
@@ -159,7 +260,7 @@
                                                     <input class="date-picker form-control" ng-model="CreateNewAccountmModel.LicenseExpires" ng-change="TestInputChange(CreateNewAccountmModel)" type="date">
                                                     <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.LicenseExpires === '' || CreateNewAccountmModel.LicenseExpires === null && !TestInputChange">Vui lòng nhập!</span>
                                                 </div>
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
 
@@ -177,7 +278,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <button class="btn Sbtn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
-                                                        data-ng-click="CeateNewAccount(CreateNewAccountmModel)">
+                                                        data-ng-click="CeateNewAccount(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)">
                                                     <i class="fa fa-plus-circle"></i>
                                                     <span>THÊM</span>
                                                 </button>
@@ -193,7 +294,7 @@
         </div>
     </div>
 </div>
- 
+
 <!--<script src="../../../../../script/js/jquery.min.js"></script>
 <script src="../../../../../script/js/bootstrap.min.js"></script>
 <script src="../../../../../script/teamplate/iCheck/icheck.min.js"></script>

@@ -131,6 +131,13 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     }
+    this.ManagerCreateNewAccount = function (request, success, finish) {
+        $dao.call({
+            method: 'Patch',
+            operater: 'ManagerAccount/ManagerCreateNewAccount',
+            data: request
+        }, success, finish)
+    }
 
 
 

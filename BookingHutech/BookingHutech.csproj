@@ -167,6 +167,7 @@
     <Compile Include="Api_BHutech\Lib\LogWriter.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\BHutechException.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\DataEntity.cs" />
+    <Compile Include="Api_BHutech\Lib\Utils\UploadFile.cs" />
     <Compile Include="Api_BHutech\Models\AccountInfo.cs" />
     <Compile Include="Api_BHutech\Models\AccountModels\GroupRole.cs" />
     <Compile Include="Api_BHutech\Models\AccountModels\RoleMaster.cs" />
@@ -273,6 +274,7 @@
     <Content Include="images\avt\avt.png" />
     <Content Include="images\avt\user.jpg" />
     <Content Include="images\background\meeting.jpg" />
+    <Content Include="images\icon\close_delete-512.png" />
     <Content Include="images\img\hoi_truong.jpg" />
     <Content Include="images\img\car.jpg" />
     <Content Include="images\background\bus.jpg" />
