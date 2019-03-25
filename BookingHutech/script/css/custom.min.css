@@ -1655,8 +1655,8 @@ ul.msg_list li {
 .dropdown-menu {
     box-shadow: none;
     display: none;
-    float: left;
-    font-size: 12px;
+    float: right;
+    font-size: 14px;
     left: 0;
     list-style: none;
     padding: 0;

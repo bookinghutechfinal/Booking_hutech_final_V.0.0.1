@@ -11,6 +11,11 @@
     .profile_details:nth-child(3n) {
         clear: none;
     }
+
+    .ed_border {
+        border: ridge;
+        border-radius: 5px
+    }
 </style>
 <div class="clearfix">
     <div class="row">
@@ -20,9 +25,19 @@
                 <div class="x_title">
                     <ul>
                         <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
-                        <li><a href="#/main/repair-cost-manager"><h5>/ {{'RepairCostManager' | translate}}</h5></a></li>
+                        <li><a href="#/main/manager-repair-cost"><h5>/ {{'CostManager' | translate}}</h5></a></li>
+                        <li><a href="#/main/manager-repair-cost"><h5>/ {{'RepairCostManager' | translate}}</h5></a></li>
                     </ul>
                 </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-12" style="float:right">
+                    <div class="mb15 mt30">
+                        <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
+                            <span class="glyphicon glyphicon-plus-sign"></span> Thêm mới
+                        </button>
+                    </div>
+                </div>
+
                 <div class="x_content" style="display: block;">
 
                     <div class="form-horizontal form-label-left input_mask">
@@ -31,7 +46,7 @@
                             <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
                             <div class="col-md-2 col-sm-2 col-xs-12">
                                 <div class='input-group date' id='myDatepicker'>
-                                    <input type='text' class="form-control" />
+                                    <input type='text' class="form-control ed_border" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -41,16 +56,34 @@
                             <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
                             <div class="col-md-2 col-sm-2 col-xs-12">
                                 <div class='input-group date' id='myDatepicker2'>
-                                    <input type='text' class="form-control" />
+                                    <input type='text' class="form-control ed_border" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
                             </div>
 
+                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Xe:</div>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <select class="form-control select2 ed_border" ng-model="" style="width: 100%;">
+                                    <option selected="selected" value="all">{{'All' | translate }}</option>
+                                    <option>KG-1 0001</option>
+                                    <option>KG-1 0002</option>
+                                    <option>KG-1 0003</option>
+                                    <option>KG-1 0004</option>
+                                    <option>KG-1 0005</option>
+                                    <!--<option ng-repeat="index in ListCarTypeInfo" value="{{index.CarTypeID}}">
+                                        {{index.CarTypeName}}
+                                    </option>-->
+                                </select>
+                            </div>
+
+                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                <br />
+                            </div>
                             <div class="col-md-2 col-sm-2 col-xs-12">
                                 <div class="mb15 mt30">
-                                    <button class="btn btn-info btn-round btn-block" ng-click="addNewCost()">
+                                    <button class="btn btn-warning btn-round btn-block" ng-click="addNewCost()">
                                         <span class="glyphicon glyphicon-search"></span> Xem
                                     </button>
                                 </div>
@@ -60,13 +93,6 @@
                                 <br />
                             </div>
 
-                            <div class="col-md-3 col-sm-3 col-xs-12" style="float:right">
-                                <div class="mb15 mt30">
-                                    <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
-                                        <span class="glyphicon glyphicon-plus-sign"></span> Thêm mới
-                                    </button>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
@@ -75,7 +101,7 @@
 
                     <div class="table-responsive">
                         <table ng-table="tableParams" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
-                            <tr ng-repeat="item in $data " role="none" class="hover_" ng-click="popupDetailRepairCost(item.RepairID)">
+                            <tr ng-repeat="item in $data " role="none" class="hover_" ng-click="popupDetailRepairCost(item.RepairID)" style="cursor:pointer">
                                 <td data-title="'STT'" style="width:2%" role="none" align="center">
                                     {{$index+1}}
                                 </td>
@@ -86,7 +112,7 @@
                                 <td data-title="'Nơi sửa'" style="width:5%" align="left">
                                     {{item.RepairAddres}}
                                 </td>
-                                <td data-title="'Ngày sửa'" style="width:5%" align="left">
+                                <td data-title="'Ngày sửa'" style="width:5%" align="left" sortable="'item.CreateDate'">
                                     {{item.CreateDate | date:'dd/MM/yyyy'}}
                                 </td>
                                 <td data-title="'Ghi chú'" style="width:5%" align="left">
@@ -108,9 +134,9 @@
 <script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
 <script>
     $('#myDatepicker').datetimepicker({
-        format: 'DD.MM.YYYY'
+        format: 'YYYY-MM-DD'
     });
     $('#myDatepicker2').datetimepicker({
-        format: 'DD.MM.YYYY'
+        format: 'YYYY-MM-DD'
     });
 </script>

@@ -25,8 +25,8 @@ namespace BookingHutech.Controllers.Api
         /// </summary>
         /// <param name=""></param>
         /// <returns>ApiResponse</returns> 
-        [HttpGet]
-        public ApiResponse GetListCar()
+        [HttpPost]
+        public ApiResponse GetListCar(GetListCarRequestModel request)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace BookingHutech.Controllers.Api
                 {
                     try
                     {
-                        var Response = carServices.GetListCarServices();
+                        var Response = carServices.GetListCarServices(request);
                         return ApiResponse.Success(Response);
                     }
                     catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 

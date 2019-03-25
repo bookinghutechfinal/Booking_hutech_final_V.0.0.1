@@ -74,6 +74,10 @@
         .ngHideSample.ng-hide-remove-active {
             opacity: 1;
         }
+        .ed_border {
+            border: ridge;
+            border-radius: 5px
+        }
 </style>
 <!--<link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
@@ -143,7 +147,7 @@
 
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Chi phí : <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <select class="form-control " ng-model="CreateNewAccountmModel.AccountType" ng-change="TestInputChange(CreateNewAccountmModel)" style="width: 100%;">
+                                                <select class="form-control ed_border" ng-model="CreateNewAccountmModel.AccountType" ng-change="TestInputChange(CreateNewAccountmModel)" style="width: 100%;">
                                                     <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                     <option selected value="">-- Vui lòng chọn --</option>
                                                     <option>
@@ -161,7 +165,7 @@
 
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Chọn xe : <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <select class="form-control " ng-model="CreateNewAccountmModel.AccountType" ng-change="TestInputChange(CreateNewAccountmModel)" style="width: 100%;">
+                                                <select class="form-control ed_border" ng-model="CreateNewAccountmModel.AccountType" ng-change="TestInputChange(CreateNewAccountmModel)" style="width: 100%;">
                                                     <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                     <option selected value="">-- Vui lòng chọn --</option>
                                                     <option>
@@ -183,7 +187,7 @@
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày thực hiện: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <div class='input-group date' id='myDatepicker3'>
-                                                    <input type='text' class="form-control" />
+                                                    <input type='text' class="form-control ed_border" />
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
@@ -193,7 +197,7 @@
 
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Ghi chú: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
+                                                <input class="form-control text-box single-line ed_border" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Password === '' || CreateNewAccountmModel.Password === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
                                         </div>
@@ -201,7 +205,7 @@
                                         <div class="form-group">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.Addres" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
+                                                <input class="form-control text-box single-line ed_border" value="" ng-model="CreateNewAccountmModel.Addres" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Addres === '' || CreateNewAccountmModel.Addres === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
                                         </div>
@@ -209,7 +213,7 @@
                                         <div class="form-group">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Nội dung: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.Addres" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
+                                                <input class="form-control text-box single-line ed_border" value="" ng-model="CreateNewAccountmModel.Addres" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Addres === '' || CreateNewAccountmModel.Addres === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
                                         </div>
@@ -217,13 +221,13 @@
                                         <div class="form-group">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Số lượng: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="number">
+                                                <input class="form-control text-box single-line ed_border" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="number">
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Password === '' || CreateNewAccountmModel.Password === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
 
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Tổng tiền: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="number">
+                                                <input class="form-control text-box single-line ed_border" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="number">
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Password === '' || CreateNewAccountmModel.Password === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
                                         </div>
@@ -269,6 +273,6 @@
 
 <script>
     $('#myDatepicker3').datetimepicker({
-        format: 'DD.MM.YYYY'
+        format: 'YYYY-MM-DD'
     });
 </script>

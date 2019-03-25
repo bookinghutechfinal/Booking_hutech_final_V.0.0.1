@@ -11,6 +11,18 @@
     .profile_details:nth-child(3n) {
         clear: none;
     }
+
+    .ed_border {
+        border: ridge;
+        border-radius: 5px
+    }
+
+    .lentop {
+        bottom: 10%;
+        right: 5px;
+        position: fixed;
+        z-index: 1000;
+    }
 </style>
 <div class="clearfix">
     <div class="row">
@@ -20,65 +32,84 @@
                 <div class="x_title">
                     <ul>
                         <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
-                        <li><a href="#/main/fuel-cost-manager"><h5>/ {{'FuelCostManager' | translate}}</h5></a></li>
+                        <li><a href="#/main/manager-fuel-cost"><h5>/ {{'CostManager' | translate}}</h5></a></li>
+                        <li><a href="#/main/manager-fuel-cost"><h5>/ {{'FuelCostManager' | translate}}</h5></a></li>
                     </ul>
                 </div>
-                <div class="x_content" style="display: block;">
 
-                    <div class="form-horizontal form-label-left input_mask">
-                        <div class="form-group">
-
-                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
-                            <div class="col-md-2 col-sm-2 col-xs-12">
-                                <div class='input-group date' id='myDatepicker'>
-                                    <input type='text' class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
-                            <div class="col-md-2 col-sm-2 col-xs-12">
-                                <div class='input-group date' id='myDatepicker2'>
-                                    <input type='text' class="form-control" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="col-md-2 col-sm-2 col-xs-12">
-                                <div class="mb15 mt30">
-                                    <button class="btn btn-info btn-round btn-block" ng-click="addNewCost()">
-                                        <span class="glyphicon glyphicon-search"></span> Xem
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="col-md-1 col-sm-1 col-xs-12">
-                                <br />
-                            </div>
-
-                            <div class="col-md-3 col-sm-3 col-xs-12" style="float:right">
-                                <div class="mb15 mt30">
-                                    <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
-                                        <span class="glyphicon glyphicon-plus-sign"></span> Thêm mới
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
+                <div class="col-md-3 col-sm-3 col-xs-12" style="float:right">
+                    <div class="mb15 mt30">
+                        <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
+                            <span class="glyphicon glyphicon-plus-sign"></span> Thêm mới
+                        </button>
                     </div>
+                </div>
 
+                <div class="x_content" style="display: block;">
+                    <form>
+                        <div class="form-horizontal form-label-left input_mask">
+                            <div class="form-group">
+
+                                <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <!--<div class='input-group date' id='myDatepicker' >
+                                        <input type="date" class="form-control ed_border"  ng-model="searchModel.Date_from" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>-->
+                                    <input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">
+                                </div>
+
+                                <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <!--<div class='input-group date' id='myDatepicker2'>
+                                        <input type='text' class="form-control ed_border" ng-model="searchModel.Date_to" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>-->
+                                    <input class="form-control ed_border" value="" ng-model="searchModel.Date_to" type="date" style="cursor:pointer">
+                                </div>
+
+                                <div class="control-label col-md-1 col-sm-1 col-xs-12">Xe:</div>
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <select class="form-control select2 ed_border" ng-model="searchModel.CarID" style="width: 100%;cursor:pointer">
+                                        <option ng-selected="selected" value="0" >{{'All' | translate }}</option>
+                                        <option ng-repeat="item in ListCarInfo" value="{{item.CarID}}">{{item.CarNo}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-1 col-sm-1 col-xs-12">
+                                    <br />
+                                </div>
+
+                                <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <div class="mb15 mt30">
+                                        <button class="btn btn-warning btn-round btn-block" ng-click="searchCost(searchModel)">
+                                            <span class="glyphicon glyphicon-search"></span> Xem
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--<div class="col-md-1 col-sm-1 col-xs-12">
+                            <button class="btn btn-success btn-round lentop" type="reset" style="float:right" ng-click="getListCost()">
+                                <span class="glyphicon glyphicon-refresh"></span>
+                            </button>
+                        </div>-->
+
+                        <a ng-click="getListCost()"><i class="material-icons lentop"><span class="glyphicon glyphicon-refresh"></span></i></a>
+
+
+                    </form>
                     <div class="clearfix"></div>
 
-                    <div class="table-responsive">
+                    <div class="table-responsive" ng-show="!ShowListCost">
                         <table ng-table="tableParams" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
                             <tr ng-repeat="item in $data " role="none" class="hover_">
-                                <td data-title="'STT'" style="width:2%" role="none" align="center">
-                                    {{$index+1}}
-                                </td>
                                 <td data-title="'Xe'" style="width:5%" align="left">
                                     <!--filter="{CarNo:'text'}"-->
                                     {{item.CarNo}}
@@ -105,22 +136,55 @@
                             </tr>
                         </table>
                     </div>
-
+                    <!--search cost-->
+                    <div class="table-responsive" ng-show="ShowListCost">
+                        <table ng-table="tableParams1" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                            <tr ng-repeat="item in $data " role="none" class="hover_">
+                                <td data-title="'Xe'" style="width:5%" align="left">
+                                    <!--filter="{CarNo:'text'}"-->
+                                    {{item.CarNo}}
+                                </td>
+                                <td data-title="'Địa điểm'" style="width:5%" align="left">
+                                    {{item.RepairAddres}}
+                                </td>
+                                <td data-title="'nội dung'" style="width:5%" align="left">
+                                    {{item.Content}}
+                                </td>
+                                <td data-title="'Số lượng'" style="width:5%" align="left">
+                                    <!--filter="{CarNo:'text'}"-->
+                                    {{item.Quantity}} lit
+                                </td>
+                                <td data-title="'Tổng tiền'" style="width:5%" align="left">
+                                    {{item.TotalMoney | currency : ""}} Đ
+                                </td>
+                                <td data-title="'Ngày thực hiện'" style="width:5%" align="left">
+                                    {{item.CreateDate | date:'dd/MM/yyyy'}}
+                                </td>
+                                <td data-title="'Ghi chú'" style="width:5%" align="left">
+                                    {{item.Note}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!--end search cost-->
                 </div>
             </div>
         </div>
     </div>
 
 </div>
+<!--Search cost-->
+<!--End: search cost-->
+
 
 <script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>
 <script src="../../../../../script/teamplate/daterangepicker/daterangepicker.js"></script>
 <script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
 <script>
     $('#myDatepicker').datetimepicker({
-        format: 'DD.MM.YYYY'
+        format: 'YYYY-MM-DD'
     });
     $('#myDatepicker2').datetimepicker({
-        format: 'DD.MM.YYYY'
+        format: 'YYYY-MM-DD'
     });
 </script>

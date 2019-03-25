@@ -22,13 +22,13 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
         /// </summary>
         /// <param name=""></param>
         /// <returns>ListCarResponseModel</returns> 
-        public ListCarResponseModel GetListCarServices()
+        public ListCarResponseModel GetListCarServices(GetListCarRequestModel request)
         {
 
             ListCarResponseModel result = new ListCarResponseModel();
             try
             { 
-                string uspGetListCar = String.Format(Prototype.SqlCommandStore.uspGetListCar, (int)BookingType.CarType.Delete, (int)BookingType.CarType.Maintenance);
+                string uspGetListCar = String.Format(Prototype.SqlCommandStore.uspGetListCar, request.CarStatus1, request.CarStatus2);
                 string stringSqlGetCarTypeInfo = Prototype.SqlCommandStore.uspGetListCarType;
                 result.ListCarType = carDAO.GetListCarTypeDAO(stringSqlGetCarTypeInfo);
                 result.ListCar = carDAO.GetListCarDAO(uspGetListCar);

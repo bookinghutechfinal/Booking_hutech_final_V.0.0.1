@@ -3,7 +3,7 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
 
     this.getListCar = function (request, success, finish) {
         $dao.call({
-            method: 'GET',
+            method: 'POST',
             operater: 'Car/GetListCar',
             data: request
         }, success, finish)
@@ -43,6 +43,13 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
         $dao.call({
             method: 'Get',
             operater: 'ManagerReport/ReportCost',
+            data: request
+        }, success, finish)
+    };
+    this.searchCost = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'ManagerCost/SearchCost',
             data: request
         }, success, finish)
     };

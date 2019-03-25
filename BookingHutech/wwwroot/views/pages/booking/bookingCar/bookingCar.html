@@ -11,6 +11,10 @@
     .profile_details:nth-child(3n) {
         clear: none;
     }
+    .ed_border {
+        border: ridge;
+        border-radius: 5px
+    }
 </style>
 <div class="clearfix">
     <div class="row">
@@ -28,7 +32,7 @@
                     <div class="col-lg-6 col-xs-6">
                         <div class="form-group">
                             <label>{{'TypeCar'| translate}}</label>
-                            <select class="form-control select2" ng-model="searchModel.CarTypeID" style="width: 100%;">
+                            <select class="form-control select2 ed_border" ng-model="searchModel.CarTypeID" style="width: 100%;">
                                 <option selected="selected" value="all">{{'All' | translate }}</option>
                                 <option ng-repeat="index in ListCarTypeInfo" value="{{index.CarTypeID}}">
                                     {{index.CarTypeName}}

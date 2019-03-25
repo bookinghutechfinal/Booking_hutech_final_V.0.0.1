@@ -3,15 +3,26 @@
 
         $scope.init = function () {
             var ListCost = [];
-            $scope.tableParams = $scope.tableParams = null;
-            
+            $scope.ClearData();
+
             $scope.getListCost();
+            $scope.getListCar();
         }
 
+        $scope.searchModel = {}
+
+        //Get list cost by CostsTypeID
         $scope.getListCost = function () {
             var CostsTypeIDRequestModel = {
                 CostsTypeID: 1,
             }
+            $scope.ClearData();
+            $scope.ShowListCost = false;
+
+            var request = $scope.searchModel;
+            request.Date_from = null;
+            request.Date_to = null;
+            request.CarID = 0;
 
             $BookingCar.getListCost(CostsTypeIDRequestModel, function (response) {
                 var List = response.data.Data.ListRepairCost;
@@ -21,6 +32,54 @@
                 $scope.tableParams = new NgTableParams({}, { dataset: ListCost });
             });
         }
+        //Get list car
+        $scope.getListCar = function () {
+            var getListcarRequestModel = {
+                CarStatus1: 1000,
+                CarStatus2: 1001 //lấy tất cả xe
+            }
+
+            $BookingCar.getListCar(getListcarRequestModel, function (res) {
+                var listCar = res.data.Data.ListCar;
+                if (res.data.ReturnCode === 1) {
+                    $rootScope.ListCarInfo = listCar;  // danh sách car hoạt động 
+                }
+
+            });
+        }
+
+        $scope.ShowListCost = false;
+        $scope.ClearData = function () {
+            $scope.tableParams = $scope.tableParams = null;
+            $scope.tableParams1 = $scope.tableParams1 = null;
+        }
+
+        //Search cost by CostsTypeID, CarID, Date_from, Date_to
+        $scope.searchCost = function (request) {
+            var searchCostRequestModel = {
+                CarID: request.CarID,
+                CostsTypeID: 1,
+                Date_to: request.Date_to,
+                Date_from: request.Date_from
+            }
+
+            $scope.ShowListCost = true;
+            $scope.ClearData();
+
+            $BookingCar.searchCost(searchCostRequestModel, function (response) {
+                switch (response.data.ReturnCode) {
+                    case 1:
+                        var result = response.data.Data.ListRepairCost;
+                        $scope.tableParams1 = new NgTableParams({}, { dataset: result });
+                        break;
+                    case 2:
+                        toastr.error("Không tìm thấy.");
+                        break;
+                }
+            });
+        }
+
+
 
         $scope.init();
 
@@ -48,7 +107,7 @@
         }
     }]);
 
-mainmodule.controller('popupManagerFuelCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams','$modalInstance',
+mainmodule.controller('popupManagerFuelCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance) {
 
         $scope.init = function () {

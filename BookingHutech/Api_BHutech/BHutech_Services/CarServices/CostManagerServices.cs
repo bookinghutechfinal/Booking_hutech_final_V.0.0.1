@@ -77,5 +77,38 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 throw;
             }
         }
+        /// <summary>
+        /// SearchCostServices
+        /// Mr.Lam 25/3/2019
+        /// </summary>
+        /// <param name="request">CarID, Date_from, Date_to, CostsTypeID</param>
+        /// <returns>List Cost</returns>
+        public ListRepairCostResponseModel SearchCostServices(SearchCostRequestModel request)
+        {
+            ListRepairCostResponseModel result = new ListRepairCostResponseModel();
+            try
+            {
+                string dk1 = "";
+                string dk2 = "";
+                string dk3 = "";
+
+                if (request.CarID != 0)
+                    dk1 = "Car_ID = "+request.CarID+ " and ";
+                if (request.Date_from != null)
+                    dk2 = "'" + request.Date_from + "'< CreateDate and ";
+                if (request.Date_to != null)
+                    dk3 = "'" + request.Date_to + "'> CreateDate and ";
+
+                string sql = "select * from viewManagerCost where "+dk1+dk2+dk3+"CostsTypeID = " + request.CostsTypeID;
+                
+                result.ListRepairCost = managerCostDAO.GetListRepairCostDAO(sql);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
     }
 }

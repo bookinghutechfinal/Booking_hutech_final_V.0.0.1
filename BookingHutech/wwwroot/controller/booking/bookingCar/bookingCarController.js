@@ -13,7 +13,12 @@
 
         // Hàm 2: Lấy danh sách xe còn hoạt động và danh sách loại xe. . 
         $scope.getListCar = function () {
-            $BookingCar.getListCar({}, function (res) {
+            var getListcarRequestModel = {
+                CarStatus1: 0,//xe đã xóa
+                CarStatus2: 4 //xe bảo trì, sửa chữa
+            }
+
+            $BookingCar.getListCar(getListcarRequestModel, function (res) {
                 var listCar = res.data.Data.ListCar;
                 var listCarType = res.data.Data.ListCarType;
                 if (res.data.ReturnCode === 1) {
