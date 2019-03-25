@@ -13,21 +13,21 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
 {
     public class ManagerAccountServices
     {
-        ManagerAccountDAO managerAccountDAO = new ManagerAccountDAO();  
+        ManagerAccountDAO managerAccountDAO = new ManagerAccountDAO();
         /// <summary>
         /// Anh.Tran: Create 24/1/2019 
-        /// Manager Get Account By Account StatusServices
+        /// Manager Get Account By Account StatusServices. Lấy danh sách tài khoản theo loại tài khoản và trạng thái tài khoản
         /// </summary>
         /// <param name="">ManagerGetAccountByAccountStatusRequestModel</param>
         /// <returns>managerGetAccountByAccountStatus</returns> 
-        public ManagerGetAccountByAccountStatusResponseModel ManagerGetAccountByAccountStatusServices(ManagerGetAccountByAccountStatusRequestModel request)
+        public ManagerGetAccountByAccountStatusResponseModel ManagerGetAccountByAccountStatusAccountTypeServices(ManagerGetAccountByAccountStatusRequestModel request)
         {
 
             ManagerGetAccountByAccountStatusResponseModel managerGetAccountByAccountStatus = new ManagerGetAccountByAccountStatusResponseModel();
             try
             {
-                string stringSqlManagerGetAccountByAccountStatus = String.Format(Prototype.SqlCommandStore.uspManagerGetAccountByAccountStatus, request.Account_Status);
-                managerGetAccountByAccountStatus.GetAccountByAccountStatus = managerAccountDAO.GetAccountByAccountStatusDAO(stringSqlManagerGetAccountByAccountStatus);
+                string stringSqlManagerGetAccountByAccountStatusAccountType = String.Format(Prototype.SqlCommandStore.uspManagerGetAccountByAccountStatusAccountType);
+                managerGetAccountByAccountStatus.GetAccountByAccountStatus = managerAccountDAO.GetAccountByAccountStatusAccountTypeDAO(stringSqlManagerGetAccountByAccountStatusAccountType, request);
                 return managerGetAccountByAccountStatus;
             }
             catch (Exception ex)
@@ -106,6 +106,29 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             {
                 string stringSqluspManagerGetGroupRole = String.Format(Prototype.SqlCommandStore.uspManagerGetGroupRole);
                 req.ListGroupRole = managerAccountDAO.ManagerGetGroupRoleDAO(stringSqluspManagerGetGroupRole);
+                return req;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        ///  Anh.Tran Ceate 24/3/2019. Lấy chi danh sách quyền. 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>ManagerGetRoleMasterByAccountIDResponseModel</returns>
+        public ManagerGetRoleMasterByAccountIDResponseModel ManagerGetRoleMasterServices()
+        {
+
+            ManagerGetRoleMasterByAccountIDResponseModel req = new ManagerGetRoleMasterByAccountIDResponseModel();
+            try
+            {
+                string stringSqluspManagerGetRoleMaster = String.Format(Prototype.SqlCommandStore.uspManagerGetRoleMaster);
+                req.RoleMasterByAccountID = managerAccountDAO.ManagerGetRoleMasterByAccountIDDAO(stringSqluspManagerGetRoleMaster);
                 return req;
             }
             catch (Exception ex)

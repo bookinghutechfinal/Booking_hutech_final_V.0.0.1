@@ -22,20 +22,29 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         static SqlDataAdapter adap;
 
         /// <summary>
-        /// GetAccountInfoDAO Anh.Tran: Create 10/3/2019 
+        /// GetAccountInfoDAO Anh.Tran: Create 10/3/2019 Lấy danh sách tài khoản theo loại tài khoản và trạng thái tài khoản
         /// </summary>
         /// <param name="stringSql">stringSql</param>
-        /// <returns>GetAccountByAccountStatusDAO</returns> 
-        public List<AccountInfo> GetAccountByAccountStatusDAO(String stringSql)
+        /// <param name="ManagerGetAccountByAccountStatusRequestModel">ManagerGetAccountByAccountStatusRequestModel</param>
+        /// <returns>GetAccountByAccountStatusAccountTypeDAO</returns> 
+        public List<AccountInfo> GetAccountByAccountStatusAccountTypeDAO(String sqlStore, ManagerGetAccountByAccountStatusRequestModel request)
         {
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
-            List<AccountInfo> request = new List<AccountInfo>();
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@AccountType", SqlDbType.Int).Value = request.AccountType;
+            cmd.Parameters.Add("@Account_Status", SqlDbType.NVarChar, 100).Value = request.Account_Status;
             try
             {
-                con.Open();
-                cmd = new SqlCommand(stringSql, con);
-                SqlDataReader reader = cmd.ExecuteReader();
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();
+                SqlDataReader reader = cmd.ExecuteReader(); 
+                List<AccountInfo> req = new List<AccountInfo>();
                 while (reader.Read())
                 {
                     AccountInfo accountLoginResponseModel = new AccountInfo();
@@ -48,17 +57,54 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
                     accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
                     accountLoginResponseModel.AccountType = reader["AccountType"].ToString();
-                    request.Add(accountLoginResponseModel);
+                    req.Add(accountLoginResponseModel);
                 }
                 con.Close();
-                return request;
+                return req;
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
                 con.Close();
+                LogWriter.WriteException(ex);
                 throw;
             }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+
+            ////
+            //db = new DataAccess();
+            //con = new SqlConnection(db.ConnectionString());
+            //List<AccountInfo> request = new List<AccountInfo>();
+            //try
+            //{
+            //    con.Open();
+            //    cmd = new SqlCommand(stringSql, con);
+            //    SqlDataReader reader = cmd.ExecuteReader();
+            //    while (reader.Read())
+            //    {
+            //        AccountInfo accountLoginResponseModel = new AccountInfo();
+            //        accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
+            //        accountLoginResponseModel.FullName = reader["FullName"].ToString();
+            //        accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
+            //        accountLoginResponseModel.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
+            //        accountLoginResponseModel.Addres = reader["Addres"].ToString();
+            //        accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
+            //        accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
+            //        accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
+            //        accountLoginResponseModel.AccountType = reader["AccountType"].ToString();
+            //        request.Add(accountLoginResponseModel);
+            //    }
+            //    con.Close();
+            //    return request;
+            //}
+            //catch (Exception ex)
+            //{
+            //    LogWriter.WriteException(ex);
+            //    con.Close();
+            //    throw;
+            //}
         }
 
         /// <summary>
@@ -66,15 +112,16 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         /// </summary>
         /// <param name="stringSql">stringSql</param>
         /// <returns>AccountInfo</returns> 
-        public List<AccountInfo> GetDetailAccountByAccountIDDAO(String stringSql)
+        public List<AccountInfo> GetDetailAccountByAccountIDDAO(String sqlStore)
         {
+
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
             List<AccountInfo> request = new List<AccountInfo>();
             try
             {
                 con.Open();
-                cmd = new SqlCommand(stringSql, con);
+                cmd = new SqlCommand(sqlStore, con);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -227,6 +274,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     groupRole.GroupRoleName = reader["GroupRoleName"].ToString();
                     listGroupRoles.Add(groupRole);
                 }
+                con.Close();
                 return listGroupRoles;
             }
             catch (Exception ex)
@@ -243,7 +291,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         }
 
         /// <summary>
-        /// Anh.Tran Ceate 19/3/2019.Cập nhật tên quyền
+        /// Anh.Tran Ceate 19/3/2019. Lấy chi danh sách  quyền
         /// </summary>
         /// <param name="sqlStore">sqlStore</param>
         /// <returns> List<RoleMaster> </returns>

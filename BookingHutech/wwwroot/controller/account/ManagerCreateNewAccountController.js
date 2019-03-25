@@ -115,7 +115,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
         $scope.TestInputChange = function (Request) {
 
             // check show theo loại tài khoa
-            if (Request.AccountType === "5") {
+            if (Request.AccountType === "7") {
                 $scope.isDriver = true;
                 if (checkNull(Request.DriverLicenseNo)) {
                     $scope.btndisabled = true;
@@ -132,7 +132,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 }
             }
 
-            if (Request.AccountType !== "5") {
+            if (Request.AccountType !== "7") {
                 $scope.isDriver = false;
                 // check data
                 if (checkNull(Request.FullName)) {

@@ -138,13 +138,32 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     }
+    this.ManagerGetAccountByAccountStatusAccountType = function (request, success, finish) {
+        $dao.call({
+            method: 'Post',
+            operater: 'ManagerAccount/ManagerGetAccountByAccountStatusAccountType',
+            data: request
+        }, success, finish)
+    }
 
+    this.ManagerGetRoleMaster = function (request, success, finish) {
+        $dao.call({
+            method: 'GET',
+            operater: 'ManagerRoleMaster/ManagerGetRoleMaster',
+            data: request
+        }, success, finish)
+    }
+    this.ManagerUpdateRoleMaster = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'ManagerRoleMaster/ManagerUpdateRoleMaster',
+            data: request
+        }, success, finish)
+    }
 
+  
 
-
-
-
-
+     
 
 
     //this.CheckAccountLogin = function () {

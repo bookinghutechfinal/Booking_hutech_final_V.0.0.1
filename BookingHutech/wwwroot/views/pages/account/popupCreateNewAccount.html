@@ -229,7 +229,7 @@
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.AccountType === '' || CreateNewAccountmModel.AccountType === null && !TestInputChange">Vui lòng chọn!</span>
                                             </div>
                                         </div>
-                                        <div class="form-group ngHideSample" ng-show="isDriver">
+                                        <div class="ngHideSample" ng-show="isDriver">
                                             <div class="form-group">
                                                 <div class="control-label col-md-2 col-sm-2 col-xs-12">Số bằng lái: <i style="color:red;">(*)</i></div>
                                                 <div class="col-md-4 col-sm-4 col-xs-12">
@@ -268,7 +268,7 @@
                                         <span ng-show="btndisabled" class="field-validation-valid text-danger" style="color:red;"><i>Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*)</i></span>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10 col-sm-10 col-xs-12">
+                                        <div class="row">
                                             <div class="col-sm-6 col-md-6" style="margin-bottom: 1px;">
                                                 <button class="btn btn-danger btn-round btn-block" type="submit"
                                                         ng-click="ClosePopup()">
@@ -277,7 +277,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-sm-6 col-md-6">
-                                                <button class="btn Sbtn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                <button class="btn btn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
                                                         data-ng-click="CeateNewAccount(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)">
                                                     <i class="fa fa-plus-circle"></i>
                                                     <span>THÊM</span>

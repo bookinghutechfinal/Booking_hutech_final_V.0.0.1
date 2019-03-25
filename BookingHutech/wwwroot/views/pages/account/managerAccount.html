@@ -11,6 +11,36 @@
     .profile_details:nth-child(3n) {
         clear: none;
     }
+    /* ng-show animation*/
+    /* ngHide animation */
+    .ngHideSample {
+        padding: 10px;
+        margin: 5px;
+    }
+
+        .ngHideSample.ng-hide-add {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 1;
+        }
+
+        .ngHideSample.ng-hide-add-active {
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove-active {
+            opacity: 1;
+        }
 </style>
 <div class="clearfix">
     <div class="row">
@@ -21,7 +51,6 @@
                     <ul>
                         <li><a href="#/main/manager-account"><h5><i class="fa fa-group"></i> Quản lý tài khoản</h5></a></li>
                         <!--<li><a href="#/main/dat-xe"><h5>/ {{'TitileSerachCar' | translate}}</h5></a></li>-->
-                        <li><a href="#/main/manager-account"><h5>/ Danh sách tài khoản</h5></a></li>
                     </ul>
                 </div>
                 <div class="x_content" style="display: block;">
@@ -29,13 +58,14 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_content" style="display: block;">
+                                    <!--Start: Thông tin admin manager-->
                                     <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
-                                        <div class="profile_img">
+                                        <div class="profile_img" style="text-align:-webkit-center;">
                                             <div id="crop-avatar">
                                                 <img class="img-responsive avatar-view" src="../../../../images/avt/user.jpg" alt="Avatar" title="Change the avatar">
                                             </div>
                                         </div>
-                                        <h2>{{ShowAccountInfo.FullName}}</h2>
+                                        <h2 style="text-align:center;">{{ShowAccountInfo.FullName}}</h2>
                                         <ul class="list-unstyled user_data">
                                             <li>
                                                 <i class="fa fa-map-marker user-profile-icon"></i> {{ShowAccountInfo.Addres}}
@@ -59,15 +89,24 @@
                                         </ul>
                                         <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Chỉnh sửa</a>
                                         <br>
-
                                     </div>
+                                    <!--End: Thông tin admin manager-->
+                                    <!--<div class="col-sm-3 col-xs-6" style="float:right; margin-bottom:10px">
+                                        <div class="form-group">
+                                            <button class="btn btn-primary btn-round btn-block" ng-click="ManagerOpenpopupAddNewDriver()">
+                                                <i class="fa fa-plus-circle"></i>
+                                                <span class="ng-binding">Thêm mới tài khoản</span>
+                                            </button>
+                                        </div>
+                                    </div> <br />-->
+                                    <!--Start:quyền của admin manager-->
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <div class="profile_title">
                                             <div class="col-md-6">
                                                 <h2>Quyền của tôi</h2>
                                             </div>
                                         </div>
-                                        <table class="table table-hover" ng-table="tableParams1" fixed-table-headers="scrollable-area">
+                                        <table class="table table-hover  table-striped jambo_table bulk_action" ng-table="tableParams1" fixed-table-headers="scrollable-area">
                                             <thead>
                                                 <tr>
                                                     <th>#STT</th>
@@ -99,27 +138,53 @@
                                             </tbody>
                                         </table>
                                     </div>
-
-                                    <!--Start: Nhóm quyền-->
-                                    <div class="col-md-7 col-sm-8 col-xs-12">
+                                    <!--End:quyền của admin manager-->
+                                    <div class="col-md-9 col-sm-9 col-xs-12" style="float: right">
                                         <div class="x_content">
                                             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                                     <li role="presentation" class="active">
-                                                        <a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Nhóm quyền</a>
+                                                        <button ng-show="!isShowGroupRole" class="btn btn-primary btn-round btn-block" ng-click="ShowGroupRole()" type="button" name="name" value="Quản lý nhóm quyền">
+                                                            <i class="fa fa-folder"></i>
+                                                            <span class="ng-binding">Nhóm quyền</span>
+                                                        </button>
+                                                        <button ng-show="isShowGroupRole" class="btn btn-primary btn-round btn-block" ng-click="ShowGroupRole()" type="button" name="name" value="Quản lý nhóm quyền">
+                                                            <i class="fa fa-folder-open-o"></i>
+                                                            <span class="ng-binding">Thu Nhỏ</span>
+                                                        </button>
+                                                    </li>
+                                                    <li role="presentation" class="active">
+                                                        <button ng-show="!isShowRole" class="btn btn-warning btn-round btn-block" ng-click="ShowRole()" type="button" name="name">
+                                                            <i class="fa fa-folder"></i>
+                                                            <span class="ng-binding">Quyền</span>
+                                                        </button>
+                                                        <button ng-show="isShowRole" class="btn btn-warning btn-round btn-block" ng-click="ShowRole()" type="button" name="name">
+                                                            <i class="fa fa-folder-open-o"></i>
+                                                            <span class="ng-binding">Thu Nhỏ</span>
+                                                        </button>
+                                                    </li>
+                                                    <li role="presentation" class="active">
+                                                        <div class="form-group">
+                                                            <!--<label>`</label>-->
+                                                            <button class="btn btn-primary btn-round btn-block" ng-click="ManagerOpenpopupAddNewDriver()">
+                                                                <!--ng-disabled="!isSubmitingEnable()"-->
+                                                                <i class="fa fa-plus-circle"></i>
+                                                                <span class="ng-binding">Thêm mới tài khoản</span>
+                                                            </button>
+                                                        </div>
                                                     </li>
                                                 </ul>
                                                 <div id="myTabContent" class="tab-content">
-                                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                                    <!--//Nhóm quyền-->
+                                                    <div role="tabpanel" class="tab-pane fade active in ngHideSample" id="tab_content1" aria-labelledby="home-tab" ng-show="isShowGroupRole">
                                                         <div class="row">
                                                             <div class="table-responsive">
-                                                                <table class="table table-striped jambo_table bulk_action">
-                                                                    <!--ng-table="tableParams2"-->
+                                                                <table class="table table-hover  table-striped jambo_table bulk_action ng-scope ng-table" fixed-table-headers="scrollable-area">
                                                                     <thead>
                                                                         <tr class="headings">
                                                                             <th class="column-title">#STT</th>
-                                                                            <th class="column-title">Tên nhóm quyền</th>
-                                                                            <th class="column-title no-link last" >
+                                                                            <th class="column-title" style="text-align:center">Tên nhóm quyền</th>
+                                                                            <th class="column-title no-link last">
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -135,13 +200,82 @@
                                                                                 </div>
                                                                                 <label ng-show="showmess[$index]" style="color:red">(*)Vui lòng nhập</label>
                                                                             </td>
-                                                                            <td >
+                                                                            <td>
                                                                                 <a ng-hide="editorEnabled[$index]" ng-click="enableEditor($index)" href="" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
                                                                                 <div ng-show="editorEnabled[$index]" class="col-sm-6">
                                                                                     <a href="" ng-click="Save(grouprole, $index)" class="btn btn-primary btn-xs"><i class="fa fa-save"></i> Lưu </a>
                                                                                     <a href="" ng-click="disableEditor($index)" class="btn btn-danger btn-xs"><i class="fa fa-refresh"></i> Hủy </a>
                                                                                 </div>
-                                                                                
+
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--//Quyền-->
+                                                    <div role="tabpanel" class="tab-pane fade active in ngHideSample" id="tab_content1" aria-labelledby="home-tab" ng-show="isShowRole">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                <div class="x_content" style="display: block;">
+                                                                    <!--START:  Loại xe -->
+                                                                    <div class="col-lg-7 col-xs-7">
+                                                                        <div class="form-group">
+                                                                            <label class="ng-binding">Nhóm quyền</label>
+                                                                            <select class="form-control select2" ng-model="gRole.GroupRoleID" style="width: 100%;">
+                                                                                <option selected="selected" value="">-- Tất cả --</option>
+                                                                                <option ng-repeat="gRole in GroupRoleResponse" value="{{gRole.GroupRoleID}}">
+                                                                                    {{gRole.GroupRoleName}}
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--END:  Loại xe -->
+                                                                    <div class="col-lg-5 col-xs-5">
+                                                                        <div class="form-group">
+                                                                            <label>`</label>
+                                                                            <button class="btn btn-primary btn-round btn-block" data-ng-click="filterRole(gRole.GroupRoleID)">
+                                                                                <!--ng-disabled="!isSubmitingEnable()"-->
+                                                                                <i class="fa fa-filter"></i>
+                                                                                <span class="ng-binding">Lọc</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-hover  table-striped jambo_table bulk_action" fixed-table-headers="scrollable-area" ng-table="tableParams2">
+                                                                    <thead>
+                                                                        <tr class="headings">
+                                                                            <th class="column-title">#STT</th>
+                                                                            <th class="column-title">Tên quyền</th>
+                                                                            <th class="column-title no-link last">
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr class="even pointer" ng-repeat="listRole in $data ">
+                                                                            <td class=" ">
+                                                                                {{$index+1}}
+                                                                            </td>
+                                                                            <td class="col-sm-12">
+                                                                                <label ng-hide="editorEnabledRole[$index]">{{listRole.RoleName}}</label>
+                                                                                <div ng-show="editorEnabledRole[$index]">
+                                                                                    <input class="form-control" type="text" name="name" value=" {{listRole.RoleName}} " ng-model="listRole.RoleName">
+                                                                                </div>
+                                                                                <label ng-show="showmessRole[$index]" style="color:red">(*)Vui lòng nhập</label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a ng-hide="editorEnabledRole[$index]" ng-click="enableEditorRole($index)" href="" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                                                                                <div ng-show="editorEnabledRole[$index]" class="col-sm-6">
+                                                                                    <a href="" ng-click="SaveRole(listRole, $index)" class="btn btn-primary btn-xs"><i class="fa fa-save"></i> Lưu </a>
+                                                                                    <a href="" ng-click="disableEditorRole($index)" class="btn btn-danger btn-xs"><i class="fa fa-refresh"></i> Hủy </a>
+                                                                                </div>
+
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -153,7 +287,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--End: nhóm quyền-->
+
                                 </div>
                             </div>
                         </div>
@@ -164,122 +298,93 @@
                         <div class="col-md-12">
                             <div class="x_panel">
                                 <div class="x_content">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                            <div class="form-group">
+                                                <label class="ng-binding">Chức vụ</label><i style="color:red;"> (*)</i>
+                                                <span class="field-validation-valid text-danger" ng-show="SearchAccountReqModel.AccountType === '' || SearchAccountReqModel.AccountType === null && isCheckAccounttype">Vui lòng chọn!</span>
+                                                <select class="form-control" ng-model="SearchAccountReqModel.AccountType" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
+                                                    <option selected="selected" value="">-- Vui lòng chọn --</option>
+                                                    <option value="1">Thư ký</option>
+                                                    <option value="2">Trưởng khoa</option>
+                                                    <option value="3">Phòng quản trị</option>
+                                                    <option value="4">Văn phòng trường</option>
+                                                    <option value="5">Ban giám hiệu</option>
+                                                    <option value="7">Lái xe</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                            <div class="form-group">
+                                                <label class="ng-binding">Trạng thái</label><i style="color:red;"> (*)</i>
+                                                <span class="field-validation-valid text-danger" ng-show="SearchAccountReqModel.Account_Status === '' || SearchAccountReqModel.Account_Status === null && isCheckAccountstatus">Vui lòng chọn!</span>
+                                                <select class="form-control" ng-model="SearchAccountReqModel.Account_Status" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
+                                                    <option value="">-- Vui lòng chọn --</option>
+                                                    <option selected="selected" value="1">Hoạt động</option>
+                                                    <option value="0">Khóa</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-7 profile_details" style="float:right;">
+                                            <div class="form-group">
+                                                <label>.</label>
+                                                <span ng-show="messdisabled" class="field-validation-valid text-danger" style="color:red;"><i>Vui lòng chọn đầy đủ thông tin (*)</i></span>
+                                                <button class="btn btn-primary btn-round btn-block" ng-click="SearchAccount()" ng-disabled="!btndisabledSearch">
+                                                    <i class="glyphicon glyphicon-search"></i>
+                                                    <span class="ng-binding">Tìm Kiếm</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="x_content">
                                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                            <li role="presentation" class="active">
+                                            <!--<li role="presentation" class="active">
                                                 <a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Danh sách tài khoản</a>
+                                            </li>--> 
+                                            <li role="presentation" class="active">
+                                                <input type="text" class=" btn-round btn-block" placeholder="Trần Văn A..." ng-model="searchText">  
                                             </li>
                                         </ul>
                                         <div id="myTabContent" class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade active in" id="" aria-labelledby="home-tab">
                                                 <div class="row">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details" dir-paginate="listAccount in ManagerGetListAccountResponse  |  itemsPerPage: numPag  | filter:searchText">
                                                         <div class="well profile_view">
                                                             <div class="col-sm-12">
-                                                                <h4 class="brief"><i>Nguyễn Tài xế</i></h4>
+                                                                <!--<h4 class="brief"><i>{{listAccount.FullName}}</i></h4>-->
                                                                 <div class="left col-xs-7">
-                                                                    <h2>Số CMND: 154645421</h2>
+                                                                    <h2>
+                                                                        <i class="fa fa-user"></i> <i style="color: #5d40ce; font-family: serif">{{listAccount.FullName}}</i>
+                                                                    </h2> 
                                                                     <ul class="list-unstyled">
-                                                                        <li><i class="fa fa-calendar"></i> Ngày sinh: 15/5/1995</li>
-                                                                        <li><i class="fa fa-map-marker"></i> Địa chỉ: TP.HCM</li>
-                                                                        <li><i class="fa fa-phone"></i> SDT: 956789789</li>
-                                                                        <li><i class="fa fa-at"></i> Số bằng lái: 635456465</li>
+                                                                        <!--<li><i class="fa fa-calendar"></i> {{listAccount.CreateDate |  date:'dd/MM/yyyy'}}</li>-->
+                                                                        <li ng-show="listAccount.Gender === 1"><i class="fa fa-male"></i> Nam</li>
+                                                                        <li ng-show="listAccount.Gender !== 1"><i class="fa fa-male"></i> Nữ</li>
+                                                                        <li><i class="fa fa-hand-o-right"></i> Chức vụ: {{listAccount.AccountType}}</li>
+                                                                        <li ng-show="listAccount.IsChangePassword"><i class="fa fa-exchange"></i> Đã đỗi mật khẩu</li>
+                                                                        <li ng-show="!listAccount.IsChangePassword" style="color:red"><i class="fa fa-info-circle"></i> Chưa đỗi mật khẩu</li>
+
+                                                                        <li ng-show="listAccount.Account_Status ==='1'"><i class="fa fa-circle text-success"></i> Hoạt động</li>
+                                                                        <li ng-show="listAccount.Account_Status ==='0'" style="color:red"><i class="fa fa-unlock-alt"></i> Khóa</li>
+
+                                                                        <li ng-show="listAccount.Verify"><i class="fa fa-check-square-o"></i> Đã duyệt</li>
+                                                                        <li ng-show="!listAccount.Verify" style="color:red"><i class="fa fa-square-o"></i> Chưa duyệt</li>
+                                                                        <!--<li><i class="fa fa-phone"></i> {{listAccount.NumberPhone}}</li>-->
+                                                                        <!--<li><i class="fa fa-at"></i> Hạn {{listAccount.LicenseClass}}</li>-->
                                                                     </ul>
                                                                 </div>
                                                                 <div class="right col-xs-5 text-center">
-                                                                    <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/avt/user.jpg" alt="taixe1.png" class="img-responsive"></a>
+                                                                    <a href="../../../../images/avt/laixe.jpg" target="_blank"><img src="../../../../images/avt/laixe.jpg" alt="taixe1.png" class="img-responsive"></a>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-12 bottom text-center">
                                                                 <div class="col-xs-12 col-sm-6 emphasis">
                                                                 </div>
                                                                 <div class="col-xs-12 col-sm-6 emphasis">
-                                                                    <button type="button" class="btn btn-primary btn-xs" onclick="location.href='/TTTaixe/Chitiettaixe/taixe1'">
-                                                                        <i class="fa fa-automobile"> </i> Xem chi tiết
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                                                        <div class="well profile_view">
-                                                            <div class="col-sm-12">
-                                                                <h4 class="brief"><i>Nguyễn Tài xế</i></h4>
-                                                                <div class="left col-xs-7">
-                                                                    <h2>Số CMND: 154645421</h2>
-                                                                    <ul class="list-unstyled">
-                                                                        <li><i class="fa fa-calendar"></i> Ngày sinh: 15/5/1995</li>
-                                                                        <li><i class="fa fa-map-marker"></i> Địa chỉ: TP.HCM</li>
-                                                                        <li><i class="fa fa-phone"></i> SDT: 956789789</li>
-                                                                        <li><i class="fa fa-at"></i> Số bằng lái: 635456465</li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="right col-xs-5 text-center">
-                                                                    <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/avt/user.jpg" alt="taixe1.png" class="img-responsive"></a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xs-12 bottom text-center">
-                                                                <div class="col-xs-12 col-sm-6 emphasis">
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-6 emphasis">
-                                                                    <button type="button" class="btn btn-primary btn-xs" onclick="location.href='/TTTaixe/Chitiettaixe/taixe1'">
-                                                                        <i class="fa fa-automobile"> </i> Xem chi tiết
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                                                        <div class="well profile_view">
-                                                            <div class="col-sm-12">
-                                                                <h4 class="brief"><i>Nguyễn Tài xế</i></h4>
-                                                                <div class="left col-xs-7">
-                                                                    <h2>Số CMND: 154645421</h2>
-                                                                    <ul class="list-unstyled">
-                                                                        <li><i class="fa fa-calendar"></i> Ngày sinh: 15/5/1995</li>
-                                                                        <li><i class="fa fa-map-marker"></i> Địa chỉ: TP.HCM</li>
-                                                                        <li><i class="fa fa-phone"></i> SDT: 956789789</li>
-                                                                        <li><i class="fa fa-at"></i> Số bằng lái: 635456465</li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="right col-xs-5 text-center">
-                                                                    <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/avt/user.jpg" alt="taixe1.png" class="img-responsive"></a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xs-12 bottom text-center">
-                                                                <div class="col-xs-12 col-sm-6 emphasis">
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-6 emphasis">
-                                                                    <button type="button" class="btn btn-primary btn-xs" onclick="location.href='/TTTaixe/Chitiettaixe/taixe1'">
-                                                                        <i class="fa fa-automobile"> </i> Xem chi tiết
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                                                        <div class="well profile_view">
-                                                            <div class="col-sm-12">
-                                                                <h4 class="brief"><i>Nguyễn Tài xế</i></h4>
-                                                                <div class="left col-xs-7">
-                                                                    <h2>Số CMND: 154645421</h2>
-                                                                    <ul class="list-unstyled">
-                                                                        <li><i class="fa fa-calendar"></i> Ngày sinh: 15/5/1995</li>
-                                                                        <li><i class="fa fa-map-marker"></i> Địa chỉ: TP.HCM</li>
-                                                                        <li><i class="fa fa-phone"></i> SDT: 956789789</li>
-                                                                        <li><i class="fa fa-at"></i> Số bằng lái: 635456465</li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="right col-xs-5 text-center">
-                                                                    <a href="../../../../images/avt/user.jpg" target="_blank"><img src="../../../../images/avt/user.jpg" alt="taixe1.png" class="img-responsive"></a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xs-12 bottom text-center">
-                                                                <div class="col-xs-12 col-sm-6 emphasis">
-                                                                </div>
-                                                                <div class="col-xs-12 col-sm-6 emphasis">
-                                                                    <button type="button" class="btn btn-primary btn-xs" onclick="location.href='/TTTaixe/Chitiettaixe/taixe1'">
-                                                                        <i class="fa fa-automobile"> </i> Xem chi tiết
+                                                                    <button type="button" class="btn btn-round btn-warning " ng-click="ShowDetailAccount(listAccount.Account_ID)">
+                                                                        Xem chi tiết <i class="fa fa-share-square-o"> </i>
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -294,7 +399,17 @@
                         </div>
                     </div>
                     <!--End danh sách tài khoản-->
+                    <div class="row" style="float:right;"> 
+                        <div class="col-sm-3 col-xs-4" >
+                            Số lượng: <input type="number" ng-model="numPag" style= "width: 44px;" />
+                        </div>
 
+                        <div class="col-sm-9 col-xs-8">
+                            <dir-pagination-controls boundary-links="true" 
+                                                     direction-links="true">
+                            </dir-pagination-controls>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

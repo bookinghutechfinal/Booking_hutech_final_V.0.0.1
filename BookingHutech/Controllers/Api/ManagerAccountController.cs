@@ -23,12 +23,12 @@ namespace BookingHutech.Controllers.Api
 
         /// <summary>
         /// Anh.Tran: Create 10/3/2019
-        /// ManagerGetAccountByAccountStatus
+        /// ManagerGetAccountByAccountStatus: Lấy danh sách tài khoản theo loại tài khoản or trạng thái 
         /// </summary>
         /// <param name="">ManagerGetAccountByAccountStatusRequestModel</param>
         /// <returns>ApiResponse</returns> 
         [HttpPost]
-        public ApiResponse ManagerGetAccountByAccountStatus([FromBody] ManagerGetAccountByAccountStatusRequestModel request)
+        public ApiResponse ManagerGetAccountByAccountStatusAccountType([FromBody] ManagerGetAccountByAccountStatusRequestModel request)
         {
             
             try
@@ -55,7 +55,7 @@ namespace BookingHutech.Controllers.Api
                         // OK -> Đi tiếp. 
                         try
                         {
-                            var result  =  managerAccountServices.ManagerGetAccountByAccountStatusServices(request);
+                            var result  =  managerAccountServices.ManagerGetAccountByAccountStatusAccountTypeServices(request);
                             return ApiResponse.Success(result);
                         }
                         catch // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 

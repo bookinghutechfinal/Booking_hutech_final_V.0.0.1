@@ -272,6 +272,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\avt\avt.png" />
+    <Content Include="images\avt\laixe.jpg" />
     <Content Include="images\avt\user.jpg" />
     <Content Include="images\background\meeting.jpg" />
     <Content Include="images\icon\close_delete-512.png" />
@@ -940,6 +941,7 @@
     <Content Include="script\css\Table\jquery.dataTables.min.js" />
     <Content Include="script\css\Table\responsive.bootstrap.min.css" />
     <Content Include="wwwroot\controller\account\changePasswordController.js" />
+    <Content Include="wwwroot\controller\account\detailAccountController.js" />
     <Content Include="wwwroot\controller\account\managerAccountController.js" />
     <Content Include="wwwroot\controller\account\logoutController.js" />
     <Content Include="wwwroot\controller\account\loginController.js" />
@@ -956,6 +958,7 @@
     <Content Include="wwwroot\controller\booking\bookingMeetingHall\bookingMeetingHallController.js" />
     <Content Include="wwwroot\controller\home\homeController.js" />
     <Content Include="wwwroot\controller\support\SupportHomeController.js" />
+    <Content Include="wwwroot\extensions\dirPagination.js" />
     <Content Include="wwwroot\extensions\maps.js" />
     <Content Include="Scripts\moment\js\moment.min.js" />
     <Content Include="Scripts\morris.js\examples\area-as-line.html" />
@@ -1413,6 +1416,7 @@
     <Content Include="wwwroot\views\pages\account\changePassword.html" />
     <Content Include="wwwroot\views\pages\account\login.html" />
     <Content Include="wwwroot\views\pages\account\managerAccount.html" />
+    <Content Include="wwwroot\views\pages\account\popupDetailAccount.html" />
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />

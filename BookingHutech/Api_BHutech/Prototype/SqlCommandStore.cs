@@ -52,6 +52,10 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspManagerGetUnit = "uspManagerGetUnit";
         //Manager Get Unit. Create By Anh.Tran Create 22/3/2019. 
         public const string uspCreateNewAccount = "uspCreateNewAccount";
+        //Manager Get Role Master. Create By Anh.Tran Create 24/3/2019. 
+        public const string uspManagerGetRoleMaster = "uspManagerGetRoleMaster";
+        //Manager Get Account By Account Status Account Type. Create By Anh.Tran Create 24/3/2019. 
+        public const string uspManagerGetAccountByAccountStatusAccountType = "uspManagerGetAccountByAccountStatusAccountType";
 
     }
 

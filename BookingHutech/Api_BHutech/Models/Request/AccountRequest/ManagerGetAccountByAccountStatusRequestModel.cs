@@ -8,5 +8,6 @@ namespace BookingHutech.Api_BHutech.Models.Request.AccountRequest
     public class ManagerGetAccountByAccountStatusRequestModel
     {
         public string  Account_Status { get; set; }
+        public string AccountType { get; set; }
     }
 }

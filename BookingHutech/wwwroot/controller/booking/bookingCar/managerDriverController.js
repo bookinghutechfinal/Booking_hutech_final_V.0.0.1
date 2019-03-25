@@ -16,10 +16,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
             return;
         };
 
-
-        
-
-
+         
         // Lấy chi tiết tài khoản của admin và chi tiết quyền. 
         $scope.ManagerGetListDriver = function () {
             $account.ManagerGetListDriverByDriverStatus({}, function (res) {
@@ -116,7 +113,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
 
         }
 
-        // Mỡ popup xem chi tiết 1 lái xe. 
+        //// Mỡ popup xem chi tiết 1 lái xe. 
         $scope.OpenPopupDetailDriver = function (AccountInfoDatailRequest) {
             var modalInstance = $modal.open({
                 animation: true,
@@ -138,27 +135,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
             });
         }
 
-        // Mở popup thêm mới account . 
-        $scope.ManagerOpenpopupAddNewDriver  = function() {
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/account/popupCreateNewAccount.html',
-                controller: 'ManagerCreateNewAccountController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'lg',
-                resolve: {
-                    Request: function () {
-                        return null;
-                    },
-                }
-            });
-            modalInstance.result.then(function () {
-
-            });
-        }
+       
 
 
     }]);  
