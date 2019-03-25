@@ -124,5 +124,41 @@ namespace BookingHutech.Controllers.Api
                 return ApiResponse.ApiNotPermissionCall();
             }
         }
+
+        /// <summary>
+        /// SearchCost
+        /// Mr.Lam 25/3/2019
+        /// </summary>
+        /// <param name="request">CarID, Date_from, Date_to, CostsTypeID</param>
+        /// <returns>List Cost</returns>
+        [HttpPost]
+        public ApiResponse SearchCost(SearchCostRequestModel request)
+        {
+            try
+            {
+                // kiểm tra quyền, và nguồn gọi. 
+                if (Permissions.CheckAPIRequest(Request.Headers.GetValues(ApiHeaderKey.BHAPIWebCall.ToString()).First()) == (int)ApiRequestType.Web)
+                {
+                    try
+                    {
+                        var Response = costManagerServices.SearchCostServices(request);
+                        return ApiResponse.Success(Response);
+                    }
+                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    {
+                        return ApiResponse.Error();
+                    }
+                }
+                else  // sai header .
+                {
+                    return ApiResponse.ApiNotPermissionCall();
+                }
+            }
+            catch (Exception ex)  // thiếu header. 
+            {
+                LogWriter.WriteException(ex);
+                return ApiResponse.ApiNotPermissionCall();
+            }
+        }
     }
 }

@@ -151,11 +151,12 @@ mainmodule.config(['$translateProvider',
             'ResultSerachBookingCar': 'Kết quả tìm kiếm',
             'ListCar': 'Danh sách xe',
             /* --------  Cost Manager ---------- */
-            'RepairCostManager': 'Quản lý chi phí sửa chữa',
+            'CostManager': 'Quản lý chi phí',
+            'RepairCostManager': 'Sửa chữa',
             'TitileDetailRepairCost': 'Chi tiết sửa chữa',
             'TitileAddNewCost': 'Thêm chi phí',
-            'FuelCostManager': 'Quản lý chi phí nhiên liệu',
-            'OtherCostManager': 'Quản lý chi phí khác',
+            'FuelCostManager': 'Nhiên liệu',
+            'OtherCostManager': 'Chi phí khác',
             /* --------  Report Manager ---------- */
             'ReportCost': 'Thống kê chi phí',
             

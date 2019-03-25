@@ -25,27 +25,50 @@
                 </div>
                 <div class="x_content" style="display: block;">
 
-                    <div fusioncharts id="my-chart-id" width="100%" height="400" type="column2d" dataSource="{{myDataSource}}">
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="table-responsive">
-                        <table ng-table="tableParams" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
-                            <tr ng-repeat="item in $data " role="none" class="hover_">
-                                <td data-title="'STT'" style="width:2%" role="none" align="center">
-                                    {{$index+1}}
-                                </td>
-                                <td data-title="'Xe'" style="width:5%" align="left">
-                                    <!--filter="{CarNo:'text'}"-->
-                                    {{item.label}}
-                                </td>
-                                <td data-title="'Tổng tiền'" style="width:5%" align="left">
-                                    {{item.value | currency:""}} Đ
-                                </td>
-                            </tr>
-                        </table>
+
+                        <div class="col-md-3 col-sm-3 col-xs-12" style="float:right">
+                            <div class="mb15 mt30">
+                                <button class="btn btn-warning btn-sm btn-round btn-block dropdown-toggle" aria-expanded="false" data-toggle="dropdown" ng-click="export()">
+                                    <span class="glyphicon glyphicon-download-alt"></span> Xuất báo cáo <span class="caret"></span>
+                                </button>
+                                <ul role="menu" class="dropdown-menu" style="float:right">
+                                    <li>
+                                        <a href=""><span class="fa fa-file-word-o"></span> Xuất file word</a>
+                                    </li>
+                                    <li>
+                                        <a href=""><span class="fa fa-file-excel-o"></span> Xuất file excel</a>
+                                    </li>
+                                    <li>
+                                        <a href=""><span class="fa fa-file-pdf-o"></span> Xuất file pdf</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <br />
+
+                        <div fusioncharts id="my-chart-id" width="100%" height="400" type="column2d" dataSource="{{myDataSource}}">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="table-responsive">
+                            <table ng-table="tableParams" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                                <tr ng-repeat="item in $data " role="none" class="hover_">
+                                    <td data-title="'STT'" style="width:2%" role="none" align="center">
+                                        {{$index+1}}
+                                    </td>
+                                    <td data-title="'Xe'" style="width:5%" align="left">
+                                        <!--filter="{CarNo:'text'}"-->
+                                        {{item.label}}
+                                    </td>
+                                    <td data-title="'Tổng tiền'" style="width:5%" align="left">
+                                        {{item.value | currency:""}} Đ
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
 
     </div>

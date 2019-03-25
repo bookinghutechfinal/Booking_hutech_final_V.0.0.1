@@ -37,7 +37,7 @@
                             controller: 'popupManagerRepairCostController',
                             controllerAs: 'content',
                             backdrop: 'static',
-                            size: 'md',
+                            size: 'lg',
                             resolve: {
                                 ListDetailRepairCost: function () {
                                     return ListDetailRepairCostResponseModel;
@@ -67,7 +67,7 @@
                 controller: 'popupManagerRepairCostController',
                 controllerAs: 'content',
                 backdrop: 'static',
-                size: 'md',
+                size: 'lg',
                 resolve: {
                     ListDetailRepairCost: function () {
                         return null;

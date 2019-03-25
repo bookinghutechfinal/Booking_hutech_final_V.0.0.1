@@ -188,8 +188,10 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateRoleMasterRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\UpdateGroupRoleRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetDetailRepairCostRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetAccountByAccountStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetDetailAccountByAccountIDRequestModel.cs" />
@@ -805,6 +807,11 @@
     <Content Include="script\teamplate\build\images\loading.gif" />
     <Content Include="script\teamplate\build\js\custom.js" />
     <Content Include="script\teamplate\build\js\custom.min.js" />
+    <Content Include="script\teamplate\Button-turn\Button-turn.css" />
+    <Content Include="script\teamplate\daterangepicker\bootstrap-datetimepicker.css" />
+    <Content Include="script\teamplate\daterangepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="script\teamplate\daterangepicker\daterangepicker.js" />
+    <Content Include="script\teamplate\daterangepicker\moment.min.js" />
     <Content Include="script\teamplate\iCheck\icheck.js" />
     <Content Include="script\teamplate\iCheck\icheck.min.js" />
     <Content Include="script\teamplate\iCheck\skins\all.css" />
