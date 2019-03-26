@@ -64,7 +64,7 @@
                 "subCaption": "Tháng 4/2019",
                 "xAxisName": "Xe",
                 "yAxisName": "Tổng tiền",
-                "numberSuffix": "Đ",
+                "numberSuffix": "",
                 "theme": "fusion",
             },
             //"data": $scope.dataChart

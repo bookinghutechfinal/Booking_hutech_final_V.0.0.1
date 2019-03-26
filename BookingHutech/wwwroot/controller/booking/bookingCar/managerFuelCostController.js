@@ -19,9 +19,10 @@
             $scope.ClearData();
             $scope.ShowListCost = false;
 
+            //reset
             var request = $scope.searchModel;
-            request.Date_from = null;
-            request.Date_to = null;
+            angular.element('#myDate2').val("");
+            angular.element('#myDate1').val("");
             request.CarID = 0;
 
             $BookingCar.getListCost(CostsTypeIDRequestModel, function (response) {
@@ -59,8 +60,8 @@
             var searchCostRequestModel = {
                 CarID: request.CarID,
                 CostsTypeID: 1,
-                Date_to: request.Date_to,
-                Date_from: request.Date_from
+                Date_to: angular.element('#myDate2').val(),
+                Date_from: angular.element('#myDate1').val()
             }
 
             $scope.ShowListCost = true;

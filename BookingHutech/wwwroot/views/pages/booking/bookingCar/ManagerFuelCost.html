@@ -13,7 +13,6 @@
     }
 
     .ed_border {
-        border: ridge;
         border-radius: 5px
     }
 
@@ -52,24 +51,24 @@
 
                                 <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
                                 <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <!--<div class='input-group date' id='myDatepicker' >
-                                        <input type="date" class="form-control ed_border"  ng-model="searchModel.Date_from" />
+                                    <div class='input-group date' id='myDatepicker' >
+                                        <input type="text" class="form-control ed_border" id='myDate1' />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
-                                    </div>-->
-                                    <input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">
+                                    </div>
+                                    <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">-->
                                 </div>
 
                                 <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
                                 <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <!--<div class='input-group date' id='myDatepicker2'>
-                                        <input type='text' class="form-control ed_border" ng-model="searchModel.Date_to" />
+                                    <div class='input-group date' id='myDatepicker2'>
+                                        <input type='text' class="form-control ed_border" id='myDate2' />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
-                                    </div>-->
-                                    <input class="form-control ed_border" value="" ng-model="searchModel.Date_to" type="date" style="cursor:pointer">
+                                    </div>
+                                    <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_to" type="date" style="cursor:pointer">-->
                                 </div>
 
                                 <div class="control-label col-md-1 col-sm-1 col-xs-12">Xe:</div>
@@ -108,29 +107,29 @@
                     <div class="clearfix"></div>
 
                     <div class="table-responsive" ng-show="!ShowListCost">
-                        <table ng-table="tableParams" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                        <table ng-table="tableParams" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
                             <tr ng-repeat="item in $data " role="none" class="hover_">
-                                <td data-title="'Xe'" style="width:5%" align="left">
+                                <td data-title="'Xe'" style="width:5%" align="left" sortable="'CarNo'">
                                     <!--filter="{CarNo:'text'}"-->
                                     {{item.CarNo}}
                                 </td>
-                                <td data-title="'Địa điểm'" style="width:5%" align="left">
+                                <td data-title="'Địa điểm'" style="width:5%" align="left" sortable="'RepairAddres'">
                                     {{item.RepairAddres}}
                                 </td>
-                                <td data-title="'nội dung'" style="width:5%" align="left">
+                                <td data-title="'nội dung'" style="width:5%" align="left" sortable="'Content'">
                                     {{item.Content}}
                                 </td>
-                                <td data-title="'Số lượng'" style="width:5%" align="left">
+                                <td data-title="'Số lượng'" style="width:5%" align="left" sortable="'Quantity'">
                                     <!--filter="{CarNo:'text'}"-->
                                     {{item.Quantity}} lit
                                 </td>
-                                <td data-title="'Tổng tiền'" style="width:5%" align="left">
+                                <td data-title="'Tổng tiền'" style="width:5%" align="left" sortable="'TotalMoney'">
                                     {{item.TotalMoney | currency : ""}} Đ
                                 </td>
-                                <td data-title="'Ngày thực hiện'" style="width:5%" align="left">
+                                <td data-title="'Ngày thực hiện'" style="width:5%" align="left" sortable="'CreateDate'">
                                     {{item.CreateDate | date:'dd/MM/yyyy'}}
                                 </td>
-                                <td data-title="'Ghi chú'" style="width:5%" align="left">
+                                <td data-title="'Ghi chú'" style="width:5%" align="left" >
                                     {{item.Note}}
                                 </td>
                             </tr>
@@ -138,26 +137,26 @@
                     </div>
                     <!--search cost-->
                     <div class="table-responsive" ng-show="ShowListCost">
-                        <table ng-table="tableParams1" class="table table-striped jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                        <table ng-table="tableParams1" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
                             <tr ng-repeat="item in $data " role="none" class="hover_">
-                                <td data-title="'Xe'" style="width:5%" align="left">
+                                <td data-title="'Xe'" style="width:5%" align="left" sortable="'CarNo'">
                                     <!--filter="{CarNo:'text'}"-->
                                     {{item.CarNo}}
                                 </td>
-                                <td data-title="'Địa điểm'" style="width:5%" align="left">
+                                <td data-title="'Địa điểm'" style="width:5%" align="left" sortable="'RepairAddres'">
                                     {{item.RepairAddres}}
                                 </td>
-                                <td data-title="'nội dung'" style="width:5%" align="left">
+                                <td data-title="'Nội dung'" style="width:5%" align="left" sortable="'Content'">
                                     {{item.Content}}
                                 </td>
-                                <td data-title="'Số lượng'" style="width:5%" align="left">
+                                <td data-title="'Số lượng'" style="width:5%" align="left" sortable="'Quantity'">
                                     <!--filter="{CarNo:'text'}"-->
                                     {{item.Quantity}} lit
                                 </td>
-                                <td data-title="'Tổng tiền'" style="width:5%" align="left">
+                                <td data-title="'Tổng tiền'" style="width:5%" align="left" sortable="'TotalMoney'">
                                     {{item.TotalMoney | currency : ""}} Đ
                                 </td>
-                                <td data-title="'Ngày thực hiện'" style="width:5%" align="left">
+                                <td data-title="'Ngày thực hiện'" style="width:5%" align="left" sortable="'CreateDate'">
                                     {{item.CreateDate | date:'dd/MM/yyyy'}}
                                 </td>
                                 <td data-title="'Ghi chú'" style="width:5%" align="left">
