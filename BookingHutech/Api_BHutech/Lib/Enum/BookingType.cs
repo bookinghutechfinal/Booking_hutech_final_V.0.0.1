@@ -20,7 +20,6 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
         }
         public enum ApiRequestType
         {
- 
             Web = 1,
             Mobile = 2, 
         }
@@ -36,6 +35,14 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
         {
             return "123456789"; 
         }
-
+        public enum BookingStatus
+        {
+            Offer = 1,
+            WaitForApproval=2,
+            Reserved = 3,
+            Processing = 4,
+            finish = 5,
+            Cancel = 6
+        }
     }
 }

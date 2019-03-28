@@ -27,37 +27,7 @@
         }
 
         $scope.Init();
-        //$scope.dataChart = listReportCost;
-        $scope.dataChart = [
-            {
-                "label": "KG-1 0001",
-                "value": 100000
-            },
-            {
-                "label": "KG-1 0002",
-                "value": 200000
-            },
-            {
-                "label": "KG-1 0003",
-                "value": 300000
-            },
-            {
-                "label": "KG-1 0004",
-                "value": 8000000
-            },
-            {
-                "label": "KG-1 0005",
-                "value": 50000
-            },
-            {
-                "label": "KG-1 0007",
-                "value": 260000
-            },
-            {
-                "label": "KG-1 0008",
-                "value": 3900000
-            }
-        ];
+
         $scope.myDataSource = {
             "chart": {
                 "caption": "Thống kê chi phí xe trong tháng",

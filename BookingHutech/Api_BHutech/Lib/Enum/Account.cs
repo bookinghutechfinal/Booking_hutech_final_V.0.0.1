@@ -28,5 +28,11 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
         Success = 1
     }
 
+    public enum UpdateCarStatusResponseType
+    {
+        Fail = 0,
+        Success = 1
+    }
+
 
 }

@@ -1,0 +1,143 @@
+﻿<style>
+    .modal-header {
+        background-color: #2A3F54;
+    }
+</style>
+
+<!-- Modal content-->
+<!-- Test  -->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
+        <h4 class="modal-title">{{'TitileUpdateCarInfo' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_content">
+
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <div class="profile_img">
+                            <div id="crop-avatar">
+                                <!-- Current avatar -->
+                                <a href="../../../../images/img/{{CarInfo.CarImage}}" target="_blank">
+                                    <img src="../../../../images/img/{{CarInfo.CarImage}}" alt="{{CarInfo.CarImage}}" class="img-responsive avatar-view">
+                                </a>
+                            </div>
+                        </div>
+                        <h3>{{CarInfo.CarName}}</h3>
+
+                        <ul class="list-unstyled user_data">
+                            <li><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
+                            <li><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
+                            <li><i class="fa fa-calendar"></i> Hạn lưu hành: {{CarInfo.Expires | date:'dd/MM/yyyy'}}</li>
+                            <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{CarInfo.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
+                            <li ng-show="CarInfo.CarStatus ==1"><i class="fa fa-circle text-success"></i> Hoạt động</li>
+                            <li ng-show="CarInfo.CarStatus ==4" style="color:red"><i class="fa fa-circle text-success" style="color:red"></i> Bảo trì, sửa chữa</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12 profile_left">
+                        <div class="form-horizontal form-label-left input_mask">
+                            <div class="form-group">
+                                <div class="control-label col-md-4 col-sm-4 col-xs-12">Tên xe: <i style="color:red;">(*)</i></div>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <input class="form-control text-box single-line ed_border" value="{{CarInfo.CarName}}" type="text">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="control-label col-md-4 col-sm-4 col-xs-12">Biển số: <i style="color:red;">(*)</i></div>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <input class="form-control text-box single-line ed_border" value="{{CarInfo.CarNo}}" type="text">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="control-label col-md-4 col-sm-4 col-xs-12">Hạn lưu hành: <i style="color:red;">(*)</i></div>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <div class='input-group date' id='myDatepicker1'>
+                                        <input type='text' class="form-control ed_border" value="{{CarInfo.Expires | date:'YYYY-MM-DD'}}" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="control-label col-md-4 col-sm-4 col-xs-12">Hạn bảo hiểm: <i style="color:red;">(*)</i></div>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <div class='input-group date' id='myDatepicker2'>
+                                        <input type='text' class="form-control ed_border" value="{{CarInfo.InsuranceExpires | date:'YYYY-MM-DD'}}" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="control-label col-md-4 col-sm-4 col-xs-12">Loại xe: <i style="color:red;">(*)</i></div>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <select class="form-control ed_border" ng-model="CreateNewAccountmModel.AccountType" style="width: 100%;">
+                                        <!--<option selected value="all">{{'All' | translate }}</option>-->
+                                        <option selected value="">-- Vui lòng chọn --</option>
+                                        <option>
+                                            8 chỗ
+                                        </option>
+                                        <option>
+                                            16 chỗ
+                                        </option>
+                                        <option>
+                                            32 chỗ
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <div class="mb15 mt30">
+                            <button class="btn btn-danger btn-round btn-block"
+                                    ng-click="ClosePopup()">
+                                <!--ng-disabled="!isSubmitingEnable()"-->
+                                <i class="glyphicon glyphicon-remove"></i>
+                                <span>Hủy</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb15 mt30">
+                            <button class="btn btn-primary btn-round btn-block" type="submit"
+                                    ng-click="ClosePopup()">
+                                <!--ng-disabled="!isSubmitingEnable()"-->
+                                <i class="glyphicon glyphicon-ok"></i>
+                                <span>Lưu</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+</div>
+
+<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>
+<script src="../../../../../script/teamplate/daterangepicker/daterangepicker.js"></script>
+<script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+    $('#myDatepicker1').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+    $('#myDatepicker2').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+</script>

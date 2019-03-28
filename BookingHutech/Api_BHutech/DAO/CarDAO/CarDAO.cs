@@ -9,6 +9,8 @@ using BookingHutech.Api_BHutech.Models.Response;
 using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.BookingCar;
+using System.Data;
+using BookingHutech.Api_BHutech.Prototype;
 
 namespace BookingHutech.Api_BHutech.DAO.CarDAO
 {
@@ -103,6 +105,43 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
         }
 
+        public UpdateCarStatusResponseModel UpdateCarStatusDAO(String sqlStore, UpdateCarStatusRequestModel request)
+        {
+            UpdateCarStatusResponseModel res = new UpdateCarStatusResponseModel();
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@CarID", SqlDbType.Int).Value = request.CarID;
+            cmd.Parameters.Add("@CarStatus", SqlDbType.Int).Value = request.CarStatus;
+
+            cmd.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();
+                res.ReturnCode = (UpdateCarStatusResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                if (res.ReturnCode != UpdateCarStatusResponseType.Success)
+                {
+                    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, res.ReturnCode, (int)res.ReturnCode));
+                    throw new Exception();
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+        }
     }
 }
  

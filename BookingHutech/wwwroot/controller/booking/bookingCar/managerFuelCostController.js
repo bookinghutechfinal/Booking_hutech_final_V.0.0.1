@@ -72,9 +72,11 @@
                     case 1:
                         var result = response.data.Data.ListRepairCost;
                         $scope.tableParams1 = new NgTableParams({}, { dataset: result });
+                        if (result.length==0)
+                            toastr.error("Không có dữ liệu.");
                         break;
                     case 2:
-                        toastr.error("Không tìm thấy.");
+                        toastr.error("Không có dữ liệu.");
                         break;
                 }
             });

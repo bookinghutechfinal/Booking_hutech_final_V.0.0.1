@@ -1,0 +1,223 @@
+﻿
+<style>
+    .x_title li {
+        display: inline-block;
+    }
+
+    .x_title ul {
+        margin-left: -45px;
+    }
+
+    .profile_details:nth-child(3n) {
+        clear: none;
+    }
+
+    .ed_border {
+        border-radius: 5px
+    }
+</style>
+<div class="clearfix">
+    <div class="row">
+        <!--Start: Tìm kiếm xe-->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul>
+                        <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                        <li><a href="#/main/booking-car"><h5>/ {{'ListCar' | translate}}</h5></a></li>
+                        <li><a href=""><h5>/ {{'DetailCar' | translate}}</h5></a></li>
+                    </ul>
+                </div>
+                <div class="x_content" style="display: block;">
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Chi tiết xe</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                                        <div class="profile_img">
+                                            <div id="crop-avatar">
+                                                <!-- Current avatar -->
+                                                <a href="../../../../images/img/{{CarInfo.CarImage}}" target="_blank">
+                                                    <img src="../../../../images/img/{{CarInfo.CarImage}}" alt="{{CarInfo.CarImage}}" class="img-responsive avatar-view">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <h3>{{CarInfo.CarName}}</h3>
+                                        <ul class="list-unstyled user_data">
+                                            <li><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
+                                            <li><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
+                                            <li><i class="fa fa-calendar"></i> Hạn lưu hành: {{CarInfo.Expires | date:'dd/MM/yyyy'}}</li>
+                                            <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{CarInfo.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
+                                            <li ng-show="CarInfo.CarStatus ==1"><i class="fa fa-circle text-success"></i> Hoạt động</li>
+                                            <li ng-show="CarInfo.CarStatus ==4" style="color:red"><i class="fa fa-circle text-success" style="color:red"></i> Bảo trì, sửa chữa</li>
+                                            <li ng-show="CarInfo.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Đã xóa</li>
+                                        </ul>
+                                        <div style="display:block;background-color:#cde0c4;color:#356635;padding:5px">
+                                            <h6><span style="font-weight:bold">Cập nhật ngày:</span> {{CarInfo.LastModifiedDate | date:'dd/MM/yyyy HH:mm'}}</h6>
+                                        </div>
+                                        <br />
+                                        <button ng-click="updateCar(CarInfo)" class="btn btn-success btn-round btn-block"><i class="fa fa-edit m-right-xs"></i> Chỉnh sửa</button>
+                                        <br />
+                                        <button class="btn btn-warning btn-round btn-block dropdown-toggle pull-right" aria-expanded="false" data-toggle="dropdown" ng-click="export()">
+                                            <span class="glyphicon glyphicon-cog"></span> Cập nhật tình trạng xe
+                                        </button>
+                                        <ul role="menu" class="dropdown-menu" style="float:right">
+                                            <li>
+                                                <a ng-click="updateCarStatus(4)"><span class="glyphicon glyphicon-wrench"></span> Bảo trì, sửa chữa</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="updateCarStatus(1)"><span class="glyphicon glyphicon-thumbs-up"></span> Hoạt động</a>
+                                            </li>
+                                            <li>
+                                                <a ng-click="updateCarStatus(0)"><span class="glyphicon glyphicon-trash"></span> Đã xóa</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                        <div class="profile_title">
+                                            <div class="col-md-6">
+                                                <h2>Tình hình hoạt động</h2>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
+                                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                    <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- start Biểu đồ -->
+                                        <div fusioncharts id="my-chart-id" width="100%" height="400" type="column2d" dataSource="{{myDataSource}}"></div>
+                                        <!-- end of Biểu đồ -->
+                                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                                <li role="presentation" class="active">
+                                                    <button ng-show="!isShowActivitive" class="btn btn-primary btn-round btn-block col-xs-6" ng-click="ShowActivitive()" type="button">
+                                                        <i class="fa fa-folder"></i>
+                                                        <span class="ng-binding">Hoạt động</span>
+                                                    </button>
+                                                    <button ng-show="isShowActivitive" class="btn btn-warning btn-round btn-block col-xs-6" ng-click="ShowActivitive()" type="button">
+                                                        <i class="fa fa-folder-open-o"></i>
+                                                        <span class="ng-binding">Hoạt động</span>
+                                                    </button>
+                                                </li>
+                                                <li role="presentation" class="active">
+                                                    <button ng-show="!isShowCost" class="btn btn-primary btn-round btn-block col-xs-6" ng-click="ShowCost()" type="button">
+                                                        <i class="fa fa-folder"></i>
+                                                        <span class="ng-binding">Chi phí</span>
+                                                    </button>
+                                                    <button ng-show="isShowCost" class="btn btn-warning btn-round btn-block col-xs-6" ng-click="ShowCost()" type="button">
+                                                        <i class="fa fa-folder-open-o"></i>
+                                                        <span class="ng-binding">Chi phí</span>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                            <div id="myTabContent" class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab" ng-show="isShowActivitive">
+
+                                                    <!-- start recent activity -->
+                                                    <ul class="messages">
+                                                        <li ng-repeat="data in activitiveCar | limitTo : 5">
+                                                            <img src="../../../../../images/avt/laixe.jpg" class="avatar" alt="Avatar">
+                                                            <div class="message_date">
+                                                                <h3 class="date text-info">{{data.DateTimeFrom | date:'dd'}}</h3>
+                                                                <p class="month">{{data.DateTimeFrom | date:'MM'}}</p>
+                                                            </div>
+                                                            <div class="message_wrapper">
+                                                                <h4 class="heading">Đơn bị yêu cầu: {{data.UnitRequest}}</h4>
+                                                                <blockquote class="message">Lộ trình đi và về: {{data.RouteTo}} / {{data.RouteBack}}</blockquote>
+                                                                <blockquote class="message">Giờ đi và về: {{data.DateTimeFrom | date :'HH:mm'}} - {{data.DateTimeTo | date :'HH:mm'}}</blockquote>
+                                                                <blockquote class="message">Tổng số KM: {{data.DistanceTotal}} KM</blockquote>
+                                                                <br />
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <center>
+                                                        <a href=""><h4> Xem tất cả </h4></a>
+                                                    </center>
+                                                    <!-- end recent activity -->
+
+                                                </div>
+
+                                                <div id="myTabContent" class="tab-content">
+                                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="home-tab" ng-show="isShowCost">
+
+                                                        <!-- start user projects -->
+                                                        <table class="data table table-striped no-margin">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Project Name</th>
+                                                                    <th>Client Company</th>
+                                                                    <th class="hidden-phone">Hours Spent</th>
+                                                                    <th>Contribution</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>1</td>
+                                                                    <td>New Company Takeover Review</td>
+                                                                    <td>Deveint Inc</td>
+                                                                    <td class="hidden-phone">18</td>
+                                                                    <td class="vertical-align-mid">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>2</td>
+                                                                    <td>New Partner Contracts Consultanci</td>
+                                                                    <td>Deveint Inc</td>
+                                                                    <td class="hidden-phone">13</td>
+                                                                    <td class="vertical-align-mid">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>3</td>
+                                                                    <td>Partners and Inverstors report</td>
+                                                                    <td>Deveint Inc</td>
+                                                                    <td class="hidden-phone">30</td>
+                                                                    <td class="vertical-align-mid">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>4</td>
+                                                                    <td>New Company Takeover Review</td>
+                                                                    <td>Deveint Inc</td>
+                                                                    <td class="hidden-phone">28</td>
+                                                                    <td class="vertical-align-mid">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- end user projects -->
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

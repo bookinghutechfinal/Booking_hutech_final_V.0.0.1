@@ -63,6 +63,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/bookingCar.html',
             controller: 'BookingCarController',
         })
+        .state('main.cardetail', {
+            url: '/detail-car/:CarID',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/carDetail.html',
+            controller: 'DetailCarController',
+        })
         .state('main.repairCost', {
             url: '/manager-repair-cost',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerRepairCost.html',
@@ -150,6 +155,9 @@ mainmodule.config(['$translateProvider',
             'SearchBookingCar': 'Tìm Kiếm',
             'ResultSerachBookingCar': 'Kết quả tìm kiếm',
             'ListCar': 'Danh sách xe',
+            'DetailCar': 'Chi tiết xe',
+            'TitileUpdateCarInfo': 'Cập nhật thông tin xe',
+            
             /* --------  Cost Manager ---------- */
             'CostManager': 'Quản lý chi phí',
             'RepairCostManager': 'Sửa chữa',

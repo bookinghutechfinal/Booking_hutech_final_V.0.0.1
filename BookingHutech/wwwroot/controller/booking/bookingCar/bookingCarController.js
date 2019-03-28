@@ -1,5 +1,5 @@
-﻿mainmodule.controller('BookingCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr','$BookingCar',
-    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar) {
+﻿mainmodule.controller('BookingCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar','$alert',
+    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $alert) {
 
         // Hàm 1: khai báo các biến tiện ích
         $scope.init = function () {
@@ -11,11 +11,12 @@
             $scope.getListCar();
         }
 
-        // Hàm 2: Lấy danh sách xe còn hoạt động và danh sách loại xe. . 
+        $scope.numPag = 10;
+        // Hàm Lấy danh sách xe còn hoạt động và danh sách loại xe. . 
         $scope.getListCar = function () {
             var getListcarRequestModel = {
                 CarStatus1: 0,//xe đã xóa
-                CarStatus2: 4 //xe bảo trì, sửa chữa
+                CarStatus2: 1000 //không có điều kiện
             }
 
             $BookingCar.getListCar(getListcarRequestModel, function (res) {
@@ -40,15 +41,12 @@
 
         //Tìm kiếm xe
         $scope.searchCar = function (request) {
-            //4.1.  Lưu trữ ngày giờ đi về và xe tiện cho việc làm phiếu đặt xe và lưu lại lịch sử tìm xe.
-            //$cookies.putObject("ProfileReqModel", request); 
+
             $scope.SearchModelReq = { 
                 CarTypeID: request.CarTypeID
             } 
             $scope.ClearData();
             $scope.ShowListCars = true;
-            //4.4  Câp nhật lại danh sách xe. 
-            //     Lấy lên danh sách đơn đăng ký của tất cả các loại xe để kiểm tra thỏa điều kiện hiển thị danh sách xe thỏa điều kiện tìm kiếm.
 
             if (request.CarTypeID != 'all') {
                 $BookingCar.getListCarByCartypeID($scope.SearchModelReq, function (res) {

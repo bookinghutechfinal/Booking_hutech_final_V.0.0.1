@@ -2,6 +2,7 @@
 using BookingHutech.Api_BHutech.BHutech_Services.CarServices;
 using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Lib.Helper;
+using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.Response;
 using System;
 using System.Collections.Generic;
@@ -13,18 +14,19 @@ using static BookingHutech.Api_BHutech.Lib.Enum.BookingType;
 
 namespace BookingHutech.Controllers.Api
 {
-    public class ManagerReportController : ApiController
+    public class RegistrationCarController : ApiController
     {
-        ManagerReportServices managerReportServices = new ManagerReportServices();
+        RegistrationCarServices registrationCarServices = new RegistrationCarServices();
         Helper helper = new Helper();
 
         /// <summary>
-        /// ReportCost
-        /// Mr.Lam 14/3/2019
+        /// GetRegistrationCarByCarID
+        /// Create by Mr.Lam 28/03/2019
         /// </summary>
-        /// <returns>List ReportCost</returns>
-        [HttpGet]
-        public ApiResponse ReportCost()
+        /// <param name="GetCarInfoRequestModel"></param>
+        /// <returns>List RegistrationCar by CarID</returns>
+        [HttpPost]
+        public ApiResponse GetRegistrationCarByCarID(GetCarInfoRequestModel request)
         {
             try
             {
@@ -47,10 +49,10 @@ namespace BookingHutech.Controllers.Api
                         //    case 102:
                         //        return ApiResponse.AccountDelete();
                         //}
-                        // OK -> Đi tiếp. 
+                        // OK -> Đi tiếp.
                         try
                         {
-                            var Response = managerReportServices.ReportCostServices();
+                            var Response = registrationCarServices.GetRegistrationCarByCarIDServices(request);
                             return ApiResponse.Success(Response);
                         }
                         catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 

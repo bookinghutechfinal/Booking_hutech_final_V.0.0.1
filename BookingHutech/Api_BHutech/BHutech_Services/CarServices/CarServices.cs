@@ -9,6 +9,7 @@ using BookingHutech.Api_BHutech.Lib;
 using System.Web.Http;
 using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
+using BookingHutech.Api_BHutech.Models.BookingCar;
 
 namespace BookingHutech.Api_BHutech.CarServices.CarServices
 {
@@ -20,7 +21,7 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
         /// Mr.Lam 8/3/2019
         /// GetListCar + List cartype
         /// </summary>
-        /// <param name=""></param>
+        /// <param name="">GetListCarRequestModel</param>
         /// <returns>ListCarResponseModel</returns> 
         public ListCarResponseModel GetListCarServices(GetListCarRequestModel request)
         {
@@ -55,7 +56,7 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
             ListCarResponseModel result = new ListCarResponseModel();
             try
             {
-                string uspGetListCarByCarTypeID = String.Format(Prototype.SqlCommandStore.uspGetListCarByCarTypeID, (int)BookingType.CarType.Delete, (int)BookingType.CarType.Maintenance,request.CarTypeID);
+                string uspGetListCarByCarTypeID = String.Format(Prototype.SqlCommandStore.uspGetListCarByCarTypeID, 1000,1001,request.CarTypeID);
                 result.ListCar = carDAO.GetListCarDAO(uspGetListCarByCarTypeID);
                 return result;
 
@@ -68,5 +69,41 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
 
         }
 
+        /// <summary>
+        /// Mr.Lam 27/3/2019
+        /// Get car info
+        /// </summary>
+        /// <param name="">GetCarInfoRequestModel</param>
+        /// <returns>CarInfo</returns> 
+        public List<CarInfo> GetCarInfoServices(GetCarInfoRequestModel request)
+        {
+            List<CarInfo> result = new List<CarInfo>();
+            try
+            {
+                string uspGetCarInfo = String.Format(Prototype.SqlCommandStore.uspGetCarInfo, request.CarID);
+                result = carDAO.GetListCarDAO(uspGetCarInfo);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        public UpdateCarStatusResponseModel UpdateCarStatusServices(UpdateCarStatusRequestModel request)
+        {
+            try
+            {
+                UpdateCarStatusResponseModel response = new UpdateCarStatusResponseModel();
+                string uspUpdateCarStatus = String.Format(Prototype.SqlCommandStore.uspUpdateCarStatus);
+                response = carDAO.UpdateCarStatusDAO(uspUpdateCarStatus, request);
+                return response;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

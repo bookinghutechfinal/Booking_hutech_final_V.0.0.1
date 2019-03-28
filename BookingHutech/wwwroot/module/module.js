@@ -7,7 +7,6 @@
         'ui.bootstrap',
         'ui.router',
         'oc.lazyLoad',
-        'ngTable',
         'pascalprecht.translate',
         'ngTable',            /*ng-table*/
         'toastr',              /*toastr show messeger*/

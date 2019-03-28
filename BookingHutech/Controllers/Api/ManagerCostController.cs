@@ -34,10 +34,32 @@ namespace BookingHutech.Controllers.Api
                 {
                     try
                     {
-                        var Response = costManagerServices.GetListRepairCostServices();
-                        return ApiResponse.Success(Response);
+                        // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+                        //JavaScriptSerializer js = new JavaScriptSerializer();
+                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+
+                        //switch (Result)
+                        //{
+                        //    case 114:
+                        //        return ApiResponse.LostSession();
+                        //    case 150:
+                        //        return ApiResponse.NotPermission();
+                        //    case 102:
+                        //        return ApiResponse.AccountDelete();
+                        //}
+                        // OK -> Đi tiếp. 
+                        try
+                        {
+                            var Response = costManagerServices.GetListRepairCostServices();
+                            return ApiResponse.Success(Response);
+                        }
+                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        {
+                            return ApiResponse.Error();
+                        }
                     }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    catch// Không thể kiểm tra quyền. 
                     {
                         return ApiResponse.Error();
                     }
@@ -69,10 +91,32 @@ namespace BookingHutech.Controllers.Api
                 {
                     try
                     {
-                        var Response = costManagerServices.GetDetailRepairCostServices(request);
-                        return ApiResponse.Success(Response);
+                        // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+                        //JavaScriptSerializer js = new JavaScriptSerializer();
+                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+
+                        //switch (Result)
+                        //{
+                        //    case 114:
+                        //        return ApiResponse.LostSession();
+                        //    case 150:
+                        //        return ApiResponse.NotPermission();
+                        //    case 102:
+                        //        return ApiResponse.AccountDelete();
+                        //}
+                        // OK -> Đi tiếp. 
+                        try
+                        {
+                            var Response = costManagerServices.GetDetailRepairCostServices(request);
+                            return ApiResponse.Success(Response);
+                        }
+                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        {
+                            return ApiResponse.Error();
+                        }
                     }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    catch// Không thể kiểm tra quyền. 
                     {
                         return ApiResponse.Error();
                     }
@@ -105,10 +149,32 @@ namespace BookingHutech.Controllers.Api
                 {
                     try
                     {
-                        var Response = costManagerServices.GetListCostServices(request);
-                        return ApiResponse.Success(Response);
+                        // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+                        //JavaScriptSerializer js = new JavaScriptSerializer();
+                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+
+                        //switch (Result)
+                        //{
+                        //    case 114:
+                        //        return ApiResponse.LostSession();
+                        //    case 150:
+                        //        return ApiResponse.NotPermission();
+                        //    case 102:
+                        //        return ApiResponse.AccountDelete();
+                        //}
+                        // OK -> Đi tiếp. 
+                        try
+                        {
+                            var Response = costManagerServices.GetListCostServices(request);
+                            return ApiResponse.Success(Response);
+                        }
+                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        {
+                            return ApiResponse.Error();
+                        }
                     }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    catch// Không thể kiểm tra quyền. 
                     {
                         return ApiResponse.Error();
                     }
@@ -141,10 +207,32 @@ namespace BookingHutech.Controllers.Api
                 {
                     try
                     {
-                        var Response = costManagerServices.SearchCostServices(request);
-                        return ApiResponse.Success(Response);
+                        // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+                        //JavaScriptSerializer js = new JavaScriptSerializer();
+                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+
+                        //switch (Result)
+                        //{
+                        //    case 114:
+                        //        return ApiResponse.LostSession();
+                        //    case 150:
+                        //        return ApiResponse.NotPermission();
+                        //    case 102:
+                        //        return ApiResponse.AccountDelete();
+                        //}
+                        // OK -> Đi tiếp. 
+                        try
+                        {
+                            var Response = costManagerServices.SearchCostServices(request);
+                            return ApiResponse.Success(Response);
+                        }
+                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        {
+                            return ApiResponse.Error();
+                        }
                     }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    catch// Không thể kiểm tra quyền. 
                     {
                         return ApiResponse.Error();
                     }

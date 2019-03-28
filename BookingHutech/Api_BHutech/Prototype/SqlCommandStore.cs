@@ -56,7 +56,13 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspManagerGetRoleMaster = "uspManagerGetRoleMaster";
         //Manager Get Account By Account Status Account Type. Create By Anh.Tran Create 24/3/2019. 
         public const string uspManagerGetAccountByAccountStatusAccountType = "uspManagerGetAccountByAccountStatusAccountType";
-
+        //Manager Get Role Master. Create By Mr.Lam Create 27/3/2019. 
+        public const string uspGetCarInfo = "uspGetCarInfo {0}";
+        //Update CarStatus. Create By Mr.Lam Create 28/3/2019. 
+        public const string uspUpdateCarStatus = "uspUpdateCarStatus";
+        //Update CarStatus. Create By Mr.Lam Create 28/3/2019. 
+        public const string uspGetRegistrationCarByCarID = "uspGetRegistrationCarByCarID {0},{1}";
+        
     }
 
 }

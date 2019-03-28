@@ -9,6 +9,22 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
         }, success, finish)
     };
 
+    this.getCarInfo = function (request, success, finish) {
+            $dao.call({
+                method: 'POST',
+                operater: 'Car/GetCarInfo',
+                data: request
+            }, success, finish)
+    };
+
+    this.updateCarStatus = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'Car/UpdateCarStatus',
+            data: request
+        }, success, finish)
+    };
+
     this.getListCarByCartypeID = function (request, success, finish) {
         $dao.call({
             method: 'POST',
@@ -50,6 +66,13 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
         $dao.call({
             method: 'POST',
             operater: 'ManagerCost/SearchCost',
+            data: request
+        }, success, finish)
+    };
+    this.getRegistrationCarByCarID = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'RegistrationCar/GetRegistrationCarByCarID',
             data: request
         }, success, finish)
     };
