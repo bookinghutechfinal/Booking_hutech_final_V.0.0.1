@@ -188,6 +188,7 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\DecentralizationRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetAccountByAccountStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetRoleMasterByAccountIDRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateRoleMasterRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\UpdateGroupRoleRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetCarInfoRequestModel.cs" />
@@ -798,6 +799,7 @@
     <Content Include="Scripts\jquery\src\wrap.js" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap.css" />
     <Content Include="Scripts\vendor\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="script\angular-idle\angular-idle.min.js" />
     <Content Include="script\charts\angular-fusioncharts.js" />
     <Content Include="script\charts\fusioncharts.charts.js" />
     <Content Include="script\charts\fusioncharts.js" />
@@ -1175,6 +1177,7 @@
     <Content Include="wwwroot\service\dataEntity.js" />
     <Content Include="wwwroot\service\language.js" />
     <Content Include="wwwroot\views\common\alert\error404.html" />
+    <Content Include="wwwroot\views\pages\account\timeout-dialog.html" />
     <Content Include="wwwroot\views\common\header\header.html" />
     <Content Include="wwwroot\views\common\error\error404.html" />
     <Content Include="wwwroot\views\common\footer\footer.html" />
@@ -1435,6 +1438,7 @@
     <Content Include="wwwroot\views\pages\account\managerAccount.html" />
     <Content Include="wwwroot\views\pages\account\popupDetailAccount.html" />
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
+    <Content Include="wwwroot\views\pages\account\warning-dialog.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\carDetail.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />

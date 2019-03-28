@@ -12,7 +12,7 @@
                             </font>
                         </span>
                     </a>
-                    
+
                 </div>
                 <div class="clearfix"></div>
 
@@ -37,12 +37,12 @@
                         <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Car Manager</font></font></h3>
                         <ul class="nav side-menu">
                             <!--<li ng-show="menu">
-        <a><i class="fa fa-table"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Những cái bàn </font></font><span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu" style="">
-            <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Những cái bàn</font></font></a></li>
-            <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bảng động</font></font></a></li>
-        </ul>
-    </li>-->
+                                <a><i class="fa fa-table"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Những cái bàn </font></font><span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="">
+                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Những cái bàn</font></font></a></li>
+                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bảng động</font></font></a></li>
+                                </ul>
+                            </li>-->
                             <li>
                                 <a><i class="fa fa-car"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Quản lý xe </font></font><span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu" style="">
@@ -154,7 +154,8 @@
         </div>
 
         <div class="right_col " role="main" style="min-height: 619px; background-color: #eaedf0">
-            <h2>{{titleMain}}</h2>
+            <h2>{{titleMain}}</h2> 
+            <!--end-->
             <div ui-view></div>
         </div>
         <footer ng-include="'wwwroot/views/common/footer/footer.html'"></footer>
@@ -170,3 +171,4 @@
 </div>
 <script src="../../script/js/custom.min.js"></script>
 <script src="../../script/js/jquery.min.js"></script>
+

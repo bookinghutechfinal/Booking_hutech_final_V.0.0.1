@@ -14,12 +14,13 @@ using System.Net.Http.Headers;
 using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.DAO;
 using BookingHutech.Api_BHutech.Prototype;
+using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 
 namespace BookingHutech.Api_BHutech.Lib.Helper
 {
     public class Helper : ApiController
     {
-       
+
         public string CreateID()
         {
             String TodayTime = DateTime.Now.ToString("ddHHmm");
@@ -52,7 +53,42 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
         {
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
-
-        
+        /// <summary>
+        /// Trả về kết quả update cái gì. 
+        /// </summary>
+        /// <param name="request">
+        //  Account_Status   -> 1
+        //  Password  - IsChangePassword -> 2
+        //  Verify           -> 3
+        //  AccountType      -> 4 
+        /// <returns></returns>
+        public int ManagerUpdateTypes(ManagerUpdateAccountRequestModel request)
+        {
+            try
+            {
+                if (!DataEntity.checkDataNull(request.Account_Status))
+                {
+                    return 1;
+                }
+                if (!DataEntity.checkDataNull(request.Password) && !DataEntity.checkDataNull(request.IsChangePassword))
+                {
+                    return 2;
+                }
+                if (!DataEntity.checkDataNull(request.Verify))
+                {
+                    return 3;
+                }
+                if (!DataEntity.checkDataNull(request.AccountType))
+                {
+                    return 4;
+                }
+                return 0; // có lỗi
+            }
+            catch (Exception)
+            { 
+                throw;
+            }
+          
+        }
     }
 }

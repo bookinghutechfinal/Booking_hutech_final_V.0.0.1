@@ -444,7 +444,37 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
 
         }
 
+        /// <summary>
+        /// Anh.Trần Create 26/3/2019 Cập nhật trạng thái tài khoản, duyệt, loại tài khoản
+        /// </summary>
+        /// <param name="sqlStore">StrQuery</param> 
+        public void ManagerUpdateAccountDAO(String StrQuery)
+        {
+          
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(StrQuery, con);   
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery(); 
+                con.Close(); 
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
 
+        } 
 
     }
 

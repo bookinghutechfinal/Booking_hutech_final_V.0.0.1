@@ -1,12 +1,12 @@
 ﻿
 // vùng hiển thị dự liệu chính. 
-mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$modal', '$http', '$cookies', 'toastr', '$dao', '$account',
-    function ($scope, $state, $rootScope, $modal, $http, $cookies, toastr, $dao, $account) {
+mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state', '$rootScope', '$modal', '$http', '$cookies', 'toastr', '$dao', '$account',
+    function ($scope, Idle, Keepalive, $state, $rootScope, $modal, $http, $cookies, toastr, $dao, $account) {
 
 
         $scope.gotoHome = function () {
             $state.go('main.home');
-            location.reload(); 
+            location.reload();
             return;
         };
         $scope.goToChangePassword = function () {
@@ -18,13 +18,19 @@ mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$mod
             $state.go('login');
             return;
         };
-        $scope.Error = function () { 
+        $scope.Error = function () {
             $cookies.remove('AccountInfo');
             $cookies.remove("AccountInfoCheckPermissions");
-            $state.go('login'); 
-            location.reload(); 
+            $state.go('login');
+            location.reload();
         }
-        var AccountInfo = $account.getAccountInfo();
+      
+        try {
+            var AccountInfo = $account.getAccountInfo();
+        }
+        catch (err) {
+            $scope.goToLogin();
+        }
         var result = CheckAccountLoginAndChangePass(AccountInfo);
         switch (result) {
             case 1:
@@ -60,7 +66,96 @@ mainmodule.controller('mainController', ['$scope', '$state', '$rootScope', '$mod
             });
         }
 
+
+        // Anh.Set timeout
+        var pc = this;
+        pc.data = "You're Idle. Do Something!!!";
+        $scope.started = false;
+
+        function closeModals() {
+            if ($scope.warning) {
+                $scope.warning.close();
+                $scope.warning = null;
+            }
+
+            if ($scope.timeout) {
+                $scope.timeout.close();
+                $scope.timeout = null;
+            }
+        }
+        $scope.$on('IdleStart', function () {
+            $scope.warning = $modal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: '/wwwroot/views/pages/account/warning-dialog.html',
+                controller: 'ModalInstanceCtrl',
+                //controllerAs: 'pc',
+                controllerAs: 'content',
+                backdrop: 'static',
+                size: 'sm',
+                resolve: {
+                    data: function () {
+                        return pc.data;
+                    }
+                }
+            });
+
+            $scope.warning.result.then(function () {
+                console.log('Warning modal is closing now...');
+            });
+        });
+
+        $scope.$on('IdleTimeout', function () {
+            console.log('Idle timeout');
+            closeModals(); 
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            toastr.error("Phiên làm việc của bạn đã hết hạn!"); 
+            $scope.timeout = $modal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: '/wwwroot/views/pages/account/timeout-dialog.html',
+                controller: 'ModalInstanceCtrl',
+                //controllerAs: 'pc',
+                controllerAs: 'content',
+                backdrop: 'static',
+                size: 'sm',
+                resolve: {
+                    data: function () {
+                        return pc.data;
+                    }
+                }
+            });
+
+            // Your log out code goes here
+            console.log('Your log out code may goes here...');
+
+            $scope.timeout.result.then(function () {
+                console.log('Timeout modal is closing now...');
+            });
+        });
+
+
+        $scope.$on('IdleEnd', function () {
+            console.log('Start closing warning modal');
+            closeModals();
+        });
+         
+        //Idle.watch(); // start set timeout
+        //end 
+
     }]);
+mainmodule.controller('ModalInstanceCtrl', ['$scope', 'data', '$state', '$modal', '$modalInstance', function ($scope, data, $state, $modal, $modalInstance) {
+   var pc = this;
+    pc.title = data;
+    $scope.Login = function () {
+        $modalInstance.close();
+        $state.go('login');   
+    }
+    
+}]);
 
 
-
+ 
