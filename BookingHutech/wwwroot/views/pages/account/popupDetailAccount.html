@@ -132,7 +132,10 @@
                                                 <td ng-show="!AccountDriverDetail.Verify" style="color:red">
                                                     <i class="fa fa-square-o"></i>
                                                     <label>  Chưa duyệt</label>
-                                                    <input type="checkbox" class="js-switch" />
+                                                    <i ng-click="buttonVerify(AccountDriverDetail.Account_ID)">
+                                                        <input type="checkbox" class="js-switch" ng-checked="checkupdateVerify" ng-show="checkupdateVerify" />
+                                                        <input type="checkbox" class="js-switch" ng-checked="!checkupdateVerify" ng-show="!checkupdateVerify" />
+                                                    </i>
                                                 </td>
                                                 <td ng-show="AccountDriverDetail.AccountType =='Lái xe'">
                                                     <i class="fa fa-external-link user-profile-icon"></i>

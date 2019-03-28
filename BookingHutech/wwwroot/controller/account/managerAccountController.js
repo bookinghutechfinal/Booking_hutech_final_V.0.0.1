@@ -22,19 +22,8 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
             BirthDay: null,
             Addres: null,
             AccountType: null
-        }
-        $scope.RoleStatus = [
-            {
-                'RoleStatusName': 'Đã Khóa',
-                'RoleStatusID': 0
-            },
-            {
-                'RoleStatusName': 'Hoạt động',
-                'RoleStatusID': 1
-            },
-        ];
-        $scope.searchText = "";
-
+        } 
+        $scope.searchText = ""; 
         // Hàm Lấy chi tiết tài khoản của admin và chi tiết quyền. 
         $scope.GetDetailAccountInfoAndRole = function () {
             $scope.RequestAccountID = {
@@ -61,16 +50,13 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                         for (var i = 0; i < RoleResponse.length; i++) {
                             // AccountStatusName
                             if (RoleResponse[i].RoleDetail_Status === false) {
-                                RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[0].RoleStatusName;
+                                RoleResponse[i].RoleDetail_Status = RoleStatus[0].RoleStatusName;
                             } else {
-                                RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[1].RoleStatusName;
-                            }
-
+                                RoleResponse[i].RoleDetail_Status = RoleStatus[1].RoleStatusName;
+                            } 
                         }
                         // Hiển thị thông tin quyền 
-                        $scope.tableParams1 = new NgTableParams({}, { dataset: RoleResponse });
-
-
+                        $scope.tableParams1 = new NgTableParams({}, { dataset: RoleResponse }); 
                         // Mặc định lấy danh sách tài khoản  người dùng theo loại tài khoản và trạng thái account.  
                         $scope.ManagerGetListAccountRequestModel = {
                             AccountType: 7, // Lái xe
@@ -429,8 +415,10 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
             }
 
         }
+        // Button Tìm kiếm account
         $scope.SearchAccount = function () {
             $scope.ManagerGetListAccount($scope.SearchAccountReqModel);
         }
+         
 
     }]);  

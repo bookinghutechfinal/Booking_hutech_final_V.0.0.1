@@ -15,6 +15,15 @@
         'ng-fusioncharts',  /*Anh Create 14/3/2019*/
         'angularUtils.directives.dirPagination', /*Anh.Create 25/3/2019. Phân trang*/
     ]);
+//Set timeout
+angular.module('BHutechAppModule').config(['KeepaliveProvider', 'IdleProvider', function (KeepaliveProvider, IdleProvider) {
+    IdleProvider.idle(5);
+    IdleProvider.timeout(5);
+    KeepaliveProvider.interval(10);
+
+    IdleProvider.interrupt('keydown wheel mousedown touchstart touchmove scroll');
+}]);
+
 
 //var teamplate = {
 //    header: 'wwwroot/views/common/header.html',
@@ -34,3 +43,14 @@ var Account_StatusRequest = [
     { Account_Status: 1, Account_StatusName: "Hoạt động" },
     { Account_Status: 2, Account_StatusName: "Khóa" }, 
 ]
+// 
+var RoleStatus = [
+    {
+        'RoleStatusName': 'Đã Khóa',
+        'RoleStatusID': 0
+    },
+    {
+        'RoleStatusName': 'Hoạt động',
+        'RoleStatusID': 1
+    },
+];
