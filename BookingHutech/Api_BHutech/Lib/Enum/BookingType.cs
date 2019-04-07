@@ -51,11 +51,15 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
         public enum BookingStatus
         {
             Offer = 1,
-            WaitForApproval=2,
-            Reserved = 3,
-            Processing = 4,
-            finish = 5,
-            Cancel = 6
+            DeanVerify = 2, //trưởng khoa duyệt
+            DeanNotVerify = 3, //trưởng khoa hủy
+            AdminVerify = 4, //phòng quản trị duyệt
+            AdminNotVerify = 5, //phòng quản trị hủy
+            WaitingForSchoolVerify = 6, // Chờ trường duyệt
+            SchoolVerify = 7, // trường duyệt.
+            SchoolNotVerify = 8, // trường không duyệt.
+            Processing = 9, //đang thực hiện
+            Finish = 10 //Hoàn thành
         }
     }
 }

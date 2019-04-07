@@ -53,3 +53,17 @@ var RoleStatus = [
         'RoleStatusID': 1
     },
 ];
+// trạng thái đơn cấp phát.
+var RegistrationStatus = [
+    { RegistrationStatusType: 1, RegistrationStatusName: "Thư ký lập đơn" },
+    { RegistrationStatusType: 2, RegistrationStatusName: "Trưởng khoa duyệt" },
+    { RegistrationStatusType: 3, RegistrationStatusName: "Trưởng khoa hủy" },
+    { RegistrationStatusType: 4, RegistrationStatusName: "Phòng quản trị duyệt" },
+    { RegistrationStatusType: 5, RegistrationStatusName: "Phòng quản trị hủy" },
+    { RegistrationStatusType: 6, RegistrationStatusName: "Chờ trường duyệt" },
+    { RegistrationStatusType: 7, RegistrationStatusName: "trường duyệt" },
+    { RegistrationStatusType: 8, RegistrationStatusName: "Trường không duyệt" },
+    { RegistrationStatusType: 9, RegistrationStatusName: "Đang thực hiện" },
+    { RegistrationStatusType: 10, RegistrationStatusName: "Hoàn thành" },
+]
+

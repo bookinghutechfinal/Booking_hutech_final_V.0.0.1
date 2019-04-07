@@ -96,8 +96,10 @@
             $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn đổi tình trạng xe này?'), function () {
                 $BookingCar.updateCarStatus(updateCarStatusRequestModel, function (response) {
                     if (response.data.ReturnCode === 1) {
-                        $scope.getCarInfo();
+                       // $scope.getCarInfo();
                         toastr.success("Bạn đã đổi thành công.");
+                        $scope.CarInfo.CarStatus = updateCarStatusRequestModel.CarStatus;
+
                     }
                 });
             }); 

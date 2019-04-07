@@ -26,7 +26,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
             GetRegistrationCarByCarIDResponseModel result = new GetRegistrationCarByCarIDResponseModel();
             try
             {
-                string uspGetRegistrationCarByCarID = String.Format(Prototype.SqlCommandStore.uspGetRegistrationCarByCarID, request.CarID, (Int32)BookingStatus.finish);
+                string uspGetRegistrationCarByCarID = String.Format(Prototype.SqlCommandStore.uspGetRegistrationCarByCarID, request.CarID, (Int32)BookingStatus.Finish);
                 result.GetRegistrationCarByCarID = registrationCarDAO.GetRegistrationCarDAO(uspGetRegistrationCarByCarID);
                 return result;
             }
