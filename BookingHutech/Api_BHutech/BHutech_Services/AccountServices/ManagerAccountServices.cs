@@ -1,5 +1,7 @@
 ﻿using BookingHutech.Api_BHutech.DAO.AccountDAO;
 using BookingHutech.Api_BHutech.Lib;
+using BookingHutech.Api_BHutech.Lib.Helper;
+using BookingHutech.Api_BHutech.Lib.Utils;
 using BookingHutech.Api_BHutech.Models.Request;
 using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 using BookingHutech.Api_BHutech.Models.Response;
@@ -51,10 +53,10 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             try
             {
                 ManagerAccountDAO managerAccountDAO = new ManagerAccountDAO();
-                 
-                string stringSqlManagerGetDetailAccountByAccountID = String.Format(Prototype.SqlCommandStore.uspManagerGetDetailAccountByAccountID, request.Account_ID );
-                string stringSqluspGetDetailRuleCodeByAccountID = String.Format(Prototype.SqlCommandStore.uspGetDetailRuleCodeByAccountID, request.Account_ID );
-               
+
+                string stringSqlManagerGetDetailAccountByAccountID = String.Format(Prototype.SqlCommandStore.uspManagerGetDetailAccountByAccountID, request.Account_ID);
+                string stringSqluspGetDetailRuleCodeByAccountID = String.Format(Prototype.SqlCommandStore.uspGetDetailRuleCodeByAccountID, request.Account_ID);
+
                 accountDetailResponse.GetAccountInfo = managerAccountDAO.GetDetailAccountByAccountIDDAO(stringSqlManagerGetDetailAccountByAccountID);
                 if (accountDetailResponse.GetAccountInfo.Count != 0)
                 {
@@ -75,13 +77,14 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
         /// </summary>
         /// <param name="request">UpdateGroupRoleRequestModel</param>
         /// <returns>UpdateGroupRoleResponseModel</returns>
-        public UpdateGroupRoleResponseModel ManagerUpdateGroupRoleService(UpdateGroupRoleRequestModel request) {
+        public UpdateGroupRoleResponseModel ManagerUpdateGroupRoleService(UpdateGroupRoleRequestModel request)
+        {
 
             try
             {
                 UpdateGroupRoleResponseModel req = new UpdateGroupRoleResponseModel();
                 string stringSqlManagerUpdateRroupRole = String.Format(Prototype.SqlCommandStore.uspManagerUpdateRroupRole);
-                req = managerAccountDAO.ManagerUpdateGroupRoleDAO(stringSqlManagerUpdateRroupRole,request);
+                req = managerAccountDAO.ManagerUpdateGroupRoleDAO(stringSqlManagerUpdateRroupRole, request);
                 return req;
             }
             catch (Exception)
@@ -91,7 +94,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             }
 
 
-           
+
         }
 
         /// <summary>
@@ -207,5 +210,51 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             }
 
         }
+
+        /// <summary>
+        /// Anh.Trần Create 26/3/2019 Cập nhật trạng thái tài khoản, duyệt, loại tài khoản
+        /// </summary>
+        /// <param name="request">ManagerUpdateRoleMasterRequestModel</param> 
+        public void ManagerUpdateAccountServices(ManagerUpdateAccountRequestModel request)
+        {
+            Helper helper = new Helper();
+            try
+            {
+                //1. Update trạng thái account. 
+                //2. Update password. 
+                //3. Duyệt tài khoản. 
+                //4. Loại tài  khoản.
+                string stringSqlUpdateAccount = null;
+                request.LastModifiedDate = DateTime.Parse(helper.ToDayDateTime());
+                int result = helper.ManagerUpdateTypes(request);
+                switch (result)
+                {
+                    case 1:   
+                        stringSqlUpdateAccount = "UPDATE Account SET Account_Status = '" + request.Account_Status + "' , LastModifiedDate = '" + request.LastModifiedDate + "'  WHERE Account_ID = '" + request.Account_ID + "' ";
+                        break;
+                    case 2:  
+                            // stringSqlUpdateAccount = "UPDATE Account SET  "; 
+                        request.Password = EncodePassword.CreateSHA256(request.Password);
+                        //stringSqlUpdateAccount = "UPDATE Account SET Account_Status = '" + request.Account_Status + "' , LastModifiedDate = '" + request.LastModifiedDate + "'  WHERE Account_ID = 'BK008' ";
+                        break;
+                    case 3: 
+                        stringSqlUpdateAccount = "UPDATE Account SET Verify = '" + request.Verify + "' , LastModifiedDate = '" + request.LastModifiedDate + "'  WHERE Account_ID = '" + request.Account_ID + "' ";
+                        break;
+                    case 4:
+                        stringSqlUpdateAccount = "UPDATE Account SET AccountType = '" + request.AccountType + "' , LastModifiedDate = '" + request.LastModifiedDate + "'  WHERE Account_ID = '" + request.Account_ID + "' ";
+                        break;
+                    case 0:
+                        throw new Exception(); 
+                }
+                managerAccountDAO.ManagerUpdateAccountDAO(stringSqlUpdateAccount);
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
+
     }
 }

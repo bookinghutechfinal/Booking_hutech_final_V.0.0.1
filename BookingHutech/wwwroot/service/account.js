@@ -23,6 +23,13 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     };
+    this.ManagerUpdateAccount = function (request, success, finish) {
+        $dao.call({
+            method: 'Patch',
+            operater: 'Account/ManagerUpdateAccount',
+            data: request
+        }, success, finish)
+    }
 
 
     this.ChangePassword = function (request, success, finish) {
@@ -160,6 +167,7 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     }
+   
 
   
 

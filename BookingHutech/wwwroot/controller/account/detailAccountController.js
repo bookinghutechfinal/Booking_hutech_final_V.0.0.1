@@ -1,6 +1,6 @@
 ﻿
-mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'AccountInfoDatailRequest', 'NgTableParams', '$account',
-    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountInfoDatailRequest, NgTableParams, $account) {
+mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'AccountInfoDatailRequest', 'NgTableParams', '$account','$alert',
+    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountInfoDatailRequest, NgTableParams, $account, $alert) {
         // AccountInfoDatailRequest: Tham số nhận dữ liệu từ màn hình quản lý lái xe.   
         $scope.Titile = "Chi tiết tài xế";
         $scope.ClosePopup = function () {
@@ -227,9 +227,30 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
 
             });
         }
+        // Button cập nhật account. 
+        //1. Chưa duyệt
+        $scope.checkupdateVerify = false; 
+        $scope.buttonVerify = function (request) {  
+            var VerifyAccountRequestModel = {
+                Account_ID: request.Account_ID,
+                Verify: 1 // duyệt
+            }
+            // ok gọi api update thành công sẽ cập nhật lại lưới và hiển thị lại
+            $alert.showConfirmUpdateNewProfile('Duyệt tài khoản này!', function () {
+                $account.ManagerUpdateAccount(VerifyAccountRequestModel, function (res) {
+                    switch (res.data.ReturnCode) {
+                        case 1:
+                           // $scope.AccountDriverDetail.Verify = true;
+                            //$scope.checkupdateVerify = true; 
+                            toastr.success("Duyệt thành công");
+                            break;
+                    }
 
+                });
 
+            }); //end
 
-
+        }
+        
 
     }]);  
