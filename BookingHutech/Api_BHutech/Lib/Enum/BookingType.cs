@@ -35,6 +35,19 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
         {
             return "123456789"; 
         }
+        #region List carstatus
+        public class ListCarStatus {
+            public int[] listCarStatus = { 0, 1, 4 };
+        }
+
+        public enum CarStatus
+        {
+            deleted = 0,
+            active = 1,
+            repairing = 5
+        }
+        #endregion
+
         public enum BookingStatus
         {
             Offer = 1,

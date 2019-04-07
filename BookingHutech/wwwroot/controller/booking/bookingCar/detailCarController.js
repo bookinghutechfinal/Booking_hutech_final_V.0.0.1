@@ -1,12 +1,14 @@
-﻿mainmodule.controller('DetailCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$stateParams', '$alert','$rootScope',
-    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $stateParams, $alert, $rootScope) {
+﻿mainmodule.controller('DetailCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$stateParams', '$alert', '$rootScope','NgTableParams',
+    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $stateParams, $alert, $rootScope, NgTableParams) {
 
         // Hàm 1: khai báo các biến tiện ích
         $scope.init = function () {
             $scope.ActiviteMonth = [];
-
+            var ListCost = [];
+            $scope.CarInfo = [];
             $scope.getCarInfo();
             $scope.getRegistrationCarByCarID();
+            $scope.getListCostByCarID();
         }
 
         // Hàm Lấy danh sách xe
@@ -15,15 +17,18 @@
                 CarID: $stateParams.CarID
             }
             $BookingCar.getCarInfo(getCarInfoRequestModel, function (res) {
-               
-                var carInfo = res.data.Data[0];
-                if (res.data.ReturnCode === 1) {
-                    $rootScope.CarInfo = carInfo;  // chi tiết xe
-                }
+                
+                if (res.data.Data.length != 0) {
+                    var carInfo = res.data.Data[0];
+                    $scope.CarInfo = carInfo;  // chi tiết xe
+                } else {
+                    toastr.error("Xin lỗi. Không tìm thấy xe này trong hệ thống!");
+                    $state.go("main.bookingcar");
+                } 
 
             });
         }
-
+        //lấy thông tin các đơn đặt xe đã hoàn thành theo CarID
         $scope.getRegistrationCarByCarID = function () {
             var RegistrationCarRequestModel = {
                 CarID: $stateParams.CarID
@@ -39,7 +44,7 @@
                         "value": null
                     };
                     obj = {
-                        "label": listData[i].DateTimeFrom,
+                        "label": FormatDateTimeByDBResponse(listData[i].DateTimeFrom),
                         "value": listData[i].DistanceTotal
                     }
                     $scope.ActiviteMonth.push(obj);
@@ -47,9 +52,24 @@
             });
         }
 
+        //Get list cost by CarID
+        $scope.getListCostByCarID = function () {
+            var CarIDRequestModel = {
+                CarID: $stateParams.CarID,
+            }
+
+            $BookingCar.getListCostByCarID(CarIDRequestModel, function (response) {
+                var List = response.data.Data.ListRepairCost;
+                if (response.data.ReturnCode === 1) {
+                    ListCost = List;
+                }
+                $scope.tableParams = new NgTableParams({}, { dataset: ListCost });
+            });
+        }
+
         $scope.init();
         
-        $scope.isShowActivitive = true;
+        $scope.isShowActivitive = false;
         $scope.ShowActivitive = function () {//mở/đóng hoạt động gần đây
             if (!$scope.isShowActivitive) {
                 $scope.isShowActivitive = true;
@@ -97,7 +117,7 @@
         };
         //popup chỉnh sửa thông tin xe
         $scope.updateCar = function () {
-            var CarInfoResponeModel = $rootScope.CarInfo;
+            var CarInfoResponeModel = $scope.CarInfo;
             var modalInstance = $modal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
@@ -108,7 +128,7 @@
                 backdrop: 'static',
                 size: 'md',
                 resolve: {
-                    CarInfo: function () {
+                    CarInfoRequest: function () {
                         return CarInfoResponeModel;
                     },
                 }
@@ -121,10 +141,10 @@
     }]);  
 
 mainmodule.controller('popupDetailCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance','CarInfo',
-    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance, CarInfo) {
+    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance, CarInfoRequest) {
 
         $scope.init = function () {
-            $scope.CarInfo = CarInfo;
+            $scope.CarInfo = CarInfoRequest;
         }
 
         $scope.ClosePopup = function () {

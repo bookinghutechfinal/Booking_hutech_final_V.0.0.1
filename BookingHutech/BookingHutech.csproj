@@ -285,6 +285,8 @@
     <Content Include="images\avt\laixe.jpg" />
     <Content Include="images\avt\user.jpg" />
     <Content Include="images\background\meeting.jpg" />
+    <Content Include="images\bills\bill.png" />
+    <Content Include="images\bills\bill1.jpg" />
     <Content Include="images\icon\close_delete-512.png" />
     <Content Include="images\img\hoi_truong.jpg" />
     <Content Include="images\img\car.jpg" />

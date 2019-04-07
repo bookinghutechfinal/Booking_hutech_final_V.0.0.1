@@ -10,6 +10,7 @@ using System.Web.Http;
 using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.BookingCar;
+using static BookingHutech.Api_BHutech.Lib.Enum.BookingType;
 
 namespace BookingHutech.Api_BHutech.CarServices.CarServices
 {
@@ -78,6 +79,7 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
         public List<CarInfo> GetCarInfoServices(GetCarInfoRequestModel request)
         {
             List<CarInfo> result = new List<CarInfo>();
+            ListCarResponseModel listCar = new ListCarResponseModel();
             try
             {
                 string uspGetCarInfo = String.Format(Prototype.SqlCommandStore.uspGetCarInfo, request.CarID);
@@ -91,10 +93,22 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
             }
         }
 
+        /// <summary>
+        /// Mr.Lam 1/4/2019
+        /// UpdateCarStatusServices
+        /// </summary>
+        /// <param name="">CarID, CarStatus</param>
+        /// <returns></returns> 
         public UpdateCarStatusResponseModel UpdateCarStatusServices(UpdateCarStatusRequestModel request)
         {
             try
             {
+                ListCarStatus Status = new ListCarStatus();
+                if (Array.IndexOf(Status.listCarStatus, request.CarStatus) < 0)
+                {
+                    LogWriter.WriteLogMsg("Mã trạng thái không đúng");
+                    throw new Exception();
+                }
                 UpdateCarStatusResponseModel response = new UpdateCarStatusResponseModel();
                 string uspUpdateCarStatus = String.Format(Prototype.SqlCommandStore.uspUpdateCarStatus);
                 response = carDAO.UpdateCarStatusDAO(uspUpdateCarStatus, request);

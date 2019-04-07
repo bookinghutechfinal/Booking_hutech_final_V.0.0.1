@@ -121,6 +121,11 @@
                                 <td data-title="'Ngày thực hiện'" style="width:5%" align="left" sortable="'CreateDate'">
                                     {{item.CreateDate | date:'dd/MM/yyyy'}}
                                 </td>
+                                <td data-title="'Hóa đơn'" style="width:5%" align="left">
+                                    <a href="../../../../../images/bills/{{item.ImagerBill}}" target="_blank">
+                                        <img src="../../../../../images/bills/{{item.ImagerBill}}" class="avatar" alt="Avatar">
+                                    </a>
+                                </td>
                                 <td data-title="'Ghi chú'" style="width:5%" align="left">
                                     {{item.Note}}
                                 </td>

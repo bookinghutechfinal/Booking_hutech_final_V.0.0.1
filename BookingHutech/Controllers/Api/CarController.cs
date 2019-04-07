@@ -174,7 +174,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = carServices.GetCarInfoServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -196,6 +196,12 @@ namespace BookingHutech.Controllers.Api
             }
         }
 
+        /// <summary>
+        /// Mr.Lam 1/4/2019
+        /// UpdateCarStatus
+        /// </summary>
+        /// <param name="">CarID, CarStatus</param>
+        /// <returns></returns> 
         [HttpPost]
         public ApiResponse UpdateCarStatus(UpdateCarStatusRequestModel request)
         {

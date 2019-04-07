@@ -110,5 +110,27 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 throw;
             }
         }
+
+        /// <summary>
+        /// GetListCostByCarIDServices
+        /// Mr.Lam 1/4/2019
+        /// </summary>
+        /// <param name="request">CarID</param>
+        /// <returns>List Cost</returns>
+        public ListRepairCostResponseModel GetListCostByCarIDServices(GetCarInfoRequestModel request)
+        {
+            ListRepairCostResponseModel result = new ListRepairCostResponseModel();
+            try
+            {
+                string uspGetListCostByCarID = String.Format(Prototype.SqlCommandStore.uspGetListCostByCarID, request.CarID);
+                result.ListRepairCost = managerCostDAO.GetListRepairCostDAO(uspGetListCostByCarID);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
     }
 }
