@@ -111,7 +111,8 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
 
                 request.Account_ID = helper.CreateID();
                 request.Verify = true;
-                request.Avatar =  UploadFile.UploadImage(request.Avatar, request.Account_ID);   
+                string fileName = "Avatar" + helper.CreateID() + ".png";
+                request.Avatar =  UploadFile.UploadImage(request.Avatar, fileName);   
                 string stringSqluspCreateNewAccount = String.Format(Prototype.SqlCommandStore.uspCreateNewAccount);
                 accountDAO.CreateNewAccountDAO(stringSqluspCreateNewAccount, request);
             }

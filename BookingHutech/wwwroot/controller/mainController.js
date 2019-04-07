@@ -66,6 +66,28 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             });
         }
 
+        //// Mỡ popup xem chi tiết profile 
+        $scope.OpenPopupShowProfile = function () {
+            var modalInstance = $modal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: '/wwwroot/views/pages/account/popupProfileAccount.html',
+                controller: 'ProfileAccountController',
+                controllerAs: 'content',
+                backdrop: 'static',
+                size: 'lg',
+                resolve: {
+                    RequestData: function () {
+                        return null;
+                    },
+                }
+            });
+            modalInstance.result.then(function () {
+
+            });
+        }
+
 
         // Anh.Set timeout
         var pc = this;

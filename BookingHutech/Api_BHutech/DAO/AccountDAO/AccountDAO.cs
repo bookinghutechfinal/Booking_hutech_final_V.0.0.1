@@ -38,6 +38,9 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 while (reader.Read())
                 {
                     AccountInfo accountLoginResponseModel = new AccountInfo();
+                    accountLoginResponseModel.Unit_ID = int.Parse(reader["Unit_ID"].ToString());
+                    accountLoginResponseModel.UnitName = reader["UnitName"].ToString();
+                    accountLoginResponseModel.Avatar = reader["Avatar"].ToString();
                     accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
                     accountLoginResponseModel.FullName = reader["FullName"].ToString();
                     accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
@@ -135,6 +138,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             con = new SqlConnection(db.ConnectionString());
             cmd = new SqlCommand(sqlStore, con);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Avatar", SqlDbType.VarChar, 100).Value = request.Avatar;
             cmd.Parameters.Add("@Account_ID", SqlDbType.VarChar, 10).Value = request.Account_ID;
             cmd.Parameters.Add("@Unit_ID", SqlDbType.Int).Value = request.Unit_ID;
             cmd.Parameters.Add("@FullName", SqlDbType.NVarChar, 50).Value = request.FullName;

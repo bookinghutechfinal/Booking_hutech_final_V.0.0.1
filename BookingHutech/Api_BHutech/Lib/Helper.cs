@@ -18,7 +18,7 @@ using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 
 namespace BookingHutech.Api_BHutech.Lib.Helper
 {
-    public class Helper : ApiController
+    public class Helper 
     {
 
         public string CreateID()

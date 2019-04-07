@@ -22,6 +22,7 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
             var AccountRoleDriverResponseModel = AccountInfoDatailRequest.RoleInfo;
 
             $scope.AccountDriverDetail = {
+                Avatar: AccountDriverDetailResponseModel.Avatar,
                 Account_ID: AccountDriverDetailResponseModel.Account_ID,
                 FullName: AccountDriverDetailResponseModel.FullName,
                 Gender: AccountDriverDetailResponseModel.Gender,

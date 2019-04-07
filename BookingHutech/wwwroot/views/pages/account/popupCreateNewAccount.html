@@ -41,8 +41,8 @@
 
     #imgremove {
         position: absolute;
-        margin-left: -35px;
-        margin-top: 5px;
+        margin-left: 22px;
+        margin-top: -192px;
     }
     /* ng-show animation*/
     /* ngHide animation */
@@ -74,7 +74,6 @@
         .ngHideSample.ng-hide-remove-active {
             opacity: 1;
         }
-
 </style>
 <!--<link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
@@ -95,26 +94,27 @@
                         <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
                             <div class="form-group" style="text-align: center;">
                                 <!--<div class="control-label">Chân dung: <i style="color:red;">(*)</i></div>-->
-                                <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null &&  isCheckimgUrl " style="color: orangered">Vui lòng chọn!</span>
+                                <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null &&  !TestInputChange " style="color: orangered">Vui lòng chọn!</span>
 
                                 <div ng-show="!ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
                                     <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
-                                         width="200" height="200" ng-click="OpenImg(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)" />
-                                    <!--   <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />-->
+                                         width="200" height="200"  />
+                                       <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
 
                                 </div>
                                 <div class="row">
                                     <div>
-                                        <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình"
-                                                onclick="document.getElementById('file1').click();" style="margin-top: 5px;" ng-disabled="ShopInfomation.StatusDisable == 7">
-
+                                        <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình" 
+                                                onclick="document.getElementById('file1').click();" style="margin-top: 5px;">
                                             <span class="glyphicon glyphicon-picture"></span>
                                             Chọn Hình
                                             <i style="color:red;">(*)</i>
+
                                         </button>
                                         <input style="display:none;" type="file" id="file1" accept="image/*"
                                                ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
                                                resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
+
                                     </div>
                                 </div>
                             </div>
@@ -196,12 +196,12 @@
                                         <div class="form-group">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Tài khoản: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
+                                                <input class="form-control text-box single-line" disabled ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.UserName === '' || CreateNewAccountmModel.UserName === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Mật khẩu: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.Password" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
+                                                <input class="form-control text-box single-line" disabled ng-model="CreateNewAccountmModel.Password" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Password === '' || CreateNewAccountmModel.Password === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
                                         </div>
@@ -210,7 +210,6 @@
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <select class="form-control " ng-model="CreateNewAccountmModel.Unit_ID" ng-change="TestInputChange(CreateNewAccountmModel)" style="width: 100%;">
                                                     <!--<option selected value="all">{{'All' | translate }}</option>-->
-                                                    <o
                                                     <option selected value="">-- Vui lòng chọn --</option>
                                                     <option ng-repeat="index in ManagerGetListUnitResponse" value="{{index.Unit_ID}}">
                                                         {{index.UnitName}}

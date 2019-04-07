@@ -48,6 +48,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 while (reader.Read())
                 {
                     AccountInfo accountLoginResponseModel = new AccountInfo();
+                    accountLoginResponseModel.Avatar = reader["Avatar"].ToString();
                     accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
                     accountLoginResponseModel.FullName = reader["FullName"].ToString();
                     accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
@@ -126,6 +127,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 while (reader.Read())
                 {
                     AccountInfo accountLoginResponseModel = new AccountInfo();
+                    accountLoginResponseModel.Avatar = reader["Avatar"].ToString();
                     accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
                     accountLoginResponseModel.FullName = reader["FullName"].ToString();
                     accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());

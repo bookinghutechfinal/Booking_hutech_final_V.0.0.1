@@ -68,8 +68,8 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 "Addres": null,
                 "Gender": null,
                 "BirthDay": null,
-                "UserName": null,
-                "Password": null,
+                "UserName": "bookinghutech",
+                "Password": "12345678",
                 "Unit_ID": null,
                 "AccountType": null,
                 "DriverLicenseNo": null,
@@ -165,7 +165,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 } else if (checkNull(Request.AccountType)) {
                     $scope.btndisabled = true;
                     return;
-                }
+                }  
                 else {
                     $scope.btndisabled = false;
                 }
@@ -173,11 +173,27 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
           
             
         }
+        // check upload hình 
+        $scope.CheckUploatImg = function (imgURL) {
+            if (checkNull(imgURL)) {
+                $scope.btndisabled = true;
+                return;
+            }
+            else {
+                $scope.btndisabled = false;
+            }
+        }
+        $scope.removeImage = function () {
+            $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = ""; 
+        }
 
         // Lấy thông tin chi tiết lái xe. 
         $scope.CeateNewAccount = function (imgUrl) { 
             $scope.CreateNewAccountmModel.Avatar = imgUrl;  
-
+            if (checkNull(imgUrl)) {
+                toastr.error("Vui lòng chọn ảnh!")
+                return;
+            }
             $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn thêm người dùng này'), function () {
                 $account.ManagerCreateNewAccount($scope.CreateNewAccountmModel, function (res) {
                     switch (res.data.ReturnCode) { 

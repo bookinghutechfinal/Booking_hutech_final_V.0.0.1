@@ -62,7 +62,7 @@
                                     <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
                                         <div class="profile_img" style="text-align:-webkit-center;">
                                             <div id="crop-avatar">
-                                                <img class="img-responsive avatar-view" src="../../../../images/avt/user.jpg" alt="Avatar" title="Change the avatar">
+                                                <img class="img-responsive avatar-view" src="../../../../images/avt/{{ShowAccountInfo.Avatar}}" alt="Avatar" title="Change the avatar">
                                             </div>
                                         </div>
                                         <h2 style="text-align:center;">{{ShowAccountInfo.FullName}}</h2>
@@ -91,14 +91,14 @@
                                         <br>
                                     </div>
                                     <!--End: Thông tin admin manager-->
-                                    <!--<div class="col-sm-3 col-xs-6" style="float:right; margin-bottom:10px">
+                                    <div class="col-sm-3 col-xs-6" style="float:right; margin-bottom:10px">
                                         <div class="form-group">
                                             <button class="btn btn-primary btn-round btn-block" ng-click="ManagerOpenpopupAddNewDriver()">
                                                 <i class="fa fa-plus-circle"></i>
                                                 <span class="ng-binding">Thêm mới tài khoản</span>
                                             </button>
                                         </div>
-                                    </div> <br />-->
+                                    </div> <br />
                                     <!--Start:quyền của admin manager-->
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <div class="profile_title">
@@ -163,16 +163,7 @@
                                                             <span class="ng-binding">Thu Nhỏ</span>
                                                         </button>
                                                     </li>
-                                                    <li role="presentation" class="active">
-                                                        <div class="form-group">
-                                                            <!--<label>`</label>-->
-                                                            <button class="btn btn-primary btn-round btn-block" ng-click="ManagerOpenpopupAddNewDriver()">
-                                                                <!--ng-disabled="!isSubmitingEnable()"-->
-                                                                <i class="fa fa-plus-circle"></i>
-                                                                <span class="ng-binding">Thêm mới tài khoản</span>
-                                                            </button>
-                                                        </div>
-                                                    </li>
+
                                                 </ul>
                                                 <div id="myTabContent" class="tab-content">
                                                     <!--//Nhóm quyền-->
@@ -336,15 +327,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="x_content">
                                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                             <!--<li role="presentation" class="active">
                                                 <a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Danh sách tài khoản</a>
-                                            </li>--> 
+                                            </li>-->
                                             <li role="presentation" class="active">
-                                                <input type="text" class=" btn-round btn-block" placeholder="Trần Văn A..." ng-model="searchText">  
+                                                <input type="text" class=" btn-round btn-block" placeholder="Trần Văn A..." ng-model="searchText">
                                             </li>
                                         </ul>
                                         <div id="myTabContent" class="tab-content">
@@ -357,7 +348,7 @@
                                                                 <div class="left col-xs-7">
                                                                     <h2>
                                                                         <i class="fa fa-user"></i> <i style="color: #5d40ce; font-family: serif">{{listAccount.FullName}}</i>
-                                                                    </h2> 
+                                                                    </h2>
                                                                     <ul class="list-unstyled">
                                                                         <!--<li><i class="fa fa-calendar"></i> {{listAccount.CreateDate |  date:'dd/MM/yyyy'}}</li>-->
                                                                         <li ng-show="listAccount.Gender === 1"><i class="fa fa-male"></i> Nam</li>
@@ -376,14 +367,16 @@
                                                                     </ul>
                                                                 </div>
                                                                 <div class="right col-xs-5 text-center">
-                                                                    <a href="../../../../images/avt/laixe.jpg" target="_blank"><img src="../../../../images/avt/laixe.jpg" alt="taixe1.png" class="img-responsive"></a>
+                                                                    <a href="" target="_blank">
+                                                                        <img src="../../../../images/avt/{{listAccount.Avatar}}" alt="avatar" class="img-responsive">
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-12 bottom text-center">
                                                                 <div class="col-xs-12 col-sm-6 emphasis">
                                                                 </div>
                                                                 <div class="col-xs-12 col-sm-6 emphasis">
-                                                                    <button type="button" class="btn btn-round btn-warning " ng-click="ShowDetailAccount(listAccount.Account_ID)">
+                                                                    <button style="font-size:11px" type="button" class="btn btn-round btn-warning " ng-click="ShowDetailAccount(listAccount.Account_ID)">
                                                                         Xem chi tiết <i class="fa fa-share-square-o"> </i>
                                                                     </button>
                                                                 </div>
@@ -399,13 +392,13 @@
                         </div>
                     </div>
                     <!--End danh sách tài khoản-->
-                    <div class="row" style="float:right;"> 
-                        <div class="col-sm-3 col-xs-4" >
-                            Số lượng: <input type="number" ng-model="numPag" style= "width: 44px;" />
+                    <div class="row" style="float:right;">
+                        <div class="col-sm-3 col-xs-4">
+                            Số lượng: <input type="number" ng-model="numPag" style="width: 44px;" />
                         </div>
 
                         <div class="col-sm-9 col-xs-8">
-                            <dir-pagination-controls boundary-links="true" 
+                            <dir-pagination-controls boundary-links="true"
                                                      direction-links="true">
                             </dir-pagination-controls>
                         </div>

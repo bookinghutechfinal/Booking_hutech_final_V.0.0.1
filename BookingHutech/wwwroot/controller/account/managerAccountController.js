@@ -17,6 +17,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         };
 
         $scope.ShowAccountInfo = {
+            Avatar: null,
             FullName: null,
             Gender: null,
             BirthDay: null,
@@ -37,6 +38,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                         var RoleResponse = res.data.Data.GetRoleCode;
                         // Hiển thị thông tin account
                         $scope.ShowAccountInfo = {
+                            Avatar: AccountInfoResponse.Avatar,
                             FullName: AccountInfoResponse.FullName,
                             Gender: AccountInfoResponse.Gender,
                             Birthday: AccountInfoResponse.Birthday,
@@ -343,6 +345,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                         var RoleResponse = res.data.Data.GetRoleCode;
                         // Hiển thị thông tin account
                         $scope.ShowAccountInfo = {
+                            Avatar: AccountInfoResponse.Avatar,
                             FullName: AccountInfoResponse.FullName,
                             Gender: AccountInfoResponse.Gender,
                             Birthday: AccountInfoResponse.Birthday,

@@ -282,6 +282,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\avt\AvatarBK15072023.png" />
+    <Content Include="images\avt\AvatarBK7072011.png" />
     <Content Include="images\avt\avt.png" />
     <Content Include="images\avt\laixe.jpg" />
     <Content Include="images\avt\user.jpg" />
@@ -960,6 +962,7 @@
     <Content Include="script\css\Table\jquery.dataTables.min.js" />
     <Content Include="script\css\Table\responsive.bootstrap.min.css" />
     <Content Include="wwwroot\controller\account\changePasswordController.js" />
+    <Content Include="wwwroot\controller\account\profileAccountController.js" />
     <Content Include="wwwroot\controller\account\detailAccountController.js" />
     <Content Include="wwwroot\controller\account\managerAccountController.js" />
     <Content Include="wwwroot\controller\account\logoutController.js" />
@@ -1179,6 +1182,7 @@
     <Content Include="wwwroot\service\dataEntity.js" />
     <Content Include="wwwroot\service\language.js" />
     <Content Include="wwwroot\views\common\alert\error404.html" />
+    <Content Include="wwwroot\views\pages\account\popupProfileAccount.html" />
     <Content Include="wwwroot\views\pages\account\timeout-dialog.html" />
     <Content Include="wwwroot\views\common\header\header.html" />
     <Content Include="wwwroot\views\common\error\error404.html" />
