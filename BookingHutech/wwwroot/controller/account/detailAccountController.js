@@ -229,10 +229,8 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
         }
         // Button cập nhật account. 
         //1. Chưa duyệt
-        $scope.checkupdateVerify = true; 
-        $scope.buttonVerify = function (request) { 
-            $scope.checkupdateVerify = false; 
-            $scope.checkupdateVerify = false; 
+        $scope.checkupdateVerify = false; 
+        $scope.buttonVerify = function (request) {  
             var VerifyAccountRequestModel = {
                 Account_ID: request.Account_ID,
                 Verify: 1 // duyệt
@@ -243,7 +241,7 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                     switch (res.data.ReturnCode) {
                         case 1:
                            // $scope.AccountDriverDetail.Verify = true;
-                            $scope.checkupdateVerify = true; 
+                            //$scope.checkupdateVerify = true; 
                             toastr.success("Duyệt thành công");
                             break;
                     }
@@ -253,9 +251,6 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
             }); //end
 
         }
-
-
-
-
+        
 
     }]);  
