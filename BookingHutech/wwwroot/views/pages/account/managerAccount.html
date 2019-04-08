@@ -80,7 +80,10 @@
                                                 <i class="fa fa-birthday-cake user-profile-icon"></i> {{ShowAccountInfo.Birthday | date:'dd/MM/yyyy'}}
                                             </li>
                                             <li>
-                                                <i class="fa fa-archive user-profile-icon"></i> Khoa/Viện {{ShowAccountInfo.UnitName | date:'dd/MM/yyyy'}}
+                                                <i class="fa fa-archive user-profile-icon"></i> Chức vụ: {{ShowAccountInfo.AccountType}}
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-archive user-profile-icon"></i> Đơn Vị: {{ShowAccountInfo.UnitName | date:'dd/MM/yyyy'}}
                                             </li>
                                             <!--<li class="m-top-xs">
                                                 <i class="fa fa-external-link user-profile-icon"></i>
@@ -343,6 +346,7 @@
                                                 <div class="row">
                                                     <div class="col-md-4 col-sm-4 col-xs-12 profile_details" dir-paginate="listAccount in ManagerGetListAccountResponse  |  itemsPerPage: numPag  | filter:searchText">
                                                         <div class="well profile_view">
+                                                            sm
                                                             <div class="col-sm-12">
                                                                 <!--<h4 class="brief"><i>{{listAccount.FullName}}</i></h4>-->
                                                                 <div class="left col-xs-7">
@@ -350,7 +354,8 @@
                                                                         <i class="fa fa-user"></i> <i style="color: #5d40ce; font-family: serif">{{listAccount.FullName}}</i>
                                                                     </h2>
                                                                     <ul class="list-unstyled">
-                                                                        <!--<li><i class="fa fa-calendar"></i> {{listAccount.CreateDate |  date:'dd/MM/yyyy'}}</li>-->
+                                                                        ty
+                                                                          <!--<li><i class="fa fa-calendar"></i> {{listAccount.CreateDate |  date:'dd/MM/yyyy'}}</li>-->
                                                                         <li ng-show="listAccount.Gender === 1"><i class="fa fa-male"></i> Nam</li>
                                                                         <li ng-show="listAccount.Gender !== 1"><i class="fa fa-male"></i> Nữ</li>
                                                                         <li><i class="fa fa-hand-o-right"></i> Chức vụ: {{listAccount.AccountType}}</li>
@@ -361,8 +366,11 @@
                                                                         <li ng-show="listAccount.Account_Status ==='0'" style="color:red"><i class="fa fa-unlock-alt"></i> Khóa</li>
 
                                                                         <li ng-show="listAccount.Verify"><i class="fa fa-check-square-o"></i> Đã duyệt</li>
-                                                                        <li ng-show="!listAccount.Verify" style="color:red"><i class="fa fa-square-o"></i> Chưa duyệt</li>
-                                                                        <!--<li><i class="fa fa-phone"></i> {{listAccount.NumberPhone}}</li>-->
+                                                                        <li ng-show="!listAccount.Verify" style="color:red"><i class="fa fa-square-o"></i> Chưa du
+yệt
+                                                                        </li>
+                                                                        du
+                                                                          <!--<li><i class="fa fa-phone"></i> {{listAccount.NumberPhone}}</li>-->
                                                                         <!--<li><i class="fa fa-at"></i> Hạn {{listAccount.LicenseClass}}</li>-->
                                                                     </ul>
                                                                 </div>

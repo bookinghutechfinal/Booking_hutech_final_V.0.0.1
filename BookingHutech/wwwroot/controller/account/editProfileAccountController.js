@@ -1,6 +1,6 @@
 ﻿// Thêm mới tài khoản 
-mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account', 'NgTableParams', '$modal', '$modalInstance','$alert',
-    function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account, NgTableParams, $modal, $modalInstance, $alert) {
+mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account', 'NgTableParams', '$modal', '$modalInstance', '$alert', 'EditProfileRequestData',
+    function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account, NgTableParams, $modal, $modalInstance, $alert, EditProfileRequestData) {
 
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
         $scope.goToHome = function () {
@@ -28,29 +28,6 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ManagerGetListUnitResponse = res.data.Data.ListUnit;
-                        //var RoleResponse = res.data.Data.GetRoleCode; 
-                        //// Hiển thị thông tin account
-                        //$scope.ShowAccountInfo = {
-                        //    FullName: AccountInfoResponse.FullName,
-                        //    Gender: AccountInfoResponse.Gender,
-                        //    Birthday: AccountInfoResponse.Birthday,
-                        //    Addres: AccountInfoResponse.Addres,
-                        //    AccountType: AccountInfoResponse.AccountType,
-                        //    NumberPhone: AccountInfoResponse.NumberPhone,
-                        //    Email: AccountInfoResponse.Email,
-                        //    UnitName: AccountInfoResponse.UnitName,
-                        //} 
-                        ////Cập nhật trạng thái cho quyền. 
-                        //for (var i = 0; i < RoleResponse.length; i++) {
-                        //    // AccountStatusName
-                        //    if (RoleResponse[i].RoleDetail_Status === false) {
-                        //        RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[0].RoleStatusName;
-                        //    } else {
-                        //        RoleResponse[i].RoleDetail_Status = $scope.RoleStatus[1].RoleStatusName;
-                        //    }
-
-                        //}
-                        //// Hiển thị thông tin quyền  
                         break;
                 }
 
@@ -58,25 +35,25 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
         }
 
         $scope.main = function () {
+            //angular.element('#BirthDay').val("2019-1-1");
             // show messager 
             $scope.ipFullName = false;
-            // model
-            $scope.CreateNewAccount = {
-                "FullName": null,
-                "NumberPhone": null,
-                "Email": null,
-                "Addres": null,
-                "Gender": null,
-                "BirthDay": null,
-                "UserName": "bookinghutech",
-                "Password": "12345678",
-                "Unit_ID": null,
-                "AccountType": null,
-                "DriverLicenseNo": null,
-                "LicenseClass": null,
-                "LicenseExpires": null,
-                "Avatar": null,
+            $scope.EditProfiAccount = {
+                "Account_ID": EditProfileRequestData.Account_ID,
+                "FullName": EditProfileRequestData.FullName,
+                "NumberPhone": EditProfileRequestData.NumberPhone,
+                "Email": EditProfileRequestData.Email,
+                "Addres": EditProfileRequestData.Addres,
+                "Gender": EditProfileRequestData.Gender,
+                "BirthDay": FormatDate(EditProfileRequestData.Birthday), //angular.element('#BirthDay').val(""), 
+                "Unit_ID": EditProfileRequestData.Unit_ID,
+                "AccountType": EditProfileRequestData.AccountType,
+                "DriverLicenseNo": EditProfileRequestData.DriverLicenseNo,
+                "LicenseClass": EditProfileRequestData.LicenseClass,
+                "LicenseExpires": FormatDate(EditProfileRequestData.LicenseExpires),
+                "Avatar": EditProfileRequestData.Avatar,
             };
+
             // img 
             $scope.ImageModel = {
                 CHAN_DUNG: {
@@ -88,7 +65,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                     },
                 },
             }
-            $scope.AccountType = AccountTypeRequest; 
+            $scope.AccountType = AccountTypeRequest;
             $scope.ManagerGetListUnitResponse = [];
             $scope.ManagerGetListUnit();
         }
@@ -126,7 +103,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 } else if (checkNull(Request.LicenseExpires)) {
                     $scope.btndisabled = true;
                     return;
-                }  
+                }
                 else {
                     $scope.btndisabled = false;
                 }
@@ -153,25 +130,19 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 } else if (checkNull(Request.BirthDay)) {
                     $scope.btndisabled = true;
                     return;
-                } else if (checkNull(Request.UserName)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.Password)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.Unit_ID)) {
+                }   else if (checkNull(Request.Unit_ID)) {
                     $scope.btndisabled = true;
                     return;
                 } else if (checkNull(Request.AccountType)) {
                     $scope.btndisabled = true;
                     return;
-                }  
+                }
                 else {
                     $scope.btndisabled = false;
                 }
-            } 
-          
-            
+            }
+
+
         }
         // check upload hình 
         $scope.CheckUploatImg = function (imgURL) {
@@ -184,27 +155,21 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
             }
         }
         $scope.removeImage = function () {
-            $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = ""; 
+            $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = "";
         }
 
-        // Lấy thông tin chi tiết lái xe. 
-        $scope.CeateNewAccount = function (imgUrl) { 
-            $scope.CreateNewAccount.Avatar = imgUrl;  
-            if (checkNull(imgUrl)) {
-                toastr.error("Vui lòng chọn ảnh!")
-                return;
-            }
-            $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn thêm người dùng này'), function () {
-                $account.ManagerCreateNewAccount($scope.CreateNewAccount, function (res) {
-                    switch (res.data.ReturnCode) { 
-                        case 1:
-                           // $state.go('Admin.ProductManager');
-                            toastr.success("Đã thêm thành công");
-                            //$state.reload();
-                            break;  
+       // Cập nhật thông tin tài khoản
+        $scope.EditProfileAccount = function (request) {  
+            var EditProfiAccountRequestModel = request; 
+            $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Cập nhật thông tin'), function () {
+                $account.EditProfiAccount(EditProfiAccountRequestModel, function (res) {
+                    switch (res.data.ReturnCode) {
+                        case 1: 
+                            toastr.success("Đã cập nhật thành công"); 
+                            break;
                     }
                 });
-            });  
+            });
 
         }
 
@@ -214,7 +179,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
         }
 
 
-    }]);  
+    }]);
 
 // upload hình  
 mainmodule.directive('ngImageCompress', ['$q',

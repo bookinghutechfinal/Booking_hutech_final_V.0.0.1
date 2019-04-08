@@ -82,6 +82,9 @@ var FormatDateTimeByDBResponse = function (date) { // Update
 var FormatDateFromTo = function (date) {
     return moment(date, 'MM/DD/YYYY').format('YYYY-MM-DD')
 }
+var FormatDate = function (date) {
+    return moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD')
+}
 // Định dạng ngày sang số. 
 var FormatDateFromToToNumber = function (date) {
     return moment(date, 'MM/DD/YYYY').format('YYYYMMDD')

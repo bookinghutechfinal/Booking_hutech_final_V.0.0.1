@@ -1,6 +1,6 @@
 ﻿
-mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'NgTableParams', '$account', '$alert',
-    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, NgTableParams, $account, $alert) {
+mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'NgTableParams', '$account', '$alert','$modal',
+    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, NgTableParams, $account, $alert, $modal) {
         // AccountInfoDatailRequest: Tham số nhận dữ liệu từ màn hình quản lý lái xe.   
         $scope.Titile = "Chi tiết tài xế";
         $scope.ClosePopup = function () {
@@ -15,7 +15,7 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
             $scope.ListRole = [];
         }
        
-
+        // Xem chi tiết profile account.
         $scope.Main = function () { 
             $scopeInit();
             // kiểm tra session
@@ -45,7 +45,9 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
                                 Account_Status: AccountDriverDetailResponseModel.Account_Status,
                                 Verify: AccountDriverDetailResponseModel.Verify,
                                 IsChangePassword: AccountDriverDetailResponseModel.IsChangePassword,
+                                LastModifiedDate: AccountDriverDetailResponseModel.LastModifiedDate,
                                 AccountType: AccountDriverDetailResponseModel.AccountType,
+                                Unit_ID: AccountDriverDetailResponseModel.Unit_ID,
                                 UnitName: AccountDriverDetailResponseModel.UnitName,
                                 Manager: AccountDriverDetailResponseModel.Manager,
                                 EmailManager: AccountDriverDetailResponseModel.EmailManager,
@@ -102,4 +104,27 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
         }
         $scope.Main();
 
+        // Button chỉnh sửa thông tin account.  
+        $scope.EditProfileAccount = function () {  
+               //$modalInstance.close();
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/popupEditProfileAccount.html',
+                    controller: 'EditProfileAccountController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        EditProfileRequestData: function () {
+                            return $scope.AccountDriverDetail;
+                        },
+                    }
+                });
+                modalInstance.result.then(function () {
+
+                });
+            
+        }
     }]);  
