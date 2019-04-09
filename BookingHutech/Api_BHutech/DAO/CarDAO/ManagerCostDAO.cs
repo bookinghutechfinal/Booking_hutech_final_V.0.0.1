@@ -46,6 +46,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     listRepairCost.FullNameUpdate = reader["FullNameUpdate"].ToString();
                     listRepairCost.CarImage = reader["CarImage"].ToString();
                     listRepairCost.CarNo = reader["CarNo"].ToString();
+                    listRepairCost.AccountCreate = reader["AccountCreate"].ToString();
+                    listRepairCost.RepairStatus = Int32.Parse(reader["RepairStatus"].ToString());
                     if (reader.FieldCount > 11)
                     {
                         listRepairCost.RepairDetailID = Int32.Parse(reader["RepairDetailID"].ToString());

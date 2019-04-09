@@ -132,5 +132,28 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 throw;
             }
         }
+
+        /// <summary>
+        /// GetListCostByAccountCreateServices
+        /// Mr.Lam 8/4/2019
+        /// </summary>
+        /// <param name="request">GetListCostByAccountCreateRequestModel</param>
+        /// <returns>List Cost</returns>
+        public ListRepairCostResponseModel GetListCostByAccountCreateServices(GetListCostByAccountCreateRequestModel request)
+        {
+            ListRepairCostResponseModel result = new ListRepairCostResponseModel();
+            try
+            {
+                string datefrom = String.Format("{0:yyyy-MM-dd}", request.DateFrom);
+                string dateto = String.Format("{0:yyyy-MM-dd}", request.DateTo);
+                result.ListRepairCost = managerCostDAO.GetListRepairCostDAO("uspGetListCostByAccountCreate '" + request.AccountCreate + "'," + request.RepairStatus1 + "," + request.RepairStatus2 + ",'" + datefrom + "','" + dateto + "'");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
     }
 }

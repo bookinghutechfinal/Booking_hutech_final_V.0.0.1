@@ -191,13 +191,16 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateRoleMasterRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\UpdateGroupRoleRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetCarInfoByAccountIDRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetCarInfoRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetDetailRepairCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetRegistrationCarByDriverIDRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\UpdateCarStatusRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostByAccountCreateRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetAccountByAccountStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetDetailAccountByAccountIDRequestModel.cs" />
@@ -971,6 +974,8 @@
     <Content Include="wwwroot\controller\app\appController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\detailCarController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\managerCalendarDriverController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\managerCarByDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerOtherCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerFuelCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerRepairCostController.js" />
@@ -1446,7 +1451,9 @@
     <Content Include="wwwroot\views\pages\account\popupLogout.html" />
     <Content Include="wwwroot\views\pages\account\warning-dialog.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\bookingCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\calendarDriver.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\carDetail.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\managerCarByDriver.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
     <Content Include="wwwroot\views\pages\account\popupCreateNewAccount.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerOtherCost.html" />

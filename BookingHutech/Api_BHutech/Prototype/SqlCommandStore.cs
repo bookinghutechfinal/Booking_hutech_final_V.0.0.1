@@ -60,10 +60,16 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspGetCarInfo = "uspGetCarInfo {0}";
         //Update CarStatus. Create By Mr.Lam Create 28/3/2019. 
         public const string uspUpdateCarStatus = "uspUpdateCarStatus";
-        //Update CarStatus. Create By Mr.Lam Create 28/3/2019. 
+        //Get RegristrationCar by CarID. Create By Mr.Lam Create 28/3/2019. 
         public const string uspGetRegistrationCarByCarID = "uspGetRegistrationCarByCarID {0},{1}";
         //Update CarStatus. Create By Mr.Lam Create 28/3/2019. 
         public const string uspGetListCostByCarID = "uspGetListCostByCarID {0}";
+        //Get car info by AccountID and AssignStatus. Create By Mr.Lam Create 8/4/2019. 
+        public const string uspGetCarInfoByAccountID = "uspGetCarInfoByAccountID {0},{1}";
+        //Get car info by AccountID and AssignStatus. Create By Mr.Lam Create 8/4/2019. 
+        public const string uspGetListCostByAccountCreate = "uspGetListCostByAccountCreate {0},{1},{2},{3},{4}";
+        //Get RegristrationCar by DriverID. Create By Mr.Lam Create 9/4/2019. 
+        public const string uspGetRegistrationCarByDriverID = "uspGetRegistrationCarByDriverID {0},{1},{2},{3}";
         
     }
 

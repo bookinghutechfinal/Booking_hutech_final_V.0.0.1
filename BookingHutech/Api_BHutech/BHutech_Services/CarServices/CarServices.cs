@@ -119,5 +119,28 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
                 throw;
             }
         }
+
+        /// <summary>
+        /// Mr.Lam 8/4/2019
+        /// Get car info by AccountID and AssignStatus
+        /// </summary>
+        /// <param name="">GetCarInfoByAccountIDRequestModel</param>
+        /// <returns>CarInfo</returns> 
+        public List<CarInfo> GetCarInfoByAccountIDServices(GetCarInfoByAccountIDRequestModel request)
+        {
+            List<CarInfo> result = new List<CarInfo>();
+            ListCarResponseModel listCar = new ListCarResponseModel();
+            try
+            {
+                string uspGetCarInfoByAccountID = String.Format(Prototype.SqlCommandStore.uspGetCarInfoByAccountID, request.Account_ID,(int)BookingType.AssignStatus.active);
+                result = carDAO.GetListCarDAO(uspGetCarInfoByAccountID);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
     }
 }

@@ -130,6 +130,23 @@ mainmodule.service('$alert', ['SweetAlert', '$rootScope', function (SweetAlert, 
         });
     }
 
+    this.showUpdateDistance = function (mesg, ok) {
+        SweetAlert.swal({
+            title: '',
+            text: mesg,
+            type: "input",
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: $rootScope.initMessage('Cập nhật'),
+            cancelButtonText: $rootScope.initMessage('Hủy'),
+            closeOnConfirm: true
+        }, function (IsOk) {
+            if (IsOk) {
+                ok();
+            };
+        });
+    }
+
     this.showPopupParam = function (msg, param) {
         SweetAlert.swal({
             type: 'error',

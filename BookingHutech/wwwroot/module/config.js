@@ -68,6 +68,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/carDetail.html',
             controller: 'DetailCarController',
         })
+        .state('main.managerCarByDriver', {
+            url: '/manager-car-by-driver',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerCarByDriver.html',
+            controller: 'ManagerCarByDriverController',
+        })
         .state('main.repairCost', {
             url: '/manager-repair-cost',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerRepairCost.html',
@@ -92,6 +97,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             url: '/report-cost',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/reportCost.html',
             controller: 'ManagerReportController',
+        })
+        .state('main.calendarDriver', {
+            url: '/calendar-driver',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/calendarDriver.html',
+            controller: 'ManagerCalendarDriverController',
         })
         .state('main.managerAccount', {
             url: '/manager-account',
@@ -157,7 +167,8 @@ mainmodule.config(['$translateProvider',
             'ListCar': 'Danh sách xe',
             'DetailCar': 'Chi tiết xe',
             'TitileUpdateCarInfo': 'Cập nhật thông tin xe',
-            
+            'DetailCarByDriver':'Quản lý xe',
+            'CalendarDriver':'Lịch công tác',
             /* --------  Cost Manager ---------- */
             'CostManager': 'Quản lý chi phí',
             'RepairCostManager': 'Sửa chữa',

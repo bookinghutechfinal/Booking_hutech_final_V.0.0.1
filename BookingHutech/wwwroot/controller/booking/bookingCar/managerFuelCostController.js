@@ -21,6 +21,7 @@
 
             //reset
             var request = $scope.searchModel;
+
             angular.element('#myDate2').val("");
             angular.element('#myDate1').val("");
             request.CarID = 0;

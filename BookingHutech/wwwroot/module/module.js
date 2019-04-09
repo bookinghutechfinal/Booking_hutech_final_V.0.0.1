@@ -65,5 +65,10 @@ var RegistrationStatus = [
     { RegistrationStatusType: 8, RegistrationStatusName: "Trường không duyệt" },
     { RegistrationStatusType: 9, RegistrationStatusName: "Đang thực hiện" },
     { RegistrationStatusType: 10, RegistrationStatusName: "Hoàn thành" },
+];
+//Trang thái đơn sửa chữa
+var RepairStatus = [
+    { RepairStatusType: 0, RepairStatusName: "Chờ duyệt" },
+    { RepairStatusType: 1, RepairStatusName: "Đã duyệt" },
+    { RepairStatusType: 2, RepairStatusName: "Không duyệt" },
 ]
-

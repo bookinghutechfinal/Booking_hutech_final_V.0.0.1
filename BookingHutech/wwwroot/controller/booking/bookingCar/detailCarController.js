@@ -99,7 +99,6 @@
                        // $scope.getCarInfo();
                         toastr.success("Bạn đã đổi thành công.");
                         $scope.CarInfo.CarStatus = updateCarStatusRequestModel.CarStatus;
-
                     }
                 });
             }); 

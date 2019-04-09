@@ -12,7 +12,8 @@ namespace BookingHutech.Api_BHutech.Models.BookingCar
         public string RepairAddres { get; set; }
         public string Note { get; set; }
         public string ImagerBill { get; set; }
-
+        public string AccountCreate { get; set; }
+        public int RepairStatus { get; set; }
         public RepairInfo() { }
     }
 }

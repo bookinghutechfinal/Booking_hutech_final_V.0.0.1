@@ -44,7 +44,7 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
         {
             deleted = 0,
             active = 1,
-            repairing = 5
+            repairing = 4
         }
         #endregion
 
@@ -60,6 +60,12 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
             SchoolNotVerify = 8, // trường không duyệt.
             Processing = 9, //đang thực hiện
             Finish = 10 //Hoàn thành
+        }
+
+        public enum AssignStatus
+        {
+            deleted = 0,
+            active = 1
         }
     }
 }
