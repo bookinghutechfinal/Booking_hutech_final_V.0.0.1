@@ -192,3 +192,27 @@ var CheckRegistration = function (request) {
         return 1;
     }
 }
+
+// Cập nhật loại tài khoản
+// Request AccountType
+// Return AccountTypeName
+var ConvertAccountTypeIDToName = function (accountID) {
+    if (accountID === "1") {
+        return AccountTypeRequest[0].AccountTypeName;
+    }
+    if (accountID === "2") {
+        return AccountTypeRequest[1].AccountTypeName;
+    }
+    if (accountID === "3") {
+        return AccountTypeRequest[2].AccountTypeName;
+    }
+    if (accountID === "4") {
+        return  AccountTypeRequest[3].AccountTypeName;
+    }   accountID
+    if (accountID === "5") {
+        return AccountTypeRequest[4].AccountTypeName;
+    }   accountID
+    if (accountID === "7") {
+        return AccountTypeRequest[5].AccountTypeName;
+    }
+}

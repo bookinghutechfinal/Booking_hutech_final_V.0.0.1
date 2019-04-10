@@ -46,7 +46,7 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
                                 Verify: AccountDriverDetailResponseModel.Verify,
                                 IsChangePassword: AccountDriverDetailResponseModel.IsChangePassword,
                                 LastModifiedDate: AccountDriverDetailResponseModel.LastModifiedDate,
-                                AccountType: AccountDriverDetailResponseModel.AccountType,
+                                AccountType: ConvertAccountTypeIDToName(AccountDriverDetailResponseModel.AccountType), // cập nhật loại tài khoản
                                 Unit_ID: AccountDriverDetailResponseModel.Unit_ID,
                                 UnitName: AccountDriverDetailResponseModel.UnitName,
                                 Manager: AccountDriverDetailResponseModel.Manager,
@@ -55,27 +55,7 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
                                 DriverLicenseNo: AccountDriverDetailResponseModel.DriverLicenseNo,
                                 LicenseClass: AccountDriverDetailResponseModel.LicenseClass,
                                 LicenseExpires: AccountDriverDetailResponseModel.LicenseExpires,
-                            }
-
-                            //Cập nhật loại tài khoản 
-                            if ($scope.AccountDriverDetail.AccountType === "1") {
-                                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[0].AccountTypeName;
-                            }
-                            if ($scope.AccountDriverDetail.AccountType === "2") {
-                                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[1].AccountTypeName;
-                            }
-                            if ($scope.AccountDriverDetail.AccountType === "3") {
-                                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[2].AccountTypeName;
-                            }
-                            if ($scope.AccountDriverDetail.AccountType === "4") {
-                                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[3].AccountTypeName;
-                            }
-                            if ($scope.AccountDriverDetail.AccountType === "5") {
-                                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[4].AccountTypeName;
-                            }
-                            if ($scope.AccountDriverDetail.AccountType === "7") {
-                                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[5].AccountTypeName;
-                            }
+                            } 
 
                             //Cập nhật giới tính
                             if ($scope.AccountDriverDetail.Gender === 1) {
@@ -122,7 +102,47 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
                         },
                     }
                 });
-                modalInstance.result.then(function () {
+                modalInstance.result.then(function (EditAccountResult) {
+                    if (!checkNull(EditAccountResult)) {
+                        // Cập nhật lại thông tin account.
+                        $scope.AccountDriverDetail.Avatar = EditAccountResult.Avatar; 
+                        $scope.AccountDriverDetail.FullName = EditAccountResult.FullName; 
+                        $scope.AccountDriverDetail.Gender = EditAccountResult.Gender; 
+                        $scope.AccountDriverDetail.Birthday = EditAccountResult.Birthday; 
+                        $scope.AccountDriverDetail.NumberPhone = EditAccountResult.NumberPhone; 
+                        $scope.AccountDriverDetail.Addres = EditAccountResult.Addres; 
+                        $scope.AccountDriverDetail.Email = EditAccountResult.Email; 
+                        $scope.AccountDriverDetail.AccountType = ConvertAccountTypeIDToName(EditAccountResult.AccountType);  
+                        $scope.AccountDriverDetail.DriverLicenseNo = EditAccountResult.DriverLicenseNo; 
+                        $scope.AccountDriverDetail.LicenseClass = EditAccountResult.LicenseClass; 
+                        $scope.AccountDriverDetail.LicenseExpires = EditAccountResult.LicenseExpires; 
+                       // $scope.AccountDriverDetail.LastModifiedDate = ;  
+
+                        //$scope.AccountDriverDetail = {
+                        //    Avatar: EditAccountResult.Avatar,
+                        //    //Account_ID: EditAccountResult.Account_ID,
+                        //   // FullName: EditAccountResult.FullName,
+                        //    //Gender: EditAccountResult.Gender,
+                        //    //Birthday: EditAccountResult.Birthday,
+                        //    //NumberPhone: EditAccountResult.NumberPhone,
+                        //    Addres: EditAccountResult.Addres,
+                        //    Email: EditAccountResult.Email,
+                        //    // CreateDate: EditAccountResult.CreateDate,
+                        //    //Account_Status: EditAccountResult.Account_Status,
+                        //    //Verify: EditAccountResult.Verify,
+                        //    // IsChangePassword: EditAccountResult.IsChangePassword,
+                        //    //LastModifiedDate: EditAccountResult.LastModifiedDate,
+                        //    AccountType: ConvertAccountTypeIDToName(EditAccountResult.AccountType), // cập nhật loại tài khoản
+                        //    Unit_ID: EditAccountResult.Unit_ID,
+                        //    //UnitName: EditAccountResult.UnitName,
+                        //    // Manager: EditAccountResult.Manager,
+                        //    //EmailManager: EditAccountResult.EmailManager,
+                        //    //NumberPhoneManager: EditAccountResult.NumberPhoneManager,
+                        //    DriverLicenseNo: EditAccountResult.DriverLicenseNo,
+                        //    LicenseClass: EditAccountResult.LicenseClass,
+                        //    LicenseExpires: EditAccountResult.LicenseExpires,
+                        //}
+                    } 
 
                 });
             

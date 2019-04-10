@@ -166,6 +166,7 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                     switch (res.data.ReturnCode) {
                         case 1: 
                             toastr.success("Đã cập nhật thành công"); 
+                            $modalInstance.close(EditProfiAccountRequestModel);
                             break;
                     }
                 });
