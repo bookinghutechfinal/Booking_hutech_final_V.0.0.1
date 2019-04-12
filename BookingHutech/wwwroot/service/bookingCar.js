@@ -105,4 +105,11 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    this.updateRegistrationCarStatus = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'RegistrationCar/UpdateRegistrationCarStatus',
+            data: request
+        }, success, finish)
+    };
 }]);

@@ -201,6 +201,7 @@
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\UpdateCarStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostByAccountCreateRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\UpdateRegistrationCarStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetAccountByAccountStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetDetailAccountByAccountIDRequestModel.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ManagerGetDriverByAccountStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ReportCostResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\UpdateCarStatusResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\UpdateSuccessResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\CheckPermissionResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\IResponse.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListCarResponseModel.cs" />

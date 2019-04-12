@@ -127,7 +127,7 @@
                 controller: 'popupDetailCarController',
                 controllerAs: 'content',
                 backdrop: 'static',
-                size: 'md',
+                size: 'lg',
                 resolve: {
                     CarInfoRequest: function () {
                         return CarInfoResponeModel;
@@ -141,7 +141,7 @@
         }
     }]);  
 
-mainmodule.controller('popupDetailCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance','CarInfo',
+mainmodule.controller('popupDetailCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance','CarInfoRequest',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance, CarInfoRequest) {
 
         $scope.init = function () {

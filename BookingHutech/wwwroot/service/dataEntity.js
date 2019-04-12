@@ -86,6 +86,10 @@ var FormatDateFromTo = function (date) {
 var FormatDateFromToToNumber = function (date) {
     return moment(date, 'MM/DD/YYYY').format('YYYYMMDD')
 }
+// Định dạng ngày sang số. 
+var FormatDateFromToToNumber1 = function (date) {
+    return moment(date, 'YYYY-MM-DD HH:mm:ss').format('YYYYMMDD')
+}
 // Định dạng giờ sang số. 
 var FormatTimeFromToToNumber = function (date) {
     return moment(date, 'HH:mm').format('HHmm')
@@ -143,6 +147,19 @@ var convertDateTime = function (str) {
 
 var checkDiffFromToDate = function (fromDate, toDate, maxDay) {
     return moment(fromDate, 'DD-MM-YYYY HH:mm').add(maxDay, 'd') >= moment(toDate, 'DD-MM-YYYY HH:mm');
+}
+
+var checkDiffFromToDate1 = function (fromDate, toDate, maxDay) {
+    return moment(fromDate, 'YYYY-MM-DD').add(maxDay, 'd') >= moment(toDate, 'YYYY-MM-DD');
+}
+
+// Hàm 2:  Hàm so sánh ngày Đi và về YYYY-MM-DD
+var So_Sanh_DateInput2 = function (DateTime_1, DateTime_2) {
+    if (FormatDateFromToToNumber1(DateTime_1) >= FormatDateFromToToNumber1(DateTime_2)) {
+        return true; // datetime 1 lớn or  = . 
+    } else {
+        return false; // datetime 2 lớn hơn
+    }
 }
 
 // Hàm 2:  Hàm so sánh ngày Đi và về

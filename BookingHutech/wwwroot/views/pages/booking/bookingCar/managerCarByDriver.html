@@ -121,10 +121,12 @@
                                                     </div>
 
                                                 </div>
-
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <p style="color:red" ng-show="ErrorDay">* Kiểm tra chọn ngày. Lưu ý chọn khoảng thời gian cách nhau tối đa 2 tháng.</p>
+                                                </div>
                                                 <div class="col-md-4 col-sm-4 col-xs-12" style="float:right">
                                                     <div class="mb15 mt30">
-                                                        <button class="btn btn-warning btn-round btn-block" ng-click="searchCost(searchModel)">
+                                                        <button class="btn btn-warning btn-round btn-block" ng-click="searchCost(searchModel)" type="submit">
                                                             <span class="glyphicon glyphicon-search"></span> Xem
                                                         </button>
                                                     </div>

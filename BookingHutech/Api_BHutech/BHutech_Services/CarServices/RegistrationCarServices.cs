@@ -49,8 +49,31 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
             GetRegistrationCarByCarIDResponseModel result = new GetRegistrationCarByCarIDResponseModel();
             try
             {
-                string uspGetRegistrationCarByDriverID = String.Format(Prototype.SqlCommandStore.uspGetRegistrationCarByDriverID, request.DriverID, (Int32)BookingStatus.AdminVerify, (Int32)BookingStatus.SchoolVerify, (Int32)BookingStatus.Processing);
-                result.GetRegistrationCarByCarID = registrationCarDAO.GetRegistrationCarDAO(uspGetRegistrationCarByDriverID);
+                string datefrom = String.Format("{0:yyyy-MM-dd}", request.DateFrom);
+                string dateto = String.Format("{0:yyyy-MM-dd}", request.DateTo);
+                result.GetRegistrationCarByCarID = registrationCarDAO.GetRegistrationCarDAO("uspGetRegistrationCarByDriverID '"+ request.DriverID +"',"+request.Profile_Status1 + "," + request.Profile_Status2 + "," + request.Profile_Status3 + ",'" + datefrom+"','" + dateto+ "'");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// UpdateRegistrationCarStatusServices
+        /// Create by Mr.Lam 12/4/2019
+        /// </summary>
+        /// <param name="UpdateRegistrationCarStatusServices"></param>
+        /// <returns>UpdateSuccessResponseModel</returns>
+        public UpdateSuccessResponseModel UpdateRegistrationCarStatusServices(UpdateRegistrationCarStatusRequestModel request)
+        {
+            UpdateSuccessResponseModel result = new UpdateSuccessResponseModel();
+            try
+            {
+                string uspUpdateRegistrationCarStatus = String.Format(Prototype.SqlCommandStore.uspUpdateRegistrationCarStatus, request.RegistrationCarID, request.Profile_Status, request.DistanceTo, request.DistanceBack);
+                result = registrationCarDAO.UpdateRegistrationCarStatusDAO(uspUpdateRegistrationCarStatus);
                 return result;
             }
             catch (Exception ex)

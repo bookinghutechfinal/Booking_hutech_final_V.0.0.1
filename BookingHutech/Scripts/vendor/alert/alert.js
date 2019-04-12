@@ -142,6 +142,7 @@ mainmodule.service('$alert', ['SweetAlert', '$rootScope', function (SweetAlert, 
             closeOnConfirm: true
         }, function (IsOk) {
             if (IsOk) {
+                $rootScope.alertValue = IsOk;
                 ok();
             };
         });

@@ -8,6 +8,7 @@
             $scope.ClearData();
             $scope.getCarInfo();
             $scope.getListCost();
+            $scope.ErrorDay = false;
         }
 
         // Hàm Lấy danh sách xe
@@ -37,6 +38,7 @@
             angular.element('#myDate1').val("");
             request.RepairStatus = "";
 
+            $scope.ErrorDay = false;
             $scope.ClearData();
             $scope.ShowListCost = false;
 
@@ -91,31 +93,41 @@
                 var repairStatus2 = 1111;
             }
 
-            var searchCostRequestModel = {
-                AccountCreate: AccountInfo.ObjAccountInfo.Account_ID,
-                RepairStatus1: repairStatus1,
-                RepairStatus2: repairStatus2,
-                DateTo: angular.element('#myDate2').val(),
-                DateFrom: angular.element('#myDate1').val()
-            }
+            var date_from = angular.element('#myDate1').val();
+            var date_to = angular.element('#myDate2').val();
 
-            $scope.ShowListCost = true;
-            $scope.ClearData();
+            if (So_Sanh_DateInput2(date_to, date_from) && checkDiffFromToDate1(date_from, date_to, 61) && date_from != "" && date_to != "") {
 
-            $BookingCar.getListCostByAccountCreate(searchCostRequestModel, function (res) {
-                var result = res.data.Data.ListRepairCost;
-                if (res.data.ReturnCode === 1) {
-                    for (var i = 0; i < result.length; i++) {
-                        if (result[i].RepairStatus === 0)
-                            result[i].RepairStatus = RepairStatus[0].RepairStatusName;
-                        if (result[i].RepairStatus === 1)
-                            result[i].RepairStatus = RepairStatus[1].RepairStatusName;
-                        if (result[i].RepairStatus === 2)
-                            result[i].RepairStatus = RepairStatus[2].RepairStatusName;
-                    }
-                    $scope.tableParams1 = new NgTableParams({}, { dataset: result });
+                var searchCostRequestModel = {
+                    AccountCreate: AccountInfo.ObjAccountInfo.Account_ID,
+                    RepairStatus1: repairStatus1,
+                    RepairStatus2: repairStatus2,
+                    DateTo: date_to,
+                    DateFrom: date_from
                 }
-            });
+
+                $scope.ErrorDay = false;
+                $scope.ShowListCost = true;
+                $scope.ClearData();
+
+                $BookingCar.getListCostByAccountCreate(searchCostRequestModel, function (res) {
+                    var result = res.data.Data.ListRepairCost;
+                    if (res.data.ReturnCode === 1) {
+                        for (var i = 0; i < result.length; i++) {
+                            if (result[i].RepairStatus === 0)
+                                result[i].RepairStatus = RepairStatus[0].RepairStatusName;
+                            if (result[i].RepairStatus === 1)
+                                result[i].RepairStatus = RepairStatus[1].RepairStatusName;
+                            if (result[i].RepairStatus === 2)
+                                result[i].RepairStatus = RepairStatus[2].RepairStatusName;
+                        }
+                        $scope.tableParams1 = new NgTableParams({}, { dataset: result });
+                    }
+                });
+            }
+            else {
+                $scope.ErrorDay = true;
+            }
         }
 
         $scope.init();

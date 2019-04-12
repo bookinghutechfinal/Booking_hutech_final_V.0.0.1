@@ -1,5 +1,5 @@
-﻿mainmodule.controller('ManagerFuelCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams',
-    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams) {
+﻿mainmodule.controller('ManagerFuelCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams','$alert',
+    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $alert) {
 
         $scope.init = function () {
             var ListCost = [];
@@ -82,9 +82,7 @@
                 }
             });
         }
-
-
-
+        
         $scope.init();
 
         $scope.addNewCost = function () {
