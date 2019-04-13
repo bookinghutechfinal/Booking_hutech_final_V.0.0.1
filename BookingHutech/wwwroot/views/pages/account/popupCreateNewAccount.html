@@ -79,6 +79,7 @@
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/switchery/dist/switchery.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/build/css/custom.min.css" rel="stylesheet" />-->
+ 
 <!-- Modal content-->
 <!-- Test  -->
 <div class="modal-content">
@@ -93,24 +94,26 @@
                     <div class="x_panel">
                         <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
                             <div class="form-group" style="text-align: center;">
-                                <!--<div class="control-label">Chân dung: <i style="color:red;">(*)</i></div>-->
                                 <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null &&  !TestInputChange " style="color: orangered">Vui lòng chọn!</span>
 
                                 <div ng-show="!ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
                                     <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
-                                         width="200" height="200"  />
-                                       <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
+                                         width="200" height="200" />
+                                    <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
 
                                 </div>
                                 <div class="row">
                                     <div>
-                                        <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình" 
+                                        <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình"
                                                 onclick="document.getElementById('file1').click();" style="margin-top: 5px;">
                                             <span class="glyphicon glyphicon-picture"></span>
                                             Chọn Hình
                                             <i style="color:red;">(*)</i>
 
                                         </button>
+                                        <!--<input style="display:none;" type="file" id="file1" accept="image/*"
+                                        ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
+                                        resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />-->
                                         <input style="display:none;" type="file" id="file1" accept="image/*"
                                                ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
                                                resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
@@ -293,7 +296,7 @@
         </div>
     </div>
 </div>
-
+ 
 <!--<script src="../../../../../script/js/jquery.min.js"></script>
 <script src="../../../../../script/js/bootstrap.min.js"></script>
 <script src="../../../../../script/teamplate/iCheck/icheck.min.js"></script>

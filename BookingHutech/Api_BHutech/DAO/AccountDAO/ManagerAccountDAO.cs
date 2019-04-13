@@ -43,7 +43,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     cmd.Connection.Open();
                 }
                 cmd.ExecuteNonQuery();
-                SqlDataReader reader = cmd.ExecuteReader(); 
+                SqlDataReader reader = cmd.ExecuteReader();
                 List<AccountInfo> req = new List<AccountInfo>();
                 while (reader.Read())
                 {
@@ -141,6 +141,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
                     accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
                     accountLoginResponseModel.AccountType = reader["AccountType"].ToString();
+                    accountLoginResponseModel.Unit_ID = int.Parse(reader["Unit_ID"].ToString());
                     accountLoginResponseModel.UnitName = reader["UnitName"].ToString();
                     accountLoginResponseModel.Manager = reader["Manager"].ToString();
                     accountLoginResponseModel.EmailManager = reader["EmailManager"].ToString();
@@ -302,7 +303,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             List<Models.AccountModels.RoleMaster> listRoleMasters = new List<Models.AccountModels.RoleMaster>();
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
-            cmd = new SqlCommand(sqlStore, con); 
+            cmd = new SqlCommand(sqlStore, con);
             try
             {
                 if (cmd.Connection.State == ConnectionState.Closed)
@@ -310,13 +311,13 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     cmd.Connection.Open();
                 }
 
-                SqlDataReader reader = cmd.ExecuteReader(); 
+                SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     Models.AccountModels.RoleMaster roleMaster = new Models.AccountModels.RoleMaster();
                     roleMaster.GroupRoleID = Int32.Parse(reader["GroupRoleID"].ToString());
                     roleMaster.GroupRoleName = reader["GroupRoleName"].ToString();
-                    roleMaster.RoleMaster_ID = Int32.Parse(reader["RoleMaster_ID"].ToString()); 
+                    roleMaster.RoleMaster_ID = Int32.Parse(reader["RoleMaster_ID"].ToString());
                     roleMaster.RoleName = reader["RoleName"].ToString();
                     listRoleMasters.Add(roleMaster);
                 }
@@ -347,7 +348,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
             cmd = new SqlCommand(sqlStore, con);
-            cmd.CommandType = CommandType.StoredProcedure;  
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@RoleMaster_ID", SqlDbType.Int).Value = request.RoleMaster_ID;
             cmd.Parameters.Add("@RoleName", SqlDbType.NVarChar, 100).Value = request.RoleName;
             cmd.Parameters.Add("@UserNameUpdate", SqlDbType.NVarChar, 20).Value = request.UserNameUpdate;
@@ -452,18 +453,18 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         /// <param name="sqlStore">StrQuery</param> 
         public void ManagerUpdateAccountDAO(String StrQuery)
         {
-          
+
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
-            cmd = new SqlCommand(StrQuery, con);   
+            cmd = new SqlCommand(StrQuery, con);
             try
             {
                 if (cmd.Connection.State == ConnectionState.Closed)
                 {
                     cmd.Connection.Open();
                 }
-                cmd.ExecuteNonQuery(); 
-                con.Close(); 
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
             catch (Exception ex)
             {
@@ -476,7 +477,61 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 cmd.Connection.Close();
             }
 
-        } 
+        }
+        /// <summary>
+        /// Anh.Trần Create 8/4/2019. Chỉnh sửa thông tin tài khoản
+        /// </summary>
+        /// <param name="sqlStore">sqlStore</param> 
+        public void EditProfileAccountDAO(String sqlStore, EditProfileAccountRequestModel request)
+        {
+
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Avatar", SqlDbType.VarChar, 100).Value = request.Avatar;
+            cmd.Parameters.Add("@Account_ID", SqlDbType.VarChar, 10).Value = request.Account_ID;
+            cmd.Parameters.Add("@Unit_ID", SqlDbType.Int).Value = request.Unit_ID;
+            cmd.Parameters.Add("@FullName", SqlDbType.NVarChar, 50).Value = request.FullName;
+            cmd.Parameters.Add("@Gender", SqlDbType.TinyInt).Value = request.Gender;
+            cmd.Parameters.Add("@BirthDay", SqlDbType.DateTime).Value = request.Birthday;
+            cmd.Parameters.Add("@NumberPhone", SqlDbType.Char, 12).Value = request.NumberPhone;
+            cmd.Parameters.Add("@Addres", SqlDbType.NVarChar, 100).Value = request.Addres;
+            cmd.Parameters.Add("@Email", SqlDbType.VarChar, 20).Value = request.Email;
+            cmd.Parameters.Add("@AccountType", SqlDbType.Char, 1).Value = request.AccountType;
+
+            if (request.DriverLicenseNo == null)
+                cmd.Parameters.Add("@DriverLicenseNo", SqlDbType.NChar, 20).Value = DBNull.Value;
+            else
+                cmd.Parameters.Add("@DriverLicenseNo", SqlDbType.NChar, 20).Value = request.DriverLicenseNo;
+            if (request.LicenseClass == null)
+                cmd.Parameters.Add("@LicenseClass", SqlDbType.NChar, 20).Value = DBNull.Value;
+            else
+                cmd.Parameters.Add("@LicenseClass", SqlDbType.NChar, 20).Value = request.LicenseClass;
+            if (request.LicenseExpires == null)
+                cmd.Parameters.Add("@LicenseExpires", SqlDbType.DateTime).Value = DBNull.Value;
+            else
+                cmd.Parameters.Add("@LicenseExpires", SqlDbType.DateTime).Value = request.LicenseExpires;
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+
+        }
 
     }
 

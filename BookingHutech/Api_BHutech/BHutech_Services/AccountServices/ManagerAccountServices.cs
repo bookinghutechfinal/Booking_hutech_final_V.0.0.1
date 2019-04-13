@@ -229,24 +229,61 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
                 int result = helper.ManagerUpdateTypes(request);
                 switch (result)
                 {
-                    case 1:   
+                    case 1:
                         stringSqlUpdateAccount = "UPDATE Account SET Account_Status = '" + request.Account_Status + "' , LastModifiedDate = '" + request.LastModifiedDate + "'  WHERE Account_ID = '" + request.Account_ID + "' ";
                         break;
-                    case 2:  
-                            // stringSqlUpdateAccount = "UPDATE Account SET  "; 
+                    case 2:
+                        // stringSqlUpdateAccount = "UPDATE Account SET  "; 
                         request.Password = EncodePassword.CreateSHA256(request.Password);
                         //stringSqlUpdateAccount = "UPDATE Account SET Account_Status = '" + request.Account_Status + "' , LastModifiedDate = '" + request.LastModifiedDate + "'  WHERE Account_ID = 'BK008' ";
                         break;
-                    case 3: 
+                    case 3:
                         stringSqlUpdateAccount = "UPDATE Account SET Verify = '" + request.Verify + "' , LastModifiedDate = '" + request.LastModifiedDate + "'  WHERE Account_ID = '" + request.Account_ID + "' ";
                         break;
                     case 4:
                         stringSqlUpdateAccount = "UPDATE Account SET AccountType = '" + request.AccountType + "' , LastModifiedDate = '" + request.LastModifiedDate + "'  WHERE Account_ID = '" + request.Account_ID + "' ";
                         break;
                     case 0:
-                        throw new Exception(); 
+                        throw new Exception();
                 }
                 managerAccountDAO.ManagerUpdateAccountDAO(stringSqlUpdateAccount);
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// Anh.Trần Create 8/4/2019. Chỉnh sửa thông tin tài khoản
+        /// </summary>
+        /// <param name="request">EditProfileAccountRequestModel</param>
+        public void EditProfileAccountServices(EditProfileAccountRequestModel request)
+        {
+            Helper helper = new Helper();
+            try
+            {
+                if (request.DriverLicenseNo == null) {
+                    request.DriverLicenseNo = null; 
+                }
+
+                //string stringSqlUpdateAccount = " UPDATE Account SET Avatar = '"+ request.Avatar+ "'," +
+                //    "Unit_ID = "+ request.Unit_ID+ "'," +
+                //    "FullName = N'"+ request.FullName+ "', Gender = "+ request.Gender+ "," +
+                //    "BirthDay = '" + request.Birthday + "'," +
+                //    "NumberPhone = '" + request.NumberPhone + "'," +
+                //    "Addres = N'" + request.Addres + "'," +
+                //    "Email = '" + request.Email + "'," +
+                //    "LastModifiedDate = GETDATE(), " +
+                //    "AccountType = " + request.AccountType + ", " +
+                //    "DriverLicenseNo = '" + request.DriverLicenseNo + "', " +
+                //    "LicenseClass = '" + request.LicenseClass + "'," +
+                //    "LicenseExpires = '" + request.LicenseExpires + "'" +
+                //    "WHERE Account_ID = '" + request.Account_ID + "'";
+                string stringSqluspEditProfileAccount = String.Format(Prototype.SqlCommandStore.uspEditProfileAccount);
+                managerAccountDAO.EditProfileAccountDAO(stringSqluspEditProfileAccount, request);
             }
             catch (Exception ex)
             {

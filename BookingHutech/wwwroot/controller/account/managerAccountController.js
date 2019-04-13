@@ -43,7 +43,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                             Gender: AccountInfoResponse.Gender,
                             Birthday: AccountInfoResponse.Birthday,
                             Addres: AccountInfoResponse.Addres,
-                            AccountType: AccountInfoResponse.AccountType,
+                            AccountType: ConvertAccountTypeIDToName(AccountInfoResponse.AccountType),
                             NumberPhone: AccountInfoResponse.NumberPhone,
                             Email: AccountInfoResponse.Email,
                             UnitName: AccountInfoResponse.UnitName,
@@ -80,25 +80,25 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                         $scope.numPag = 6; // số lượng item trên 1 trang 
                         //Cập nhật trạng thái cho quyền. 
                         for (var i = 0; i < $scope.ManagerGetListAccountResponse.length; i++) {
-
-                            if ($scope.ManagerGetListAccountResponse[i].AccountType === "1") {
-                                $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[0].AccountTypeName;
-                            }
-                            if ($scope.ManagerGetListAccountResponse[i].AccountType === "2") {
-                                $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[1].AccountTypeName;
-                            }
-                            if ($scope.ManagerGetListAccountResponse[i].AccountType === "3") {
-                                $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[2].AccountTypeName;
-                            }
-                            if ($scope.ManagerGetListAccountResponse[i].AccountType === "4") {
-                                $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[3].AccountTypeName;
-                            }
-                            if ($scope.ManagerGetListAccountResponse[i].AccountType === "5") {
-                                $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[4].AccountTypeName;
-                            }
-                            if ($scope.ManagerGetListAccountResponse[i].AccountType === "7") {
-                                $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[5].AccountTypeName;
-                            }
+                            $scope.ManagerGetListAccountResponse[i].AccountType = ConvertAccountTypeIDToName($scope.ManagerGetListAccountResponse[i].AccountType); 
+                            //if ($scope.ManagerGetListAccountResponse[i].AccountType === "1") {
+                            //    $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[0].AccountTypeName;
+                            //}
+                            //if ($scope.ManagerGetListAccountResponse[i].AccountType === "2") {
+                            //    $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[1].AccountTypeName;
+                            //}
+                            //if ($scope.ManagerGetListAccountResponse[i].AccountType === "3") {
+                            //    $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[2].AccountTypeName;
+                            //}
+                            //if ($scope.ManagerGetListAccountResponse[i].AccountType === "4") {
+                            //    $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[3].AccountTypeName;
+                            //}
+                            //if ($scope.ManagerGetListAccountResponse[i].AccountType === "5") {
+                            //    $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[4].AccountTypeName;
+                            //}
+                            //if ($scope.ManagerGetListAccountResponse[i].AccountType === "7") {
+                            //    $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[5].AccountTypeName;
+                            //}
 
                         }
                         if ($scope.ManagerGetListAccountResponse.length === 0) {

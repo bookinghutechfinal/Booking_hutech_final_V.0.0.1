@@ -45,6 +45,18 @@
         .ngHideSample.ng-hide-remove-active {
             opacity: 1;
         }
+    .title_bk {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa;
+        padding: 7px;
+        display: block;
+        background-color: #cde0c4;
+        color: #356635;
+        font-size: 11px;
+        height: 29px;
+    }
 </style>
 <link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
@@ -93,14 +105,27 @@
                                     <i class="fa fa-map-marker user-profile-icon"></i>
                                     <a>{{AccountDriverDetail.Addres}}</a>
                                 </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-map-marker user-profile-icon"></i>
+                                    <a>Trưởng Đ/V: {{AccountDriverDetail.Manager}}</a>
+                                </li>
+                                <li class="m-top-xs">
+                                    <i class="fa fa-map-marker user-profile-icon"></i>
+                                    <a>Đơn vị: {{AccountDriverDetail.UnitName}}</a>
+                                </li>
                             </ul>
-
+                            <div class="title_bk">
+                                <span style="font-weight:bold"><span class="glyphicon glyphicon-cog"></span> Cập nhật:</span> {{AccountDriverDetail.LastModifiedDate | date:'HH:mm - dd/MM/yyyy '}} 
+                            </div> <br />
+                            <div class="col-sm-12 col-lg-12">
+                                <button style="font-size: 11px;" ng-click="EditProfileAccount()" class="btn btn-success btn-round btn-block"><i class="fa fa-edit m-right-xs"></i> Chỉnh sửa</button>
+                            </div>  
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <div class="row">
                                 <div class="table-responsive">
                                     <table class="table table-hover  table-striped jambo_table bulk_action ng-scope ng-table" fixed-table-headers="scrollable-area">
-                                       <tbody>
+                                        <tbody>
                                         <tbody>
                                             <tr class="even pointer">
                                                 <td ng-show="AccountDriverDetail.IsChangePassword">
@@ -113,20 +138,13 @@
                                                 </td>
                                                 <td>
                                                     <i class="fa fa-hand-o-right"></i>
-                                                    <label>{{AccountDriverDetail.AccountType}}</label>
+                                                    <label>Chức vụ: {{AccountDriverDetail.AccountType}}</label>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <i class="fa fa-check-square-o"></i> Đã duyệt
                                                 </td>
-                                                <td ng-show="AccountDriverDetail.AccountType =='Lái xe'">
-                                                    <i class="fa fa-external-link user-profile-icon"></i>
-                                                    <label>Số bằng lái:{{AccountDriverDetail.DriverLicenseNo}}</label>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
                                                 <td>
                                                     <label>Trạng thái:</label>
                                                     <i class="fa fa-circle text-success"> Hoạt động</i>
@@ -134,9 +152,21 @@
 
                                             </tr>
                                             <tr>
+                                               
+                                                <td ng-show="AccountDriverDetail.AccountType =='Lái xe'">
+                                                    <i class="fa fa-external-link user-profile-icon"></i>
+                                                    <label>Số bằng lái: {{AccountDriverDetail.DriverLicenseNo}}</label>
+                                                </td>
+                                                <td ng-show="AccountDriverDetail.AccountType =='Lái xe'">
+                                                    <i class="fa fa-external-link user-profile-icon"></i>
+                                                    <label>Hạn:{{AccountDriverDetail.LicenseClass}}</label>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
                                                 <td>
                                                     <i class="fa fa-asterisk"></i>
-                                                    <label>Giới tính:{{AccountDriverDetail.Gender}}</label>
+                                                    <label>Giới tính: {{AccountDriverDetail.Gender}}</label>
                                                 </td>
                                                 <td ng-show="AccountDriverDetail.AccountType =='Lái xe'">
                                                     <i class="fa fa-external-link user-profile-icon"></i>
@@ -161,7 +191,7 @@
                                                 <div class="table-responsive">
                                                     <table class="table table-striped jambo_table bulk_action" ng-table="tableParams1">
                                                         <thead>
-                                                            <tr class="headings"> 
+                                                            <tr class="headings">
                                                                 <th class="column-title">#STT</th>
                                                                 <th class="column-title">Tên quyền</th>
                                                                 <th class="column-title">Trạng thái</th>
@@ -176,7 +206,7 @@
                                                                 <td class=" ">
                                                                     {{role.RoleName}}
                                                                 </td>
-                                                                <td class=" "> 
+                                                                <td class=" ">
                                                                     <i class="fa fa-circle text-success" ng-show="role.RoleDetail_Status"> Hoạt động</i>
                                                                     <i class="fa fa-circle text-success" style="color: #e65b5b" ng-show="!role.RoleDetail_Status"> Đã khóa</i>
                                                                 </td>

@@ -186,6 +186,7 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\CreateNewAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\DecentralizationRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\EditProfileAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetAccountByAccountStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetRoleMasterByAccountIDRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateAccountRequestModel.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Api\ProfileAccountController.cs" />
     <Compile Include="Controllers\Api\ManagerCostController.cs" />
     <Compile Include="Controllers\Api\ManagerAccountController.cs" />
     <Compile Include="Controllers\Api\AccountController.cs" />
@@ -967,6 +969,7 @@
     <Content Include="script\css\Table\jquery.dataTables.min.js" />
     <Content Include="script\css\Table\responsive.bootstrap.min.css" />
     <Content Include="wwwroot\controller\account\changePasswordController.js" />
+    <Content Include="wwwroot\controller\account\editProfileAccountController.js" />
     <Content Include="wwwroot\controller\account\profileAccountController.js" />
     <Content Include="wwwroot\controller\account\detailAccountController.js" />
     <Content Include="wwwroot\controller\account\managerAccountController.js" />
@@ -1189,6 +1192,7 @@
     <Content Include="wwwroot\service\dataEntity.js" />
     <Content Include="wwwroot\service\language.js" />
     <Content Include="wwwroot\views\common\alert\error404.html" />
+    <Content Include="wwwroot\views\pages\account\popupEditProfileAccount.html" />
     <Content Include="wwwroot\views\pages\account\popupProfileAccount.html" />
     <Content Include="wwwroot\views\pages\account\timeout-dialog.html" />
     <Content Include="wwwroot\views\common\header\header.html" />

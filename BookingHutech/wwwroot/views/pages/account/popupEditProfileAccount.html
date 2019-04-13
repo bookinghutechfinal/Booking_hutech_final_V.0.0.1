@@ -1,0 +1,299 @@
+﻿<style>
+    .modal-header {
+        background-color: #2A3F54;
+    }
+    /*-Upload hình-*/
+    .danger {
+        font-weight: bold;
+        /*//padding: 20px;*/
+        color: red;
+    }
+
+    /* vi.ly - button delete */
+    div.show-image {
+        position: relative;
+        /* float: left;  */
+        margin: 5px;
+    }
+
+        div.show-image:hover img {
+            opacity: 0.5;
+        }
+
+        div.show-image:hover input.delete {
+            display: block;
+        }
+
+        div.show-image input.delete {
+            position: absolute;
+            display: none;
+        }
+
+        div.show-image input.update {
+            top: 0;
+            left: 0;
+        }
+
+        div.show-image input.delete {
+            top: 0;
+            left: 60%;
+        }
+
+    #imgremove {
+        position: absolute;
+        margin-left: 22px;
+        margin-top: -192px;
+    }
+    /* ng-show animation*/
+    /* ngHide animation */
+    .ngHideSample {
+        /*padding: 0;
+        margin: 0;*/ 
+    }
+
+        .ngHideSample.ng-hide-add {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 1;
+        }
+
+        .ngHideSample.ng-hide-add-active {
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove-active {
+            opacity: 1;
+        }
+    .form-group_bk{
+        margin:0;
+         
+    }
+    .form-group_bk_cv {
+        padding: inherit; 
+        margin-top: 10px;
+    }
+   
+</style>
+<!--<link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/switchery/dist/switchery.min.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/build/css/custom.min.css" rel="stylesheet" />-->
+<!-- Modal content-->
+<!-- Test  -->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
+        <h4 class="modal-title">Chỉnh Sửa tài khoản</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_content">
+                    <div class="x_panel">
+                        <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
+                            <div class="form-group" style="text-align: center;">
+                                <!--<span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null &&  !TestInputChange " style="color: orangered">Vui lòng chọn!</span>-->
+                                <!--ng-show="!ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  "-->
+                                <div>
+                                    <img style="width:auto; max-width: -webkit-fill-available;" src="../../../../images/avt/{{EditProfiAccount.Avatar}}"
+                                         width="200" height="200" />
+                                    <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
+                                </div>
+                                <!--<div class="row">
+                                    <div>
+                                        <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình"
+                                                onclick="document.getElementById('file1').click();" style="margin-top: 5px;">
+                                            <span class="glyphicon glyphicon-picture"></span>
+                                            Chọn Hình
+                                            <i style="color:red;">(*)</i>
+                                        </button>
+                                        <input style="display:none;" type="file" id="file1" accept="image/*"
+                                               ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
+                                               resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-sm-10 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_content">
+                                    <div class="form-horizontal form-label-left input_mask">
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Họ Tên: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" ng-model="EditProfiAccount.FullName" type="text" value="" autofocus ng-change="TestInputChange(EditProfiAccount)">
+                                                <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.FullName === '' || EditProfiAccount.FullName === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Giới tính: <i style="color:red;">(*)</i></div>
+
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="radio" style="float:left; padding-right:17px">
+                                                    <label>
+                                                        <input type="radio" value="1" ng-model="EditProfiAccount.Gender" ng-checked="EditProfiAccount.Gender == 'Nam'" ng-change="TestInputChange(EditProfiAccount)" name="Gender"> Nam
+                                                    </label>
+                                                </div>
+
+                                                <div class="radio" style="float:  left">
+                                                    <label>
+                                                        <input type="radio" value="0" ng-model="EditProfiAccount.Gender" ng-checked="EditProfiAccount.Gender == 'Nữ'" ng-change="TestInputChange(EditProfiAccount)" name="Gender"> Nữ
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.Gender === '' || EditProfiAccount.Gender === null && !TestInputChange">Vui lòng chọn!</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Điện thoại: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" value="{{EditProfiAccount.NumberPhone}}" ng-model="EditProfiAccount.NumberPhone" ng-change="TestInputChange(EditProfiAccount)" type="text">
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.NumberPhone === '' || EditProfiAccount.NumberPhone === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Email: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.Email" ng-change="TestInputChange(EditProfiAccount)" type="text">
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Email === '' || EditProfiAccount.Email === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                                <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.Addres" ng-change="TestInputChange(EditProfiAccount)" type="text">
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Addres === '' || EditProfiAccount.Addres === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group_bk">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày sinh: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <!--<input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.BirthDay" ng-change="TestInputChange(EditProfiAccount)" type="date">
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.BirthDay === '' || EditProfiAccount.BirthDay === null && !TestInputChange">Vui lòng nhập!</span>-->
+                                                <div class="input-group date" id="myDatepicker">
+                                                    <input type="text" class="form-control ed_border" id="BirthDay" ng-model="EditProfiAccount.BirthDay" ng-change="TestInputChange(EditProfiAccount)">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.BirthDay === '' || EditProfiAccount.BirthDay === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group_bk">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Đơn vị: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <select class="form-control " ng-model="EditProfiAccount.Unit_ID" ng-change="TestInputChange(EditProfiAccount)" style="width: 100%;">
+                                                    <option value="">-- Vui lòng chọn --</option>
+                                                    <option ng-repeat="index in ManagerGetListUnitResponse" value="{{index.Unit_ID}}" ng-selected="1">
+                                                        {{index.UnitName}}
+                                                    </option>
+                                                </select>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Unit_ID === '' || EditProfiAccount.Unit_ID === null && !TestInputChange">Vui lòng chọn!</span>
+                                            </div>
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Chức vụ: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <select class="form-control" ng-model="EditProfiAccount.AccountType" ng-change="TestInputChange(EditProfiAccount)">
+                                                    <option selected value="">-- Vui lòng chọn --</option>
+                                                    <option ng-repeat="index in AccountType" value="{{index.AccountType}}">
+                                                        {{index.AccountTypeName}}
+                                                    </option>
+                                                </select>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.AccountType === '' || EditProfiAccount.AccountType === null && !TestInputChange">Vui lòng chọn!</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group form-group_bk_cv ngHideSample  " ng-show="isDriver || EditProfiAccount.AccountType == 'Lái xe' ">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Số bằng <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.DriverLicenseNo" ng-change="TestInputChange(EditProfiAccount)">
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.DriverLicenseNo === '' || EditProfiAccount.DriverLicenseNo === null && !TestInputChange">Vui lòng chọn!</span>
+                                            </div>
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạng: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.LicenseClass" ng-change="TestInputChange(EditProfiAccount)">
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseClass === '' || EditProfiAccount.LicenseClass === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group  ngHideSample  " ng-show="isDriver || EditProfiAccount.AccountType == 'Lái xe' " style="padding:0">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Hết hạn: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="input-group date  " id="myLicenseExpires">
+                                                    <input type="text" class="form-control ed_border" id="LicenseExpires" ng-model="EditProfiAccount.LicenseExpires">
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseExpires === '' || EditProfiAccount.LicenseExpires === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="form-group">
+                                    </div>
+                                    <br />
+                                    <!--<div class="row">
+                                        <div class="col-sm-6 col-md-6" style="margin-bottom: 1px;">
+                                            <button class="btn btn-danger btn-round btn-block" type="submit"
+                                                    ng-click="ClosePopup()">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                                <span>HỦY</span>
+                                            </button>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <button class="btn btn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                    data-ng-click="EditProfileAccount(EditProfiAccount)">
+                                                <i class="glyphicon glyphicon-cog"></i>
+                                                <span>Cập nhật</span>
+                                            </button>
+                                        </div>
+                                    </div>-->
+                                    <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <button class="btn btn-danger btn-round btn-block" type="submit"
+                                                        ng-click="ClosePopup()">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                    <span>HỦY</span>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <button class="btn btn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                        data-ng-click="EditProfileAccount(EditProfiAccount)">
+                                                    <i class="glyphicon glyphicon-cog"></i>
+                                                    <span>Cập nhật</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>
+<script src="../../../../../script/teamplate/daterangepicker/daterangepicker.js"></script>
+<script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
+<script>
+    $('#myDatepicker').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+    $('#myLicenseExpires').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+</script>

@@ -82,6 +82,9 @@ var FormatDateTimeByDBResponse = function (date) { // Update
 var FormatDateFromTo = function (date) {
     return moment(date, 'MM/DD/YYYY').format('YYYY-MM-DD')
 }
+var FormatDate = function (date) {
+    return moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD')
+}
 // Định dạng ngày sang số. 
 var FormatDateFromToToNumber = function (date) {
     return moment(date, 'MM/DD/YYYY').format('YYYYMMDD')
@@ -205,4 +208,38 @@ var CheckRegistration = function (request) {
     if (checkNull(request.FormDate) == true) {
         return 1;
     }
+}
+
+// Cập nhật loại tài khoản
+// Request AccountType
+// Return AccountTypeName
+var ConvertAccountTypeIDToName = function (accountID) {
+    if (accountID === "1") {
+        return AccountTypeRequest[0].AccountTypeName;
+    }
+    if (accountID === "2") {
+        return AccountTypeRequest[1].AccountTypeName;
+    }
+    if (accountID === "3") {
+        return AccountTypeRequest[2].AccountTypeName;
+    }
+    if (accountID === "4") {
+        return  AccountTypeRequest[3].AccountTypeName;
+    }   accountID
+    if (accountID === "5") {
+        return AccountTypeRequest[4].AccountTypeName;
+    }   accountID
+    if (accountID === "7") {
+        return AccountTypeRequest[5].AccountTypeName;
+    }
+}
+
+// Cập nhật trạng thái cho tài khoản
+var ConvertAccountStatusIDToName = function (accountStatusID) {
+    if (accountStatusID === "0") {
+        return Account_StatusRequest[0].Account_StatusName;
+    }
+    if (accountStatusID === "1") {
+        return Account_StatusRequest[1].Account_StatusName;
+    } 
 }

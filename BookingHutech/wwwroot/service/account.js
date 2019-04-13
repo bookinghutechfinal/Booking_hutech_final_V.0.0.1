@@ -167,6 +167,13 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     }
+    this.EditProfiAccount = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'ProfileAccount/EditProfiAccount',
+            data: request
+        }, success, finish)
+    }
    
 
   
