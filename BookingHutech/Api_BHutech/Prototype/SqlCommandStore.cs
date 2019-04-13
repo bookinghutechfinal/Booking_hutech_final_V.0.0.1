@@ -71,7 +71,7 @@ namespace BookingHutech.Api_BHutech.Prototype
         //Get RegristrationCar by DriverID. Create By Mr.Lam Create 9/4/2019. 
         public const string uspGetRegistrationCarByDriverID = "uspGetRegistrationCarByDriverID {0},{1},{2},{3},{4},{5}";
         //Get UpdateRegistrationCar Status by RegistrationID. Create By Mr.Lam Create 12/4/2019. 
-        public const string uspUpdateRegistrationCarStatus = "uspUpdateRegistrationCarStatus {0},{1},{2},{3}";
+        public const string uspUpdateRegistrationCarStatus = "uspUpdateRegistrationCarStatus {0},{1},{2},{3},{4}";
         
     }
 

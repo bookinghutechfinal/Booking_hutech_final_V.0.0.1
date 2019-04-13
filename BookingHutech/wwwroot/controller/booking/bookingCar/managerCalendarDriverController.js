@@ -96,6 +96,7 @@
                     Profile_Status: 9,
                     DistanceTo: $rootScope.alertValue,
                     DistanceBack: 0,
+                    CarID: request.CarID
                 }
 
                 $BookingCar.updateRegistrationCarStatus(requestModelStart, function (res) {
@@ -117,6 +118,7 @@
                     Profile_Status: 10,
                     DistanceTo: request.DistanceTo,
                     DistanceBack: $rootScope.alertValue,
+                    CarID: request.CarID
                 }
 
                 $BookingCar.updateRegistrationCarStatus(requestModelFinish, function (res) {

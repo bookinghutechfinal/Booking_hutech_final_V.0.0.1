@@ -11,5 +11,6 @@ namespace BookingHutech.Api_BHutech.Models.Request.BookingCarRequest
         public int Profile_Status { get; set; }
         public int? DistanceTo { get; set; }
         public int? DistanceBack { get; set; }
+        public int? CarID { get; set; }
     }
 }
