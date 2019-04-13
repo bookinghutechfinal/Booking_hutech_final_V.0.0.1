@@ -2,8 +2,32 @@
     .modal-header {
         background-color: #2A3F54;
     }
-    .title_bk{
-        color: rebeccapurple; 
+
+    .title_bk {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        color: rebeccapurple;
+        background: #f5f7fa;
+        margin-bottom: 10px;
+        padding: 7px;
+        font-size: 17px;
+        width: -webkit-fill-available;
+    }
+
+    .title_bk_mes {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa;
+        padding: 7px;
+        display: block;
+        background-color: #d6dde7;
+        font-size: 13px;
+        height: auto;
+        border-color: #9cb4c5;
+        color: #305d8c;
+        margin-bottom: 20px;
     }
 </style>
 
@@ -19,31 +43,32 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_content">
-                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
-                        <div class="profile_title">
-                            <div class="col-md-6">
-                                <h2>Thông tin</h2>
-                            </div>
-                            <div class="col-md-6">
-                            </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 profile_left">
+                        <div class="col-md-12 col-sm-12 col-xs-12 title_bk_mes">
+                            <span style="font-weight:bold"><span class="glyphicon glyphicon-ok"></span> Đơn vị:</span>
+                            <h2>Trần Nhựt Anh</h2>
+                            <ul class="list-unstyled user_data">
+                                <li>
+                                    <i class="fa fa-briefcase user-profile-icon"></i> Đơn vị: Khoa CNTT
+                                </li>
+                                <li>
+                                    <i class="fa fa-map-marker user-profile-icon"></i> Chức Vụ: Thư ký khoa
+                                </li>
+                            </ul>
+                        </div>    
+                        <div class="col-md-12 col-sm-12 col-xs-12 title_bk_mes">
+                            <span style="font-weight:bold"><span class="glyphicon glyphicon-ok"></span> Lưu ý:</span>
+                            <ul class="list-unstyled user_data">
+                                <li>
+                                    <i class="fa fa-map-marker user-profile-icon"></i> Lộ trình đi trên 200km và trên 24h phải có sự phê duyệt từ BGH nhà trường.
+                                </li>
+                                <li>
+                                    <i class="fa fa-map-marker user-profile-icon"></i> Mọi thắc mắc vui lòng liên hệ phòng quản trị. SĐT (08.09999999).
+                                </li>
+                            </ul>
                         </div>
-                        <!--<div class="profile_img">
-                            <div id="crop-avatar">
-                                <img class="img-responsive avatar-view" src="../../../../../images/img/xe_16_cho.jpg" alt="Avatar" title="Change the avatar">
-                            </div>
-                        </div>-->
-                        <h3>Trần Nhựt Anh</h3>
-                        <ul class="list-unstyled user_data">
-                            <li>
-                                <i class="fa fa-briefcase user-profile-icon"></i> Đơn vị: Khoa CNTT
-                            </li>
-                            <li>
-                                <i class="fa fa-map-marker user-profile-icon"></i> Chức Vụ: Thư ký khoa
-                            </li>
-                        </ul>
-                        <br>
                     </div>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
                         <!--<div class="profile_title">
                             <div class="col-md-6">
                                 <h2>Thông tin chuyến đi</h2>
@@ -51,11 +76,9 @@
                             <div class="col-md-6">
                             </div>
                         </div>-->
-                        <div class="x_panel"> 
+                        <div class="x_panel">
                             <form class="form-horizontal form-label-left input_mask">
-                                <div class="col-sm-12">
-                                    <h2 class="title_bk">Thời gian</h2> 
-                                </div>
+                                <h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Thời gian</h2>
                                 <div class="col-md-7 col-sm-7 col-xs-12 form-group">
                                     <div class="control-label col-md-5 col-sm-5 col-xs-12">Từ ngày<i style="color:red;">(*)</i></div>
                                     <div class="col-md-7 col-sm-7 col-xs-12">
@@ -99,14 +122,33 @@
                                             <option>13:00 AM</option>
                                             <option>13:00 AM</option>
                                             <option>14:30 AM</option>
-                                            <option>2:00 AM</option>
-                                            <option>2:30 AM</option>
-                                            <option>3:00 AM</option>
+                                            <option>14:00 AM</option>
+                                            <option>15:30 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>15:00 AM</option>
+                                            <option>24:00 AM</option>
+                                            <option>24:30 AM</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-7 col-sm-7 col-xs-12 form-group">
-                                    <div class="control-label col-md-5 col-sm-5 col-xs-12">Từ ngày<i style="color:red;">(*)</i></div>
+                                    <div class="control-label col-md-5 col-sm-5 col-xs-12">Đến ngày<i style="color:red;">(*)</i></div>
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <div class="input-group date" id="myLicenseExpires">
                                             <input type="text" class="form-control ed_border" id="BirthDay" ng-model="EditProfiAccount.BirthDay" ng-change="TestInputChange(EditProfiAccount)">
@@ -129,379 +171,130 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-12">
-                                    <h2>Thông tin cơ bản</h2> 
-                                </div>
+                                <h2 class="col-sm-12 title_bk">  Thông tin cơ bản</h2>
                                 <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Đơn vị yêu cầu <i style="color:red;">(*)</i></label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Đơn vị y/c <i style="color:red;">(*)</i></label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control">
+                                        <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
+                                        <input type="text" class="form-control has-feedback" placeholder="Đơn vị yêu cầu">
                                     </div>
                                 </div>
                                 <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do <i style="color:red;">(*)</i></label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control">
+                                        <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
+                                        <input type="text" class="form-control has-feedback" placeholder="Lý do">
                                     </div>
                                 </div>
+                                <h2 class="col-sm-12 title_bk">Thành phần đoàn đi - Trưởng đoàn</h2>
                                 <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên <i style="color:red;">(*)</i></label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control has-feedback" placeholder="Họ tên">
+                                        <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                     </div>
                                 </div>
-                                <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại<i style="color:red;">(*)</i></label>
+
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại<i style="color:red;">(*)</i></label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control has-feedback" placeholder="Điện thoại">
+                                        <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                                     </div>
                                 </div>
                                 <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <i style="color:red;">(*)</i></label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control has-feedback" placeholder="Email">
+                                        <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>
                                     </div>
                                 </div>
-                                <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng<i style="color:red;">(*)</i></label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
+                                <div class="col-md-7 col-sm-7 col-xs-12 form-group">
+                                    <label class="control-label col-md-5 col-sm-5 col-xs-12">Số lượng<i style="color:red;">(*)</i></label>
                                     <div class="col-md-7 col-sm-7 col-xs-12">
-                                        <div class="control-label col-md-4 col-sm-4 col-xs-12">Số lượng<i style="color:red;">(*)</i></div>
-                                        <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <input type="text" class="form-control">
-                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.BirthDay === '' || EditProfiAccount.BirthDay === null && !TestInputChange">Vui lòng nhập!</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 col-sm-5 col-xs-12">
-                                        <label class="control-label col-md-6 col-sm-6 col-xs-12">Loại xe</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select class="form-control">
-                                                <option>1:00</option>
-                                                <option>1:30</option>
-                                                <option>2:00</option>
-                                                <option>2:30</option>
-                                                <option>3:00</option>
-                                            </select>
-                                        </div>
+                                        <input type="number" class="form-control has-feedback-left" style="position: relative; left:5px" min="1" placeholder="Số lượng">
+                                        <span class=" fa fa-child form-control-feedback left" aria-hidden="true"></span>
+                                        <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.BirthDay === '' || EditProfiAccount.BirthDay === null && !TestInputChange">Vui lòng nhập!</span>
                                     </div>
                                 </div>
-
-                            </form>
-
-
-
-
-                            <form class="form-horizontal form-label-left">
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày giờ đi</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="First Name">
-
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày giờ về</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="First Name">
-                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Disabled Input </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Read-Only Input</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                        Date Of Birth <span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-<textarea class="form-control" rows="3" placeholder="rows=&quot;3&quot;"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="password" class="form-control" value="passwordonetwo">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">AutoComplete</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Select</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="col-md-5 col-sm-5 col-xs-12 form-group">
+                                    <label class="control-label col-md-5 col-sm-5 col-xs-12">Loại xe</label>
+                                    <div class="col-md-7 col-sm-7 col-xs-12">
                                         <select class="form-control">
-                                            <option>Choose option</option>
-                                            <option>Option one</option>
-                                            <option>Option two</option>
-                                            <option>Option three</option>
-                                            <option>Option four</option>
+                                            <option selected>--Vui lòng chọn--</option>
+                                            <option>4 chổ</option>
+                                            <option>12 chổ</option>
+                                            <option>16 chổ</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Custom</label>
+                                <h2 class="col-sm-12 title_bk">Lộ trình</h2>
+
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lộ trình đi <i style="color:red;">(*)</i></label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <select class="select2_single form-control" tabindex="-1">
-                                            <option></option>
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI">Hawaii</option>
-                                            <option value="CA">California</option>
-                                            <option value="NV">Nevada</option>
-                                            <option value="OR">Oregon</option>
-                                            <option value="WA">Washington</option>
-                                            <option value="AZ">Arizona</option>
-                                            <option value="CO">Colorado</option>
-                                            <option value="ID">Idaho</option>
-                                            <option value="MT">Montana</option>
-                                            <option value="NE">Nebraska</option>
-                                            <option value="NM">New Mexico</option>
-                                            <option value="ND">North Dakota</option>
-                                            <option value="UT">Utah</option>
-                                            <option value="WY">Wyoming</option>
-                                            <option value="AR">Arkansas</option>
-                                            <option value="IL">Illinois</option>
-                                            <option value="IA">Iowa</option>
-                                            <option value="KS">Kansas</option>
-                                            <option value="KY">Kentucky</option>
-                                            <option value="LA">Louisiana</option>
-                                            <option value="MN">Minnesota</option>
-                                            <option value="MS">Mississippi</option>
-                                            <option value="MO">Missouri</option>
-                                            <option value="OK">Oklahoma</option>
-                                            <option value="SD">South Dakota</option>
-                                            <option value="TX">Texas</option>
-                                        </select>
+                                        <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
+                                        <input type="text" class="form-control has-feedback" placeholder="Lộ trình đi">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Grouped</label>
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Số Km đi <i style="color:red;">(*)</i></label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <input type="text" class="form-control has-feedback-left" placeholder="KM đi">
+                                        <span class="fa fa-send-o form-control-feedback left" aria-hidden="true"></span>  
+                                    </div>
+                                </div>
+
+                                <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lộ trình về <i style="color:red;">(*)</i></label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <select class="select2_group form-control">
-                                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                <option value="AK">Alaska</option>
-                                                <option value="HI">Hawaii</option>
-                                            </optgroup>
-                                            <optgroup label="Pacific Time Zone">
-                                                <option value="CA">California</option>
-                                                <option value="NV">Nevada</option>
-                                                <option value="OR">Oregon</option>
-                                                <option value="WA">Washington</option>
-                                            </optgroup>
-                                            <optgroup label="Mountain Time Zone">
-                                                <option value="AZ">Arizona</option>
-                                                <option value="CO">Colorado</option>
-                                                <option value="ID">Idaho</option>
-                                                <option value="MT">Montana</option>
-                                                <option value="NE">Nebraska</option>
-                                                <option value="NM">New Mexico</option>
-                                                <option value="ND">North Dakota</option>
-                                                <option value="UT">Utah</option>
-                                                <option value="WY">Wyoming</option>
-                                            </optgroup>
-                                            <optgroup label="Central Time Zone">
-                                                <option value="AL">Alabama</option>
-                                                <option value="AR">Arkansas</option>
-                                                <option value="IL">Illinois</option>
-                                                <option value="IA">Iowa</option>
-                                                <option value="KS">Kansas</option>
-                                                <option value="KY">Kentucky</option>
-                                                <option value="LA">Louisiana</option>
-                                                <option value="MN">Minnesota</option>
-                                                <option value="MS">Mississippi</option>
-                                                <option value="MO">Missouri</option>
-                                                <option value="OK">Oklahoma</option>
-                                                <option value="SD">South Dakota</option>
-                                                <option value="TX">Texas</option>
-                                                <option value="TN">Tennessee</option>
-                                                <option value="WI">Wisconsin</option>
-                                            </optgroup>
-                                            <optgroup label="Eastern Time Zone">
-                                                <option value="CT">Connecticut</option>
-                                                <option value="DE">Delaware</option>
-                                                <option value="FL">Florida</option>
-                                                <option value="GA">Georgia</option>
-                                                <option value="IN">Indiana</option>
-                                                <option value="ME">Maine</option>
-                                                <option value="MD">Maryland</option>
-                                                <option value="MA">Massachusetts</option>
-                                                <option value="MI">Michigan</option>
-                                                <option value="NH">New Hampshire</option>
-                                                <option value="NJ">New Jersey</option>
-                                                <option value="NY">New York</option>
-                                                <option value="NC">North Carolina</option>
-                                                <option value="OH">Ohio</option>
-                                                <option value="PA">Pennsylvania</option>
-                                                <option value="RI">Rhode Island</option>
-                                                <option value="SC">South Carolina</option>
-                                                <option value="VT">Vermont</option>
-                                                <option value="VA">Virginia</option>
-                                                <option value="WV">West Virginia</option>
-                                            </optgroup>
-                                        </select>
+                                        <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
+                                        <input type="text" class="form-control has-feedback" placeholder="Lộ trình về">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Multiple</label>
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Số Km về <i style="color:red;">(*)</i></label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <input type="text" class="form-control has-feedback-left" placeholder="KM về">
+                                        <span class="fa fa-send-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+
+                                <!--Start: Button-->
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <select class="select2_multiple form-control" multiple="multiple">
-                                            <option>Choose option</option>
-                                            <option>Option one</option>
-                                            <option>Option two</option>
-                                            <option>Option three</option>
-                                            <option>Option four</option>
-                                            <option>Option five</option>
-                                            <option>Option six</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Input Tags</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input id="tags_1" type="text" class="tags form-control" value="social, adverts, sales" data-tagsinput-init="true" style="display: none;"><div id="tags_1_tagsinput" class="tagsinput" style="width: auto; min-height: 100px; height: 100px;"><span class="tag"><span>social&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>adverts&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>sales&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><div id="tags_1_addTag"><input id="tags_1_tag" value="" data-default="add a tag" style="color: rgb(102, 102, 102); width: 72px;"></div><div class="tags_clear"></div></div>
-                                        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 col-sm-3 col-xs-12 control-label">
-                                        Checkboxes and radios
-                                        <br>
-                                        <small class="text-navy">Normal Bootstrap elements</small>
-                                    </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value=""> Option one. select more than one options
-                                            </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="ClosePopup()">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                                <span>Hủy</span>
+                                            </button>
                                         </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value=""> Option two. select more than one options
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios"> Option one. only select one option
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> Option two. only select one option
-                                            </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="yes()">
+                                                <i class="glyphicon glyphicon-ok"></i>
+                                                <span>Xác Nhận</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 col-sm-3 col-xs-12 control-label">
-                                        Checkboxes and radios
-                                        <br>
-                                        <small class="text-navy">Normal Bootstrap elements</small>
-                                    </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <div class="checkbox">
-                                            <label class="">
-                                                <div class="icheckbox_flat-green checked" style="position: relative;"><input type="checkbox" class="flat" checked="checked" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Checked
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Unchecked
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <div class="icheckbox_flat-green disabled" style="position: relative;"><input type="checkbox" class="flat" disabled="disabled" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Disabled
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <div class="icheckbox_flat-green checked disabled" style="position: relative;"><input type="checkbox" class="flat" disabled="disabled" checked="checked" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Disabled &amp; checked
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <div class="iradio_flat-green checked" style="position: relative;"><input type="radio" class="flat" checked="" name="iCheck" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Checked
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label class="">
-                                                <div class="iradio_flat-green" style="position: relative;"><input type="radio" class="flat" name="iCheck" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Unchecked
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <div class="iradio_flat-green disabled" style="position: relative;"><input type="radio" class="flat" name="iCheck" disabled="disabled" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Disabled
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <div class="iradio_flat-green checked disabled" style="position: relative;"><input type="radio" class="flat" name="iCheck3" disabled="disabled" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Disabled &amp; Checked
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Switch</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <div class="">
-                                            <label>
-                                                <input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;"><span class="switchery switchery-default" style="background-color: rgb(38, 185, 154); border-color: rgb(38, 185, 154); box-shadow: rgb(38, 185, 154) 0px 0px 0px 11px inset; transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;"><small style="left: 12px; background-color: rgb(255, 255, 255); transition: background-color 0.4s ease 0s, left 0.2s ease 0s;"></small></span> Checked
-                                            </label>
-                                        </div>
-                                        <div class="">
-                                            <label>
-                                                <input type="checkbox" class="js-switch" data-switchery="true" style="display: none;"><span class="switchery switchery-default" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); background-color: rgb(255, 255, 255); transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s;"><small style="left: 0px; transition: background-color 0.4s ease 0s, left 0.2s ease 0s;"></small></span> Unchecked
-                                            </label>
-                                        </div>
-                                        <div class="">
-                                            <label>
-                                                <input type="checkbox" class="js-switch" disabled="disabled" data-switchery="true" readonly="" style="display: none;"><span class="switchery switchery-default" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); background-color: rgb(255, 255, 255); transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s; opacity: 0.5;"><small style="left: 0px; transition: background-color 0.4s ease 0s, left 0.2s ease 0s;"></small></span> Disabled
-                                            </label>
-                                        </div>
-                                        <div class="">
-                                            <label>
-                                                <input type="checkbox" class="js-switch" disabled="disabled" checked="checked" data-switchery="true" readonly="" style="display: none;"><span class="switchery switchery-default" style="background-color: rgb(38, 185, 154); border-color: rgb(38, 185, 154); box-shadow: rgb(38, 185, 154) 0px 0px 0px 11px inset; transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s; opacity: 0.5;"><small style="left: 12px; background-color: rgb(255, 255, 255); transition: background-color 0.4s ease 0s, left 0.2s ease 0s;"></small></span> Disabled Checked
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ln_solid"></div>
-                                <div class="form-group">
-                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                        <button type="button" class="btn btn-primary">Cancel</button>
-                                        <button type="reset" class="btn btn-primary">Reset</button>
-                                        <button type="submit" class="btn btn-success">Submit</button>
-                                    </div>
-                                </div>
+                                <!--End: Button-->
                             </form>
+
+                            <!--<div class="row">
+                                <button class="btn btn-danger btn-round btn-block" type="submit" ng-click="ClosePopup()">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                    <span>HỦY</span>
+                                </button>
+                                <button class="btn btn-primary btn-round btn-block" type="submit" ng-click="yes()">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                    <span>XÁC NHẬN</span>
+                                </button>
+                            </div>-->
                         </div>
                     </div>
-                    <!--<div class="row">
-                        <button class="btn btn-danger btn-round btn-block" type="submit" ng-click="ClosePopup()">
-                            <i class="glyphicon glyphicon-remove"></i>
-                            <span>HỦY</span>
-                        </button>
-                        <button class="btn btn-primary btn-round btn-block" type="submit" ng-click="yes()">
-                            <i class="glyphicon glyphicon-ok"></i>
-                            <span>XÁC NHẬN</span>
-                        </button>
-                    </div>-->
+
                 </div>
             </div>
         </div>
@@ -509,7 +302,7 @@
 </div>
 
 
-<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>
+<!--<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>-->
 <script src="../../../../../script/teamplate/daterangepicker/daterangepicker.js"></script>
 <script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
 <script>

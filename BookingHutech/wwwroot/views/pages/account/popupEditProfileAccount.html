@@ -47,8 +47,8 @@
     /* ng-show animation*/
     /* ngHide animation */
     .ngHideSample {
-        padding: 10px;
-        margin: 5px;
+        /*padding: 0;
+        margin: 0;*/ 
     }
 
         .ngHideSample.ng-hide-add {
@@ -74,6 +74,15 @@
         .ngHideSample.ng-hide-remove-active {
             opacity: 1;
         }
+    .form-group_bk{
+        margin:0;
+         
+    }
+    .form-group_bk_cv {
+        padding: inherit; 
+        margin-top: 10px;
+    }
+   
 </style>
 <!--<link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
@@ -164,7 +173,7 @@
                                                 <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Addres === '' || EditProfiAccount.Addres === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group form-group_bk">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày sinh: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <!--<input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.BirthDay" ng-change="TestInputChange(EditProfiAccount)" type="date">
@@ -178,7 +187,7 @@
                                                 <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.BirthDay === '' || EditProfiAccount.BirthDay === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group form-group_bk">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Đơn vị: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <select class="form-control " ng-model="EditProfiAccount.Unit_ID" ng-change="TestInputChange(EditProfiAccount)" style="width: 100%;">
@@ -200,26 +209,23 @@
                                                 <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.AccountType === '' || EditProfiAccount.AccountType === null && !TestInputChange">Vui lòng chọn!</span>
                                             </div>
                                         </div>
-                                        <div class="ngHideSample" ng-show="isDriver || EditProfiAccount.AccountType == 'Lái xe' ">
-                                            <div class="form-group">
-                                                <div class="control-label col-md-2 col-sm-2 col-xs-12">Số bằng <i style="color:red;">(*)</i></div>
-                                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                                    <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.DriverLicenseNo" ng-change="TestInputChange(EditProfiAccount)" style="width: -webkit-fill-available;margin-left: -10px;">
-                                                    <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.DriverLicenseNo === '' || EditProfiAccount.DriverLicenseNo === null && !TestInputChange">Vui lòng chọn!</span>
-                                                </div>
-                                                <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạng: <i style="color:red;">(*)</i></div>
-                                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                                    <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.LicenseClass" ng-change="TestInputChange(EditProfiAccount)" style="margin-left: 6px; width: inherit;">
-                                                    <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseClass === '' || EditProfiAccount.LicenseClass === null && !TestInputChange">Vui lòng nhập!</span>
-                                                </div>
+                                        
+                                        <div class="form-group form-group_bk_cv ngHideSample  " ng-show="isDriver || EditProfiAccount.AccountType == 'Lái xe' ">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Số bằng <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.DriverLicenseNo" ng-change="TestInputChange(EditProfiAccount)">
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.DriverLicenseNo === '' || EditProfiAccount.DriverLicenseNo === null && !TestInputChange">Vui lòng chọn!</span>
                                             </div>
-                                            <div class="form-group">
-                                                <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày hết hạn: <i style="color:red;">(*)</i></div>
-                                                <!--<div class="col-md-4 col-sm-4 col-xs-12">
-                                                    <input class="date-picker form-control" ng-model="EditProfiAccount.LicenseExpires" ng-change="TestInputChange(EditProfiAccount)" type="date">
-
-                                                </div>-->
-                                                <div class="input-group date col-md-4 col-sm-4 col-xs-12" id="myLicenseExpires">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạng: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.LicenseClass" ng-change="TestInputChange(EditProfiAccount)">
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseClass === '' || EditProfiAccount.LicenseClass === null && !TestInputChange">Vui lòng nhập!</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group  ngHideSample  " ng-show="isDriver || EditProfiAccount.AccountType == 'Lái xe' " style="padding:0">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Hết hạn: <i style="color:red;">(*)</i></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                <div class="input-group date  " id="myLicenseExpires">
                                                     <input type="text" class="form-control ed_border" id="LicenseExpires" ng-model="EditProfiAccount.LicenseExpires">
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -229,11 +235,12 @@
                                             </div>
                                         </div>
 
+
                                     </div>
                                     <div class="form-group">
                                     </div>
                                     <br />
-                                    <div class="row">
+                                    <!--<div class="row">
                                         <div class="col-sm-6 col-md-6" style="margin-bottom: 1px;">
                                             <button class="btn btn-danger btn-round btn-block" type="submit"
                                                     ng-click="ClosePopup()">
@@ -244,9 +251,28 @@
                                         <div class="col-sm-6 col-md-6">
                                             <button class="btn btn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
                                                     data-ng-click="EditProfileAccount(EditProfiAccount)">
-                                                <i class="fa fa-plus-circle"></i>
-                                                <span>Chỉnh Sửa</span>
+                                                <i class="glyphicon glyphicon-cog"></i>
+                                                <span>Cập nhật</span>
                                             </button>
+                                        </div>
+                                    </div>-->
+                                    <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <button class="btn btn-danger btn-round btn-block" type="submit"
+                                                        ng-click="ClosePopup()">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                    <span>HỦY</span>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <button class="btn btn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                        data-ng-click="EditProfileAccount(EditProfiAccount)">
+                                                    <i class="glyphicon glyphicon-cog"></i>
+                                                    <span>Cập nhật</span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

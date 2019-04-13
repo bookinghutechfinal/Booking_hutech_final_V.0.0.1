@@ -216,3 +216,13 @@ var ConvertAccountTypeIDToName = function (accountID) {
         return AccountTypeRequest[5].AccountTypeName;
     }
 }
+
+// Cập nhật trạng thái cho tài khoản
+var ConvertAccountStatusIDToName = function (accountStatusID) {
+    if (accountStatusID === "0") {
+        return Account_StatusRequest[0].Account_StatusName;
+    }
+    if (accountStatusID === "1") {
+        return Account_StatusRequest[1].Account_StatusName;
+    } 
+}

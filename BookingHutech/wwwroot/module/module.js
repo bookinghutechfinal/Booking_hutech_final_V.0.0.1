@@ -38,9 +38,9 @@ var AccountTypeRequest = [
     { AccountType: 5, AccountTypeName: "Ban giám hiệu" },
     { AccountType: 7, AccountTypeName: "Lái xe" },
 ]
-var Account_StatusRequest = [
+var Account_StatusRequest = [ 
+    { Account_Status: 0, Account_StatusName: "Khóa" }, 
     { Account_Status: 1, Account_StatusName: "Hoạt động" },
-    { Account_Status: 2, Account_StatusName: "Khóa" }, 
 ]
 // 
 var RoleStatus = [

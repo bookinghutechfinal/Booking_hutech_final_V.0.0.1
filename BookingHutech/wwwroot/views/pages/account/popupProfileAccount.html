@@ -45,6 +45,18 @@
         .ngHideSample.ng-hide-remove-active {
             opacity: 1;
         }
+    .title_bk {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa;
+        padding: 7px;
+        display: block;
+        background-color: #cde0c4;
+        color: #356635;
+        font-size: 11px;
+        height: 29px;
+    }
 </style>
 <link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
@@ -102,8 +114,8 @@
                                     <a>Đơn vị: {{AccountDriverDetail.UnitName}}</a>
                                 </li>
                             </ul>
-                            <div style="display:block;text-align: center; background-color:#cde0c4;color:#356635;padding:5px">
-                                <h6><span style="font-weight:bold"><span class="glyphicon glyphicon-cog"></span> Cập nhật:</span> {{AccountDriverDetail.LastModifiedDate | date:'HH:mm - dd/MM/yyyy '}} </h6>
+                            <div class="title_bk">
+                                <span style="font-weight:bold"><span class="glyphicon glyphicon-cog"></span> Cập nhật:</span> {{AccountDriverDetail.LastModifiedDate | date:'HH:mm - dd/MM/yyyy '}} 
                             </div> <br />
                             <div class="col-sm-12 col-lg-12">
                                 <button style="font-size: 11px;" ng-click="EditProfileAccount()" class="btn btn-success btn-round btn-block"><i class="fa fa-edit m-right-xs"></i> Chỉnh sửa</button>

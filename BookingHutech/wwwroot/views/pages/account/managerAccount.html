@@ -41,6 +41,18 @@
         .ngHideSample.ng-hide-remove-active {
             opacity: 1;
         }
+    .title_bk {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa; 
+        padding: 7px;
+        display: block;
+        background-color: #cde0c4;
+        color: #356635; 
+        font-size: 11px;
+        height: 29px;
+    }
 </style>
 <div class="clearfix">
     <div class="row">
@@ -90,7 +102,10 @@
                                                 <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
                                             </li>-->
                                         </ul>
-                                        <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Chỉnh sửa</a>
+                                        <div class="title_bk">
+                                            <span style="font-weight:bold"><span class="glyphicon glyphicon-cog"></span> Cập nhật:</span> {{ShowAccountInfo.LastModifiedDate | date:'HH:mm - dd/MM/yyyy '}} </h6>
+                                        </div> <br />
+                                       <!-- <a class="btn btn-success" ng-click="EditProfileAccount()"><i class="fa fa-edit m-right-xs"></i>Chỉnh sửa</a>-->
                                         <br>
                                     </div>
                                     <!--End: Thông tin admin manager-->
@@ -345,17 +360,15 @@
                                             <div role="tabpanel" class="tab-pane fade active in" id="" aria-labelledby="home-tab">
                                                 <div class="row">
                                                     <div class="col-md-4 col-sm-4 col-xs-12 profile_details" dir-paginate="listAccount in ManagerGetListAccountResponse  |  itemsPerPage: numPag  | filter:searchText">
-                                                        <div class="well profile_view">
-                                                            sm
+                                                        <div class="well profile_view"> 
                                                             <div class="col-sm-12">
                                                                 <!--<h4 class="brief"><i>{{listAccount.FullName}}</i></h4>-->
                                                                 <div class="left col-xs-7">
                                                                     <h2>
                                                                         <i class="fa fa-user"></i> <i style="color: #5d40ce; font-family: serif">{{listAccount.FullName}}</i>
                                                                     </h2>
-                                                                    <ul class="list-unstyled">
-                                                                        ty
-                                                                          <!--<li><i class="fa fa-calendar"></i> {{listAccount.CreateDate |  date:'dd/MM/yyyy'}}</li>-->
+                                                                    <ul class="list-unstyled"> 
+                                                                        <!--<li><i class="fa fa-calendar"></i> {{listAccount.CreateDate |  date:'dd/MM/yyyy'}}</li>-->
                                                                         <li ng-show="listAccount.Gender === 1"><i class="fa fa-male"></i> Nam</li>
                                                                         <li ng-show="listAccount.Gender !== 1"><i class="fa fa-male"></i> Nữ</li>
                                                                         <li><i class="fa fa-hand-o-right"></i> Chức vụ: {{listAccount.AccountType}}</li>
@@ -366,11 +379,10 @@
                                                                         <li ng-show="listAccount.Account_Status ==='0'" style="color:red"><i class="fa fa-unlock-alt"></i> Khóa</li>
 
                                                                         <li ng-show="listAccount.Verify"><i class="fa fa-check-square-o"></i> Đã duyệt</li>
-                                                                        <li ng-show="!listAccount.Verify" style="color:red"><i class="fa fa-square-o"></i> Chưa du
-yệt
-                                                                        </li>
-                                                                        du
-                                                                          <!--<li><i class="fa fa-phone"></i> {{listAccount.NumberPhone}}</li>-->
+                                                                        <li ng-show="!listAccount.Verify" style="color:red">
+                                                                            <i class="fa fa-square-o"></i> Chưa duyệt
+                                                                        </li> 
+                                                                        <!--<li><i class="fa fa-phone"></i> {{listAccount.NumberPhone}}</li>-->
                                                                         <!--<li><i class="fa fa-at"></i> Hạn {{listAccount.LicenseClass}}</li>-->
                                                                     </ul>
                                                                 </div>
