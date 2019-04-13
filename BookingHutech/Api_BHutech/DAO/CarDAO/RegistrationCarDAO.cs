@@ -1,7 +1,9 @@
 ﻿using BookingHutech.Api_BHutech.Lib;
+using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.Models.BookingCar;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
+using BookingHutech.Api_BHutech.Prototype;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -79,24 +81,48 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
         /// Create by Mr.Lam 12/4/2019
         /// </summary>
         /// <param name="stringSql"></param>
-        public UpdateSuccessResponseModel UpdateRegistrationCarStatusDAO(String stringSql)
+        public void UpdateRegistrationCarStatusDAO(String sqlStore, UpdateRegistrationCarStatusRequestModel request)
         {
-            UpdateSuccessResponseModel response = new UpdateSuccessResponseModel();
+            UpdateSuccessResponseModel response = new UpdateSuccessResponseModel(); 
+            
+            //
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@RegistrationCarID", SqlDbType.VarChar, 10).Value = request.RegistrationCarID;
+            cmd.Parameters.Add("@Profile_Status", SqlDbType.Int).Value = request.Profile_Status;
+            cmd.Parameters.Add("@DistanceTo", SqlDbType.Int).Value = request.DistanceTo;
+            cmd.Parameters.Add("@DistanceBack", SqlDbType.Int).Value = request.DistanceBack;
+            cmd.Parameters.Add("@CarID", SqlDbType.Int).Value = request.CarID;
+
+            cmd.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             try
             {
-                con.Open();
-                cmd = new SqlCommand(stringSql, con);
-                response.ReturnCode = (Int32)cmd.ExecuteScalar();
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();
+                response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                if (response.ReturnCode != GroupRoleResponseType.Success)
+                {
+                    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, response.ReturnCode, response.ReturnCode));
+                    throw new Exception();
+                }
+              
                 con.Close();
-                return response;
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
                 con.Close();
+                LogWriter.WriteException(ex);
                 throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
             }
         }
     }

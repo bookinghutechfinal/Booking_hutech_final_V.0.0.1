@@ -13,6 +13,7 @@ namespace BookingHutech.Api_BHutech.Lib.Utils
 
     public enum BHutechExceptionType
     {
+        Values_Error = 6,
         SUCCESS = 1,  // thành công. 
         ERROR = 2,    // thất bại  
         ERROR_INPUT_DATA_ENTITY = 3,

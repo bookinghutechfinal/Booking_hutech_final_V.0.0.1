@@ -1,4 +1,4 @@
-﻿mainmodule.controller('ManagerCalendarDriverController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$alert', '$account','NgTableParams',
+﻿mainmodule.controller('ManagerCalendarDriverController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$alert', '$account', 'NgTableParams',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $alert, $account, NgTableParams) {
 
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
@@ -99,20 +99,24 @@
                     CarID: request.CarID
                 }
 
-                $BookingCar.updateRegistrationCarStatus(requestModelStart, function (res) {
-                    if (res.data.Data.ReturnCode == 1) {
-                        toastr.success("Chuyến đi đã được bắt đầu.");
-                        $scope.getCalendar();
+                $BookingCar.updateRegistrationCarStatus(requestModelStart, function (res) { 
+               
+                    switch (res.data.ReturnCode) {
+                        case 1:
+                            toastr.success("Chuyến đi đã được bắt đầu.");
+                            $scope.getCalendar();
+                            break;
+                        case 6:
+                            toastr.error("Xin lỗi! Vui lòng kiểm tra lại số Km hiện tại của xe.");
+                            break;
                     }
-                    else
-                        toastr.error("Kiểm tra số KM đã nhập.");
                 });
             });
         }
 
         $scope.finish = function (request) {
             $alert.showUpdateDistance($rootScope.initMessage('Vui lòng nhập số KM hiện tại'), function () {
-                
+
                 var requestModelFinish = {
                     RegistrationCarID: request.RegistrationCarID,
                     Profile_Status: 10,
@@ -122,12 +126,15 @@
                 }
 
                 $BookingCar.updateRegistrationCarStatus(requestModelFinish, function (res) {
-                    if (res.data.Data.ReturnCode == 1) {
-                        toastr.success("Chuyến đi đã được hoàn thành.");
-                        $scope.getCalendar();
+                    switch (res.data.ReturnCode) {
+                        case 1:
+                            toastr.success("Chuyến đi đã được hoàn thành.");
+                            $scope.getCalendar();
+                            break;
+                        case 6:
+                            toastr.error("Xin lỗi! Vui lòng kiểm tra lại số Km hiện tại của xe.");
+                            break;
                     }
-                    else
-                        toastr.error("Kiểm tra số KM đã nhập.");
                 });
             });
         }

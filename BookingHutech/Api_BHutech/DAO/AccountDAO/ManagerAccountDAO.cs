@@ -224,8 +224,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 cmd.ExecuteNonQuery();
                 res.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
                 if (res.ReturnCode != GroupRoleResponseType.Success)
-                {
-                    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, res.ReturnCode, (int)res.ReturnCode));
+                { 
                     throw new Exception();
                 }
                 return res;

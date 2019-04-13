@@ -67,14 +67,13 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
         /// </summary>
         /// <param name="UpdateRegistrationCarStatusServices"></param>
         /// <returns>UpdateSuccessResponseModel</returns>
-        public UpdateSuccessResponseModel UpdateRegistrationCarStatusServices(UpdateRegistrationCarStatusRequestModel request)
+        public void UpdateRegistrationCarStatusServices(UpdateRegistrationCarStatusRequestModel request)
         {
             UpdateSuccessResponseModel result = new UpdateSuccessResponseModel();
             try
             {
-                string uspUpdateRegistrationCarStatus = String.Format(Prototype.SqlCommandStore.uspUpdateRegistrationCarStatus, request.RegistrationCarID, request.Profile_Status, request.DistanceTo, request.DistanceBack,request.CarID);
-                result = registrationCarDAO.UpdateRegistrationCarStatusDAO(uspUpdateRegistrationCarStatus);
-                return result;
+                string uspUpdateRegistrationCarStatus = String.Format(Prototype.SqlCommandStore.uspUpdateRegistrationCarStatus);
+                registrationCarDAO.UpdateRegistrationCarStatusDAO(uspUpdateRegistrationCarStatus, request);
             }
             catch (Exception ex)
             {

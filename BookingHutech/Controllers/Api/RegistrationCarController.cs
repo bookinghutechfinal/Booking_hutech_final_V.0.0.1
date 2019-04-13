@@ -168,12 +168,12 @@ namespace BookingHutech.Controllers.Api
                         // OK -> Đi tiếp.
                         try
                         {
-                            var Response = registrationCarServices.UpdateRegistrationCarStatusServices(request);
-                            return ApiResponse.Success(Response);
+                            registrationCarServices.UpdateRegistrationCarStatusServices(request);
+                            return ApiResponse.Success();
                         }
                         catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
-                            return ApiResponse.Error();
+                            return ApiResponse.Values_Error();
                         }
                     }
                     catch// Không thể kiểm tra quyền. 

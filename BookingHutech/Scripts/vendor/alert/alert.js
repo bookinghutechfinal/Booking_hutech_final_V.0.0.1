@@ -133,8 +133,8 @@ mainmodule.service('$alert', ['SweetAlert', '$rootScope', function (SweetAlert, 
     this.showUpdateDistance = function (mesg, ok) {
         SweetAlert.swal({
             title: '',
-            text: mesg,
-            type: "input",
+            text: mesg, 
+            type: "input", 
             showConfirmButton: true,
             showCancelButton: true,
             confirmButtonText: $rootScope.initMessage('Cập nhật'),

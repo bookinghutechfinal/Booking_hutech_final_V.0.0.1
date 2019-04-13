@@ -139,6 +139,15 @@ namespace BookingHutech.Api_BHutech.Models.Response
                 ReturnCode = (int)BHutechExceptionType.NotSession
             };
         }
+        public static ApiResponse Values_Error(object Data = null)
+        {
+            return new ApiResponse()
+            {
+                Data = null,
+                ReturnCode = (int)BHutechExceptionType.Values_Error
+            };
+        }
+
 
         //public static ApiResponse PasswordIncorrect()
         //{
