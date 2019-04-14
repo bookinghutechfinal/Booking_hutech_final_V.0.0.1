@@ -74,6 +74,8 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspUpdateRegistrationCarStatus = "uspUpdateRegistrationCarStatus";
         //Update Edit Profile Account. Create By Anh.Trần Create 8/4/2019. 
         public const string uspEditProfileAccount = "uspEditProfileAccount";
+        //Create New Registration Car. Create By Anh.Trần Create 14/4/2019. 
+        public const string uspCreateNewRegistrationCar = "uspCreateNewRegistrationCar";
         
     }
 

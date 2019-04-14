@@ -112,4 +112,12 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    //Anh.Trần Crate 14 / 1 / 2019. Tạo mới đơn cấp phát xe
+    this.CreateNewRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'RegistrationCar/CreateNewRegistrationCar',
+            data: request
+        }, success, finish)
+    };
 }]);

@@ -1,4 +1,12 @@
-﻿var filterEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+﻿var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; 
+//var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+// Anh create kiểm tra email 
+var checkEmailInput = function (email) { 
+    if (!filter.test(email))  
+        return false;
+    return true; 
+}
+
 // Hàm 1: Check dữ liệu Null 
 var checkNull = function (request) {
     if (request === null || request === "" || request === undefined || request === "Invalid date" || request === 0) {
@@ -82,8 +90,36 @@ var FormatDateTimeByDBResponse = function (date) { // Update
 var FormatDateFromTo = function (date) {
     return moment(date, 'MM/DD/YYYY').format('YYYY-MM-DD')
 }
+// And crate  14/4/2019 Input time từ layout "4/14/2019, 7:39:44 PM"
+var FormatTimeFromTo = function (date) {
+    return moment(date, 'MM/DD/YYYY, HH:mm A').format('HH:mm')
+}
+// Anh create. Định dạng ngày tháng thời gian sang số.  // 2019-04-14 6:00
+var FormatDateTimeInputToNumber = function (date) {
+    return moment(date, 'YYYY-MM-DD HH:mm').format('YYYYMMDDHHmm')
+}
+// Anh create 14/4/2019:  Hàm so sánh thời gian  Đi và về
+var CompareDateTimeFromTo = function (DateTime1, DateTime2) {
+    if (FormatDateTimeInputToNumber(DateTime1) >= FormatDateTimeInputToNumber(DateTime2)) {
+        return true; // time 1 lớn or  = . 
+    } else {
+        return false; // time 2 lớn hơn
+    }
+}
+// anh crate 14/4/2019 check độ dài ký tự  
+var ChechLength = function (request) {
+    if (request.length < 20)
+        return false; 
+    return true; 
+}
+
+
+
 var FormatDate = function (date) {
     return moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD')
+}
+var FormatDateFromTo = function (date) {
+    return moment(date, 'MM-DD-YYYY').format('YYYY-MM-DD')
 }
 // Định dạng ngày sang số. 
 var FormatDateFromToToNumber = function (date) {
@@ -125,15 +161,7 @@ var FormatTimeToNumber = function (time) {
 }
 
 
-var convertDateTime = function (str) {
-    var date = new Date(str),
-        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-        day = ("0" + date.getDate()).slice(-2);
-    hours = ("0" + date.getHours()).slice(-2);
-    minutes = ("0" + date.getMinutes()).slice(-2);
-    return date.getFullYear() + "-" + mnth + "-" + day + " " + hours + ":" + minutes;
-    //return [ date.getFullYear(), mnth, day, hours, minutes ].join("-");
-}
+ 
 
 
 
@@ -242,4 +270,15 @@ var ConvertAccountStatusIDToName = function (accountStatusID) {
     if (accountStatusID === "1") {
         return Account_StatusRequest[1].Account_StatusName;
     } 
+}
+// Anh create
+// Request: AccountTypeName
+// Response:  RegistrationStatusType
+var ReturnAccountType = function (AccountTypeNameRequest) {
+    if (AccountTypeNameRequest == AccountTypeRequest[0].AccountTypeName) {
+        return RegistrationStatus[0].RegistrationStatusType; 
+    }
+    if (AccountTypeNameRequest == AccountTypeRequest[1].AccountTypeName) {
+        return RegistrationStatus[1].RegistrationStatusType; 
+    }
 }

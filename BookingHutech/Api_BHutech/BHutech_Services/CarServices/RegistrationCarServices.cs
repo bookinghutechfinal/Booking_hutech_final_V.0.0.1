@@ -1,5 +1,6 @@
 ﻿using BookingHutech.Api_BHutech.DAO.CarDAO;
 using BookingHutech.Api_BHutech.Lib;
+using BookingHutech.Api_BHutech.Lib.Helper;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 using System;
@@ -74,6 +75,25 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
             {
                 string uspUpdateRegistrationCarStatus = String.Format(Prototype.SqlCommandStore.uspUpdateRegistrationCarStatus);
                 registrationCarDAO.UpdateRegistrationCarStatusDAO(uspUpdateRegistrationCarStatus, request);
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+        /// <summary>
+        /// Anh.Trần Crate 14/1/2019. Tạo mới đơn cấp phát xe
+        /// </summary>
+        /// <param name="stringSql"></param>
+        public void CreateNewRegistrationCarService(CreateNewRegistrationCarRequestModel request)
+        { 
+            try
+            {
+                Helper helper = new Helper();
+                request.RegistrationCarID = helper.CreateID();  
+                string uspCreateNewRegistrationCar = String.Format(Prototype.SqlCommandStore.uspCreateNewRegistrationCar);
+                registrationCarDAO.CreateNewRegistrationCarDAO(uspCreateNewRegistrationCar, request);
             }
             catch (Exception ex)
             {
