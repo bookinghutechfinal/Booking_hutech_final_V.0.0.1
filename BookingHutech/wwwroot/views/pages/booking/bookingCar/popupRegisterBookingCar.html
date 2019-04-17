@@ -59,6 +59,15 @@
         .ngHideSample.ng-hide-remove-active {
             opacity: 1;
         }
+
+    .Messuccess {
+        float: right;
+        height: 58px;
+        padding: 5px; 
+        border-left: 4px solid;
+        background-color: #c3e6cb;
+        color: #155724;
+    }
 </style>
 
 <!-- Modal content-->
@@ -220,8 +229,8 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng <i style="color:red;">(*)</i></label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <span class="fa fa-male form-control-feedback left" aria-hidden="true"></span> 
-                                        <input type="number" class="form-control has-feedback-left" placeholder="Số lượng" ng-model="RegisterBKCar.NumberPeople" ng-change="CheckInputChange()"> 
+                                        <span class="fa fa-male form-control-feedback left" aria-hidden="true"></span>
+                                        <input type="number" class="form-control has-feedback-left" placeholder="Số lượng" ng-model="RegisterBKCar.NumberPeople" ng-change="CheckInputChange()">
                                         <span class="field-validation-valid text-danger ngHideSample" ng-show="isCheckNumberPeople"><i class="fa fa-warning"></i>Phải lớn hoặc bằng 1!</span>
                                     </div>
                                 </div>
@@ -281,7 +290,18 @@
                                         </h6>
                                     </div>
                                 </div>
-                               
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                    <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-success ngHideSample Messuccess" style="" ng-show="isShowRegisterSuccess">
+                                        <h4>
+                                            <i class="fa fa-check"></i> Đăng ký thành công.
+                                        </h4>
+                                        <ul>
+                                            <li>Đơn đăng ký đặt xe công tác đang chờ duyệt.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
                                 <!--Start: Button-->
                                 <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>

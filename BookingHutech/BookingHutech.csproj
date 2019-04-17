@@ -198,7 +198,9 @@
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetDetailRepairCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListRegistrationCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetRegistrationCarByDriverIDRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchApproveRegistrationCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\UpdateCarStatusRequestModel.cs" />
@@ -213,10 +215,13 @@
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerGetUnitResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\ManagerUpdateRoleMasterResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\UpdateGroupRoleResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\GetDetailRegistrationResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\GetRegistrationCarByCarIDResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListRepairCostResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ManagerGetDriverByAccountStatusResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\GetListRegistrationCarResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ReportCostResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\SearchApproveRegistrationCarResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\UpdateCarStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\UpdateSuccessResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\CheckPermissionResponseModel.cs" />
@@ -984,6 +989,8 @@
     <Content Include="wwwroot\controller\booking\bookingCar\managerCarByDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerOtherCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerFuelCostController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\managerDetailRegisterBKCarController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\managerRegisterBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerRepairCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\detailDriverController.js" />
@@ -1465,8 +1472,11 @@
     <Content Include="wwwroot\views\pages\account\popupCreateNewAccount.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerOtherCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerFuelCost.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\managerDetailRegisterBKCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\managerRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailRepairCost.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupSearchCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailDriver.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\managerRepairCost.html" />

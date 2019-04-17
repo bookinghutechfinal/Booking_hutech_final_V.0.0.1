@@ -113,6 +113,23 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             templateUrl: '/wwwroot/views/pages/booking/bookingMeetingHall/meetingHallInfo.html',
             controller: 'bookingMeetingHallController',
         })
+        .state('main.managerBookingCar', { // phòng quản trị. 
+            url: '/manager-Booking-Car',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerRegisterBookingCar.html',
+            controller: 'ManagerRegisterBookingCarController',
+        })
+        // Xem chi tiết đơn cấp phát xe. 
+        .state('main.managerDetailRegisterBKCar', {
+            url: '/manager-Detail-RegisterBKCar/:RegistrationCarID/:ProfileStatus',
+            //url: '/manager-Detail-RegisterBKCar',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerDetailRegisterBKCar.html',
+            controller: 'ManagerDetailRegisterBKCarController',
+            //params: {
+            //    RegistrationCarID: null,   
+            //    ProfileStatus: null,  
+                 
+            //} 
+        })
         .state('error404', {
             url: '/error404',
             templateUrl: '/wwwroot/views/common/error/error404.html',

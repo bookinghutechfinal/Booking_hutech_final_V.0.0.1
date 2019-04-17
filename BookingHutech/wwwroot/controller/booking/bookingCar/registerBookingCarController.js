@@ -90,10 +90,12 @@
             $scope.isCheckRouteBack = false;
             $scope.isCheckPlanDistanceBack = false;
             $scope.isButtonRegister = true;
+            $scope.isShowRegisterSuccess = false;
         }
         $scope.initShowMessCheck();
         // kiểm tra input dự liệu cho màn hình đăng ký. 
         $scope.CheckInputChange = function () {
+            $scope.isShowRegisterSuccess = false; 
             // ngày giờ đi
             if (checkNull(angular.element('#DateFrom').val())) {
                 $scope.isCheckDateFrom = true;
@@ -244,7 +246,8 @@
                 $BookingCar.CreateNewRegistrationCar($scope.RegisterBKCar, function (res) {
                     switch (res.data.ReturnCode) {
                         case 1: 
-                            $scope.ClosePopup(); 
+                            //$scope.ClosePopup(); 
+                            $scope.isShowRegisterSuccess = true; 
                             toastr.success("Đăng ký thành công");
                             break;
                     }

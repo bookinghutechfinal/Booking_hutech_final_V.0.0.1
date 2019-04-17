@@ -10,11 +10,11 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
     };
 
     this.getCarInfo = function (request, success, finish) {
-            $dao.call({
-                method: 'POST',
-                operater: 'Car/GetCarInfo',
-                data: request
-            }, success, finish)
+        $dao.call({
+            method: 'POST',
+            operater: 'Car/GetCarInfo',
+            data: request
+        }, success, finish)
     };
 
     this.getCarInfoByAccountID = function (request, success, finish) {
@@ -117,6 +117,16 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
         $dao.call({
             method: 'PUT',
             operater: 'RegistrationCar/CreateNewRegistrationCar',
+            data: request
+        }, success, finish)
+    };
+    ///  Dành cho phòng quản trị và BGH
+    ///  Lấy danh sách đơn cấp phát dùng chung cho cấp 1 thư ký khoa,2 trưởng khoa, vvv,3,4
+    ///  Create by Anh.Tran 15/04/2019
+    this.ManagerGetListRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'RegistrationCar/ManagerGetListRegistrationCarServices',
             data: request
         }, success, finish)
     };

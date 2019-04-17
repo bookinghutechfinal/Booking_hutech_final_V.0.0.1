@@ -9,6 +9,7 @@ namespace BookingHutech.Api_BHutech.Models.BookingCar
     {
         public String RegistrationCarID { get; set; }
         public int Unit_ID { get; set; }
+        public String UnitName { get; set; }
         public String Account_ID { get; set; }
         public String UnitRequest { get; set; }
         public String Reason { get; set; }

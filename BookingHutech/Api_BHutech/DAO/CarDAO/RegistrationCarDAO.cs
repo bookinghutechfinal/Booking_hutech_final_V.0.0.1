@@ -176,5 +176,100 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
         }
 
+        /// <summary>
+        /// GetListRegistrationCarDAO. Lấy danh sách đơn cấp phát dùng chung cho cấp 1 thư ký khoa,2 trưởng khoa, vvv,3,4
+        /// Create by Anh.Tran 15/04/2019
+        /// </summary>
+        /// <param name="stringSql"></param>
+        /// <returns>List RegistrationCar by CarID</returns>
+        public List<GetListRegistrationCar> GetListRegistrationCarDAO(String stringSql)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            List<GetListRegistrationCar> result = new List<GetListRegistrationCar>();
+            GetListRegistrationCar getListRegistration;
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    getListRegistration = new GetListRegistrationCar();
+                    getListRegistration.RegistrationCarID = reader["RegistrationCarID"].ToString();
+                    getListRegistration.UnitName = reader["UnitName"].ToString(); 
+                    getListRegistration.CreatDay = reader["CreatDay"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreatDay"].ToString());
+                    getListRegistration.DateTimeFrom = reader["DateTimeFrom"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["DateTimeFrom"].ToString());
+                    getListRegistration.DateTimeTo = reader["DateTimeTo"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["DateTimeTo"].ToString()); 
+                    getListRegistration.RouteTo = reader["RouteTo"].ToString();
+                    getListRegistration.RouteBack = reader["RouteBack"].ToString();  
+                    getListRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    // getListRegistration.CarID = Int32.Parse(reader["CarID"].ToString());                    
+                    getListRegistration.CarID = reader["CarID"].ToString() == "" ? 0 : Int32.Parse(reader["CarID"].ToString());                   
+                    result.Add(getListRegistration);
+                }
+                con.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
+        /// <summary>
+        /// TH1: GetListRegistrationCarDAO. Lấy danh sách đơn cấp phát dùng chưa hoặc không duyệt. chung cho cấp 1 thư ký khoa,2 trưởng khoa,3,4
+        /// Create by Anh.Tran 15/04/2019
+        /// </summary>
+        /// <param name="stringSql"></param>
+        /// <returns>Detail registration</returns>
+        public List<GetListRegistrationCar> GetDetailRegistrationByProfileCarNotRatifyDAO(String stringSql)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            List<GetListRegistrationCar> result = new List<GetListRegistrationCar>();
+            GetListRegistrationCar getDetailRegistration;
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    getDetailRegistration = new GetListRegistrationCar();
+                    getDetailRegistration.RegistrationCarID = reader["RegistrationCarID"].ToString();
+                    getDetailRegistration.UnitName = reader["UnitName"].ToString();
+                    getDetailRegistration.Manager = reader["Manager"].ToString();
+                    getDetailRegistration.NumberPhoneManager = reader["NumberPhoneManager"].ToString();
+                    getDetailRegistration.EmailManager = reader["EmailManager"].ToString();
+                    getDetailRegistration.CreatDay = reader["CreatDay"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreatDay"].ToString());
+                    getDetailRegistration.DateTimeFrom = reader["DateTimeFrom"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["DateTimeFrom"].ToString());
+                    getDetailRegistration.DateTimeTo = reader["DateTimeTo"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["DateTimeTo"].ToString());
+                    getDetailRegistration.RouteTo = reader["RouteTo"].ToString();
+                    getDetailRegistration.RouteBack = reader["RouteBack"].ToString();
+                    getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    getDetailRegistration.UnitRequest = reader["UnitRequest"].ToString();
+                    getDetailRegistration.Reason = reader["Reason"].ToString();
+                    getDetailRegistration.Leader = reader["Leader"].ToString();
+                    getDetailRegistration.EmailLeader = reader["EmailLeader"].ToString();
+                    getDetailRegistration.NumberPhoneLeader = reader["NumberPhoneLeader"].ToString();
+                    getDetailRegistration.NumberPeople = Int32.Parse(reader["NumberPeople"].ToString()); 
+                    getDetailRegistration.PlanDistanceTo = Int32.Parse(reader["PlanDistanceTo"].ToString()); 
+                    getDetailRegistration.PlanDistanceBack = Int32.Parse(reader["PlanDistanceBack"].ToString()); 
+                    getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString()); 
+                    getDetailRegistration.CarTypeNameRequest = reader["CarTypeNameRequest"].ToString(); 
+                    result.Add(getDetailRegistration);
+                }
+                con.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
     }
 }

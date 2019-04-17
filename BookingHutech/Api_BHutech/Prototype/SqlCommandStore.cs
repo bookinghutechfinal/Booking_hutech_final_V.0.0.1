@@ -76,7 +76,15 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspEditProfileAccount = "uspEditProfileAccount";
         //Create New Registration Car. Create By Anh.Trần Create 14/4/2019. 
         public const string uspCreateNewRegistrationCar = "uspCreateNewRegistrationCar";
-        
+        //--Cấp 3,4  Xem toàn bộ danh sách đơn cấp phát ở các khoa viện -> Xem theo trạng thái. Create By Anh.Trần Create 15/4/2019. 
+        public const string uspManagerGetRegistrationCarAllUnitByProfileStaus = "uspManagerGetRegistrationCarAllUnitByProfileStaus {0}";
+        // Xem chi tiết đơn cấp phát ở các trạng thái không duyệt và chờ duyệt -> Xem theo trạng thái. Create By Anh.Trần Create 15/4/2019. 
+        public const string uspGetDetailRegistrationCarByNotRatify = "uspGetDetailRegistrationCarByNotRatify {0}"; //@RegistrationCarID
+        // Lấy danh sách xe hoạt động Create By Anh.Trần Create 17/4/2019. 
+        public const string uspGetListCarApproveRegistrationCar = "uspGetListCarApproveRegistrationCar"; 
+        // Lấy danh sách đơn cấp phát đã duyệt, chờ đi Create By Anh.Trần Create 17/4/2019. 
+        public const string uspGetListRegistrationApproveRegistrationCar = "uspGetListRegistrationApproveRegistrationCar"; 
+
     }
 
 }

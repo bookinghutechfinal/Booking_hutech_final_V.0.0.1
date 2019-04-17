@@ -1,0 +1,263 @@
+﻿<style>
+    .x_title li {
+        display: inline-block;
+    }
+
+    .x_title ul {
+        margin-left: -45px;
+    }
+
+    .profile_details:nth-child(3n) {
+        clear: none;
+    }
+
+    .modal-header {
+        background-color: #2A3F54;
+    }
+
+    /* ng-show animation*/
+    /* ngHide animation */
+    .ngHideSample {
+        padding: 10px;
+        margin: 5px;
+    }
+
+        .ngHideSample.ng-hide-add {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 1;
+        }
+
+        .ngHideSample.ng-hide-add-active {
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove-active {
+            opacity: 1;
+        }
+
+    .title_bk {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa;
+        padding: 7px;
+        display: block;
+        background-color: #cde0c4;
+        color: #356635;
+        font-size: 15px;
+        height: 29px;
+    }
+</style>
+
+<!-- Modal content-->
+<!-- Test  -->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
+        <h4 class="modal-title">Chi tiết tài khoản</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_content">
+                    <div class="x_panel">
+                        <form class="form-horizontal form-label-left input_mask">
+                            <h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Thông tin thời gian</h2>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group" style="margin-bottom: -10px;">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày giờ đi</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <div class="input-group date" id="myDateFrom">
+                                        <input type="text" class="form-control ed_border" disabled ng-model="SearchCarRequest.DateTimeFrom | date:'HH:mm dd/MM/yyyy'">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group" style="margin-bottom: -10px;">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày giờ về</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <div class="input-group date" id="myDateTo">
+                                        <input type="text" class="form-control ed_border" disabled ng-model="SearchCarRequest.DateTimeTo  | date:'HH:mm dd/MM/yyyy'">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group" style="margin-bottom: -10px;">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-5">Số lượng</label>
+                                <div class="col-md-9 col-sm-9 col-xs-7">
+                                    <div class="input-group date" id="myDateFrom" style="padding:10px ">
+                                        <label>{{SearchCarRequest.NumberPeople}} Người</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group" style="margin-bottom: -10px;">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-5">Y/c loại xe</label>
+                                <div class="col-md-9 col-sm-9 col-xs-7">
+                                    <div class="input-group date" id="myDateTo" style="padding:10px">
+                                        <label>{{SearchCarRequest.CarTypeNameRequest}} hơn</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!--Start: Button-->
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group ">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <div class="col-md-6 col-sm-6 col-xs-12" style="padding:10px">
+                                        <button class="btn btn-warning btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="ClosePopup()">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                            <span>Đóng</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12" style="padding:10px">
+                                        <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnRegisterBKCar()">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                            <span>Tìm Xe</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End: Button-->
+                        </form>
+                        <!--<h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Danh sách xe - Kết quả tìm kiếm </h2>-->
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h5 class="ng-binding"><i class="glyphicon glyphicon-th-list"></i> Danh sách xe</h5>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+                                <!-- ngRepeat: data in ListCarInfo  |  itemsPerPage: numPag  | filter:searchText --><div class="col-md-4 col-sm-4 col-xs-12 profile_details ng-scope" style="">
+                                    <!--ng-repeat="data in ListCarInfo  |  itemsPerPage: numPag  | filter:searchText"-->
+                                    <div class="well profile_view">
+                                        <div class="col-sm-12">
+                                            <div class="left col-xs-6" style="font-size:11px">
+                                                <h4 class="ng-binding">Suzuki Celerio </h4>
+                                                <ul class="list-unstyled">
+                                                    <li class="ng-binding"><i class="fa fa-bus"></i> Xe: KG-1 0001</li>
+                                                    <li class="ng-binding"><i class="fa fa-car"></i> Loại xe: 4 chổ</li>
+                                                    <li class="ng-binding"><i class="fa fa-calendar"></i> Trống</li>
+                                                </ul>
+                                            </div>
+                                            <div class="right col-xs-6 text-center">
+                                                <a href="../../../../images/img/xe_4_cho.jpg" target="_blank"><img src="../../../../images/img/xe_4_cho.jpg" alt="xe_4_cho.jpg" class="img-responsive"></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 bottom text-center">
+                                            <div class="col-xs-12 col-sm-4 emphasis">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 emphasis">
+                                                <a class="btn btn-round btn-primary btn-md" href="#/main/detail-car/4">
+                                                    Xem chi tiết <i class="fa fa-share-square-o"> </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="well profile_view">
+                                        <div class="col-sm-12">
+                                            <div class="left col-xs-6" style="font-size:11px">
+                                                <h4 class="ng-binding">Suzuki Celerio </h4>
+                                                <ul class="list-unstyled">
+                                                    <li class="ng-binding"><i class="fa fa-bus"></i> Xe: KG-1 0001</li>
+                                                    <li class="ng-binding"><i class="fa fa-car"></i> Loại xe: 4 chổ</li>
+                                                    <li class="ng-binding"><i class="fa fa-calendar"></i> Trống</li>
+                                                </ul>
+                                            </div>
+                                            <div class="right col-xs-6 text-center">
+                                                <a href="../../../../images/img/xe_4_cho.jpg" target="_blank"><img src="../../../../images/img/xe_4_cho.jpg" alt="xe_4_cho.jpg" class="img-responsive"></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 bottom text-center">
+                                            <div class="col-xs-12 col-sm-4 emphasis">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 emphasis">
+                                                <a class="btn btn-round btn-primary btn-md" href="#/main/detail-car/4">
+                                                    Xem chi tiết <i class="fa fa-share-square-o"> </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="well profile_view">
+                                        <div class="col-sm-12">
+                                            <div class="left col-xs-6" style="font-size:11px">
+                                                <h4 class="ng-binding">Suzuki Celerio </h4>
+                                                <ul class="list-unstyled">
+                                                    <li class="ng-binding"><i class="fa fa-bus"></i> Xe: KG-1 0001</li>
+                                                    <li class="ng-binding"><i class="fa fa-car"></i> Loại xe: 4 chổ</li>
+                                                    <li class="ng-binding"><i class="fa fa-calendar"></i> Trống</li>
+                                                </ul>
+                                            </div>
+                                            <div class="right col-xs-6 text-center">
+                                                <a href="../../../../images/img/xe_4_cho.jpg" target="_blank"><img src="../../../../images/img/xe_4_cho.jpg" alt="xe_4_cho.jpg" class="img-responsive"></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 bottom text-center">
+                                            <div class="col-xs-12 col-sm-4 emphasis">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 emphasis">
+                                                <a class="btn btn-round btn-primary btn-md" href="#/main/detail-car/4">
+                                                    Xem chi tiết <i class="fa fa-share-square-o"> </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="well profile_view">
+                                        <div class="col-sm-12">
+                                            <div class="left col-xs-6" style="font-size:11px">
+                                                <h4 class="ng-binding">Suzuki Celerio </h4>
+                                                <ul class="list-unstyled">
+                                                    <li class="ng-binding"><i class="fa fa-bus"></i> Xe: KG-1 0001</li>
+                                                    <li class="ng-binding"><i class="fa fa-car"></i> Loại xe: 4 chổ</li>
+                                                    <li class="ng-binding"><i class="fa fa-calendar"></i> Trống</li>
+                                                </ul>
+                                            </div>
+                                            <div class="right col-xs-6 text-center">
+                                                <a href="../../../../images/img/xe_4_cho.jpg" target="_blank"><img src="../../../../images/img/xe_4_cho.jpg" alt="xe_4_cho.jpg" class="img-responsive"></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 bottom text-center">
+                                            <div class="col-xs-12 col-sm-4 emphasis">
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 emphasis">
+                                                <a class="btn btn-round btn-primary btn-md" href="#/main/detail-car/4">
+                                                    Xem chi tiết <i class="fa fa-share-square-o"> </i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="float:right;">
+                            <div class="col-sm-3 col-xs-4">
+                                Số lượng: <input type="number" ng-model="numPag" style="width: 44px;" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                            </div>
+
+                            <div class="col-sm-9 col-xs-8">
+                                <dir-pagination-controls boundary-links="true" direction-links="true" class="ng-isolate-scope"><!-- ngIf: 1 < pages.length || !autoHide --></dir-pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

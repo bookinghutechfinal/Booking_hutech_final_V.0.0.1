@@ -1,10 +1,10 @@
-﻿var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; 
+﻿var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 //var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
 // Anh create kiểm tra email 
-var checkEmailInput = function (email) { 
-    if (!filter.test(email))  
+var checkEmailInput = function (email) {
+    if (!filter.test(email))
         return false;
-    return true; 
+    return true;
 }
 
 // Hàm 1: Check dữ liệu Null 
@@ -109,8 +109,8 @@ var CompareDateTimeFromTo = function (DateTime1, DateTime2) {
 // anh crate 14/4/2019 check độ dài ký tự  
 var ChechLength = function (request) {
     if (request.length < 20)
-        return false; 
-    return true; 
+        return false;
+    return true;
 }
 
 
@@ -161,7 +161,7 @@ var FormatTimeToNumber = function (time) {
 }
 
 
- 
+
 
 
 
@@ -252,11 +252,11 @@ var ConvertAccountTypeIDToName = function (accountID) {
         return AccountTypeRequest[2].AccountTypeName;
     }
     if (accountID === "4") {
-        return  AccountTypeRequest[3].AccountTypeName;
-    }   accountID
+        return AccountTypeRequest[3].AccountTypeName;
+    } accountID
     if (accountID === "5") {
         return AccountTypeRequest[4].AccountTypeName;
-    }   accountID
+    } accountID
     if (accountID === "7") {
         return AccountTypeRequest[5].AccountTypeName;
     }
@@ -269,16 +269,59 @@ var ConvertAccountStatusIDToName = function (accountStatusID) {
     }
     if (accountStatusID === "1") {
         return Account_StatusRequest[1].Account_StatusName;
-    } 
+    }
 }
 // Anh create
 // Request: AccountTypeName
 // Response:  RegistrationStatusType
 var ReturnAccountType = function (AccountTypeNameRequest) {
     if (AccountTypeNameRequest == AccountTypeRequest[0].AccountTypeName) {
-        return RegistrationStatus[0].RegistrationStatusType; 
+        return RegistrationStatus[0].RegistrationStatusType;
     }
     if (AccountTypeNameRequest == AccountTypeRequest[1].AccountTypeName) {
-        return RegistrationStatus[1].RegistrationStatusType; 
+        return RegistrationStatus[1].RegistrationStatusType;
     }
+}
+
+// Cập nhật trạng thái đơn cấp phát hiển thị lên đơn đăng ký
+// Request ProfileStatusID
+// Return Profile_StatusName
+var ConvertProfileCarStatusIDToName = function (profileStatusID) {
+    if (profileStatusID === 1) {
+        return "Chờ trưởng khoa duyệt";
+    }
+    if (profileStatusID === 2) {
+        return "Chờ quản trị duyệt";
+    }
+    if (profileStatusID === 3) {
+        return RegistrationStatus[2].RegistrationStatusName;
+    }
+    if (profileStatusID === 4) {
+        return RegistrationStatus[3].RegistrationStatusName;
+    } accountID
+    if (profileStatusID === 5) {
+        return RegistrationStatus[4].RegistrationStatusName;
+    } accountID
+    if (profileStatusID === 6) {
+        return RegistrationStatus[5].RegistrationStatusName;
+    }
+    if (profileStatusID === 7) {
+        return RegistrationStatus[6].RegistrationStatusName;
+    }
+    if (profileStatusID === 8) {
+        return RegistrationStatus[7].RegistrationStatusName;
+    }
+    if (profileStatusID === 9) {
+        return RegistrationStatus[8].RegistrationStatusName;
+    }
+    if (profileStatusID === 10) {
+        return RegistrationStatus[9].RegistrationStatusName;
+    }
+
+}
+// Hiển thị thông tin xe 
+var CheckProfileRegisterCar = function (profileStatusID) {
+    if (profileStatusID == 4 || profileStatusID == 6 || profileStatusID == 7 || profileStatusID == 8 || profileStatusID == 9 || profileStatusID == 10)
+        return true;
+    return false
 }
