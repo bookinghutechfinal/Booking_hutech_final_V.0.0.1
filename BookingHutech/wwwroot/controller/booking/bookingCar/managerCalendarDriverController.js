@@ -21,7 +21,7 @@
                 Profile_Status1: 4,
                 Profile_Status2: 7,
                 Profile_Status3: 9,
-                DateFrom: '1900-1-1',
+                DateFrom: '1-1-1900',
                 DateTo: new Date()
             }
 
@@ -48,10 +48,10 @@
         }
 
         $scope.searchCalendar = function () {
-            var date_from = angular.element('#myDate1').val();
-            var date_to = angular.element('#myDate2').val();
+            var date_from = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
+            var date_to = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
 
-            if (So_Sanh_DateInput2(date_to, date_from) && checkDiffFromToDate1(date_from, date_to, 61) && date_from != "" && date_to != "") {
+            if (So_Sanh_DateInput2(date_to, date_from) && date_from != "Invalid date" && date_to != "Invalid date") {
 
                 $scope.ErrorDay = false;
                 $scope.ShowListCalendar = true;
@@ -73,6 +73,8 @@
                             if (result.length == 0) {
                                 toastr.error("Không có chuyến đi nào trong khoảng thời gian này.");
                             }
+                            $scope.datefrom = date_from;
+                            $scope.dateto = date_to;
                             $scope.tableParams1 = new NgTableParams({}, { dataset: result });
                             break;
                         case 2:

@@ -31,8 +31,6 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
             try
             { 
                 string uspGetListCar = String.Format(Prototype.SqlCommandStore.uspGetListCar, request.CarStatus1, request.CarStatus2);
-                string stringSqlGetCarTypeInfo = Prototype.SqlCommandStore.uspGetListCarType;
-                result.ListCarType = carDAO.GetListCarTypeDAO(stringSqlGetCarTypeInfo);
                 result.ListCar = carDAO.GetListCarDAO(uspGetListCar);
                 return result;
             }
@@ -41,7 +39,19 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
                 LogWriter.WriteException(ex);
                 throw;
             }
- 
+        }
+
+        /// <summary>
+        /// Mr.Lam 15/4/2019
+        /// List cartype
+        /// </summary>
+        /// <returns>ListCarType</returns> 
+        public List<CarTypeInfo> GetListCarTypeServices()
+        {
+            List<CarTypeInfo> result = new List<CarTypeInfo>();
+            string uspGetListCarType = Prototype.SqlCommandStore.uspGetListCarType;
+            result = carDAO.GetListCarTypeDAO(uspGetListCarType);
+            return result;
         }
         
 
@@ -135,6 +145,25 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
                 string uspGetCarInfoByAccountID = String.Format(Prototype.SqlCommandStore.uspGetCarInfoByAccountID, request.Account_ID,(int)BookingType.AssignStatus.active);
                 result = carDAO.GetListCarDAO(uspGetCarInfoByAccountID);
                 return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// UpdateCarInfoServices
+        /// Create by Mr.Lam 17/4/2019
+        /// </summary>
+        /// <param name="UpdateCarInfoRequestModel"></param>
+        public void UpdateCarInfoServices(UpdateCarInfoRequestModel request)
+        {
+            try
+            {
+                string uspUpdateCarInfo = String.Format(Prototype.SqlCommandStore.uspUpdateCarInfo);
+                carDAO.UpdateCarInfoDAO(uspUpdateCarInfo, request);
             }
             catch (Exception ex)
             {

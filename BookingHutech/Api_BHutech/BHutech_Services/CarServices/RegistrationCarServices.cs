@@ -73,7 +73,6 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
         /// <returns>UpdateSuccessResponseModel</returns>
         public void UpdateRegistrationCarStatusServices(UpdateRegistrationCarStatusRequestModel request)
         {
-            UpdateSuccessResponseModel result = new UpdateSuccessResponseModel();
             try
             {
                 string uspUpdateRegistrationCarStatus = String.Format(Prototype.SqlCommandStore.uspUpdateRegistrationCarStatus);

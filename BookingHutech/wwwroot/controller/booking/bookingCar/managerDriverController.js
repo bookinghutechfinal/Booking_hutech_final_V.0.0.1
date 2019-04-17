@@ -20,7 +20,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
         // Lấy chi tiết tài khoản của admin và chi tiết quyền. 
         $scope.ManagerGetListDriver = function () {
             $account.ManagerGetListDriverByDriverStatus({}, function (res) {
-                debugger
+                
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ManagerGetListDriverResponse = res.data.Data.GetDriverInfo;
@@ -82,7 +82,7 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
             }
 
             $account.ManagerGetDetailAccountByAccountID($scope.Account_IDRequest, function (res) {
-                debugger
+                
                 switch (res.data.ReturnCode) {
                     case 1:
                        

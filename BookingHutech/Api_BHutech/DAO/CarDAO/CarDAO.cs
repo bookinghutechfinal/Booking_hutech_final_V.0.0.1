@@ -11,6 +11,7 @@ using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.BookingCar;
 using System.Data;
 using BookingHutech.Api_BHutech.Prototype;
+using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 
 namespace BookingHutech.Api_BHutech.DAO.CarDAO
 {
@@ -22,7 +23,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
         static SqlDataAdapter adap;
 
         /// <summary>
-        /// 
+        /// GetListCarDAO
         /// </summary>
         /// <param name="stringSql">stringSql</param>
         /// <returns>list CarInfo</returns> 
@@ -104,7 +105,12 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 throw;
             }
         }
-
+        /// <summary>
+        /// UpdateCarStatusDAO
+        /// Mr.Lam
+        /// </summary>
+        /// <param name="sqlStore"></param>
+        /// <param name="UpdateCarStatusRequestModel"></param>
         public UpdateCarStatusResponseModel UpdateCarStatusDAO(String sqlStore, UpdateCarStatusRequestModel request)
         {
             UpdateCarStatusResponseModel res = new UpdateCarStatusResponseModel();
@@ -130,6 +136,59 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     throw new Exception();
                 }
                 return res;
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// UpdateCarInfoDAO
+        /// Create by Mr.Lam 17/4/2019
+        /// </summary>
+        /// <param name="UpdateCarInfoRequestModel"></param>
+        public void UpdateCarInfoDAO(String sqlStore, UpdateCarInfoRequestModel request)
+        {
+            UpdateSuccessResponseModel response = new UpdateSuccessResponseModel();
+
+            //
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@CarID", SqlDbType.Int).Value = request.CarID;
+            cmd.Parameters.Add("@CarName", SqlDbType.NVarChar,50).Value = request.CarName;
+            cmd.Parameters.Add("@CarNo", SqlDbType.NVarChar, 50).Value = request.CarNo;
+            cmd.Parameters.Add("@CarTypeID", SqlDbType.Int).Value = request.CarTypeID;
+            cmd.Parameters.Add("@CarImage", SqlDbType.NVarChar, 50).Value = request.CarImage;
+            cmd.Parameters.Add("@Expires", SqlDbType.DateTime).Value = request.Expires;
+            cmd.Parameters.Add("@InsuranceExpires", SqlDbType.DateTime).Value = request.InsuranceExpires;
+            cmd.Parameters.Add("@FullNameUpdate", SqlDbType.NVarChar, 50).Value = request.FullNameUpdate;
+
+            cmd.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();
+                response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                if (response.ReturnCode != GroupRoleResponseType.Success)
+                {
+                    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, response.ReturnCode, response.ReturnCode));
+                    throw new Exception();
+                }
+
+                con.Close();
             }
             catch (Exception ex)
             {

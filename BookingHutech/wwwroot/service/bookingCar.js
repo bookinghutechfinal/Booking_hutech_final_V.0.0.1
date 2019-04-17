@@ -16,6 +16,13 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    this.getListCarType = function (request, success, finish) {
+            $dao.call({
+                method: 'GET',
+                operater: 'Car/GetListCarType',
+                data: request
+            }, success, finish)
+    };
 
     this.getCarInfoByAccountID = function (request, success, finish) {
         $dao.call({
@@ -33,18 +40,18 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
         }, success, finish)
     };
 
-    this.getListCarByCartypeID = function (request, success, finish) {
+    this.updateCarInfo = function (request, success, finish) {
         $dao.call({
             method: 'POST',
-            operater: 'Car/GetListCarByCartypeID',
+            operater: 'Car/UpdateCarInfo',
             data: request
         }, success, finish)
     };
 
-    this.getListRepairCost = function (request, success, finish) {
+    this.getListCarByCartypeID = function (request, success, finish) {
         $dao.call({
-            method: 'GET',
-            operater: 'ManagerCost/GetListRepairCost',
+            method: 'POST',
+            operater: 'Car/GetListCarByCartypeID',
             data: request
         }, success, finish)
     };
@@ -91,6 +98,13 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    this.updateRepairStatus = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'ManagerCost/UpdateRepairStatus',
+            data: request
+        }, success, finish)
+    };
     this.getRegistrationCarByCarID = function (request, success, finish) {
         $dao.call({
             method: 'POST',
@@ -109,6 +123,20 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
         $dao.call({
             method: 'POST',
             operater: 'RegistrationCar/UpdateRegistrationCarStatus',
+            data: request
+        }, success, finish)
+    };
+    this.GetListAssignDriver = function (request, success, finish) {
+        $dao.call({
+            method: 'GET',
+            operater: 'AssignDriver/GetListAssignDriver',
+            data: request
+        }, success, finish)
+    };
+    this.GetDriverManageCar = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'AssignDriver/GetDriverManageCar',
             data: request
         }, success, finish)
     };

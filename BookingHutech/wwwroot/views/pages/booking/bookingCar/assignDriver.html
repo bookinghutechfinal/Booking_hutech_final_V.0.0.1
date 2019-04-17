@@ -1,0 +1,99 @@
+﻿
+<style>
+    .x_title li {
+        display: inline-block;
+    }
+
+    .x_title ul {
+        margin-left: -45px;
+    }
+
+    .profile_details:nth-child(3n) {
+        clear: none;
+    }
+
+    .ed_border {
+        border-radius: 5px
+    }
+
+    .title_bk {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa;
+        padding: 7px;
+        display: block;
+        background-color: #cde0c4;
+        color: #356635;
+        font-size: 11px;
+        height: 29px;
+    }
+
+    .detailMess {
+        font-size: 12px;
+        font-weight: bold;
+    }
+</style>
+<div class="clearfix">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <ul>
+                        <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                        <li><a href="#/main/assign-driver"><h5>/ {{'assignDriver' | translate}}</h5></a></li>
+                    </ul>
+                </div>
+                <div class="x_content" style="display: block;">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Bảng phân công </h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 profile_left">
+                                        <div class="table-responsive" ng-show="!ShowListCost">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align:center">
+                                                            Xe
+                                                        </th>
+                                                        <th style="text-align:center">
+                                                            Lái xe
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tr ng-repeat="item in ListAssignDriver" role="none" class="hover_">
+                                                    <td style="text-align:center">
+                                                        {{item.CarNo}}
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <select class="form-control ed_border" ng-change="updateAssign()" ng-model="Assign" style="width:200px">
+                                                                <option value="">{{item.FullName}} ({{item.Account_ID}})</option>
+                                                                <option ng-repeat="data in ManagerGetListAccountResponse" value="{{data.Account_ID}}">{{data.FullName}} ({{data.Account_ID}})</option>
+                                                            </select>
+                                                        </center>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <h5>Danh sách lái xe chưa được phân công</h5>
+                                        <ul>
+                                            <li ng-repeat="data in ManagerGetListAccountResponse">{{data.FullName}} ({{data.Account_ID}})</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

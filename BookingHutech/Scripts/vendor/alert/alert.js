@@ -130,6 +130,23 @@ mainmodule.service('$alert', ['SweetAlert', '$rootScope', function (SweetAlert, 
         });
     }
 
+    this.showConfirmUpdateCarInfo = function (mesg, ok) {
+        SweetAlert.swal({
+            title: '',
+            text: mesg,
+            type: "success",
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: $rootScope.initMessage('Yes'),
+            cancelButtonText: $rootScope.initMessage('No'),
+            closeOnConfirm: true
+        }, function (IsOk) {
+            if (IsOk) {
+                ok();
+            };
+        });
+    }
+
     this.showUpdateDistance = function (mesg, ok) {
         SweetAlert.swal({
             title: '',
