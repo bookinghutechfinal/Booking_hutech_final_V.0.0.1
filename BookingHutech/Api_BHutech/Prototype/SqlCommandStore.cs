@@ -90,8 +90,12 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspUpdateCarInfo = "uspUpdateCarInfo";
         //get Driver Manage Car. Create By Mr.Lam Create 17/4/2019. 
         public const string uspGetDriverManageCar = "uspGetDriverManageCar {0}";
-        //Update RepairStatu. Create By Mr.Lam Create 17/4/2019. 
+        //Update RepairStatus. Create By Mr.Lam Create 17/4/2019. 
         public const string uspUpdateRepairStatus = "uspUpdateRepairStatus {0},{1},'{2}'";
+        //Update, insert AssignDriver. Create By Mr.Lam Create 17/4/2019. 
+        public const string uspAssignDriverManager = "uspAssignDriverManager {0},{1},'{2}'";
+        //Get List Assigned. Create By Mr.Lam Create 17/4/2019. 
+        public const string uspGetListAssigned = "uspGetListAssigned";
         
     }
 

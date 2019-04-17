@@ -54,5 +54,45 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 throw;
             }
         }
+
+        /// <summary>
+        /// AssignDriverManagerServices
+        /// Mr.Lam 17/4/2019
+        /// </summary>
+        /// <param name="request">AssignDriverManagerRequestModel</param>
+        public void AssignDriverManagerServices(AssignDriverManagerRequestModel request)
+        {
+            try
+            {
+                string uspAssignDriverManager = String.Format(Prototype.SqlCommandStore.uspAssignDriverManager, request.Account_ID, request.CarID, request.FullNameUpdate);
+                assignDriverDAO.AssignDriverManagerDAO(uspAssignDriverManager);
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// GetListAssignedServices
+        /// Mr.Lam 16/4/2019
+        /// </summary>
+        /// <returns>List AssignDriver</returns>
+        public List<AssignDriverInfo> GetListAssignedServices()
+        {
+            List<AssignDriverInfo> result = new List<AssignDriverInfo>();
+            try
+            {
+                string uspGetListAssigned = String.Format(Prototype.SqlCommandStore.uspGetListAssigned);
+                result = assignDriverDAO.GetListAssignDriverDAO(uspGetListAssigned);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
     }
 }

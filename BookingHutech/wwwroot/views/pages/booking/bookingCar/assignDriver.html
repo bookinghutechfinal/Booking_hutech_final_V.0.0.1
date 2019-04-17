@@ -33,6 +33,20 @@
         font-size: 12px;
         font-weight: bold;
     }
+    .list_driver {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa;
+        padding: 7px;
+        display: block;
+        background-color: #d6dde7;
+        font-size: 13px;
+        height: auto;
+        border-color: #9cb4c5;
+        color: #305d8c;
+        margin-bottom: 20px;
+    }
 </style>
 <div class="clearfix">
     <div class="row">
@@ -53,7 +67,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <div class="col-md-9 col-sm-9 col-xs-12 profile_left">
+                                    <div class="col-md-8 col-sm-8 col-xs-12 profile_left">
                                         <div class="table-responsive" ng-show="!ShowListCost">
                                             <table class="table table-striped">
                                                 <thead>
@@ -64,6 +78,9 @@
                                                         <th style="text-align:center">
                                                             Lái xe
                                                         </th>
+                                                        <th style="text-align:center">
+                                                            Hủy
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tr ng-repeat="item in ListAssignDriver" role="none" class="hover_">
@@ -72,21 +89,47 @@
                                                     </td>
                                                     <td>
                                                         <center>
-                                                            <select class="form-control ed_border" ng-change="updateAssign()" ng-model="Assign" style="width:200px">
+                                                            <select class="form-control ed_border" ng-change="updateAssign(acountID,item)" ng-model="acountID" style="width:200px">
                                                                 <option value="">{{item.FullName}} ({{item.Account_ID}})</option>
                                                                 <option ng-repeat="data in ManagerGetListAccountResponse" value="{{data.Account_ID}}">{{data.FullName}} ({{data.Account_ID}})</option>
                                                             </select>
                                                         </center>
                                                     </td>
+                                                    <td style="text-align:center">
+                                                        <button class="btn btn-danger" ng-click="updateAssign(acountID,item)"><i class="fa fa-remove"></i> Hủy</button>
+                                                    </td>
                                                 </tr>
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <h5>Danh sách lái xe chưa được phân công</h5>
-                                        <ul>
-                                            <li ng-repeat="data in ManagerGetListAccountResponse">{{data.FullName}} ({{data.Account_ID}})</li>
-                                        </ul>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class=" list_driver">
+                                            <h5>Danh sách lái xe chưa được phân công: </h5>
+                                            <ul class="list-unstyled user_data">
+                                                <li ng-repeat="data in ManagerGetListAccountResponse"><i class="glyphicon glyphicon-hourglass"></i> {{data.FullName}} ({{data.Account_ID}})</li>
+                                            </ul>
+                                        </div>
+                                        <br />
+                                        <h5>Lịch sử phân công: </h5>
+                                        <div class="table-responsive">
+                                            <table ng-table="tableParams" class="table jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                                                <tr ng-repeat="item in $data " role="none" class="hover_">
+                                                    <td data-title="'Xe'" style="width:6%" align="left" sortable="'CarNo'">
+                                                        <!--filter="{CarNo:'text'}"-->
+                                                        {{item.CarNo}}
+                                                    </td>
+                                                    <td data-title="'Lái xe'" style="width:7%" align="left" sortable="'RepairAddres'">
+                                                        {{item.FullName}} ({{item.Account_ID}})
+                                                    </td>
+                                                    <td data-title="'Ngày phân công'" style="width:4%" align="left" sortable="'CreateDate'">
+                                                        {{item.CreateDate | date:'dd/MM/yyyy'}}
+                                                    </td>
+                                                    <td data-title="'Người phân công'" style="width:7%" align="left" sortable="'RepairAddres'">
+                                                        {{item.FullNameUpdate}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

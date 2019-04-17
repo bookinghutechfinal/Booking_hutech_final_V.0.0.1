@@ -1,6 +1,7 @@
 ﻿using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.Models.BookingCar;
+using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -42,6 +43,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     assignDriverInfo.AssignStatus = Int32.Parse(reader["AssignStatus"].ToString());
                     assignDriverInfo.FullName = reader["FullName"].ToString();
                     assignDriverInfo.CarNo = reader["CarNo"].ToString();
+                    assignDriverInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
 
                     result.Add(assignDriverInfo);
                 }
@@ -55,11 +57,35 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     assignDriverInfo.AssignStatus = Int32.Parse(reader["AssignStatus"].ToString());
                     assignDriverInfo.FullName = reader["FullName"].ToString();
                     assignDriverInfo.CarNo = reader["CarNo"].ToString();
+                    assignDriverInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
 
                     result.Add(assignDriverInfo);
                 }
                 con.Close();
                 return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// AssignDriverManagerDAO
+        /// Mr.Lam 17/4/2019
+        /// </summary>
+        public void AssignDriverManagerDAO(string stringSql)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                int a=cmd.ExecuteNonQuery();
+                con.Close();
             }
             catch (Exception ex)
             {
