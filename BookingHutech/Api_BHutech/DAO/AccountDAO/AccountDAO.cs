@@ -55,9 +55,10 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
                     accountLoginResponseModel.AccountType = reader["AccountType"].ToString();
                     request.Add(accountLoginResponseModel);
-                    return request;
+                    
                 }
                 con.Close();
+                return request;
             }
             catch (BHutechException ex)
             {

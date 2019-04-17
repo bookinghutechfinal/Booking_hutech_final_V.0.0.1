@@ -31,6 +31,13 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
         }, success, finish)
     }
 
+    this.GetListDriverNotInAssignDriver = function (request, success, finish) {
+        $dao.call({
+            method: 'GET',
+            operater: 'Account/GetListDriverNotInAssignDriver',
+            data: request
+        }, success, finish)
+    }
 
     this.ChangePassword = function (request, success, finish) {
         $dao.call({

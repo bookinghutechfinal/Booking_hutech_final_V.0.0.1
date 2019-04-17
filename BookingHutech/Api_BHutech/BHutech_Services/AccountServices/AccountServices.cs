@@ -123,5 +123,28 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             }
 
         }
+
+        /// <summary>
+        /// Mr.Lam 16/4/2019
+        /// GetListDriverNotInAssignDriver
+        /// </summary>
+        /// <returns>List Driver Not In AssignDriver</returns> 
+        public AccountLoginResponseModel GetListDriverNotInAssignDriverServices()
+        {
+
+            AccountLoginResponseModel accountLoginResponse = new AccountLoginResponseModel();
+            try
+            {
+                string uspGetListDriverNotInAssignDriver = Prototype.SqlCommandStore.uspGetListDriverNotInAssignDriver;
+                accountLoginResponse.GetAccountInfo = accountDAO.GetAccountInfoDAO(uspGetListDriverNotInAssignDriver);
+                return accountLoginResponse;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
     }
 }

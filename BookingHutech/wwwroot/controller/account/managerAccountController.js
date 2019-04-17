@@ -73,7 +73,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         $scope.ManagerGetListAccountResponse = []; // danh sách tài khoản trả về
         $scope.ManagerGetListAccount = function (request) {
             $account.ManagerGetAccountByAccountStatusAccountType(request, function (res) {
-                debugger
+                
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ManagerGetListAccountResponse = res.data.Data.GetAccountByAccountStatus;
@@ -337,7 +337,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
             }
 
             $account.ManagerGetDetailAccountByAccountID($scope.Account_IDRequest, function (res) {
-                debugger
+                
                 switch (res.data.ReturnCode) {
                     case 1:
 

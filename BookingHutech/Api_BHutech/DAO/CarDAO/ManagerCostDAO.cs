@@ -69,5 +69,28 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 throw;
             }
         }
+
+        /// <summary>
+        /// UpdateRepairStatusDAO
+        /// Mr.Lam 17/4/2019
+        /// </summary>
+        public void UpdateRepairStatusDAO(string stringSql)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
     }
 }

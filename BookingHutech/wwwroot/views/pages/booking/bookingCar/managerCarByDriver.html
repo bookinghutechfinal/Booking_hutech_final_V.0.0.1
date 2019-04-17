@@ -84,7 +84,7 @@
                                             <div class="form-horizontal form-label-left input_mask">
                                                 <div class="form-group">
 
-                                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
+                                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ:</div>
                                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                                         <div class='input-group date' id='myDatepicker'>
                                                             <input type="text" class="form-control ed_border" id='myDate1' />
@@ -95,7 +95,7 @@
                                                         <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">-->
                                                     </div>
 
-                                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
+                                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến:</div>
                                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                                         <div class='input-group date' id='myDatepicker2'>
                                                             <input type='text' class="form-control ed_border" id='myDate2' />
@@ -106,7 +106,7 @@
                                                         <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_to" type="date" style="cursor:pointer">-->
                                                     </div>
 
-                                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Trạng thái:</div>
+                                                    <div class="control-label col-md-1 col-sm-1 col-xs-12"></div>
                                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                                         <select class="form-control select2 ed_border" ng-model="searchModel.RepairStatus" style="width: 100%;cursor:pointer">
                                                             <option ng-selected="selected" value="">{{'All' | translate }}</option>
@@ -122,7 +122,7 @@
 
                                                 </div>
                                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                                    <p style="color:red" ng-show="ErrorDay">* Kiểm tra chọn ngày. Lưu ý chọn khoảng thời gian cách nhau tối đa 2 tháng.</p>
+                                                    <p style="color:red" ng-show="ErrorDay">* Kiểm tra chọn ngày.</p>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4 col-xs-12" style="float:right">
                                                     <div class="mb15 mt30">
@@ -133,17 +133,17 @@
                                                 </div>
                                             </div>
                                             <!--<div class="col-md-1 col-sm-1 col-xs-12">
-                                                <button class="btn btn-success btn-round lentop" type="reset" style="float:right" ng-click="getListCost()">
-                                                    <span class="glyphicon glyphicon-refresh"></span>
-                                                </button>
-                                            </div>-->
+            <button class="btn btn-success btn-round lentop" type="reset" style="float:right" ng-click="getListCost()">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+        </div>-->
 
                                             <a ng-click="getListCost()"><i class="material-icons lentop"><span class="glyphicon glyphicon-refresh"></span></i></a>
 
 
                                         </form>
                                         <div class="clearfix"></div>
-
+                                        <br />
                                         <div class="table-responsive" ng-show="!ShowListCost">
                                             <table ng-table="tableParams" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
                                                 <tr ng-repeat="item in $data " role="none" class="hover_">
@@ -170,7 +170,7 @@
                                                         <span ng-show="item.RepairStatus=='Không duyệt'" style="color:gray">{{item.RepairStatus}}</span>
                                                     </td>
                                                     <td data-title="'Sửa'" style="width:0.5%" align="left">
-                                                        <button class="btn btn-success" ng-show="item.RepairStatus=='Chờ duyệt'"><i class="fa fa-edit"></i> Sửa</button>
+                                                        <button class="btn btn-success"><i class="fa fa-edit"></i> Sửa</button>
                                                     </td>
                                                     <td data-title="'Xóa'" style="width:0.5%" align="left">
                                                         <button class="btn btn-danger"><i class="fa fa-remove"></i> Xóa</button>
@@ -179,6 +179,7 @@
                                             </table>
                                         </div>
                                         <!--search cost-->
+                                        <p style="color:blue;font-weight:bold" ng-show="ShowListCost">Kết quả tìm kiếm từ ngày {{datefrom | date: 'dd-MM-yyyy'}} đến ngày {{dateto | date: 'dd-MM-yyyy'}}:</p>
                                         <div class="table-responsive" ng-show="ShowListCost">
                                             <table ng-table="tableParams1" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
                                                 <tr ng-repeat="item in $data " role="none" class="hover_">
@@ -231,9 +232,9 @@
 <script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
 <script>
     $('#myDatepicker').datetimepicker({
-        format: 'YYYY-MM-DD'
+        format: 'DD-MM-YYYY'
     });
     $('#myDatepicker2').datetimepicker({
-        format: 'YYYY-MM-DD'
+        format: 'DD-MM-YYYY'
     });
 </script>

@@ -1,7 +1,7 @@
 ﻿
 mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account',
     function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account) {
-        debugger;
+
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
         $scope.goToHome = function () {
             $state.go('main.home');
@@ -60,7 +60,7 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
 
 
             $account.Login($scope.accountLoginRequest, function (response) {
-                debugger;
+                
                 switch (response.data.ReturnCode) {
 
                     case 152:

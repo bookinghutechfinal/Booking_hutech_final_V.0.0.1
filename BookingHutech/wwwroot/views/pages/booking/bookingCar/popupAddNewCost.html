@@ -149,13 +149,13 @@
                                                 <select class="form-control ed_border" ng-model="EditProfiAccount.AccountType" ng-change="TestInputChange(EditProfiAccount)" style="width: 100%;">
                                                     <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                     <option selected value="">-- Vui lòng chọn --</option>
-                                                    <option>
+                                                    <option value="1">
                                                         Nhiên liệu
                                                     </option>
-                                                    <option>
+                                                    <option value="2">
                                                         Sửa chữa, bảo trì
                                                     </option>
-                                                    <option>
+                                                    <option value="3">
                                                         Chi phí khác
                                                     </option>
                                                 </select>
@@ -167,14 +167,8 @@
                                                 <select class="form-control ed_border" ng-model="EditProfiAccount.AccountType" ng-change="TestInputChange(EditProfiAccount)" style="width: 100%;">
                                                     <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                     <option selected value="">-- Vui lòng chọn --</option>
-                                                    <option>
-                                                        KG-1 0001
-                                                    </option>
-                                                    <option>
-                                                        KG-1 0002
-                                                    </option>
-                                                    <option>
-                                                        KG-1 0003
+                                                    <option ng-repeat="data in ListCarInfo" value="{{data.CarID}}">
+                                                        {{data.CarNo}}
                                                     </option>
                                                 </select>
                                                 <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Unit_ID === '' || EditProfiAccount.Unit_ID === null && !TestInputChange">Vui lòng chọn!</span>

@@ -15,6 +15,22 @@
     .ed_border {
         border-radius: 5px
     }
+    .title_bk {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa;
+        padding: 7px;
+        display: block;
+        background-color: #cde0c4;
+        color: #356635;
+        font-size: 11px;
+        height: 29px;
+    }
+    .detailMess{
+        font-size:12px;
+        font-weight:bold;
+    }
 </style>
 <div class="clearfix">
     <div class="row">
@@ -50,35 +66,18 @@
                                         <ul class="list-unstyled user_data">
                                             <li><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
                                             <li><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
-                                            <li><i class="fa fa-calendar"></i> Hạn lưu hành: {{CarInfo.Expires | date:'dd/MM/yyyy'}}</li>
+                                            <li><i class="fa fa-calendar"></i> Hạn đăng kiểm: {{CarInfo.Expires | date:'dd/MM/yyyy'}}</li>
                                             <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{CarInfo.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
+                                            <li ng-show="DriverInfo.length!=0"><i class="fa fa-share-square-o"></i> Lái xe: {{DriverInfo[0].FullName}}</li>
+                                            <li ng-show="DriverInfo.length==0"><i class="fa fa-user"></i> Lái xe: Chưa được phân công</li>
                                             <li ng-show="CarInfo.CarStatus ==1"><i class="fa fa-circle text-success"></i> Hoạt động</li>
                                             <li ng-show="CarInfo.CarStatus ==4" style="color:red"><i class="fa fa-circle text-success" style="color:red"></i> Bảo trì, sửa chữa</li>
-                                            <li ng-show="CarInfo.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Đã xóa</li>
+                                            <li ng-show="CarInfo.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Ngừng hoạt động</li>
                                         </ul>
-                                        <div style="display:block;background-color:#cde0c4;color:#356635;padding:5px">
-                                            <h6><span style="font-weight:bold">Cập nhật ngày:</span> {{CarInfo.LastModifiedDate | date:'dd/MM/yyyy HH:mm'}}</h6>
-                                        </div>
-                                        <br />
-                                            <div class="col-sm-6" >
-                                                <button style="font-size: 11px;" ng-click="updateCar()" class="btn btn-success btn-round btn-block"><i class="fa fa-edit m-right-xs"></i> Chỉnh sửa</button>
-                                            </div>
-                                            <div class="col-sm-6"  >
-                                                <button style="font-size: 11px;" class="btn btn-warning btn-round btn-block dropdown-toggle pull-right" aria-expanded="false" data-toggle="dropdown" ng-click="export()">
-                                                    <span class="glyphicon glyphicon-cog"></span> Cập nhật
-                                                </button>
-                                                <ul role="menu" class="dropdown-menu" style="float:right">
-                                                    <li>
-                                                        <a ng-show="CarInfo.CarStatus!=4" ng-click="updateCarStatus(4)"><span class="glyphicon glyphicon-wrench"></span> Bảo trì, sửa chữa</a>
-                                                    </li>
-                                                    <li>
-                                                        <a ng-show="CarInfo.CarStatus!=1" ng-click="updateCarStatus(1)"><span class="glyphicon glyphicon-thumbs-up"></span> Hoạt động</a>
-                                                    </li>
-                                                    <li>
-                                                        <a ng-show="CarInfo.CarStatus!=0" ng-click="updateCarStatus(0)"><span class="glyphicon glyphicon-trash"></span> Đã xóa</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                        <div class="title_bk">
+                                            <span style="font-weight:bold"><span class="glyphicon glyphicon-cog"></span> Cập nhật:</span> {{CarInfo.LastModifiedDate | date:'HH:mm - dd/MM/yyyy '}}
+                                        </div> <br />
+                                            <button ng-click="updateCar()" class="btn btn-success btn-round btn-block"><i class="fa fa-edit m-right-xs"></i> Chỉnh sửa</button>
                                     </div>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <div class="profile_title">
@@ -122,17 +121,17 @@
                                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab" ng-show="isShowActivitive">
                                                     <!-- start recent activity -->
                                                     <ul class="messages">
-                                                        <li ng-repeat="data in activitiveCar | limitTo : 5">
-                                                            <img src="../../../../../images/avt/laixe.jpg" class="avatar" alt="Avatar">
+                                                        <li ng-repeat="data in activitiveCar">
+                                                            <span class="glyphicon glyphicon-send"></span>
                                                             <div class="message_date">
                                                                 <h3 class="date text-info">{{data.DateTimeFrom | date:'dd'}}</h3>
-                                                                <p class="month">{{data.DateTimeFrom | date:'MM'}}</p>
+                                                                <p class="month">Tháng {{data.DateTimeFrom | date:'MM'}}</p>
                                                             </div>
                                                             <div class="message_wrapper">
                                                                 <h4 class="heading">Đơn bị yêu cầu: {{data.UnitRequest}}</h4>
-                                                                <blockquote class="message">Lộ trình đi và về: {{data.RouteTo}} / {{data.RouteBack}}</blockquote>
-                                                                <blockquote class="message">Giờ đi và về: {{data.DateTimeFrom | date :'HH:mm'}} - {{data.DateTimeTo | date :'HH:mm'}}</blockquote>
-                                                                <blockquote class="message">Tổng số KM: {{data.DistanceTotal}} KM</blockquote>
+                                                                <blockquote class="message detailMess">Lộ trình đi và về: {{data.RouteTo}} / {{data.RouteBack}}</blockquote>
+                                                                <blockquote class="message detailMess">Giờ đi và về: {{data.DateTimeFrom | date :'HH:mm'}} - {{data.DateTimeTo | date :'HH:mm'}}</blockquote>
+                                                                <blockquote class="message detailMess">Tổng số KM: {{data.DistanceTotal}} KM</blockquote>
                                                                 <br />
                                                             </div>
                                                         </li>

@@ -30,10 +30,28 @@
                         <ul class="list-unstyled user_data">
                             <li><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
                             <li><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
-                            <li><i class="fa fa-calendar"></i> Hạn lưu hành: {{CarInfo.Expires | date:'dd/MM/yyyy'}}</li>
+                            <li><i class="fa fa-calendar"></i> Hạn đăng kiểm: {{CarInfo.Expires | date:'dd/MM/yyyy'}}</li>
                             <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{CarInfo.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
                             <li ng-show="CarInfo.CarStatus ==1"><i class="fa fa-circle text-success"></i> Hoạt động</li>
                             <li ng-show="CarInfo.CarStatus ==4" style="color:red"><i class="fa fa-circle text-success" style="color:red"></i> Bảo trì, sửa chữa</li>
+                            <li ng-show="CarInfo.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Ngừng hoạt động</li>
+                            <li class="title_bk">
+                                <span style="font-weight:bold"><span class="glyphicon glyphicon-cog"></span> Cập nhật:</span> {{CarInfo.LastModifiedDate | date:'HH:mm - dd/MM/yyyy '}}
+                            </li>
+                        </ul>
+                        <button class="btn btn-warning btn-round btn-block dropdown-toggle pull-right" aria-expanded="false" data-toggle="dropdown" ng-click="export()">
+                            <span class="glyphicon glyphicon-cog"></span> Cập nhật
+                        </button>
+                        <ul role="menu" class="dropdown-menu" style="float:right">
+                            <li>
+                                <a ng-show="CarInfo.CarStatus!=4" ng-click="updateCarStatus(4)"><span class="glyphicon glyphicon-wrench"></span> Bảo trì, sửa chữa</a>
+                            </li>
+                            <li>
+                                <a ng-show="CarInfo.CarStatus!=1" ng-click="updateCarStatus(1)"><span class="glyphicon glyphicon-wrench"></span> Hoạt động</a>
+                            </li>
+                            <li>
+                                <a ng-show="CarInfo.CarStatus!=0" ng-click="updateCarStatus(0)"><span class="glyphicon glyphicon-wrench"></span> Ngừng hoạt động</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-9 col-sm-9 col-xs-12 profile_left">
@@ -41,22 +59,22 @@
                             <div class="form-group">
                                 <div class="control-label col-md-4 col-sm-4 col-xs-12">Tên xe: <i style="color:red;">(*)</i></div>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input class="form-control text-box single-line ed_border" value="{{CarInfo.CarName}}" type="text">
+                                    <input class="form-control text-box single-line ed_border"  ng-model="CarInfo.CarName" type="text" id="carName">
 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="control-label col-md-4 col-sm-4 col-xs-12">Biển số: <i style="color:red;">(*)</i></div>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input class="form-control text-box single-line ed_border" value="{{CarInfo.CarNo}}" type="text">
+                                    <input class="form-control text-box single-line ed_border"  ng-model="CarInfo.CarNo" type="text" id="carNo">
 
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="control-label col-md-4 col-sm-4 col-xs-12">Hạn lưu hành: <i style="color:red;">(*)</i></div>
+                                <div class="control-label col-md-4 col-sm-4 col-xs-12">Hạn đăng kiểm: <i style="color:red;">(*)</i></div>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class='input-group date' id='myDatepicker1'>
-                                        <input type='text' class="form-control ed_border" value="{{CarInfo.Expires | date:'YYYY-MM-DD'}}" />
+                                        <input type='text' class="form-control ed_border" id='myDate1' />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -67,7 +85,7 @@
                                 <div class="control-label col-md-4 col-sm-4 col-xs-12">Hạn bảo hiểm: <i style="color:red;">(*)</i></div>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class='input-group date' id='myDatepicker2'>
-                                        <input type='text' class="form-control ed_border" value="{{CarInfo.InsuranceExpires | date:'YYYY-MM-DD'}}" />
+                                        <input type='text' class="form-control ed_border" id='myDate2' />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -77,21 +95,14 @@
                             <div class="form-group">
                                 <div class="control-label col-md-4 col-sm-4 col-xs-12">Loại xe: <i style="color:red;">(*)</i></div>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <select class="form-control ed_border" ng-model="EditProfiAccount.AccountType" style="width: 100%;">
-                                        <!--<option selected value="all">{{'All' | translate }}</option>-->
-                                        <option selected value="">-- Vui lòng chọn --</option>
-                                        <option>
-                                            8 chỗ
-                                        </option>
-                                        <option>
-                                            16 chỗ
-                                        </option>
-                                        <option>
-                                            32 chỗ
-                                        </option>
+                                    <select class="form-control ed_border" style="width: 100%;" id="carType">
+                                        <option value="{{CarInfo.CarTypeID}}">{{CarInfo.CarTypeName}}</option>
+                                        <option ng-repeat="data in listCarType" ng-show="data.CarTypeID != CarInfo.CarTypeID" value="{{data.CarTypeID}}">{{data.CarTypeName}}</option>
                                     </select>
-
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <center><p ng-show="ErrorInput" style="color:red">Vui lòng điền đầy đủ thông tin.</p></center>
                             </div>
                         </div>
                     </div>
@@ -113,8 +124,8 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="mb15 mt30">
-                            <button class="btn btn-primary btn-round btn-block" type="submit"
-                                    ng-click="ClosePopup()">
+                            <button class="btn btn-primary btn-round btn-block"
+                                    ng-click="updateCarInfo()">
                                 <!--ng-disabled="!isSubmitingEnable()"-->
                                 <i class="glyphicon glyphicon-ok"></i>
                                 <span>Lưu</span>
@@ -135,9 +146,9 @@
 
 <script>
     $('#myDatepicker1').datetimepicker({
-        format: 'YYYY-MM-DD'
+        format: 'DD-MM-YYYY'
     });
     $('#myDatepicker2').datetimepicker({
-        format: 'YYYY-MM-DD'
+        format: 'DD-MM-YYYY'
     });
 </script>

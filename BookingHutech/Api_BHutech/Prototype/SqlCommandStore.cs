@@ -30,14 +30,12 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspManagerGetAccountByAccountStatus = "uspManagerGetAccountByAccountStatus {0}";
         //Manager Get Detail Account By AccountID. Create By Anh.Trần Create 10/3/2019. 
         public const string uspManagerGetDetailAccountByAccountID = "uspManagerGetDetailAccountByAccountID {0}";
-        //Manager Get list repair cost. Create By Mr.Lam Create 11/3/2019. 
-        public const string uspGetListRepairCost = "uspGetListRepairCost";
         //Manager Get List Driver By Driver Status. Create By Anh.Trần Create 10/3/2019. 
         public const string uspManagerGetListDriverByDriverStatus = "uspManagerGetListDriverByDriverStatus {0}";
         //Manager Get List Detail repair cost by RepairID. Create By Mr.Lam Create 13/3/2019. 
         public const string uspGetDetailRepairCost = "uspGetDetailRepairCost {0}";
         //Manager Get List cost by CostsTypeID. Create By Mr.Lam Create 13/3/2019. 
-        public const string uspGetListCost = "uspGetListCost {0}";
+        public const string uspGetListCost = "uspGetListCost {0},'{1}','{2}',{3},{4},{5},{6}";
         //Report cost by month. Create By Mr.Lam Create 14/3/2019. 
         public const string uspCostReport = "uspCostReport {0},{1}";
         //Manager Update Rroup Role. Create By Anh.Tran Create 15/3/2019. 
@@ -76,6 +74,16 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspEditProfileAccount = "uspEditProfileAccount";
         //Create New Registration Car. Create By Anh.Trần Create 14/4/2019. 
         public const string uspCreateNewRegistrationCar = "uspCreateNewRegistrationCar";
+        //Get List AssignDriver. Create By Mr.Lam Create 16/4/2019. 
+        public const string uspGetListAssignDriver = "uspGetListAssignDriver";
+        //Get List AssignDriver. Create By Mr.Lam Create 16/4/2019. 
+        public const string uspGetListDriverNotInAssignDriver = "uspGetListDriverNotInAssignDriver";
+        //Update Car Info. Create By Mr.Lam Create 17/4/2019. 
+        public const string uspUpdateCarInfo = "uspUpdateCarInfo";
+        //get Driver Manage Car. Create By Mr.Lam Create 17/4/2019. 
+        public const string uspGetDriverManageCar = "uspGetDriverManageCar {0}";
+        //Update RepairStatu. Create By Mr.Lam Create 17/4/2019. 
+        public const string uspUpdateRepairStatus = "uspUpdateRepairStatus {0},{1},'{2}'";
         
     }
 

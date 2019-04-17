@@ -86,6 +86,18 @@ var FormatDateTimeByDBResponse = function (date) { // Update
     return moment(date, 'YYYY-MM-DD HH:mm').format('DD/MM/YYYY HH:mm:ss')
 }
 
+var FormatDateTimeByDBResponse1 = function (date) { // Update
+    return moment(date, 'YYYY-MM-DD HH:mm').format('DD/MM/YYYY')
+}
+
+var FormatDateTimeByDBResponse2 = function (date) { // Update
+    return moment(date, 'YYYY-MM-DD HH:mm').format('DD-MM-YYYY')
+}
+
+var FormatDateTimeToDBRequest = function (date) { // Update
+    return moment(date, 'DD-MM-YYYY').format('YYYY-MM-DD')
+}
+
 // Input từ layout
 var FormatDateFromTo = function (date) {
     return moment(date, 'MM/DD/YYYY').format('YYYY-MM-DD')

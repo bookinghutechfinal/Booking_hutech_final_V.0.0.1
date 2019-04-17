@@ -24,7 +24,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
         // Lấy danh sách đơn vị/ khoa, viện phòng ban.  
         $scope.ManagerGetListUnit = function () {
             $account.ManagerGetUnit({}, function (res) {
-                debugger
+                
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ManagerGetListUnitResponse = res.data.Data.ListUnit;

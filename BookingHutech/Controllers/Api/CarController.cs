@@ -75,9 +75,63 @@ namespace BookingHutech.Controllers.Api
                 LogWriter.WriteException(ex);
                 return ApiResponse.ApiNotPermissionCall();
             }
-
         }
 
+        /// <summary>
+        /// Mr.Lam 15/4/2019
+        /// List cartype
+        /// </summary>
+        /// <returns>ListCarType</returns>
+        public ApiResponse GetListCarType()
+        {
+            try
+            {
+                // kiểm tra quyền, và nguồn gọi. 
+                if (Permissions.CheckAPIRequest(Request.Headers.GetValues(ApiHeaderKey.BHAPIWebCall.ToString()).First()) == (int)ApiRequestType.Web)
+                {
+                    try
+                    {
+                        // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+                        //JavaScriptSerializer js = new JavaScriptSerializer();
+                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+
+                        //switch (Result)
+                        //{
+                        //    case 114:
+                        //        return ApiResponse.LostSession();
+                        //    case 150:
+                        //        return ApiResponse.NotPermission();
+                        //    case 102:
+                        //        return ApiResponse.AccountDelete();
+                        //}
+                        // OK -> Đi tiếp. 
+                        try
+                        {
+                            var Response = carServices.GetListCarTypeServices();
+                            return ApiResponse.Success(Response);
+                        }
+                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        {
+                            return ApiResponse.Error();
+                        }
+                    }
+                    catch// Không thể kiểm tra quyền. 
+                    {
+                        return ApiResponse.Error();
+                    }
+                }
+                else  // sai header .
+                {
+                    return ApiResponse.ApiNotPermissionCall();
+                }
+            }
+            catch (Exception ex)  // thiếu header. 
+            {
+                LogWriter.WriteException(ex);
+                return ApiResponse.ApiNotPermissionCall();
+            }
+        }
 
         /// <summary>
         /// GetListCarByCartypeID
@@ -291,6 +345,63 @@ namespace BookingHutech.Controllers.Api
                         {
                             var Response = carServices.GetCarInfoByAccountIDServices(request);
                             return ApiResponse.Success(Response);
+                        }
+                        catch (Exception) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        {
+                            return ApiResponse.Error();
+                        }
+                    }
+                    catch// Không thể kiểm tra quyền. 
+                    {
+                        return ApiResponse.Error();
+                    }
+                }
+                else  // sai header .
+                {
+                    return ApiResponse.ApiNotPermissionCall();
+                }
+            }
+            catch (Exception ex)  // thiếu header. 
+            {
+                LogWriter.WriteException(ex);
+                return ApiResponse.ApiNotPermissionCall();
+            }
+        }
+
+        /// <summary>
+        /// Mr.Lam 17/4/2019
+        /// UpdateCarInfo
+        /// </summary>
+        /// <param name="">GetCarInfoByAccountIDRequestModel</param>
+        [HttpPost]
+        public ApiResponse UpdateCarInfo([FromBody]UpdateCarInfoRequestModel request)
+        {
+            try
+            {
+                if (Permissions.CheckAPIRequest(Request.Headers.GetValues(ApiHeaderKey.BHAPIWebCall.ToString()).First()) == (int)ApiRequestType.Web)
+                {
+                    try
+                    {
+                        // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+                        //JavaScriptSerializer js = new JavaScriptSerializer();
+                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+
+                        //switch (Result)
+                        //{
+                        //    case 114:
+                        //        return ApiResponse.LostSession();
+                        //    case 150:
+                        //        return ApiResponse.NotPermission();
+                        //    case 102:
+                        //        return ApiResponse.AccountDelete();
+                        //}
+                        // OK -> Đi tiếp. 
+                        // kiểm tra quyền, và nguồn gọi. 
+                        try
+                        {
+                            carServices.UpdateCarInfoServices(request);
+                            return ApiResponse.Success();
                         }
                         catch (Exception) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {

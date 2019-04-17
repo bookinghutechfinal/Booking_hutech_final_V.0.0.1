@@ -46,7 +46,7 @@
                 AccountCreate: AccountInfo.ObjAccountInfo.Account_ID,
                 RepairStatus1: 1,
                 RepairStatus2: 1,
-                DateFrom: '1900-1-1',
+                DateFrom: '1-1-1900',
                 DateTo: new Date()
             }
 
@@ -93,10 +93,10 @@
                 var repairStatus2 = 1111;
             }
 
-            var date_from = angular.element('#myDate1').val();
-            var date_to = angular.element('#myDate2').val();
+            var date_from = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
+            var date_to = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
 
-            if (So_Sanh_DateInput2(date_to, date_from) && checkDiffFromToDate1(date_from, date_to, 61) && date_from != "" && date_to != "") {
+            if (So_Sanh_DateInput2(date_to, date_from) && date_from != "Invalid date" && date_to != "Invalid date") {
 
                 var searchCostRequestModel = {
                     AccountCreate: AccountInfo.ObjAccountInfo.Account_ID,
@@ -112,16 +112,26 @@
 
                 $BookingCar.getListCostByAccountCreate(searchCostRequestModel, function (res) {
                     var result = res.data.Data.ListRepairCost;
-                    if (res.data.ReturnCode === 1) {
-                        for (var i = 0; i < result.length; i++) {
-                            if (result[i].RepairStatus === 0)
-                                result[i].RepairStatus = RepairStatus[0].RepairStatusName;
-                            if (result[i].RepairStatus === 1)
-                                result[i].RepairStatus = RepairStatus[1].RepairStatusName;
-                            if (result[i].RepairStatus === 2)
-                                result[i].RepairStatus = RepairStatus[2].RepairStatusName;
-                        }
-                        $scope.tableParams1 = new NgTableParams({}, { dataset: result });
+                    switch (res.data.ReturnCode) {
+                        case 1:
+                            if (result.length == 0) {
+                                toastr.error("Không có dữ liệu.");
+                            }
+                            $scope.datefrom = date_from;
+                            $scope.dateto = date_to;
+                            for (var i = 0; i < result.length; i++) {
+                                if (result[i].RepairStatus === 0)
+                                    result[i].RepairStatus = RepairStatus[0].RepairStatusName;
+                                if (result[i].RepairStatus === 1)
+                                    result[i].RepairStatus = RepairStatus[1].RepairStatusName;
+                                if (result[i].RepairStatus === 2)
+                                    result[i].RepairStatus = RepairStatus[2].RepairStatusName;
+                            }
+                            $scope.tableParams1 = new NgTableParams({}, { dataset: result });
+                            break;
+                        case 2:
+                            toastr.error("Không có dữ liệu.");
+                            break;
                     }
                 });
             }

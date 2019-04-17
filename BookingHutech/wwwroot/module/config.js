@@ -108,6 +108,11 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             templateUrl: '/wwwroot/views/pages/account/managerAccount.html',
             controller: 'ManagerAccountController',
         })
+        .state('main.assignDriver', {
+            url: '/assign-driver',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/assignDriver.html',
+            controller: 'AssignDriverController',
+        })
         .state('main.bookingMeetingHall', {
             url: '/dat-hoi-truong',
             templateUrl: '/wwwroot/views/pages/booking/bookingMeetingHall/meetingHallInfo.html',
@@ -169,6 +174,7 @@ mainmodule.config(['$translateProvider',
             'TitileUpdateCarInfo': 'Cập nhật thông tin xe',
             'DetailCarByDriver':'Quản lý xe',
             'CalendarDriver':'Lịch công tác',
+            'assignDriver':'Phân công',
             /* --------  Cost Manager ---------- */
             'CostManager': 'Quản lý chi phí',
             'RepairCostManager': 'Sửa chữa',
