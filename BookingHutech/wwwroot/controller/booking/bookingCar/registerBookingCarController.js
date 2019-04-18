@@ -235,7 +235,7 @@
             // lấy loại xe y/c
             var cartyperequest = ""; 
             for (var i = 0; i < $scope.cartype.length; i++) {
-                 cartyperequest += $scope.cartype[i] +" hoặc "; 
+                 cartyperequest += $scope.cartype[i] +","; 
             }
            // còn nữa
             $scope.RegisterBKCar.CarTypeNameRequest = cartyperequest;
