@@ -272,6 +272,8 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
                         carInfo.CarStatus = (int)BookingType.CarType.EmptyCar;  // xe trống
                         carInfo.CarTypeID = ListCarAndListRegCar.ListCar[i].CarTypeID;
                         carInfo.CarTypeName = ListCarAndListRegCar.ListCar[i].CarTypeName;
+                        carInfo.DriverID = ListCarAndListRegCar.ListCar[i].DriverID;
+                        carInfo.FullNameDriver = ListCarAndListRegCar.ListCar[i].FullNameDriver;
                         listCarApproveRegistration.Add(carInfo);
                     }
                     else
@@ -283,6 +285,8 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
                         carInfo.CarStatus = (int)BookingType.CarType.Active;  // xe hoạt động
                         carInfo.CarTypeID = ListCarAndListRegCar.ListCar[i].CarTypeID;
                         carInfo.CarTypeName = ListCarAndListRegCar.ListCar[i].CarTypeName;
+                        carInfo.DriverID = ListCarAndListRegCar.ListCar[i].DriverID;
+                        carInfo.FullNameDriver = ListCarAndListRegCar.ListCar[i].FullNameDriver;
                         listCarApproveRegistration.Add(carInfo);
                     }
                 } // không tham gia
@@ -295,6 +299,8 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
                     carInfo.CarStatus = (int)BookingType.CarType.EmptyCar;  // xe trống
                     carInfo.CarTypeID = ListCarAndListRegCar.ListCar[i].CarTypeID;
                     carInfo.CarTypeName = ListCarAndListRegCar.ListCar[i].CarTypeName;
+                    carInfo.DriverID = ListCarAndListRegCar.ListCar[i].DriverID;
+                    carInfo.FullNameDriver = ListCarAndListRegCar.ListCar[i].FullNameDriver;
                     listCarApproveRegistration.Add(carInfo);
                 }
             }

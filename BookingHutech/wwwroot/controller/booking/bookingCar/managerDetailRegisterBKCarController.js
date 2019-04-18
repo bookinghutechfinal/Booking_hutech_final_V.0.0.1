@@ -37,12 +37,14 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
             }
             $scope.CarInfo = {
                 CarID: null,
-                CarImage: null,
-                CarName: null,
-                CarTypeID: null,
-                CarTypeName: null,
                 CarNo: null,
+                CarStatus: null,
+                CarImage: null,
+                Expires: null,
+                CarTypeName: null,
+                InsuranceExpires: null,
                 DriverID: null,
+                FullNameDriver: null,
             }
             var DetalRegistrationCarResponse = [];
             $scope.tableParams = $scope.tableParams = null;
@@ -132,20 +134,42 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
                     },
                 }
             });
-            modalInstance.result.then(function () {
-
+            modalInstance.result.then(function (result) {
+                $scope.CarInfo = {
+                    CarID: result.CarID,
+                    CarNo: result.CarNo,
+                    CarStatus: result.CarStatus,
+                    CarImage: result.CarImage,
+                    Expires: result.Expires,
+                    CarTypeName: result.CarTypeName,
+                    InsuranceExpires: result.InsuranceExpires,
+                    DriverID: result.DriverID,
+                    FullNameDriver: result.FullNameDriver,
+                }
+                $scope.CheckCarInfoRequest(); 
             });
 
         }
     }]);
 
-mainmodule.controller('PopupSearchCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', 'SearchCarRequestModel', '$modalInstance',
-    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, SearchCarRequestModel, $modalInstance) {
+mainmodule.controller('PopupSearchCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', 'SearchCarRequestModel', '$modalInstance','$alert',
+    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, SearchCarRequestModel, $modalInstance, $alert) {
 
         $scope.init = function () {
-            $scope.CarInfoRespon = [];
-            // $scope.tableParams2 = new NgTableParams({}, { dataset: ListDetailRepairCostResponseModel });
-            // alert(SearchCarResponseModel.CarTypeNameRequest); 
+
+            //$scope.SearchApproveRegistrationCar= {
+            //    CarID: null,
+            //    CarName: null,
+            //    CarNo: null,
+            //    CarStatus: null,
+            //    CarImage: null,
+            //    Expires: null,
+            //    InsuranceExpires: null,
+            //    DriverID: null,
+            //    FullNameDriver: null,
+            //}
+            var ListRegistrationCarResponse = [];
+            $scope.tableParams = $scope.tableParams = null;
             try {
                 var SearchCarResponseModel = SearchCarRequestModel;
                 $scope.SearchCarRequest = {
@@ -154,9 +178,41 @@ mainmodule.controller('PopupSearchCarController', ['$scope', '$state', '$rootSco
                     CarTypeNameRequest: SearchCarResponseModel.CarTypeNameRequest,
                     NumberPeople: SearchCarResponseModel.NumberPeople,
                 } 
+                //Lấy danh sách xe 
+                $BookingCar.SearchApproveRegistrationCar($scope.SearchCarRequest, function (response) {
+                    var result = response.data.Data;
+                    switch (response.data.ReturnCode) {
+                        case 1:
+                            if (result.length == 0) {
+                                toastr.error("Không có dữ liệu.");
+                            } 
+                            $scope.tableParams = new NgTableParams({}, { dataset: result });
+                            break;
+                         
+                    }
+                });
             } catch (e) {
                 $scope.ClosePopup(); 
             }
+        }
+        // chọn xe, cấp 
+
+        $scope.btnApproveRegistrationCar = function (result) {
+            var SearchApproveRegistrationCarResponse = {
+                CarID: result.CarID, 
+                CarNo: result.CarNo,
+                CarStatus: result.CarStatus,
+                CarImage: result.CarImage,
+                Expires: result.Expires,
+                CarTypeName: result.CarTypeName, 
+                InsuranceExpires: result.InsuranceExpires,
+                DriverID: result.DriverID,
+                FullNameDriver: result.FullNameDriver,
+            }
+            // ok gọi api update thành công sẽ cập nhật lại lưới và hiển thị lại
+            $alert.showConfirmUpdateNewProfile('Cấp xe cho đơn cấp phát!', function () {
+                $modalInstance.close(SearchApproveRegistrationCarResponse); 
+            }); //end
         }
          
         $scope.ClosePopup = function () {

@@ -158,7 +158,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 // Lấy danh sách đơn cấp phát  đã duyệt
                 string uspGetListCarApproveRegistrationCar = String.Format(Prototype.SqlCommandStore.uspGetListCarApproveRegistrationCar); 
                 string uspGetListRegistrationApproveRegistrationCar = String.Format(Prototype.SqlCommandStore.uspGetListRegistrationApproveRegistrationCar); //request.ProfileStatus
-                result.ListCar = carDAO.GetListCarDAO(uspGetListCarApproveRegistrationCar); //danh sách xe còn hoạt động
+                result.ListCar = carDAO.GetListCarApproveRegistrationCarDAO(uspGetListCarApproveRegistrationCar); //danh sách xe còn hoạt động
                 result.ListRegistrationCar = registrationCarDAO.GetListRegistrationCarDAO(uspGetListRegistrationApproveRegistrationCar); // đơn cấp phát đã duyệt, chờ trường duyệt, chờ đi.
 
 
