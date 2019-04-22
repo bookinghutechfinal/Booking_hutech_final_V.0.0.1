@@ -36,6 +36,36 @@
                 </div>
 
                 <div class="x_content" style="display: block;">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12" ng-show="DetailCar">
+                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <!-- Current avatar -->
+                                    <a href="../../../../images/img/{{CarInfo.CarImage}}" target="_blank">
+                                        <img src="../../../../images/img/{{CarInfo.CarImage}}" alt="{{CarInfo.CarImage}}" class="img-responsive avatar-view">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <h3>{{CarInfo.CarName}}</h3>
+                            <ul class="list-unstyled user_data">
+                                <li><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
+                                <li><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
+                                <li><i class="fa fa-calendar"></i> Hạn lưu hành: {{CarInfo.Expires | date:'dd/MM/yyyy'}}</li>
+                                <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{CarInfo.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
+                                <li ng-show="CarInfo.CarStatus ==1"><i class="fa fa-circle text-success"></i> Hoạt động</li>
+                                <li ng-show="CarInfo.CarStatus ==4" style="color:red"><i class="fa fa-circle text-success" style="color:red"></i> Bảo trì, sửa chữa</li>
+                                <li ng-show="CarInfo.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Đã xóa</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 profile_left mess" ng-hide="DetailCar">
+                        <h3>Bạn chưa được phân công</h3>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr />
                     <form>
                         <div class="form-horizontal form-label-left input_mask">
                             <div class="form-group">

@@ -6,6 +6,26 @@
         $scope.init = function () {
             $scope.ClearData();
             $scope.getCalendar();
+            $scope.getCarInfo();
+        }
+
+
+        // Hàm Lấy danh sách xe
+        $scope.getCarInfo = function () {
+            var getCarInfoRequestModel = {
+                Account_ID: AccountInfo.ObjAccountInfo.Account_ID
+            }
+            $BookingCar.getCarInfoByAccountID(getCarInfoRequestModel, function (res) {
+
+                if (res.data.Data.length != 0) {
+                    var carInfo = res.data.Data[0];
+                    $scope.CarInfo = carInfo;  // chi tiết xe
+                    $scope.DetailCar = true;
+                } else {
+                    $scope.DetailCar = false;
+                }
+
+            });
         }
 
         $scope.getCalendar = function () {

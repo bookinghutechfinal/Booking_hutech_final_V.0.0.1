@@ -1,0 +1,77 @@
+﻿<style>
+    .modal-header {
+        background-color: #2A3F54;
+    }
+</style>
+
+<!-- Modal content-->
+<!-- Test  -->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
+        <h4 class="modal-title">{{'TitileDetailRepairCost' | translate}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_content">
+                    <center><h3>Nhập chi tiết</h3></center>
+                    <pre>{{DetailCost}}</pre>
+                    <br />
+                    <div class="table-responsive">
+                        <table class="table table-striped" role="none" fixed-table-headers="scrollable-area">
+                            <thead>
+                                <tr>
+                                    <th>Nội dung</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in DetailCost">
+                                    <td><p>{{data.Content}}</p></td>
+                                    <td><p>{{data.Quantity}}</p></td>
+                                    <td><p>{{data.TotalMoney}}</p></td>
+                                    <td><button class="btn btn-danger" ng-hide="DetailCost==null" ng-click="Delete($index)"><i class="fa fa-remove"></i> Xóa</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <form>
+                        <div class="table-responsive">
+                            <table class="table table-striped" role="none" fixed-table-headers="scrollable-area">
+                                <tr>
+                                    <td><input type="text" placeholder="Nội dung" class="form-control text-box single-line ed_border" ng-model="DetailCost.Content" /></td>
+                                    <td><input type="number" placeholder="Số lượng" class="form-control text-box single-line ed_border" ng-model="DetailCost.Quantity" /></td>
+                                    <td><input type="number" placeholder="Tổng tiền" class="form-control text-box single-line ed_border" ng-model="DetailCost.TotalMoney" /></td>
+                                    <td><button class="btn btn-info" ng-click="AddMore(DetailCost)" type="reset"><i class="fa fa-edit"></i> Thêm</button></td>
+                                </tr>
+                            </table>
+                            <p style="color:red" ng-show="ErrorInput">Vui lòng điền đầy đủ thông tin.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6 col-md-6" style="margin-bottom: 1px;">
+                        <button class="btn btn-danger btn-round btn-block"
+                                ng-click="ClosePopup()">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            <span>HỦY</span>
+                        </button>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <button class="btn btn-primary btn-round btn-block" ng-click="SaveNewDetail(DetailCost)">
+                            <i class="fa fa-plus-circle"></i>
+                            <span>LƯU</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

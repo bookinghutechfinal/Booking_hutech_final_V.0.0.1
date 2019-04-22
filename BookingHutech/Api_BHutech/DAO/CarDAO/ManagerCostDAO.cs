@@ -92,5 +92,33 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 throw;
             }
         }
+
+        /// <summary>
+        /// AddNewCostDAO
+        /// Mr.Lam 18/4/2019
+        /// </summary>
+        public int AddNewCostDAO(string stringSql)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                int a = cmd.ExecuteNonQuery();
+                con.Close();
+                if (a == 0)
+                {
+                    return 2;
+                }
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
     }
 }

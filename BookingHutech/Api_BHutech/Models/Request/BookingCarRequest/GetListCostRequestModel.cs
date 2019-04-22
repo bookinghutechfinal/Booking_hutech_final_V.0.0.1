@@ -13,6 +13,8 @@ namespace BookingHutech.Api_BHutech.Models.Request.BookingCarRequest
         public int CarID { get; set; }
         public int RepairStatus { get; set; }
         public int RepairStatus1 { get; set; }
+        public int RepairStatus2 { get; set; }
+        public int RepairStatus3 { get; set; }
         public int Limit { get; set; }
         public GetListCostRequestModel() { }
     }

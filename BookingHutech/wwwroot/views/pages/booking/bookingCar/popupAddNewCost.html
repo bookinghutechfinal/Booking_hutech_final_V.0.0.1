@@ -87,7 +87,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
-        <h4 class="modal-title">Thêm mới chi phí</h4>
+        <h4 class="modal-title">Đề xuất</h4>
     </div>
     <div class="modal-body">
         <div class="row">
@@ -146,7 +146,7 @@
 
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Chi phí : <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <select class="form-control ed_border" ng-model="EditProfiAccount.AccountType" ng-change="TestInputChange(EditProfiAccount)" style="width: 100%;">
+                                                <select class="form-control ed_border" ng-model="costInfo.CostsTypeID" ng-change="TestInputChange(costInfo)" style="width: 100%;">
                                                     <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                     <option selected value="">-- Vui lòng chọn --</option>
                                                     <option value="1">
@@ -159,81 +159,95 @@
                                                         Chi phí khác
                                                     </option>
                                                 </select>
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Unit_ID === '' || EditProfiAccount.Unit_ID === null && !TestInputChange">Vui lòng chọn!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="costInfo.CostsTypeID === '' || costInfo.CostsTypeID === null && !TestInputChange">Vui lòng chọn!</span>
                                             </div>
 
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Chọn xe : <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <select class="form-control ed_border" ng-model="EditProfiAccount.AccountType" ng-change="TestInputChange(EditProfiAccount)" style="width: 100%;">
+                                                <select class="form-control ed_border" ng-model="costInfo.Car_ID" ng-change="TestInputChange(costInfo)" style="width: 100%;">
+
+
+
                                                     <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                     <option selected value="">-- Vui lòng chọn --</option>
                                                     <option ng-repeat="data in ListCarInfo" value="{{data.CarID}}">
                                                         {{data.CarNo}}
                                                     </option>
                                                 </select>
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Unit_ID === '' || EditProfiAccount.Unit_ID === null && !TestInputChange">Vui lòng chọn!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="costInfo.Car_ID === '' || costInfo.Car_ID === null && !TestInputChange">Vui lòng chọn!</span>
                                             </div>
 
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày thực hiện: <i style="color:red;">(*)</i></div>
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <div class='input-group date' id='myDatepicker3'>
-                                                    <input type='text' class="form-control ed_border" />
+                                                    <input type='text' class="form-control ed_border" id="myDate" />
                                                     <span class="input-group-addon">
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
                                                 </div>
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.UserName === '' || EditProfiAccount.UserName === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="angular.element('#myDate').val() === '' || angular.element('#myDate').val() === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
 
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Ghi chú: <i style="color:red;">(*)</i></div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line ed_border" value="" ng-model="EditProfiAccount.UserName" ng-change="TestInputChange(EditProfiAccount)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Password === '' || EditProfiAccount.Password === null && !TestInputChange">Vui lòng nhập!</span>
-                                            </div>
+                                            <div class="control-label col-md-6 col-sm-6 col-xs-12"></div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <input class="form-control text-box single-line ed_border" value="" ng-model="EditProfiAccount.Addres" ng-change="TestInputChange(EditProfiAccount)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Addres === '' || EditProfiAccount.Addres === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
+                                                <input class="form-control text-box single-line ed_border" value="" ng-model="costInfo.RepairAddres" ng-change="TestInputChange(costInfo)" type="text">
+                                                <span class="field-validation-valid text-danger" ng-show="costInfo.RepairAddres === '' || costInfo.RepairAddres === null && !TestInputChange">Vui lòng nhập!</span>
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Nội dung: <i style="color:red;">(*)</i></div>
+                                        <div class="form-group" ng-show="costInfo.Done">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Nội dung: </div>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <input class="form-control text-box single-line ed_border" value="" ng-model="EditProfiAccount.Addres" ng-change="TestInputChange(EditProfiAccount)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Addres === '' || EditProfiAccount.Addres === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="fa fa-pencil-square-o form-control-feedback right" aria-hidden="true"></span>
+                                                <input class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Content" ng-change="TestInputChange(costInfo)" type="text">
+                                                <span class="field-validation-valid text-danger" ng-show="costInfo.Done">Vui lòng nhập!</span>
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Số lượng: <i style="color:red;">(*)</i></div>
+                                        <div class="form-group" ng-show="costInfo.Done">
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Số lượng: </div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line ed_border" value="" ng-model="EditProfiAccount.UserName" ng-change="TestInputChange(EditProfiAccount)" type="number">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Password === '' || EditProfiAccount.Password === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="fa fa-thumb-tack form-control-feedback right" aria-hidden="true"></span>
+                                                <input class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Quantity" ng-change="TestInputChange(costInfo)" type="number">
+                                                <span class="field-validation-valid text-danger" ng-show="costInfo.Done">Vui lòng nhập!</span>
                                             </div>
 
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Tổng tiền: <i style="color:red;">(*)</i></div>
+                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Tổng tiền: </div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line ed_border" value="" ng-model="EditProfiAccount.UserName" ng-change="TestInputChange(EditProfiAccount)" type="number">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Password === '' || EditProfiAccount.Password === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="glyphicon glyphicon-usd form-control-feedback right" aria-hidden="true"></span>
+                                                <input class="form-control text-box single-line ed_border" value="" ng-model="costInfo.TotalMoney" ng-change="TestInputChange(costInfo)" type="number">
+                                                <span class="field-validation-valid text-danger" ng-show="costInfo.Done">Vui lòng nhập!</span>
                                             </div>
                                         </div>
 
                                     </div>
-
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Ghi chú: </div>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <textarea class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Note" ng-change="TestInputChange(costInfo)"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-hide="costInfo.CostsTypeID==2">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Đã thực hiện: </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="checkbox" ng-model="costInfo.Done" ng-change="TestInputChange(costInfo)" />
+                                        </div>
+                                    </div>
                                     <div class="form-group" style="float:right">
                                         <span ng-show="btndisabled" class="field-validation-valid text-danger" style="color:red;"><i>Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*)</i></span>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-offset-2 col-md-10 col-sm-10 col-xs-12">
                                             <div class="col-sm-6 col-md-6" style="margin-bottom: 1px;">
-                                                <button class="btn btn-danger btn-round btn-block" type="submit"
+                                                <button class="btn btn-danger btn-round btn-block"
                                                         ng-click="ClosePopup()">
                                                     <i class="glyphicon glyphicon-remove"></i>
                                                     <span>HỦY</span>
@@ -241,7 +255,7 @@
                                             </div>
                                             <div class="col-sm-6 col-md-6">
                                                 <button class="btn Sbtn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
-                                                        data-ng-click="CeateNewAccount(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)">
+                                                        ng-click="addNewCost(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)">
                                                     <i class="fa fa-plus-circle"></i>
                                                     <span>THÊM</span>
                                                 </button>
@@ -266,6 +280,6 @@
 
 <script>
     $('#myDatepicker3').datetimepicker({
-        format: 'YYYY-MM-DD'
+        format: 'DD-MM-YYYY'
     });
 </script>

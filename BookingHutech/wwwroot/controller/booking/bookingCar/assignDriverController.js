@@ -6,10 +6,8 @@
         $scope.init = function () {
             $scope.DriverWithCar = [];
             $scope.tableParams = $scope.tableParams = null;
-
-            $scope.ManagerGetListAccount();
+            
             $scope.GetDriverWithCar();
-            $scope.GetListAssigned();
         }
 
         //Lấy danh sách lái xe chưa được phân công
@@ -19,6 +17,7 @@
 
                     case 1:
                         $scope.ManagerGetListAccountResponse = res.data.Data.GetAccountInfo;
+                        $scope.GetListAssigned();
                         break;
                 }
             });
@@ -29,6 +28,7 @@
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ListAssignDriver = res.data.Data;
+                        $scope.ManagerGetListAccount();
                         break;
                 }
             });
@@ -63,16 +63,15 @@
                     switch (res.data.ReturnCode) {
                         case 1:
                             toastr.success('Cập nhật thành công.');
-                            $scope.init();
+                            $scope.GetDriverWithCar();
                             break;
                         case 2:
                             toastr.error('Cập nhật thất bại.');
-                            $scope.init();
+                            $scope.GetDriverWithCar();
                             break;
                     }
                 });
             });
-            $scope.GetDriverWithCar();
         }
     }]);
 

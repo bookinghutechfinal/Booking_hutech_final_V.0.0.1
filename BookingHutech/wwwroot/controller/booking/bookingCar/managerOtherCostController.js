@@ -11,17 +11,24 @@
         }
 
         $scope.searchModel = {}
+        var today = new Date();
+        var dayRequestFrom = new Date();
+        var dayRequestTo = new Date();
+        dayRequestFrom.setDate(today.getDate() - 90);
+        dayRequestTo.setDate(today.getDate() + 2);
 
         //Get list cost by CostsTypeID
         $scope.getListCost = function () {
             $scope.ErrorDay = false;
             var RequestModel = {
                 CostsTypeID: 3,
-                DateFrom: '1-1-1900',
-                DateTo: new Date(),
+                DateFrom: dayRequestFrom,
+                DateTo: dayRequestTo,
                 CarID: 0,
-                RepairStatus: 1,
-                RepairStatus1: 2,
+                RepairStatus: 3,
+                RepairStatus1: 4,
+                RepairStatus2: 3,
+                RepairStatus3: 4,
                 Limit: 0
             }
             $scope.ClearData();
@@ -40,14 +47,6 @@
                     case 1:
                         if (result.length == 0) {
                             toastr.error("Không có dữ liệu.");
-                        }
-                        for (var i = 0; i < result.length; i++) {
-                            if (result[i].RepairStatus === 0)
-                                result[i].RepairStatus = RepairStatus[0].RepairStatusName;
-                            if (result[i].RepairStatus === 1)
-                                result[i].RepairStatus = RepairStatus[1].RepairStatusName;
-                            if (result[i].RepairStatus === 2)
-                                result[i].RepairStatus = RepairStatus[2].RepairStatusName;
                         }
                         $scope.tableParams = new NgTableParams({}, { dataset: result });
                         break;
@@ -83,17 +82,35 @@
         $scope.searchCost = function (request) {
             var date_from = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
             var date_to = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
+            var limit = 0;
 
-            if (So_Sanh_DateInput2(date_to, date_from) && date_from != "Invalid date" && date_to != "Invalid date") {
+            if (date_from == "Invalid date" && date_to == "Invalid date") {
+                date_from = dayRequestFrom;
+                date_to = dayRequestTo;
+                limit = 100;
+            }
+            else
+                if (date_from == "Invalid date" || date_to == "Invalid date") {
+                    $scope.ErrorDay = true;
+                    return;
+                }
+
+            if (So_Sanh_DateInput2(date_to, date_from)) {
                 var searchCostRequestModel = {
                     CostsTypeID: 3,
                     DateFrom: date_from,
                     DateTo: date_to,
                     CarID: request.CarID,
                     RepairStatus: 0,
-                    RepairStatus1: 2,
-                    Limit: 0
+                    RepairStatus1: 1,
+                    RepairStatus2: 2,
+                    RepairStatus3: 4,
+                    Limit: limit
                 }
+                if (limit == 100)
+                    $scope.nonMess = false;
+                else
+                    $scope.nonMess = true;
                 $scope.ErrorDay = false;
                 $scope.ShowListCost = true;
                 $scope.ClearData();
@@ -106,14 +123,6 @@
                                 toastr.error("Không có dữ liệu.");
                             $scope.datefrom = date_from;
                             $scope.dateto = date_to;
-                            for (var i = 0; i < result.length; i++) {
-                                if (result[i].RepairStatus === 0)
-                                    result[i].RepairStatus = RepairStatus[0].RepairStatusName;
-                                if (result[i].RepairStatus === 1)
-                                    result[i].RepairStatus = RepairStatus[1].RepairStatusName;
-                                if (result[i].RepairStatus === 2)
-                                    result[i].RepairStatus = RepairStatus[2].RepairStatusName;
-                            }
                             $scope.tableParams1 = new NgTableParams({}, { dataset: result });
                             break;
                         case 2:
@@ -146,51 +155,55 @@
                 }
             });
             modalInstance.result.then(function () {
-
+                $scope.getListCost();
             });
 
         }
 
-        $scope.comfirm = function (request) {
-            var updateRepairStatusRequestModel = {
-                RepairID: request.RepairID,
-                RepairStatus: 1,
-                FullNameUpdate: AccountInfo.ObjAccountInfo.FullName
-            }
-            $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn duyệt đơn chi phí này?'), function () {
-                $BookingCar.updateRepairStatus(updateRepairStatusRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success('Bạn đã duyệt đơn thành công.');
-                            $scope.getListCost();
-                            break;
-                        case 2:
-                            toastr.success('Bạn đã duyệt đơn thất bại');
-                            break;
+        $scope.comfirm = function (request, repairStatus) {
+            if (repairStatus == '')
+                return;
+            if (repairStatus == 2) {
+                var modalInstance1 = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupAddDetailRepairCost.html',
+                    controller: 'popupAddNewDetailCostController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        DetailCost: function () {
+                            return request;
+                        },
                     }
                 });
-            });
-        }
+                modalInstance1.result.then(function () {
+                    $scope.getListCost();
+                });
+            } else {
+                var updateRepairStatusRequestModel = {
+                    RepairID: request.RepairID,
+                    RepairStatus: repairStatus,
+                    FullNameUpdate: AccountInfo.ObjAccountInfo.FullName
+                }
+                $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn cập nhật đơn này?'), function () {
+                    $BookingCar.updateRepairStatus(updateRepairStatusRequestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                toastr.success('Bạn đã cập nhật thành công.');
+                                $scope.getListCost();
+                                break;
+                            case 2:
+                                toastr.success('Bạn đã cập nhật thất bại');
+                                break;
+                        }
+                    });
+                });
 
-        $scope.cancel = function (request) {
-            var updateRepairStatusRequestModel = {
-                RepairID: request.RepairID,
-                RepairStatus: 2,
-                FullNameUpdate: AccountInfo.ObjAccountInfo.FullName
+                $scope.getListCost();
             }
-            $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn hủy đơn chi phí này?'), function () {
-                $BookingCar.updateRepairStatus(updateRepairStatusRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success('Bạn đã hủy đơn thành công.');
-                            $scope.getListCost();
-                            break;
-                        case 2:
-                            toastr.success('Bạn đã hủy đơn thất bại');
-                            break;
-                    }
-                });
-            });
         }
     }]);
 

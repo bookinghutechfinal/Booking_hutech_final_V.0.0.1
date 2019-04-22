@@ -1,4 +1,4 @@
-﻿mainmodule.controller('ManagerCarByDriverController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$stateParams', '$alert', '$rootScope', 'NgTableParams','$account',
+﻿mainmodule.controller('ManagerCarByDriverController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$stateParams', '$alert', '$rootScope', 'NgTableParams', '$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $stateParams, $alert, $rootScope, NgTableParams, $account) {
 
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
@@ -6,29 +6,16 @@
         // Hàm 1: khai báo các biến tiện ích
         $scope.init = function () {
             $scope.ClearData();
-            $scope.getCarInfo();
             $scope.getListCost();
             $scope.ErrorDay = false;
         }
 
-        // Hàm Lấy danh sách xe
-        $scope.getCarInfo = function () {
-            var getCarInfoRequestModel = {
-                Account_ID: AccountInfo.ObjAccountInfo.Account_ID
-            }
-            $BookingCar.getCarInfoByAccountID(getCarInfoRequestModel, function (res) {
 
-                if (res.data.Data.length != 0) {
-                    var carInfo = res.data.Data[0];
-                    $scope.CarInfo = carInfo;  // chi tiết xe
-                } else {
-                    toastr.error("Xin lỗi. Bạn chưa được phân công xe!");
-                    $state.go("main.bookingcar");
-                }
-
-            });
-        }
-
+        var today = new Date();
+        var dayRequestFrom = new Date();
+        var dayRequestTo = new Date();
+        dayRequestFrom.setDate(today.getDate() - 90);
+        dayRequestTo.setDate(today.getDate() + 2);
         $scope.searchModel = {}
 
         $scope.getListCost = function () {
@@ -44,24 +31,18 @@
 
             var getListCostRequestModel = {
                 AccountCreate: AccountInfo.ObjAccountInfo.Account_ID,
-                RepairStatus1: 1,
-                RepairStatus2: 1,
-                DateFrom: '1-1-1900',
-                DateTo: new Date()
+                RepairStatus: 3,
+                RepairStatus1: 4,
+                RepairStatus2: 3,
+                RepairStatus3: 4,
+                DateFrom: dayRequestFrom,
+                DateTo: dayRequestTo
             }
 
             $BookingCar.getListCostByAccountCreate(getListCostRequestModel, function (res) {
                 var result = res.data.Data.ListRepairCost;
                 if (res.data.ReturnCode === 1) {
-                    for (var i = 0; i < result.length; i++) {
-                        if (result[i].RepairStatus === 0)
-                            result[i].RepairStatus = RepairStatus[0].RepairStatusName;
-                        if (result[i].RepairStatus === 1)
-                            result[i].RepairStatus = RepairStatus[1].RepairStatusName;
-                        if (result[i].RepairStatus === 2)
-                            result[i].RepairStatus = RepairStatus[2].RepairStatusName;
-                    }
-                    $scope.tableParams = new NgTableParams({}, {dataset : result});
+                    $scope.tableParams = new NgTableParams({}, { dataset: result });
                 }
             });
         }
@@ -74,34 +55,69 @@
 
         //Search cost by CostsTypeID, CarID, Date_from, Date_to
         $scope.searchCost = function (request) {
+            var repairStatus = 1111;
             var repairStatus1 = 1111;
             var repairStatus2 = 1111;
+            var repairStatus3 = 1111;
             if (request.RepairStatus == 0) {
-                repairStatus1 = 1;
-                repairStatus2 = 2;
+                repairStatus = 1;
+                repairStatus1 = 2;
+                repairStatus2 = 3;
+                repairStatus3 = 4;
             }
             if (request.RepairStatus == 1) {
-                repairStatus1 = 0;
-                repairStatus2 = 2;
+                repairStatus = 0;
+                repairStatus1 = 2;
+                repairStatus2 = 3;
+                repairStatus3 = 4;
             }
             if (request.RepairStatus == 2) {
+                repairStatus = 0;
                 repairStatus1 = 1;
-                repairStatus2 = 0;
+                repairStatus2 = 3;
+                repairStatus3 = 4;
+            }
+            if (request.RepairStatus == 3) {
+                repairStatus = 0;
+                repairStatus1 = 1;
+                repairStatus2 = 2;
+                repairStatus3 = 4;
+            }
+            if (request.RepairStatus == 4) {
+                repairStatus = 0;
+                repairStatus1 = 1;
+                repairStatus2 = 2;
+                repairStatus3 = 3;
             }
             if (request.RepairStatus == "") {
+                var repairStatus = 1111;
                 var repairStatus1 = 1111;
                 var repairStatus2 = 1111;
+                var repairStatus3 = 1111;
             }
 
             var date_from = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
             var date_to = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
+            $scope.nonMess = true;
+            if (date_from == "Invalid date" && date_to == "Invalid date") {
+                date_from = dayRequestFrom;
+                date_to = dayRequestTo;
+                $scope.nonMess = false;
+            }
+            else
+                if (date_from == "Invalid date" || date_to == "Invalid date") {
+                    $scope.ErrorDay = true;
+                    return;
+                }
 
-            if (So_Sanh_DateInput2(date_to, date_from) && date_from != "Invalid date" && date_to != "Invalid date") {
+            if (So_Sanh_DateInput2(date_to, date_from)) {
 
                 var searchCostRequestModel = {
                     AccountCreate: AccountInfo.ObjAccountInfo.Account_ID,
+                    RepairStatus: repairStatus,
                     RepairStatus1: repairStatus1,
                     RepairStatus2: repairStatus2,
+                    RepairStatus3: repairStatus3,
                     DateTo: date_to,
                     DateFrom: date_from
                 }
@@ -119,14 +135,6 @@
                             }
                             $scope.datefrom = date_from;
                             $scope.dateto = date_to;
-                            for (var i = 0; i < result.length; i++) {
-                                if (result[i].RepairStatus === 0)
-                                    result[i].RepairStatus = RepairStatus[0].RepairStatusName;
-                                if (result[i].RepairStatus === 1)
-                                    result[i].RepairStatus = RepairStatus[1].RepairStatusName;
-                                if (result[i].RepairStatus === 2)
-                                    result[i].RepairStatus = RepairStatus[2].RepairStatusName;
-                            }
                             $scope.tableParams1 = new NgTableParams({}, { dataset: result });
                             break;
                         case 2:
@@ -149,7 +157,7 @@
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupAddNewCost.html',
-                controller: 'popupManagerFuelCostController',
+                controller: 'popupAddNewCostController',
                 controllerAs: 'content',
                 backdrop: 'static',
                 size: 'lg',
@@ -163,7 +171,30 @@
 
             });
         }
-    }]);  
+
+        $scope.comfirm = function (request) {
+            var modalInstance1 = $modal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupAddDetailRepairCost.html',
+                controller: 'popupAddNewDetailCostController',
+                controllerAs: 'content',
+                backdrop: 'static',
+                size: 'lg',
+                resolve: {
+                    DetailCost: function () {
+                        return request;
+                    },
+                }
+            });
+            modalInstance1.result.then(function () {
+                $scope.getListCost();
+            });
+
+            $scope.getListCost();
+        }
+    }]);
 
 mainmodule.controller('popupManagerCarByDriverController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance) {

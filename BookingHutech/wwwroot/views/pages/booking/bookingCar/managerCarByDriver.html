@@ -22,6 +22,20 @@
         position: fixed;
         z-index: 1000;
     }
+    .mess {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa;
+        padding: 7px;
+        display: block;
+        background-color: #d6dde7;
+        font-size: 13px;
+        height: auto;
+        border-color: #9cb4c5;
+        color: #305d8c;
+        margin-bottom: 20px;
+    }
 </style>
 <div class="clearfix">
     <div class="row">
@@ -31,7 +45,7 @@
                 <div class="x_title">
                     <ul>
                         <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
-                        <li><a href=""><h5>/ {{'DetailCarByDriver' | translate}}</h5></a></li>
+                        <li><a href=""><h5>/ {{'CostManager' | translate}}</h5></a></li>
                     </ul>
                 </div>
                 <div class="x_content" style="display: block;">
@@ -39,45 +53,18 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Chi tiết xe</h2>
+                                    <h2>Quản lý chi phí</h2>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div class="x_content">
-                                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
-                                        <div class="profile_img">
-                                            <div id="crop-avatar">
-                                                <!-- Current avatar -->
-                                                <a href="../../../../images/img/{{CarInfo.CarImage}}" target="_blank">
-                                                    <img src="../../../../images/img/{{CarInfo.CarImage}}" alt="{{CarInfo.CarImage}}" class="img-responsive avatar-view">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <h3>{{CarInfo.CarName}}</h3>
-                                        <ul class="list-unstyled user_data">
-                                            <li><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
-                                            <li><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
-                                            <li><i class="fa fa-calendar"></i> Hạn lưu hành: {{CarInfo.Expires | date:'dd/MM/yyyy'}}</li>
-                                            <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{CarInfo.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
-                                            <li ng-show="CarInfo.CarStatus ==1"><i class="fa fa-circle text-success"></i> Hoạt động</li>
-                                            <li ng-show="CarInfo.CarStatus ==4" style="color:red"><i class="fa fa-circle text-success" style="color:red"></i> Bảo trì, sửa chữa</li>
-                                            <li ng-show="CarInfo.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Đã xóa</li>
-                                        </ul>
+                                <div class="col-md-4 col-xs-12" style="float:right">
+                                    <div class="mb15 mt30">
+                                        <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
+                                            <span class="glyphicon glyphicon-plus-sign"></span> Thêm chi phí
+                                        </button>
                                     </div>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <div class="profile_title">
-                                            <div class="col-md-6 col-xs-12">
-                                                <h2>Các chi phí</h2>
-                                            </div>
-                                            <div class="col-md-2 col-xs-12">
-                                            </div>
-                                            <div class="col-md-4 col-xs-12" style="float:right">
-                                                <div class="mb15 mt30">
-                                                    <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
-                                                        <span class="glyphicon glyphicon-plus-sign"></span> Thêm mới
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
                                         <br />
                                         <!--begin table cost-->
                                         <form>
@@ -110,9 +97,11 @@
                                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                                         <select class="form-control select2 ed_border" ng-model="searchModel.RepairStatus" style="width: 100%;cursor:pointer">
                                                             <option ng-selected="selected" value="">{{'All' | translate }}</option>
-                                                            <option value="0">Chờ duyệt</option>
-                                                            <option value="1">Đã duyệt</option>
-                                                            <option value="2">Không duyệt</option>
+                                                            <option value="0">Đề xuất</option>
+                                                            <option value="1">Chờ thực hiện</option>
+                                                            <option value="2">Chờ duyệt</option>
+                                                            <option value="3">Đã duyệt</option>
+                                                            <option value="4">Đã hủy</option>
                                                         </select>
                                                     </div>
 
@@ -133,10 +122,10 @@
                                                 </div>
                                             </div>
                                             <!--<div class="col-md-1 col-sm-1 col-xs-12">
-            <button class="btn btn-success btn-round lentop" type="reset" style="float:right" ng-click="getListCost()">
-                <span class="glyphicon glyphicon-refresh"></span>
-            </button>
-        </div>-->
+                    <button class="btn btn-success btn-round lentop" type="reset" style="float:right" ng-click="getListCost()">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                    </button>
+                </div>-->
 
                                             <a ng-click="getListCost()"><i class="material-icons lentop"><span class="glyphicon glyphicon-refresh"></span></i></a>
 
@@ -162,24 +151,28 @@
                                                     </td>
                                                     <td data-title="'Hóa đơn'" style="width:5%" align="left">
                                                         <a href="../../../../../images/bills/{{item.ImagerBill}}" target="_blank">
-                                                            <img src="../../../../../images/bills/{{item.ImagerBill}}" class="avatar" alt="Avatar">
+                                                            <img src="../../../../../images/bills/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
                                                         </a>
                                                     </td>
                                                     <td data-title="'Trạng thái'" style="width:10%" align="left">
-                                                        <span ng-show="item.RepairStatus=='Chờ duyệt'" style="color:red">{{item.RepairStatus}}</span>
-                                                        <span ng-show="item.RepairStatus=='Không duyệt'" style="color:gray">{{item.RepairStatus}}</span>
+                                                        <span ng-show="item.RepairStatus==0" style="color:blue">Đề xuất</span>
+                                                        <span ng-show="item.RepairStatus==1" style="color:green">Chờ thực hiện</span>
+                                                        <span ng-show="item.RepairStatus==2" style="color:red">Chờ duyệt</span>
                                                     </td>
-                                                    <td data-title="'Sửa'" style="width:0.5%" align="left">
-                                                        <button class="btn btn-success"><i class="fa fa-edit"></i> Sửa</button>
-                                                    </td>
-                                                    <td data-title="'Xóa'" style="width:0.5%" align="left">
-                                                        <button class="btn btn-danger"><i class="fa fa-remove"></i> Xóa</button>
+                                                    <td data-title="'Xử lý'" style="width:0.5%" align="left">
+                                                        <select class="btn btn-primary" ng-model="status" ng-change="comfirm(item,status)">
+                                                            <option value="">Chọn chức năng</option>
+                                                            <option ng-show="item.RepairStatus==0 || item.RepairStatus==2">Sửa</option>
+                                                            <option ng-show="item.RepairStatus==0">Xóa</option>
+                                                            <option ng-show="item.RepairStatus==1" value="{{item.RepairStatus+1}}">Hoàn thành</option>
+                                                        </select>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </div>
                                         <!--search cost-->
-                                        <p style="color:blue;font-weight:bold" ng-show="ShowListCost">Kết quả tìm kiếm từ ngày {{datefrom | date: 'dd-MM-yyyy'}} đến ngày {{dateto | date: 'dd-MM-yyyy'}}:</p>
+                                        <p style="color:blue;font-weight:bold" ng-show="ShowListCost && nonMess">Các đơn từ ngày {{datefrom | date: 'dd-MM-yyyy'}} đến ngày {{dateto | date: 'dd-MM-yyyy'}}:</p>
+                                        <p style="color:blue;font-weight:bold" ng-show="ShowListCost && !nonMess">Các đơn gần đây:</p>
                                         <div class="table-responsive" ng-show="ShowListCost">
                                             <table ng-table="tableParams1" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
                                                 <tr ng-repeat="item in $data " role="none" class="hover_">
@@ -201,16 +194,18 @@
                                                     </td>
                                                     <td data-title="'Hóa đơn'" style="width:5%" align="left">
                                                         <a href="../../../../../images/bills/{{item.ImagerBill}}" target="_blank">
-                                                            <img src="../../../../../images/bills/{{item.ImagerBill}}" class="avatar" alt="Avatar">
+                                                            <img src="../../../../../images/bills/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
                                                         </a>
                                                     </td>
                                                     <td data-title="'Ghi chú'" style="width:5%" align="left">
                                                         {{item.Note}}
                                                     </td>
-                                                    <td data-title="'Trạng thái'" style="width:15%" align="left">
-                                                        <span ng-show="item.RepairStatus=='Chờ duyệt'" style="color:red">{{item.RepairStatus}}</span>
-                                                        <span ng-show="item.RepairStatus=='Không duyệt'" style="color:gray">{{item.RepairStatus}}</span>
-                                                        <span ng-show="item.RepairStatus=='Đã duyệt'" style="color:green">{{item.RepairStatus}}</span>
+                                                    <td data-title="'Trạng thái'" style="width:15%" align="left" sortable="'RepairStatus'">
+                                                        <span ng-show="item.RepairStatus==0" style="color:blue">Đề xuất</span>
+                                                        <span ng-show="item.RepairStatus==1" style="color:green">Chờ thực hiện</span>
+                                                        <span ng-show="item.RepairStatus==2" style="color:red">Chờ duyệt</span>
+                                                        <span ng-show="item.RepairStatus==3" style="color:navy">Đã duyệt</span>
+                                                        <span ng-show="item.RepairStatus==4" style="color:gray">Đã hủy</span>
                                                     </td>
                                                 </tr>
                                             </table>

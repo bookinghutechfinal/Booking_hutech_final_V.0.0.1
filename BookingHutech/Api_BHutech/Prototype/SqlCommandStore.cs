@@ -35,7 +35,7 @@ namespace BookingHutech.Api_BHutech.Prototype
         //Manager Get List Detail repair cost by RepairID. Create By Mr.Lam Create 13/3/2019. 
         public const string uspGetDetailRepairCost = "uspGetDetailRepairCost {0}";
         //Manager Get List cost by CostsTypeID. Create By Mr.Lam Create 13/3/2019. 
-        public const string uspGetListCost = "uspGetListCost {0},'{1}','{2}',{3},{4},{5},{6}";
+        public const string uspGetListCost = "uspGetListCost {0},N'{1}',N'{2}',{3},{4},{5},{6},{7},{8}";
         //Report cost by month. Create By Mr.Lam Create 14/3/2019. 
         public const string uspCostReport = "uspCostReport {0},{1}";
         //Manager Update Rroup Role. Create By Anh.Tran Create 15/3/2019. 
@@ -65,7 +65,7 @@ namespace BookingHutech.Api_BHutech.Prototype
         //Get car info by AccountID and AssignStatus. Create By Mr.Lam Create 8/4/2019. 
         public const string uspGetCarInfoByAccountID = "uspGetCarInfoByAccountID {0},{1}";
         //Get car info by AccountID and AssignStatus. Create By Mr.Lam Create 8/4/2019. 
-        public const string uspGetListCostByAccountCreate = "uspGetListCostByAccountCreate {0},{1},{2},{3},{4}";
+        public const string uspGetListCostByAccountCreate = "uspGetListCostByAccountCreate {0},{1},{2},{3},{4},N'{5}',N'{6}'";
         //Get RegristrationCar by DriverID. Create By Mr.Lam Create 9/4/2019. 
         public const string uspGetRegistrationCarByDriverID = "uspGetRegistrationCarByDriverID {0},{1},{2},{3},{4},{5}";
         //Get UpdateRegistrationCar Status by RegistrationID. Create By Mr.Lam Create 12/4/2019. 
@@ -91,12 +91,14 @@ namespace BookingHutech.Api_BHutech.Prototype
         //get Driver Manage Car. Create By Mr.Lam Create 17/4/2019. 
         public const string uspGetDriverManageCar = "uspGetDriverManageCar {0}";
         //Update RepairStatus. Create By Mr.Lam Create 17/4/2019. 
-        public const string uspUpdateRepairStatus = "uspUpdateRepairStatus {0},{1},'{2}'";
+        public const string uspUpdateRepairStatus = "uspUpdateRepairStatus {0},{1},'{2}',N'{3}'";
         //Update, insert AssignDriver. Create By Mr.Lam Create 17/4/2019. 
-        public const string uspAssignDriverManager = "uspAssignDriverManager {0},{1},'{2}'";
+        public const string uspAssignDriverManager = "uspAssignDriverManager {0},{1},N'{2}'";
         //Get List Assigned. Create By Mr.Lam Create 17/4/2019. 
         public const string uspGetListAssigned = "uspGetListAssigned";
-        
+        //Get List Assigned. Create By Mr.Lam Create 17/4/2019. 
+        public const string uspAddNewCost = "uspAddNewCost '{0}',{1},{2},N'{3}',N'{4}',N'{5}',N'{6}',N'{7}',N'{8}','{9}',N'{10}',{11},{12},{13}";
+
     }
 
 }

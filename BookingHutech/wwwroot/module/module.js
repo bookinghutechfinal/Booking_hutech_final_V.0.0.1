@@ -68,9 +68,11 @@ var RegistrationStatus = [
 ];
 //Trang thái đơn sửa chữa
 var RepairStatus = [
-    { RepairStatusType: 0, RepairStatusName: "Chờ duyệt" },
-    { RepairStatusType: 1, RepairStatusName: "Đã duyệt" },
-    { RepairStatusType: 2, RepairStatusName: "Không duyệt" },
+    { RepairStatusType: 0, RepairStatusName: "Đề xuất" },
+    { RepairStatusType: 1, RepairStatusName: "Chờ thực hiện" },
+    { RepairStatusType: 2, RepairStatusName: "Chờ duyệt" },
+    { RepairStatusType: 3, RepairStatusName: "Hoàn thành" },
+    { RepairStatusType: 4, RepairStatusName: "Không duyệt" },
 ]
 var Time = [
     // am

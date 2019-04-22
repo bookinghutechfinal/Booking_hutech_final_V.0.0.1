@@ -47,6 +47,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -195,6 +204,8 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateRoleMasterRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\UpdateGroupRoleRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\AddNewCostRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\AddNewDetailCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\AssignDriverManagerRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\CreateNewRegistrationCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetCarInfoByAccountIDRequestModel.cs" />
@@ -990,6 +1001,7 @@
     <Content Include="wwwroot\controller\account\loginController.js" />
     <Content Include="wwwroot\controller\account\ManagerCreateNewAccountController.js" />
     <Content Include="wwwroot\controller\app\appController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\addNewDetailCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\addNewCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\detailCarController.js" />
@@ -1485,6 +1497,7 @@
     <Content Include="wwwroot\views\pages\booking\bookingCar\managerDetailRegisterBKCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\managerRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewCost.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddDetailRepairCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailRepairCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupSearchCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupRegisterBookingCar.html" />

@@ -189,7 +189,6 @@ mainmodule.config(['$translateProvider',
             'ListCar': 'Danh sách xe',
             'DetailCar': 'Chi tiết xe',
             'TitileUpdateCarInfo': 'Cập nhật thông tin xe',
-            'DetailCarByDriver':'Quản lý xe',
             'CalendarDriver':'Lịch công tác',
             'assignDriver':'Phân công',
             /* --------  Cost Manager ---------- */
