@@ -77,7 +77,7 @@ namespace BookingHutech.Api_BHutech.Prototype
         //--Cấp 3,4  Xem toàn bộ danh sách đơn cấp phát ở các khoa viện -> Xem theo trạng thái. Create By Anh.Trần Create 15/4/2019. 
         public const string uspManagerGetRegistrationCarAllUnitByProfileStaus = "uspManagerGetRegistrationCarAllUnitByProfileStaus {0}";
         // Xem chi tiết đơn cấp phát ở các trạng thái không duyệt và chờ duyệt -> Xem theo trạng thái. Create By Anh.Trần Create 15/4/2019. 
-        public const string uspGetDetailRegistrationCarByNotRatify = "uspGetDetailRegistrationCarByNotRatify {0}"; //@RegistrationCarID
+        public const string uspGetDetailRegistrationCarByNotRatify = "uspGetDetailRegistrationCarByNotRatify {0},{1}"; //@RegistrationCarID
         // Lấy danh sách xe hoạt động Create By Anh.Trần Create 17/4/2019. 
         public const string uspGetListCarApproveRegistrationCar = "uspGetListCarApproveRegistrationCar"; 
         // Lấy danh sách đơn cấp phát đã duyệt, chờ đi Create By Anh.Trần Create 17/4/2019. 
@@ -95,9 +95,27 @@ namespace BookingHutech.Api_BHutech.Prototype
         //Update, insert AssignDriver. Create By Mr.Lam Create 17/4/2019. 
         public const string uspAssignDriverManager = "uspAssignDriverManager {0},{1},N'{2}'";
         //Get List Assigned. Create By Mr.Lam Create 17/4/2019. 
-        public const string uspGetListAssigned = "uspGetListAssigned";
+        public const string uspGetListAssigned = "uspGetListAssigned"; 
         //Get List Assigned. Create By Mr.Lam Create 17/4/2019. 
-        public const string uspAddNewCost = "uspAddNewCost '{0}',{1},{2},N'{3}',N'{4}',N'{5}',N'{6}',N'{7}',N'{8}','{9}',N'{10}',{11},{12},{13}";
+        public const string uspAddNewCost = "uspAddNewCost '{0}',{1},{2},N'{3}',N'{4}',N'{5}',N'{6}',N'{7}',N'{8}','{9}',N'{10}',{11},{12},{13}"; 
+        // Anh create 19/4/2019. QT Duyệt, không duyệt, BGH Duyệt, BGH không duyệt,   
+        public const string uspManagerUpdateRegistrationCar = "uspManagerUpdateRegistrationCar";
+        // Khoa/Viện Thư ký
+        // Anh create 20/4/2019. Lấy danh sách đơn cấp phát theo trạng thái và theo đơn vị  
+        public const string uspUnitGetListRegistrationCarByProfileStaus = "uspUnitGetListRegistrationCarByProfileStaus {0}";
+        // Anh create 20/4/2019. Xem chi itết đơn cấp phát theo trạng thái chưa duyệt và theo đơn vị  
+        public const string uspUnitGetDetailRegistrationCarByNotRatify = "uspUnitGetDetailRegistrationCarByNotRatify {0},{1}";
+        // Anh create 20/4/2019. Xem chi tiết đơn cấp phát đã duyệt, chờ BGH duyệt, BHG Không duyệt, BGH duyệt 
+        public const string uspGetDetailRegistrationCarByRatify = "uspGetDetailRegistrationCarByRatify {0},{1}"; 
+        // Anh create 21/4/2019. Tìm kiếm đơn cấp phát theo từ ngày đến ngày và trạng thái
+        public const string uspSearchRegisterCar = "uspSearchRegisterCar";  
+        // Anh create 21/4/2019. Tìm kiếm đơn cấp phát theo đơn cấp phát
+        public const string uspSearchRegisterCarByRegistrationCarID = "uspSearchRegisterCarByRegistrationCarID {0}"; 
+        // Anh create 22/4/2019. Tìm kiếm đơn cấp phát theo  mã đơn cấp phát của Khoa/Viện
+        public const string uspUnitSearchRegisterCarByRegistrationCarID = "uspUnitSearchRegisterCarByRegistrationCarID {0},{1}";
+        // Anh create 21/4/2019. Tìm kiếm đơn cấp phát theo từ ngày đến ngày và trạng thái va2 theo khoa/viện
+        public const string uspUnitSearchRegisterCar = "uspUnitSearchRegisterCar";
+ 
 
     }
 

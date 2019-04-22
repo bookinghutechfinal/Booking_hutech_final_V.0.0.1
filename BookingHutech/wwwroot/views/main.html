@@ -35,18 +35,31 @@
                     <!--// Menu-->
                     <div class="menu_section">
                         <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Car Manager</font></font></h3>
-                        <ul class="nav side-menu">
-                            <!--<li ng-show="menu">
-                                <a><i class="fa fa-table"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Những cái bàn </font></font><span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu" style="">
-                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Những cái bàn</font></font></a></li>
-                                    <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bảng động</font></font></a></li>
-                                </ul>
-                            </li>-->
+                        <ul class="nav side-menu"> 
                             <li>
-                                <a><i class="fa fa-file-text"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Quản đơn cấp phát </font></font><span class="fa fa-chevron-down"></span></a>
+                                <a>
+                                    <i class="fa fa-file-text"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Quản lý đơn cấp phát </font></font><span class="fa fa-chevron-down"></span>
+                                </a> 
+                               
                                 <ul class="nav child_menu" style="">
-                                    <li><a href="#/main/manager-Booking-Car"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Đơn cấp phát</font></font></a></li><!--// cấp phòng quản trị-->
+                                    <!-- Ban giám hiệu ng-show="showByPermission(500)" -->
+                                    <!--<li ng-show="showByPermission(900)">
+                                        <a href="#/main/manager-Booking-Car">
+                                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cấp Ban Giám Hiệu</font></font>
+                                        </a>
+                                    </li>-->
+                                    <!--// cấp phòng quản trị-->
+                                    <li ng-show="showByPermission(900)">
+                                        <a href="#/main/manager-Booking-Car">
+                                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Đơn cấp phát xe</font></font>
+                                        </a>
+                                    </li>
+                                    <!--// cấp khoa/viện-->
+                                    <li ng-show="showByPermission(904)">
+                                        <a href="#/main/unitRegister-BookingCar">
+                                            <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Đơn cấp phát</font></font>
+                                        </a>
+                                    </li> 
                                 </ul>
                             </li>
                             <li>

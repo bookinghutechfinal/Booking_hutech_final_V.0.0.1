@@ -310,10 +310,10 @@ var ConvertProfileCarStatusIDToName = function (profileStatusID) {
     }
     if (profileStatusID === 4) {
         return RegistrationStatus[3].RegistrationStatusName;
-    } accountID
+    }  
     if (profileStatusID === 5) {
         return RegistrationStatus[4].RegistrationStatusName;
-    } accountID
+    }  
     if (profileStatusID === 6) {
         return RegistrationStatus[5].RegistrationStatusName;
     }

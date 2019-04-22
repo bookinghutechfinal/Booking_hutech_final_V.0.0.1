@@ -69,7 +69,7 @@ namespace BookingHutech.Api_BHutech.Lib
                     int count = 0;
                     for (int i = 0; i < checkPermissionResponse.GetRoleCode.Count; i++)
                     {
-                        if (checkPermissionResponse.GetRoleCode[i].RoleCode == RuleCode)
+                        if (checkPermissionResponse.GetRoleCode[i].RoleCode == RuleCode && checkPermissionResponse.GetRoleCode[i].RoleDetail_Status != false)
                         {
                             count++;
                         }

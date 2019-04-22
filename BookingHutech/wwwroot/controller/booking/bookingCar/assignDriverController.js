@@ -6,8 +6,15 @@
         $scope.init = function () {
             $scope.DriverWithCar = [];
             $scope.tableParams = $scope.tableParams = null;
+//<<<<<<< HEAD
             
             $scope.GetDriverWithCar();
+//=======
+
+            //$scope.ManagerGetListAccount();
+            //$scope.GetDriverWithCar();
+            $scope.GetListAssigned();
+//>>>>>>> BookingHutechFinal_Anh
         }
 
         //Lấy danh sách lái xe chưa được phân công
@@ -17,7 +24,11 @@
 
                     case 1:
                         $scope.ManagerGetListAccountResponse = res.data.Data.GetAccountInfo;
+//<<<<<<< HEAD
                         $scope.GetListAssigned();
+//=======
+                      
+//>>>>>>> BookingHutechFinal_Anh
                         break;
                 }
             });
@@ -28,7 +39,11 @@
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ListAssignDriver = res.data.Data;
+//<<<<<<< HEAD
                         $scope.ManagerGetListAccount();
+//=======
+//                        $scope.ManagerGetListAccount(); 
+//>>>>>>> BookingHutechFinal_Anh
                         break;
                 }
             });
@@ -40,6 +55,7 @@
 
                     case 1:
                         $scope.tableParams = new NgTableParams({}, { dataset: res.data.Data });
+                        $scope.GetDriverWithCar();
                         break;
                 }
             });
