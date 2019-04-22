@@ -193,4 +193,12 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    ///  Create by Anh.Tran 17/04/2019. Tìm kiếm xe
+    this.SearchApproveRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'RegistrationCar/SearchApproveRegistrationCar',
+            data: request
+        }, success, finish)
+    };
 }]);

@@ -106,12 +106,13 @@
                                 <h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Thông tin xe:</h2>
                                 <div class="profile_img" style=" padding:10px;" ng-show="isCarInfo">
                                     <div id="crop-avatar">
-                                        <img class="img-responsive avatar-view" src="../../../../images/avt/{{CarInfo.CarImage}}" alt="Avatar" title="Xe" style="    width: auto; ">
+                                        <img class="img-responsive avatar-view" src="../../../../images/img/{{CarInfo.CarImage}}" alt="Avatar" title="Xe" style="    width: auto; ">
                                     </div>
                                     <ul class="list-unstyled user_data" style="padding:10px">
                                         <li> <h3 class="ng-binding">{{CarInfo.CarName}} </h3></li>
                                         <li class="ng-binding"><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
                                         <li class="ng-binding"><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
+                                        <li class="ng-binding"><i class="fa fa-car"></i> Lái xe: {{CarInfo.FullNameDriver}}</li>
                                     </ul>
                                 </div> 
                                 <span class="field-validation-valid text-danger ngHideSample" ng-show="CarInfo.CarImage === '' || CarInfo.CarImage === null && !isCarInfo"><i class="fa fa-warning"></i>Vui lòng chọn!</span>

@@ -201,6 +201,54 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 cmd.Connection.Close();
             }
         }
+
+
+        /// <summary>
+        /// Anh.Create 18/4/2019
+        /// </summary>
+        /// <param name="stringSql">stringSql</param>
+        /// <returns>list CarInfo</returns> 
+        public List<CarInfo> GetListCarApproveRegistrationCarDAO(String stringSql)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            List<CarInfo> result = new List<CarInfo>();
+            CarInfo carInfo;
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    carInfo = new CarInfo();
+                    carInfo.CarID = Int32.Parse(reader["CarID"].ToString());
+                    carInfo.CarName = reader["CarName"].ToString();
+                    carInfo.CarNo = reader["CarNo"].ToString();
+                    carInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    carInfo.CarTypeName = reader["CarTypeName"].ToString();
+                    carInfo.CarImage = reader["CarImage"].ToString();
+                    carInfo.CarStatus = Int32.Parse(reader["CarStatus"].ToString());
+                    carInfo.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
+                    carInfo.LastModifiedDate = reader["LastModifiedDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    carInfo.FullNameUpdate = reader["FullNameUpdate"].ToString(); 
+                    carInfo.Expires = reader["Expires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["Expires"].ToString());
+                    carInfo.InsuranceExpires = reader["InsuranceExpires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["InsuranceExpires"].ToString());
+                    carInfo.DriverID = reader["DriverID"].ToString();
+                    carInfo.FullNameDriver = reader["FullNameDriver"].ToString(); 
+
+                    result.Add(carInfo);
+                }
+                con.Close();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
     }
 }
  
