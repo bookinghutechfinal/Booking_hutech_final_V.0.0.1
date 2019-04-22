@@ -16,48 +16,49 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_content">
                     <center><img src="../../../../../images/bills/{{DetailCostImageBill}}" ng-show="DetailCostImageBill!=''" alt="Avatar" style="height:200px;width:auto"></center>
-    <br />
-    <div class="table-responsive">
-        <table ng-table="tableParams2" class="table table-striped" role="none" show-filter="false" fixed-table-headers="scrollable-area">
-            <tr ng-repeat="item in $data " role="none" class="hover_">
-                <td data-title="'STT'" style="width:2%" role="none" align="center">
-                    {{$index+1}}
-                </td>
-                <td data-title="'nội dung'" style="width:5%" align="left">
-                    {{item.Content}}
-                </td>
-                <td data-title="'Số lượng'" style="width:5%" align="left">
-                    <!--filter="{CarNo:'text'}"-->
-                    {{item.Quantity}}
-                </td>
-                <td data-title="'Tổng tiền'" style="width:5%" align="left">
-                    {{item.TotalMoney | currency : ""}} Đ
-                </td>
-            </tr>
-        </table>
-    </div>
-
-</div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6">
-                        <div class="mb15 mt30">
-                            <button class="btn btn-primary btn-round btn-block" type="submit"
-                                    ng-click="ClosePopup()">
-                                <!--ng-disabled="!isSubmitingEnable()"-->
-                                <i class="glyphicon glyphicon-ok"></i>
-                                <span>Đóng</span>
-                            </button>
+                    <br />
+                    <div class="table-responsive">
+                        <div class="table-responsive">
+                            <table ng-table="tableParams2" class="table table-striped" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                                <tr ng-repeat="item in $data " role="none" class="hover_">
+                                    <td data-title="'STT'" style="width:2%" role="none" align="center">
+                                        {{$index+1}}
+                                    </td>
+                                    <td data-title="'nội dung'" style="width:5%" align="left">
+                                        {{item.Content}}
+                                    </td>
+                                    <td data-title="'Số lượng'" style="width:5%" align="left">
+                                        <!--filter="{CarNo:'text'}"-->
+                                        {{item.Quantity}}
+                                    </td>
+                                    <td data-title="'Tổng tiền'" style="width:5%" align="left">
+                                        {{item.TotalMoney | currency : ""}} Đ
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                    </div>
 
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <div class="mb15 mt30">
+                                <button class="btn btn-primary btn-round btn-block" type="submit"
+                                        ng-click="ClosePopup()">
+                                    <!--ng-disabled="!isSubmitingEnable()"-->
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                    <span>Đóng</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
     </div>
-    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-</div>

@@ -215,12 +215,14 @@
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListRegistrationCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetRegistrationCarByDriverIDRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\ReportCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchApproveRegistrationCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\UpdateCarInfoRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\UpdateCarStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostByAccountCreateRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\UpdateDetailCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\UpdateRegistrationCarStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\UpdateRepairStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\AccountLoginResponseModel.cs" />

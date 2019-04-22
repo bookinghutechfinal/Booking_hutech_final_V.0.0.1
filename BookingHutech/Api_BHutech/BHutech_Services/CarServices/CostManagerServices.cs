@@ -181,5 +181,25 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 throw;
             }
         }
+
+        /// <summary>
+        /// UpdateDetailCostServices
+        /// Mr.Lam 18/4/2019
+        /// </summary>
+        /// <param name="request">AddNewCostRequestModel</param>
+        public int UpdateDetailCostServices(UpdateDetailCostRequestModel request)
+        {
+            try
+            {
+                string uspUpdateDetailCost = String.Format(Prototype.SqlCommandStore.uspUpdateDetailCost, request.RepairID, request.Content, request.Quantity, request.TotalMoney,request.RepairDetailID);
+                int result = managerCostDAO.AddNewCostDAO(uspUpdateDetailCost);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
     }
 }
