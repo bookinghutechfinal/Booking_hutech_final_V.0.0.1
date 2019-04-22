@@ -7,8 +7,8 @@
             $scope.DriverWithCar = [];
             $scope.tableParams = $scope.tableParams = null;
 
-            $scope.ManagerGetListAccount();
-            $scope.GetDriverWithCar();
+            //$scope.ManagerGetListAccount();
+            //$scope.GetDriverWithCar();
             $scope.GetListAssigned();
         }
 
@@ -19,6 +19,7 @@
 
                     case 1:
                         $scope.ManagerGetListAccountResponse = res.data.Data.GetAccountInfo;
+                      
                         break;
                 }
             });
@@ -29,6 +30,7 @@
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ListAssignDriver = res.data.Data;
+                        $scope.ManagerGetListAccount(); 
                         break;
                 }
             });
@@ -40,6 +42,7 @@
 
                     case 1:
                         $scope.tableParams = new NgTableParams({}, { dataset: res.data.Data });
+                        $scope.GetDriverWithCar();
                         break;
                 }
             });

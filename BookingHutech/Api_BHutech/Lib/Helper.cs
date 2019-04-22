@@ -18,6 +18,7 @@ using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 using BookingHutech.Api_BHutech.Models.BookingCar;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
+using static BookingHutech.Api_BHutech.Lib.Enum.BookingType;
 
 namespace BookingHutech.Api_BHutech.Lib.Helper
 {
@@ -248,18 +249,18 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
             //SearchApproveRegistrationCarResponseModel listCarApproveRegistration = new SearchApproveRegistrationCarResponseModel();
             List<CarInfo> listCarApproveRegistration = new List<CarInfo>();
             CarInfo carInfo; // = new CarInfo(); 
-            
+
             for (int i = 0; i < ListCarAndListRegCar.ListCar.Count; i++)
             {
                 int count = 0;
                 for (int j = 0; j < ListCarAndListRegCar.ListRegistrationCar.Count; j++)
                 {
-                    if(ListCarAndListRegCar.ListCar[i].CarID == ListCarAndListRegCar.ListRegistrationCar[j].CarID)
+                    if (ListCarAndListRegCar.ListCar[i].CarID == ListCarAndListRegCar.ListRegistrationCar[j].CarID)
                     {
-                        count++; 
+                        count++;
                     }
                 }
-                if(count!= 0) // có tham gia vào đơn cấp phát nào chưa.
+                if (count != 0) // có tham gia vào đơn cấp phát nào chưa.
                 {
                     // có tham gia
                     bool resultCheckItemCar = ResultCheckItemCarFromListProfile(ListCarAndListRegCar.ListCar[i].CarID, requestDatetime, ListCarAndListRegCar.ListRegistrationCar);
@@ -332,6 +333,28 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
             //    }
             //}
             return listCarApproveRegistration; // danh sách xe có thể book.
+        }
+
+        // Hàm kiểm tra trạng thái đơn cấp phát.   
+        public bool CheckStatusProfileCar(int ProfileStatus)
+        {
+            if (ProfileStatus == (int)BookingStatus.Offer ||
+                ProfileStatus == (int)BookingStatus.AdminNotVerify ||
+                ProfileStatus == (int)BookingStatus.AdminVerify ||
+                ProfileStatus == (int)BookingStatus.DeanNotVerify ||
+                ProfileStatus == (int)BookingStatus.DeanVerify ||
+                ProfileStatus == (int)BookingStatus.Finish ||
+                ProfileStatus == (int)BookingStatus.Processing ||
+                ProfileStatus == (int)BookingStatus.SchoolNotVerify ||
+                ProfileStatus == (int)BookingStatus.SchoolVerify ||
+                ProfileStatus == (int)BookingStatus.WaitingForSchoolVerify)
+            { 
+                return true; 
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

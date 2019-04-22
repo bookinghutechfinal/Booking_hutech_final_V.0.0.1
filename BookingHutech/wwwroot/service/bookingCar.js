@@ -172,11 +172,61 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    ///  Dành cho phòng quản trị và BGH
+    ///  Lấy danh sách đơn cấp phát dùng chung cho cấp 1 thư ký khoa,2 trưởng khoa, vvv,3,4
+    ///  Create by Anh.Tran 15/04/2019
+    this.UnitGetListRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'RegistrationCar/UnitGetListRegistrationCar',
+            data: request
+        }, success, finish)
+    };
     ///  Create by Anh.Tran 17/04/2019. Tìm kiếm xe
     this.SearchApproveRegistrationCar = function (request, success, finish) {
         $dao.call({
             method: 'POST',
             operater: 'RegistrationCar/SearchApproveRegistrationCar',
+            data: request
+        }, success, finish)
+    };
+    ///  Create by Anh.Tran 18/04/2019. Tìm kiếm xe
+    this.GetDriverManageCar = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'AssignDriver/GetDriverManageCar',
+            data: request
+        }, success, finish)
+    };
+    ///  Create by Anh.Tran 19/04/2019. duyệt, hủy đơn cấp phát xe cấp QT, BGH
+    this.ManagerUpdateRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'RegistrationCar/ManagerUpdateRegistrationCar',
+            data: request
+        }, success, finish)
+    };
+    ///  Create by Anh.Tran 19/04/2019. duyệt, hủy đơn cấp phát xe Khoa/viện
+    this.UnitUpdateRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'RegistrationCar/UnitUpdateRegistrationCar',
+            data: request
+        }, success, finish)
+    };
+    ///  Create by Anh.Tran 20/04/2019. Tìm kiếm đơn cấp phát
+    this.SearchGetListRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'RegistrationCar/SearchGetListRegistrationCar',
+            data: request
+        }, success, finish)
+    };
+    ///  Create by Anh.Tran 22/04/2019. Tìm kiếm đơn cấp phát cấp khoa/viện
+    this.UnitSearchGetListRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'RegistrationCar/UnitSearchGetListRegistrationCar',
             data: request
         }, success, finish)
     };

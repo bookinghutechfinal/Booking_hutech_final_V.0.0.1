@@ -118,7 +118,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             templateUrl: '/wwwroot/views/pages/booking/bookingMeetingHall/meetingHallInfo.html',
             controller: 'bookingMeetingHallController',
         })
-        .state('main.managerBookingCar', { // phòng quản trị. 
+        .state('main.managerBookingCar', { // phòng quản trị - BGH. 
             url: '/manager-Booking-Car',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/managerRegisterBookingCar.html',
             controller: 'ManagerRegisterBookingCarController',
@@ -134,6 +134,18 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             //    ProfileStatus: null,  
                  
             //} 
+        })
+        .state('main.unitRegisterBookingCar', { // Khoa/Viện BGH 
+            url: '/unitRegister-BookingCar',
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/unitRegisterBookingCar.html',
+            controller: 'UnitRegisterBookingCarController',
+        })
+
+        // Xem chi tiết đơn cấp phát xe - trưởng khoa - thư ky. 
+        .state('main.unitDetailRegisterBKCar', {
+            url: '/unitDetail-RegisterBKCar/:RegistrationCarID/:ProfileStatus', 
+            templateUrl: '/wwwroot/views/pages/booking/bookingCar/unitDetailRegisterBKCar.html',
+            controller: 'UnitDetailRegisterBKCarController', 
         })
         .state('error404', {
             url: '/error404',

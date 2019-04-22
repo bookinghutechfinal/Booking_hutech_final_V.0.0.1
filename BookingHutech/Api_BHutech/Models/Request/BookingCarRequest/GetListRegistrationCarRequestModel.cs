@@ -12,5 +12,7 @@ namespace BookingHutech.Api_BHutech.Models.Request.BookingCarRequest
         // lấy chi tiết theo RegisterID  Dùng cho account cấp 1,2: (Thư ký & trưởng khoa)
         public String RegistrationCarID { get; set; }
         public int Unit_ID { get; set; }
+        public String DateTimeFrom { get; set; }
+        public String DateTimeTo { get; set; }
     }
 }

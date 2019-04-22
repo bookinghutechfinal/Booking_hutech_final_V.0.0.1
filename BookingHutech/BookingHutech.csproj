@@ -996,9 +996,11 @@
     <Content Include="wwwroot\controller\booking\bookingCar\managerCalendarDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerCarByDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\assignDriverController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\unitDetailRegisterBKCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerOtherCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerFuelCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerDetailRegisterBKCarController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\unitRegisterBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerRegisterBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerRepairCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerDriverController.js" />
@@ -1478,11 +1480,13 @@
     <Content Include="wwwroot\views\pages\booking\bookingCar\calendarDriver.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\carDetail.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\managerCarByDriver.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\unitDetailRegisterBKCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
     <Content Include="wwwroot\views\pages\account\popupCreateNewAccount.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerOtherCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerFuelCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\managerDetailRegisterBKCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\unitRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\managerRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewCost.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupDetailRepairCost.html" />

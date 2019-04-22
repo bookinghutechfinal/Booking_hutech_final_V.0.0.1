@@ -11,6 +11,10 @@ namespace BookingHutech.Api_BHutech.Models.Response.BookingCarResponse
         public string Manager { get; set; }
         public string EmailManager { get; set; }
         public string NumberPhoneManager { get; set; }
+        public string CarImage { get; set; } 
+        public string CarNo { get; set; }
+        public string FullNameDriver { get; set; } 
+        public string CarTypeName { get; set; }
     }
     /// <summary>
     /// Trả về danh sách đơn cấp phát - xem danh sách đơn cấp phát của Thư ký, trưởng khoa, QT, BGH. 

@@ -27,6 +27,16 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
       
         try {
             var AccountInfo = $account.getAccountInfo();
+            //*** Hàm 2:  kiểm tra quyền show menu & layout tương ứng. 
+            $rootScope.showByPermission = function (permissionCode) {
+                var Role = AccountInfo.ObjRoleCode;
+                for (var i = 0; i < Role.length; i++) {
+                    if (Role[i].RoleCode === permissionCode) {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
         catch (err) {
             $scope.goToLogin();

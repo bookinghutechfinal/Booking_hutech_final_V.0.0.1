@@ -1,77 +1,62 @@
-﻿//Anh.create 15/4/2019. Tài khoản có quyền quản lý đơn cấp phát xe. ->Phòng quản trị-> Ban BGH
-mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams',
-    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams) {
+﻿//Anh.create 15/4/2019. Tài khoản có quyền quản lý đơn cấp phát xe. ->Khoa/Viện/ Thư ký khoa
+mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams','$account',
+    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $account) {
 
-        var GetListRegistrationCarRequestModel = {
-            ProfileStatus: null,
-            RegistrationCarID: null,
-            Unit_ID: null,
-            DateTimeFrom: null,
-            DateTimeTo: null,
+        try {
+            //ReturnAccountType($account.getAccountInfo().ObjAccountInfo);
+            var AccountInfo = $account.getAccountInfo().ObjAccountInfo;
+        }
+        catch (err) {
+            $scope.goToLogin();
         }
         $scope.init = function () {
+
+            var GetListRegistrationCarRequestModel = {
+                ProfileStatus: null,
+                RegistrationCarID: null,
+                Unit_ID: null
+            }
             var ListRegistrationCarResponse = [];
             $scope.tableParams = $scope.tableParams = null;
-        }
-        //
-        $scope.checkPermissionInit = function () {
-            // kiểm tra quyền thức khi thực hiên 
-            if (($scope.checkPermission = $rootScope.showByPermission(901)) && // Quản trị - BGH
-                ($scope.checkPermission = $rootScope.showByPermission(900))) {
+            //GetListRegistrationCarRequestModel.ProfileStatus = 1; // chờ trưởng khoa duyệt
+            GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.Unit_ID;
 
-                GetListRegistrationCarRequestModel.ProfileStatus = 2;
-                $scope.getListReRegisterCar(GetListRegistrationCarRequestModel);
-            } else if (($scope.checkPermission = $rootScope.showByPermission(902)) &&
-                ($scope.checkPermission = $rootScope.showByPermission(900))) {
-                GetListRegistrationCarRequestModel.ProfileStatus = 6;
-                $scope.getListReRegisterCar(GetListRegistrationCarRequestModel);
-            }
-            else {
-                toastr.error("Xin lỗi! Bạn không có quyền thực hiện chức năng này");
-                return;
-            }
+            $scope.UnitGetListRegister(GetListRegistrationCarRequestModel);
         }
 
-        // Lấy danh sách đơn cấp phát
-        $scope.getListReRegisterCar = function (request) { 
-            var GetListRegistrationCarRequestModel = {
+        $scope.UnitGetListRegister = function (request) {
+            GetListRegistrationCarRequestModel = {
                 ProfileStatus: request.ProfileStatus,
                 RegistrationCarID: request.RegistrationCarID,
-                Unit_ID: request.Unit_ID,
-                DateTimeFrom: request.DateTimeFrom,
-                DateTimeTo: request.DateTimeTo
+                Unit_ID: request.Unit_ID
             }
-            $BookingCar.ManagerGetListRegistrationCar(GetListRegistrationCarRequestModel, function (res) {
+            $BookingCar.UnitGetListRegistrationCar(GetListRegistrationCarRequestModel, function (res) {
                 switch (res.data.ReturnCode) {
                     case 1:
                         ListRegistrationCarResponse = res.data.Data.ListRegistrationCar;
-                        try {
-                            if (ListRegistrationCarResponse.length == 0 || ListRegistrationCarResponse == null) {
-
-                            } else {
-                                $scope.tableParams = new NgTableParams({}, { dataset: ListRegistrationCarResponse });
-                            }
-                        } catch (e) {
-                            toastr.success("Không tìm thấy kết quả");
-                            $scope.tableParams = new NgTableParams({}, { dataset: null });
+                        if (ListRegistrationCarResponse.length == 0) {
+                            toastr.success("Không có dự liệu");
+                        } else {
+                            $scope.tableParams = new NgTableParams({}, { dataset: ListRegistrationCarResponse });
                         }
-
                         break;
                 }
-                 
+
+
             });
         }
+
         // tìm kiếm đơn cấp phát
-        $scope.SearchGetListRegistrationCar = function (request) {
+        $scope.UnitSearchGetListRegistrationCar = function (request) {
             var SearchGetListRegistrationCarRequestModel = {
                 ProfileStatus: request.ProfileStatus,
                 RegistrationCarID: request.RegistrationCarID,
-                Unit_ID: request.Unit_ID,
+                Unit_ID: AccountInfo.Unit_ID,
                 DateTimeFrom: moment(request.DateTimeFrom, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
                 DateTimeTo: moment(request.DateTimeTo + " 23:59:59", 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
             }
             $scope.tableParams = new NgTableParams({}, { dataset: null });
-            $BookingCar.SearchGetListRegistrationCar(SearchGetListRegistrationCarRequestModel, function (res) {
+            $BookingCar.UnitSearchGetListRegistrationCar(SearchGetListRegistrationCarRequestModel, function (res) {
                 switch (res.data.ReturnCode) {
                     case 1:
                         ListRegistrationCarResponse = res.data.Data.ListRegistrationCar;
@@ -85,14 +70,13 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
                         } catch (e) {
                             toastr.success("Không tìm thấy kết quả");
                             //$scope.tableParams = new NgTableParams({}, { dataset: null });
-                        } 
+                        }
                         break;
-                }  
+                }
             });
         }
 
         $scope.init();
-        $scope.checkPermissionInit();
         $scope.Refresh = function () {
             $scope.SearchRegisterCar = {
                 ProfileStatus: null,
@@ -107,8 +91,10 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
             angular.element('#DateTo').val("");
             $scope.init();
         }
+
+        //Button refresh
         $scope.btnRefresh = function () {
-            $scope.Refresh(); 
+            $scope.Refresh();
             $scope.checkPermissionInit();
         }
         // Tìm kiếm 
@@ -124,18 +110,18 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
         $scope.isCheckDateTo = false;
         $scope.resultSearch = null;
         // buttom tìm kiếm
-        $scope.btnSearchRegisterCar = function () {
+        $scope.btnUnitSearchRegisterCar = function () {
             if (!checkNull($scope.SearchRegisterCar.RegistrationCarID)) {
 
-                $scope.SearchRegisterCar.ProfileStatus = null; 
+                $scope.SearchRegisterCar.ProfileStatus = null;
                 $scope.resultSearch = null;
                 angular.element('#DateFrom').val("");
                 angular.element('#DateTo').val("");
 
-                $scope.SearchGetListRegistrationCar($scope.SearchRegisterCar);
+                $scope.UnitSearchGetListRegistrationCar($scope.SearchRegisterCar);
                 $scope.isCheckDateFrom = false;
                 $scope.isCheckDateTo = false;
-                $scope.resultSearch = "Mã đơn " + $scope.SearchRegisterCar.RegistrationCarID; 
+                $scope.resultSearch = "Mã đơn " + $scope.SearchRegisterCar.RegistrationCarID;
                 return;
             }
             if (checkNull(angular.element('#DateFrom').val())) {
@@ -153,7 +139,7 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
                 $scope.isCheckDateTo = false;
             }
             if (checkNull($scope.SearchRegisterCar.ProfileStatus)) {
-                $scope.isCheckProfile_Status = true; 
+                $scope.isCheckProfile_Status = true;
                 $scope.resultSearch = null;
                 return;
             }
@@ -170,26 +156,11 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
                 }
             }
             $scope.SearchRegisterCar.RegistrationCarID = null;
-            $scope.SearchGetListRegistrationCar($scope.SearchRegisterCar);
+            $scope.UnitSearchGetListRegistrationCar($scope.SearchRegisterCar);
             $scope.resultSearch = "Từ ngày: " + FormatDateTimeByDBResponse($scope.SearchRegisterCar.DateTimeFrom) +
                 " - Đến ngày: " + FormatDateTimeByDBResponse($scope.SearchRegisterCar.DateTimeTo
                 );
         }
-
+         
     }]);
-
-//mainmodule.controller('popupManagerRepairCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', 'ListDetailRepairCost','$modalInstance',
-//    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, ListDetailRepairCost, $modalInstance) {
-
-//        $scope.init = function () {
-//            var ListDetailRepairCostResponseModel = ListDetailRepairCost;
-//            $scope.tableParams2 = new NgTableParams({}, { dataset: ListDetailRepairCostResponseModel });
-//        }
-
-//        $scope.ClosePopup = function () {
-//            $modalInstance.close();
-//        }
-
-//        $scope.init();
-
-//    }]);  
+ 

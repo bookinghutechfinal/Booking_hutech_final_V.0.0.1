@@ -91,7 +91,7 @@
 
         <div class="col-md-12 col-sm-12 col-xs-12">
             <!--không có quyền-->
-            <div class="x_content bs-example-popovers" ng-show="!showByPermission(900)">
+            <div class="x_content bs-example-popovers" ng-show="!showByPermission(904)">
                 <div class="alert alert-warning alert-dismissible fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <!--không có quyền-->
-            <div class="x_panel" ng-show="showByPermission(900)">
+            <div class="x_panel" ng-show="showByPermission(904)">
                 <div class="x_title">
                     <ul>
                         <li><a href="#/main/manager-Booking-Car"><h5><i class="fa fa-th-list"></i> Danh sách đơn cấp phát xe</h5></a></li>
@@ -118,9 +118,9 @@
 
                     <div class="col-md-4 col-sm-4 col-xs-12 profile_left">
                         <div class="x_panel">
-                            <div class="col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="col-md-12 col-sm-12 col-xs-12 "  ng-show="isCarInfo">
                                 <h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Thông tin xe:</h2>
-                                <div class="profile_img" style=" padding:10px;" ng-show="isCarInfo">
+                                <div class="profile_img" style=" padding:10px;">
                                     <div id="crop-avatar">
                                         <img class="img-responsive avatar-view" src="../../../../images/img/{{CarInfo.CarImage}}" alt="Avatar" title="Xe" style="    width: auto; ">
                                     </div>
@@ -130,11 +130,7 @@
                                         <li class="ng-binding"><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
                                         <li class="ng-binding"><i class="fa fa-car"></i> Lái xe: {{CarInfo.FullNameDriver}}</li>
                                     </ul>
-                                </div>
-                                <span class="field-validation-valid text-danger ngHideSample" ng-show="CarInfo.CarImage === '' || CarInfo.CarImage === null && !isCarInfo"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
-                                <div class="col-sm-12" ng-show="showByPermission(903) && DetalRegistrationCar.Profile_Status == 2 ||  DetalRegistrationCar.Profile_Status == 5 || DetalRegistrationCar.Profile_Status !== 7   && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10"  >
-                                    <button style="font-size: 11px;" ng-click="OpenPopupSearchCar()" class="btn btn-success btn-round btn-block"><i class="fa fa-search m-right-xs"></i> Chọn xe</button>
-                                </div>
+                                </div>  
                             </div>
 
                             <div class="col-md-12 col-sm-12 col-xs-12 title_bk_mes">
@@ -159,16 +155,7 @@
                         <!--start right-->
                     </div>
                     <div class="col-md-8 col-sm-8 col-xs-12">
-                        <div class="x_panel">
-                            <!--<div class="alert alert-warning ngHideSample col-md-12 col-sm-12 col-xs-12" >
-                                <h5>
-                                    <i class="fa fa-warning"></i> Xin lỗi!
-                                </h5>
-                                <ul>
-                                    <li>Ngày giờ về phải lớn hơn ngày giờ đi.</li>
-                                </ul>
-
-                            </div>-->
+                        <div class="x_panel"> 
                             <form class="form-horizontal form-label-left input_mask">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group alert-success ">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Trạng thái</label>
@@ -180,50 +167,30 @@
                                         <i class="glyphicon glyphicon-calendar"></i>
                                         Ngày tạo: {{DetalRegistrationCar.CreatDay | date:'HH:mm dd/MM/yyyy'}}
                                     </div>
-                                </div>
-                                <div class="col-md-8 " style="float:right">
-                                    <span class="field-validation-valid text-danger ngHideSample" ng-show="CarInfo.CarImage === '' || CarInfo.CarImage === null && !isCarInfo"><i class="fa fa-warning"></i>Vui lòng chọn xe trước khi duyệt hoặc cập nhật chờ BGH duyệt!</span>
-                                </div>
+                                </div> 
                                 <!--Start: Button-->
                                 <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" ng-show="showByPermission(901)"> </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12" ng-show="showByPermission(901)">
-                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status !== 5 && DetalRegistrationCar.Profile_Status !== 7  && DetalRegistrationCar.Profile_Status !== 8  && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
-                                            <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="AdminNotVerify()">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px"  ng-show="showByPermission(907) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
+                                            <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="btnDeanNotVerify()">
                                                 <i class="glyphicon glyphicon-remove"></i>
-                                                <span>Không duyệt</span>
+                                                <span>Hủy đề xuất</span>
                                             </button>
                                         </div>
-                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status == 2 ||  DetalRegistrationCar.Profile_Status == 5 &&  DetalRegistrationCar.Profile_Status !== 7">
-                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnAdminVerify()" ng-disabled="!isCarInfo">
+                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show=" showByPermission(907) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 &&  DetalRegistrationCar.Profile_Status !== 2 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10" >
+                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnDeanVerify()" >
                                                 <i class="glyphicon glyphicon-ok"></i>
-                                                <span>Duyệt</span>
+                                                <span>Đề Xuất</span>    
                                             </button>
                                         </div>
-                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status !== 6 && DetalRegistrationCar.Profile_Status !== 7  && DetalRegistrationCar.Profile_Status !== 8  && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
-                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnWaitingForSchoolVerify()" ng-disabled="!isCarInfo">
+                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px"  ng-show="showByPermission(904) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
+                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit"   >
                                                 <i class="glyphicon glyphicon-ok"></i>
-                                                <span>Chờ BGH</span>
+                                                <span>Chỉnh sửa</span>
                                             </button>
                                         </div>
                                     </div>
-                                    <!--BGH-->
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  ng-show="showByPermission(902)"> </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12" ng-show="showByPermission(902)">
-                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status !== 8">
-                                            <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="btnSchoolNotVerify()">
-                                                <i class="glyphicon glyphicon-remove"></i>
-                                                <span>BGH   Không duyệt</span>
-                                            </button>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8">
-                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnSchoolVerify()" ng-disabled="!isCarInfo">
-                                                <i class="glyphicon glyphicon-ok"></i>
-                                                <span>BGH Duyệt</span>
-                                            </button>
-                                        </div>
-                                    </div>
-
                                 </div>
                                 <!--End: Button-->
                                 <!--ghi chú-->
