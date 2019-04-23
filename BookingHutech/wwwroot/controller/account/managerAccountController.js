@@ -329,48 +329,9 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
             });
         }
 
-        //5. Xem chi tiết account. 
-        // Lấy thông tin chi tiết lái xe. 
-        $scope.ShowDetailAccount = function (Request) {
-            $scope.Account_IDRequest = {
-                Account_ID: Request,
-            }
-
-            $account.ManagerGetDetailAccountByAccountID($scope.Account_IDRequest, function (res) {
-                
-                switch (res.data.ReturnCode) {
-                    case 1:
-
-                        var AccountInfoResponse = res.data.Data.GetAccountInfo[0];
-                        var RoleResponse = res.data.Data.GetRoleCode;
-                        // Hiển thị thông tin account
-                        $scope.ShowAccountInfo = {
-                            Avatar: AccountInfoResponse.Avatar,
-                            FullName: AccountInfoResponse.FullName,
-                            Gender: AccountInfoResponse.Gender,
-                            Birthday: AccountInfoResponse.Birthday,
-                            Addres: AccountInfoResponse.Addres,
-                            AccountType: AccountInfoResponse.AccountType,
-                            NumberPhone: AccountInfoResponse.NumberPhone,
-                            Email: AccountInfoResponse.Email,
-                            UnitName: AccountInfoResponse.UnitName,
-                        }
-
-                        // Truyền dự liệu qua popup. 
-                        $scope.AccountInfoDatail = {
-                            AccountInfo: AccountInfoResponse,
-                            RoleInfo: RoleResponse
-                        }
-                        $scope.OpenPopupDetailAccount($scope.AccountInfoDatail);
-                        break;
-                }
-
-            });
-
-        }
-
+        //5. Xem chi tiết account.   
         //// Mỡ popup xem chi tiết account 
-        $scope.OpenPopupDetailAccount = function (AccountInfoDatailRequest) {
+        $scope.btnOpenPopupDetailAccount = function (AccountID) {
             var modalInstance = $modal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
@@ -381,8 +342,8 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                 backdrop: 'static',
                 size: 'lg',
                 resolve: {
-                    AccountInfoDatailRequest: function () {
-                        return AccountInfoDatailRequest;
+                    AccountIDRequest: function () {
+                        return AccountID;
                     },
                 }
             });

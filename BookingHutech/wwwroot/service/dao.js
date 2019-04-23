@@ -26,7 +26,7 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                     toastr.error('Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.!');
                 }
                 else if (response.data.ReturnCode === 114) {
-                    toastr.error('Vui lòng đăng nhập lại, để tiếp tục sử dụng!');
+                    toastr.error('Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.!');
                     $cookies.remove('AccountInfo');
                     $cookies.remove("AccountInfoCheckPermissions"); 
                     $state.go('login');

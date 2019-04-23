@@ -108,7 +108,15 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     }
-    // Phân quyền
+    // Lấy danh sách quyền chưa phân cho account
+    this.ManagerGetDetailRoleAccountByAccountID = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'ManagerAccount/ManagerGetDetailRoleAccountByAccountID',
+            data: request
+        }, success, finish)
+    }
+     // Phân quyền
     this.ManagerDecentralization = function (request, success, finish) {
         $dao.call({
             method: 'POST',

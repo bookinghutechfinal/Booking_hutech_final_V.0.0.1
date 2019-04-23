@@ -162,16 +162,6 @@
                                             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                                     <li role="presentation" class="active">
-                                                        <button ng-show="!isShowGroupRole" class="btn btn-primary btn-round btn-block" ng-click="ShowGroupRole()" type="button" name="name" value="Quản lý nhóm quyền">
-                                                            <i class="fa fa-folder"></i>
-                                                            <span class="ng-binding">Nhóm quyền</span>
-                                                        </button>
-                                                        <button ng-show="isShowGroupRole" class="btn btn-primary btn-round btn-block" ng-click="ShowGroupRole()" type="button" name="name" value="Quản lý nhóm quyền">
-                                                            <i class="fa fa-folder-open-o"></i>
-                                                            <span class="ng-binding">Thu Nhỏ</span>
-                                                        </button>
-                                                    </li>
-                                                    <li role="presentation" class="active">
                                                         <button ng-show="!isShowRole" class="btn btn-warning btn-round btn-block" ng-click="ShowRole()" type="button" name="name">
                                                             <i class="fa fa-folder"></i>
                                                             <span class="ng-binding">Quyền</span>
@@ -180,81 +170,11 @@
                                                             <i class="fa fa-folder-open-o"></i>
                                                             <span class="ng-binding">Thu Nhỏ</span>
                                                         </button>
-                                                    </li>
-
+                                                    </li> 
                                                 </ul>
                                                 <div id="myTabContent" class="tab-content">
-                                                    <!--//Nhóm quyền-->
-                                                    <div role="tabpanel" class="tab-pane fade active in ngHideSample" id="tab_content1" aria-labelledby="home-tab" ng-show="isShowGroupRole">
-                                                        <div class="row">
-                                                            <div class="table-responsive">
-                                                                <table class="table table-hover  table-striped jambo_table bulk_action ng-scope ng-table" fixed-table-headers="scrollable-area">
-                                                                    <thead>
-                                                                        <tr class="headings">
-                                                                            <th class="column-title">#STT</th>
-                                                                            <th class="column-title" style="text-align:center">Tên nhóm quyền</th>
-                                                                            <th class="column-title no-link last">
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr class="even pointer" ng-repeat="grouprole in GroupRoleResponse ">
-                                                                            <td class=" ">
-                                                                                {{$index+1}}
-                                                                            </td>
-                                                                            <td class="col-sm-12">
-                                                                                <label ng-hide="editorEnabled[$index]">{{grouprole.GroupRoleName}}</label>
-                                                                                <div ng-show="editorEnabled[$index]">
-                                                                                    <input class="form-control" type="text" name="name" value=" {{grouprole.GroupRoleName}} " ng-model="grouprole.GroupRoleName">
-                                                                                </div>
-                                                                                <label ng-show="showmess[$index]" style="color:red">(*)Vui lòng nhập</label>
-                                                                            </td>
-                                                                            <td>
-                                                                                <a ng-hide="editorEnabled[$index]" ng-click="enableEditor($index)" href="" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                                                                <div ng-show="editorEnabled[$index]" class="col-sm-6">
-                                                                                    <a href="" ng-click="Save(grouprole, $index)" class="btn btn-primary btn-xs"><i class="fa fa-save"></i> Lưu </a>
-                                                                                    <a href="" ng-click="disableEditor($index)" class="btn btn-danger btn-xs"><i class="fa fa-refresh"></i> Hủy </a>
-                                                                                </div>
-
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                     <!--//Quyền-->
                                                     <div role="tabpanel" class="tab-pane fade active in ngHideSample" id="tab_content1" aria-labelledby="home-tab" ng-show="isShowRole">
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                                <div class="x_content" style="display: block;">
-                                                                    <!--START:  Loại xe -->
-                                                                    <div class="col-lg-7 col-xs-7">
-                                                                        <div class="form-group">
-                                                                            <label class="ng-binding">Nhóm quyền</label>
-                                                                            <select class="form-control select2" ng-model="gRole.GroupRoleID" style="width: 100%;">
-                                                                                <option selected="selected" value="">-- Tất cả --</option>
-                                                                                <option ng-repeat="gRole in GroupRoleResponse" value="{{gRole.GroupRoleID}}">
-                                                                                    {{gRole.GroupRoleName}}
-                                                                                </option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!--END:  Loại xe -->
-                                                                    <div class="col-lg-5 col-xs-5">
-                                                                        <div class="form-group">
-                                                                            <label>`</label>
-                                                                            <button class="btn btn-primary btn-round btn-block" data-ng-click="filterRole(gRole.GroupRoleID)">
-                                                                                <!--ng-disabled="!isSubmitingEnable()"-->
-                                                                                <i class="fa fa-filter"></i>
-                                                                                <span class="ng-binding">Lọc</span>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         <div class="row">
                                                             <div class="table-responsive">
                                                                 <table class="table table-hover  table-striped jambo_table bulk_action" fixed-table-headers="scrollable-area" ng-table="tableParams2">
@@ -291,7 +211,8 @@
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> 
+
                                                 </div>
                                             </div>
                                         </div>
@@ -396,7 +317,7 @@
                                                                 <div class="col-xs-12 col-sm-6 emphasis">
                                                                 </div>
                                                                 <div class="col-xs-12 col-sm-6 emphasis">
-                                                                    <button style="font-size:11px" type="button" class="btn btn-round btn-warning " ng-click="ShowDetailAccount(listAccount.Account_ID)">
+                                                                    <button style="font-size:11px" type="button" class="btn btn-round btn-warning " ng-click="btnOpenPopupDetailAccount(listAccount.Account_ID)">
                                                                         Xem chi tiết <i class="fa fa-share-square-o"> </i>
                                                                     </button>
                                                                 </div>

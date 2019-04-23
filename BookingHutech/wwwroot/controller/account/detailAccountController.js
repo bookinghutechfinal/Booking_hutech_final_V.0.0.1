@@ -1,126 +1,138 @@
 ﻿
-mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'AccountInfoDatailRequest', 'NgTableParams', '$account','$alert',
-    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountInfoDatailRequest, NgTableParams, $account, $alert) {
-        // AccountInfoDatailRequest: Tham số nhận dữ liệu từ màn hình quản lý lái xe.   
+mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'AccountIDRequest', 'NgTableParams', '$account','$alert',
+    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountIDRequest, NgTableParams, $account, $alert) {
+        // AccountIDRequest: Tham số nhận dữ liệu từ màn hình quản lý lái xe.
         $scope.Titile = "Chi tiết tài khoản";
         $scope.ClosePopup = function () {
             $modalInstance.close();
             location.reload();
         }
+        if (checkNull(AccountIDRequest)) {
+            $modalInstance.close();
+        }
+        // Hàm 1 xem chi tiết account  
+        $scope.ShowDetailAccount = function () {
+            var Account_IDRequest = {
+                Account_ID: AccountIDRequest,
+            }
+           
+            $account.ManagerGetDetailAccountByAccountID(Account_IDRequest, function (res) {
+
+                switch (res.data.ReturnCode) {
+                    case 1:
+
+                        var AccountInfoResponse = res.data.Data.GetAccountInfo[0];
+                        var RoleResponse = res.data.Data.GetRoleCode;
+                        // Hiển thị thông tin account
+                        //$scope.ShowAccountInfo = {
+                        //    Avatar: AccountInfoResponse.Avatar,
+                        //    FullName: AccountInfoResponse.FullName,
+                        //    Gender: AccountInfoResponse.Gender,
+                        //    Birthday: AccountInfoResponse.Birthday,
+                        //    Addres: AccountInfoResponse.Addres,
+                        //    AccountType: AccountInfoResponse.AccountType,
+                        //    NumberPhone: AccountInfoResponse.NumberPhone,
+                        //    Email: AccountInfoResponse.Email,
+                        //    UnitName: AccountInfoResponse.UnitName,
+                        //} 
+                        $scope.AccountDetailDetail = {
+                            Avatar: AccountInfoResponse.Avatar,
+                            Account_ID: AccountInfoResponse.Account_ID,
+                            FullName: AccountInfoResponse.FullName,
+                            Gender: AccountInfoResponse.Gender,
+                            Birthday: AccountInfoResponse.Birthday,
+                            NumberPhone: AccountInfoResponse.NumberPhone,
+                            Addres: AccountInfoResponse.Addres,
+                            Email: AccountInfoResponse.Email,
+                            CreateDate: AccountInfoResponse.CreateDate,
+                            Account_Status: AccountInfoResponse.Account_Status,
+                            Verify: AccountInfoResponse.Verify,
+                            IsChangePassword: AccountInfoResponse.IsChangePassword,
+                            AccountType: AccountInfoResponse.AccountType,
+                            UnitName: AccountInfoResponse.UnitName,
+                            Manager: AccountInfoResponse.Manager,
+                            EmailManager: AccountInfoResponse.EmailManager,
+                            NumberPhoneManager: AccountInfoResponse.NumberPhoneManager,
+                            DriverLicenseNo: AccountInfoResponse.DriverLicenseNo,
+                            LicenseClass: AccountInfoResponse.LicenseClass,
+                            LicenseExpires: AccountInfoResponse.LicenseExpires,
+                        }
+
+
+                        //Cập nhật loại tài khoản 
+                        if ($scope.AccountDetailDetail.AccountType === "1") {
+                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[0].AccountTypeName;
+                        }           
+                        if ($scope.AccountDetailDetail.AccountType === "2") {
+                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[1].AccountTypeName;
+                        }           
+                        if ($scope.AccountDetailDetail.AccountType === "3") {
+                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[2].AccountTypeName;
+                        }           
+                        if ($scope.AccountDetailDetail.AccountType === "4") {
+                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[3].AccountTypeName;
+                        }           
+                        if ($scope.AccountDetailDetail.AccountType === "5") {
+                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[4].AccountTypeName;
+                        }           
+                        if ($scope.AccountDetailDetail.AccountType === "7") {
+                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[5].AccountTypeName;
+                        }
+
+                        //Cập nhật giới tính
+                        if ($scope.AccountDetailDetail.Gender === 1) {
+                            $scope.AccountDetailDetail.Gender = "Nam";
+                        } else {
+                            $scope.AccountDetailDetail.Gender = "Nữ";
+                        }  //Cập nhật phê duyệt. 
+                        //if ($scope.AccountDriverDetail.Verify === true) {
+                        //    $scope.AccountDriverDetail.Verify = "Đã duyệt";
+                        //} else {
+                        //    $scope.AccountDriverDetail.Verify = "Chưa duyệt";
+                        //} //Cập nhật đổi mật khẩu. 
+                        //if ($scope.AccountDriverDetail.IsChangePassword === true) {
+                        //    $scope.AccountDriverDetail.IsChangePassword = "Đã đổi";
+                        //} else {
+                        //    $scope.AccountDriverDetail.IsChangePassword = "Chưa đổi";
+                        //}
+
+                        $scope.tableParams1 = new NgTableParams({}, { dataset: RoleResponse });
+                        break;
+                }
+
+            });
+
+        }// end
+       
+         
         // hám khởi tạo tất cả giá trị; 
-        $scopeInit = function () {
-            var AccountDriverDetailResponseModel = null;
-            var AccountRoleDriverResponseModel = null;
+        $scope.Init = function () { 
             $scope.tableParams1 = $scope.tableParams1 = null;
+            $scope.tableParams2 = $scope.tableParams2 = null;
             $scope.ListRole = [];
+            $scope.ShowDetailAccount();
         }
-        $scope.Main = function () {
+         
+        $scope.Init();  
 
-            $scopeInit();
+        // Hàm 2: Lấy ds quyền chưa cấp cho account
+        $scope.GetRole = function () {
+            var Account_IDRequest = {
+                Account_ID: AccountIDRequest,
+            } 
+            $account.ManagerGetDetailRoleAccountByAccountID(Account_IDRequest, function (res) {
 
-            var AccountDriverDetailResponseModel = AccountInfoDatailRequest.AccountInfo;
-            var AccountRoleDriverResponseModel = AccountInfoDatailRequest.RoleInfo;
+                switch (res.data.ReturnCode) {
+                    case 1: 
 
-            $scope.AccountDriverDetail = {
-                Avatar: AccountDriverDetailResponseModel.Avatar,
-                Account_ID: AccountDriverDetailResponseModel.Account_ID,
-                FullName: AccountDriverDetailResponseModel.FullName,
-                Gender: AccountDriverDetailResponseModel.Gender,
-                Birthday: AccountDriverDetailResponseModel.Birthday,
-                NumberPhone: AccountDriverDetailResponseModel.NumberPhone,
-                Addres: AccountDriverDetailResponseModel.Addres,
-                Email: AccountDriverDetailResponseModel.Email,
-                CreateDate: AccountDriverDetailResponseModel.CreateDate,
-                Account_Status: AccountDriverDetailResponseModel.Account_Status,
-                Verify: AccountDriverDetailResponseModel.Verify,
-                IsChangePassword: AccountDriverDetailResponseModel.IsChangePassword,
-                AccountType: AccountDriverDetailResponseModel.AccountType,
-                UnitName: AccountDriverDetailResponseModel.UnitName,
-                Manager: AccountDriverDetailResponseModel.Manager,
-                EmailManager: AccountDriverDetailResponseModel.EmailManager,
-                NumberPhoneManager: AccountDriverDetailResponseModel.NumberPhoneManager,
-                DriverLicenseNo: AccountDriverDetailResponseModel.DriverLicenseNo,
-                LicenseClass: AccountDriverDetailResponseModel.LicenseClass,
-                LicenseExpires: AccountDriverDetailResponseModel.LicenseExpires,
-            }
+                        $scope.tableParams2 = new NgTableParams({}, { dataset: res.data.Data.RoleMasterByAccountID });
+                        break;
+                }
 
-
-            //Cập nhật loại tài khoản 
-            if ($scope.AccountDriverDetail.AccountType === "1") {
-                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[0].AccountTypeName;
-            }
-            if ($scope.AccountDriverDetail.AccountType === "2") {
-                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[1].AccountTypeName;
-            }
-            if ($scope.AccountDriverDetail.AccountType === "3") {
-                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[2].AccountTypeName;
-            }
-            if ($scope.AccountDriverDetail.AccountType === "4") {
-                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[3].AccountTypeName;
-            }
-            if ($scope.AccountDriverDetail.AccountType === "5") {
-                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[4].AccountTypeName;
-            }
-            if ($scope.AccountDriverDetail.AccountType === "7") {
-                $scope.AccountDriverDetail.AccountType = AccountTypeRequest[5].AccountTypeName;
-            }
-             
-            //Cập nhật giới tính
-            if ($scope.AccountDriverDetail.Gender === 1) {
-                $scope.AccountDriverDetail.Gender = "Nam";
-            } else {
-                $scope.AccountDriverDetail.Gender = "Nữ";
-            }  //Cập nhật phê duyệt. 
-            //if ($scope.AccountDriverDetail.Verify === true) {
-            //    $scope.AccountDriverDetail.Verify = "Đã duyệt";
-            //} else {
-            //    $scope.AccountDriverDetail.Verify = "Chưa duyệt";
-            //} //Cập nhật đổi mật khẩu. 
-            //if ($scope.AccountDriverDetail.IsChangePassword === true) {
-            //    $scope.AccountDriverDetail.IsChangePassword = "Đã đổi";
-            //} else {
-            //    $scope.AccountDriverDetail.IsChangePassword = "Chưa đổi";
-            //}
-
-            $scope.tableParams1 = new NgTableParams({}, { dataset: AccountRoleDriverResponseModel });
+            });
         }
-        $scope.Main();
 
-        //var dataChart = [{
-        //    "label": "Venezuela",
-        //    "value": "290"
-        //}, {
-        //    "label": "Saudi",
-        //    "value": "260"
-        //}, {
-        //    "label": "Canada",
-        //    "value": "180"
-        //}, {
-        //    "label": "Iran",
-        //    "value": "140"
-        //}, {
-        //    "label": "Russia",
-        //    "value": "115"
-        //}, {
-        //    "label": "UAE",
-        //    "value": "100"
-        //}
-        //];
-        //// datasource
-        //$scope.myDataSource = {
-        //    "chart": {
-        //        "caption": "Countries With Most Oil Reserves [2017-18]",
-        //        "subCaption": "In MMbbl = One Million barrels",
-        //        "xAxisName": "Country",
-        //        "yAxisName": "Reserves (MMbbl)",
-        //        "numberSuffix": "K",
-        //        "theme": "fusion",
-        //    },
-        //    "data": dataChart
-        //};
-
-
-
+        // update khóa, mở duyền
         $scope.UpdateRole = function (roleRequestModel) {
             if (roleRequestModel.RoleDetail_Status === RoleStatus[0].RoleStatusID) {
                 alert("Mở quyền " + roleRequestModel.RoleName);
@@ -139,16 +151,8 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
             } else {
                 $scope.ShowLayoutDecentralization = true;
                 //code
-                // gọi hàm lấy quyền lên 
-                $scope.ListRole = [
-                    { "GroupRoleID": 8, "GroupRoleName": "Quản lý lái xe", "RoleMaster_ID": 3, "RoleName": "Xem thông tin lái xe " },
-                    { "GroupRoleID": 8, "GroupRoleName": "Quản lý lái xe", "RoleMaster_ID": 4, "RoleName": "Xem lịch công tác" },
-                    { "GroupRoleID": 8, "GroupRoleName": "Quản lý lái xe", "RoleMaster_ID": 5, "RoleName": "Phân công lái xe" },
-                    { "GroupRoleID": 8, "GroupRoleName": "Quản lý lái xe", "RoleMaster_ID": 6, "RoleName": "Quản lý lái xe" },
-                    { "GroupRoleID": 2, "GroupRoleName": "Quản lý phong nghỉ chuyên gia", "RoleMaster_ID": 7, "RoleName": "Thêm mới phòng nghỉ" },
-
-                ]
-                //code
+                // gọi hàm lấy quyền chưa được phân cho account
+                $scope.GetRole();  
             }
         }
         //Thông tin quyền được cấp
@@ -190,6 +194,19 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
         //    }
 
         //};
+
+        $scope.ListRoleMasterResponse = [];
+        $scope.tableParams2 = $scope.tableParams2 = null;
+        $scope.ManagerGetRole = function () {
+            $account.ManagerGetRoleMasterByAccountID({}, function (res) {
+                switch (res.data.ReturnCode) {
+                    case 1:
+                        $scope.ListRoleMasterResponse = res.data.Data.RoleMasterByAccountID;
+                        $scope.tableParams2 = new NgTableParams({}, { dataset: $scope.ListRoleMasterResponse });
+                        break;
+                }
+            });
+        } // end
 
         // Cập nhật chọn quyền để cấp
         $scope.updateCheck = function (RoleMasterIDRequest) {

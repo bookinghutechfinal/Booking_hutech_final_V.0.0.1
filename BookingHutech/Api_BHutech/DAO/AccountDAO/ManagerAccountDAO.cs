@@ -313,9 +313,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Models.AccountModels.RoleMaster roleMaster = new Models.AccountModels.RoleMaster();
-                    roleMaster.GroupRoleID = Int32.Parse(reader["GroupRoleID"].ToString());
-                    roleMaster.GroupRoleName = reader["GroupRoleName"].ToString();
+                    Models.AccountModels.RoleMaster roleMaster = new Models.AccountModels.RoleMaster(); 
                     roleMaster.RoleMaster_ID = Int32.Parse(reader["RoleMaster_ID"].ToString());
                     roleMaster.RoleName = reader["RoleName"].ToString();
                     listRoleMasters.Add(roleMaster);
