@@ -109,8 +109,9 @@
             <div class="x_panel" ng-show="showByPermission(900)">
                 <div class="x_title">
                     <ul>
-                        <li><a href="#/main/manager-Booking-Car"><h5><i class="fa fa-th-list"></i> Danh sách đơn cấp phát xe</h5></a></li>
-                        <li><a href=""><h5> / Chi tiết đơn cấp phát xe</h5></a></li>
+                        <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                        <li><a href="#/main/manager-Booking-Car"><h5> / Danh sách đơn cấp phát</h5></a></li>
+                        <li><a href=""><h5> / Chi tiết đơn </h5></a></li>
                     </ul>
                 </div>
                 <div class="x_content" style="display: block;">
@@ -181,13 +182,13 @@
                                         Ngày tạo: {{DetalRegistrationCar.CreatDay | date:'HH:mm dd/MM/yyyy'}}
                                     </div>
                                 </div>
-                                <div class="col-md-8 " style="float:right">
+                                <div class="col-md-8 " style="float:right" ng-show="showByPermission(905) || showByPermission(906)">
                                     <span class="field-validation-valid text-danger ngHideSample" ng-show="CarInfo.CarImage === '' || CarInfo.CarImage === null && !isCarInfo"><i class="fa fa-warning"></i>Vui lòng chọn xe trước khi duyệt hoặc cập nhật chờ BGH duyệt!</span>
                                 </div>
                                 <!--Start: Button-->
                                 <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" ng-show="showByPermission(901)"> </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12" ng-show="showByPermission(901)">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" ng-show="showByPermission(906)"> </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12" ng-show="showByPermission(906)">
                                         <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status !== 5 && DetalRegistrationCar.Profile_Status !== 7  && DetalRegistrationCar.Profile_Status !== 8  && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
                                             <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="AdminNotVerify()">
                                                 <i class="glyphicon glyphicon-remove"></i>
@@ -208,8 +209,8 @@
                                         </div>
                                     </div>
                                     <!--BGH-->
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  ng-show="showByPermission(902)"> </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12" ng-show="showByPermission(902)">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  ng-show="showByPermission(905)"> </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12" ng-show="showByPermission(905)">
                                         <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status !== 8">
                                             <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="btnSchoolNotVerify()">
                                                 <i class="glyphicon glyphicon-remove"></i>

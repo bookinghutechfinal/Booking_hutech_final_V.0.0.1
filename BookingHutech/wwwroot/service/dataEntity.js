@@ -59,6 +59,19 @@ var CheckDataLogin = function (request) {
     }
 }
 
+ //Hàm 4: Kiểm tra  Password và ConfirmPassWord
+var CheckDataChangePassword = function (request) {
+    if (checkNull(request.Password) === true) {  
+        return 139;
+    }
+    if (checkNull(request.ConfirmPassWord) === true) {  
+        return 140;
+    }
+    if (request.ConfirmPassWord !== request.Password ) {  
+        return 141;
+    }
+}
+
 // Hàm 6: Kiểm tra loại tài khoản. 
 var CheckAccountType = function (accountType) {
     if (accountType === '1') {

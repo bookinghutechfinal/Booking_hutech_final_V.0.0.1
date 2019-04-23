@@ -1,4 +1,5 @@
-﻿
+﻿  
+ 
 mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account',
     function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account) {
 
@@ -11,7 +12,7 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
             $state.go('changePassword');
             return;
         };
-
+        $rootScope.isLoading = false; 
 
         // kiểm tra account đẵ đăng nhập chưa, đổi mật khẩu chưa. 
         var result = CheckAccountLoginAndChangePass(AccountInfo);
@@ -21,6 +22,8 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                 $scope.goToChangePassword();
                 break;
             case 3:
+                $rootScope.isLoading = true; 
+                location.reload();  
                 $scope.goToHome();
                 break;
             case 1:
@@ -59,10 +62,8 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
             }
 
 
-            $account.Login($scope.accountLoginRequest, function (response) {
-                
-                switch (response.data.ReturnCode) {
-
+            $account.Login($scope.accountLoginRequest, function (response) { 
+                switch (response.data.ReturnCode) { 
                     case 152:
                         toastr.error($rootScope.initMessage('LoginFail'));
                         break;
@@ -75,16 +76,19 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                     case 135:
                         $scope.PutCookies = function () {
                             var ObjAccountInfo = response.data.Data.GetAccountInfo[0];
-                            var ObjRoleCode = response.data.Data.GetRoleCode;
+                            var ObjRoleCode = response.data.Data.GetRoleCode; 
                             $cookies.putObject("AccountInfoCheckPermissions", ObjAccountInfo);
                             $cookies.putObject("AccountInfo", {
                                 ObjAccountInfo,
-                                ObjRoleCode,
+                                ObjRoleCode
+                                
                             });  // thông tin accunt login 
+                            $cookies.put('myReload', 1);
                         }
                         //toastr.success($rootScope.initMessage('MessageChangeAccount'));
                         $scope.PutCookies();
                         $scope.goToChangePassword(); // đổi pass word. 
+                        toastr.success($rootScope.initMessage('LoginSuccess'));
                         break;
                     case 1:
                         $scope.PutCookies = function () {
@@ -93,8 +97,9 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                             $cookies.putObject("AccountInfoCheckPermissions", ObjAccountInfo);
                             $cookies.putObject("AccountInfo", {
                                 ObjAccountInfo,
-                                ObjRoleCode,
+                                ObjRoleCode
                             });  // thông tin accunt login 
+                            $cookies.put('myReload', 1);
                         }
                         $scope.PutCookies();
                         toastr.success($rootScope.initMessage('LoginSuccess'));

@@ -193,24 +193,24 @@
                                                         <thead>
                                                             <tr class="headings">
                                                                 <th class="column-title">#STT</th>
-                                                                <th class="column-title">Tên quyền</th>
-                                                                <th class="column-title">Trạng thái</th>
-                                                                <th class="column-title">Người cấp</th>
+                                                                <th class="column-title"style="width:52%" align="left">Tên quyền</th>
+                                                                <th class="column-title" >Trạng thái</th>
+                                                                <th class="column-title" >Người cấp</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr class="even pointer" ng-repeat="role in $data ">
-                                                                <td class=" ">
+                                                                <td   >
                                                                     {{$index+1}}
                                                                 </td>
-                                                                <td class=" ">
+                                                                <td style="width:52%" align="left" >
                                                                     {{role.RoleName}}
                                                                 </td>
-                                                                <td class=" ">
+                                                                <td  >
                                                                     <i class="fa fa-circle text-success" ng-show="role.RoleDetail_Status"> Hoạt động</i>
                                                                     <i class="fa fa-circle text-success" style="color: #e65b5b" ng-show="!role.RoleDetail_Status"> Đã khóa</i>
                                                                 </td>
-                                                                <td class=" ">
+                                                                <td  >
                                                                     {{role.FullNameUpdate}}
                                                                 </td>
                                                             </tr>

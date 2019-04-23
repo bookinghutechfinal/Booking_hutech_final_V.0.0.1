@@ -339,10 +339,12 @@
     <Content Include="images\logo\logo.png" />
     <Content Include="images\support\54ab57ffea6b7dc23c3864320e8a4cdc.png" />
     <Content Include="images\support\99e1e13ab03ae19ef10bc40b7dd42af4.png" />
+    <Content Include="script\support\bootstrap.min.css" />
     <Content Include="images\support\login.jpg" />
     <Content Include="images\support\logo-white.png" />
     <Content Include="images\support\logo.png" />
     <Content Include="images\support\low_poly_background.jpg" />
+    <Content Include="script\support\style.css" />
     <Content Include="Scripts\angular-translate\angular-translate.js" />
     <Content Include="Scripts\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="Scripts\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
@@ -1512,6 +1514,9 @@
     <Content Include="wwwroot\views\pages\booking\bookingMeetingHall\meetingHallInfo.html" />
     <Content Include="wwwroot\views\pages\home\home.html" />
     <Content Include="wwwroot\views\pages\support\supporthome.html" />
+    <Content Include="script\support\jquery-2.1.4.min.js" />
+    <Content Include="script\support\bootstrap.min.js" />
+    <Content Include="script\support\startuply.js" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -2513,7 +2518,6 @@
   <ItemGroup>
     <Folder Include="Api_BHutech\Lib\Utils\Log\" />
     <Folder Include="Reports\" />
-    <Folder Include="script\support\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -23,7 +23,7 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                 }  
                 else if (response.data.ReturnCode === 2) { 
                     $rootScope.showError = true; 
-                    toastr.error('Hệ thống có lỗi trong quá trình xử lý!');
+                    toastr.error('Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.!');
                 }
                 else if (response.data.ReturnCode === 114) {
                     toastr.error('Vui lòng đăng nhập lại, để tiếp tục sử dụng!');
@@ -33,7 +33,7 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                    
                 }
                 else if (response.data.ReturnCode === 150) {
-                    toastr.error('Bạn không có quyền thực hiện chức năng này!');
+                    toastr.error('Xin lỗi! Bạn không có quyền thực hiện chức năng này!');
                 }
                 else if (response.data.ReturnCode === 102) {
                     toastr.error('Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên để được hướng dẫn!');

@@ -32,8 +32,7 @@ mainmodule.controller('LogoutController', ['$scope', '$state', '$rootScope', '$c
                         toastr.error($rootScope.initMessage('LogoutFail'));
                         break;
                     case 1:
-                        $modalInstance.close();
-                      //  location.reload(); 
+                        $modalInstance.close(); 
                         $scope.goToLogin();
 
                         break;

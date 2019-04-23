@@ -93,6 +93,15 @@ namespace BookingHutech.Api_BHutech.Models.Response
                 Message = "Tài khoản hoặc mật khẩu không đúng",
             };
         }
+        public static ApiResponse PasswordAlreadyExist(int ReturnCode = (int)BHutechExceptionType.PASSWORDALREADYEXIST, object Data = null)
+        {
+            return new ApiResponse()
+            {
+                Data = Data,
+                ReturnCode = ReturnCode,
+                Message = "tài khoản đã tồn tại",
+            };
+        }
         public static ApiResponse Not_Verify(object Data = null, int ReturnCode = (int)BHutechExceptionType.NOT_VERIFY)
         {
             return new ApiResponse()

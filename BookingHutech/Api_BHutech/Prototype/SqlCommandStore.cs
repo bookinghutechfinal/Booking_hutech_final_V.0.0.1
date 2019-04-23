@@ -114,7 +114,9 @@ namespace BookingHutech.Api_BHutech.Prototype
         // Anh create 22/4/2019. Tìm kiếm đơn cấp phát theo  mã đơn cấp phát của Khoa/Viện
         public const string uspUnitSearchRegisterCarByRegistrationCarID = "uspUnitSearchRegisterCarByRegistrationCarID {0},{1}";
         // Anh create 21/4/2019. Tìm kiếm đơn cấp phát theo từ ngày đến ngày và trạng thái va2 theo khoa/viện
-        public const string uspUnitSearchRegisterCar = "uspUnitSearchRegisterCar";
+        public const string uspUnitSearchRegisterCar = "uspUnitSearchRegisterCar"; 
+        // Anh create 23/4/2019. Đổi mật khẩu cho lần đầu tiên đăng nhập hệ thống
+        public const string uspChangePasswordByAccountID = "uspChangePasswordByAccountID";
  
 
     }

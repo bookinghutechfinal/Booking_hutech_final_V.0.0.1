@@ -532,6 +532,49 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
 
         }
 
+        /// <summary>
+        /// Anh create 23/4/2019. Đổi mật khẩu
+        /// </summary>
+        /// <param name="sqlStore"></param>
+        /// <param name="request"></param>
+        public void ChangePasswordDAO(String sqlStore, ManagerUpdateAccountRequestModel request)
+        {
+            ManagerUpdateAccountRequestModel req = new ManagerUpdateAccountRequestModel(); 
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Account_ID", SqlDbType.VarChar,10).Value = request.Account_ID;
+            cmd.Parameters.Add("@Password", SqlDbType.Char, 200).Value = request.Password;
+
+            cmd.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                req.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                if (req.ReturnCode != GroupRoleResponseType.Success)
+                {
+                    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, req.ReturnCode, (int)req.ReturnCode));
+                    throw new Exception();
+                } 
+                con.Close(); 
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+        }
     }
 
 }

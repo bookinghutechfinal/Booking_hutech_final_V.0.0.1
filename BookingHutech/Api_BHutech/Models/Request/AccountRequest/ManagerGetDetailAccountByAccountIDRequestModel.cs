@@ -7,6 +7,6 @@ namespace BookingHutech.Api_BHutech.Models.Response.AccountResponse
 {
     public class ManagerGetDetailAccountByAccountIDRequestModel
     {
-        public string Account_ID { get; set; }
+        public string Account_ID { get; set; } 
     }
 }

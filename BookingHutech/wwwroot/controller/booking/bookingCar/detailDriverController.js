@@ -5,7 +5,7 @@ mainmodule.controller('DetailDriverController', ['$scope', '$state', '$rootScope
         $scope.Titile = "Chi tiết tài xế";
         $scope.ClosePopup = function () {
             $modalInstance.close();
-            location.reload();
+            //location.reload();
         }
         var AccountStatus = [
             {

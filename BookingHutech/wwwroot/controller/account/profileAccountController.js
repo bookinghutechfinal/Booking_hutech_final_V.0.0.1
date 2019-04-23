@@ -4,8 +4,7 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
         // AccountInfoDatailRequest: Tham số nhận dữ liệu từ màn hình quản lý lái xe.   
         $scope.Titile = "Chi tiết tài xế";
         $scope.ClosePopup = function () {
-            $modalInstance.close();
-            location.reload();
+            $modalInstance.close(); 
         }
         // hám khởi tạo tất cả giá trị; 
         $scopeInit = function () {

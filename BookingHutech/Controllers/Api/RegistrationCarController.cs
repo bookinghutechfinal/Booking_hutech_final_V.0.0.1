@@ -210,20 +210,20 @@ namespace BookingHutech.Controllers.Api
                     try
                     {
                         // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
-                        //JavaScriptSerializer js = new JavaScriptSerializer();
-                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
-                        //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        int Result = checkPermissions.ResponseCheckPermissions(908, CookieAccountInfo);
 
-                        //switch (Result)
-                        //{
-                        //    case 114:
-                        //        return ApiResponse.LostSession();
-                        //    case 150:
-                        //        return ApiResponse.NotPermission();
-                        //    case 102:
-                        //        return ApiResponse.AccountDelete();
-                        //}
-                        // OK -> Đi tiếp.
+                        switch (Result)
+                        {
+                            case 114:
+                                return ApiResponse.LostSession();
+                            case 150:
+                                return ApiResponse.NotPermission();
+                            case 102:
+                                return ApiResponse.AccountDelete();
+                        }
+                       // /./OK->Đi tiếp.
                         try
                         {
                             registrationCarServices.CreateNewRegistrationCarService(request);
@@ -269,19 +269,19 @@ namespace BookingHutech.Controllers.Api
                     try
                     {
                         // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
-                        //JavaScriptSerializer js = new JavaScriptSerializer();
-                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
-                        //int Result = checkPermissions.ResponseCheckPermissions(400, CookieAccountInfo);
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        int Result = checkPermissions.ResponseCheckPermissions(900, CookieAccountInfo);
 
-                        //switch (Result)
-                        //{
-                        //    case 114:
-                        //        return ApiResponse.LostSession();
-                        //    case 150:
-                        //        return ApiResponse.NotPermission();
-                        //    case 102:
-                        //        return ApiResponse.AccountDelete();
-                        //}
+                        switch (Result)
+                        {
+                            case 114:
+                                return ApiResponse.LostSession();
+                            case 150:
+                                return ApiResponse.NotPermission();
+                            case 102:
+                                return ApiResponse.AccountDelete();
+                        }
                         // OK -> Đi tiếp.
                         try
                         {
@@ -328,19 +328,19 @@ namespace BookingHutech.Controllers.Api
                     try
                     {
                         // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
-                        //JavaScriptSerializer js = new JavaScriptSerializer();
-                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
-                        //int Result = checkPermissions.ResponseCheckPermissions(400, CookieAccountInfo);
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        int Result = checkPermissions.ResponseCheckPermissions(904, CookieAccountInfo);
 
-                        //switch (Result)
-                        //{
-                        //    case 114:
-                        //        return ApiResponse.LostSession();
-                        //    case 150:
-                        //        return ApiResponse.NotPermission();
-                        //    case 102:
-                        //        return ApiResponse.AccountDelete();
-                        //}
+                        switch (Result)
+                        {
+                            case 114:
+                                return ApiResponse.LostSession();
+                            case 150:
+                                return ApiResponse.NotPermission();
+                            case 102:
+                                return ApiResponse.AccountDelete();
+                        }
                         // OK -> Đi tiếp.
                         try
                         {
@@ -369,12 +369,7 @@ namespace BookingHutech.Controllers.Api
             }
         }
 
-
-
-
-
-
-
+         
 
         /// <summary>
         /// Anh create 19/4/2019. QT Duyệt, không duyệt, BGH Duyệt, BGH không duyệt,  
@@ -435,7 +430,7 @@ namespace BookingHutech.Controllers.Api
 
         /// <summary>
         /// Chỉ dành cho quản trị viên và bgh
-        /// GetListRegistrationCarDAO. Lấy danh sách đơn cấp phát dùng chung cho cấp 1 thư ký khoa,2 trưởng khoa, vvv,3,4
+        /// Tìm kiếm xe trống để cấp
         /// Create by Anh.Tran 15/04/2019
         /// </summary>
         /// <param name="GetCarInfoRequestModel"></param>
@@ -451,19 +446,19 @@ namespace BookingHutech.Controllers.Api
                     try
                     {
                         // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
-                        //JavaScriptSerializer js = new JavaScriptSerializer();
-                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
-                        //int Result = checkPermissions.ResponseCheckPermissions(400, CookieAccountInfo);
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        int Result = checkPermissions.ResponseCheckPermissions(903, CookieAccountInfo);
 
-                        //switch (Result)
-                        //{
-                        //    case 114:
-                        //        return ApiResponse.LostSession();
-                        //    case 150:
-                        //        return ApiResponse.NotPermission();
-                        //    case 102:
-                        //        return ApiResponse.AccountDelete();
-                        //}
+                        switch (Result)
+                        {
+                            case 114:
+                                return ApiResponse.LostSession();
+                            case 150:
+                                return ApiResponse.NotPermission();
+                            case 102:
+                                return ApiResponse.AccountDelete();
+                        }
                         // OK -> Đi tiếp.
                         try
                         {
@@ -566,19 +561,19 @@ namespace BookingHutech.Controllers.Api
                     try
                     {
                         // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
-                        //JavaScriptSerializer js = new JavaScriptSerializer();
-                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
-                        //int Result = checkPermissions.ResponseCheckPermissions(400, CookieAccountInfo);
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        int Result = checkPermissions.ResponseCheckPermissions(900, CookieAccountInfo);
 
-                        //switch (Result)
-                        //{
-                        //    case 114:
-                        //        return ApiResponse.LostSession();
-                        //    case 150:
-                        //        return ApiResponse.NotPermission();
-                        //    case 102:
-                        //        return ApiResponse.AccountDelete();
-                        //}
+                        switch (Result)
+                        {
+                            case 114:
+                                return ApiResponse.LostSession();
+                            case 150:
+                                return ApiResponse.NotPermission();
+                            case 102:
+                                return ApiResponse.AccountDelete();
+                        }
                         // OK -> Đi tiếp.
                         try
                         {
@@ -624,19 +619,19 @@ namespace BookingHutech.Controllers.Api
                     try
                     {
                         // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
-                        //JavaScriptSerializer js = new JavaScriptSerializer();
-                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
-                        //int Result = checkPermissions.ResponseCheckPermissions(400, CookieAccountInfo);
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        int Result = checkPermissions.ResponseCheckPermissions(904, CookieAccountInfo);
 
-                        //switch (Result)
-                        //{
-                        //    case 114:
-                        //        return ApiResponse.LostSession();
-                        //    case 150:
-                        //        return ApiResponse.NotPermission();
-                        //    case 102:
-                        //        return ApiResponse.AccountDelete();
-                        //}
+                        switch (Result)
+                        {
+                            case 114:
+                                return ApiResponse.LostSession();
+                            case 150:
+                                return ApiResponse.NotPermission();
+                            case 102:
+                                return ApiResponse.AccountDelete();
+                        }
                         // OK -> Đi tiếp.
                         try
                         {

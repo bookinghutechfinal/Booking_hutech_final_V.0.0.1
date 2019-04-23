@@ -26,7 +26,9 @@ namespace BookingHutech.Api_BHutech.Lib.Utils
         NotSession = 114,
         ISCHANGEPASSWORD = 135,
         NOTPERMISSION = 150, // không có quyền (thực hiện chức năng
-        APINOTPERMISSIONCALL = 151 // Không có quyền gọi api này. hết header or không có header. 
+        APINOTPERMISSIONCALL = 151, // Không có quyền gọi api này. hết header or không có header. 
+        PASSWORDALREADYEXIST = 154, // MẬT KHẨU ĐÃ TỒN TẠI
+
     }
 
     /// <summary>

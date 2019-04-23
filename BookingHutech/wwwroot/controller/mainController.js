@@ -21,10 +21,20 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
         $scope.Error = function () {
             $cookies.remove('AccountInfo');
             $cookies.remove("AccountInfoCheckPermissions");
-            $state.go('login');
-            location.reload();
+            $cookies.remove("myReload");
+            $state.go('login'); 
         }
-      
+        $rootScope.showError = false; 
+        $scope.Functiontimeout = function () {
+            $rootScope.isLoading = true; 
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            $cookies.remove("myReload");
+            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập."); 
+            $state.go('login');  
+        } // end
+
+
         try {
             var AccountInfo = $account.getAccountInfo();
             //*** Hàm 2:  kiểm tra quyền show menu & layout tương ứng. 
@@ -37,180 +47,161 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
                 }
                 return false;
             }
+
+            var result = CheckAccountLoginAndChangePass(AccountInfo);
+            switch (result) {
+                case 1:
+                    $scope.Functiontimeout();
+                  //  $state.go('login');
+                    break;
+                case 2:
+                    $scope.goToChangePassword();
+                    break;
+                case 3:
+                    $scope.UserName = AccountInfo.ObjAccountInfo.FullName;
+                    $rootScope.isLoading = false;
+                    if (parseInt($cookies.get('myReload')) == 1) {
+                        $rootScope.isLoading = true;
+                        location.reload();
+                        $cookies.put('myReload', 0);
+                    }
+                    break;
+            }
         }
         catch (err) {
-            $scope.goToLogin();
-        }
-        var result = CheckAccountLoginAndChangePass(AccountInfo);
-        switch (result) {
-            case 1:
-                $scope.goToLogin();
-                break;
-            case 2:
-                $scope.goToChangePassword();
-                break;
-            case 3:
-                $scope.UserName = AccountInfo.ObjAccountInfo.FullName;
-                break;
+            $scope.Functiontimeout();
         }
 
-        $scope.logout = function () {
+            
+            $scope.logout = function () { 
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/popupLogout.html',
+                    controller: 'LogoutController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'sm',
+                    resolve: {
+                        RequestData: function () {
+                            return null;
+                        },
+                    }
+                });
+                modalInstance.result.then(function () {
 
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/account/popupLogout.html',
-                controller: 'LogoutController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'sm',
-                resolve: {
-                    RequestData: function () {
-                        return null;
-                    },
-                }
-            });
-            modalInstance.result.then(function () {
-
-            });
-        }
-
-        //// Mỡ popup xem chi tiết profile 
-        $scope.OpenPopupShowProfile = function () {
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/account/popupProfileAccount.html',
-                controller: 'ProfileAccountController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'lg',
-                resolve: {
-                    RequestData: function () {
-                        return null;
-                    },
-                }
-            });
-            modalInstance.result.then(function () {
-
-            });
-        }
-
-        // Tạm nhét đặt xe vào đây. 
-        $scope.OpenPopupRegisteredBookingCar = function () {
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupRegisterBookingCar.html',
-                controller: 'RegisterBookingCarController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'lg',
-                resolve: {
-                    RequestData: function () {
-                        return null;
-                    },
-                }
-            });
-            modalInstance.result.then(function () {
-
-            });
-        }
-
-
-
-        // Anh.Set timeout
-        var pc = this;
-        pc.data = "You're Idle. Do Something!!!";
-        $scope.started = false;
-
-        function closeModals() {
-            if ($scope.warning) {
-                $scope.warning.close();
-                $scope.warning = null;
+                });
             }
 
-            if ($scope.timeout) {
-                $scope.timeout.close();
-                $scope.timeout = null;
+            //// Mỡ popup xem chi tiết profile 
+            $scope.OpenPopupShowProfile = function () {
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/popupProfileAccount.html',
+                    controller: 'ProfileAccountController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        RequestData: function () {
+                            return null;
+                        },
+                    }
+                });
+                modalInstance.result.then(function () {
+
+                });
             }
-        }
-        $scope.$on('IdleStart', function () {
-            $scope.warning = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/account/warning-dialog.html',
-                controller: 'ModalInstanceCtrl',
-                //controllerAs: 'pc',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'sm',
-                resolve: {
-                    data: function () {
-                        return pc.data;
-                    }
+
+
+            // Anh.Set timeout
+
+            function closeModals() {
+                if ($scope.warning) {
+                    $scope.warning.close();
+                    $scope.warning = null;
                 }
-            });
 
-            $scope.warning.result.then(function () {
-                console.log('Warning modal is closing now...');
-            });
-        });
-
-        $scope.$on('IdleTimeout', function () {
-            console.log('Idle timeout');
-            closeModals(); 
-            $cookies.remove('AccountInfo');
-            $cookies.remove("AccountInfoCheckPermissions");
-            toastr.error("Phiên làm việc của bạn đã hết hạn!"); 
-            $scope.timeout = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/account/timeout-dialog.html',
-                controller: 'ModalInstanceCtrl',
-                //controllerAs: 'pc',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'sm',
-                resolve: {
-                    data: function () {
-                        return pc.data;
-                    }
+                if ($scope.timeout) {
+                    $scope.timeout.close();
+                    $scope.timeout = null;
                 }
+            }
+            $scope.$on('IdleStart', function () {
+                $scope.warning = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/warning-dialog.html',
+                    controller: 'ModalInstanceCtrl',
+                    //controllerAs: 'pc',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'sm',
+                    resolve: {
+                        data: function () {
+                            return null;
+                        }
+                    }
+                });
+
+                $scope.warning.result.then(function () {
+                    console.log('Warning modal is closing now...');
+                });
             });
 
-            // Your log out code goes here
-            console.log('Your log out code may goes here...');
+            $scope.$on('IdleTimeout', function () {
+                console.log('Idle timeout');
+                closeModals();
+                $cookies.remove('AccountInfo');
+                $cookies.remove("AccountInfoCheckPermissions");
+                $cookies.remove("myReload");
+                toastr.error("Phiên làm việc của bạn đã hết hạn!");
+                $scope.timeout = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/timeout-dialog.html',
+                    controller: 'ModalInstanceCtrl',
+                    //controllerAs: 'pc',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'sm',
+                    resolve: {
+                        data: function () {
+                            return null;
+                        }
+                    }
+                });
 
-            $scope.timeout.result.then(function () {
-                console.log('Timeout modal is closing now...');
+                // Your log out code goes here
+                console.log('Your log out code may goes here...');
+
+                $scope.timeout.result.then(function () {
+                    console.log('Timeout modal is closing now...');
+                });
             });
-        });
 
 
-        $scope.$on('IdleEnd', function () {
-            console.log('Start closing warning modal');
-            closeModals();
-        });
-         
-        //Idle.watch(); // start set timeout
-        //end 
+            $scope.$on('IdleEnd', function () {
+                console.log('Start closing warning modal');
+                closeModals();
+            });
 
-    }]);
-mainmodule.controller('ModalInstanceCtrl', ['$scope', 'data', '$state', '$modal', '$modalInstance', function ($scope, data, $state, $modal, $modalInstance) {
-   var pc = this;
-    pc.title = data;
+           // Idle.watch(); // start set timeout
+            //end 
+
+        }]);
+mainmodule.controller('ModalInstanceCtrl', ['$scope', '$state', '$modal', '$modalInstance', function ($scope, $state, $modal, $modalInstance) {
+
     $scope.Login = function () {
         $modalInstance.close();
-        $state.go('login');   
+        $state.go('login');
     }
-    
+
 }]);
 
 
- 

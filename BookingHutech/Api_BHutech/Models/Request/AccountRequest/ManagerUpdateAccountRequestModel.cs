@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingHutech.Api_BHutech.Lib.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +15,7 @@ namespace BookingHutech.Api_BHutech.Models.Request.AccountRequest
         public string Verify { get; set; }
         public string AccountType { get; set; }
         public DateTime? LastModifiedDate { get; set; }
-
+        public GroupRoleResponseType ReturnCode { get; set; }
         public ManagerUpdateAccountRequestModel() { }
     }
 }

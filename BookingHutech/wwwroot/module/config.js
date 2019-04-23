@@ -43,7 +43,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             controller: 'SupportHomeController',
         })
         .state('changePassword', {
-            url: '/doi-mat-khau',
+            url: '/change-password',
             templateUrl: '/wwwroot/views/pages/account/changePassword.html',
             controller: 'ChangePasswordController',
         })
@@ -132,7 +132,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             //params: {
             //    RegistrationCarID: null,   
             //    ProfileStatus: null,  
-                 
+
             //} 
         })
         .state('main.unitRegisterBookingCar', { // Khoa/Viện BGH 
@@ -143,9 +143,9 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
 
         // Xem chi tiết đơn cấp phát xe - trưởng khoa - thư ky. 
         .state('main.unitDetailRegisterBKCar', {
-            url: '/unitDetail-RegisterBKCar/:RegistrationCarID/:ProfileStatus', 
+            url: '/unitDetail-RegisterBKCar/:RegistrationCarID/:ProfileStatus',
             templateUrl: '/wwwroot/views/pages/booking/bookingCar/unitDetailRegisterBKCar.html',
-            controller: 'UnitDetailRegisterBKCarController', 
+            controller: 'UnitDetailRegisterBKCarController',
         })
         .state('error404', {
             url: '/error404',
@@ -176,7 +176,7 @@ mainmodule.config(['$translateProvider',
             'PleaseInputAccountName': 'Vui lòng nhập tên đăng nhập!',
             'PleaseInputPassword': 'Vui lòng nhập mật khẩu!',
             'LoginFail': 'Tài khoản hoặc mật khẩu không đúng. Vui lòng kiểm tra lại!',
-            'LoginSuccess': 'Đăng nhập thành công.',
+            'LoginSuccess': 'Đăng nhập thành công.', 
             'AccountDelete': 'Tài khoản này đã bị khóa. Vui lòng đăng nhập tài khoản khác!',
             'MessageChangeAccount': 'Vui lòng thay đổi mật khẩu cho lần đầu tiên đăng nhập vào hệ thống!',
             'NotVerify': 'Tài khoản này chưa được quản trị viên duyệt. Vui lòng đăng nhập tài khoản khác!',
@@ -192,6 +192,9 @@ mainmodule.config(['$translateProvider',
             'NewPassWord': 'Mật khẩu mới',
             'ConfirmPassWord': 'Nhập lại mật khẩu',
             'Update': 'Cập nhật',
+            'PasswordError': 'Mật khẩu mới phải từ 6-12 ký tự bao gồm chữ hoa, thường, số, không khoản trắng và không chứa ký tự đặc biệt ngoại trừ @ và --',
+            'PasswordAlreadyExist': 'Tài khoản đã tồn tại!',
+            'ChangepassSuccess': 'Đổi mật khẩu thành công.', 
             /* --------  Booking car ---------- */
             'TypeCar': 'Loại xe',
             'All': '-- Tất cả --',
@@ -201,8 +204,8 @@ mainmodule.config(['$translateProvider',
             'ListCar': 'Danh sách xe',
             'DetailCar': 'Chi tiết xe',
             'TitileUpdateCarInfo': 'Cập nhật thông tin xe',
-            'CalendarDriver':'Lịch công tác',
-            'assignDriver':'Phân công',
+            'CalendarDriver': 'Lịch công tác',
+            'assignDriver': 'Phân công',
             /* --------  Cost Manager ---------- */
             'CostManager': 'Quản lý chi phí',
             'RepairCostManager': 'Sửa chữa',
@@ -212,7 +215,7 @@ mainmodule.config(['$translateProvider',
             'OtherCostManager': 'Chi phí khác',
             /* --------  Report Manager ---------- */
             'ReportCost': 'Thống kê chi phí',
-            
+
 
         });
 

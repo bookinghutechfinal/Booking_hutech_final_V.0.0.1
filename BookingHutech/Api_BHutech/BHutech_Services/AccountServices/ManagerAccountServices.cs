@@ -293,5 +293,25 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
 
         }
 
+
+        /// <summary>
+        /// Anh.Trần Create 26/3/2019 Cập nhật trạng thái tài khoản, duyệt, loại tài khoản
+        /// </summary>
+        /// <param name="request">ManagerUpdateRoleMasterRequestModel</param> 
+        public void ChangePasswordServices(ManagerUpdateAccountRequestModel request)
+        {
+            Helper helper = new Helper();
+            try
+            {
+                String stringSqlChangePassword = String.Format(Prototype.SqlCommandStore.uspChangePasswordByAccountID);
+                managerAccountDAO.ChangePasswordDAO(stringSqlChangePassword, request);
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
     }
 }
