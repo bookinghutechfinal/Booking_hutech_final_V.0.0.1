@@ -2,6 +2,7 @@
 using BookingHutech.Api_BHutech.BHutech_Services.CarServices;
 using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Lib.Helper;
+using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.Response;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,8 @@ namespace BookingHutech.Controllers.Api
         /// Mr.Lam 14/3/2019
         /// </summary>
         /// <returns>List ReportCost</returns>
-        [HttpGet]
-        public ApiResponse ReportCost()
+        [HttpPost]
+        public ApiResponse ReportCost(ReportCostRequestModel request)
         {
             try
             {
@@ -50,7 +51,7 @@ namespace BookingHutech.Controllers.Api
                         // OK -> Đi tiếp. 
                         try
                         {
-                            var Response = managerReportServices.ReportCostServices();
+                            var Response = managerReportServices.ReportCostServices(request);
                             return ApiResponse.Success(Response);
                         }
                         catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 

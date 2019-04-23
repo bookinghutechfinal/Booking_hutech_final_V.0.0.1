@@ -39,6 +39,15 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     
                     result.Add(reportCost);
                 }
+                reader.NextResult();
+                while (reader.Read())
+                {
+                    reportCost = new ReportCost();
+                    reportCost.label = reader["CarNo"].ToString();
+                    reportCost.value = Int32.Parse(reader["TotalCost"].ToString());
+
+                    result.Add(reportCost);
+                }
                 con.Close();
                 return result;
             }

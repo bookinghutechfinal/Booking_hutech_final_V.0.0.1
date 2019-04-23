@@ -37,7 +37,7 @@ namespace BookingHutech.Api_BHutech.Prototype
         //Manager Get List cost by CostsTypeID. Create By Mr.Lam Create 13/3/2019. 
         public const string uspGetListCost = "uspGetListCost {0},N'{1}',N'{2}',{3},{4},{5},{6},{7},{8}";
         //Report cost by month. Create By Mr.Lam Create 14/3/2019. 
-        public const string uspCostReport = "uspCostReport {0},{1}";
+        public const string uspCostReport = "uspCostReport {0},{1},{2},{3},N'{4}',N'{5}'";
         //Manager Update Rroup Role. Create By Anh.Tran Create 15/3/2019. 
         public const string uspManagerUpdateRroupRole = "uspManagerUpdateRroupRole";
         //Manager Get Group Role. Create By Anh.Tran Create 17/3/2019. 
@@ -96,7 +96,7 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspAssignDriverManager = "uspAssignDriverManager {0},{1},N'{2}'";
         //Get List Assigned. Create By Mr.Lam Create 17/4/2019. 
         public const string uspGetListAssigned = "uspGetListAssigned"; 
-        //Get List Assigned. Create By Mr.Lam Create 17/4/2019. 
+        //Get List Assigned. Create By Mr.Lam Create 17/4/2019.  
         public const string uspAddNewCost = "uspAddNewCost '{0}',{1},{2},N'{3}',N'{4}',N'{5}',N'{6}',N'{7}',N'{8}','{9}',N'{10}',{11},{12},{13}"; 
         // Anh create 19/4/2019. QT Duyệt, không duyệt, BGH Duyệt, BGH không duyệt,   
         public const string uspManagerUpdateRegistrationCar = "uspManagerUpdateRegistrationCar";
@@ -116,9 +116,11 @@ namespace BookingHutech.Api_BHutech.Prototype
         // Anh create 21/4/2019. Tìm kiếm đơn cấp phát theo từ ngày đến ngày và trạng thái va2 theo khoa/viện
         public const string uspUnitSearchRegisterCar = "uspUnitSearchRegisterCar"; 
         // Anh create 23/4/2019. Đổi mật khẩu cho lần đầu tiên đăng nhập hệ thống
-        public const string uspChangePasswordByAccountID = "uspChangePasswordByAccountID";
+        public const string uspChangePasswordByAccountID = "uspChangePasswordByAccountID"; 
+        //Get Update Detail Cost. Create By Mr.Lam Create 22/4/2019. 
+        public const string uspUpdateDetailCost = "uspUpdateDetailCost {0},N'{1}',{2},{3},{4}";
+        
  
-
     }
 
 }
