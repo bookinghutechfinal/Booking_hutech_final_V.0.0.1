@@ -1006,6 +1006,7 @@
     <Content Include="wwwroot\controller\account\loginController.js" />
     <Content Include="wwwroot\controller\account\ManagerCreateNewAccountController.js" />
     <Content Include="wwwroot\controller\app\appController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\addNewCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\addNewDetailCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\addNewCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
@@ -1497,6 +1498,7 @@
     <Content Include="wwwroot\views\pages\booking\bookingCar\calendarDriver.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\carDetail.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\managerCarByDriver.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\unitDetailRegisterBKCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
     <Content Include="wwwroot\views\pages\account\popupCreateNewAccount.html" />
