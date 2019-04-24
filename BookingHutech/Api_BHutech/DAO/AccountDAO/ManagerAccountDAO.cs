@@ -573,6 +573,33 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 cmd.Connection.Close();
             }
         }
-    }
 
+        /// <summary>
+        /// UpdateRoleDAO
+        /// Mr.Lam 24/4/2019
+        /// </summary>
+        public int UpdateRoleDAO(string stringSql)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                int a = cmd.ExecuteNonQuery();
+                con.Close();
+                if (a == 0)
+                {
+                    return 2;
+                }
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
+    }
 }

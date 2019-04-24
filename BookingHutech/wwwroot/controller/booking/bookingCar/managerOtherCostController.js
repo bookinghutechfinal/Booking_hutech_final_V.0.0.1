@@ -183,12 +183,13 @@
                     $scope.getListCost();
                 });
             } else {
-                var updateRepairStatusRequestModel = {
-                    RepairID: request.RepairID,
-                    RepairStatus: repairStatus,
-                    FullNameUpdate: AccountInfo.ObjAccountInfo.FullName
-                }
-                $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn cập nhật đơn này?'), function () {
+                $alert.showUpdateDistance($rootScope.initMessage('Bạn muốn cập nhật đơn này? Vui lòng để lại ghi chú.'), function () {
+                    let updateRepairStatusRequestModel = {
+                        RepairID: request.RepairID,
+                        RepairStatus: repairStatus,
+                        FullNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                        Note: $rootScope.alertValue
+                    }
                     $BookingCar.updateRepairStatus(updateRepairStatusRequestModel, function (res) {
                         switch (res.data.ReturnCode) {
                             case 1:

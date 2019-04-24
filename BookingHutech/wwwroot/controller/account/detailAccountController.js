@@ -1,6 +1,9 @@
 ﻿
 mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'AccountIDRequest', 'NgTableParams', '$account','$alert',
     function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountIDRequest, NgTableParams, $account, $alert) {
+
+        var AccountInfo = $account.getAccountInfo();
+
         // AccountIDRequest: Tham số nhận dữ liệu từ màn hình quản lý lái xe.
         $scope.Titile = "Chi tiết tài khoản";
         $scope.ClosePopup = function () {
@@ -97,6 +100,7 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                         //}
 
                         $scope.tableParams1 = new NgTableParams({}, { dataset: RoleResponse });
+                        $scope.GetRole();  
                         break;
                 }
 
@@ -124,8 +128,8 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
 
                 switch (res.data.ReturnCode) {
                     case 1: 
-
-                        $scope.tableParams2 = new NgTableParams({}, { dataset: res.data.Data.RoleMasterByAccountID });
+                        $scope.ListRole = res.data.Data.RoleMasterByAccountID;
+                        $scope.tableParams2 = new NgTableParams({}, { dataset: $scope.ListRole });
                         break;
                 }
 
@@ -152,48 +156,51 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                 $scope.ShowLayoutDecentralization = true;
                 //code
                 // gọi hàm lấy quyền chưa được phân cho account
-                $scope.GetRole();  
+                //$scope.GetRole();  
             }
         }
         //Thông tin quyền được cấp
         var RoleRequest = [];
         var CheckRole = {
             RoleMaster_ID: null,
+            Account_ID: null,
+            FullNameUpdate: null,
+            RoleDetail_Status: null
         }
 
         // check all
-        //$scope.checkUncheckAll = function () {
-        //    if ($scope.checkall) {
-        //        $scope.checkall = true;
-        //        alert("check all1");
-        //    } else {
-        //        $scope.checkall = false;
-        //      //  alert("check all2");
-        //        //if (RoleRequest.length == 0) {
-        //        //    for (var i = 0; i < ListRole.length; i++) {
-        //        //        CheckRole = {
-        //        //            RoleMaster_ID: ListRole[i].RoleMaster_ID,
-        //        //        }
-        //        //        RoleRequest.push(CheckRole);
-        //        //    }
+        $scope.checkUncheckAll = function () {
+            if ($scope.checkall) {
+                $scope.checkall = true;
+                alert("check all1");
+            } else {
+                $scope.checkall = false;
+              //  alert("check all2");
+                if (RoleRequest.length == 0) {
+                    for (var i = 0; i < ListRole.length; i++) {
+                        CheckRole = {
+                            RoleMaster_ID: ListRole[i].RoleMaster_ID,
+                        }
+                        RoleRequest.push(CheckRole);
+                    }
 
-        //        //} else {
-        //            //var test = RoleRequest;
-        //            //for (var i = 0; i < test.length; i++) {
-        //            //    CheckRole = {
-        //            //        RoleMaster_ID: ListRole[i].RoleMaster_ID,
-        //            //    }
-        //            //    for (var j = 0; j < ListRole.length; j++) {
-        //            //        if (test[i].RoleMaster_ID != ListRole[j].RoleMaster_ID) {
-        //            //            RoleRequest.push(CheckRole);
-        //            //        }
-        //            //    }
-        //            //}
-        //        //}
+                } else {
+                    var test = RoleRequest;
+                    for (var i = 0; i < test.length; i++) {
+                        CheckRole = {
+                            RoleMaster_ID: ListRole[i].RoleMaster_ID,
+                        }
+                        for (var j = 0; j < ListRole.length; j++) {
+                            if (test[i].RoleMaster_ID != ListRole[j].RoleMaster_ID) {
+                                RoleRequest.push(CheckRole);
+                            }
+                        }
+                    }
+                }
 
-        //    }
+            }
 
-        //};
+        };
 
         $scope.ListRoleMasterResponse = [];
         $scope.tableParams2 = $scope.tableParams2 = null;
@@ -212,6 +219,9 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
         $scope.updateCheck = function (RoleMasterIDRequest) {
             CheckRole = {
                 RoleMaster_ID: RoleMasterIDRequest,
+                Account_ID: AccountIDRequest,
+                FullNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                RoleDetail_Status: true
             }
             for (var i = 0; i < RoleRequest.length; i++) {
                 if (RoleRequest[i].RoleMaster_ID == RoleMasterIDRequest) {
@@ -222,27 +232,24 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
             RoleRequest.push(CheckRole);
         };
 
-        // Request 
-        var AccountInfoRequest = {
-            AccountID: "BK0001",
-            FullNameUpdate: 'Anh.Trần'
-        }
-
         // button cấp quyền 
         $scope.Decentralization = function () {
-            $scope.RoleResquestModel = {
-                AccountInfoRequest: AccountInfoRequest,
-                RoleRequest: RoleRequest
-            }
             //*** Funciton 1: Gọi hàm logout 
-            $account.ManagerDecentralization($scope.RoleResquestModel, function (res) {
-
-                switch (res.data.ReturnCode) {
-                    case 1:
-
-                        break;
-                }
-
+            $alert.showConfirmUpdateCarInfo($rootScope.initMessage('Bạn muốn cập nhật quyền cho tài khoản này?'), function () {
+                $account.UpdateRole(RoleRequest, function (res) {
+                    switch (res.data.Data) {
+                        case 1:
+                            toastr.success('Bạn đã cập nhật thành công.');
+                            $scope.ShowDetailAccount();
+                            for (var i = 0; i < RoleRequest.length; i++) {
+                                RoleRequest.pop();
+                            }
+                            break;
+                        case 2:
+                            toastr.error('Bạn đã cập nhật thất bại.');
+                            break;
+                    }
+                });
             });
         }
         // Button cập nhật account. 

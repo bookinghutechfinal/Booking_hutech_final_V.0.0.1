@@ -190,6 +190,13 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     }
+    this.UpdateRole = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'ManagerAccount/UpdateRole',
+            data: request
+        }, success, finish)
+    }
    
 
   
