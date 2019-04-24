@@ -42,5 +42,27 @@ namespace BookingHutech.Api_BHutech.Lib.Utils
             }
             
         }
+        // delete img  
+        public static void DeleteImage(String imgmane)
+        {
+
+            try
+            {
+                 
+                var deletePath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/images/avt/avt")+"\\" + imgmane; 
+                if (System.IO.File.Exists(deletePath))
+                { 
+                    System.IO.File.Delete(deletePath); 
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+
+        }
+
     }
 }

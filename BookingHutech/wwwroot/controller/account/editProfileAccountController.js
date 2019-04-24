@@ -2,185 +2,248 @@
 mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account', 'NgTableParams', '$modal', '$modalInstance', '$alert', 'EditProfileRequestData',
     function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account, NgTableParams, $modal, $modalInstance, $alert, EditProfileRequestData) {
 
-        var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
-        $scope.goToHome = function () {
-            $state.go('main.home');
-            return;
-        };
-        $scope.goToChangePassword = function () {
-            $state.go('changePassword');
-            return;
-        };
-        $scope.goToLogin = function () {
-            $state.go('login');
-            return;
-        };
+        try {
+            var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
+            var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
 
-        $scope.ClosePopup = function () {
-            $modalInstance.close();
 
-        }
-
-        // Lấy danh sách đơn vị/ khoa, viện phòng ban.  
-        $scope.ManagerGetListUnit = function () {
-            $account.ManagerGetUnit({}, function (res) {
-                
-                switch (res.data.ReturnCode) {
-                    case 1:
-                        $scope.ManagerGetListUnitResponse = res.data.Data.ListUnit;
-                        break;
-                }
-
-            });
-        }
-
-        $scope.main = function () {
-            //angular.element('#BirthDay').val("2019-1-1");
-            // show messager 
-            $scope.ipFullName = false;
-            $scope.EditProfiAccount = {
-                "Account_ID": EditProfileRequestData.Account_ID,
-                "FullName": EditProfileRequestData.FullName,
-                "NumberPhone": EditProfileRequestData.NumberPhone,
-                "Email": EditProfileRequestData.Email,
-                "Addres": EditProfileRequestData.Addres,
-                "Gender": EditProfileRequestData.Gender,
-                "BirthDay": FormatDate(EditProfileRequestData.Birthday), //angular.element('#BirthDay').val(""), 
-                "Unit_ID": EditProfileRequestData.Unit_ID,
-                "AccountType": EditProfileRequestData.AccountType,
-                "DriverLicenseNo": EditProfileRequestData.DriverLicenseNo,
-                "LicenseClass": EditProfileRequestData.LicenseClass,
-                "LicenseExpires": FormatDate(EditProfileRequestData.LicenseExpires),
-                "Avatar": EditProfileRequestData.Avatar,
+            $scope.goToHome = function () {
+                $state.go('main.home');
+                return;
+            };
+            $scope.goToChangePassword = function () {
+                $state.go('changePassword');
+                return;
+            };
+            $scope.goToLogin = function () {
+                $state.go('login');
+                return;
             };
 
-            // img 
-            $scope.ImageModel = {
-                CHAN_DUNG: {
-                    ImageName: 1,
-                    ImageData: {
-                        compressed: {
-                            dataURL: null
-                        }
+            $scope.ClosePopup = function () {
+                $modalInstance.close($scope.EditProfiAccount);
+
+            }
+
+            $scope.main = function () {
+                $scope.ipFullName = false;
+                $scope.EditProfiAccount = {
+                    "Account_ID": EditProfileRequestData.Account_ID,
+                    "FullName": EditProfileRequestData.FullName,
+                    "NumberPhone": EditProfileRequestData.NumberPhone,
+                    "Email": EditProfileRequestData.Email,
+                    "Addres": EditProfileRequestData.Addres,
+                    "Gender": EditProfileRequestData.Gender,
+                    "Birthday": EditProfileRequestData.Birthday,
+                    "Unit_ID": EditProfileRequestData.Unit_ID,
+                    "UnitName": EditProfileRequestData.UnitName,
+                    "AccountType": EditProfileRequestData.AccountType,
+                    "AccountTypeName": EditProfileRequestData.AccountTypeName,
+                    "DriverLicenseNo": EditProfileRequestData.DriverLicenseNo,
+                    "LicenseClass": EditProfileRequestData.LicenseClass,
+                    "LicenseExpires": EditProfileRequestData.LicenseExpires,
+                    "Avatar": EditProfileRequestData.Avatar,
+                    "AvatarNew": null,
+                };
+
+                // img 
+                $scope.ImageModel = {
+                    CHAN_DUNG: {
+                        ImageName: 1,
+                        ImageData: {
+                            compressed: {
+                                dataURL: null
+                            }
+                        },
                     },
-                },
-            }
-            $scope.AccountType = AccountTypeRequest;
-            $scope.ManagerGetListUnitResponse = [];
-            $scope.ManagerGetListUnit();
-        }
-
-        // kiểm tra account đẵ đăng nhập chưa, đổi mật khẩu chưa. 
-        var result = CheckAccountLoginAndChangePass(AccountInfo);
-        switch (result) {
-            case 2:
-                //toastr.success($rootScope.initMessage('MessageChangeAccount'));
-                $scope.ClosePopup();
-                $scope.goToChangePassword();
-                break;
-            case 3:
-                $scope.main()
-                break;
-            case 1:
-                $scope.ClosePopup();
-                $scope.goToLogin();
-                break;
-
-        }
-        $scope.btndisabled = true;
-        $scope.isDriver = false;
-        $scope.TestInputChange = function (Request) {
-
-            // check show theo loại tài khoa
-            if (Request.AccountType === "7") {
-                $scope.isDriver = true;
-                if (checkNull(Request.DriverLicenseNo)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.LicenseClass)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.LicenseExpires)) {
-                    $scope.btndisabled = true;
-                    return;
                 }
-                else {
-                    $scope.btndisabled = false;
-                }
+                $scope.AccountType = AccountTypeRequest;
             }
 
-            if (Request.AccountType !== "7") {
-                $scope.isDriver = false;
-                // check data
-                if (checkNull(Request.FullName)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.Gender)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.NumberPhone)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.Email)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.Addres)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.BirthDay)) {
-                    $scope.btndisabled = true;
-                    return;
-                }   else if (checkNull(Request.Unit_ID)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.AccountType)) {
-                    $scope.btndisabled = true;
-                    return;
-                }
-                else {
-                    $scope.btndisabled = false;
-                }
-            }
+            // kiểm tra account đẵ đăng nhập chưa, đổi mật khẩu chưa. 
+            //var result = CheckAccountLoginAndChangePass(AccountInfo);
+            //switch (result) {
+            //    case 2:
+            //        //toastr.success($rootScope.initMessage('MessageChangeAccount'));
+            //        $scope.ClosePopup();
+            //        $scope.goToChangePassword();
+            //        break;
+            //    case 3:
+            //        $scope.main()
+            //        break;
+            //    case 1:
+            //        $scope.ClosePopup();
+            //        $scope.goToLogin();
+            //        break;
 
-
-        }
-        // check upload hình 
-        $scope.CheckUploatImg = function (imgURL) {
-            if (checkNull(imgURL)) {
-                $scope.btndisabled = true;
-                return;
-            }
-            else {
-                $scope.btndisabled = false;
-            }
-        }
-        $scope.removeImage = function () {
-            $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = "";
-        }
-
-       // Cập nhật thông tin tài khoản
-        $scope.EditProfileAccount = function (request) {  
-            var EditProfiAccountRequestModel = request; 
-            $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Cập nhật thông tin'), function () {
-                $account.EditProfiAccount(EditProfiAccountRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1: 
-                            toastr.success("Đã cập nhật thành công"); 
-                            $modalInstance.close(EditProfiAccountRequestModel);
-                            break;
+            //}
+            $scope.main(); 
+            $scope.btndisabled = true;
+            $scope.isDriver = false;
+            $scope.isShowRegisterSuccess = false;
+            $scope.ischeckImgNew = false;
+            $scope.TestInputChange = function (Request) {
+                $scope.isShowRegisterSuccess = false;
+                // check show theo loại tài khoa
+                if (Request.AccountType === "7") {
+                    $scope.isDriver = true;
+                    if (checkNull(Request.DriverLicenseNo)) {
+                        $scope.btndisabled = true;
+                        return;
+                    } else if (checkNull(Request.LicenseClass)) {
+                        $scope.btndisabled = true;
+                        return;
+                    } else if (checkNull(Request.LicenseExpires)) {
+                        $scope.btndisabled = true;
+                        return;
                     }
-                });
-            });
+                    else {
+                        $scope.btndisabled = false;
+                    }
+                }
 
+                if (Request.AccountType !== "7") {
+                    $scope.isDriver = false;
+                    // check data
+                    if (checkNull(Request.FullName)) {
+                        $scope.btndisabled = true;
+                        return;
+                    } else if (checkNull(Request.Gender)) {
+                        $scope.btndisabled = true;
+                        return;
+                    } else if (checkNull(Request.NumberPhone)) {
+                        $scope.btndisabled = true;
+                        return;
+                    } else if (checkNull(Request.Email)) {
+                        $scope.btndisabled = true;
+                        return;
+                    } else if (checkNull(Request.Addres)) {
+                        $scope.btndisabled = true;
+                        return;
+                    } else if (checkNull(Request.Birthday)) {
+                        $scope.btndisabled = true;
+                        return;
+                    } else if (checkNull(Request.Unit_ID)) {
+                        $scope.btndisabled = true;
+                        return;
+                    } else if (checkNull(Request.AccountType)) {
+                        $scope.btndisabled = true;
+                        return;
+                    }
+                    else {
+                        $scope.btndisabled = false;
+                    }
+                }
+                // kiểm tra chọn hình mới
+                if ($scope.ischeckImgNew) {
+                    if ($scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL == "" || $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL == null) {
+                        $scope.btndisabled = true;
+                        return;
+                    }
+                }
+
+
+            }
+            $scope.TestInputChange($scope.EditProfiAccount);
+
+            $scope.removeImage = function () {
+                $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = "";
+            }
+
+            // Cập nhật thông tin tài khoản
+            $scope.EditProfileAccount = function () {
+
+                try {
+                    $scope.EditProfiAccount.Birthday = moment(angular.element('#Birthday').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                    $scope.EditProfiAccount.LicenseExpires = moment(angular.element('#LicenseExpires').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                } catch (e) {
+                    toastr.error("Ngày sinh không hợp lệ. Vui lòng kiểm tra lại");
+                }
+                // Kiểm tra chọn hình cũ hay hình mới. 
+                if ($scope.ischeckImgNew == true && $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL !== "") { //$scope.ischeckImgNew == true && 
+                    alert("Hình mới");
+                    // chọn  up hình mới, nhưng chưa chọn hình
+                    // $scope.btndisabled = true;
+                    if ($scope.ischeckImgNew == false || $scope.ischeckImgNew == true && $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL == null) {
+                        $scope.btndisabled = true;
+
+                    } else {
+                        alert("hình mới ok");
+                        $scope.EditProfiAccount.AvatarNew = $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL;
+                    }
+
+                } else {
+                    $scope.ischeckImgNew = false;
+                    alert("lấy lại Hình cũ");
+                }
+                // insert
+                if ($scope.btndisabled == false) {
+                    $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Cập nhật thông tin'), function () {
+                        $account.EditProfiAccount($scope.EditProfiAccount, function (res) {
+                            switch (res.data.ReturnCode) {
+                                case 1:
+                                    toastr.success("Đã cập nhật thành công");
+                                    $modalInstance.close($scope.EditProfiAccount);
+                                    $scope.isShowRegisterSuccess = true;
+                                    $scope.EditProfiAccount.Birthday = moment($scope.EditProfiAccount.Birthday, 'YYYY-MM-DD').format('DD-MM-YYYY');
+                                    $scope.EditProfiAccount.LicenseExpires = moment($scope.EditProfiAccount.LicenseExpires, 'YYYY-MM-DD').format('DD-MM-YYYY');
+                                    break;
+                            }
+                        });
+                    });
+
+                }
+
+                // 
+                //$alert.showConfirmUpdateNewProfile($rootScope.initMessage('Cập nhật thông tin'), function () {
+                //    $account.EditProfiAccount($scope.EditProfiAccount, function (res) {
+                //        switch (res.data.ReturnCode) {
+                //            case 1: 
+                //                toastr.success("Đã cập nhật thành công"); 
+                //                $modalInstance.close($scope.EditProfiAccount);
+                //                $scope.isShowRegisterSuccess = true; 
+                //                $scope.EditProfiAccount.Birthday = moment($scope.EditProfiAccount.Birthday, 'YYYY-MM-DD').format('DD-MM-YYYY');
+                //                $scope.EditProfiAccount.LicenseExpires = moment($scope.EditProfiAccount.LicenseExpires, 'YYYY-MM-DD').format('DD-MM-YYYY');
+
+                //                break;
+                //        }
+                //    });
+                //});
+
+            }
+
+            // xóa hình mới
+            $scope.removeImage = function () {
+                $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = "";
+                $scope.ischeckImgNew = false;
+                $scope.btndisabled = false;
+                $scope.EditProfiAccount.AvatarNew = null;
+            }
+            // hủy chọn hình mới
+            $scope.removeImageNew = function () {
+                $scope.ischeckImgNew = false;
+                $scope.btndisabled = false;
+                $scope.EditProfiAccount.AvatarNew = null;
+            }
+            // chọn chức năng đổi hình
+            $scope.upLoadIMGNew = function () {
+                $scope.ischeckImgNew = true;
+                $scope.btndisabled = false;
+                $scope.EditProfiAccount.AvatarNew = null;
+                //$scope.TestInputChange($scope.EditProfiAccount);
+            }
+            // end try
+        } catch (e) {
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            $cookies.remove("myReload");
+            $modalInstance.close();
+            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+            $state.go("login");
         }
-
-        // xóa hình
-        $scope.removeImage = function () {
-            $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = "";
-        }
-
 
     }]);
+
 
 // upload hình  
 mainmodule.directive('ngImageCompress', ['$q',

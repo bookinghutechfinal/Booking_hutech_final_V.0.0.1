@@ -22,16 +22,16 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             $cookies.remove('AccountInfo');
             $cookies.remove("AccountInfoCheckPermissions");
             $cookies.remove("myReload");
-            $state.go('login'); 
+            $state.go('login');
         }
-        $rootScope.showError = false; 
+        $rootScope.showError = false;
         $scope.Functiontimeout = function () {
-            $rootScope.isLoading = true; 
+            $rootScope.isLoading = true;
             $cookies.remove('AccountInfo');
             $cookies.remove("AccountInfoCheckPermissions");
             $cookies.remove("myReload");
-            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập."); 
-            $state.go('login');  
+            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+            $state.go('login');
         } // end
 
 
@@ -52,7 +52,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             switch (result) {
                 case 1:
                     $scope.Functiontimeout();
-                  //  $state.go('login');
+                    //  $state.go('login');
                     break;
                 case 2:
                     $scope.goToChangePassword();
@@ -72,8 +72,14 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             $scope.Functiontimeout();
         }
 
-            
-            $scope.logout = function () { 
+
+
+        $scope.logout = function () { 
+            try {
+                var AccountInfo = $account.getAccountInfo();
+                $scope.reqLogout = {
+                    Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
+                }
                 var modalInstance = $modal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',
@@ -92,10 +98,23 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
                 modalInstance.result.then(function () {
 
                 });
+            } catch (e) {
+                $cookies.remove('AccountInfo');
+                $cookies.remove("AccountInfoCheckPermissions");
+                $cookies.remove("myReload"); 
+                toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+                $state.go("login");
             }
 
-            //// Mỡ popup xem chi tiết profile 
-            $scope.OpenPopupShowProfile = function () {
+        }
+
+
+
+        //// Mỡ popup xem chi tiết profile 
+        $scope.OpenPopupShowProfile = function () {
+            try {
+                var AccountInfo = $account.getAccountInfo();
+                // Lấy chi tiết account. 
                 var modalInstance = $modal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',
@@ -106,8 +125,8 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        RequestData: function () {
-                            return null;
+                        AccountIDRequest: function () {
+                            return AccountInfo.ObjAccountInfo.Account_ID;
                         },
                     }
                 });
@@ -115,86 +134,95 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
 
                 });
             }
-
-
-            // Anh.Set timeout
-
-            function closeModals() {
-                if ($scope.warning) {
-                    $scope.warning.close();
-                    $scope.warning = null;
-                }
-
-                if ($scope.timeout) {
-                    $scope.timeout.close();
-                    $scope.timeout = null;
-                }
-            }
-            $scope.$on('IdleStart', function () {
-                $scope.warning = $modal.open({
-                    animation: true,
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    templateUrl: '/wwwroot/views/pages/account/warning-dialog.html',
-                    controller: 'ModalInstanceCtrl',
-                    //controllerAs: 'pc',
-                    controllerAs: 'content',
-                    backdrop: 'static',
-                    size: 'sm',
-                    resolve: {
-                        data: function () {
-                            return null;
-                        }
-                    }
-                });
-
-                $scope.warning.result.then(function () {
-                    console.log('Warning modal is closing now...');
-                });
-            });
-
-            $scope.$on('IdleTimeout', function () {
-                console.log('Idle timeout');
-                closeModals();
+            catch (err) {
                 $cookies.remove('AccountInfo');
                 $cookies.remove("AccountInfoCheckPermissions");
                 $cookies.remove("myReload");
-                toastr.error("Phiên làm việc của bạn đã hết hạn!");
-                $scope.timeout = $modal.open({
-                    animation: true,
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    templateUrl: '/wwwroot/views/pages/account/timeout-dialog.html',
-                    controller: 'ModalInstanceCtrl',
-                    //controllerAs: 'pc',
-                    controllerAs: 'content',
-                    backdrop: 'static',
-                    size: 'sm',
-                    resolve: {
-                        data: function () {
-                            return null;
-                        }
+                toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+                $state.go("login");
+
+            }
+        }
+
+
+        // Anh.Set timeout
+
+        function closeModals() {
+            if ($scope.warning) {
+                $scope.warning.close();
+                $scope.warning = null;
+            }
+
+            if ($scope.timeout) {
+                $scope.timeout.close();
+                $scope.timeout = null;
+            }
+        }
+        $scope.$on('IdleStart', function () {
+            $scope.warning = $modal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: '/wwwroot/views/pages/account/warning-dialog.html',
+                controller: 'ModalInstanceCtrl',
+                //controllerAs: 'pc',
+                controllerAs: 'content',
+                backdrop: 'static',
+                size: 'sm',
+                resolve: {
+                    data: function () {
+                        return null;
                     }
-                });
-
-                // Your log out code goes here
-                console.log('Your log out code may goes here...');
-
-                $scope.timeout.result.then(function () {
-                    console.log('Timeout modal is closing now...');
-                });
+                }
             });
 
+            $scope.warning.result.then(function () {
+                console.log('Warning modal is closing now...');
+            });
+        });
 
-            $scope.$on('IdleEnd', function () {
-                console.log('Start closing warning modal');
-                closeModals();
+        $scope.$on('IdleTimeout', function () {
+            console.log('Idle timeout');
+            closeModals();
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            $cookies.remove("myReload");
+            toastr.error("Phiên làm việc của bạn đã hết hạn!");
+            $scope.timeout = $modal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: '/wwwroot/views/pages/account/timeout-dialog.html',
+                controller: 'ModalInstanceCtrl',
+                //controllerAs: 'pc',
+                controllerAs: 'content',
+                backdrop: 'static',
+                size: 'sm',
+                resolve: {
+                    data: function () {
+                        return null;
+                    }
+                }
             });
 
-           // Idle.watch(); // start set timeout
-            //end 
+            // Your log out code goes here
+            console.log('Your log out code may goes here...');
 
-        }]);
+            $scope.timeout.result.then(function () {
+                console.log('Timeout modal is closing now...');
+            });
+        });
+
+
+        $scope.$on('IdleEnd', function () {
+            console.log('Start closing warning modal');
+            closeModals();
+        });
+
+        // Idle.watch(); // start set timeout
+        //end 
+
+    }]);
 mainmodule.controller('ModalInstanceCtrl', ['$scope', '$state', '$modal', '$modalInstance', function ($scope, $state, $modal, $modalInstance) {
 
     $scope.Login = function () {

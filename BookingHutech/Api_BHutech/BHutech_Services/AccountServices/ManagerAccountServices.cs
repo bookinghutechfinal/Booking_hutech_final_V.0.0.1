@@ -282,8 +282,14 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
                 //    "LicenseClass = '" + request.LicenseClass + "'," +
                 //    "LicenseExpires = '" + request.LicenseExpires + "'" +
                 //    "WHERE Account_ID = '" + request.Account_ID + "'";
+                if (request.AvatarNew != null && request.AvatarNew != request.Avatar)
+                {
+                    string fileName = "Avatar" + helper.CreateID() + ".png";
+                    request.Avatar = UploadFile.UploadImage(request.AvatarNew, fileName);
+                    UploadFile.DeleteImage(request.Avatar);
+                }
                 string stringSqluspEditProfileAccount = String.Format(Prototype.SqlCommandStore.uspEditProfileAccount);
-                managerAccountDAO.EditProfileAccountDAO(stringSqluspEditProfileAccount, request);
+                managerAccountDAO.EditProfileAccountDAO(stringSqluspEditProfileAccount, request); 
             }
             catch (Exception ex)
             {

@@ -108,7 +108,7 @@ var FormatDateTimeByDBResponse2 = function (date) { // Update
 }
 
 var FormatDateTimeToDBRequest = function (date) { // Update
-    return moment(date, 'DD-MM-YYYY').format('YYYY-MM-DD')
+    return moment(date, 'DD-MM-YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
 }
 
 // Input từ layout
@@ -121,7 +121,7 @@ var FormatTimeFromTo = function (date) {
 }
 // Anh create. Định dạng ngày tháng thời gian sang số.  // 2019-04-14 6:00
 var FormatDateTimeInputToNumber = function (date) {
-    return moment(date, 'YYYY-MM-DD HH:mm').format('YYYYMMDDHHmm')
+    return moment(date, 'DD-MM-YYYY HH:mm').format('YYYYMMDDHHmm')
 }
 // Anh create 14/4/2019:  Hàm so sánh thời gian  Đi và về
 var CompareDateTimeFromTo = function (DateTime1, DateTime2) {
@@ -137,8 +137,15 @@ var ChechLength = function (request) {
         return false;
     return true;
 }
+// check lớn hơn ngày hiện tại
+var CheckDateTimeMaxvsDateToDay = function (DateTimeFrom) {
+    var ToDay = new Date();
 
-
+    var toDateTime = ToDay.getDate() + "-" + ToDay.getMonth() + "-" + ToDay.getFullYear() + " " + ToDay.getHours() + ":" + ToDay.getSeconds();
+    if (FormatDateTimeInputToNumber(DateTimeFrom) <= FormatDateTimeInputToNumber(toDateTime)) 
+        return true
+    return false; 
+}
 
 var FormatDate = function (date) {
     return moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD')
@@ -299,13 +306,20 @@ var ConvertAccountStatusIDToName = function (accountStatusID) {
 // Anh create
 // Request: AccountTypeName
 // Response:  RegistrationStatusType
-var ReturnAccountType = function (AccountTypeNameRequest) {
-    if (AccountTypeNameRequest == AccountTypeRequest[0].AccountTypeName) {
+var ReturnAccountType = function (AccountType) {
+    if (parseInt(AccountType) == AccountTypeRequest[0].AccountType) { // THƯ KÝ
         return RegistrationStatus[0].RegistrationStatusType;
     }
-    if (AccountTypeNameRequest == AccountTypeRequest[1].AccountTypeName) {
+    if (parseInt(AccountType) == AccountTypeRequest[1].AccountType) { // TRƯỞNG KHOA
         return RegistrationStatus[1].RegistrationStatusType;
     }
+    if (parseInt(AccountType) == AccountTypeRequest[2].AccountType) { // Quản trị
+        return RegistrationStatus[1].RegistrationStatusType;
+    }
+    if (parseInt(AccountType) == AccountTypeRequest[4].AccountType) { // BHG
+        return RegistrationStatus[5].RegistrationStatusType;
+    }
+
 }
 
 // Cập nhật trạng thái đơn cấp phát hiển thị lên đơn đăng ký

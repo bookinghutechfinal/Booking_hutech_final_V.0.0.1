@@ -95,7 +95,7 @@
                                 </li>
                                 <li class="m-top-xs">
                                     <i class="fa fa-calendar"></i>
-                                    <a>{{AccountDriverDetail.Birthday | date:'dd/MM/yyyy'}}</a>
+                                    <a>{{AccountDriverDetail.Birthday}}</a>  <!--| date:'dd/MM/yyyy'-->
                                 </li>
                                 <li class="m-top-xs">
                                     <i class="fa fa-phone"></i>
@@ -138,7 +138,7 @@
                                                 </td>
                                                 <td>
                                                     <i class="fa fa-hand-o-right"></i>
-                                                    <label>Chức vụ: {{AccountDriverDetail.AccountType}}</label>
+                                                    <label>Chức vụ: {{AccountDriverDetail.AccountTypeName}}</label>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -153,11 +153,11 @@
                                             </tr>
                                             <tr>
                                                
-                                                <td ng-show="AccountDriverDetail.AccountType =='Lái xe'">
+                                                <td ng-show="AccountDriverDetail.AccountType ==7">
                                                     <i class="fa fa-external-link user-profile-icon"></i>
                                                     <label>Số bằng lái: {{AccountDriverDetail.DriverLicenseNo}}</label>
                                                 </td>
-                                                <td ng-show="AccountDriverDetail.AccountType =='Lái xe'">
+                                                <td ng-show="AccountDriverDetail.AccountType ==7">
                                                     <i class="fa fa-external-link user-profile-icon"></i>
                                                     <label>Hạn:{{AccountDriverDetail.LicenseClass}}</label>
                                                 </td>
@@ -168,9 +168,9 @@
                                                     <i class="fa fa-asterisk"></i>
                                                     <label>Giới tính: {{AccountDriverDetail.Gender}}</label>
                                                 </td>
-                                                <td ng-show="AccountDriverDetail.AccountType =='Lái xe'">
+                                                <td ng-show="AccountDriverDetail.AccountType == 7">
                                                     <i class="fa fa-external-link user-profile-icon"></i>
-                                                    <label>Hết hạn:{{AccountDriverDetail.LicenseExpires | date:'dd/MM/yyyy'}}</label>
+                                                    <label>Hết hạn:{{AccountDriverDetail.LicenseExpires}}</label>
                                                 </td>
                                             </tr>
                                         </tbody>
