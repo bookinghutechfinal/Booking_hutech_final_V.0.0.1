@@ -204,6 +204,7 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateRoleMasterRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\UpdateGroupRoleRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\UpdateRoleRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\AddNewCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\AddNewDetailCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\AssignDriverManagerRequestModel.cs" />

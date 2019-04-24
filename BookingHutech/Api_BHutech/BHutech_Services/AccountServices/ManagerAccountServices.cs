@@ -319,5 +319,42 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             }
 
         }
+
+        /// <summary>
+        /// UpdateRoleServices
+        /// Mr.Lam 24/4/2019
+        /// </summary>
+        /// <param name="request">list UpdateRoleRequestModel</param>
+        public int UpdateRoleServices(List<UpdateRoleRequestModel> request)
+        {
+            try
+            {
+                string data = "";
+                for (int i = 0; i < request.Count; i++)
+                {
+                    if (i == request.Count - 1)
+                        data = data + "('" + request[i].Account_ID + "'" + "," + request[i].RoleMaster_ID + ",'" + request[i].RoleDetail_Status + "', getDate(), getDate(),N'" + request[i].FullNameUpdate + "')";
+                    else
+                        data = data + "('" + request[i].Account_ID + "'" + "," + request[i].RoleMaster_ID + ",'" + request[i].RoleDetail_Status + "', getDate(), getDate(),N'" + request[i].FullNameUpdate + "'),";
+                }
+                string stringSql = "begin try"
+                                    + " begin transaction"
+                                    + " insert into RoleDetail (Account_ID, RoleMaster_ID, RoleDetail_Status, CreateDate, LastModifiedDate, FullNameUpdate)"
+                                    + " values " +
+                                    data
+                                    + " commit"
+                                    + " end try"
+                                    + " begin catch"
+                                    + " rollback"
+                                    + " end catch";
+                int result = managerAccountDAO.UpdateRoleDAO(stringSql);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
     }
 }
