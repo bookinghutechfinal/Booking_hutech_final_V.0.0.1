@@ -23,8 +23,8 @@ namespace BookingHutech.Api_BHutech.Lib.Utils
             {
                 
                 string img = image; 
-                var uploadPath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/images/avt/avt");
-                var path = Path.Combine(uploadPath, Path.GetFileName(fileName));
+                //var uploadPath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/images/avt/avt");
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/images/avt"), Path.GetFileName(fileName));
                 string convert = img.Replace("data:image/png;base64,", String.Empty);
                 byte[] bytes = Convert.FromBase64String(convert);
                 using (var imageFile = new FileStream(path, FileMode.Create))
@@ -49,7 +49,7 @@ namespace BookingHutech.Api_BHutech.Lib.Utils
             try
             {
                  
-                var deletePath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/images/avt/avt")+"\\" + imgmane; 
+                var deletePath = Path.GetDirectoryName(HttpContext.Current.Server.MapPath("~/images/avt") )+ "\\" + imgmane; 
                 if (System.IO.File.Exists(deletePath))
                 { 
                     System.IO.File.Delete(deletePath); 
