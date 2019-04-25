@@ -23,8 +23,8 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
             BirthDay: null,
             Addres: null,
             AccountType: null
-        } 
-        $scope.searchText = ""; 
+        }
+        $scope.searchText = "";
         // Hàm Lấy chi tiết tài khoản của admin và chi tiết quyền. 
         $scope.GetDetailAccountInfoAndRole = function () {
             $scope.RequestAccountID = {
@@ -55,10 +55,10 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                                 RoleResponse[i].RoleDetail_Status = RoleStatus[0].RoleStatusName;
                             } else {
                                 RoleResponse[i].RoleDetail_Status = RoleStatus[1].RoleStatusName;
-                            } 
+                            }
                         }
                         // Hiển thị thông tin quyền 
-                        $scope.tableParams1 = new NgTableParams({}, { dataset: RoleResponse }); 
+                        $scope.tableParams1 = new NgTableParams({}, { dataset: RoleResponse });
                         // Mặc định lấy danh sách tài khoản  người dùng theo loại tài khoản và trạng thái account.  
                         $scope.ManagerGetListAccountRequestModel = {
                             AccountType: 7, // Lái xe
@@ -73,14 +73,14 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         $scope.ManagerGetListAccountResponse = []; // danh sách tài khoản trả về
         $scope.ManagerGetListAccount = function (request) {
             $account.ManagerGetAccountByAccountStatusAccountType(request, function (res) {
-                
+
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ManagerGetListAccountResponse = res.data.Data.GetAccountByAccountStatus;
                         $scope.numPag = 6; // số lượng item trên 1 trang 
                         //Cập nhật trạng thái cho quyền. 
                         for (var i = 0; i < $scope.ManagerGetListAccountResponse.length; i++) {
-                            $scope.ManagerGetListAccountResponse[i].AccountType = ConvertAccountTypeIDToName($scope.ManagerGetListAccountResponse[i].AccountType); 
+                            $scope.ManagerGetListAccountResponse[i].AccountType = ConvertAccountTypeIDToName($scope.ManagerGetListAccountResponse[i].AccountType);
                             //if ($scope.ManagerGetListAccountResponse[i].AccountType === "1") {
                             //    $scope.ManagerGetListAccountResponse[i].AccountType = AccountTypeRequest[0].AccountTypeName;
                             //}
@@ -137,7 +137,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
 
             });
 
-        } 
+        }
 
         $scope.main = function () {
             $scope.GetDetailAccountInfoAndRole(); // Lấy chi tiết account.   
@@ -189,7 +189,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
 
             }
 
-        } 
+        }
 
         //2. Quản lý nhóm quyền. 
         // Hiển thị nhóm quyền. 
@@ -309,25 +309,36 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
 
         //4.  Button  Mở popup thêm mới tài khoản người dùng và lái xe . 
         $scope.ManagerOpenpopupAddNewDriver = function () {
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/account/popupCreateNewAccount.html',
-                controller: 'ManagerCreateNewAccountController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'lg',
-                resolve: {
-                    Request: function () {
-                        return null;
-                    },
-                }
-            });
-            modalInstance.result.then(function () {
+            try {
+                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
+                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/popupCreateNewAccount.html',
+                    controller: 'ManagerCreateNewAccountController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        Request: function () {
+                            return null;
+                        },
+                    }
+                });
+                modalInstance.result.then(function () {
 
-            });
-        }
+                });
+            } catch (e) {
+                $cookies.remove('AccountInfo');
+                $cookies.remove("AccountInfoCheckPermissions");
+                $cookies.remove("myReload");
+                toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+                $state.go("login");
+            }
+
+        } 
 
         //5. Xem chi tiết account.   
         //// Mỡ popup xem chi tiết account 
@@ -383,6 +394,38 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         $scope.SearchAccount = function () {
             $scope.ManagerGetListAccount($scope.SearchAccountReqModel);
         }
-         
+
+        //7.  Button  Mở popup quản lý phòng ban . 
+        $scope.OpenpopupManagerUnit = function () {
+            try {
+                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
+                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/popupManagerUnit.html',
+                    controller: 'ManagerUnitController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        Request: function () {
+                            return null;
+                        },
+                    }
+                });
+                modalInstance.result.then(function () {
+
+                });
+            } catch (e) {
+                $cookies.remove('AccountInfo');
+                $cookies.remove("AccountInfoCheckPermissions");
+                $cookies.remove("myReload");
+                toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+                $state.go("login");
+            }
+
+        }
 
     }]);  

@@ -132,9 +132,10 @@
                                         <li class="ng-binding"><i class="fa fa-car"></i> Lái xe: {{CarInfo.FullNameDriver}}</li>
                                     </ul>
                                 </div>
-                                <span class="field-validation-valid text-danger ngHideSample" ng-show="CarInfo.CarImage === '' || CarInfo.CarImage === null && !isCarInfo"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
-                                <div class="col-sm-12" ng-show="showByPermission(903) && DetalRegistrationCar.Profile_Status == 2 ||  DetalRegistrationCar.Profile_Status == 5 || DetalRegistrationCar.Profile_Status !== 7   && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10"  >
-                                    <button style="font-size: 11px;" ng-click="OpenPopupSearchCar()" class="btn btn-success btn-round btn-block"><i class="fa fa-search m-right-xs"></i> Chọn xe</button>
+                               
+                                <div class="col-sm-12" ng-show="showByPermission(903)">
+                                    <span class="field-validation-valid text-danger ngHideSample" ng-show="showByPermission(903) && CarInfo.CarImage === '' || CarInfo.CarImage === null && !isCarInfo"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
+                                    <button ng-show="DetalRegistrationCar.Profile_Status == 2 ||  DetalRegistrationCar.Profile_Status == 5 || DetalRegistrationCar.Profile_Status !== 7   && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10" style="font-size: 11px;" ng-click="OpenPopupSearchCar()" class="btn btn-success btn-round btn-block"><i class="fa fa-search m-right-xs"></i> Chọn xe</button>
                                 </div>
                             </div>
 

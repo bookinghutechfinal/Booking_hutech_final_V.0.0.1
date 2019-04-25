@@ -198,6 +198,22 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
         }, success, finish)
     }
    
+    // Unit Thêm mới
+    this.CreateNewUnit = function (request, success, finish) {
+        $dao.call({
+            method: 'Post',
+            operater: 'Unit/CreateNewUnit',
+            data: request
+        }, success, finish)
+    }
+    // Unit chỉnh sửa
+    this.EditUnit = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'Unit/EditUnit',
+            data: request
+        }, success, finish)
+    }
 
   
 

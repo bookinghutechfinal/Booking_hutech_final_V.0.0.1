@@ -156,6 +156,7 @@
   <ItemGroup>
     <Compile Include="Api_BHutech\BHutech_Services\AccountServices\ManagerAccountServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\AccountServices\AccountServices.cs" />
+    <Compile Include="Api_BHutech\BHutech_Services\AccountServices\UnitServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\AssignDriverServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarManagerServices.cs" />
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\CarServices.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Api_BHutech\BHutech_Services\CarServices\RegistrationCarServices.cs" />
     <Compile Include="Api_BHutech\DAO\AccountDAO\AccountDAO.cs" />
     <Compile Include="Api_BHutech\DAO\AccountDAO\ManagerAccountDAO.cs" />
+    <Compile Include="Api_BHutech\DAO\AccountDAO\UnitDAO.cs" />
     <Compile Include="Api_BHutech\DAO\CarDAO\AssignDriverDAO.cs" />
     <Compile Include="Api_BHutech\DAO\CarDAO\CarDAO.cs" />
     <Compile Include="Api_BHutech\DAO\CarDAO\ManagerCostDAO.cs" />
@@ -197,8 +199,10 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLogoutRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\AccountLoginRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\CreateNewAccountRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\CreateNewUnitRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\DecentralizationRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\EditProfileAccountRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\EditUnitRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetAccountByAccountStatusRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetRoleMasterByAccountIDRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateAccountRequestModel.cs" />
@@ -294,6 +298,7 @@
     <Compile Include="Controllers\Api\ManagerRoleMasterController.cs" />
     <Compile Include="Controllers\Api\ManagerUnitController.cs" />
     <Compile Include="Controllers\Api\RegistrationCarController.cs" />
+    <Compile Include="Controllers\Api\UnitController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1004,6 +1009,7 @@
     <Content Include="script\css\Table\responsive.bootstrap.min.css" />
     <Content Include="wwwroot\controller\account\changePasswordController.js" />
     <Content Include="wwwroot\controller\account\editProfileAccountController.js" />
+    <Content Include="wwwroot\controller\account\ManagerUnitController.js" />
     <Content Include="wwwroot\controller\account\profileAccountController.js" />
     <Content Include="wwwroot\controller\account\detailAccountController.js" />
     <Content Include="wwwroot\controller\account\managerAccountController.js" />
@@ -1234,6 +1240,7 @@
     <Content Include="wwwroot\service\dataEntity.js" />
     <Content Include="wwwroot\service\language.js" />
     <Content Include="wwwroot\views\common\alert\error404.html" />
+    <Content Include="wwwroot\views\pages\account\popupManagerUnit.html" />
     <Content Include="wwwroot\views\pages\account\popupEditProfileAccount.html" />
     <Content Include="wwwroot\views\pages\account\popupProfileAccount.html" />
     <Content Include="wwwroot\views\pages\account\timeout-dialog.html" />

@@ -41,15 +41,16 @@
         .ngHideSample.ng-hide-remove-active {
             opacity: 1;
         }
+
     .title_bk {
         border-left: 3px solid;
         font-family: inherit;
         margin-top: auto;
-        background: #f5f7fa; 
+        background: #f5f7fa;
         padding: 7px;
         display: block;
         background-color: #cde0c4;
-        color: #356635; 
+        color: #356635;
         font-size: 11px;
         height: 29px;
     }
@@ -58,11 +59,27 @@
     <div class="row">
         <!--Start: Tìm kiếm xe-->
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
+            <!--không có quyền-->
+            <div class="x_content bs-example-popovers" ng-show="!showByPermission(800)">
+                <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <strong><i class="fa fa-warning"></i> Xin lỗi!</strong>
+                    <ul>
+                        <li>Bạn không có quyền thực hiện chức năng này.</li>
+                    </ul>
+                    <ul>
+                        <li>Vui lòng liên hệ quản trị viên để được hỗ trợ.</li>
+                    </ul>
+                </div>
+            </div>
+            <!--không có quyền-->
+            <div class="x_panel" ng-show="showByPermission(800)">
                 <div class="x_title">
                     <ul>
-                        <li><a href="#/main/manager-account"><h5><i class="fa fa-group"></i> Quản lý tài khoản</h5></a></li>
-                        <!--<li><a href="#/main/dat-xe"><h5>/ {{'TitileSerachCar' | translate}}</h5></a></li>-->
+                        <li><a href="#/main/trang-chu"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li> 
+                        <li><a href="#/main/manager-account"><h5> / Quản lý tài khoản</h5></a></li> 
                     </ul>
                 </div>
                 <div class="x_content" style="display: block;">
@@ -105,15 +122,23 @@
                                         <div class="title_bk">
                                             <span style="font-weight:bold"><span class="glyphicon glyphicon-cog"></span> Cập nhật:</span> {{ShowAccountInfo.LastModifiedDate | date:'HH:mm - dd/MM/yyyy '}} </h6>
                                         </div> <br />
-                                       <!-- <a class="btn btn-success" ng-click="EditProfileAccount()"><i class="fa fa-edit m-right-xs"></i>Chỉnh sửa</a>-->
+                                        <!-- <a class="btn btn-success" ng-click="EditProfileAccount()"><i class="fa fa-edit m-right-xs"></i>Chỉnh sửa</a>-->
                                         <br>
                                     </div>
                                     <!--End: Thông tin admin manager-->
                                     <div class="col-sm-3 col-xs-6" style="float:right; margin-bottom:10px">
                                         <div class="form-group">
+                                            <button class="btn btn-warning btn-round btn-block" ng-click="OpenpopupManagerUnit()">
+                                                <i class="fa fa-plus-circle"></i>
+                                                <span class="ng-binding">Quản lý phòng ban</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6" style="float:right; margin-bottom:10px">
+                                        <div class="form-group">
                                             <button class="btn btn-primary btn-round btn-block" ng-click="ManagerOpenpopupAddNewDriver()">
                                                 <i class="fa fa-plus-circle"></i>
-                                                <span class="ng-binding">Thêm mới tài khoản</span>
+                                                <span class="ng-binding">Tạo mới tài khoản</span>
                                             </button>
                                         </div>
                                     </div> <br />
@@ -157,20 +182,20 @@
                                         </table>
                                     </div>
                                     <!--End:quyền của admin manager-->
-                                    <div class="col-md-9 col-sm-9 col-xs-12" style="float: right">
+                                    <div class="col-md-9 col-sm-9 col-xs-12" style="float: right" ng-show="showByPermission(801)">
                                         <div class="x_content">
                                             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                                     <li role="presentation" class="active">
                                                         <button ng-show="!isShowRole" class="btn btn-warning btn-round btn-block" ng-click="ShowRole()" type="button" name="name">
                                                             <i class="fa fa-folder"></i>
-                                                            <span class="ng-binding">Quyền</span>
+                                                            <span class="ng-binding">Quản lý quyền</span>
                                                         </button>
                                                         <button ng-show="isShowRole" class="btn btn-warning btn-round btn-block" ng-click="ShowRole()" type="button" name="name">
                                                             <i class="fa fa-folder-open-o"></i>
                                                             <span class="ng-binding">Thu Nhỏ</span>
                                                         </button>
-                                                    </li> 
+                                                    </li>
                                                 </ul>
                                                 <div id="myTabContent" class="tab-content">
                                                     <!--//Quyền-->
@@ -211,7 +236,7 @@
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                    </div> 
+                                                    </div>
 
                                                 </div>
                                             </div>
@@ -281,14 +306,14 @@
                                             <div role="tabpanel" class="tab-pane fade active in" id="" aria-labelledby="home-tab">
                                                 <div class="row">
                                                     <div class="col-md-4 col-sm-4 col-xs-12 profile_details" dir-paginate="listAccount in ManagerGetListAccountResponse  |  itemsPerPage: numPag  | filter:searchText">
-                                                        <div class="well profile_view"> 
+                                                        <div class="well profile_view">
                                                             <div class="col-sm-12">
                                                                 <!--<h4 class="brief"><i>{{listAccount.FullName}}</i></h4>-->
                                                                 <div class="left col-xs-7">
                                                                     <h2>
                                                                         <i class="fa fa-user"></i> <i style="color: #5d40ce; font-family: serif">{{listAccount.FullName}}</i>
                                                                     </h2>
-                                                                    <ul class="list-unstyled"> 
+                                                                    <ul class="list-unstyled">
                                                                         <!--<li><i class="fa fa-calendar"></i> {{listAccount.CreateDate |  date:'dd/MM/yyyy'}}</li>-->
                                                                         <li ng-show="listAccount.Gender === 1"><i class="fa fa-male"></i> Nam</li>
                                                                         <li ng-show="listAccount.Gender !== 1"><i class="fa fa-male"></i> Nữ</li>
@@ -302,7 +327,7 @@
                                                                         <li ng-show="listAccount.Verify"><i class="fa fa-check-square-o"></i> Đã duyệt</li>
                                                                         <li ng-show="!listAccount.Verify" style="color:red">
                                                                             <i class="fa fa-square-o"></i> Chưa duyệt
-                                                                        </li> 
+                                                                        </li>
                                                                         <!--<li><i class="fa fa-phone"></i> {{listAccount.NumberPhone}}</li>-->
                                                                         <!--<li><i class="fa fa-at"></i> Hạn {{listAccount.LicenseClass}}</li>-->
                                                                     </ul>

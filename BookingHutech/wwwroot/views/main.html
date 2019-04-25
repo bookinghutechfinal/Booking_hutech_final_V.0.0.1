@@ -35,12 +35,12 @@
                     <!--// Menu-->
                     <div class="menu_section">
                         <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Car Manager</font></font></h3>
-                        <ul class="nav side-menu"> 
+                        <ul class="nav side-menu">
                             <li>
                                 <a>
                                     <i class="fa fa-file-text"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Quản lý đơn cấp phát </font></font><span class="fa fa-chevron-down"></span>
-                                </a> 
-                               
+                                </a>
+
                                 <ul class="nav child_menu" style="">
                                     <!-- Ban giám hiệu ng-show="showByPermission(500)" -->
                                     <!--<li ng-show="showByPermission(900)">
@@ -59,7 +59,7 @@
                                         <a href="#/main/unitRegister-BookingCar">
                                             <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Đơn cấp phát</font></font>
                                         </a>
-                                    </li> 
+                                    </li>
                                 </ul>
                             </li>
                             <li>
@@ -87,7 +87,7 @@
                             <li>
                                 <a><i class="fa fa-group"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Quản lý tài khoản </font></font><span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu" style="">
-                                    <li><a href="#/main/manager-account"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Quản lý người dùng</font></font></a></li>
+                                    <li ng-show="showByPermission(800)"><a href="#/main/manager-account"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Quản lý người dùng</font></font></a></li>
                                     <li><a href="#/main/driver-manager"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Quản lý lái xe</font></font></a></li>
                                     <li><a href="#/main/assign-driver"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Phân công</font></font></a></li>
                                 </ul>
@@ -198,6 +198,8 @@
     <img style="position:fixed;z-index:9999;top:45%;left:48%" src="../../images/loading/loading.gif" width="100" />
     <input style="position:fixed;background-color:white;opacity:0.9;width:100%;height:100%;z-index:9999;color: #0f33ef;font-size: 27px; font-family: sans-serif;" type="button" name="name" ng-click="Error()" value="Xin lỗi! Phiên làm việc của bạn đã hết. Vui lòng đăng nhập lại. Click để thoát" />
 </div>
-<script src="../../script/js/custom.min.js"></script>
-<script src="../../script/js/jquery.min.js"></script>
+<!--<script src="../../script/js/custom.min.js"></script>
+<script src="../../script/js/jquery.min.js"></script>-->
+<script src="../../script/teamplate/build/js/custom.min.js"></script>
+<script src="../../Scripts/vendor/jquery/dist/jquery.min.js"></script>
 

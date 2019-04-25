@@ -1,0 +1,337 @@
+﻿<style>
+    .modal-header {
+        background-color: #2A3F54;
+    }
+    /*-Upload hình-*/
+    .danger {
+        font-weight: bold;
+        /*//padding: 20px;*/
+        color: red;
+    }
+
+    /* vi.ly - button delete */
+    div.show-image {
+        position: relative;
+        /* float: left;  */
+        margin: 5px;
+    }
+
+        div.show-image:hover img {
+            opacity: 0.5;
+        }
+
+        div.show-image:hover input.delete {
+            display: block;
+        }
+
+        div.show-image input.delete {
+            position: absolute;
+            display: none;
+        }
+
+        div.show-image input.update {
+            top: 0;
+            left: 0;
+        }
+
+        div.show-image input.delete {
+            top: 0;
+            left: 60%;
+        }
+
+    #imgremove {
+        position: absolute;
+        margin-left: 22px;
+        margin-top: -192px;
+    }
+    /* ng-show animation*/
+    /* ngHide animation */
+    .ngHideSample {
+        padding: 10px;
+        margin: 5px;
+    }
+
+        .ngHideSample.ng-hide-add {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 1;
+        }
+
+        .ngHideSample.ng-hide-add-active {
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove-active {
+            opacity: 1;
+        }
+
+    .Messuccess {
+        float: right;
+        height: 33px;
+        padding: 5px;
+        border-left: 4px solid;
+        background-color: #c3e6cb;
+        color: #155724;
+    }
+</style>
+<!--<link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/switchery/dist/switchery.min.css" rel="stylesheet" />
+<link href="../../../../../script/teamplate/build/css/custom.min.css" rel="stylesheet" />-->
+<!-- Modal content-->
+<!-- Test  -->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
+        <h4 class="modal-title">Quản Lý Phòng Ban</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <!--Thêm mới khoa viện-->
+                <div class="x_content" ng-show="isShowAddNewUnit">
+                    <div class="x_panel">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_content">
+                                <div class="form-horizontal form-label-left input_mask">
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Tên đơn vị: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line has-feedback-right" ng-model="CreateNewUnitModel.UnitName" type="text" value="" autofocus ng-change="TestInputChange(CreateNewUnitModel)">
+                                            <span class="fa fa-briefcase user-profile-icon form-control-feedback right" aria-hidden="true"></span>
+                                            <span class="field-validation-valid text-danger ngHideSample" ng-show=" CreateNewUnitModel.UnitName === '' || CreateNewUnitModel.UnitName === null && !TestInputChange"> <i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Trưởng phòng: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line has-feedback-right" ng-model="CreateNewUnitModel.UnitManager" type="text" value="" autofocus ng-change="TestInputChange(CreateNewUnitModel)">
+                                            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                            <span class="field-validation-valid text-danger ngHideSample" ng-show=" CreateNewUnitModel.UnitManager === '' || CreateNewUnitModel.UnitManager === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Điện thoại: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line has-feedback-right" ng-model="CreateNewUnitModel.NumberPhoneManager" ng-change="TestInputChange(CreateNewUnitModel)" type="number" min="0">
+                                            <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                                            <span class="field-validation-valid text-danger ngHideSample" ng-show="CreateNewUnitModel.NumberPhoneManager === '' || CreateNewUnitModel.NumberPhoneManager === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Email: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line has-feedback-right" value="" ng-model="CreateNewUnitModel.EmailManage" ng-change="TestInputChange(CreateNewUnitModel)" type="text">
+                                            <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>
+                                            <span class="field-validation-valid text-danger ngHideSample" ng-show="isCheckEmail"><i class="fa fa-warning"></i>Email hợp lệ: vd: abc@gmail.com!</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ngHideSample" ng-show="btndisabled">
+                                        <label class="control-label col-md-6 col-sm-6 col-xs-12"> </label>
+                                        <div class=" col-md-6 col-sm-6 col-xs-12 form-group alert alert-warning  " style="float: right; height: 34px; padding: 0px; text-align:center">
+                                            <h6>
+                                                <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class=" form-group ngHideSample" ng-show="isShowRegisterSuccess">
+                                        <label class="control-label col-md-6 col-sm-6 col-xs-12"> </label>
+                                        <div class=" col-md-6 col-sm-6 col-xs-12 form-group alert alert-success   Messuccess" style="">
+                                            <h4>
+                                                <i class="fa fa-check"></i> Thêm mơí thành công.
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="isShowAddNewUnit">
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-3 col-xs-12 " style="margin-bottom: 8px;">
+
+                                            </div>
+                                            <div class="col-sm-3 col-md-3 col-xs-6" style="margin-bottom: 8px;">
+                                                <button class="btn btn-default btn-round btn-block" type="submit"
+                                                        ng-click="ClearAddNewUnit()">
+                                                    <i class="fa fa-file-o"></i>
+                                                    <span>Xóa</span>
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3 col-xs-6" style="margin-bottom: 8px;">
+                                                <button class="btn btn-danger btn-round btn-block" type="submit"
+                                                        ng-click="CancelAddNewUnit()">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                    <span>Hủy Thao Tác</span>
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-3 col-md-3 col-xs-12" style="margin-bottom: 8px;">
+                                                <button class="btn btn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                        data-ng-click="CeateNewUnit()">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                    <span>Thêm mới</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <!--Thêm mới khoa viện-->
+                <!--Chỉnh sữa khoa viện-->
+                <div class="x_content" ng-show="isShowEditUnit">
+                    <div class="x_panel">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_content">
+                                <div class="form-horizontal form-label-left input_mask">
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Tên đơn vị: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line has-feedback-right" ng-model="CreateNewUnitModel.UnitName" type="text" value="" autofocus ng-change="TestInputChange(CreateNewUnitModel)">
+                                            <span class="fa fa-briefcase user-profile-icon form-control-feedback right" aria-hidden="true"></span>
+                                            <span class="field-validation-valid text-danger ngHideSample" ng-show=" CreateNewUnitModel.UnitName === '' || CreateNewUnitModel.UnitName === null && !TestInputChange"> <i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Trưởng phòng: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line has-feedback-right" ng-model="CreateNewUnitModel.UnitManager" type="text" value="" autofocus ng-change="TestInputChange(CreateNewUnitModel)">
+                                            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+                                            <span class="field-validation-valid text-danger ngHideSample" ng-show=" CreateNewUnitModel.UnitManager === '' || CreateNewUnitModel.UnitManager === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Điện thoại: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line has-feedback-right" ng-model="CreateNewUnitModel.NumberPhoneManager" ng-change="TestInputChange(CreateNewUnitModel)" type="number" min="0">
+                                            <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+                                            <span class="field-validation-valid text-danger ngHideSample" ng-show="CreateNewUnitModel.NumberPhoneManager === '' || CreateNewUnitModel.NumberPhoneManager === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Email: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line has-feedback-right" value="" ng-model="CreateNewUnitModel.EmailManage" ng-change="TestInputChange(CreateNewUnitModel)" type="text">
+                                            <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>
+                                            <span class="field-validation-valid text-danger ngHideSample" ng-show="isCheckEmail"><i class="fa fa-warning"></i>Email hợp lệ: vd: abc@gmail.com!</span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-group ngHideSample" ng-show="btndisabled">
+                                        <label class="control-label col-md-6 col-sm-6 col-xs-12"> </label>
+                                        <div class=" col-md-6 col-sm-6 col-xs-12 form-group alert alert-warning " style="float: right; height: 34px; padding: 0px; text-align:center">
+                                            <h6>
+                                                <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class=" form-group ngHideSample" ng-show="isShowRegisterSuccess">
+                                        <label class="control-label col-md-6 col-sm-6 col-xs-12"> </label>
+                                        <div class=" col-md-6 col-sm-6 col-xs-12 form-group alert alert-success  Messuccess" style="">
+                                            <h4>
+                                                <i class="fa fa-check"></i> Cập nhật thành công.
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <!--button Chỉnh sửa-->
+                            <div class="form-group" ng-show="isShowEditUnit">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6 " style="margin-bottom: 1px;">
+
+                                    </div>
+                                    <div class="col-sm-3 col-md-3" style="margin-bottom: 1px;">
+                                        <button class="btn btn-danger btn-round btn-block" type="submit"
+                                                ng-click="CancelEditUnit()">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                            <span>Hủy</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-3 col-md-3">
+                                        <button class="btn btn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                data-ng-click="btnEditUnit()">
+                                            <i class="fa fa-save"></i>
+                                            <span>Lưu</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--button Chỉnh sửa-->
+                        </div>
+                    </div>
+                </div>
+                <!--Chỉnh sửa khoa viện-->
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!--Start: danh sách quyền của account-->
+                    <div class="x_content">
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                            <!--Thêm mới khoa viện-->
+                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-show="!isShowEditUnit">
+                                <li role="presentation" class="active">
+                                    <a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Đơn vị</a>
+                                </li>
+                                <li role="presentation" class="" style="float:right" ng-show="!isShowAddNewUnit">
+                                    <button class="btn btn-primary btn-round btn-block" type="submit" ng-click="ShowAddNewUnit()">
+                                        <i class="fa fa-plus-circle"></i>
+                                        <span>Thêm Mới</span>
+                                    </button>
+                                </li>
+                                <li role="presentation" class="" style="float:right" ng-show="isShowAddNewUnit">
+                                    <button class="btn btn-primary btn-round btn-block" type="submit" ng-click="CancelNewUnit()">
+                                        <i class="fa fa-folder-o"></i>
+                                        <span>Thu nhỏ</span>
+                                    </button>
+                                </li>
+                            </ul>
+                            <!--Thêm mới khoa viện--> 
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table ng-table="tableParams" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                                                <tr ng-repeat="item in $data " role="none" class="hover_" style="cursor:pointer">
+                                                    <td data-title="'STT'" style="width:1%" align="center">
+                                                        {{$index+1}}
+                                                    </td>
+                                                    <td data-title="'Đơn vị'" style="width:10%" align="left" sortable="'UnitName'">
+                                                        {{item.UnitName}}
+                                                    </td>
+                                                    <td data-title="'Trưởng đơn vị'" style="width:10%" align="left" sortable="'UnitManager'">
+                                                        {{item.UnitManager}}
+                                                    </td>
+                                                    <td data-title="'Email'" style="width:10%" align="left">
+                                                        {{item.EmailManage}}
+                                                    </td>
+                                                    <td data-title="'Điện thoại'" style="width:10%" align="left">
+                                                        {{item.NumberPhoneManager}}
+                                                    </td>
+                                                    <td data-title="'Sửa'" style="width:5%" align="center">
+                                                        <button class="btn btn-success" style="height: 28px;  font-size: 13px;" ng-click="btnEdit(item)" ng-disabled="btnAcction "><i class="fa fa-edit"></i> Sửa</button>
+                                                    </td>
+                                                    <td data-title="'Xóa'" style="width:5%" align="center">
+                                                        <button class="btn btn-danger" style="height: 28px;  font-size: 13px;" ng-click="btnDelete(item)" ng-disabled="btnAcction || item.Unit_ID== '2' || item.Unit_ID== '3' || item.Unit_ID== '4'"><i class="fa fa-trash-o"></i> Xóa</button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End: danh sách quyền của account-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<script src="../../../../../script/js/jquery.min.js"></script>
+<script src="../../../../../script/js/bootstrap.min.js"></script>
+<script src="../../../../../script/teamplate/iCheck/icheck.min.js"></script>
+<script src="../../../../../script/teamplate/switchery/dist/switchery.min.js"></script>
+<script src="../../../../../script/teamplate/build/js/custom.min.js"></script>-->
+ 
