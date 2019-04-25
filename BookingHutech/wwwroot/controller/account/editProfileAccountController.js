@@ -30,7 +30,7 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                 $scope.EditProfiAccount = {
                     "Account_ID": EditProfileRequestData.Account_ID,
                     "FullName": EditProfileRequestData.FullName,
-                    "NumberPhone": EditProfileRequestData.NumberPhone,
+                    "NumberPhone": parseInt(EditProfileRequestData.NumberPhone),
                     "Email": EditProfileRequestData.Email,
                     "Addres": EditProfileRequestData.Addres,
                     "Gender": EditProfileRequestData.Gender,

@@ -33,9 +33,9 @@ angular.module('BHutechAppModule').config(['KeepaliveProvider', 'IdleProvider', 
 var AccountTypeRequest = [
     { AccountType: 1, AccountTypeName: "Thư ký" },
     { AccountType: 2, AccountTypeName: "Trưởng khoa" },
-    { AccountType: 3, AccountTypeName: "Phòng quản trị" },
+    { AccountType: 3, AccountTypeName: "Quản trị viên" },
     { AccountType: 4, AccountTypeName: "Văn phòng trường" },
-    { AccountType: 5, AccountTypeName: "Ban giám hiệu" },
+    { AccountType: 5, AccountTypeName: "Nhân viên BGH" },
     { AccountType: 7, AccountTypeName: "Lái xe" },
 ]
 var Account_StatusRequest = [ 

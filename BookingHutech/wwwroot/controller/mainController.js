@@ -60,11 +60,11 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
                 case 3:
                     $scope.UserName = AccountInfo.ObjAccountInfo.FullName;
                     $rootScope.isLoading = false;
-                    if (parseInt($cookies.get('myReload')) == 1) {
-                        $rootScope.isLoading = true;
-                        location.reload();
-                        $cookies.put('myReload', 0);
-                    }
+                    //if (parseInt($cookies.get('myReload')) == 1) {
+                    //    $rootScope.isLoading = true;
+                    //    location.reload();
+                    //    $cookies.put('myReload', 0);
+                    //}
                     break;
             }
         }

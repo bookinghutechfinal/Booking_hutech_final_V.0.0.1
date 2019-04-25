@@ -1,5 +1,5 @@
 ﻿// Thêm mới tài khoản 
-mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account', 'NgTableParams', '$modal', '$modalInstance','$alert',
+mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account', 'NgTableParams', '$modal', '$modalInstance', '$alert',
     function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account, NgTableParams, $modal, $modalInstance, $alert) {
 
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
@@ -24,7 +24,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
         // Lấy danh sách đơn vị/ khoa, viện phòng ban.  
         $scope.ManagerGetListUnit = function () {
             $account.ManagerGetUnit({}, function (res) {
-                
+
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ManagerGetListUnitResponse = res.data.Data.ListUnit;
@@ -68,8 +68,8 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 "Addres": null,
                 "Gender": null,
                 "BirthDay": null,
-                "UserName": "bookinghutech",
-                "Password": "12345678",
+                "UserName": null,
+                "Password": "Bookinghutech@123",
                 "Unit_ID": null,
                 "AccountType": null,
                 "DriverLicenseNo": null,
@@ -88,7 +88,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                     },
                 },
             }
-            $scope.AccountType = AccountTypeRequest; 
+            $scope.AccountType = AccountTypeRequest;
             $scope.ManagerGetListUnitResponse = [];
             $scope.ManagerGetListUnit();
         }
@@ -102,6 +102,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 $scope.goToChangePassword();
                 break;
             case 3:
+                $scope.ClosePopup();
                 $scope.main()
                 break;
             case 1:
@@ -110,10 +111,33 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 break;
 
         }
+        $scope.test = function () {
+            $scope.CreateNewAccountmModel.AccountType = "";
+            $scope.isDriver = false; 
+        }
         $scope.btndisabled = true;
         $scope.isDriver = false;
+        $scope.isShowQuanTri = 0;
+        $scope.isShowBGH = 0;
+        $scope.isShowLaiXe = 0;
+        $scope.isShowKhoaVien = 0;
         $scope.TestInputChange = function (Request) {
-
+            $scope.isShowQuanTri = 0;
+            $scope.isShowBGH = 0;
+            $scope.isShowLaiXe = 0;
+            $scope.isShowKhoaVien = 0;
+            
+            if (Request.Unit_ID == "2") {
+                $scope.isShowQuanTri = 2;
+            }
+            if (Request.Unit_ID == "3") {
+                $scope.isShowBGH = 3;
+            }
+            if (Request.Unit_ID == "4") {
+                $scope.isShowLaiXe = 4;
+            } else {
+                $scope.isShowKhoaVien = 1;
+            }
             // check show theo loại tài khoa
             if (Request.AccountType === "7") {
                 $scope.isDriver = true;
@@ -126,7 +150,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 } else if (checkNull(Request.LicenseExpires)) {
                     $scope.btndisabled = true;
                     return;
-                }  
+                }
                 else {
                     $scope.btndisabled = false;
                 }
@@ -165,13 +189,15 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 } else if (checkNull(Request.AccountType)) {
                     $scope.btndisabled = true;
                     return;
-                }  
+                }
                 else {
                     $scope.btndisabled = false;
                 }
-            } 
-          
-            
+
+
+            }
+
+
         }
         // check upload hình 
         $scope.CheckUploatImg = function (imgURL) {
@@ -184,27 +210,40 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
             }
         }
         $scope.removeImage = function () {
-            $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = ""; 
+            $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = "";
         }
 
         // Lấy thông tin chi tiết lái xe. 
-        $scope.CeateNewAccount = function (imgUrl) { 
-            $scope.CreateNewAccountmModel.Avatar = imgUrl;  
+        $scope.CeateNewAccount = function (imgUrl) {
+            $scope.CreateNewAccountmModel.Avatar = imgUrl;
             if (checkNull(imgUrl)) {
                 toastr.error("Vui lòng chọn ảnh!")
                 return;
             }
-            $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn thêm người dùng này'), function () {
-                $account.ManagerCreateNewAccount($scope.CreateNewAccountmModel, function (res) {
-                    switch (res.data.ReturnCode) { 
-                        case 1:
-                           // $state.go('Admin.ProductManager');
-                            toastr.success("Đã thêm thành công");
-                            //$state.reload();
-                            break;  
-                    }
+            try {
+                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
+                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+                $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn thêm người dùng này'), function () {
+                    $account.ManagerCreateNewAccount($scope.CreateNewAccountmModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                // $state.go('Admin.ProductManager');
+                                toastr.success("Đã thêm thành công");
+                                //$state.reload();
+                                break;
+                        }
+                    });
                 });
-            });  
+            } catch (e) {
+                $scope.ClosePopup();
+                $cookies.remove('AccountInfo');
+                $cookies.remove("AccountInfoCheckPermissions");
+                $cookies.remove("myReload");
+                toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+                $state.go("login");
+            }
+
+
 
         }
 
@@ -214,7 +253,6 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
         }
 
 
-    }]);  
+    }]);
 
 // upload hình  
- 

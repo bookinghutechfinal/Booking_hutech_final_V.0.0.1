@@ -23,7 +23,7 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                 break;
             case 3:
                 $rootScope.isLoading = true; 
-                location.reload();  
+                //location.reload();  
                 $scope.goToHome();
                 break;
             case 1:

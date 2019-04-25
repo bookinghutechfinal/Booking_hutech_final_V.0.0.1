@@ -119,6 +119,10 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspChangePasswordByAccountID = "uspChangePasswordByAccountID"; 
         //Get Update Detail Cost. Create By Mr.Lam Create 22/4/2019. 
         public const string uspUpdateDetailCost = "uspUpdateDetailCost {0},N'{1}',{2},{3},{4}";
+        //Thêm mới đơn vị. Create By Anh.Trần Create 25/4/2019. 
+        public const string uspCreateNewUnit = "uspCreateNewUnit N'{0}',N'{1}','{2}','{3}'";  
+        //Thêm mới đơn vị. Create By Anh.Trần Create 25/4/2019. 
+        public const string uspEditNewUnit = "uspEditNewUnit {0}, N'{1}',N'{2}','{3}','{4}'"; 
         
  
     }
