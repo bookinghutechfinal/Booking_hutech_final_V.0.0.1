@@ -400,6 +400,12 @@ namespace BookingHutech.Controllers.Api
                         // kiểm tra quyền, và nguồn gọi. 
                         try
                         {
+                            if (request.CarImageNew != null && request.CarImageNew != request.CarImage)
+                            {
+                                string fileName = "CarImage" + helper.CreateID() + ".png";
+                                UploadFile.DeleteImage(request.CarImage);
+                                request.CarImage = UploadFile.UploadImage(request.CarImageNew, fileName); 
+                            }
                             carServices.UpdateCarInfoServices(request);
                             return ApiResponse.Success();
                         }

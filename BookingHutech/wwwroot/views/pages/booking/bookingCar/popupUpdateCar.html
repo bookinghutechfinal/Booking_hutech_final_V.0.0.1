@@ -2,6 +2,63 @@
     .modal-header {
         background-color: #2A3F54;
     }
+    #imgremove {
+        position: absolute;
+        margin-left: -5%;
+        margin-top: -12%;
+    }
+
+    #imgremoveimgnew {
+        position: absolute;
+    }
+    /* ng-show animation*/
+    /* ngHide animation */
+    .ngHideSample {
+        /*padding: 0;
+        margin: 0;*/
+    }
+
+        .ngHideSample.ng-hide-add {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 1;
+        }
+
+        .ngHideSample.ng-hide-add-active {
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove {
+            -webkit-transition: all linear 0.3s;
+            -moz-transition: all linear 0.3s;
+            -ms-transition: all linear 0.3s;
+            -o-transition: all linear 0.3s;
+            opacity: 0;
+        }
+
+        .ngHideSample.ng-hide-remove-active {
+            opacity: 1;
+        }
+
+    .form-group_bk {
+        margin: 0;
+    }
+
+    .form-group_bk_cv {
+        padding: inherit;
+        margin-top: 10px;
+    }
+
+    .Messuccess {
+        float: right;
+        height: 58px;
+        padding: 20px;
+        border-left: 4px solid;
+        background-color: #c3e6cb;
+        color: #155724;
+    }
 </style>
 
 <!-- Modal content-->
@@ -17,16 +74,44 @@
                 <div class="x_content">
 
                     <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
-                        <div class="profile_img">
+                        <div class="profile_img" ng-show="!ischeckImgNew">
                             <div id="crop-avatar">
                                 <!-- Current avatar -->
-                                <a href="../../../../images/img/{{CarInfo.CarImage}}" target="_blank">
-                                    <img src="../../../../images/img/{{CarInfo.CarImage}}" alt="{{CarInfo.CarImage}}" class="img-responsive avatar-view">
+                                <a href="../../../../images/avt/{{CarInfo.CarImage}}" target="_blank">
+                                    <img src="../../../../images/avt/{{CarInfo.CarImage}}" alt="{{CarInfo.CarImage}}" class="img-responsive avatar-view">
                                 </a>
                             </div>
                         </div>
-                        <h3>{{CarInfo.CarName}}</h3>
+                        <!--chọn hình mới-->
+                        <!--<div class="profile_img">
+                            <div id="crop-avatar">
 
+                            </div>
+                        </div>-->
+                        <div class="form-group" style="text-align: center;" ng-show="ischeckImgNew">
+                            <div class="form-group" style="text-align: center;" ng-click="removeImageNew()">
+                                <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  " style="color: orangered">Hủy!</span>
+                                <img ng-show="ischeckImgNew && ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  " class="delete" type="button" value="xóa" src="../../../../images/icon/close_delete-512.png" id="imgremoveimgnew" style="width: 30px" />
+                            </div>
+                            <div ng-show=" !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
+                                <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
+                                     width="200" height="200" />
+                                <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình" ng-click="upLoadIMGNew()"
+                                    onclick="document.getElementById('file1').click();" style="margin-top: 5px;">
+                                <span class="glyphicon glyphicon-picture"></span>
+                                Chọn Hình Khác
+                                <i style="color:red;">(*)</i>
+                            </button>
+                            <input style="display:none;" type="file" id="file1" accept="image/*"
+                                   ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
+                                   resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
+                        </div>
+                        <!--chọn hình mới-->
+                        <!--<h3>{{CarInfo.CarName}}</h3>
                         <ul class="list-unstyled user_data">
                             <li><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
                             <li><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
@@ -38,7 +123,7 @@
                             <li class="title_bk">
                                 <span style="font-weight:bold"><span class="glyphicon glyphicon-cog"></span> Cập nhật:</span> {{CarInfo.LastModifiedDate | date:'HH:mm - dd/MM/yyyy '}}
                             </li>
-                        </ul>
+                        </ul>-->
                         <button class="btn btn-warning btn-round btn-block dropdown-toggle pull-right" aria-expanded="false" data-toggle="dropdown" ng-click="export()">
                             <span class="glyphicon glyphicon-cog"></span> Cập nhật
                         </button>
@@ -59,37 +144,39 @@
                             <div class="form-group">
                                 <div class="control-label col-md-4 col-sm-4 col-xs-12">Tên xe: <i style="color:red;">(*)</i></div>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input class="form-control text-box single-line ed_border"  ng-model="CarInfo.CarName" type="text" id="carName">
-
+                                    <input class="form-control text-box single-line ed_border" ng-model="CarInfo.CarName" type="text" id="carName" ng-change="TestInputChange(CarInfo)">
+                                    <span class="field-validation-valid text-danger ngHideSample " ng-show=" CarInfo.CarName === '' || CarInfo.CarName === null"><i class="fa fa-warning"></i> Vui lòng nhập!</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="control-label col-md-4 col-sm-4 col-xs-12">Biển số: <i style="color:red;">(*)</i></div>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input class="form-control text-box single-line ed_border"  ng-model="CarInfo.CarNo" type="text" id="carNo">
-
+                                    <input class="form-control text-box single-line ed_border" ng-model="CarInfo.CarNo" type="text" id="carNo" ng-change="TestInputChange(CarInfo)">
+                                    <span class="field-validation-valid text-danger ngHideSample " ng-show=" CarInfo.CarNo === '' || CarInfo.CarNo === null"><i class="fa fa-warning"></i> Vui lòng nhập!</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="control-label col-md-4 col-sm-4 col-xs-12">Hạn đăng kiểm: <i style="color:red;">(*)</i></div>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class='input-group date' id='myDatepicker1'>
-                                        <input type='text' class="form-control ed_border" id='myDate1' />
+                                        <input type='text' class="form-control ed_border" id='myDate1'  ng-change="TestInputChange(CarInfo)" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
                                     </div>
+                                    <span class="field-validation-valid text-danger ngHideSample " ng-show=" CarInfo.Expires === '' || CarInfo.Expires === null"><i class="fa fa-warning"></i> Vui lòng nhập!</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="control-label col-md-4 col-sm-4 col-xs-12">Hạn bảo hiểm: <i style="color:red;">(*)</i></div>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class='input-group date' id='myDatepicker2'>
-                                        <input type='text' class="form-control ed_border" id='myDate2' />
+                                        <input type='text' class="form-control ed_border" id='myDate2'    ng-change="TestInputChange(CarInfo)"  />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
                                     </div>
+                                    <span class="field-validation-valid text-danger ngHideSample " ng-show=" CarInfo.InsuranceExpires === '' || CarInfo.InsuranceExpires === null"><i class="fa fa-warning"></i> Vui lòng nhập!</span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -99,11 +186,25 @@
                                         <option value="{{CarInfo.CarTypeID}}">{{CarInfo.CarTypeName}}</option>
                                         <option ng-repeat="data in listCarType" ng-show="data.CarTypeID != CarInfo.CarTypeID" value="{{data.CarTypeID}}">{{data.CarTypeName}}</option>
                                     </select>
+                                </div> 
+                            </div>
+                            <div class="form-group ngHideSample" ng-show="btndisabled">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> </label>
+                                <div class=" col-md-8 col-sm-8 col-xs-12 form-group alert alert-warning " style="float: right; height: 34px; padding: inherit; text-align:center">
+                                    <h6>
+                                        <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
+                                    </h6>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <center><p ng-show="ErrorInput" style="color:red">Vui lòng điền đầy đủ thông tin.</p></center>
-                            </div>
+                             <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                        <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-success ngHideSample Messuccess" style="" ng-show="isShowRegisterSuccess">
+                                            <h4>
+                                                <i class="fa fa-check"></i> Cập nhật thông tin thành công.
+                                            </h4>
+                                        </div>
+                                    </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -111,7 +212,7 @@
         </div>
         <div class="modal-footer">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6" style="float:right">
                     <div class="col-sm-6">
                         <div class="mb15 mt30">
                             <button class="btn btn-danger btn-round btn-block"
@@ -124,7 +225,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="mb15 mt30">
-                            <button class="btn btn-primary btn-round btn-block"
+                            <button class="btn btn-primary btn-round btn-block" ng-disabled="btndisabled"
                                     ng-click="updateCarInfo()">
                                 <!--ng-disabled="!isSubmitingEnable()"-->
                                 <i class="glyphicon glyphicon-ok"></i>
