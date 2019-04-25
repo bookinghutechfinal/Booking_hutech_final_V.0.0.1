@@ -169,10 +169,12 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
 
                     } else {
                         alert("hình mới ok");
+                        $scope.TestInputChange($scope.EditProfiAccount);
                         $scope.EditProfiAccount.AvatarNew = $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL;
                     }
 
                 } else {
+                    $scope.TestInputChange($scope.EditProfiAccount);
                     $scope.ischeckImgNew = false;
                     alert("lấy lại Hình cũ");
                 }

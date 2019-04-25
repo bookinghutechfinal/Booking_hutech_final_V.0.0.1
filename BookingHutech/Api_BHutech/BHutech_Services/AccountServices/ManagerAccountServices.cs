@@ -285,8 +285,9 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
                 if (request.AvatarNew != null && request.AvatarNew != request.Avatar)
                 {
                     string fileName = "Avatar" + helper.CreateID() + ".png";
-                    request.Avatar = UploadFile.UploadImage(request.AvatarNew, fileName);
                     UploadFile.DeleteImage(request.Avatar);
+                    request.Avatar = UploadFile.UploadImage(request.AvatarNew, fileName);
+                   
                 }
                 string stringSqluspEditProfileAccount = String.Format(Prototype.SqlCommandStore.uspEditProfileAccount);
                 managerAccountDAO.EditProfileAccountDAO(stringSqluspEditProfileAccount, request); 
