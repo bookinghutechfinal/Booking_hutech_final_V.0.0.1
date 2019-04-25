@@ -1,6 +1,6 @@
 ﻿mainmodule.controller('ManagerCalendarDriverController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$alert', '$account', 'NgTableParams',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $alert, $account, NgTableParams) {
-
+        try {
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
 
         $scope.init = function () {
@@ -159,5 +159,12 @@
                     }
                 });
             });
+            }
+        } catch (e) {
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            $cookies.remove("myReload");
+            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+            $state.go("login");
         }
     }]);  

@@ -241,7 +241,8 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                         case 1:
                             toastr.success('Bạn đã cập nhật thành công.');
                             $scope.ShowDetailAccount();
-                            for (var i = 0; i < RoleRequest.length; i++) {
+                            let count = RoleRequest.length;
+                            for (var i = 0; i <= count; i++) {
                                 RoleRequest.pop();
                             }
                             break;

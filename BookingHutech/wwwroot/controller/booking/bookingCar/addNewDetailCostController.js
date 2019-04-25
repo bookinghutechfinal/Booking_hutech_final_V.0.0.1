@@ -1,6 +1,6 @@
 ﻿mainmodule.controller('popupAddNewDetailCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance', '$account', 'DetailCost',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance, $account, DetailCost) {
-
+        try {
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
         var repairID = DetailCost.RepairID;
 
@@ -54,5 +54,12 @@
 
         $scope.ClosePopup = function () {
         $modalInstance.close();
-    }
+            }
+        } catch (e) {
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            $cookies.remove("myReload");
+            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+            $state.go("login");
+        }
     }]);  

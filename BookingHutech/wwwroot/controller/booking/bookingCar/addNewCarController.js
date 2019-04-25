@@ -1,6 +1,6 @@
 ﻿mainmodule.controller('AddNewCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance','$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance, $account) {
-
+        try {
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
 
         $scope.init = function () {
@@ -58,5 +58,11 @@
             } 
             $scope.btndisabled = false;
         } 
-        
+        } catch (e) {
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            $cookies.remove("myReload");
+            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+            $state.go("login");
+        }
     }]);  

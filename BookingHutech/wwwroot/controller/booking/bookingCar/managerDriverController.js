@@ -1,7 +1,7 @@
 ﻿
 mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account', 'NgTableParams', '$modal',
     function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account, NgTableParams, $modal) {
-
+        try {
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
         $scope.goToHome = function () {
             $state.go('main.home');
@@ -135,8 +135,12 @@ mainmodule.controller('ManagerDriverController', ['$scope', '$state', '$rootScop
             });
         }
 
-       
-
-
+        } catch (e) {
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            $cookies.remove("myReload");
+            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+            $state.go("login");
+        }
     }]);  
 

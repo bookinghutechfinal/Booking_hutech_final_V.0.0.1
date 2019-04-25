@@ -313,19 +313,19 @@ mainmodule.controller('popupDetailCarController', ['$scope', '$state', '$rootSco
                 $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = "";
                 $scope.ischeckImgNew = false;
                 $scope.btndisabled = false;
-                $scope.EditProfiAccount.AvatarNew = null;
+                $scope.CarInfo.AvatarNew = null;
             }
             // hủy chọn hình mới
             $scope.removeImageNew = function () {
                 $scope.ischeckImgNew = false;
                 $scope.btndisabled = false;
-                $scope.EditProfiAccount.AvatarNew = null;
+                $scope.CarInfo.AvatarNew = null;
             }
             // chọn chức năng đổi hình
             $scope.upLoadIMGNew = function () {
                 $scope.ischeckImgNew = true;
                 $scope.btndisabled = false;
-                $scope.EditProfiAccount.AvatarNew = null;
+                $scope.CarInfo.AvatarNew = null;
                 //$scope.TestInputChange($scope.EditProfiAccount);
             }
             $scope.ClosePopup = function () {

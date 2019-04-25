@@ -1,6 +1,6 @@
 ﻿mainmodule.controller('ManagerCarByDriverController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$stateParams', '$alert', '$rootScope', 'NgTableParams', '$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $stateParams, $alert, $rootScope, NgTableParams, $account) {
-
+        try {
         var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
 
         // Hàm 1: khai báo các biến tiện ích
@@ -193,6 +193,13 @@
             });
 
             $scope.getListCost();
+            }
+        } catch (e) {
+            $cookies.remove('AccountInfo');
+            $cookies.remove("AccountInfoCheckPermissions");
+            $cookies.remove("myReload");
+            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+            $state.go("login");
         }
     }]);
 
