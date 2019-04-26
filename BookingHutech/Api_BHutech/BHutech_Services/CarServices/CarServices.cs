@@ -11,13 +11,14 @@ using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.BookingCar;
 using static BookingHutech.Api_BHutech.Lib.Enum.BookingType;
+using BookingHutech.Api_BHutech.Lib.Helper;
 
 namespace BookingHutech.Api_BHutech.CarServices.CarServices
 {
     public class CarServices  
     {
         CarDAO carDAO = new CarDAO();
-
+        Helper helper = new Helper();
         /// <summary>
         /// Mr.Lam 8/3/2019
         /// GetListCar + List cartype
@@ -167,6 +168,27 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
             }
             catch (Exception ex)
             {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        } 
+        /// <summary>
+        /// Thêm mới xe
+        /// Create by Anh.tran 26/4/2019
+        /// </summary>
+        /// <param name="UpdateCarInfoRequestModel"></param>
+        public void CreateNewCarServices(CreateNewCarRequestModel request)
+        {
+            try
+            {  
+                string fileName = "Car" + helper.CreateID() + ".png";
+                request.CarImage = UploadFile.UploadImage(request.CarImage, fileName);
+                string uspCreateNewCar = String.Format(Prototype.SqlCommandStore.uspCreateNewCar);
+                carDAO.CreateNewCarDAO(uspCreateNewCar, request);
+            }
+            catch (Exception ex)
+            {
+                UploadFile.DeleteImage(request.CarImage);
                 LogWriter.WriteException(ex);
                 throw;
             }

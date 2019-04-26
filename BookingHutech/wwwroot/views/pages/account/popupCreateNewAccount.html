@@ -39,10 +39,15 @@
             left: 60%;
         }
 
-    #imgremove {
+    /*#imgremove {
         position: absolute;
         margin-left: 22px;
         margin-top: -192px;
+    }*/
+    #imgremove {
+        position: absolute;
+        margin-left: -35px;
+        margin-top: 5px;
     }
     /* ng-show animation*/
     /* ngHide animation */
@@ -146,7 +151,7 @@
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Họ Tên: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" ng-model="CreateNewAccountmModel.FullName" type="text" value="" autofocus ng-change="TestInputChange(CreateNewAccountmModel)">
-                                                <span class="field-validation-valid text-danger" ng-show=" CreateNewAccountmModel.FullName === '' || CreateNewAccountmModel.FullName === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show=" CreateNewAccountmModel.FullName === '' || CreateNewAccountmModel.FullName === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Giới tính: <i style="color:red;">(*)</i></div>
 
@@ -164,7 +169,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <span class="field-validation-valid text-danger" ng-show=" CreateNewAccountmModel.Gender === '' || CreateNewAccountmModel.Gender === null && !TestInputChange">Vui lòng chọn!</span>
+                                                <span class="field-validation-valid text-danger" ng-show=" CreateNewAccountmModel.Gender === '' || CreateNewAccountmModel.Gender === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
                                                 <!--   <span class="field-validation-valid text-danger">Vui lòng chọn!</span>-->
                                             </div>
                                         </div>
@@ -172,26 +177,26 @@
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Điện thoại: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.NumberPhone" ng-change="TestInputChange(CreateNewAccountmModel)" type="number">
-                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.NumberPhone === '' || CreateNewAccountmModel.NumberPhone === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.NumberPhone === '' || CreateNewAccountmModel.NumberPhone === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Email: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.Email" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Email === '' || CreateNewAccountmModel.Email === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Email === '' || CreateNewAccountmModel.Email === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
                                                 <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.Addres" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Addres === '' || CreateNewAccountmModel.Addres === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Addres === '' || CreateNewAccountmModel.Addres === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày sinh: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" value="" ng-model="CreateNewAccountmModel.BirthDay" ng-change="TestInputChange(CreateNewAccountmModel)" type="date">
-                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.BirthDay === '' || CreateNewAccountmModel.BirthDay === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.BirthDay === '' || CreateNewAccountmModel.BirthDay === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                         </div>
 
@@ -199,37 +204,37 @@
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Tài khoản: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" ng-model="CreateNewAccountmModel.UserName" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.UserName === '' || CreateNewAccountmModel.UserName === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.UserName === '' || CreateNewAccountmModel.UserName === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Mật khẩu: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" disabled ng-model="CreateNewAccountmModel.Password" ng-change="TestInputChange(CreateNewAccountmModel)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Password === '' || CreateNewAccountmModel.Password === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Password === '' || CreateNewAccountmModel.Password === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Đơn vị: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <select class="form-control " ng-model="CreateNewAccountmModel.Unit_ID" ng-change="TestInputChange(CreateNewAccountmModel)" ng-click="test()"  style="width: 100%;">
+                                                <select class="form-control " ng-model="CreateNewAccountmModel.Unit_ID" ng-change="TestInputChange(CreateNewAccountmModel)" ng-click="test()" style="width: 100%;">
                                                     <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                     <option selected value="">-- Vui lòng chọn --</option>
                                                     <option ng-repeat="index in ManagerGetListUnitResponse" value="{{index.Unit_ID}}">
                                                         {{index.UnitName}}
                                                     </option>
                                                 </select>
-                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Unit_ID === '' || CreateNewAccountmModel.Unit_ID === null && !TestInputChange">Vui lòng chọn!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.Unit_ID === '' || CreateNewAccountmModel.Unit_ID === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
                                             </div>
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Chức vụ: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <select class="form-control" ng-model="CreateNewAccountmModel.AccountType" ng-change="TestInputChange(CreateNewAccountmModel)">
                                                     <option selected value="">-- Vui lòng chọn --</option>
-                                                    <option value="1" ng-show="isShowKhoaVien == 1 &&  isShowQuanTri !== 2  &&  isShowBGH !== 3  "   >
+                                                    <option value="1" ng-show="isShowKhoaVien == 1 &&  isShowQuanTri !== 2  &&  isShowBGH !== 3  ">
                                                         Thư ký
                                                     </option>
-                                                    <option value="2" ng-show="isShowKhoaVien == 1  &&  isShowQuanTri !== 2  &&  isShowBGH !== 3  " >
+                                                    <option value="2" ng-show="isShowKhoaVien == 1  &&  isShowQuanTri !== 2  &&  isShowBGH !== 3  ">
                                                         Trưởng khoa
                                                     </option>
-                                                    <option value="3"  ng-show="  isShowQuanTri== 2">
+                                                    <option value="3" ng-show="  isShowQuanTri== 2">
                                                         Quản trị viên
                                                     </option>
                                                     <option value="5" ng-show="isShowBGH == 3  ">
@@ -248,7 +253,7 @@
                                                         {{index.AccountTypeName}}
                                                     </option>-->
                                                 </select>
-                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.AccountType === '' || CreateNewAccountmModel.AccountType === null && !TestInputChange">Vui lòng chọn!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.AccountType === '' || CreateNewAccountmModel.AccountType === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
                                             </div>
                                         </div>
                                         <div class="ngHideSample" ng-show="isDriver">
@@ -256,12 +261,12 @@
                                                 <div class="control-label col-md-2 col-sm-2 col-xs-12">Số bằng lái: <i style="color:red;">(*)</i></div>
                                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                                     <input class="form-control text-box single-line" type="number" value="" ng-model="CreateNewAccountmModel.DriverLicenseNo" ng-change="TestInputChange(CreateNewAccountmModel)">
-                                                    <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.DriverLicenseNo === '' || CreateNewAccountmModel.DriverLicenseNo === null && !TestInputChange">Vui lòng chọn!</span>
+                                                    <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.DriverLicenseNo === '' || CreateNewAccountmModel.DriverLicenseNo === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
                                                 </div>
                                                 <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạng: <i style="color:red;">(*)</i></div>
                                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                                     <input class="form-control text-box single-line" type="text" value="" ng-model="CreateNewAccountmModel.LicenseClass" ng-change="TestInputChange(CreateNewAccountmModel)">
-                                                    <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.LicenseClass === '' || CreateNewAccountmModel.LicenseClass === null && !TestInputChange">Vui lòng nhập!</span>
+                                                    <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.LicenseClass === '' || CreateNewAccountmModel.LicenseClass === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                                 </div>
                                             </div>
                                             <!--<div class="form-group">
@@ -280,14 +285,19 @@
                                                 <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày hết hạn: <i style="color:red;">(*)</i></div>
                                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                                     <input class="date-picker form-control" ng-model="CreateNewAccountmModel.LicenseExpires" ng-change="TestInputChange(CreateNewAccountmModel)" type="date">
-                                                    <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.LicenseExpires === '' || CreateNewAccountmModel.LicenseExpires === null && !TestInputChange">Vui lòng nhập!</span>
+                                                    <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.LicenseExpires === '' || CreateNewAccountmModel.LicenseExpires === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="form-group" style="float:right">
-                                        <span ng-show="btndisabled" class="field-validation-valid text-danger" style="color:red;"><i>Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*)</i></span>
+                                     
+                                    <div class=" col-md-12 col-sm-12 col-xs-12 form-group" ng-show="btndisabled">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                        <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-warning ngHideSample" style="float: right; height: 34px; padding: inherit; text-align:center" >
+                                            <h6>
+                                                <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
+                                            </h6>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">

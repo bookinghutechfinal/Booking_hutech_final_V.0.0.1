@@ -81,8 +81,10 @@ mainmodule.controller('ManagerUnitController', ['$scope', '$state', '$rootScope'
         $scope.btndisabled = false;
         $scope.isCheckEmail = false;
         $scope.isShowRegisterSuccess = false;
+        $scope.isShowUpdateSuccess = false;
         $scope.TestInputChange = function (Request) {  
             $scope.isShowRegisterSuccess = false;
+            $scope.isShowUpdateSuccess = false;
             // check data
             if (checkNull(Request.UnitName)) {
                 $scope.btndisabled = true;
@@ -105,7 +107,7 @@ mainmodule.controller('ManagerUnitController', ['$scope', '$state', '$rootScope'
                 $scope.btndisabled = false;
             } 
         } 
-        // Lấy thông tin chi tiết lái xe. 
+        //  thêm mới đơn vị
         $scope.CeateNewUnit = function () { 
             try {
                 var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
@@ -113,11 +115,12 @@ mainmodule.controller('ManagerUnitController', ['$scope', '$state', '$rootScope'
                 $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn thêm mới đơn vị này'), function () {
                     $account.CreateNewUnit($scope.CreateNewUnitModel, function (res) {
                         switch (res.data.ReturnCode) {
-                            case 1: 
+                            case 1:  
                                 $scope.isShowRegisterSuccess = true;
                                 toastr.success("Đã thêm thành công"); 
                                 $scope.ManagerGetListUnit();
-                                $scope.CancelAddNewUnit(); 
+                                $scope.ClearAddNewUnit(); 
+                               // $scope.CancelAddNewUnit(); 
                                 break;
                         }
                     });
@@ -184,6 +187,8 @@ mainmodule.controller('ManagerUnitController', ['$scope', '$state', '$rootScope'
         $scope.isShowEditUnit = false;  
      
         $scope.btnEdit = function (request) {
+            $scope.isShowRegisterSuccess = false;
+            $scope.isShowUpdateSuccess = false;
             $scope.isShowEditUnit = true;
             $scope.CreateNewUnitModel.UnitName = request.UnitName;
             $scope.CreateNewUnitModel.UnitManager = request.UnitManager;
@@ -201,7 +206,7 @@ mainmodule.controller('ManagerUnitController', ['$scope', '$state', '$rootScope'
                     $account.EditUnit($scope.CreateNewUnitModel, function (res) {
                         switch (res.data.ReturnCode) {
                             case 1:
-                                $scope.isShowRegisterSuccess = true;
+                                $scope.isShowUpdateSuccess = true;
                                 toastr.success("Chỉnh sửa thành công");
                                 $scope.tableParams = $scope.tableParams = null; 
                                 for (var i = 0; i < $scope.ManagerGetListUnitResponse.length; i++) {

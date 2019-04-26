@@ -1,5 +1,5 @@
-﻿mainmodule.controller('DetailCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$stateParams', '$alert', '$rootScope', 'NgTableParams',
-    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $stateParams, $alert, $rootScope, NgTableParams) {
+﻿mainmodule.controller('DetailCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$stateParams', '$alert', '$rootScope', 'NgTableParams', '$account',
+    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $stateParams, $alert, $rootScope, NgTableParams, $account) {
 
         // Hàm 1: khai báo các biến tiện ích
         $scope.init = function () {
@@ -18,10 +18,22 @@
                 CarStatus: null,
                 LastModifiedDate: null
             };
-            $scope.getCarInfo();
-            $scope.getRegistrationCarByCarID();
-            $scope.getListCostByCarID();
-            $scope.getDriverManageCar();
+            try {
+                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
+                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+                // ném code của bạn vào trong này 
+                $scope.getCarInfo();
+                $scope.getRegistrationCarByCarID();
+                $scope.getListCostByCarID();
+                $scope.getDriverManageCar();
+                // ném code của bạn vào trong này 
+            } catch (e) {
+                $cookies.remove('AccountInfo');
+                $cookies.remove("AccountInfoCheckPermissions");
+                $cookies.remove("myReload");
+                toastr.error($rootScope.initMessage('InconrectSestion'));
+                $rootScope.showError = true;
+            }
         }
 
         // Hàm Lấy danh sách xe
@@ -143,26 +155,38 @@
         };
         //popup chỉnh sửa thông tin xe
         $scope.updateCar = function () {
-            var CarInfoResponeModel = $scope.CarInfo;
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupUpdateCar.html',
-                controller: 'popupDetailCarController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'lg',
-                resolve: {
-                    CarInfoRequest: function () {
-                        return CarInfoResponeModel;
-                    },
-                }
-            });
-            modalInstance.result.then(function (result) {
-                $scope.getCarInfo();
-            });
-
+            try {
+                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
+                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+                // ném code của bạn vào trong này 
+                var CarInfoResponeModel = $scope.CarInfo;
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupUpdateCar.html',
+                    controller: 'popupDetailCarController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        CarInfoRequest: function () {
+                            return CarInfoResponeModel;
+                        },
+                    }
+                });
+                modalInstance.result.then(function (result) {
+                    $scope.getCarInfo();
+                });
+                // ném code của bạn vào trong này 
+            } catch (e) {
+                $cookies.remove('AccountInfo');
+                $cookies.remove("AccountInfoCheckPermissions");
+                $cookies.remove("myReload");
+                toastr.error($rootScope.initMessage('InconrectSestion')); 
+                $rootScope.showError = true;
+            }
+             
         }
     }]);
 
@@ -189,7 +213,7 @@ mainmodule.controller('popupDetailCarController', ['$scope', '$state', '$rootSco
             };
             //$scope.CarInfo = CarInfoRequest;
             $scope.listCarType = [];
-             
+
             $scope.getCarType = function () {
                 $BookingCar.getListCarType({}, function (res) {
                     switch (res.data.ReturnCode) {
@@ -203,7 +227,7 @@ mainmodule.controller('popupDetailCarController', ['$scope', '$state', '$rootSco
             }
             // lấy thông tin loại xe.
             $scope.getCarType();
-             
+
             //Hàm đổi trạng thái xe
             $scope.updateCarStatus = function (request) {
                 var updateCarStatusRequestModel = {

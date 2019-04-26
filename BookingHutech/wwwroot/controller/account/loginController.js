@@ -13,7 +13,6 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
             return;
         };
         $rootScope.isLoading = false; 
-
         // kiểm tra account đẵ đăng nhập chưa, đổi mật khẩu chưa. 
         var result = CheckAccountLoginAndChangePass(AccountInfo);
         switch (result) {

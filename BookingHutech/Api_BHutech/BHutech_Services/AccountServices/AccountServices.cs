@@ -119,6 +119,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             }
             catch (Exception ex)
             {
+                UploadFile.DeleteImage(request.Avatar);
                 LogWriter.WriteException(ex);
                 throw;
             }

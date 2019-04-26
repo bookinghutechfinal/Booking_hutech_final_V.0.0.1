@@ -14,7 +14,7 @@
     .modal-header {
         background-color: #2A3F54;
     }
-    
+
     .ed_border {
         border-radius: 5px
     }
@@ -63,7 +63,7 @@
         height: 29px;
     }
 </style>
- 
+
 
 <!-- Modal content-->
 <!-- Test  -->
@@ -118,85 +118,60 @@
 
                                 </div>
                             </div>
-
-                            <!--Start: Button-->
-                            <!--<div class=" col-md-12 col-sm-12 col-xs-12 form-group ">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <div class="col-md-6 col-sm-6 col-xs-12" style="padding:10px">
-                                        <button class="btn btn-warning btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="ClosePopup()">
-                                            <i class="glyphicon glyphicon-ok"></i>
-                                            <span>Đóng</span>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12" style="padding:10px">
-                                        <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnRegisterBKCar()">
-                                            <i class="glyphicon glyphicon-ok"></i>
-                                            <span>Tìm Xe</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>-->
-                            <!--End: Button-->
                         </form>
-                        <!--<h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Danh sách xe - Kết quả tìm kiếm </h2>-->
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h5 class="ng-binding"><i class="glyphicon glyphicon-th-list"></i> Danh sách xe</h5>
-                        </div>
-                        <!--<div class="x_content">-->
-                            <div class="x_content" style="display: block;"> 
-                                <div class="table-responsive">
-                                    <table ng-table="tableParams" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
-                                        <tr ng-repeat="item in $data " role="none" class="hover_" style="cursor:pointer">
-                                            <td data-title="'STT'" style="width:1%" align="left">
-                                                {{$index+1}}
-                                                <!--<a class="fa fa-folder-open" href="#/main/manager-Detail-RegisterBKCar/{{item.RegistrationCarID}}/{{item.Profile_Status}}"></a>-->
-
-                                            </td>
-                                            <td data-title="'Hình ảnh'" style="width:5%" align="left">
-                                                <img class="img-responsive avatar-view" src="../../../../images/avt/{{item.CarImage}}" alt="Avatar" title="Change the avatar">
-                                            </td>
-                                            <!--<td data-title="'CarID'" style="width:3%" align="left"> 
-                                                {{item.CarID}}
-                                            </td>-->
-                                            <td data-title="'Số xe'" style="width:10%" align="left">
-                                                {{item.CarNo}}
-                                            </td>
-                                            <td data-title="'Lái xe'" style="width:8%" align="left">
-                                                {{item.FullNameDriver}}
-                                            </td>
-
-                                            <td data-title="'Loại xe'" style="width:6%" align="left" sortable="'CarTypeName'">
-                                                {{item.CarTypeName }}
-                                            </td>
-
-                                            <td data-title="'Trạng thái'" style="width:7%" align="left">
-                                                <i ng-show="item.CarStatus === 2" style="color:blue">Xe trống</i>
-                                                <i ng-show="item.CarStatus === 1" style="color:red">Hoạt động</i>
-                                            </td>
-                                            <td style="width:1%" align="left">
-                                                <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" ng-show="item.DriverID !== 'NULL' " type="submit" ng-click="btnApproveRegistrationCar(item)" style="width: fit-content;height: auto; background-color: blue;">
-                                                    <i class="glyphicon glyphicon-ok"></i>
-                                                    <span>Cấp</span>
-                                                </button>
-                                                <i class="fa fa-warning" ng-show="item.DriverID == 'NULL'" style="color:orangered">Vui lòng phân công lái xe trước khi cấp xe.</i>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        <!--</div>-->
-
                     </div>
                 </div>
 
+
+                
+                    <div class="x_title">
+                        <h5 class="ng-binding"><i class="glyphicon glyphicon-th-list"></i> Danh sách xe</h5>
+                    </div>
+                    <!--<div class="x_content">-->
+
+                    <div class="table-responsive">
+                        <table ng-table="tableParams" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                            <tr ng-repeat="item in $data " role="none" class="hover_" style="cursor:pointer">
+                                <td data-title="'STT'" style="width:1%" align="left">
+                                    {{$index+1}}
+                                    <!--<a class="fa fa-folder-open" href="#/main/manager-Detail-RegisterBKCar/{{item.RegistrationCarID}}/{{item.Profile_Status}}"></a>-->
+
+                                </td>
+                                <td data-title="'Hình ảnh'" style="width:5%" align="left">
+                                    <img class="img-responsive avatar-view" src="../../../../images/avt/{{item.CarImage}}" alt="Avatar" title="Change the avatar">
+                                </td>
+                                <!--<td data-title="'CarID'" style="width:3%" align="left">
+                                    {{item.CarID}}
+                                </td>-->
+                                <td data-title="'Số xe'" style="width:10%" align="left">
+                                    {{item.CarNo}}
+                                </td>
+                                <td data-title="'Lái xe'" style="width:8%" align="left">
+                                    {{item.FullNameDriver}}
+                                </td>
+
+                                <td data-title="'Loại xe'" style="width:6%" align="left" sortable="'CarTypeName'">
+                                    {{item.CarTypeName }}
+                                </td>
+
+                                <td data-title="'Trạng thái'" style="width:7%" align="left">
+                                    <i ng-show="item.CarStatus === 2" style="color:blue">Xe trống</i>
+                                    <i ng-show="item.CarStatus === 1" style="color:red">Hoạt động</i>
+                                </td>
+                                <td style="width:1%" align="left">
+                                    <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" ng-show="item.DriverID !== 'NULL' " type="submit" ng-click="btnApproveRegistrationCar(item)" style="width: fit-content;height: auto; background-color: blue;">
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                        <span>Cấp</span>
+                                    </button>
+                                    <i class="fa fa-warning" ng-show="item.DriverID == 'NULL'" style="color:orangered">Vui lòng phân công lái xe trước khi cấp xe.</i>
+                                </td>
+                            </tr>
+                        </table> 
+                    </div>
+                
+                 
             </div>
         </div>
     </div>
 </div>
 <!--<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>-->
- 

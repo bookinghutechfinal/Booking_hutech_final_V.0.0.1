@@ -2,15 +2,26 @@
 mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$stateParams', '$alert', '$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $stateParams, $alert, $account) {
 
-        try {
-            //ReturnAccountType($account.getAccountInfo().ObjAccountInfo);
-            var AccountInfo = $account.getAccountInfo().ObjAccountInfo;
-        }
-        catch (err) {
-            $scope.goToLogin();
-        }
+       
         $scope.goToListRegisterCar = function () {
             $state.go("main.managerBookingCar");
+        }
+        // kiểm tra sesstion 
+        var AccountInfo = $account.getAccountInfo().ObjAccountInfo; 
+        $scope.ChechSesstion = function () {
+            try { 
+               
+                var testCookies = AccountInfo.Account_ID;
+                return true;
+            }
+            catch (err) {
+                $cookies.remove('AccountInfo');
+                $cookies.remove("AccountInfoCheckPermissions");
+                $cookies.remove("myReload");
+                toastr.error($rootScope.initMessage('InconrectSestion'));
+                $rootScope.showError = true;
+                return false;
+            }
         }
 
         $scope.init = function () {
@@ -137,155 +148,168 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
                 $scope.isCarInfo = true;
             }
         }
+
         // mở tìm xe trống
         $scope.OpenPopupSearchCar = function () {
-            var SearchCarRequest = {
-                DateTimeFrom: $scope.DetalRegistrationCar.DateTimeFrom,
-                DateTimeTo: $scope.DetalRegistrationCar.DateTimeTo,
-                CarTypeNameRequest: $scope.DetalRegistrationCar.CarTypeNameRequest,
-                NumberPeople: $scope.DetalRegistrationCar.NumberPeople,
+            if ($scope.ChechSesstion()) {
+                var SearchCarRequest = {
+                    DateTimeFrom: $scope.DetalRegistrationCar.DateTimeFrom,
+                    DateTimeTo: $scope.DetalRegistrationCar.DateTimeTo,
+                    CarTypeNameRequest: $scope.DetalRegistrationCar.CarTypeNameRequest,
+                    NumberPeople: $scope.DetalRegistrationCar.NumberPeople,
+                }
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupSearchCar.html',
+                    controller: 'PopupSearchCarController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        SearchCarRequestModel: function () {
+                            return SearchCarRequest;
+                        },
+                    }
+                });
+                modalInstance.result.then(function (result) {
+                    $scope.CarInfo = {
+                        CarID: result.CarID,
+                        CarNo: result.CarNo,
+                        CarStatus: result.CarStatus,
+                        CarImage: result.CarImage,
+                        Expires: result.Expires,
+                        CarTypeName: result.CarTypeName,
+                        InsuranceExpires: result.InsuranceExpires,
+                        DriverID: result.DriverID,
+                        FullNameDriver: result.FullNameDriver,
+                    }
+                    $scope.CheckCarInfoRequest();
+                });
             }
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupSearchCar.html',
-                controller: 'PopupSearchCarController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'lg',
-                resolve: {
-                    SearchCarRequestModel: function () {
-                        return SearchCarRequest;
-                    },
-                }
-            });
-            modalInstance.result.then(function (result) {
-                $scope.CarInfo = {
-                    CarID: result.CarID,
-                    CarNo: result.CarNo,
-                    CarStatus: result.CarStatus,
-                    CarImage: result.CarImage,
-                    Expires: result.Expires,
-                    CarTypeName: result.CarTypeName,
-                    InsuranceExpires: result.InsuranceExpires,
-                    DriverID: result.DriverID,
-                    FullNameDriver: result.FullNameDriver,
-                }
-                $scope.CheckCarInfoRequest();
-            });
 
         }
 
         // Button Quản trị duyệt. 
         $scope.btnAdminVerify = function () {
-            var AdminVerifyRequestModel = {
-                RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
-                Profile_Status: RegistrationStatus[3].RegistrationStatusType,
-                UserNameUpdate: AccountInfo.FullName,
-                CarID: $scope.CarInfo.CarID,
-                DriverID: $scope.CarInfo.DriverID,
-                Note: $scope.DetalRegistrationCar.Note,
-            }
-            $alert.showConfirmUpdateNewProfile('Xác nhận duyệt đơn cấp phát này!', function () {
-                $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success("Duyệt thành công");
-                            $scope.goToListRegisterCar();
-                            break;
-                    }
+            if ($scope.ChechSesstion()) {
+                var AdminVerifyRequestModel = {
+                    RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
+                    Profile_Status: RegistrationStatus[3].RegistrationStatusType,
+                    UserNameUpdate: AccountInfo.FullName,
+                    CarID: $scope.CarInfo.CarID,
+                    DriverID: $scope.CarInfo.DriverID,
+                    Note: $scope.DetalRegistrationCar.Note,
+                }
+                $alert.showConfirmUpdateNewProfile('Xác nhận duyệt đơn cấp phát này!', function () {
+                    $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                toastr.success("Duyệt thành công");
+                                $scope.goToListRegisterCar();
+                                break;
+                        }
 
-                });
-            }); //end
+                    });
+                }); //end
+            }
         }
         // Hủy không duyệt
         $scope.AdminNotVerify = function () {
-            var AdminVerifyRequestModel = {
-                RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
-                Profile_Status: RegistrationStatus[4].RegistrationStatusType,
-                UserNameUpdate: AccountInfo.FullName,
-                Note: $scope.DetalRegistrationCar.Note,
-            }
-            $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
-                $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success("Hủy thành công");
-                            $scope.goToListRegisterCar();
-                            break;
-                    }
+            if ($scope.ChechSesstion()) {
+                var AdminVerifyRequestModel = {
+                    RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
+                    Profile_Status: RegistrationStatus[4].RegistrationStatusType,
+                    UserNameUpdate: AccountInfo.FullName,
+                    Note: $scope.DetalRegistrationCar.Note,
+                }
+                $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
+                    $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                toastr.success("Hủy thành công");
+                                $scope.goToListRegisterCar();
+                                break;
+                        }
 
-                });
-            }); //end
+                    });
+                }); //end
+            }
         }
         // Chờ BGH duyệt
         $scope.btnWaitingForSchoolVerify = function () {
-            var AdminVerifyRequestModel = {
-                RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
-                Profile_Status: RegistrationStatus[5].RegistrationStatusType,
-                UserNameUpdate: AccountInfo.FullName,
-                Note: $scope.DetalRegistrationCar.Note,
-                CarID: $scope.CarInfo.CarID,
-                DriverID: $scope.CarInfo.DriverID,
-            }
-            $alert.showConfirmUpdateNewProfile('Xác nhận cập nhật chờ ban giám hiệu duyệt!', function () {
-                $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success("Cập nhật thành công");
-                            $scope.goToListRegisterCar();
-                            break;
-                    }
+            if ($scope.ChechSesstion()) {
+                var AdminVerifyRequestModel = {
+                    RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
+                    Profile_Status: RegistrationStatus[5].RegistrationStatusType,
+                    UserNameUpdate: AccountInfo.FullName,
+                    Note: $scope.DetalRegistrationCar.Note,
+                    CarID: $scope.CarInfo.CarID,
+                    DriverID: $scope.CarInfo.DriverID,
+                }
+                $alert.showConfirmUpdateNewProfile('Xác nhận cập nhật chờ ban giám hiệu duyệt!', function () {
+                    $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                toastr.success("Cập nhật thành công");
+                                $scope.goToListRegisterCar();
+                                break;
+                        }
 
-                });
-            }); //end
+                    });
+                }); //end
+            }
         }
         // BGH duyệt   
         $scope.btnSchoolVerify = function () {
-            var AdminVerifyRequestModel = {
-                RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
-                Profile_Status: RegistrationStatus[6].RegistrationStatusType,
-                UserNameUpdate: AccountInfo.FullName,
-                CarID: $scope.CarInfo.CarID,
-                DriverID: $scope.CarInfo.DriverID,
-                Note: $scope.DetalRegistrationCar.Note,
-            }
-            
-            $alert.showConfirmUpdateNewProfile('Xác nhận duyệt đơn cấp phát này!', function () {
-                $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success("Duyệt thành công");
-                            $scope.goToListRegisterCar();
-                            break;
-                    }
+            if ($scope.ChechSesstion()) {
+                var AdminVerifyRequestModel = {
+                    RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
+                    Profile_Status: RegistrationStatus[6].RegistrationStatusType,
+                    UserNameUpdate: AccountInfo.FullName,
+                    CarID: $scope.CarInfo.CarID,
+                    DriverID: $scope.CarInfo.DriverID,
+                    Note: $scope.DetalRegistrationCar.Note,
+                }
 
-                });
-            }); //end
+                $alert.showConfirmUpdateNewProfile('Xác nhận duyệt đơn cấp phát này!', function () {
+                    $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                toastr.success("Duyệt thành công");
+                                $scope.goToListRegisterCar();
+                                break;
+                        }
+
+                    });
+                }); //end
+            }
         }
         // BGH Hủy không duyệt
         $scope.btnSchoolNotVerify = function () {
-            var AdminVerifyRequestModel = {
-                RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
-                Profile_Status: RegistrationStatus[7].RegistrationStatusType,
-                UserNameUpdate: AccountInfo.FullName,
-                Note: $scope.DetalRegistrationCar.Note,
-                CarID: $scope.CarInfo.CarID,
-                DriverID: $scope.CarInfo.DriverID,
-                Note: $scope.DetalRegistrationCar.Note,
-            }
-            $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
-                $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success("Hủy thành công");
-                            $scope.goToListRegisterCar();
-                            break;
-                    }
+            if ($scope.ChechSesstion()) {
+                var AdminVerifyRequestModel = {
+                    RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
+                    Profile_Status: RegistrationStatus[7].RegistrationStatusType,
+                    UserNameUpdate: AccountInfo.FullName,
+                    Note: $scope.DetalRegistrationCar.Note,
+                    CarID: $scope.CarInfo.CarID,
+                    DriverID: $scope.CarInfo.DriverID,
+                    Note: $scope.DetalRegistrationCar.Note,
+                }
+                $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
+                    $BookingCar.ManagerUpdateRegistrationCar(AdminVerifyRequestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                toastr.success("Hủy thành công");
+                                $scope.goToListRegisterCar();
+                                break;
+                        }
 
-                });
-            }); //end
+                    });
+                }); //end
+            }
         }
 
     }]);

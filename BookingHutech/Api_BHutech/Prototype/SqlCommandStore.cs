@@ -122,7 +122,9 @@ namespace BookingHutech.Api_BHutech.Prototype
         //Thêm mới đơn vị. Create By Anh.Trần Create 25/4/2019. 
         public const string uspCreateNewUnit = "uspCreateNewUnit N'{0}',N'{1}','{2}','{3}'";  
         //Thêm mới đơn vị. Create By Anh.Trần Create 25/4/2019. 
-        public const string uspEditNewUnit = "uspEditNewUnit {0}, N'{1}',N'{2}','{3}','{4}'"; 
+        public const string uspEditNewUnit = "uspEditNewUnit {0}, N'{1}',N'{2}','{3}','{4}'";  
+        //Thêm mới xe. Create By Anh.Trần Create 26/4/2019. 
+        public const string uspCreateNewCar = "uspCreateNewCar"; 
         
  
     }

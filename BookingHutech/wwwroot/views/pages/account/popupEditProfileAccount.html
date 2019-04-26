@@ -153,7 +153,7 @@
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Họ Tên: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" ng-model="EditProfiAccount.FullName" type="text" value="" autofocus ng-change="TestInputChange(EditProfiAccount)">
-                                                <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.FullName === '' || EditProfiAccount.FullName === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.FullName === '' || EditProfiAccount.FullName === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Giới tính: <i style="color:red;">(*)</i></div>
 
@@ -171,7 +171,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.Gender === '' || EditProfiAccount.Gender === null && !TestInputChange">Vui lòng chọn!</span>
+                                                <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.Gender === '' || EditProfiAccount.Gender === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
 
                                             </div>
                                         </div>
@@ -179,19 +179,19 @@
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Điện thoại: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" value="{{EditProfiAccount.NumberPhone}}" ng-model="EditProfiAccount.NumberPhone" ng-change="TestInputChange(EditProfiAccount)" min="0" type="number">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.NumberPhone === '' || EditProfiAccount.NumberPhone === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.NumberPhone === '' || EditProfiAccount.NumberPhone === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Email: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.Email" ng-change="TestInputChange(EditProfiAccount)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Email === '' || EditProfiAccount.Email === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Email === '' || EditProfiAccount.Email === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-10 col-sm-10 col-xs-12">
                                                 <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.Addres" ng-change="TestInputChange(EditProfiAccount)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Addres === '' || EditProfiAccount.Addres === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Addres === '' || EditProfiAccount.Addres === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                         </div>
                                         <div class="form-group form-group_bk">
@@ -205,14 +205,14 @@
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
                                                 </div>
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Birthday === '' || EditProfiAccount.Birthday === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Birthday === '' || EditProfiAccount.Birthday === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                         </div>
                                         <div class="form-group form-group_bk">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Đơn vị:</div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.UnitName" disabled type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Unit_ID === '' || EditProfiAccount.Unit_ID === null && !TestInputChange">Vui lòng chọn!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Unit_ID === '' || EditProfiAccount.Unit_ID === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
                                             </div>
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Chức vụ:</div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -224,12 +224,12 @@
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Số bằng <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.DriverLicenseNo" ng-change="TestInputChange(EditProfiAccount)">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.DriverLicenseNo === '' || EditProfiAccount.DriverLicenseNo === null && !TestInputChange">Vui lòng chọn!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.DriverLicenseNo === '' || EditProfiAccount.DriverLicenseNo === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
                                             </div>
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạng: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.LicenseClass" ng-change="TestInputChange(EditProfiAccount)">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseClass === '' || EditProfiAccount.LicenseClass === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseClass === '' || EditProfiAccount.LicenseClass === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                         </div>
                                         <div class="form-group  ngHideSample  " ng-show="isDriver || EditProfiAccount.AccountType == 7" style="padding:0">
@@ -241,7 +241,7 @@
                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                     </span>
                                                 </div>
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseExpires === '' || EditProfiAccount.LicenseExpires === null && !TestInputChange">Vui lòng nhập!</span>
+                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseExpires === '' || EditProfiAccount.LicenseExpires === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                             </div>
                                         </div>
 

@@ -31,8 +31,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             $cookies.remove("AccountInfoCheckPermissions");
             $cookies.remove("myReload");
             //toastr.error($rootScope.initMessage('InconrectSestion'));
-            $state.go('login');
-            alert("2");
+            $state.go('login'); 
         } // end
 
 
@@ -220,7 +219,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             closeModals();
         });
 
-        // Idle.watch(); // start set timeout
+       // Idle.watch(); // start set timeout
         //end 
 
     }]);
@@ -228,6 +227,7 @@ mainmodule.controller('ModalInstanceCtrl', ['$scope', '$state', '$modal', '$moda
 
     $scope.Login = function () {
         $modalInstance.close();
+        location.reload();
         $state.go('login');
     }
 

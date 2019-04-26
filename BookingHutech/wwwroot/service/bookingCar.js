@@ -47,6 +47,13 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    this.CreateNewCar = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'Car/CreateNewCar',
+            data: request
+        }, success, finish)
+    };
 
     this.getListCarByCartypeID = function (request, success, finish) {
         $dao.call({
@@ -251,6 +258,14 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
         }, success, finish)
     };
     ///  Create by Anh.Tran 22/04/2019. Tìm kiếm đơn cấp phát cấp khoa/viện
+    this.UnitSearchGetListRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'RegistrationCar/UnitSearchGetListRegistrationCar',
+            data: request
+        }, success, finish)
+    };
+    ///  Create by Anh.Tran 26/04/2019. thêm mới xe
     this.UnitSearchGetListRegistrationCar = function (request, success, finish) {
         $dao.call({
             method: 'PUT',

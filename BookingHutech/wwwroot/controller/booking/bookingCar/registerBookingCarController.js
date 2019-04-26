@@ -17,7 +17,8 @@
        
 
         try { 
-            var AccountInfo = $account.getAccountInfo().ObjAccountInfo;
+            var AccountInfo = $account.getAccountInfo().ObjAccountInfo
+            var testCookies = AccountInfo.Account_ID;
             $scope.listCartype = [];
             $scope.getListCarType = function () { 
                 $BookingCar.getListCarType({}, function (res) { 

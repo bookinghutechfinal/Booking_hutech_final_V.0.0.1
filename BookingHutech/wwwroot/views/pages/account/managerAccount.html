@@ -85,7 +85,7 @@
                 <div class="x_content" style="display: block;">
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_panel">
+                            <div class=" ">
                                 <div class="x_content" style="display: block;">
                                     <!--Start: Thông tin admin manager-->
                                     <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
@@ -153,10 +153,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>#STT</th>
-                                                    <th>Tên quyền</th>
-                                                    <th>Trạng thái</th>
-                                                    <th>Người cấp</th>
-                                                    <th></th>
+                                                    <th style="width:52%" align="left">Tên quyền</th>
+                                                    <th  align="left"" >Trạng thái</th>
+                                                    <th  align="left">Người cấp</th> 
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -164,19 +163,16 @@
                                                     <th>
                                                         {{$index+1}}
                                                     </th>
-                                                    <td>
+                                                    <td style="width:52%" align="left">
                                                         {{role.RoleName}}
                                                     </td>
-                                                    <td>
+                                                    <td   align="center">
                                                         <i class="fa fa-circle text-success"></i>
                                                         {{role.RoleDetail_Status}}
                                                     </td>
-                                                    <td>
+                                                    <td  align="center">
                                                         {{role.FullNameUpdate}}
-                                                    </td>
-                                                    <td>
-                                                        ...
-                                                    </td>
+                                                    </td> 
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -251,7 +247,7 @@
                     <!--Start: Danh sách tài khoản-->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="x_panel">
+                            <div class=" ">
                                 <div class="x_content">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
