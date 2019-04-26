@@ -2,13 +2,7 @@
 mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$stateParams', '$alert','$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $stateParams, $alert, $account) {
 
-        try {
-            //ReturnAccountType($account.getAccountInfo().ObjAccountInfo);
-            var AccountInfo = $account.getAccountInfo().ObjAccountInfo;
-        }
-        catch (err) {
-            $scope.goToLogin();
-        }
+        
         $scope.goToListUnitRegisterCar = function () {
             $state.go("main.unitRegisterBookingCar");
         }
@@ -60,9 +54,24 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
             }
             var DetalRegistrationCarResponse = [];
             $scope.tableParams = $scope.tableParams = null;
-            GetListRegistrationCarRequestModel.RegistrationCarID = $stateParams.RegistrationCarID;
-            GetListRegistrationCarRequestModel.ProfileStatus = $stateParams.ProfileStatus;
-            $scope.GetListRegistrationCar(GetListRegistrationCarRequestModel);
+            try {
+                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
+                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+                // ném code của bạn vào trong này 
+                GetListRegistrationCarRequestModel.RegistrationCarID = $stateParams.RegistrationCarID;
+                GetListRegistrationCarRequestModel.ProfileStatus = $stateParams.ProfileStatus;
+                $scope.GetListRegistrationCar(GetListRegistrationCarRequestModel);
+                // ném code của bạn vào trong này 
+            } catch (e) {
+                $cookies.remove('AccountInfo');
+                $cookies.remove("AccountInfoCheckPermissions");
+                $cookies.remove("myReload");
+                toastr.error($rootScope.initMessage('InconrectSestion'));
+                //  $state.go("login"); 
+                $rootScope.showError = true; 
+            } 
+
+         
         }
         // Lấy danh sách đơn cấp phát theo MãKhoa/Viện
         $scope.GetListRegistrationCar = function (request) {

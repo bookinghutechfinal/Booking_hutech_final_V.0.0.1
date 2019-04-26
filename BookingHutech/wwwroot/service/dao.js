@@ -23,13 +23,13 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                 }  
                 else if (response.data.ReturnCode === 2) { 
                     $rootScope.showError = true; 
-                    toastr.error('Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.!');
+                    toastr.error('Hệ thống có lỗi trong quá trình xử lý!');
                 }
                 else if (response.data.ReturnCode === 114) {
                     toastr.error('Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.!');
                     $cookies.remove('AccountInfo');
                     $cookies.remove("AccountInfoCheckPermissions"); 
-                    $state.go('login');
+                    $rootScope.showError = true; 
                    
                 }
                 else if (response.data.ReturnCode === 150) {

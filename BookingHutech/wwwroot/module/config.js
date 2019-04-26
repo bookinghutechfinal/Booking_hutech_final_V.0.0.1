@@ -10,8 +10,10 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             state.go("login");
         }
         else {
-            state.go("main.home");
+            // state.go("main.home");  
+            // alert(location);  
         }
+       
     });
     $stateProvider
         .state('login', {
@@ -181,6 +183,7 @@ mainmodule.config(['$translateProvider',
             'MessageChangeAccount': 'Vui lòng thay đổi mật khẩu cho lần đầu tiên đăng nhập vào hệ thống!',
             'NotVerify': 'Tài khoản này chưa được quản trị viên duyệt. Vui lòng đăng nhập tài khoản khác!',
             'CookiesInconrect': 'Vui lòng đăng nhập!',
+            'InconrectSestion': 'Phiên bản làm việc hết hạn. Vui lòng đăng nhập lại!',
             /* -------- Logout ---------- */
             'TitleLogout': 'Đăng xuất',
             'QuestionLogout': 'Bạn có muốn đăng xuất hay không?',

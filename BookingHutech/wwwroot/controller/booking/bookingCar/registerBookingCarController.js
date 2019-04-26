@@ -11,7 +11,7 @@
             $cookies.remove("AccountInfoCheckPermissions");
             $cookies.remove("myReload");
             toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
-            $state.go("login");
+            $rootScope.showError = true;
             return;
         };
        

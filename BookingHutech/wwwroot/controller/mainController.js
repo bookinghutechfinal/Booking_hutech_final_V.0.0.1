@@ -30,8 +30,9 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             $cookies.remove('AccountInfo');
             $cookies.remove("AccountInfoCheckPermissions");
             $cookies.remove("myReload");
-            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+            //toastr.error($rootScope.initMessage('InconrectSestion'));
             $state.go('login');
+            alert("2");
         } // end
 
 
@@ -102,7 +103,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
                 $cookies.remove('AccountInfo');
                 $cookies.remove("AccountInfoCheckPermissions");
                 $cookies.remove("myReload"); 
-                toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
+                toastr.error($rootScope.initMessage('InconrectSestion'));
                 $state.go("login");
             }
 

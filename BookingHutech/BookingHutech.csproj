@@ -352,6 +352,8 @@
     <Content Include="images\logo\logo.png" />
     <Content Include="images\support\54ab57ffea6b7dc23c3864320e8a4cdc.png" />
     <Content Include="images\support\99e1e13ab03ae19ef10bc40b7dd42af4.png" />
+    <Content Include="script\css\style4.css" />
+    <Content Include="script\js\jquery-1.12.0.min.js" />
     <Content Include="script\support\bootstrap.min.css" />
     <Content Include="images\support\login.jpg" />
     <Content Include="images\support\logo-white.png" />
@@ -1000,7 +1002,6 @@
     <Content Include="script\teamplate\switchery\package.js" />
     <Content Include="script\teamplate\switchery\switchery.css" />
     <Content Include="script\teamplate\switchery\switchery.js" />
-    <Content Include="script\css\img.jpg" />
     <Content Include="script\css\select2.min.css" />
     <Content Include="script\css\Table\dataTables.bootstrap.min.css" />
     <Content Include="script\css\Table\dataTables.bootstrap.min.js" />

@@ -56,7 +56,7 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                     return;
                     break;
                 case 138:
-                    toastr.error($rootScope.initMessage('PleaseInputPassword'));
+                    toastr.error($rootScope.initMessage('PleaseInputPassword')); 
                     return;
                     break;
             }

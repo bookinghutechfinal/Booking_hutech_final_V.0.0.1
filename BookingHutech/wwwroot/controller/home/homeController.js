@@ -1,5 +1,5 @@
-﻿mainmodule.controller('HomeController', ['$scope', '$state', 'toastr', '$modal', '$account','$cookies',
-    function ($scope, $state, toastr, $modal, $account, $cookies) {
+﻿mainmodule.controller('HomeController', ['$scope', '$state', 'toastr', '$modal', '$account', '$cookies','$rootScope',
+    function ($scope, $state, toastr, $modal, $account, $cookies, $rootScope) {
 
         $scope.goToBookingCar = function () {
             $state.go('main.bookingcar');
@@ -13,14 +13,14 @@
         $scope.bookingMeetingHall = function () {
             $scope.goTobookingMeetingHall();
         }
+         
         // Tạm nhét đặt xe vào đây. 
         $scope.OpenPopupRegisteredBookingCar = function () {
             try {
                 var AccountInfo = $account.getAccountInfo();
                 $scope.reqLogout = {
                     Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
-                }
-
+                } 
                 var modalInstance = $modal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',
@@ -44,8 +44,9 @@
                 $cookies.remove('AccountInfo');
                 $cookies.remove("AccountInfoCheckPermissions");
                 $cookies.remove("myReload");
-                toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
-                $state.go("login");
+                toastr.error($rootScope.initMessage('InconrectSestion'));
+                //  $state.go("login"); 
+                $rootScope.showError = true;
             }
 
         }
