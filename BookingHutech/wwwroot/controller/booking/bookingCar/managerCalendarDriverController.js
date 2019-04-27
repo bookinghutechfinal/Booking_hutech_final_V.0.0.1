@@ -42,7 +42,7 @@
                 Profile_Status2: 7,
                 Profile_Status3: 9,
                 DateFrom: '1-1-1900',
-                DateTo: new Date()
+                DateTo: '1-1-3000'
             }
 
             $BookingCar.getRegistrationCarByDriverID(request, function (res) {

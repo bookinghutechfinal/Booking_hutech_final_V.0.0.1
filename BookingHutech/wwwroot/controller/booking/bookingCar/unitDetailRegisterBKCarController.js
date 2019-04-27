@@ -2,7 +2,7 @@
 mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$stateParams', '$alert','$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $stateParams, $alert, $account) {
 
-        
+        var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
         $scope.goToListUnitRegisterCar = function () {
             $state.go("main.unitRegisterBookingCar");
         }
@@ -140,7 +140,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
             var DeanVerifyRequestModel = {
                 RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                 Profile_Status: RegistrationStatus[1].RegistrationStatusType, 
-                UserNameUpdate: AccountInfo.FullName, 
+                UserNameUpdate: AccountInfo.ObjAccountInfo.FullName, 
                 Note: $scope.DetalRegistrationCar.Note,
             }
             $alert.showConfirmUpdateNewProfile('Xác nhận duyệt đơn cấp phát này!', function () {
@@ -160,7 +160,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
             var DeanNotVerifyRequestModel = {
                 RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                 Profile_Status: RegistrationStatus[2].RegistrationStatusType,
-                UserNameUpdate: AccountInfo.FullName, 
+                UserNameUpdate: AccountInfo.ObjAccountInfo.FullName, 
                 Note: $scope.DetalRegistrationCar.Note,
             }
             $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
