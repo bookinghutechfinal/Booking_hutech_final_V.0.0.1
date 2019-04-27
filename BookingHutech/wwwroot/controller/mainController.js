@@ -24,6 +24,21 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             $cookies.remove("myReload");
             $state.go('login');
         }
+        // kiểm tra cookies
+        $rootScope.CheckCookies = function () {
+            try {
+                var AccountInfo = $account.getAccountInfo().Account_ID; // test Lấy cookies người dùng.  
+                return true; 
+            } catch (e) { 
+                $account.RemoveAccountInfo(); 
+                toastr.error($rootScope.initMessage('InconrectSestion')); 
+                $rootScope.showError = true;
+                return false; 
+            }
+             
+        }
+
+
         $rootScope.showError = false;
         $scope.Functiontimeout = function () {
             $rootScope.isLoading = true;
@@ -31,7 +46,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             $cookies.remove("AccountInfoCheckPermissions");
             $cookies.remove("myReload");
             //toastr.error($rootScope.initMessage('InconrectSestion'));
-            $state.go('login'); 
+            $state.go('login');
         } // end
 
 
@@ -74,7 +89,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
 
 
 
-        $scope.logout = function () { 
+        $scope.logout = function () {
             try {
                 var AccountInfo = $account.getAccountInfo();
                 $scope.reqLogout = {
@@ -101,7 +116,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             } catch (e) {
                 $cookies.remove('AccountInfo');
                 $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload"); 
+                $cookies.remove("myReload");
                 toastr.error($rootScope.initMessage('InconrectSestion'));
                 $state.go("login");
             }
@@ -219,7 +234,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             closeModals();
         });
 
-       // Idle.watch(); // start set timeout
+        // Idle.watch(); // start set timeout
         //end 
 
     }]);

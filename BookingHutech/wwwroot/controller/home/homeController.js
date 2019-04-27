@@ -13,7 +13,12 @@
         $scope.bookingMeetingHall = function () {
             $scope.goTobookingMeetingHall();
         }
-         
+        $scope.Init = function () {
+            if ($rootScope.CheckCookies()) {
+               // code
+            }  
+        }
+        $scope.Init(); 
         // Tạm nhét đặt xe vào đây. 
         $scope.OpenPopupRegisteredBookingCar = function () {
             try {
@@ -51,4 +56,5 @@
 
         }
 
+        
     }]);
