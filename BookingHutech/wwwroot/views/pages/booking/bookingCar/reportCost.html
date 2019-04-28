@@ -66,7 +66,21 @@
 
                                 <div ng-show="ReportCost.ReportType==1" class="control-label col-md-1 col-sm-1 col-xs-12">Tháng:</div>
                                 <div ng-show="ReportCost.ReportType==1" class="col-md-2 col-sm-2 col-xs-12">
-                                    <input class="form-control ed_border" type="number" ng-model="ReportCost.Month" />
+                                    <!--<input class="form-control ed_border" type="number" ng-model="ReportCost.Month" />-->
+                                    <select ng-model="ReportCost.Month" class="form-control select2 ed_border">
+                                        <option value="1">Tháng 1</option>
+                                        <option value="2">Tháng 2</option>
+                                        <option value="3">Tháng 3</option>
+                                        <option value="4">Tháng 4</option>
+                                        <option value="5">Tháng 5</option>
+                                        <option value="6">Tháng 6</option>
+                                        <option value="7">Tháng 7</option>
+                                        <option value="8">Tháng 8</option>
+                                        <option value="9">Tháng 9</option>
+                                        <option value="10">Tháng 10</option>
+                                        <option value="11">Tháng 11</option>
+                                        <option value="12">Tháng 12</option>
+                                    </select>
                                     <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">-->
                                 </div>
 

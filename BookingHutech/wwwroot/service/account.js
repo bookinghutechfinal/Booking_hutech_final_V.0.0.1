@@ -194,6 +194,14 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
             data: request
         }, success, finish)
     }
+
+    this.DeleteRole = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'ManagerAccount/DeleteRole',
+            data: request
+        }, success, finish)
+    }
    
     // Unit Thêm mới
     this.CreateNewUnit = function (request, success, finish) {

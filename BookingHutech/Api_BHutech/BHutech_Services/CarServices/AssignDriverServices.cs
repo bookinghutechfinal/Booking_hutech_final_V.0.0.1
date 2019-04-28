@@ -2,6 +2,7 @@
 using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Models.BookingCar;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
+using BookingHutech.Api_BHutech.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +19,20 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
         /// Mr.Lam 16/4/2019
         /// </summary>
         /// <returns>List AssignDriver</returns>
-        public List<AssignDriverInfo> GetListAssignDriverService()
+        public GetListAssignDriverRequestModel GetListAssignDriverService()
         {
-            List<AssignDriverInfo> result = new List<AssignDriverInfo>();
+            GetListAssignDriverRequestModel result = new GetListAssignDriverRequestModel();
             try
             {
                 string uspGetListAssignDriver = String.Format(Prototype.SqlCommandStore.uspGetListAssignDriver);
-                result = assignDriverDAO.GetListAssignDriverDAO(uspGetListAssignDriver);
+                string uspGetListAssigned = String.Format(Prototype.SqlCommandStore.uspGetListAssigned);
+
+                result.GetListAssignDriver = assignDriverDAO.GetListAssignDriverDAO(uspGetListAssignDriver);
+                if (result.GetListAssignDriver.Count() != 0)
+                {
+                    result.ListAssigned = assignDriverDAO.GetListAssignDriverDAO(uspGetListAssigned);
+                }
+                
                 return result;
             }
             catch (Exception ex)

@@ -12,6 +12,9 @@
                 DateTo: today
             }
             $scope.reportCost();
+            $scope.ReportCost = {
+                Year: 2019,
+            }
         }
 
         $scope.reportCost = function () {
