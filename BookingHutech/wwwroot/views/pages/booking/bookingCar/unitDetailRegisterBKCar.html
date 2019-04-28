@@ -106,249 +106,231 @@
                 </div>
             </div>
             <!--không có quyền-->
-            <div   ng-show="showByPermission(904)">
+            <div ng-show="showByPermission(904)">
                 <div class="x_title">
                     <ul>
                         <li><a href="#/main/home"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
-                        <li><a href="#/main/unitRegister-BookingCar"><h5> / Danh sách đơn cấp phát xe</h5></a></li>
-                        <li><a href=""><h5> / Chi tiết đơn </h5></a></li>
+                        <li><a href="#/main/unitRegister-BookingCar"><h5> / Danh sách chờ đề xuất</h5></a></li>
+                        <li><a href=""><h5> / Chi tiết </h5></a></li>
                     </ul>
                 </div>
                 <div class="" style="display: block;">
                     <!--start Left-->
 
                     <div class="col-md-4 col-sm-4 col-xs-12 profile_left">
-                        <div class="x_panel">
-                            <div class="col-md-12 col-sm-12 col-xs-12 "  ng-show="isCarInfo">
-                                <h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Thông tin xe:</h2>
-                                <div class="profile_img" style=" padding:10px;">
-                                    <div id="crop-avatar">
-                                        <img class="img-responsive avatar-view" src="../../../../images/avt/{{CarInfo.CarImage}}" alt="Avatar" title="Xe" style="    width: auto; ">
-                                    </div>
-                                    <ul class="list-unstyled user_data" style="padding:10px">
-                                        <li> <h3 class="ng-binding">{{CarInfo.CarName}} </h3></li>
-                                        <li class="ng-binding"><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
-                                        <li class="ng-binding"><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
-                                        <li class="ng-binding"><i class="fa fa-car"></i> Lái xe: {{CarInfo.FullNameDriver}}</li>
-                                    </ul>
-                                </div>  
-                            </div>
-
-                            <div class="col-md-12 col-sm-12 col-xs-12 title_bk_mes">
-                                <span style="font-weight:bold"><span class="glyphicon glyphicon-ok"></span> Đơn vị yêu cầu:</span>
+                        <div class="col-md-12 col-sm-12 col-xs-12 " ng-show="isCarInfo">
+                            <h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Thông tin xe:</h2>
+                            <div class="profile_img" style=" padding:10px;">
+                                <div id="crop-avatar">
+                                    <img class="img-responsive avatar-view" src="../../../../images/avt/{{CarInfo.CarImage}}" alt="Avatar" title="Xe đã cấp" style="    width: auto; ">
+                                </div>
                                 <ul class="list-unstyled user_data" style="padding:10px">
-                                    <li>
-                                        <i class="fa fa-briefcase user-profile-icon"></i> Đơn vị: {{DetalRegistrationCar.UnitName }}
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-map-marker user-profile-icon"></i> Trưởng phòng: {{DetalRegistrationCar.Manager}}
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-map-marker user-profile-icon"></i> Email: {{DetalRegistrationCar.EmailManager}}
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-map-marker user-profile-icon"></i> SĐT: {{DetalRegistrationCar.NumberPhoneLeader}}
-                                    </li>
+                                    <li> <h3 class="ng-binding">{{CarInfo.CarName}} </h3></li>
+                                    <li class="ng-binding"><i class="fa fa-bus"></i> Xe: {{CarInfo.CarNo}}</li>
+                                    <li class="ng-binding"><i class="fa fa-car"></i> Loại xe: {{CarInfo.CarTypeName}}</li>
+                                    <li class="ng-binding"><i class="fa fa-car"></i> Lái xe: {{CarInfo.FullNameDriver}}</li>
                                 </ul>
                             </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 title_bk_mes">
+                            <span style="font-weight:bold"><span class="glyphicon glyphicon-ok"></span> Đơn vị yêu cầu:</span>
+                            <ul class="list-unstyled user_data" style="padding:10px">
+                                <li>
+                                    <i class="fa fa-briefcase user-profile-icon"></i> Đơn vị: {{DetalRegistrationCar.UnitName }}
+                                </li>
+                                <li>
+                                    <i class="fa fa-map-marker user-profile-icon"></i> Trưởng phòng: {{DetalRegistrationCar.Manager}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-map-marker user-profile-icon"></i> Email: {{DetalRegistrationCar.EmailManager}}
+                                </li>
+                                <li>
+                                    <i class="fa fa-map-marker user-profile-icon"></i> SĐT: {{DetalRegistrationCar.NumberPhoneLeader}}
+                                </li>
+                            </ul>
                         </div>
                         <!--end Left-->
                         <!--start right-->
                     </div>
                     <div class="col-md-8 col-sm-8 col-xs-12">
-                        <div class="x_panel"> 
-                            <form class="form-horizontal form-label-left input_mask">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group alert-success ">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Trạng thái</label>
-                                    <div class="col-md-4 col-sm-4 col-xs-12" style="padding:10px">
-                                        <i class="fa fa-dot-circle-o"></i>
-                                        {{DetalRegistrationCar.Profile_StatusName}}
+                        <form class="form-horizontal form-label-left input_mask">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group alert-success ">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Trạng thái</label>
+                                <div class="col-md-4 col-sm-4 col-xs-12" style="padding:10px">
+                                    <i class="fa fa-dot-circle-o"></i>
+                                    {{DetalRegistrationCar.Profile_StatusName}}
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12" style="padding:10px">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                    Ngày tạo: {{DetalRegistrationCar.CreatDay | date:'HH:mm dd/MM/yyyy'}}
+                                </div>
+                            </div>
+                            <!--Start: Button-->
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="showByPermission(907) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
+                                        <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="btnDeanNotVerify()">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                            <span>Hủy đề xuất</span>
+                                        </button>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12" style="padding:10px">
-                                        <i class="glyphicon glyphicon-calendar"></i>
-                                        Ngày tạo: {{DetalRegistrationCar.CreatDay | date:'HH:mm dd/MM/yyyy'}}
+                                    <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show=" showByPermission(907) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 &&  DetalRegistrationCar.Profile_Status !== 2 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
+                                        <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnDeanVerify()">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                            <span>Đề Xuất</span>
+                                        </button>
                                     </div>
-                                </div> 
-                                <!--Start: Button-->
-                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px"  ng-show="showByPermission(907) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
-                                            <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="btnDeanNotVerify()">
-                                                <i class="glyphicon glyphicon-remove"></i>
-                                                <span>Hủy đề xuất</span>
-                                            </button>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show=" showByPermission(907) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 &&  DetalRegistrationCar.Profile_Status !== 2 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10" >
-                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnDeanVerify()" >
-                                                <i class="glyphicon glyphicon-ok"></i>
-                                                <span>Đề Xuất</span>    
-                                            </button>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px"  ng-show="showByPermission(904) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
-                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit"   >
-                                                <i class="glyphicon glyphicon-ok"></i>
-                                                <span>Chỉnh sửa</span>
-                                            </button>
-                                        </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="showByPermission(904) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
+                                        <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                            <span>Chỉnh sửa</span>
+                                        </button>
                                     </div>
                                 </div>
-                                <!--End: Button-->
-                                <!--ghi chú-->
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Ghi chú</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <textarea style="width:100%" ng-model="DetalRegistrationCar.Note"></textarea>
-                                    </div>
+                            </div>
+                            <!--End: Button-->
+                            <!--ghi chú-->
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Ghi chú</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <textarea style="width:100%" ng-model="DetalRegistrationCar.Note"></textarea>
                                 </div>
-                                <!--ghi chú-->
-                            </form>
+                            </div>
+                            <!--ghi chú-->
+                        </form>
 
-                            <form class="form-horizontal form-label-left input_mask">
-                                <!--Start thời gian đi và về-->
-                                <h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Thời gian</h2>
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày giờ đi</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <div class="input-group date" id="myDateFrom">
-                                            <input type="text" class="form-control ed_border" disabled ng-model="DetalRegistrationCar.DateTimeFrom | date:'HH:mm dd/MM/yyyy'">
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
+                        <form class="form-horizontal form-label-left input_mask">
+                            <!--Start thời gian đi và về-->
+                            <h2 class="col-md-12 col-sm-12 col-xs-12 title_bk ">Thời gian</h2>
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày giờ đi</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <div class="input-group date" id="myDateFrom">
+                                        <input type="text" class="form-control ed_border" disabled ng-model="DetalRegistrationCar.DateTimeFrom | date:'HH:mm dd/MM/yyyy'">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày giờ về</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <div class="input-group date" id="myDateTo">
-                                            <input type="text" class="form-control ed_border" disabled ng-model="DetalRegistrationCar.DateTimeTo  | date:'HH:mm dd/MM/yyyy'">
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày giờ về</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <div class="input-group date" id="myDateTo">
+                                        <input type="text" class="form-control ed_border" disabled ng-model="DetalRegistrationCar.DateTimeTo  | date:'HH:mm dd/MM/yyyy'">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--End thời gian đi và về-->
+                            <h2 class="col-sm-12 title_bk">  Thông tin cơ bản</h2>
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Đơn vị y/c </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
+                                    <input type="text" class="form-control has-feedback" disabled ng-model="DetalRegistrationCar.UnitRequest">
+                                </div>
+                            </div>
+                            <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do </label>
 
-                                    </div>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
+                                    <input type="text" class="form-control has-feedback" disabled ng-model="DetalRegistrationCar.Reason"> <span class="field-validation-valid text-danger ngHideSample" ng-show="DetalRegistrationCar.Reason === '' || DetalRegistrationCar.Reason === null && ischeckReason"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
                                 </div>
-                                <!--End thời gian đi và về-->
-                                <h2 class="col-sm-12 title_bk">  Thông tin cơ bản</h2>
-                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Đơn vị y/c </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
-                                        <input type="text" class="form-control has-feedback" disabled ng-model="DetalRegistrationCar.UnitRequest">
-                                    </div>
+                            </div>
+                            <h2 class="col-sm-12 title_bk">Thành phần đoàn đi - Trưởng đoàn</h2>
+                            <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control has-feedback-right" disabled ng-model="DetalRegistrationCar.Leader">
+                                    <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
                                 </div>
-                                <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do </label>
+                            </div>
 
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
-                                        <input type="text" class="form-control has-feedback" disabled ng-model="DetalRegistrationCar.Reason"> <span class="field-validation-valid text-danger ngHideSample" ng-show="DetalRegistrationCar.Reason === '' || DetalRegistrationCar.Reason === null && ischeckReason"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                    </div>
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control has-feedback-right" disabled ng-model="DetalRegistrationCar.NumberPhoneLeader">
+                                    <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
                                 </div>
-                                <h2 class="col-sm-12 title_bk">Thành phần đoàn đi - Trưởng đoàn</h2>
-                                <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control has-feedback-right" disabled ng-model="DetalRegistrationCar.Leader">
-                                        <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                                    </div>
+                            </div>
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Email </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control has-feedback-right" disabled ng-model="DetalRegistrationCar.EmailLeader">
+                                    <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>
                                 </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <span class="fa fa-male form-control-feedback left" aria-hidden="true"></span>
+                                    <input type="number" class="form-control has-feedback-left" disabled ng-model="DetalRegistrationCar.NumberPeople">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại xe </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12" style="padding:5px">
+                                    {{DetalRegistrationCar.CarTypeNameRequest}}
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-12" style="float:right">
+                                </div>
+                            </div>
+                            <h2 class="col-sm-12 title_bk">Lộ trình</h2>
 
-                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Điện thoại</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control has-feedback-right" disabled ng-model="DetalRegistrationCar.NumberPhoneLeader">
-                                        <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
-                                    </div>
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Lộ trình đi </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
+                                    <input type="text" class="form-control has-feedback" disabled ng-model="DetalRegistrationCar.RouteTo">
                                 </div>
-                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Email </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control has-feedback-right" disabled ng-model="DetalRegistrationCar.EmailLeader">
-                                        <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>
-                                    </div>
+                            </div>
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Số Km đi </label>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="number" class="form-control has-feedback-left" disabled ng-model="DetalRegistrationCar.PlanDistanceTo">
+                                    <span class="fa fa-long-arrow-right form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Số lượng </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <span class="fa fa-male form-control-feedback left" aria-hidden="true"></span>
-                                        <input type="number" class="form-control has-feedback-left" disabled ng-model="DetalRegistrationCar.NumberPeople">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại xe </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12" style="padding:5px">
-                                        {{DetalRegistrationCar.CarTypeNameRequest}}
-                                    </div>
-                                    <div class="col-md-9 col-sm-9 col-xs-12" style="float:right">
-                                    </div>
-                                </div>
-                                <h2 class="col-sm-12 title_bk">Lộ trình</h2>
+                            </div>
 
-                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lộ trình đi </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
-                                        <input type="text" class="form-control has-feedback" disabled ng-model="DetalRegistrationCar.RouteTo">
-                                    </div>
+                            <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Lộ trình về </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
+                                    <input type="text" class="form-control has-feedback" disabled ng-model="DetalRegistrationCar.RouteBack">
                                 </div>
-                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Số Km đi </label>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="number" class="form-control has-feedback-left" disabled ng-model="DetalRegistrationCar.PlanDistanceTo">
-                                        <span class="fa fa-long-arrow-right form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
+                            </div>
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Số Km về </label>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="number" class="form-control has-feedback-left" disabled ng-model="DetalRegistrationCar.PlanDistanceBack">
+                                    <span class="fa fa-long-arrow-left form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-
-                                <div class=" col-md-12 col-sm-12 col-xs-12  form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lộ trình về </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <span class="fa fa-send-o form-control-feedback right" aria-hidden="true"></span>
-                                        <input type="text" class="form-control has-feedback" disabled ng-model="DetalRegistrationCar.RouteBack">
-                                    </div>
+                            </div>
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-warning ngHideSample" style="float: right; height: 34px; padding: inherit; text-align:center" ng-show="isButtonRegister">
+                                    <h6>
+                                        <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
+                                    </h6>
                                 </div>
-                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Số Km về </label>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="number" class="form-control has-feedback-left" disabled ng-model="DetalRegistrationCar.PlanDistanceBack">
-                                        <span class="fa fa-long-arrow-left form-control-feedback left" aria-hidden="true"></span>
-                                    </div>
+                            </div>
+                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-success ngHideSample Messuccess" style="" ng-show="isShowRegisterSuccess">
+                                    <h4>
+                                        <i class="fa fa-check"></i> Đăng ký thành công.
+                                    </h4>
+                                    <ul>
+                                        <li>Đơn đăng ký đặt xe công tác đang chờ duyệt.</li>
+                                    </ul>
                                 </div>
-                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                                    <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-warning ngHideSample" style="float: right; height: 34px; padding: inherit; text-align:center" ng-show="isButtonRegister">
-                                        <h6>
-                                            <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                                    <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-success ngHideSample Messuccess" style="" ng-show="isShowRegisterSuccess">
-                                        <h4>
-                                            <i class="fa fa-check"></i> Đăng ký thành công.
-                                        </h4>
-                                        <ul>
-                                            <li>Đơn đăng ký đặt xe công tác đang chờ duyệt.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </form>
-
-                            <!--<div class="row">
-                                <button class="btn btn-danger btn-round btn-block" type="submit" ng-click="ClosePopup()">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                    <span>HỦY</span>
-                                </button>
-                                <button class="btn btn-primary btn-round btn-block" type="submit" ng-click="yes()">
-                                    <i class="glyphicon glyphicon-ok"></i>
-                                    <span>XÁC NHẬN</span>
-                                </button>
-                            </div>-->
-                        </div>
+                            </div>
+                        </form>
                     </div>
                     <!--end right-->
                 </div>
@@ -358,7 +340,7 @@
     </div>
 </div>
 
-<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>
+<!--<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>-->
 <script src="../../../../../script/teamplate/daterangepicker/daterangepicker.js"></script>
 <script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
 <script>

@@ -87,6 +87,9 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                         //toastr.success($rootScope.initMessage('MessageChangeAccount'));
                         $scope.PutCookies();
                         $scope.goToChangePassword(); // đổi pass word. 
+                        var audio = new Audio('../../audio/alert_message_audio.mp3');
+                        audio.play();
+                        audio.volume = 0.1; 
                         toastr.success($rootScope.initMessage('LoginSuccess'));
                         break;
                     case 1:
@@ -101,6 +104,9 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                             $cookies.put('myReload', 1);
                         }
                         $scope.PutCookies();
+                        var audio = new Audio('../../audio/alert_message_audio.mp3');
+                        audio.play();
+                        audio.volume = 0.1; 
                         toastr.success($rootScope.initMessage('LoginSuccess'));
                         // kiểm tr loại tài khoản
                         // 2. trưởng khoa -> Quản lý hồ sơ....

@@ -88,6 +88,9 @@ mainmodule.controller('ChangePasswordController', ['$scope', '$state', '$rootSco
                             $cookies.put('myReload', 1);
                         }
                         $scope.PutCookies();
+                        var audio = new Audio('../../audio/alert_message_audio.mp3');
+                        audio.play();
+                        audio.volume = 0.1; 
                         toastr.success($rootScope.initMessage('LoginSuccess'));
                         // kiểm tr loại tài khoản
                         // 2. trưởng khoa -> Quản lý hồ sơ....

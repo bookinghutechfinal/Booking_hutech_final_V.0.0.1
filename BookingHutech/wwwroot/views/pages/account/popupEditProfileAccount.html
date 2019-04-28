@@ -46,7 +46,7 @@
     }
 
     #imgremoveimgnew {
-        position: absolute; 
+        position: absolute;
     }
     /* ng-show animation*/
     /* ngHide animation */
@@ -112,191 +112,188 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_content">
-                    <div class="x_panel">
-                        <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
-                            <!--hiển thị hình cũ-->
-                            <div class="form-group" style="text-align: center;" ng-show="!ischeckImgNew">
-                                <div>
-                                    <img style="width:auto; max-width: -webkit-fill-available;" src="../../../../images/avt/{{EditProfiAccount.Avatar}}"
-                                         width="200" height="200" />
-                                </div> 
-                            </div>
-                            <!--hiển thị hình mới-->
-                            <div class="form-group" style="text-align: center;" ng-show="ischeckImgNew">
-                                <div class="form-group" style="text-align: center;" ng-click="removeImageNew()">
-                                    <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  " style="color: orangered">Hủy!</span>
-                                    <img ng-show="ischeckImgNew && ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  " class="delete" type="button" value="xóa" src="../../../../images/icon/close_delete-512.png" id="imgremoveimgnew" style="width: 30px" />
-                                </div>
-                                <div ng-show=" !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
-                                    <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
-                                         width="200" height="200" />
-                                    <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
-                                </div>
-                            </div>
-                            <div class="form-group" style="text-align: center;" ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null "> 
-                                <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình" ng-click="upLoadIMGNew()"
-                                        onclick="document.getElementById('file1').click();" style="margin-top: 5px;">
-                                    <span class="glyphicon glyphicon-picture"></span>
-                                    Chọn Hình Khác
-                                    <i style="color:red;">(*)</i> 
-                                </button>
-                                <input style="display:none;" type="file" id="file1" accept="image/*"
-                                       ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
-                                       resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
+                    <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
+                        <!--hiển thị hình cũ-->
+                        <div class="form-group" style="text-align: center;" ng-show="!ischeckImgNew">
+                            <div>
+                                <img style="width:auto; max-width: -webkit-fill-available;" src="../../../../images/avt/{{EditProfiAccount.Avatar}}"
+                                     width="200" height="200" />
                             </div>
                         </div>
-                        <div class="col-md-10 col-sm-10 col-xs-12">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="x_content">
-                                    <div class="form-horizontal form-label-left input_mask">
-                                        <div class="form-group">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Họ Tên: <i style="color:red;">(*)</i></div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" ng-model="EditProfiAccount.FullName" type="text" value="" autofocus ng-change="TestInputChange(EditProfiAccount)">
-                                                <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.FullName === '' || EditProfiAccount.FullName === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                            </div>
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Giới tính: <i style="color:red;">(*)</i></div>
-
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <div class="radio" style="float:left; padding-right:17px">
-                                                    <label>
-                                                        <input type="radio" value="1" ng-model="EditProfiAccount.Gender" ng-checked="EditProfiAccount.Gender == 'Nam'" ng-change="TestInputChange(EditProfiAccount)" name="Gender"> Nam
-                                                    </label>
-                                                </div>
-
-                                                <div class="radio" style="float:  left">
-                                                    <label>
-                                                        <input type="radio" value="0" ng-model="EditProfiAccount.Gender" ng-checked="EditProfiAccount.Gender == 'Nữ'" ng-change="TestInputChange(EditProfiAccount)" name="Gender"> Nữ
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.Gender === '' || EditProfiAccount.Gender === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Điện thoại: <i style="color:red;">(*)</i></div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" value="{{EditProfiAccount.NumberPhone}}" ng-model="EditProfiAccount.NumberPhone" ng-change="TestInputChange(EditProfiAccount)" min="0" type="number">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.NumberPhone === '' || EditProfiAccount.NumberPhone === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                            </div>
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Email: <i style="color:red;">(*)</i></div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.Email" ng-change="TestInputChange(EditProfiAccount)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Email === '' || EditProfiAccount.Email === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ: <i style="color:red;">(*)</i></div>
-                                            <div class="col-md-10 col-sm-10 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.Addres" ng-change="TestInputChange(EditProfiAccount)" type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Addres === '' || EditProfiAccount.Addres === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group form-group_bk">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày sinh: <i style="color:red;">(*)</i></div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <!--<input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.BirthDay" ng-change="TestInputChange(EditProfiAccount)" type="date">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.BirthDay === '' || EditProfiAccount.BirthDay === null && !TestInputChange">Vui lòng nhập!</span>-->
-                                                <div class="input-group date" id="myDatepicker">
-                                                    <input type="text" class="form-control ed_border" id="Birthday" ng-model="EditProfiAccount.Birthday" ng-change="TestInputChange(EditProfiAccount)">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Birthday === '' || EditProfiAccount.Birthday === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group form-group_bk">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Đơn vị:</div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.UnitName" disabled type="text">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Unit_ID === '' || EditProfiAccount.Unit_ID === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
-                                            </div>
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Chức vụ:</div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.AccountTypeName" disabled type="text">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group form-group_bk_cv ngHideSample  " ng-show="isDriver || EditProfiAccount.AccountType == 7 ">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Số bằng <i style="color:red;">(*)</i></div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.DriverLicenseNo" ng-change="TestInputChange(EditProfiAccount)">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.DriverLicenseNo === '' || EditProfiAccount.DriverLicenseNo === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
-                                            </div>
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạng: <i style="color:red;">(*)</i></div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.LicenseClass" ng-change="TestInputChange(EditProfiAccount)">
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseClass === '' || EditProfiAccount.LicenseClass === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group  ngHideSample  " ng-show="isDriver || EditProfiAccount.AccountType == 7" style="padding:0">
-                                            <div class="control-label col-md-2 col-sm-2 col-xs-12">Hết hạn: <i style="color:red;">(*)</i></div>
-                                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                                <div class="input-group date  " id="myLicenseExpires">
-                                                    <input type="text" class="form-control ed_border" id="LicenseExpires" ng-model="EditProfiAccount.LicenseExpires">
-                                                    <span class="input-group-addon">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
-                                                <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseExpires === '' || EditProfiAccount.LicenseExpires === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="form-group">
-                                    </div>
-                                    <br />
-                                    <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                                        <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-warning ngHideSample" style="float: right; height: 34px; padding: inherit; text-align:center" ng-show="btndisabled">
-                                            <h6>
-                                                <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                                        <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-success ngHideSample Messuccess" style="" ng-show="isShowRegisterSuccess">
-                                            <h4>
-                                                <i class="fa fa-check"></i> Cập nhật thông tin thành công.
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                                <button class="btn btn-danger btn-round btn-block" type="submit"
-                                                        ng-click="ClosePopup()">
-                                                    <i class="glyphicon glyphicon-remove"></i>
-                                                    <span>Đóng</span>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                                <button class="btn btn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
-                                                        data-ng-click="EditProfileAccount()">
-                                                    <i class="glyphicon glyphicon-cog"></i>
-                                                    <span>Cập nhật</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!--hiển thị hình mới-->
+                        <div class="form-group" style="text-align: center;" ng-show="ischeckImgNew">
+                            <div class="form-group" style="text-align: center;" ng-click="removeImageNew()">
+                                <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  " style="color: orangered">Hủy!</span>
+                                <img ng-show="ischeckImgNew && ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  " class="delete" type="button" value="xóa" src="../../../../images/icon/close_delete-512.png" id="imgremoveimgnew" style="width: 30px" />
                             </div>
+                            <div ng-show=" !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
+                                <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
+                                     width="200" height="200" />
+                                <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align: center;" ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null ">
+                            <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình" ng-click="upLoadIMGNew()"
+                                    onclick="document.getElementById('file1').click();" style="margin-top: 5px;">
+                                <span class="glyphicon glyphicon-picture"></span>
+                                Chọn Hình Khác
+                                <i style="color:red;">(*)</i>
+                            </button>
+                            <input style="display:none;" type="file" id="file1" accept="image/*"
+                                   ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
+                                   resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
                         </div>
                     </div>
+                    <div class="col-md-10 col-sm-10 col-xs-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_content">
+                                <div class="form-horizontal form-label-left input_mask">
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Họ Tên: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line" ng-model="EditProfiAccount.FullName" type="text" value="" autofocus ng-change="TestInputChange(EditProfiAccount)">
+                                            <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.FullName === '' || EditProfiAccount.FullName === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Giới tính: <i style="color:red;">(*)</i></div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <div class="radio" style="float:left; padding-right:17px">
+                                                <label>
+                                                    <input type="radio" value="1" ng-model="EditProfiAccount.Gender" ng-checked="EditProfiAccount.Gender == 'Nam'" ng-change="TestInputChange(EditProfiAccount)" name="Gender"> Nam
+                                                </label>
+                                            </div>
+
+                                            <div class="radio" style="float:  left">
+                                                <label>
+                                                    <input type="radio" value="0" ng-model="EditProfiAccount.Gender" ng-checked="EditProfiAccount.Gender == 'Nữ'" ng-change="TestInputChange(EditProfiAccount)" name="Gender"> Nữ
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span class="field-validation-valid text-danger" ng-show=" EditProfiAccount.Gender === '' || EditProfiAccount.Gender === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Điện thoại: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line" value="{{EditProfiAccount.NumberPhone}}" ng-model="EditProfiAccount.NumberPhone" ng-change="TestInputChange(EditProfiAccount)" min="0" type="number">
+                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.NumberPhone === '' || EditProfiAccount.NumberPhone === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Email: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.Email" ng-change="TestInputChange(EditProfiAccount)" type="text">
+                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Email === '' || EditProfiAccount.Email === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.Addres" ng-change="TestInputChange(EditProfiAccount)" type="text">
+                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Addres === '' || EditProfiAccount.Addres === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group_bk">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Ngày sinh: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <!--<input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.BirthDay" ng-change="TestInputChange(EditProfiAccount)" type="date">
+                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.BirthDay === '' || EditProfiAccount.BirthDay === null && !TestInputChange">Vui lòng nhập!</span>-->
+                                            <div class="input-group date" id="myDatepicker">
+                                                <input type="text" class="form-control ed_border" id="Birthday" ng-model="EditProfiAccount.Birthday" ng-change="TestInputChange(EditProfiAccount)">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Birthday === '' || EditProfiAccount.Birthday === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group_bk">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Đơn vị:</div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.UnitName" disabled type="text">
+                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.Unit_ID === '' || EditProfiAccount.Unit_ID === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
+                                        </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Chức vụ:</div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line" value="" ng-model="EditProfiAccount.AccountTypeName" disabled type="text">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group form-group_bk_cv ngHideSample  " ng-show="isDriver || EditProfiAccount.AccountType == 7 ">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Số bằng <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.DriverLicenseNo" ng-change="TestInputChange(EditProfiAccount)">
+                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.DriverLicenseNo === '' || EditProfiAccount.DriverLicenseNo === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
+                                        </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạng: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <input class="form-control text-box single-line" type="text" value="" ng-model="EditProfiAccount.LicenseClass" ng-change="TestInputChange(EditProfiAccount)">
+                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseClass === '' || EditProfiAccount.LicenseClass === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group  ngHideSample  " ng-show="isDriver || EditProfiAccount.AccountType == 7" style="padding:0">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Hết hạn: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <div class="input-group date  " id="myLicenseExpires">
+                                                <input type="text" class="form-control ed_border" id="LicenseExpires" ng-model="EditProfiAccount.LicenseExpires">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                            <span class="field-validation-valid text-danger" ng-show="EditProfiAccount.LicenseExpires === '' || EditProfiAccount.LicenseExpires === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                </div>
+                                <br />
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                    <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-warning ngHideSample" style="float: right; height: 34px; padding: inherit; text-align:center" ng-show="btndisabled">
+                                        <h6>
+                                            <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                    <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-success ngHideSample Messuccess" style="" ng-show="isShowRegisterSuccess">
+                                        <h4>
+                                            <i class="fa fa-check"></i> Cập nhật thông tin thành công.
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class=" col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <button class="btn btn-danger btn-round btn-block" type="submit"
+                                                    ng-click="ClosePopup()">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                                <span>Đóng</span>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <button class="btn btn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                    data-ng-click="EditProfileAccount()">
+                                                <i class="glyphicon glyphicon-cog"></i>
+                                                <span>Cập nhật</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>
+ 
+<!--<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>[]-->
 <script src="../../../../../script/teamplate/daterangepicker/daterangepicker.js"></script>
 <script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
 <script>

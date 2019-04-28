@@ -2,11 +2,8 @@
 mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$rootScope', '$http', '$cookies', 'toastr', '$dao', '$account', 'NgTableParams', '$modal', '$modalInstance', '$alert', 'EditProfileRequestData',
     function ($scope, $state, $rootScope, $http, $cookies, toastr, $dao, $account, NgTableParams, $modal, $modalInstance, $alert, EditProfileRequestData) {
 
-        try {
-            var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-            var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-
-
+        
+            var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng.   
             $scope.goToHome = function () {
                 $state.go('main.home');
                 return;
@@ -21,12 +18,17 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
             };
 
             $scope.ClosePopup = function () {
-                $modalInstance.close($scope.EditProfiAccount);
+                $modalInstance.close(false);
 
             }
 
             $scope.main = function () {
                 $scope.ipFullName = false;
+                if (checkNull(EditProfileRequestData)) {
+                    $modalInstance.close();
+                    $rootScope.showError = true;
+                    return; 
+                }
                 $scope.EditProfiAccount = {
                     "Account_ID": EditProfileRequestData.Account_ID,
                     "FullName": EditProfileRequestData.FullName,
@@ -58,25 +60,7 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                     },
                 }
                 $scope.AccountType = AccountTypeRequest;
-            }
-
-            // kiểm tra account đẵ đăng nhập chưa, đổi mật khẩu chưa. 
-            //var result = CheckAccountLoginAndChangePass(AccountInfo);
-            //switch (result) {
-            //    case 2:
-            //        //toastr.success($rootScope.initMessage('MessageChangeAccount'));
-            //        $scope.ClosePopup();
-            //        $scope.goToChangePassword();
-            //        break;
-            //    case 3:
-            //        $scope.main()
-            //        break;
-            //    case 1:
-            //        $scope.ClosePopup();
-            //        $scope.goToLogin();
-            //        break;
-
-            //}
+            } 
             $scope.main(); 
             $scope.btndisabled = true;
             $scope.isDriver = false;
@@ -180,38 +164,25 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                 }
                 // insert
                 if ($scope.btndisabled == false) {
-                    $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Cập nhật thông tin'), function () {
-                        $account.EditProfiAccount($scope.EditProfiAccount, function (res) {
-                            switch (res.data.ReturnCode) {
-                                case 1:
-                                    toastr.success("Đã cập nhật thành công");
-                                    $modalInstance.close($scope.EditProfiAccount);
-                                    $scope.isShowRegisterSuccess = true;
-                                    $scope.EditProfiAccount.Birthday = moment($scope.EditProfiAccount.Birthday, 'YYYY-MM-DD').format('DD-MM-YYYY');
-                                    $scope.EditProfiAccount.LicenseExpires = moment($scope.EditProfiAccount.LicenseExpires, 'YYYY-MM-DD').format('DD-MM-YYYY');
-                                    break;
-                            }
+                    if ($rootScope.CheckCookies()) {
+                        $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Cập nhật thông tin'), function () {
+                            $account.EditProfiAccount($scope.EditProfiAccount, function (res) {
+                                switch (res.data.ReturnCode) {
+                                    case 1:
+                                        toastr.success("Đã cập nhật thành công");
+                                        $modalInstance.close(true);
+                                        $scope.isShowRegisterSuccess = true;
+                                        $scope.EditProfiAccount.Birthday = moment($scope.EditProfiAccount.Birthday, 'YYYY-MM-DD').format('DD-MM-YYYY');
+                                        $scope.EditProfiAccount.LicenseExpires = moment($scope.EditProfiAccount.LicenseExpires, 'YYYY-MM-DD').format('DD-MM-YYYY');
+                                        break;
+                                }
+                            });
                         });
-                    });
-
-                }
-
-                // 
-                //$alert.showConfirmUpdateNewProfile($rootScope.initMessage('Cập nhật thông tin'), function () {
-                //    $account.EditProfiAccount($scope.EditProfiAccount, function (res) {
-                //        switch (res.data.ReturnCode) {
-                //            case 1: 
-                //                toastr.success("Đã cập nhật thành công"); 
-                //                $modalInstance.close($scope.EditProfiAccount);
-                //                $scope.isShowRegisterSuccess = true; 
-                //                $scope.EditProfiAccount.Birthday = moment($scope.EditProfiAccount.Birthday, 'YYYY-MM-DD').format('DD-MM-YYYY');
-                //                $scope.EditProfiAccount.LicenseExpires = moment($scope.EditProfiAccount.LicenseExpires, 'YYYY-MM-DD').format('DD-MM-YYYY');
-
-                //                break;
-                //        }
-                //    });
-                //});
-
+                    } else {
+                        $modalInstance.close(false); 
+                    } 
+                    
+                } 
             }
 
             // xóa hình mới
@@ -234,15 +205,7 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                 $scope.EditProfiAccount.AvatarNew = null;
                 //$scope.TestInputChange($scope.EditProfiAccount);
             }
-            // end try
-        } catch (e) {
-            $cookies.remove('AccountInfo');
-            $cookies.remove("AccountInfoCheckPermissions");
-            $cookies.remove("myReload");
-            $modalInstance.close();
-            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
-            $state.go("login");
-        }
+         
 
     }]);
 

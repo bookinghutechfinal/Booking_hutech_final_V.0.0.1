@@ -3,7 +3,7 @@
 mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state', '$rootScope', '$modal', '$http', '$cookies', 'toastr', '$dao', '$account',
     function ($scope, Idle, Keepalive, $state, $rootScope, $modal, $http, $cookies, toastr, $dao, $account) {
 
-
+        var AccountInfo = $account.getAccountInfo();
         $scope.gotoHome = function () {
             $state.go('main.home');
             location.reload();
@@ -29,7 +29,10 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             try {
                 var AccountInfo = $account.getAccountInfo().Account_ID; // test Lấy cookies người dùng.  
                 return true; 
-            } catch (e) { 
+            } catch (e) {  
+                var audio = new Audio('../../audio/alert_message_audio.mp3');
+                audio.play();
+                audio.volume = 0.1; 
                 $account.RemoveAccountInfo(); 
                 toastr.error($rootScope.initMessage('InconrectSestion')); 
                 $rootScope.showError = true;
@@ -74,12 +77,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
                     break;
                 case 3:
                     $scope.UserName = AccountInfo.ObjAccountInfo.FullName;
-                    $rootScope.isLoading = false;
-                    //if (parseInt($cookies.get('myReload')) == 1) {
-                    //    $rootScope.isLoading = true;
-                    //    location.reload();
-                    //    $cookies.put('myReload', 0);
-                    //}
+                    $rootScope.isLoading = false; 
                     break;
             }
         }
@@ -88,13 +86,13 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
         }
 
 
-
+        // logout
         $scope.logout = function () {
             try {
                 var AccountInfo = $account.getAccountInfo();
                 $scope.reqLogout = {
                     Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
-                }
+                } 
                 var modalInstance = $modal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',
@@ -122,13 +120,10 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             }
 
         }
-
-
-
-        //// Mỡ popup xem chi tiết profile 
+          
+        // Mỡ popup xem chi tiết profile 
         $scope.OpenPopupShowProfile = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo();
+            if ($rootScope.CheckCookies()) {
                 // Lấy chi tiết account. 
                 var modalInstance = $modal.open({
                     animation: true,
@@ -149,14 +144,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
 
                 });
             }
-            catch (err) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
-                $state.go("login");
-
-            }
+            
         }
 
 
@@ -242,7 +230,7 @@ mainmodule.controller('ModalInstanceCtrl', ['$scope', '$state', '$modal', '$moda
 
     $scope.Login = function () {
         $modalInstance.close();
-        location.reload();
+       // location.reload();
         $state.go('login');
     }
 

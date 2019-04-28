@@ -269,6 +269,9 @@
                         switch (res.data.ReturnCode) {
                             case 1:
                                 //$scope.ClosePopup(); 
+                                var audio = new Audio('../../audio/alert_message_audio.mp3');
+                                audio.play();
+                                audio.volume = 0.1; 
                                 $scope.isShowRegisterSuccess = true;
                                 toastr.success("Đăng ký thành công");
                                 break;

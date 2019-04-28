@@ -2,6 +2,10 @@
 mainmodule.controller('LogoutController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$account', '$modalInstance',
     function ($scope, $state, $rootScope, $cookies, toastr, $account, $modalInstance) {
 
+        // audio 
+        var audio = new Audio('../../audio/alert_message_audio.mp3');
+        audio.play();
+        audio.volume = 0.1; 
 
         $scope.yes = function () {
             $modalInstance.close();

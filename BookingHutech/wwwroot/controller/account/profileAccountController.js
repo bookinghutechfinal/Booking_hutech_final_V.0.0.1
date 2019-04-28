@@ -1,20 +1,20 @@
 ﻿
 mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'NgTableParams', '$account', '$alert', '$modal', 'AccountIDRequest',
     function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, NgTableParams, $account, $alert, $modal, AccountIDRequest) {
-        // AccountInfoDatailRequest: Tham số nhận dữ liệu từ màn hình quản lý lái xe. 
 
+        var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
         $scope.Titile = "Chi tiết tài xế";
         $scope.ClosePopup = function () {
             $modalInstance.close();
         }
-        // hám khởi tạo tất cả giá trị; 
-        $scopeInit = function () {
+
+        // Xem chi tiết profile account.
+        $scope.Init = function () {
             var AccountDriverDetailResponseModel = null;
             var AccountRoleDriverResponseModel = null;
             $scope.tableParams1 = $scope.tableParams1 = null;
             $scope.ListRole = [];
             try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
                 var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
             } catch (e) {
                 $cookies.remove('AccountInfo');
@@ -24,12 +24,6 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
                 toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
                 $state.go("login");
             }
-        }
-
-        // Xem chi tiết profile account.
-        $scope.Main = function () {
-            $scopeInit();
-            // kiểm tra session
 
             // Lấy chi tiết account. 
             $scope.Account_IDRequest = {
@@ -80,33 +74,54 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
                         break;
                 }
 
-            }); 
+            });
         }
-        $scope.Main();
+        $scope.Init();
 
         // Button chỉnh sửa thông tin account.  
         $scope.EditProfileAccount = function () {
+            $modalInstance.close();
+            if ($rootScope.CheckCookies()) {
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/popupEditProfileAccount.html',
+                    controller: 'EditProfileAccountController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        EditProfileRequestData: function () {
+                            return $scope.AccountDriverDetail;
+                        },
+                    }
+                });
+                modalInstance.result.then(function (result) {
+                    if ($rootScope.CheckCookies()) {
+                        // Lấy chi tiết account. 
+                        var modalInstance = $modal.open({
+                            animation: true,
+                            ariaLabelledBy: 'modal-title',
+                            ariaDescribedBy: 'modal-body',
+                            templateUrl: '/wwwroot/views/pages/account/popupProfileAccount.html',
+                            controller: 'ProfileAccountController',
+                            controllerAs: 'content',
+                            backdrop: 'static',
+                            size: 'lg',
+                            resolve: {
+                                AccountIDRequest: function () {
+                                    return AccountInfo.ObjAccountInfo.Account_ID;
+                                },
+                            }
+                        });
+                        modalInstance.result.then(function () {
 
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/account/popupEditProfileAccount.html',
-                controller: 'EditProfileAccountController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'lg',
-                resolve: {
-                    EditProfileRequestData: function () {
-                        return $scope.AccountDriverDetail;
-                    },
-                }
-            });
-            modalInstance.result.then(function () {
-                $scope.Main();
-            });
-
-
-
+                        });
+                    }
+                });
+            } else {
+                $modalInstance.close();
+            }
         }
     }]);  

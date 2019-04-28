@@ -101,14 +101,14 @@
                 </div>-->
 
                 <div class="x_content" style="display: block;">
-                    <div class="form-horizontal form-label-left input_mask"> 
+                    <div class="form-horizontal form-label-left input_mask">
                         <div class="form-group">
-                            <div class="control-label col-md-1 col-sm-1 col-xs-12"  >Mã đơn</div>
-                            <div class="col-md-2 col-sm-2 col-xs-12" >
+                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Mã đơn</div>
+                            <div class="col-md-2 col-sm-2 col-xs-12">
                                 <div class='input-group date'>
                                     <input type='text' class="form-control ed_border" ng-model="SearchRegisterCar.RegistrationCarID" placeholder="BK0001" />
                                 </div>
-                            </div> 
+                            </div>
                             <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:<i style="color:red;">(*)</i></div>
                             <div class="col-md-2 col-sm-2 col-xs-12">
                                 <div class='input-group date' id='myDateFrom'>
@@ -139,10 +139,10 @@
                                     <option value="2">Trưởng khoa duyệt</option>
                                     <option value="3">Trưởng khoa hủy</option>
                                     <!--<option value="4">Chờ BGH duyệt</option>
-                                    <option value="7">BGH duyệt</option>
-                                    <option value="8">BGH không duyệt</option>
-                                    <option value="9">Đang thực hiện</option>
-                                    <option value="10">Hoàn thành</option>-->
+                    <option value="7">BGH duyệt</option>
+                    <option value="8">BGH không duyệt</option>
+                    <option value="9">Đang thực hiện</option>
+                    <option value="10">Hoàn thành</option>-->
                                 </select>
                                 <span class="field-validation-valid text-danger ngHideSample" ng-show="SearchRegisterCar.ProfileStatus === '' || SearchRegisterCar.ProfileStatus === null && isCheckProfile_Status">Vui lòng chọn!</span>
                             </div>
@@ -212,7 +212,7 @@
                             </tr>
                         </table>
                     </div>
-
+                    <a ng-click="btnRefresh()"><i class="material-icons lentop"><span class="glyphicon glyphicon-refresh"></span></i></a>
                 </div>
             </div>
         </div>

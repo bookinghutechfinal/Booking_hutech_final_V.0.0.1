@@ -1,6 +1,7 @@
 ﻿mainmodule.controller('HomeController', ['$scope', '$state', 'toastr', '$modal', '$account', '$cookies','$rootScope',
     function ($scope, $state, toastr, $modal, $account, $cookies, $rootScope) {
 
+        var AccountInfo = $account.getAccountInfo();
         $scope.goToBookingCar = function () {
             $state.go('main.bookingcar');
         };
@@ -20,12 +21,11 @@
         }
         $scope.Init(); 
         // Tạm nhét đặt xe vào đây. 
-        $scope.OpenPopupRegisteredBookingCar = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo();
+        $scope.OpenPopupRegisteredBookingCar = function () { 
+            if ($rootScope.CheckCookies()) {
                 $scope.reqLogout = {
                     Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
-                } 
+                }
                 var modalInstance = $modal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',
@@ -43,17 +43,8 @@
                 });
                 modalInstance.result.then(function () {
 
-                });
-
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                //  $state.go("login"); 
-                $rootScope.showError = true;
+                });  
             }
-
         }
 
         

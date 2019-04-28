@@ -54,12 +54,19 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
             }
             var DetalRegistrationCarResponse = [];
             $scope.tableParams = $scope.tableParams = null;
+
             try {
                 var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
                 var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
                 // ném code của bạn vào trong này 
+                if (checkNull($stateParams.RegistrationCarID) || checkNull($stateParams.ProfileStatus)) {
+                    toastr.success("Xin lỗi! Không tìm thấy kết quả");
+                    $state.go("main.unitRegisterBookingCar");
+                    return; 
+                }
                 GetListRegistrationCarRequestModel.RegistrationCarID = $stateParams.RegistrationCarID;
                 GetListRegistrationCarRequestModel.ProfileStatus = $stateParams.ProfileStatus;
+                alert("$stateParams1" + GetListRegistrationCarRequestModel.RegistrationCarID + "$stateParams2" + GetListRegistrationCarRequestModel.ProfileStatus); 
                 $scope.GetListRegistrationCar(GetListRegistrationCarRequestModel);
                 // ném code của bạn vào trong này 
             } catch (e) {
@@ -86,7 +93,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
                         DetalRegistrationCarResponse = res.data.Data.ListRegistrationCar;
                         if (DetalRegistrationCarResponse == null || DetalRegistrationCarResponse.length == 0) {
                             toastr.success("Xin lỗi! Không tìm thấy kết quả");
-                            $state.go("main.managerBookingCar");
+                            $state.go("main.unitRegisterBookingCar");
                         } else {
 
                             $scope.DetalRegistrationCar = {

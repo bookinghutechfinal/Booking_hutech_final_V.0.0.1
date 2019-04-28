@@ -6,13 +6,33 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
     $urlRouterProvider.otherwise(function ($injector, $location) {
         var state = $injector.get('$state');
         var location = $location.path();
-        if (location === "") {
-            state.go("login");
-        }
-        else {
-            // state.go("main.home");  
-            // alert(location);  
-        }
+        //if (location === "") {
+          
+        //}
+        //else {
+        //    // state.go("main.home");  
+        //   // alert(location); 
+           
+        //}
+        //if (location = "/main/unitDetail-RegisterBKCar/") {
+        //    state.go("main.unitRegisterBookingCar");
+        //} else if (location = "/main/manager-Detail-RegisterBKCar/") {
+
+        //}
+        switch (location) {
+            case "":
+                state.go("login");
+                break;
+            case "/main/unitDetail-RegisterBKCar" : 
+                state.go("main.unitRegisterBookingCar"); 
+                break;
+            case "/main/unitDetail-RegisterBKCar/":  // kiểm tra lại
+                state.go("main.unitRegisterBookingCar"); 
+                break;
+            case "/main/manager-Detail-RegisterBKCar" :
+                state.go("main.managerBookingCar");
+                break; 
+        }  
        
     });
     $stateProvider

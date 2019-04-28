@@ -4,23 +4,8 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $account) {
 
         // kiểm tra sesstion 
-        var AccountInfo = $account.getAccountInfo().ObjAccountInfo;
-        $scope.ChechSesstion = function () {
-            try {
-                var testCookies = AccountInfo.Account_ID;
-                return true;
-            }
-            catch (err) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                $rootScope.showError = true;
-                return false;
-            }
-        }
-
-
+        var AccountInfo = $account.getAccountInfo();
+        
         $scope.init = function () {
             var GetListRegistrationCarRequestModel = {
                 ProfileStatus: null,
@@ -29,16 +14,16 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
             }
             var ListRegistrationCarResponse = [];
             $scope.tableParams = $scope.tableParams = null;
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies()) { 
                 //GetListRegistrationCarRequestModel.ProfileStatus = 1; // chờ trưởng khoa duyệt 
-                GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.Unit_ID;
+                GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.ObjAccountInfo.Unit_ID;
                 $scope.UnitGetListRegister(GetListRegistrationCarRequestModel);
             }
         }
 
         // danh sách đơn cấp phát
         $scope.UnitGetListRegister = function (request) {
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies()) {
                 GetListRegistrationCarRequestModel = {
                     ProfileStatus: request.ProfileStatus,
                     RegistrationCarID: request.RegistrationCarID,
@@ -63,11 +48,11 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
 
         // tìm kiếm đơn cấp phát
         $scope.UnitSearchGetListRegistrationCar = function (request) {
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies()) {
                 var SearchGetListRegistrationCarRequestModel = {
                     ProfileStatus: request.ProfileStatus,
                     RegistrationCarID: request.RegistrationCarID,
-                    Unit_ID: AccountInfo.Unit_ID,
+                    Unit_ID: AccountInfo.ObjAccountInfo.Unit_ID,
                     DateTimeFrom: moment(request.DateTimeFrom, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
                     DateTimeTo: moment(request.DateTimeTo + " 23:59:59", 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
                 }
@@ -112,8 +97,9 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
 
         //Button refresh
         $scope.btnRefresh = function () {
-            $scope.Refresh();
-            $scope.checkPermissionInit();
+            if ($rootScope.CheckCookies()) {
+                $scope.Refresh();
+            } 
         }
         // Tìm kiếm 
         $scope.SearchRegisterCar = {
@@ -129,7 +115,7 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
         $scope.resultSearch = null;
         // buttom tìm kiếm
         $scope.btnUnitSearchRegisterCar = function () {
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies()) {
                 if (!checkNull($scope.SearchRegisterCar.RegistrationCarID)) {
                     $scope.SearchRegisterCar.ProfileStatus = null;
                     $scope.resultSearch = null;
