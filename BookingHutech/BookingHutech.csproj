@@ -208,6 +208,7 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerUpdateRoleMasterRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\UpdateGroupRoleRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\DeleteRoleRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\UpdateRoleRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\AddNewCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\AddNewDetailCostRequestModel.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\UpdateCarStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\UpdateSuccessResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\CheckPermissionResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\GetListAssignDriverRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\IResponse.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListCarResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\BookingCar\Unit.cs" />
@@ -355,6 +357,8 @@
     <Content Include="images\support\54ab57ffea6b7dc23c3864320e8a4cdc.png" />
     <Content Include="images\support\99e1e13ab03ae19ef10bc40b7dd42af4.png" />
     <Content Include="script\css\style4.css" />
+    <Content Include="script\export\JqueryBase64.js" />
+    <Content Include="script\export\tableExport.js" />
     <Content Include="script\js\jquery-1.12.0.min.js" />
     <Content Include="script\js\jquery.zoom.js" />
     <Content Include="script\support\bootstrap.min.css" />
@@ -1026,6 +1030,7 @@
     <Content Include="wwwroot\controller\booking\bookingCar\addNewCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\bookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\detailCarController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\editCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerCalendarDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerCarByDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\assignDriverController.js" />

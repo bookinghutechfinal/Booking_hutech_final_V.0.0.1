@@ -142,7 +142,23 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                 alert("Mở quyền " + roleRequestModel.RoleName);
                 $scope.checkedRule = true;
             } else
-                alert("Khóa quyền " + roleRequestModel.RoleName);
+                $alert.showConfirmUpdateCarInfo($rootScope.initMessage('Bạn muốn hủy quyền cho tài khoản này?' + roleRequestModel.RoleMaster_ID), function () {
+                    let DeleteRoleRequestModel = {
+                        RoleMaster_ID: roleRequestModel.RoleMaster_ID,
+                        Account_ID: AccountIDRequest
+                    }
+                    $account.DeleteRole(DeleteRoleRequestModel, function (res) {
+                        switch (res.data.Data) {
+                            case 1:
+                                toastr.success('Bạn đã cập nhật thành công.');
+                                $scope.ShowDetailAccount();
+                                break;
+                            case 2:
+                                toastr.error('Bạn đã cập nhật thất bại.');
+                                break;
+                        }
+                    });
+                });
             $scope.checkedRule = false;
 
         }

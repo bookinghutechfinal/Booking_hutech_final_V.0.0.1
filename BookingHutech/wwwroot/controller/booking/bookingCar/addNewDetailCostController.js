@@ -1,7 +1,8 @@
 ﻿mainmodule.controller('popupAddNewDetailCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance', '$account', 'DetailCost',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance, $account, DetailCost) {
-        try {
-        var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
+        if ($rootScope.CheckCookies()) {
+            var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
+        }
         var repairID = DetailCost.RepairID;
 
         $scope.init = function () {
@@ -10,56 +11,55 @@
         }
 
         $scope.AddMore = function (request) {
-            if (checkNull(request.Content) || checkNull(request.Quantity) || checkNull(request.TotalMoney)) {
-                $scope.ErrorInput = true;
-                return;
+            if ($rootScope.CheckCookies()) {
+                if (checkNull(request.Content) || checkNull(request.Quantity) || checkNull(request.TotalMoney)) {
+                    $scope.ErrorInput = true;
+                    return;
+                }
+
+                $scope.DetailCost.push({
+                    Content: request.Content,
+                    Quantity: request.Quantity,
+                    TotalMoney: request.TotalMoney,
+                    RepairID: repairID
+
+                });
             }
-
-            $scope.DetailCost.push({
-                Content: request.Content,
-                Quantity: request.Quantity,
-                TotalMoney: request.TotalMoney,
-                RepairID: repairID
-
-            });
         }
 
         $scope.Delete = function (index) {
-            if (index == $scope.DetailCost.length) {
-                $scope.DetailCost.pop();
-            }
-            else {
-                for (var i = index; i < $scope.DetailCost.length - 1; i++) {
-                    $scope.DetailCost[i] = $scope.DetailCost[i + 1];
+            if ($rootScope.CheckCookies()) {
+                if (index == $scope.DetailCost.length) {
+                    $scope.DetailCost.pop();
                 }
-                $scope.DetailCost.pop();
+                else {
+                    for (var i = index; i < $scope.DetailCost.length - 1; i++) {
+                        $scope.DetailCost[i] = $scope.DetailCost[i + 1];
+                    }
+                    $scope.DetailCost.pop();
+                }
             }
-
         }
         $scope.init();
 
         $scope.SaveNewDetail = function (request) {
-            $BookingCar.addNewDetailCost(request, function (res) {
-                switch (res.data.Data) {
-                    case 1:
-                        toastr.success('Thêm mới thành công.');
-                        break;
-                    case 2:
-                        toastr.error('Thêm mới thất bại.');
-                        break;
-                }
-             });
-            $modalInstance.close();
+            if ($rootScope.CheckCookies()) {
+                $BookingCar.addNewDetailCost(request, function (res) {
+                    switch (res.data.Data) {
+                        case 1:
+                            toastr.success('Thêm mới thành công.');
+                            break;
+                        case 2:
+                            toastr.error('Thêm mới thất bại.');
+                            break;
+                    }
+                });
+                $modalInstance.close();
+            }
         }
 
         $scope.ClosePopup = function () {
-        $modalInstance.close();
-            }
-        } catch (e) {
-            $cookies.remove('AccountInfo');
-            $cookies.remove("AccountInfoCheckPermissions");
-            $cookies.remove("myReload");
-            toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
-            $state.go("login");
+            $modalInstance.close();
         }
+
     }]);  

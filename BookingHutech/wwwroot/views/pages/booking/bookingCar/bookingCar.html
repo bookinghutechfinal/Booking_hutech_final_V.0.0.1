@@ -16,7 +16,7 @@
         border-radius: 5px
     }
 </style>
-<div class=" class="clearfix"">
+<div class=" class=" clearfix"">
     <div class="row">
         <div class="col-md-12">
             <div class="x_title">
@@ -53,11 +53,11 @@
                                         <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{data.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
                                         <li ng-show="data.CarStatus ==1"><i class="fa fa-circle text-success"></i> Hoạt động</li>
                                         <li ng-show="data.CarStatus ==4" style="color:red"><i class="fa fa-circle text-success" style="color:red"></i> Bảo trì, sửa chữa</li>
-                                        <li ng-show="CarInfo.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Ngừng hoạt động</li>
+                                        <li ng-show="data.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Ngừng hoạt động</li>
                                     </ul>
                                 </div>
                                 <div class="right col-xs-5 text-center">
-                                    <a href="../../../../images/avt/{{data.CarImage}}" target="_blank"><img src="../../../../images/avt/{{data.CarImage}}" alt="{{data.CarImage}}" class="img-responsive"></a>
+                                    <a href="../../../../images/avt/{{data.CarImage}}" target="_blank"><img src="../../../../images/avt/{{data.CarImage}}" alt="{{data.CarImage}}" style="height:140px;width:auto;max-width:100%"></a>
                                 </div>
                             </div>
                             <div class="col-xs-12 bottom text-center">

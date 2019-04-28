@@ -357,5 +357,36 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
                 throw;
             }
         }
+
+        /// <summary>
+        /// DeleteRoleServices
+        /// Mr.Lam 28/4/2019
+        /// </summary>
+        /// <param name="request">list DeleteRoleRequestModel</param>
+        public int DeleteRoleServices(DeleteRoleRequestModel request)
+        {
+            try
+            {
+                int roleMasterID = request.RoleMaster_ID;
+                string accountID = request.Account_ID;
+                string stringSql = "begin try"
+                                    + " begin transaction"
+                                    + " delete from RoleDetail where Account_ID='"+ accountID + "' and RoleMaster_ID = "
+                                    +
+                                    roleMasterID
+                                    + " commit"
+                                    + " end try"
+                                    + " begin catch"
+                                    + " rollback"
+                                    + " end catch";
+                int result = managerAccountDAO.UpdateRoleDAO(stringSql);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
     }
 }

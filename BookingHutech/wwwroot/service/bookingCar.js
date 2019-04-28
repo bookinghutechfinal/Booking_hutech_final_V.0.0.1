@@ -168,13 +168,6 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
-    this.AssignDriverManager = function (request, success, finish) {
-        $dao.call({
-            method: 'POST',
-            operater: 'AssignDriver/AssignDriverManager',
-            data: request
-        }, success, finish)
-    };
     this.GetListAssigned = function (request, success, finish) {
         $dao.call({
             method: 'GET',

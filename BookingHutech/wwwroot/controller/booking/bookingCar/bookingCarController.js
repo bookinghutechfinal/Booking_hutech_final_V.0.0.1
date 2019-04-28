@@ -21,7 +21,7 @@
         // Hàm Lấy danh sách xe còn hoạt động và danh sách loại xe. . 
         $scope.getListCar = function () {
             var getListcarRequestModel = {
-                CarStatus1: 0,//xe đã xóa
+                CarStatus1: 1000,//xe đã xóa
                 CarStatus2: 1000 //không có điều kiện
             }
             $BookingCar.getListCar(getListcarRequestModel, function (res) {
