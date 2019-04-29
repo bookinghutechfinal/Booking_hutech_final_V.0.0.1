@@ -18,22 +18,13 @@
                 CarStatus: null,
                 LastModifiedDate: null
             };
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                // ném code của bạn vào trong này 
+            if ($rootScope.CheckCookies()) {
                 $scope.getCarInfo();
                 $scope.getRegistrationCarByCarID();
                 $scope.getListCostByCarID();
                 $scope.getDriverManageCar();
-                // ném code của bạn vào trong này 
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                $rootScope.showError = true;
-            }
+            } 
+
         }
 
         // Hàm Lấy danh sách xe
@@ -141,7 +132,7 @@
             }
         }
 
-        let month = new Date().getMonth()+1;
+        let month = new Date().getMonth() + 1;
         let year = new Date().getFullYear();
 
         //Biểu đồ thống kê hoạt động theo tháng của xe
@@ -158,10 +149,7 @@
         };
         //popup chỉnh sửa thông tin xe
         $scope.updateCar = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                // ném code của bạn vào trong này 
+            if ($rootScope.CheckCookies()) {
                 var CarInfoResponeModel = $scope.CarInfo;
                 var modalInstance = $modal.open({
                     animation: true,
@@ -181,15 +169,8 @@
                 modalInstance.result.then(function (result) {
                     $scope.getCarInfo();
                 });
-                // ném code của bạn vào trong này 
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion')); 
-                $rootScope.showError = true;
-            }
-             
+            } 
+                
         }
     }]);
 

@@ -5,7 +5,7 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
 
         // kiểm tra sesstion 
         var AccountInfo = $account.getAccountInfo();
-        
+       
         $scope.init = function () {
             var GetListRegistrationCarRequestModel = {
                 ProfileStatus: null,
@@ -14,8 +14,8 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
             }
             var ListRegistrationCarResponse = [];
             $scope.tableParams = $scope.tableParams = null;
-            if ($rootScope.CheckCookies()) { 
-                //GetListRegistrationCarRequestModel.ProfileStatus = 1; // chờ trưởng khoa duyệt 
+            // kiểm tra Cookies và quyền thực hiện
+            if ($rootScope.CheckCookies() && $rootScope.CheckPermission(904)) {  
                 GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.ObjAccountInfo.Unit_ID;
                 $scope.UnitGetListRegister(GetListRegistrationCarRequestModel);
             }
@@ -78,6 +78,18 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
             }
         }
 
+        //   // kiểm tra quyền thức khi thực hiên 
+        //$scope.checkPermissionInit = function () { 
+        //    if ( () && // khoa/viên, thu ky
+        //        ($rootScope.showByPermission(907))) {
+        //        return true; 
+        //    }
+        //    else {
+        //        toastr.error("Xin lỗi! Bạn không có quyền thực hiện chức năng này");
+        //        return false; 
+        //    }
+        //}
+
         $scope.init();
 
         $scope.Refresh = function () {
@@ -125,6 +137,7 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
                     $scope.UnitSearchGetListRegistrationCar($scope.SearchRegisterCar);
                     $scope.isCheckDateFrom = false;
                     $scope.isCheckDateTo = false;
+                    $scope.isCheckProfile_Status = false;
                     $scope.resultSearch = "Mã đơn " + $scope.SearchRegisterCar.RegistrationCarID;
                     return;
                 }

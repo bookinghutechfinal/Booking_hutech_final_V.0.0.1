@@ -2,6 +2,7 @@
 mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $account) {
 
+        var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
         var GetListRegistrationCarRequestModel = {
             ProfileStatus: null,
             RegistrationCarID: null,
@@ -12,73 +13,60 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
         $scope.init = function () {
             var ListRegistrationCarResponse = [];
             $scope.tableParams = $scope.tableParams = null;
-        }
-        //
-        $scope.checkPermissionInit = function () {
-            // kiểm tra quyền thức khi thực hiên 
-            if (($scope.checkPermission = $rootScope.showByPermission(901)) && // Quản trị - BGH
-                ($scope.checkPermission = $rootScope.showByPermission(900))) {
+            if ($rootScope.CheckCookies()) {
+                // kiểm tra quyền thức khi thực hiên 
+                if (($scope.checkPermission = $rootScope.showByPermission(901)) && // Quản trị - BGH
+                    ($scope.checkPermission = $rootScope.showByPermission(900))) {
 
-                GetListRegistrationCarRequestModel.ProfileStatus = 2;
-                $scope.getListReRegisterCar(GetListRegistrationCarRequestModel);
-            } else if (($scope.checkPermission = $rootScope.showByPermission(902)) &&
-                ($scope.checkPermission = $rootScope.showByPermission(900))) {
-                GetListRegistrationCarRequestModel.ProfileStatus = 6;
-                $scope.getListReRegisterCar(GetListRegistrationCarRequestModel);
-            }
-            else {
-                toastr.error("Xin lỗi! Bạn không có quyền thực hiện chức năng này");
-                return;
+                    GetListRegistrationCarRequestModel.ProfileStatus = 2;
+                    $scope.getListReRegisterCar(GetListRegistrationCarRequestModel);
+                } else if (($scope.checkPermission = $rootScope.showByPermission(902)) &&
+                    ($scope.checkPermission = $rootScope.showByPermission(900))) {
+                    GetListRegistrationCarRequestModel.ProfileStatus = 6;
+                    $scope.getListReRegisterCar(GetListRegistrationCarRequestModel);
+                }
+                else {
+                    var audio = new Audio('../../audio/alert_message_audio.mp3');
+                    audio.play();
+                    audio.volume = 0.1;
+                    toastr.error($rootScope.initMessage('NotPermission'));
+                    return;
+                }
             }
         }
 
         // Lấy danh sách đơn cấp phát
         $scope.getListReRegisterCar = function (request) {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                var GetListRegistrationCarRequestModel = {
-                    ProfileStatus: request.ProfileStatus,
-                    RegistrationCarID: request.RegistrationCarID,
-                    Unit_ID: request.Unit_ID,
-                    DateTimeFrom: request.DateTimeFrom,
-                    DateTimeTo: request.DateTimeTo
-                }
-                $BookingCar.ManagerGetListRegistrationCar(GetListRegistrationCarRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            ListRegistrationCarResponse = res.data.Data.ListRegistrationCar;
-                            try {
-                                if (ListRegistrationCarResponse.length == 0 || ListRegistrationCarResponse == null) {
-
-                                } else {
-                                    $scope.tableParams = new NgTableParams({}, { dataset: ListRegistrationCarResponse });
-                                }
-                            } catch (e) {
-                                toastr.success("Không tìm thấy kết quả");
-                                $scope.tableParams = new NgTableParams({}, { dataset: null });
-                            }
-
-                            break;
-                    }
-
-                });
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                $rootScope.showError = true;
+            var GetListRegistrationCarRequestModel = {
+                ProfileStatus: request.ProfileStatus,
+                RegistrationCarID: request.RegistrationCarID,
+                Unit_ID: request.Unit_ID,
+                DateTimeFrom: request.DateTimeFrom,
+                DateTimeTo: request.DateTimeTo
             }
+            $BookingCar.ManagerGetListRegistrationCar(GetListRegistrationCarRequestModel, function (res) {
+                switch (res.data.ReturnCode) {
+                    case 1:
+                        ListRegistrationCarResponse = res.data.Data.ListRegistrationCar;
+                        try {
+                            if (ListRegistrationCarResponse.length == 0 || ListRegistrationCarResponse == null) {
 
+                            } else {
+                                $scope.tableParams = new NgTableParams({}, { dataset: ListRegistrationCarResponse });
+                            }
+                        } catch (e) {
+                            toastr.success("Không tìm thấy kết quả");
+                            $scope.tableParams = new NgTableParams({}, { dataset: null });
+                        }
 
+                        break;
+                }
+
+            });
         }
         // tìm kiếm đơn cấp phát
         $scope.SearchGetListRegistrationCar = function (request) {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                // ném code của bạn vào trong này 
+            if ($rootScope.CheckCookies()) {
                 var SearchGetListRegistrationCarRequestModel = {
                     ProfileStatus: request.ProfileStatus,
                     RegistrationCarID: request.RegistrationCarID,
@@ -105,20 +93,10 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
                             break;
                     }
                 });
-                // ném code của bạn vào trong này 
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                $rootScope.showError = true;
             }
-
-
         }
 
         $scope.init();
-        $scope.checkPermissionInit();
         $scope.Refresh = function () {
             $scope.SearchRegisterCar = {
                 ProfileStatus: null,
@@ -135,7 +113,7 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
         }
         $scope.btnRefresh = function () {
             $scope.Refresh();
-            $scope.checkPermissionInit();
+            $scope.init();
         }
         // Tìm kiếm 
         $scope.SearchRegisterCar = {
@@ -203,19 +181,4 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
         }
 
     }]);
-
-//mainmodule.controller('popupManagerRepairCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', 'ListDetailRepairCost','$modalInstance',
-//    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, ListDetailRepairCost, $modalInstance) {
-
-//        $scope.init = function () {
-//            var ListDetailRepairCostResponseModel = ListDetailRepairCost;
-//            $scope.tableParams2 = new NgTableParams({}, { dataset: ListDetailRepairCostResponseModel });
-//        }
-
-//        $scope.ClosePopup = function () {
-//            $modalInstance.close();
-//        }
-
-//        $scope.init();
-
-//    }]);  
+ 

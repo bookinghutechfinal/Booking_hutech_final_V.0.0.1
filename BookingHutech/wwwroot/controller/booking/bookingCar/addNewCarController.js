@@ -42,7 +42,7 @@
             $scope.init();
 
             $scope.ClosePopup = function () {
-                $modalInstance.close();
+                $modalInstance.close(false);
             }
 
             $scope.btndisabled = true;
@@ -79,37 +79,30 @@
 
             // add new car 
             $scope.addNewCar = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo(); 
-                // code 
-                if ($scope.CheckUploatImg($scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)) { 
-                    $scope.CarInfo.FullNameUpdate = AccountInfo.ObjAccountInfo.FullName;
-                    $scope.CarInfo.CarImage = $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL;
-                    $scope.CarInfo.Expires = moment(angular.element('#myDate1').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
-                    $scope.CarInfo.InsuranceExpires = moment(angular.element('#myDate2').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
-                    
-                    $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn thêm xe này'), function () {
-                        $BookingCar.CreateNewCar($scope.CarInfo, function (res) {
-                            switch (res.data.ReturnCode) {
-                                case 1:
-                                    $modalInstance.close(true);
-                                    toastr.success("Đã thêm thành công"); 
-                                    break;
-                            }
-                        });
-                    });
-                }
-                // code
+                if ($rootScope.CheckCookies()) {
+                    if ($scope.CheckUploatImg($scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)) {
+                        $scope.CarInfo.FullNameUpdate = AccountInfo.ObjAccountInfo.FullName;
+                        $scope.CarInfo.CarImage = $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL;
+                        $scope.CarInfo.Expires = moment(angular.element('#myDate1').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                        $scope.CarInfo.InsuranceExpires = moment(angular.element('#myDate2').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
 
-            } catch (e) {
-                $modalInstance.close();
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                //  $state.go("login"); 
-                $rootScope.showError = true;
-            }
+                        $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn thêm xe này'), function () {
+                            $BookingCar.CreateNewCar($scope.CarInfo, function (res) {
+                                switch (res.data.ReturnCode) {
+                                    case 1:
+                                        $modalInstance.close(true);
+                                        toastr.success("Đã thêm thành công");
+                                        break;
+                                }
+                            });
+                        });
+                    }
+                } else {
+                    $modalInstance.close(false);
+                }
+               
+                
+ 
         }
 
         // check upload hình 

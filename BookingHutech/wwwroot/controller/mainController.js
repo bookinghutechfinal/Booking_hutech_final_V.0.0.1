@@ -24,6 +24,10 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             $cookies.remove("myReload");
             $state.go('login');
         }
+        $rootScope.online = false; 
+        $scope.btnCheckOnline = function () {
+            $rootScope.online = true; 
+        }
         // kiểm tra cookies
         $rootScope.CheckCookies = function () {
             try {
@@ -40,14 +44,40 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             }
              
         }
+        // hàm kiểm tra quyền thự hiện các hàm tự động thực hiện khi truy cầp vào màn hình 
+        // vd: màn hình quản lý đơn cấp phát cấp khoa/viện, cấp quản tri không được gọi hàm, xem danh sách
+        $rootScope.CheckPermission = function (permissionCode) {
+            try {
+                var AccountInfo = $account.getAccountInfo().Account_ID; // test Lấy cookies người dùng. 
+                if ($rootScope.showByPermission(permissionCode)) {
+                    return true;
+                } else {
+                    var audio = new Audio('../../audio/alert_message_audio.mp3');
+                    audio.play();
+                    audio.volume = 0.1; 
+                    toastr.error($rootScope.initMessage('NotPermission')); 
+                    return false; 
+                }
+               
+            }// lỗi
+            catch (e) {  
+                var audio = new Audio('../../audio/alert_message_audio.mp3');
+                audio.play();
+                audio.volume = 0.1; 
+                $account.RemoveAccountInfo(); 
+                toastr.error($rootScope.initMessage('InconrectSestion'));  
+                $rootScope.showError = true; 
+            } 
+        }
 
 
         $rootScope.showError = false;
         $scope.Functiontimeout = function () {
-            $rootScope.isLoading = true;
-            $cookies.remove('AccountInfo');
-            $cookies.remove("AccountInfoCheckPermissions");
-            $cookies.remove("myReload");
+            var audio = new Audio('../../audio/alert_message_audio.mp3');
+            audio.play();
+            audio.volume = 0.1;
+            $account.RemoveAccountInfo(); 
+            $rootScope.isLoading = true; 
             //toastr.error($rootScope.initMessage('InconrectSestion'));
             $state.go('login');
         } // end
@@ -224,7 +254,12 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
 
         // Idle.watch(); // start set timeout
         //end 
-
+        //// Cảnh báo mất kết nối internet 
+        //if (!$rootScope.online) {
+        //    alert("Cảnh báo! Mất kết nối internet. Vui lòng kiểm tra lại kết nối mạng!");
+        //} else {
+        //    alert("Ok ổn");
+        //}
     }]);
 mainmodule.controller('ModalInstanceCtrl', ['$scope', '$state', '$modal', '$modalInstance', function ($scope, $state, $modal, $modalInstance) {
 

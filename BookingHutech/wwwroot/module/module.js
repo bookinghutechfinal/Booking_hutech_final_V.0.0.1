@@ -23,6 +23,20 @@ angular.module('BHutechAppModule').config(['KeepaliveProvider', 'IdleProvider', 
     IdleProvider.interrupt('keydown wheel mousedown touchstart touchmove scroll');
 }]);
 
+mainmodule.run(function ($window, $rootScope) {
+    $rootScope.online = navigator.onLine;
+    $window.addEventListener("offline", function () {
+        $rootScope.$apply(function () {
+            $rootScope.online = false;  
+        });
+    }, false);
+
+    $window.addEventListener("online", function () {
+        $rootScope.$apply(function () {
+            $rootScope.online = true; 
+        });
+    }, false);
+});
 
 //var teamplate = {
 //    header: 'wwwroot/views/common/header.html',

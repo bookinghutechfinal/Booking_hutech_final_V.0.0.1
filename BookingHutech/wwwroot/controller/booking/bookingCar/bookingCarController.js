@@ -4,16 +4,8 @@
         // Hàm 1: khai báo các biến tiện ích
         $scope.init = function () {
             $rootScope.ListCarInfo = []; // Danh sách xe.  
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                // ném code của bạn vào trong này 
+            if ($rootScope.CheckCookies()) {
                 $scope.getListCar();
-                // ném code của bạn vào trong này 
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
             }
         }
 
@@ -36,33 +28,32 @@
         $scope.init();
 
         $scope.OpenPopupRegisteredBookingCar = function () {
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupRegisterBookingCar.html',
-                controller: 'RegisterBookingCarController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'lg',
-                resolve: {
-                    RequestData: function () {
-                        return null;
-                    },
-                }
-            });
-            modalInstance.result.then(function () {
+            if ($rootScope.CheckCookies()) {
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupRegisterBookingCar.html',
+                    controller: 'RegisterBookingCarController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        RequestData: function () {
+                            return null;
+                        },
+                    }
+                });
+                modalInstance.result.then(function () {
 
-            });
+                });
+            }
+
         }
-
-
+         
 
         $scope.AddNewCar = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                // ném code của bạn vào trong này 
+            if ($rootScope.CheckCookies()) {
                 var modalInstance = $modal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',
@@ -78,19 +69,12 @@
                         },
                     }
                 });
-                modalInstance.result.then(function () {
-
+                modalInstance.result.then(function (result) {
+                    if (result) {
+                        $scope.init();
+                    }
                 });
-                // ném code của bạn vào trong này 
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                //  $state.go("login"); 
-                $rootScope.showError = true;
             }
         }
-
 
     }]);  

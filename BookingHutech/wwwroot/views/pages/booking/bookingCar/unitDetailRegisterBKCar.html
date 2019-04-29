@@ -91,7 +91,7 @@
 
         <div class="col-md-12 col-sm-12 col-xs-12">
             <!--không có quyền-->
-            <div class="x_content bs-example-popovers" ng-show="!showByPermission(904)">
+            <div class="x_content bs-example-popovers" ng-show="!showByPermission(904)" style="padding-bottom: 25%;">
                 <div class="alert alert-warning alert-dismissible fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
@@ -182,8 +182,8 @@
                                         </button>
                                     </div>
                                     <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="showByPermission(904) && DetalRegistrationCar.Profile_Status !== 4 && DetalRegistrationCar.Profile_Status !== 6 && DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8 && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
-                                        <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit">
-                                            <i class="glyphicon glyphicon-ok"></i>
+                                        <button class="btn btn-warning btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit">
+                                            <i class="fa fa-edit"></i>
                                             <span>Chỉnh sửa</span>
                                         </button>
                                     </div>

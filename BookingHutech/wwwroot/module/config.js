@@ -23,7 +23,7 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
             case "":
                 state.go("login");
                 break;
-            case "/main/unitDetail-RegisterBKCar" : 
+            case "/main/unitDetail-RegisterBKCar": 
                 state.go("main.unitRegisterBookingCar"); 
                 break;
             case "/main/unitDetail-RegisterBKCar/":  // kiểm tra lại
@@ -195,7 +195,7 @@ mainmodule.config(['$translateProvider',
             'Home': 'Trang chủ',
             /* -------- Login ---------- */
             'Login': 'Đăng Nhập',
-            'PleaseInputAccountName': 'Vui lòng nhập tên đăng nhập!',
+            'PleaseInputAccountName': 'Vui lòng nhập tên đăng nhập!', 
             'PleaseInputPassword': 'Vui lòng nhập mật khẩu!',
             'LoginFail': 'Tài khoản hoặc mật khẩu không đúng. Vui lòng kiểm tra lại!',
             'LoginSuccess': 'Đăng nhập thành công.', 
@@ -204,6 +204,7 @@ mainmodule.config(['$translateProvider',
             'NotVerify': 'Tài khoản này chưa được quản trị viên duyệt. Vui lòng đăng nhập tài khoản khác!',
             'CookiesInconrect': 'Vui lòng đăng nhập!',
             'InconrectSestion': 'Phiên bản làm việc hết hạn. Vui lòng đăng nhập lại!',
+            'NotPermission': 'Xin lỗi! Bạn không có quyền thực hiện chức năng này!',
             /* -------- Logout ---------- */
             'TitleLogout': 'Đăng xuất',
             'QuestionLogout': 'Bạn có muốn đăng xuất hay không?',
@@ -221,6 +222,7 @@ mainmodule.config(['$translateProvider',
             /* --------  Booking car ---------- */
             'TypeCar': 'Loại xe',
             'All': '-- Tất cả --',
+            'SearchChooseStatusRegter': '-- Vui lòng chọn --',
             'TitileSerachCar': 'Tìm kiếm xe',
             'SearchBookingCar': 'Tìm Kiếm',
             'ResultSerachBookingCar': 'Kết quả tìm kiếm',
@@ -238,6 +240,16 @@ mainmodule.config(['$translateProvider',
             'OtherCostManager': 'Chi phí khác',
             /* --------  Report Manager ---------- */
             'ReportCost': 'Thống kê chi phí',
+            /* --------  Messager ---------- */
+            'MessPleaseChoose': 'Vui lòng chọn!',
+            /* --------  Manager Booking Car ---------- */
+            'ManagerRegBkCar': 'Quản lý đơn cấp phát',
+            'RegisterBKCarID': 'Mã đơn',
+            'DateFrom': 'Từ ngày',
+            'DateTo': 'Đến ngày',
+            'Status': 'Trạng thái',
+             
+
 
 
         });

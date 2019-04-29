@@ -61,15 +61,16 @@
         display: block;
         background-color: #cde0c4;
         color: #356635;
-        font-size: 11px;
+        font-size: 72%;
         height: 29px;
+        min-height: 35px;
     }
 </style>
 <div class="clearfix">
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <!--không có quyền-->
-            <div class="x_content bs-example-popovers" ng-show="!showByPermission(904)">
+            <div class="x_content bs-example-popovers" ng-show="!showByPermission(904)" style=" margin-bottom: 25%;">
                 <div class="alert alert-warning alert-dismissible fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
@@ -84,86 +85,68 @@
                 </div>
             </div>
             <!--không có quyền-->
-            <div   ng-show="showByPermission(904)">
+            <div ng-show="showByPermission(904)">
                 <div class="x_title">
                     <ul>
                         <li><a href="#/main/home"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
-                        <li><a href=""><h5> / Quản lý đơn cấp phát</h5></a></li> 
+                        <li><a href=""><h5> /{{'ManagerRegBkCar' | translate}} </h5></a></li>
                     </ul>
                 </div>
-
-                <!--<div class="col-md-3 col-sm-3 col-xs-12" style="float:right">
-                    <div class="mb15 mt30">
-                        <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
-                            <span class="glyphicon glyphicon-plus-sign"></span> Thêm mới
-                        </button>
-                    </div>
-                </div>-->
-
                 <div class="x_content" style="display: block;">
                     <div class="form-horizontal form-label-left input_mask">
                         <div class="form-group">
-                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Mã đơn</div>
                             <div class="col-md-2 col-sm-2 col-xs-12">
+                                <label>{{'RegisterBKCarID' | translate}}</label>
                                 <div class='input-group date'>
                                     <input type='text' class="form-control ed_border" ng-model="SearchRegisterCar.RegistrationCarID" placeholder="BK0001" />
                                 </div>
                             </div>
-                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:<i style="color:red;">(*)</i></div>
                             <div class="col-md-2 col-sm-2 col-xs-12">
+                                <label>{{'DateFrom' | translate}}<i style="color:red;">(*)</i></label>
                                 <div class='input-group date' id='myDateFrom'>
                                     <input type='text' class="form-control ed_border" id="DateFrom" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
-                                <span class="field-validation-valid text-danger ngHideSample" ng-show="angular.element('#DateFrom').val()=='' || angular.element('#DateFrom').val()== null && isCheckDateFrom"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
+                                <span class="field-validation-valid text-danger ngHideSample" ng-show="angular.element('#DateFrom').val()=='' || angular.element('#DateFrom').val()== null && isCheckDateFrom"><i class="fa fa-warning"></i>{{'MessPleaseChoose' | translate}}</span>
                             </div>
-
-                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:<i style="color:red;">(*)</i></div>
                             <div class="col-md-2 col-sm-2 col-xs-12">
+                                <label>{{'DateTo' | translate}}<i style="color:red;">(*)</i></label>
                                 <div class='input-group date' id='myDateTo'>
                                     <input type='text' class="form-control ed_border" id="DateTo" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
-                                <span class="field-validation-valid text-danger ngHideSample" ng-show="angular.element('#DateTo').val()=='' || angular.element('#DateTo').val() == null && isCheckDateTo"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
+                                <span class="field-validation-valid text-danger ngHideSample" ng-show="angular.element('#DateTo').val()=='' || angular.element('#DateTo').val() == null && isCheckDateTo"><i class="fa fa-warning"></i>{{'MessPleaseChoose' | translate}}</span>
                             </div>
-
-                            <div class="control-label col-md-1 col-sm-1 col-xs-12">Trạng thái:<i style="color:red;">(*)</i></div>
-                            <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label>{{'Status'| translate}}<i style="color:red;">(*)</i></label>
                                 <select class="form-control select2 ed_border" ng-model="SearchRegisterCar.ProfileStatus" style="width: 100%;">
-                                    <option selected="selected" value="">-- Vui lòng chọn --</option>
+                                    <option selected="selected" value="">{{'SearchChooseStatusRegter'| translate}}</option>
                                     <option value="1">Chờ trưởng khoa duyệt</option>
                                     <option value="2">Trưởng khoa duyệt</option>
                                     <option value="3">Trưởng khoa hủy</option>
-                                    <!--<option value="4">Chờ BGH duyệt</option>
-                    <option value="7">BGH duyệt</option>
-                    <option value="8">BGH không duyệt</option>
-                    <option value="9">Đang thực hiện</option>
-                    <option value="10">Hoàn thành</option>-->
                                 </select>
-                                <span class="field-validation-valid text-danger ngHideSample" ng-show="SearchRegisterCar.ProfileStatus === '' || SearchRegisterCar.ProfileStatus === null && isCheckProfile_Status">Vui lòng chọn!</span>
+                                <span class="field-validation-valid text-danger ngHideSample" ng-show="SearchRegisterCar.ProfileStatus === '' || SearchRegisterCar.ProfileStatus === null && isCheckProfile_Status">{{'MessPleaseChoose' | translate}}</span>
                             </div>
-
-                            <div class="col-md-5 col-sm-5 col-xs-12 ngHideSample" style="padding:5px;" ng-show="resultSearch !== null ">
-                                <div class="title_bk">
-                                    <span style="font-weight:bold"><span class="fa fa-filter"></span> Kết quản tìm kiếm: {{resultSearch}}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12" style="padding:5px; float:right">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label><br /></label>
                                 <div class="mb15 mt30">
                                     <button class="btn btn-warning btn-round btn-block" ng-click="btnUnitSearchRegisterCar()">
-                                        <span class="glyphicon glyphicon-search"></span> Tìm
+                                        <span class="glyphicon glyphicon-search"></span> {{'SearchBookingCar' | translate}}
                                     </button>
                                 </div>
                             </div>
 
-                            <div class="col-md-1 col-sm-1 col-xs-12">
-                                <br />
+                            <div class="col-md-7 col-sm-7 col-xs-12 ngHideSample" style="padding: 5px; ">
+                                <div class="title_bk" ng-show="resultSearch !== null ">
+                                    <span style="font-weight:bold"><span class="fa fa-filter"></span> Kết quản tìm kiếm: {{resultSearch}}</span>
+                                </div>
                             </div>
-
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                            </div> 
 
                         </div>
                     </div>
@@ -177,26 +160,26 @@
                                     <!--<a class="fa fa-folder-open" href="#/main/manager-Detail-RegisterBKCar/{{item.RegistrationCarID}}/{{item.Profile_Status}}"></a>-->
 
                                 </td>
-                                <td data-title="'BookingID'" style="width:6%" align="left">
+                                <td data-title="'BookingID'" style="width:10%"    align="left">
                                     <a class="fa fa-folder-open" href="#/main/unitDetail-RegisterBKCar/{{item.RegistrationCarID}}/{{item.Profile_Status}}"> {{item.RegistrationCarID}}</a>
 
                                 </td>
-                                <td data-title="'Ngày tạo'" style="width:6%" align="left" sortable="'CreatDay'">
+                                <td data-title="'Ngày tạo'" style="width:1%"  align="left" sortable="'CreatDay'">
                                     {{item.CreatDay | date:'dd/MM/yyyy' }}
                                 </td>
-                                <td data-title="'Ngày đi'" style="width:8%" align="left" sortable="'DateTimeFrom'">
+                                <td data-title="'Ngày đi'" style="width:2%" align="left" sortable="'DateTimeFrom'">
                                     {{item.DateTimeFrom | date:'dd/MM/yyyy HH:mm'}}
                                 </td>
-                                <td data-title="'Ngày về'" style="width:8%" align="left" sortable="'DateTimeTo'">
+                                <td data-title="'Ngày về'"  style="width:2%"  align="left" sortable="'DateTimeTo'">
                                     {{item.DateTimeTo | date:'dd/MM/yyyy HH:mm'}}
                                 </td>
-                                <td data-title="'Lộ trình đi'" style="width:10%" align="left">
+                                <td data-title="'Lộ trình đi'" style="width:5%"   align="left">
                                     {{item.RouteTo}}
-                                </td>
-                                <td data-title="'Lộ trình về'" style="width:10%" align="left">
+                                </td> 
+                                <td data-title="'Lộ trình về'"  style="width:5%"   align="left">
                                     {{item.RouteBack}}
                                 </td>
-                                <td data-title="'Trạng thái'" style="width:10%" align="left">
+                                <td data-title="'Trạng thái'" style="width:10%"   align="left">
                                     <h5 ng-show="item.Profile_Status === 1" style="color:brown"> Chờ khoa duyệt</h5>
                                     <h5 ng-show="item.Profile_Status === 2" style="color:olivedrab"> Chờ quản trị duyệt</h5> <!--Khoa đã duyệt rồi-->
                                     <h5 ng-show="item.Profile_Status === 3" style="color:red"> Trưởng khoa đã hủy</h5>

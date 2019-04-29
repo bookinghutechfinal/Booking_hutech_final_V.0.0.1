@@ -1,14 +1,13 @@
 ﻿//Anh.create 15/4/2019. Tài khoản có quyền quản lý đơn cấp phát xe. ->Phòng quản trị 
-mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$stateParams', '$alert','$account',
-    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $stateParams, $alert, $account) {
-
+mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$stateParams', '$alert', '$account',
+    function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $stateParams, $alert, $account) { 
         var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
+
         $scope.goToListUnitRegisterCar = function () {
             $state.go("main.unitRegisterBookingCar");
         }
-       
-        $scope.init = function () {
-            
+
+        $scope.init = function () { 
             $scope.isCarInfo = false; // hiển thị thông tin xe
             var GetListRegistrationCarRequestModel = {
                 ProfileStatus: null,
@@ -38,7 +37,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
                 UnitName: null,
                 LastModifiedDate: null,
                 EmailManager: null,
-                CreatDay: null, 
+                CreatDay: null,
 
             }
             $scope.CarInfo = {
@@ -54,31 +53,18 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
             }
             var DetalRegistrationCarResponse = [];
             $scope.tableParams = $scope.tableParams = null;
-
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                // ném code của bạn vào trong này 
+            if ($rootScope.CheckCookies() && $rootScope.CheckPermission(904)) {
                 if (checkNull($stateParams.RegistrationCarID) || checkNull($stateParams.ProfileStatus)) {
                     toastr.success("Xin lỗi! Không tìm thấy kết quả");
                     $state.go("main.unitRegisterBookingCar");
-                    return; 
+                    return;
                 }
                 GetListRegistrationCarRequestModel.RegistrationCarID = $stateParams.RegistrationCarID;
                 GetListRegistrationCarRequestModel.ProfileStatus = $stateParams.ProfileStatus;
-                alert("$stateParams1" + GetListRegistrationCarRequestModel.RegistrationCarID + "$stateParams2" + GetListRegistrationCarRequestModel.ProfileStatus); 
-                $scope.GetListRegistrationCar(GetListRegistrationCarRequestModel);
-                // ném code của bạn vào trong này 
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                //  $state.go("login"); 
-                $rootScope.showError = true; 
-            } 
+                GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.ObjAccountInfo.Unit_ID;
 
-         
+                $scope.GetListRegistrationCar(GetListRegistrationCarRequestModel);
+            }
         }
         // Lấy danh sách đơn cấp phát theo MãKhoa/Viện
         $scope.GetListRegistrationCar = function (request) {
@@ -138,50 +124,53 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
 
 
             });
-        }
-         
-        $scope.init();  
+        } 
+        $scope.init(); 
 
         // Button trưởng khoa duyệt. 
         $scope.btnDeanVerify = function () {
-            var DeanVerifyRequestModel = {
-                RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
-                Profile_Status: RegistrationStatus[1].RegistrationStatusType, 
-                UserNameUpdate: AccountInfo.ObjAccountInfo.FullName, 
-                Note: $scope.DetalRegistrationCar.Note,
+            if ($rootScope.CheckCookies()) {
+                var DeanVerifyRequestModel = {
+                    RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
+                    Profile_Status: RegistrationStatus[1].RegistrationStatusType,
+                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    Note: $scope.DetalRegistrationCar.Note,
+                }
+                $alert.showConfirmUpdateNewProfile('Xác nhận duyệt đơn cấp phát này!', function () {
+                    $BookingCar.UnitUpdateRegistrationCar(DeanVerifyRequestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                toastr.success("Duyệt thành công");
+                                $scope.goToListUnitRegisterCar();
+                                break;
+                        }
+
+                    });
+                }); //end
             }
-            $alert.showConfirmUpdateNewProfile('Xác nhận duyệt đơn cấp phát này!', function () {
-                $BookingCar.UnitUpdateRegistrationCar(DeanVerifyRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success("Duyệt thành công");
-                            $scope.goToListUnitRegisterCar();
-                            break;
-                    }
-                     
-                });
-            }); //end
+
         }
         // Hủy trưởng khoa không duyệt
         $scope.btnDeanNotVerify = function () {
-            var DeanNotVerifyRequestModel = {
-                RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
-                Profile_Status: RegistrationStatus[2].RegistrationStatusType,
-                UserNameUpdate: AccountInfo.ObjAccountInfo.FullName, 
-                Note: $scope.DetalRegistrationCar.Note,
-            }
-            $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
-                $BookingCar.UnitUpdateRegistrationCar(DeanNotVerifyRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success("Hủy thành công");
-                            $scope.goToListUnitRegisterCar();
-                            break;
-                    } 
-                });
-            }); //end
+            if ($rootScope.CheckCookies()) {
+                var DeanNotVerifyRequestModel = {
+                    RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
+                    Profile_Status: RegistrationStatus[2].RegistrationStatusType,
+                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    Note: $scope.DetalRegistrationCar.Note,
+                }
+                $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
+                    $BookingCar.UnitUpdateRegistrationCar(DeanNotVerifyRequestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                toastr.success("Hủy thành công");
+                                $scope.goToListUnitRegisterCar();
+                                break;
+                        }
+                    });
+                }); //end
+            } 
         }
-        
+
     }]);
 
- 

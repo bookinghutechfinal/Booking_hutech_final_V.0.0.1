@@ -1,13 +1,11 @@
 ﻿//Anh.create 15/4/2019. Tài khoản có quyền quản lý đơn cấp phát xe. ->Phòng quản trị 
 mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$stateParams', '$alert', '$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $stateParams, $alert, $account) {
-
-       
+        var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
         $scope.goToListRegisterCar = function () {
             $state.go("main.managerBookingCar");
         }
-        // kiểm tra sesstion 
-        var AccountInfo = $account.getAccountInfo().ObjAccountInfo; 
+        // kiểm tra sesstion  
         $scope.ChechSesstion = function () {
             try { 
                
@@ -71,9 +69,17 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
             }
             var DetalRegistrationCarResponse = [];
             $scope.tableParams = $scope.tableParams = null;
-            GetListRegistrationCarRequestModel.RegistrationCarID = $stateParams.RegistrationCarID;
-            GetListRegistrationCarRequestModel.ProfileStatus = $stateParams.ProfileStatus;
-            $scope.GetListRegistrationCar(GetListRegistrationCarRequestModel);
+            if ($rootScope.CheckCookies() && $rootScope.CheckPermission(900)) {
+                if (checkNull($stateParams.RegistrationCarID) || checkNull($stateParams.ProfileStatus)) {
+                    toastr.success("Xin lỗi! Không tìm thấy kết quả");
+                    $state.go("main.unitRegisterBookingCar");
+                    return;
+                }
+                GetListRegistrationCarRequestModel.RegistrationCarID = $stateParams.RegistrationCarID;
+                GetListRegistrationCarRequestModel.ProfileStatus = $stateParams.ProfileStatus;
+                $scope.GetListRegistrationCar(GetListRegistrationCarRequestModel);
+            }
+          
         }
 
         $scope.GetListRegistrationCar = function (request) {
@@ -134,14 +140,8 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
 
             });
         }
-
-        // kiểm tra quyền thức khi thực hiên 
-        if ($scope.checkPermission = $rootScope.showByPermission(900)) {
-            $scope.init();
-        } else {
-            toastr.error("Xin lỗi! Bạn không có quyền thực hiện chức năng này");
-            return;
-        }
+             
+        $scope.init();
         // check chọn xe.  
         $scope.CheckCarInfoRequest = function () {
             if (!checkNull($scope.CarInfo.CarImage)) {
@@ -151,7 +151,7 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
 
         // mở tìm xe trống
         $scope.OpenPopupSearchCar = function () {
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies() && $rootScope.CheckPermission(903)) {
                 var SearchCarRequest = {
                     DateTimeFrom: $scope.DetalRegistrationCar.DateTimeFrom,
                     DateTimeTo: $scope.DetalRegistrationCar.DateTimeTo,
@@ -193,11 +193,11 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
 
         // Button Quản trị duyệt. 
         $scope.btnAdminVerify = function () {
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies() && $rootScope.CheckPermission(906)) {
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[3].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
                     CarID: $scope.CarInfo.CarID,
                     DriverID: $scope.CarInfo.DriverID,
                     Note: $scope.DetalRegistrationCar.Note,
@@ -217,11 +217,11 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
         }
         // Hủy không duyệt
         $scope.AdminNotVerify = function () {
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies() && $rootScope.CheckPermission(906)) {
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[4].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
                     Note: $scope.DetalRegistrationCar.Note,
                 }
                 $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
@@ -239,11 +239,11 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
         }
         // Chờ BGH duyệt
         $scope.btnWaitingForSchoolVerify = function () {
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies() && $rootScope.CheckPermission(906)) {
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[5].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
                     Note: $scope.DetalRegistrationCar.Note,
                     CarID: $scope.CarInfo.CarID,
                     DriverID: $scope.CarInfo.DriverID,
@@ -263,11 +263,11 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
         }
         // BGH duyệt   
         $scope.btnSchoolVerify = function () {
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies() && $rootScope.CheckPermission(905)) {
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[6].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
                     CarID: $scope.CarInfo.CarID,
                     DriverID: $scope.CarInfo.DriverID,
                     Note: $scope.DetalRegistrationCar.Note,
@@ -288,11 +288,11 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
         }
         // BGH Hủy không duyệt
         $scope.btnSchoolNotVerify = function () {
-            if ($scope.ChechSesstion()) {
+            if ($rootScope.CheckCookies() && $rootScope.CheckPermission(905)) {
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[7].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
                     Note: $scope.DetalRegistrationCar.Note,
                     CarID: $scope.CarInfo.CarID,
                     DriverID: $scope.CarInfo.DriverID,
