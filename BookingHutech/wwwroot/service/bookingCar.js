@@ -190,6 +190,22 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    //Anh.Trần Crate 30/4/2019. Chỉnh  sửa đơn cấp phát xe
+    this.EditRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'RegistrationCar/EditRegistrationCar',
+            data: request
+        }, success, finish)
+    };
+    //Anh.Trần Crate 30/4/2019. Xóa đơn cấp phát xe
+    this.DeleteRegistrationCar = function (request, success, finish) {
+        $dao.call({
+            method: 'PUT',
+            operater: 'RegistrationCar/DeleteRegistrationCar',
+            data: request
+        }, success, finish)
+    };
     ///  Dành cho phòng quản trị và BGH
     ///  Lấy danh sách đơn cấp phát dùng chung cho cấp 1 thư ký khoa,2 trưởng khoa, vvv,3,4
     ///  Create by Anh.Tran 15/04/2019

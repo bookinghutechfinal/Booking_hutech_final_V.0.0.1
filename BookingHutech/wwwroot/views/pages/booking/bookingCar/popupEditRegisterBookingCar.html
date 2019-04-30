@@ -76,7 +76,7 @@
     <div class="modal-header">
         <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
         <!--<h4 class="modal-title">{{Titile}}</h4>-->
-        <h4 class="modal-title">Đăng ký đặt xe công tác</h4>
+        <h4 class="modal-title">Chỉnh sửa đặt xe công tác</h4>
     </div>
     <div class="modal-body">
         <div class="row">
@@ -134,8 +134,8 @@
                                 <div class="col-md-7 col-sm-7 col-xs-12 form-group">
                                     <label class="control-label col-md-5 col-sm-5 col-xs-12">Ngày giờ đi<i style="color:red;">(*)</i></label>
                                     <div class="col-md-7 col-sm-7 col-xs-12">
-                                        <div class="input-group date" id="myDateFrom">
-                                            <input type="text" class="form-control ed_border" id="DateFrom" ng-model="RegisterBKCar.DateFrom" ng-change="CheckInputChange()">
+                                        <div class="input-group date" id="myDateFromEdit">
+                                            <input type="text" class="form-control ed_border" id='DateFromEdit' ng-model="RegisterBKCar.DateFrom">
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -148,7 +148,7 @@
                                         <span class="fa fa-clock-o form-control-feedback left" aria-hidden="true"></span>
                                         <select class="form-control has-feedback-left" ng-model="RegisterBKCar.TimeFrom" ng-change="CheckInputChange()">
                                             <option selected value="">-- Vui lòng chọn --</option>
-                                            <option ng-repeat="timesFrom in Times" value="{{timesFrom.TimeValues}}">
+                                            <option ng-repeat="timesFrom in Times"   value="{{timesFrom.TimeValues}}">
                                                 {{timesFrom.TimeName}}
                                             </option>
                                         </select>
@@ -159,8 +159,8 @@
                                 <div class="col-md-7 col-sm-7 col-xs-12 form-group">
                                     <label class="control-label col-md-5 col-sm-5 col-xs-12">Ngày giờ về<i style="color:red;">(*)</i></label>
                                     <div class="col-md-7 col-sm-7 col-xs-12">
-                                        <div class="input-group date" id="myDateTo">
-                                            <input type="text" class="form-control ed_border" id="DateTo" ng-model="RegisterBKCar.DateTo" ng-change="CheckInputChange()">
+                                        <div class="input-group date" id="myDateToEdit">
+                                            <input type="text" class="form-control ed_border" id="DateToEdit" ng-model="RegisterBKCar.DateTo"  >
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -237,8 +237,8 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại xe <i style="color:red;">(*)</i></label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <div ng-repeat="item in listCartype" style="float:left; padding:2px; ">
-                                            <input type="checkbox" ng-checked="isExists(item)" ng-click="toggle(item)" />
+                                        <div ng-repeat="item in listCarTypeReq" style="float:left; padding:2px;">
+                                            <input type="checkbox"  ng-model="item.isCheck" ng-init="ParseCarType(item)" ng-click="CheckInputChange()"/>
                                             {{item.CarTypeName}}
                                         </div>
                                     </div>
@@ -294,11 +294,8 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
                                     <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-success ngHideSample Messuccess" style="" ng-show="isShowRegisterSuccess">
                                         <h4>
-                                            <i class="fa fa-check"></i> Đăng ký thành công.
-                                        </h4>
-                                        <ul>
-                                            <li>Đơn đăng ký đặt xe công tác đang chờ duyệt.</li>
-                                        </ul>
+                                            <i class="fa fa-check"></i> Chỉnh sửa thành công.
+                                        </h4> 
                                     </div>
                                 </div>
 
@@ -309,13 +306,13 @@
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="ClosePopup()">
                                                 <i class="glyphicon glyphicon-remove"></i>
-                                                <span>Đóng</span>
+                                                <span>Không Lưu</span>
                                             </button>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnRegisterBKCar()" ng-disabled="isButtonRegister">
-                                                <i class="glyphicon glyphicon-ok"></i>
-                                                <span>Xác Nhận</span>
+                                            <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" type="submit" ng-click="btnEditRegisterBKCar()" ng-disabled="isButtonRegister">
+                                                <i class="fa fa-save"></i>
+                                                <span>Lưu</span>
                                             </button>
                                         </div>
                                     </div>
@@ -343,14 +340,14 @@
 </div>
 
 
-<!--<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>-->
+<script src="../../../../../script/teamplate/daterangepicker/moment.min.js"></script>
 <script src="../../../../../script/teamplate/daterangepicker/daterangepicker.js"></script>
 <script src="../../../../../script/teamplate/daterangepicker/bootstrap-datetimepicker.min.js"></script>
 <script>
-    $('#myDateFrom').datetimepicker({
+    $('#myDateFromEdit').datetimepicker({
         format: 'DD-MM-YYYY'
     });
-    $('#myDateTo').datetimepicker({
+    $('#myDateToEdit').datetimepicker({
         format: 'DD-MM-YYYY'
     });
     $('#myLicenseExpires').datetimepicker({

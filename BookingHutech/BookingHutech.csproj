@@ -201,6 +201,7 @@
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\CreateNewAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\CreateNewUnitRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\DecentralizationRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\AccountRequest\DeleteRegistrationCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\EditProfileAccountRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\EditUnitRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\AccountRequest\ManagerGetAccountByAccountStatusRequestModel.cs" />
@@ -1034,6 +1035,7 @@
     <Content Include="wwwroot\controller\booking\bookingCar\managerCalendarDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerCarByDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\assignDriverController.js" />
+    <Content Include="wwwroot\controller\booking\bookingCar\editRegisterBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\unitDetailRegisterBKCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerOtherCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerFuelCostController.js" />
@@ -1520,6 +1522,7 @@
     <Content Include="wwwroot\views\pages\booking\bookingCar\carDetail.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\managerCarByDriver.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewCar.html" />
+    <Content Include="wwwroot\views\pages\booking\bookingCar\popupEditRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\unitDetailRegisterBKCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
     <Content Include="wwwroot\views\pages\account\popupCreateNewAccount.html" />

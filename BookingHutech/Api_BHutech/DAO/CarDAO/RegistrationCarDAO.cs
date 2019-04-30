@@ -1,6 +1,7 @@
 ﻿using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Lib.Enum;
 using BookingHutech.Api_BHutech.Models.BookingCar;
+using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 using BookingHutech.Api_BHutech.Prototype;
@@ -154,7 +155,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             cmd.Parameters.Add("@PlanDistanceTo", SqlDbType.Int).Value = request.PlanDistanceTo;
             cmd.Parameters.Add("@PlanDistanceBack", SqlDbType.Int).Value = request.PlanDistanceBack;
             cmd.Parameters.Add("@Profile_Status", SqlDbType.Int).Value = request.Profile_Status;
-            cmd.Parameters.Add("@CarTypeNameRequest", SqlDbType.NVarChar, 200).Value = request.CarTypeNameRequest;
+            cmd.Parameters.Add("@CarTypeNameRequest", SqlDbType.NText).Value = request.CarTypeNameRequest;
             try
             {
                 if (cmd.Connection.State == ConnectionState.Closed)
@@ -382,5 +383,88 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
         }
 
+        /// <summary>
+        /// Anh.Trần Chỉnh sửa  đơn cấp phát 30/4/2019.  
+        /// </summary>
+        /// <param name="stringSql"></param>
+        public void EditRegistrationCarDAO(String sqlStore, CreateNewRegistrationCarRequestModel request)
+        {
+
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@RegistrationCarID", SqlDbType.VarChar, 10).Value = request.RegistrationCarID;
+            cmd.Parameters.Add("@Unit_ID", SqlDbType.Int).Value = request.Unit_ID;
+            cmd.Parameters.Add("@Account_ID", SqlDbType.VarChar, 10).Value = request.Account_ID;
+            cmd.Parameters.Add("@UnitRequest", SqlDbType.NVarChar, 200).Value = request.UnitRequest;
+            cmd.Parameters.Add("@Reason", SqlDbType.NVarChar, 200).Value = request.Reason;
+            cmd.Parameters.Add("@Leader", SqlDbType.NVarChar, 50).Value = request.Leader;
+            cmd.Parameters.Add("@EmailLeader", SqlDbType.VarChar, 100).Value = request.EmailLeader;
+            cmd.Parameters.Add("@NumberPhoneLeader", SqlDbType.Char, 12).Value = request.NumberPhoneLeader;
+            cmd.Parameters.Add("@DateTimeFrom", SqlDbType.DateTime).Value = request.DateTimeFrom;
+            cmd.Parameters.Add("@DateTimeTo", SqlDbType.DateTime).Value = request.DateTimeTo;
+            cmd.Parameters.Add("@NumberPeople", SqlDbType.Int).Value = request.NumberPeople;
+            cmd.Parameters.Add("@RouteTo", SqlDbType.NText).Value = request.RouteTo;
+            cmd.Parameters.Add("@RouteBack", SqlDbType.NText).Value = request.RouteBack;
+            cmd.Parameters.Add("@PlanDistanceTo", SqlDbType.Int).Value = request.PlanDistanceTo;
+            cmd.Parameters.Add("@PlanDistanceBack", SqlDbType.Int).Value = request.PlanDistanceBack;
+            cmd.Parameters.Add("@Profile_Status", SqlDbType.Int).Value = request.Profile_Status;
+            cmd.Parameters.Add("@CarTypeNameRequest", SqlDbType.NText).Value = request.CarTypeNameRequest;
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+        }
+
+        /// Anh.Trần xóa  đơn cấp phát 30/4/2019.  
+        /// </summary>
+        /// <param name="stringSql"></param>
+        public void DeleteRegistrationCarDAO(String sqlStore, DeleteRegistrationCarRequestModel request)
+        {
+
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            cmd = new SqlCommand(sqlStore, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("@RegistrationCarID", SqlDbType.VarChar, 10).Value = request.RegistrationCarID;
+            
+            try
+            {
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                LogWriter.WriteException(ex);
+                throw;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+        }
     }
 }

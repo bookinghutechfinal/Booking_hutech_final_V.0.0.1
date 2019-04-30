@@ -1,9 +1,12 @@
-﻿mainmodule.controller('RegisterBookingCarController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', '$BookingCar', '$alert', '$account', '$BookingCar',
-    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, $BookingCar, $alert, $account, $BookingCar) {
-
+﻿mainmodule.controller('EditRegisterBookingCarController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', '$BookingCar', '$alert', '$account', '$BookingCar', 'EditRegisterRequestData',
+    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, $BookingCar, $alert, $account, $BookingCar, EditRegisterRequestData) {
+        var AccountInfo = $account.getAccountInfo().ObjAccountInfo
         $scope.Titile = "Đặt Xe";
+        $scope.listCarTypeReq = [];
+        $scope.isCheck = false;
+
         $scope.ClosePopup = function () {
-            $modalInstance.close();
+            $modalInstance.close(true);
         }
         $scope.goToLogin = function () {
             $modalInstance.close();
@@ -14,42 +17,8 @@
             $rootScope.showError = true;
             return;
         };
+        //
 
-
-        try {
-            var AccountInfo = $account.getAccountInfo().ObjAccountInfo
-            var testCookies = AccountInfo.Account_ID;
-            $scope.listCartype = [];
-            var CarType = {
-                CarTypeID: null,
-                CarTypeName: null
-            }
-            $scope.getListCarType = function () {
-                $BookingCar.getListCarType({}, function (res) {
-                    if (res.data.ReturnCode === 1) {
-                        // $scope.listCartype = res.data.Data;   
-                        for (var i = 0; i < res.data.Data.length; i++) {
-                            var CarType = {
-                                CarTypeID: null,
-                                CarTypeName: null
-                            }
-                            var CarType = {
-                                CarTypeID: res.data.Data[i].CarTypeID,
-                                CarTypeName: res.data.Data[i].CarTypeName
-                            }
-                            $scope.listCartype.push(CarType);
-
-                        }
-                    }
-
-
-                });
-            }
-            $scope.getListCarType();
-        }
-        catch (err) {
-            $scope.goToLogin();
-        }
         // Account info
         $scope.AccountInfo = {
             FullName: AccountInfo.FullName,
@@ -61,45 +30,77 @@
 
         }
         $scope.cartype = [];
-        $scope.toggle = function (item) {
-            var idx = $scope.cartype.indexOf(item);
-            if (idx > -1)
-                $scope.cartype.splice(idx, 1);
-            else
-                $scope.cartype.push(item);
-            $scope.CheckInputChange();
-        };
-        $scope.isExists = function (item) {
-            return $scope.cartype.indexOf(item) > -1;
-        };
+        //$scope.toggle = function (item) {
+        //    var idx = $scope.cartype.indexOf(item);
+        //    if (idx > -1)
+        //        $scope.cartype.splice(idx, 1);
+        //    else
+        //        $scope.cartype.push(item);
+        //    $scope.CheckInputChange();
+        //};
+
+        //$scope.isExists = function (item) {
+        //    return $scope.cartype.indexOf(item) > -1;
+        //};
 
         // Load time 
         $scope.Times = Time;
         // Đăng ký đặt xe.   - Insert xuống DB.
         $scope.RegisterBKCar = {
-            DateFrom: null,
-            TimeFrom: null,
-            DateTo: null,
-            TimeTo: null,
-            UnitRequest: $scope.AccountInfo.UnitName,
-            Reason: null,
-            Leader: null,
-            EmailLeader: null,
-            NumberPhoneLeader: null,
-            NumberPeople: null,
+            DateFrom: FormatDateTimeByDBResponse2(EditRegisterRequestData.DateTimeFrom),
+            DateTo: FormatDateTimeByDBResponse2(EditRegisterRequestData.DateTimeTo),
+            TimeFrom: moment(EditRegisterRequestData.DateTimeFrom, 'YYYY-MM-DD HH:mm:ss').format('HH:mm'),
+            TimeTo: moment(EditRegisterRequestData.DateTimeTo, 'YYYY-MM-DD HH:mm:ss').format('HH:mm'),
+            UnitRequest: EditRegisterRequestData.UnitName,
+            Reason: EditRegisterRequestData.Reason,
+            Leader: EditRegisterRequestData.Leader,
+            EmailLeader: EditRegisterRequestData.EmailLeader,
+            NumberPhoneLeader: parseInt(EditRegisterRequestData.NumberPhoneLeader),
+            NumberPeople: parseInt(EditRegisterRequestData.NumberPeople),
             Note: null, // loại xe được yêu cầu
-            RouteTo: null, //Lộ trình đi 
-            RouteBack: null, //Lộ trình vế 
-            PlanDistanceTo: null, //Khoản cách dự định đến 
-            PlanDistanceBack: null, //Khoản cách dự định đến 
+            RouteTo: EditRegisterRequestData.RouteTo, //Lộ trình đi 
+            RouteBack: EditRegisterRequestData.RouteBack, //Lộ trình vế 
+            PlanDistanceTo: parseInt(EditRegisterRequestData.PlanDistanceTo), //Khoản cách dự định đến 
+            PlanDistanceBack: parseInt(EditRegisterRequestData.PlanDistanceBack), //Khoản cách dự định đến 
             DateTimeFrom: null,
             DateTimeTo: null,
             Profile_Status: null,
-            CarTypeNameRequest: null,
+            CarTypeNameRequest: EditRegisterRequestData.CarTypeNameRequest,
             Account_ID: null,
-            Unit_ID: null
+            Unit_ID: null,
+            RegistrationCarID: EditRegisterRequestData.RegistrationCarID
 
         }
+
+
+        if ($rootScope.CheckCookies()) {
+            // init 
+            if (!checkNull(EditRegisterRequestData)) {
+                $modalInstance.close();
+            }
+            $scope.listCartype = [];
+            var CarType = {
+                Checked: null,
+
+            }
+            $scope.getListCarType = function () {
+                $BookingCar.getListCarType({}, function (res) {
+                    if (res.data.ReturnCode === 1) {
+                        $scope.listCartype = res.data.Data;
+                        $scope.listCarTypeReq = angular.copy($scope.listCartype);
+                    }
+
+                });
+            }
+            $scope.getListCarType();
+            angular.element('#DateToEdit').val(FormatDateTimeByDBResponse2(EditRegisterRequestData.DateTimeFrom));
+            angular.element('#DateToEdit').val(FormatDateTimeByDBResponse2(EditRegisterRequestData.DateTimeTo));
+        } else {
+            $modalInstance.close(false);
+        }
+
+
+
         // Show messager
         $scope.initShowMessCheck = function () {
             $scope.isShowMessInputErrorDateTime = false;
@@ -126,7 +127,7 @@
         $scope.CheckInputChange = function () {
             $scope.isShowRegisterSuccess = false;
             // ngày giờ đi
-            if (checkNull(angular.element('#DateFrom').val())) {
+            if (checkNull(angular.element('#DateFromEdit').val())) {
                 $scope.isCheckDateFrom = true;
                 $scope.isButtonRegister = true;
                 return;
@@ -139,7 +140,7 @@
                 return;
             }
             // ngày giờ về
-            if (checkNull(angular.element('#DateTo').val())) {
+            if (checkNull(angular.element('#DateToEdit').val())) {
                 $scope.isCheckDateTo = true;
                 $scope.isButtonRegister = true;
                 return;
@@ -152,14 +153,14 @@
                 return;
             }
             // if kiểm tra ngày giờ đi và về. 
-            if (!checkNull(angular.element('#DateFrom').val()) &&
+            if (!checkNull(angular.element('#DateFromEdit').val()) &&
                 !checkNull($scope.RegisterBKCar.TimeFrom) &&
-                !checkNull(angular.element('#DateTo').val()) &&
+                !checkNull(angular.element('#DateToEdit').val()) &&
                 !checkNull($scope.RegisterBKCar.TimeTo)
             ) {
 
-                $scope.RegisterBKCar.DateTimeFrom = angular.element('#DateFrom').val() + " " + $scope.RegisterBKCar.TimeFrom;
-                $scope.RegisterBKCar.DateTimeTo = angular.element('#DateTo').val() + " " + $scope.RegisterBKCar.TimeTo;
+                $scope.RegisterBKCar.DateTimeFrom = angular.element('#DateFromEdit').val() + " " + $scope.RegisterBKCar.TimeFrom;
+                $scope.RegisterBKCar.DateTimeTo = angular.element('#DateToEdit').val() + " " + $scope.RegisterBKCar.TimeTo;
                 //if (CheckDateTimeMaxvsDateToDay($scope.RegisterBKCar.DateTimeFrom)) {
                 //    toastr.error("Ngày giờ đi không  được nhỏ hơn hoặc bằng ngày giờ hiện tại!"); 
                 //}
@@ -217,10 +218,19 @@
                 $scope.isButtonRegister = true;
             }
             // laoị xe
-            if ($scope.cartype.length < 1) {
+            var count = 0;
+            for (var i = 0; i < $scope.listCarTypeReq.length; i++) {
+                if ($scope.listCarTypeReq[i].isCheck) {
+                    count++;
+                }
+            }
+            if (count == 0) {
                 $scope.isCheckCarTypeNote = true;
                 $scope.isButtonRegister = true;
                 return;
+            } else {
+                $scope.isCheckCarTypeNote = false;
+                $scope.isButtonRegister = false;
             }
             // lộ trình đi
             if (checkNull($scope.RegisterBKCar.RouteTo) || !ChechLength($scope.RegisterBKCar.RouteTo)) {
@@ -264,39 +274,68 @@
             //  alert("ok gọi hàm insert");
         }
 
+        $scope.ParseCarType = function (item) {
+            $scope.CheckInputChange();
+            $scope.ListUserChooseCarType = angular.fromJson($scope.RegisterBKCar.CarTypeNameRequest);
+            for (var i = 0; i < $scope.ListUserChooseCarType.length; i++) {
+                if ($scope.ListUserChooseCarType[i].CarTypeID === item.CarTypeID) {
+                    item.isCheck = true;
+                    return;
+                }
+            }
+            item.isCheck = false;
+            return;
+        }
         // button xác nhận đăng ký. 
-        $scope.btnRegisterBKCar = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo().ObjAccountInfo;
+        $scope.btnEditRegisterBKCar = function () {
+            if ($rootScope.CheckCookies()) {
                 // lấy loại xe y/c
-                var cartyperequest = angular.toJson($scope.cartype);  
+                var cartypeRequest = []; 
+                for (var i = 0; i < $scope.listCarTypeReq.length; i++) {
+                    if ($scope.listCarTypeReq[i].isCheck) {
+                        var CarType = {
+                            CarTypeID: null,
+                            CarTypeName: null
+                        }
+                        var CarType = {
+                            CarTypeID: $scope.listCarTypeReq[i].CarTypeID,
+                            CarTypeName: $scope.listCarTypeReq[i].CarTypeName
+                        }
+                        cartypeRequest.push(CarType);
+                    }
+                }
+                var cartyperequestString = angular.toJson(cartypeRequest);
                 $scope.RegisterBKCar.DateTimeFrom = FormatDateTimeToDBRequest($scope.RegisterBKCar.DateTimeFrom);
-                $scope.RegisterBKCar.DateTimeTo = FormatDateTimeToDBRequest($scope.RegisterBKCar.DateTimeTo); 
-                $scope.RegisterBKCar.CarTypeNameRequest = cartyperequest;
+                $scope.RegisterBKCar.DateTimeTo = FormatDateTimeToDBRequest($scope.RegisterBKCar.DateTimeTo);
+                // còn nữa
+                $scope.RegisterBKCar.CarTypeNameRequest = cartyperequestString;
                 $scope.RegisterBKCar.Account_ID = $scope.AccountInfo.Account_ID;
                 $scope.RegisterBKCar.Unit_ID = $scope.AccountInfo.Unit_ID;
                 $scope.RegisterBKCar.Profile_Status = ReturnAccountType($scope.AccountInfo.AccountType);
-
-                $alert.showConfirmUpdateNewProfile('Đăng ký cấp phát xe công tác!', function () {
-                    $BookingCar.CreateNewRegistrationCar($scope.RegisterBKCar, function (res) {
+                $alert.showConfirmUpdateNewProfile('Chỉnh sửa đơn cấp phát xe công tác!', function () {
+                    $BookingCar.EditRegistrationCar($scope.RegisterBKCar, function (res) {
                         switch (res.data.ReturnCode) {
                             case 1:
                                 //$scope.ClosePopup(); 
                                 var audio = new Audio('../../audio/alert_message_audio.mp3');
                                 audio.play();
-                                audio.volume = 0.1; 
+                                audio.volume = 0.1;
                                 $scope.isShowRegisterSuccess = true;
-                                toastr.success("Đăng ký thành công");
+                                toastr.success("Chỉnh sửa thành công");
                                 break;
                         }
 
                     });
 
                 }); //end
-            }
-            catch (err) {
-                $scope.goToLogin();
+            } else {
+                $modalInstance.close(false);
             }
 
         }
-    }]);    
+    }]);
+
+//String loạixe = "4 chổ,9 chổ,16 chổ,";
+//Array[0] = "4 chổ";
+//Array[1] = "9 chổ";
+//Array[2] = "16 chổ"; 

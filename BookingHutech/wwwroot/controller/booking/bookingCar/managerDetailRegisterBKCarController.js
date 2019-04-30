@@ -133,6 +133,8 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
                             if (CheckProfileRegisterCar($scope.DetalRegistrationCar.Profile_Status)) {
                                 $scope.isCarInfo = true;
                             }
+                            // loại xe 
+                            $scope.ListUserChooseCarType = angular.fromJson($scope.DetalRegistrationCar.CarTypeNameRequest);
                         }
                         break;
                 }

@@ -64,6 +64,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
                 GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.ObjAccountInfo.Unit_ID;
 
                 $scope.GetListRegistrationCar(GetListRegistrationCarRequestModel);
+               
             }
         }
         // Lấy danh sách đơn cấp phát theo MãKhoa/Viện
@@ -83,6 +84,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
                         } else {
 
                             $scope.DetalRegistrationCar = {
+                                RegistrationCarID: DetalRegistrationCarResponse[0].RegistrationCarID,
                                 UnitRequest: DetalRegistrationCarResponse[0].UnitRequest,
                                 Reason: DetalRegistrationCarResponse[0].Reason,
                                 Leader: DetalRegistrationCarResponse[0].Leader,
@@ -118,6 +120,8 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
                             if (CheckProfileRegisterCar($scope.DetalRegistrationCar.Profile_Status)) {
                                 $scope.isCarInfo = true;
                             }
+                            // loại xe 
+                            $scope.ListUserChooseCarType = angular.fromJson($scope.DetalRegistrationCar.CarTypeNameRequest);
                         }
                         break;
                 }
@@ -126,6 +130,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
             });
         } 
         $scope.init(); 
+       
 
         // Button trưởng khoa duyệt. 
         $scope.btnDeanVerify = function () {
@@ -171,6 +176,51 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
                 }); //end
             } 
         }
+        // Button chỉnh sửa. 
+        $scope.btnEditProfile = function () {
+            if ($rootScope.CheckCookies()) { 
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupEditRegisterBookingCar.html',
+                    controller: 'EditRegisterBookingCarController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        EditRegisterRequestData: function () {
+                            return $scope.DetalRegistrationCar;
+                        },
+                    }
+                });
+                modalInstance.result.then(function () {
+                    $scope.init(); 
+                });
+            }
+        }
 
+        // xóa đơn cấp phát
+        $scope.btnDeleteProfile = function () {
+            if ($rootScope.CheckCookies()) {
+                var DeleteRequestModel = {
+                    RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID, 
+                }
+                if (checkNull(DeleteRequestModel.RegistrationCarID)) {
+
+                }
+                $alert.showConfirmUpdateNewProfile('Xác nhận xóa đơn cấp phát này!', function () {
+                    $BookingCar.DeleteRegistrationCar(DeleteRequestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                toastr.success("Xóa thành công");
+                                $scope.goToListUnitRegisterCar();
+                                break;
+                        }
+
+                    });
+                }); //end
+            }
+        }
     }]);
 

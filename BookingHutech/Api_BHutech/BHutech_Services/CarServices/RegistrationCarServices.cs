@@ -10,6 +10,7 @@ using System.Web;
 using static BookingHutech.Api_BHutech.Lib.Enum.BookingType;
 using BookingHutech.Api_BHutech.DAO.CarDAO;
 using BookingHutech.Api_BHutech.Models.BookingCar;
+using BookingHutech.Api_BHutech.Models.Request.AccountRequest;
 
 namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
 {
@@ -333,6 +334,47 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 }
 
                 return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Anh.Trần Crate 14/1/2019. Tạo mới đơn cấp phát xe
+        /// </summary>
+        /// <param name="stringSql"></param>
+        public void EditRegistrationCarService(CreateNewRegistrationCarRequestModel request)
+        {
+            try
+            {
+                Helper helper = new Helper();
+                // kiểm tra lại profile status 1 lần nữa
+                if (!helper.CheckStatusProfileCar(request.Profile_Status))
+                {
+                    throw new Exception("Profile_Status = " + request.Profile_Status + " != BookingStatus");
+                } 
+                string uspEditRegistrationCar = String.Format(Prototype.SqlCommandStore.uspEditRegistrationCar);
+                registrationCarDAO.EditRegistrationCarDAO(uspEditRegistrationCar, request);
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+        /// <summary>
+        /// Anh.Trần Crate 14/1/2019.  xóa đơn cấp phát xe
+        /// </summary>
+        /// <param name="stringSql"></param>
+        public void DeleteRegistrationCarService(DeleteRegistrationCarRequestModel request)
+        {
+            try
+            { 
+                string uspDeleteRegistrationCar = String.Format(Prototype.SqlCommandStore.uspDeleteRegistrationCar);
+                registrationCarDAO.DeleteRegistrationCarDAO(uspDeleteRegistrationCar, request);
             }
             catch (Exception ex)
             {
