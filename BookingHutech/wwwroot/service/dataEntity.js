@@ -96,7 +96,7 @@ var FormatDateAdminSearchTime = function (date) { // Update
 }
 
 var FormatDateTimeByDBResponse = function (date) { // Update
-    return moment(date, 'YYYY-MM-DD HH:mm').format('DD/MM/YYYY HH:mm:ss')
+    return moment(date, 'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY HH:mm:ss')
 }
 
 var FormatDateTimeByDBResponse1 = function (date) { // Update
@@ -122,6 +122,11 @@ var FormatTimeFromTo = function (date) {
 // Anh create. Định dạng ngày tháng thời gian sang số.  // 2019-04-14 6:00
 var FormatDateTimeInputToNumber = function (date) {
     return moment(date, 'DD-MM-YYYY HH:mm').format('YYYYMMDDHHmm')
+}
+
+// Anh create. Định dạng ngày tháng thời gian sang số.  // 2019-04-14 6:00
+var FormatDateTimeInputToNumber2 = function (date) {
+    return moment(date, 'YYYY-MM-DD HH:mm:ss').format("YYYYMMDDHHmmss");
 }
 // Anh create 14/4/2019:  Hàm so sánh thời gian  Đi và về
 var CompareDateTimeFromTo = function (DateTime1, DateTime2) {

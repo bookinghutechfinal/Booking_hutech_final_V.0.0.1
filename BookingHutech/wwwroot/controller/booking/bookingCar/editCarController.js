@@ -19,6 +19,17 @@
                 LastModifiedDate: CarInfoRequest.LastModifiedDate,
                 CarImageNew: null
             };
+            // img 
+            $scope.ImageModel = {
+                CHAN_DUNG: {
+                    ImageName: 1,
+                    ImageData: {
+                        compressed: {
+                            dataURL: null
+                        }
+                    },
+                },
+            }
             //$scope.CarInfo = CarInfoRequest;
             //$scope.listCarType = [];
 
@@ -93,7 +104,7 @@
 
             }
 
-            //$scope.TestInputChange($scope.CarInfo);
+            $scope.TestInputChange($scope.CarInfo);
             // Update Car. 
             $scope.updateCarInfo = function () {
                 $scope.CarInfo.Expires = FormatDateTimeToDBRequest(angular.element('#myDate1').val());

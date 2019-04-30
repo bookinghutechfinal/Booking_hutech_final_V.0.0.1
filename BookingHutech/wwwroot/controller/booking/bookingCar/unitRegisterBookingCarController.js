@@ -167,7 +167,7 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
 
                     $scope.SearchRegisterCar.DateTimeFrom = angular.element('#DateFrom').val();
                     $scope.SearchRegisterCar.DateTimeTo = angular.element('#DateTo').val() + " 23:59:59";
-                    if (FormatDateTimeInputToNumber($scope.SearchRegisterCar.DateTimeFrom) > FormatDateTimeInputToNumber($scope.SearchRegisterCar.DateTimeTo)) {
+                    if (FormatDateTimeInputToNumber2($scope.SearchRegisterCar.DateTimeFrom) > FormatDateTimeInputToNumber2($scope.SearchRegisterCar.DateTimeTo)) {
                         toastr.error("Không hợp lệ! Từ ngày không được lớn  hơn Đến ngày");
                         return;
                     }
