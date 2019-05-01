@@ -9,5 +9,6 @@ namespace BookingHutech.Api_BHutech.Models.Request.AccountRequest
     {
         public string Account_ID { get; set; }
         public int RoleMaster_ID { get; set; }
+        public int RoleDetail_Status { get; set; }
     }
 }

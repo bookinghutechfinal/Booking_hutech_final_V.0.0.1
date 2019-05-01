@@ -138,14 +138,32 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
 
         // update khóa, mở duyền
         $scope.UpdateRole = function (roleRequestModel) {
-            if (roleRequestModel.RoleDetail_Status === RoleStatus[0].RoleStatusID) {
-                alert("Mở quyền " + roleRequestModel.RoleName);
-                $scope.checkedRule = true;
-            } else
-                $alert.showConfirmUpdateCarInfo($rootScope.initMessage('Bạn muốn hủy quyền cho tài khoản này?' + roleRequestModel.RoleMaster_ID), function () {
+            if ($scope.checkedRule == false) {
+                $alert.showConfirmUpdateCarInfo($rootScope.initMessage('Bạn muốn mở quyền cho tài khoản này?'), function () {
                     let DeleteRoleRequestModel = {
                         RoleMaster_ID: roleRequestModel.RoleMaster_ID,
-                        Account_ID: AccountIDRequest
+                        Account_ID: AccountIDRequest,
+                        RoleDetail_Status: 1
+                    }
+                    $account.DeleteRole(DeleteRoleRequestModel, function (res) {
+                        switch (res.data.Data) {
+                            case 1:
+                                toastr.success('Bạn đã cập nhật thành công.');
+                                $scope.ShowDetailAccount();
+                                break;
+                            case 2:
+                                toastr.error('Bạn đã cập nhật thất bại.');
+                                break;
+                        }
+                    });
+                });s
+                $scope.checkedRule = true;
+            } else
+                $alert.showConfirmUpdateCarInfo($rootScope.initMessage('Bạn muốn hủy quyền cho tài khoản này?'), function () {
+                    let DeleteRoleRequestModel = {
+                        RoleMaster_ID: roleRequestModel.RoleMaster_ID,
+                        Account_ID: AccountIDRequest,
+                        RoleDetail_Status: 0
                     }
                     $account.DeleteRole(DeleteRoleRequestModel, function (res) {
                         switch (res.data.Data) {

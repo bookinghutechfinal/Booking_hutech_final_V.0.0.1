@@ -6,14 +6,14 @@ mainmodule.config(function ($stateProvider, $urlRouterProvider, $locationProvide
     $urlRouterProvider.otherwise(function ($injector, $location) {
         var state = $injector.get('$state');
         var location = $location.path();
-        //if (location === "") {
+        if (location === "") {
           
-        //}
-        //else {
-        //    // state.go("main.home");  
-        //   // alert(location); 
+        }
+        else {
+             state.go("main.home");  
+             alert("Trang không tồn tại."); 
            
-        //}
+        }
         //if (location = "/main/unitDetail-RegisterBKCar/") {
         //    state.go("main.unitRegisterBookingCar");
         //} else if (location = "/main/manager-Detail-RegisterBKCar/") {
