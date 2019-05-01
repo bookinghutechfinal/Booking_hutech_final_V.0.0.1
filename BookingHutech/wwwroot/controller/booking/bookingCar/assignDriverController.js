@@ -51,7 +51,7 @@
                 var AssignDriverManagerRequestModel = {
                     Account_ID: Account_ID,
                     CarID: item.CarID,
-                    FullNameUpdate: AccountInfo.ObjAccountInfo.FullName
+                    FullNameUpdate: AccountInfo.FullName
                 }
                 $BookingCar.AssignDriverManager(AssignDriverManagerRequestModel, function (res) {
                     switch (res.data.ReturnCode) {

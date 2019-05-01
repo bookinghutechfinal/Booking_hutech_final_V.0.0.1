@@ -10,4 +10,18 @@ namespace BookingHutech.Api_BHutech.Models.Request.BookingCarRequest
     {
         public int AddType { get; set; }
     }
+
+    public class NewDetailCostRequestModel
+    {
+        public string RepairID { get; set; }
+        public string Content { get; set; }
+        public int? Quantity { get; set; }
+        public decimal TotalMoney { get; set; }
+    }
+
+    public class NewCostRequestModel
+    {
+        public AddNewCostRequestModel newCost { get; set; }
+        public List<AddNewDetailCostRequestModel> newDetailCost { get; set; }
+    }
 }

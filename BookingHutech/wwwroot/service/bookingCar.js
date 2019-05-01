@@ -93,10 +93,17 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
-    this.addNewCost = function (request, success, finish) {
+    //this.addNewCost = function (request, success, finish) {
+    //    $dao.call({
+    //        method: 'POST',
+    //        operater: 'ManagerCost/AddNewCost',
+    //        data: request
+    //    }, success, finish)
+    //};
+    this.addNewCosts = function (request, success, finish) {
         $dao.call({
             method: 'POST',
-            operater: 'ManagerCost/AddNewCost',
+            operater: 'ManagerCost/AddNewCosts',
             data: request
         }, success, finish)
     };

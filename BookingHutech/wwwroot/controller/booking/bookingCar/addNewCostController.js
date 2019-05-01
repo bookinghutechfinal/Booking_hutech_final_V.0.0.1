@@ -17,12 +17,51 @@
                 Content: null,
                 Quantity: null,
                 TotalMoney: null,
-                Done: false,
                 RepairStatus: null,
-                ImageBill: null,
-                AddType: null
+                ImageBill: null
             }
             $scope.getListCar();
+            $scope.DetailCost = [];
+            $scope.ErrorInput = false;
+        }
+
+        $scope.AddMore = function (request) {
+            if ($rootScope.CheckCookies()) {
+                if (checkNull(request.Content) || checkNull(request.Quantity) || checkNull(request.TotalMoney)) {
+                    $scope.ErrorInput = true;
+                    return;
+                }
+
+                $scope.DetailCost.push({
+                    Content: request.Content,
+                    Quantity: request.Quantity,
+                    TotalMoney: request.TotalMoney
+                });
+                if (checkNull($scope.costInfo.CostsTypeID) || checkNull($scope.costInfo.Car_ID) || checkNull($scope.costInfo.RepairAddres)) {
+                    $scope.btndisabled = true;
+                }
+                else {
+                    $scope.btndisabled = false;
+                }
+            }
+        }
+
+        $scope.Delete = function (index) {
+            if ($rootScope.CheckCookies()) {
+                if (index == $scope.DetailCost.length) {
+                    $scope.DetailCost.pop();
+                }
+                else {
+                    for (var i = index; i < $scope.DetailCost.length - 1; i++) {
+                        $scope.DetailCost[i] = $scope.DetailCost[i + 1];
+                    }
+                    $scope.DetailCost.pop();
+                }
+                if ($scope.DetailCost.length == 0) {
+                    $scope.btndisabled = true;
+                    return;
+                }
+            }
         }
 
         //Lấy danh sách xe
@@ -64,41 +103,25 @@
                         if (checkNull(Request.RepairAddres)) {
                             $scope.btndisabled = true;
                             return;
-                        } else
-                            if ($scope.costInfo.Done) {
-                                if (checkNull(Request.Content)) {
-                                    $scope.btndisabled = true;
-                                    return;
-                                } else
-                                    if (checkNull(Request.Quantity)) {
-                                        $scope.btndisabled = true;
-                                        return;
-                                    } else
-                                        if (checkNull(Request.TotalMoney)) {
-                                            $scope.btndisabled = true;
-                                            return;
-                                        }
-                            }
+                        }
+            if ($scope.DetailCost.length == 0) {
+                $scope.btndisabled = true;
+                return;
+            }
             $scope.btndisabled = false;
         }
 
         $scope.addNewCost = function (request) {
             if ($rootScope.CheckCookies()) {
-                $scope.costInfo.AccountCreate = AccountInfo.ObjAccountInfo.Account_ID;
-                if ($scope.costInfo.Done) {
-                    $scope.costInfo.RepairStatus = 2;
-                }
-                else {
-                    $scope.costInfo.RepairStatus = 0;
-                }
-                $scope.costInfo.FullNameUpdate = AccountInfo.ObjAccountInfo.FullName;
-                if (checkNull($scope.costInfo.Quantity))
-                    $scope.costInfo.Quantity = 0;
-                if (checkNull($scope.costInfo.TotalMoney))
-                    $scope.costInfo.TotalMoney = 0;
+                $scope.costInfo.AccountCreate = AccountInfo.Account_ID;
+                $scope.costInfo.FullNameUpdate = AccountInfo.FullName;
+                $scope.costInfo.RepairStatus = 2;
                 $scope.costInfo.CreateDate = FormatDateTimeToDBRequest(angular.element('#myDate').val());
-                $scope.costInfo.AddType = 1;
-                $BookingCar.addNewCost($scope.costInfo, function (res) {
+                let AddNewCostRequestModel = {
+                    newCost: $scope.costInfo,
+                    newDetailCost: $scope.DetailCost
+                }
+                $BookingCar.addNewCosts(AddNewCostRequestModel, function (res) {
                     switch (res.data.Data) {
                         case 1:
                             toastr.success('Thêm mới thành công.');

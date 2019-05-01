@@ -150,7 +150,6 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                             case 1:
                                 toastr.success('Bạn đã cập nhật thành công.');
                                 $scope.ShowDetailAccount();
-                                $scope.checkedRule = true;
                                 break;
                             case 2:
                                 toastr.error('Bạn đã cập nhật thất bại.');
@@ -158,9 +157,8 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                         }
                     });
                 });
-                $scope.checkedRule = false;
             } else
-                $alert.showConfirmUpdateCarInfo($rootScope.initMessage('Bạn muốn hủy quyền cho tài khoản này?'), function () {
+                $alert.showConfirmUpdateCarInfo($rootScope.initMessage('Bạn muốn khóa quyền cho tài khoản này?'), function () {
                     let DeleteRoleRequestModel = {
                         RoleMaster_ID: roleRequestModel.RoleMaster_ID,
                         Account_ID: AccountIDRequest,
@@ -171,7 +169,6 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                             case 1:
                                 toastr.success('Bạn đã cập nhật thành công.');
                                 $scope.ShowDetailAccount();
-                                $scope.checkedRule = false;
                                 break;
                             case 2:
                                 toastr.error('Bạn đã cập nhật thất bại.');
@@ -179,8 +176,6 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                         }
                     });
                 });
-            $scope.checkedRule = true;
-
         }
 
         // Button mở phân quyền  
@@ -256,7 +251,7 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
             CheckRole = {
                 RoleMaster_ID: RoleMasterIDRequest,
                 Account_ID: AccountIDRequest,
-                FullNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                FullNameUpdate: AccountInfo.FullName,
                 RoleDetail_Status: true
             }
             for (var i = 0; i < RoleRequest.length; i++) {

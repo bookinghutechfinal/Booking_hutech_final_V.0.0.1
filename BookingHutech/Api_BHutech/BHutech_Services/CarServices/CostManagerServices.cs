@@ -121,27 +121,27 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
             }
         }
 
-        /// <summary>
-        /// AddNewCostServices
-        /// Mr.Lam 18/4/2019
-        /// </summary>
-        /// <param name="request">AddNewCostRequestModel</param>
-        public int AddNewCostServices(AddNewCostRequestModel request)
-        {
-            try
-            {
-                if (request.RepairID==null)
-                    request.RepairID = helper.CreateID();
-                string uspAddNewCost = String.Format(Prototype.SqlCommandStore.uspAddNewCost, request.RepairID, request.Car_ID, request.CostsTypeID, request.RepairAddres, request.Note, request.ImagerBill, request.CreateDate, request.FullNameUpdate, request.RepairStatus, request.AccountCreate, request.Content, request.Quantity, request.TotalMoney,request.AddType);
-                int result = managerCostDAO.AddNewCostDAO(uspAddNewCost);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                LogWriter.WriteException(ex);
-                throw;
-            }
-        }
+        ///// <summary>
+        ///// AddNewCostServices
+        ///// Mr.Lam 18/4/2019
+        ///// </summary>
+        ///// <param name="request">AddNewCostRequestModel</param>
+        //public int AddNewCostServices(AddNewCostRequestModel request)
+        //{
+        //    try
+        //    {
+        //        if (request.RepairID==null)
+        //            request.RepairID = helper.CreateID();
+        //        string uspAddNewCost = String.Format(Prototype.SqlCommandStore.uspAddNewCost, request.RepairID, request.Car_ID, request.CostsTypeID, request.RepairAddres, request.Note, request.ImagerBill, request.CreateDate, request.FullNameUpdate, request.RepairStatus, request.AccountCreate, request.Content, request.Quantity, request.TotalMoney,request.AddType);
+        //        int result = managerCostDAO.AddNewCostDAO(uspAddNewCost);
+        //        return result;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LogWriter.WriteException(ex);
+        //        throw;
+        //    }
+        //}
 
         /// <summary>
         /// AddNewCostServices
@@ -193,6 +193,47 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
             {
                 string uspUpdateDetailCost = String.Format(Prototype.SqlCommandStore.uspUpdateDetailCost, request.RepairID, request.Content, request.Quantity, request.TotalMoney,request.RepairDetailID);
                 int result = managerCostDAO.AddNewCostDAO(uspUpdateDetailCost);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// AddNewCostServices
+        /// Mr.Lam 18/4/2019
+        /// </summary>
+        /// <param name="request">AddNewCostRequestModel</param>
+        public int AddNewCostsServices(NewCostRequestModel request)
+        {
+            try
+            {
+                request.newCost.RepairID = helper.CreateID();
+                string data = "";
+                for (int i = 0; i < request.newDetailCost.Count; i++)
+                {
+                    if (i == request.newDetailCost.Count - 1)
+                        data = data + "(" + "'" + request.newCost.RepairID + "'" + "," + "N'" + request.newDetailCost[i].Content + "'" + "," + request.newDetailCost[i].Quantity + "," + request.newDetailCost[i].TotalMoney + ")";
+                    else
+                        data = data + "(" + "'" + request.newCost.RepairID + "'" + "," + "N'" + request.newDetailCost[i].Content + "'" + "," + request.newDetailCost[i].Quantity + "," + request.newDetailCost[i].TotalMoney + "),";
+                }
+                string stringSql = "begin try"
+                                    + " begin transaction"
+                                    + " insert into Repair values ('"+request.newCost.RepairID+ "'," + request.newCost.Car_ID + "," + request.newCost.CostsTypeID + ",N'" + request.newCost.RepairAddres + "',"
+                                    + "N'" + request.newCost.Note + "','" + request.newCost.ImagerBill + "','" + request.newCost.CreateDate + "',getDate(),N'" + request.newCost.FullNameUpdate + "'," + request.newCost.RepairStatus + ",'" + request.newCost.AccountCreate + "') "
+                                    + " insert into RepairDetail (RepairID, Content, Quantity, TotalMoney)"
+                                    + " values " +
+                                    data
+                                    + " commit"
+                                    + " end try"
+                                    + " begin catch"
+                                    + " rollback"
+                                    + " end catch";
+
+                int result = managerCostDAO.AddNewCostDAO(stringSql);
                 return result;
             }
             catch (Exception ex)

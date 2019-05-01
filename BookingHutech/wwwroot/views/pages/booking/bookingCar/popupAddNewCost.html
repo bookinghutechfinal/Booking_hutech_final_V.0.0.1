@@ -88,7 +88,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" ng-click="ClosePopup()" class="close">&times;</button>
-        <h4 class="modal-title">Đề xuất</h4>
+        <h4 class="modal-title">Thêm mới</h4>
     </div>
     <div class="modal-body">
         <div class="row">
@@ -148,7 +148,7 @@
                                         <div class="col-md-4 col-sm-4 col-xs-12">
                                             <select class="form-control ed_border" ng-model="costInfo.CostsTypeID" ng-change="TestInputChange(costInfo)" style="width: 100%;">
 
-                                                    <!--<option selected value="all">{{'All' | translate }}</option>-->
+                                                <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                 <option selected value="">-- Vui lòng chọn --</option>
                                                 <option value="1">
                                                     Nhiên liệu
@@ -173,7 +173,7 @@
 
 
 
-                                                    <!--<option selected value="all">{{'All' | translate }}</option>-->
+                                                <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                 <option selected value="">-- Vui lòng chọn --</option>
                                                 <option ng-repeat="data in ListCarInfo" value="{{data.CarID}}">
                                                     {{data.CarNo}}
@@ -240,14 +240,46 @@
                                         <textarea class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Note" ng-change="TestInputChange(costInfo)"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group" ng-hide="costInfo.CostsTypeID==2">
-                                    <div class="control-label col-md-2 col-sm-2 col-xs-12">Đã thực hiện: </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input type="checkbox" ng-model="costInfo.Done" ng-change="TestInputChange(costInfo)" />
-                                    </div>
+                                <br />
+                                <!--Detail Cost-->
+                                <!--<pre>{{DetailCost}}</pre>-->
+                                <div class="control-label col-md-12 col-sm-12 col-xs-12"><center><h3>Nhập chi tiết</h3></center></div>
+                                <br />
+                                <div class="table-responsive col-md-12 col-sm-12 col-xs-12">
+                                    <table class="table table-striped" role="none" fixed-table-headers="scrollable-area">
+                                        <tr>
+                                            <td><input type="text" placeholder="Nội dung" class="form-control text-box single-line ed_border" ng-model="DetailCost.Content" /></td>
+                                            <td><input type="number" placeholder="Số lượng" class="form-control text-box single-line ed_border" ng-model="DetailCost.Quantity" /></td>
+                                            <td><input type="number" placeholder="Tổng tiền" class="form-control text-box single-line ed_border" ng-model="DetailCost.TotalMoney" /></td>
+                                            <td><button class="btn btn-info" ng-click="AddMore(DetailCost)" type="reset"><i class="fa fa-edit"></i> Thêm</button></td>
+                                        </tr>
+                                    </table>
                                 </div>
+                                <br />
+                                <div class="table-responsive col-md-12 col-sm-12 col-xs-12">
+                                    <table class="table table-striped" role="none" fixed-table-headers="scrollable-area">
+                                        <thead>
+                                            <tr>
+                                                <th>Nội dung</th>
+                                                <th>Số lượng</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Chức năng</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="data in DetailCost">
+                                                <td><p>{{data.Content}}</p></td>
+                                                <td><p>{{data.Quantity}}</p></td>
+                                                <td><p>{{data.TotalMoney}}</p></td>
+                                                <td><button class="btn btn-danger" ng-hide="DetailCost==null" ng-click="Delete($index)"><i class="fa fa-remove"></i> Xóa</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--Detail Cost-->
+
                                 <div class="form-group" style="float:right">
-                                    <span ng-show="btndisabled" class="field-validation-valid text-danger" style="color:red;"><i>Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*)</i></span>
+                                    <span ng-show="btndisabled || ErrorInput" class="field-validation-valid text-danger" style="color:red;"><i>Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*)</i></span>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10 col-sm-10 col-xs-12">

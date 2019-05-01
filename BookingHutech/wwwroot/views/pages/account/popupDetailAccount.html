@@ -217,9 +217,8 @@
                                                                     {{role.FullNameUpdate}}
                                                                 </td>
                                                                 <td class=" ">
-                                                                    <label>
-                                                                        <input type="checkbox" class="js-switch" ng-click="UpdateRole(role)" ng-checked="role.RoleDetail_Status" />
-                                                                    </label>
+                                                                    <button class="btn btn-danger" ng-click="UpdateRole(role)" ng-show="role.RoleDetail_Status"><i class="fa fa-lock"></i> Khóa</button>
+                                                                    <button class="btn btn-success" ng-click="UpdateRole(role)" ng-show="!role.RoleDetail_Status"><i class="fa fa-unlock"></i> Mở</button>
                                                                 </td>
                                                             </tr>
                                                         </tbody>

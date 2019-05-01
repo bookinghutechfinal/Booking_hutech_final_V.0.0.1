@@ -3,7 +3,7 @@
 
         try {
             var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-            //var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+            //var testCookies = AccountInfo.Account_ID;
 
             $scope.CarInfo = {
                 CarImage: CarInfoRequest.CarImage,
@@ -13,7 +13,7 @@
                 CarTypeID: CarInfoRequest.CarTypeID,
                 Expires: CarInfoRequest.Expires,
                 InsuranceExpires: CarInfoRequest.InsuranceExpires,
-                FullNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                FullNameUpdate: AccountInfo.FullName,
                 CarID: CarInfoRequest.CarID,
                 CarStatus: CarInfoRequest.CarStatus,
                 LastModifiedDate: CarInfoRequest.LastModifiedDate,
