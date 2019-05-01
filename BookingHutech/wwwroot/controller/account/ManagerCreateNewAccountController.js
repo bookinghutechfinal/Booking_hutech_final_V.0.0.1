@@ -106,14 +106,16 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 $scope.main()
                 break;
             case 1:
-                $scope.ClosePopup();
-                $scope.goToLogin();
+                if ($rootScope.CheckCookies()) {
+                } else {
+                    $modalInstance.close(); 
+                }
                 break;
 
         }
         $scope.test = function () {
             $scope.CreateNewAccountmModel.AccountType = "";
-            $scope.isDriver = false; 
+            $scope.isDriver = false;
         }
         $scope.btndisabled = true;
         $scope.isDriver = false;
@@ -126,7 +128,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
             $scope.isShowBGH = 0;
             $scope.isShowLaiXe = 0;
             $scope.isShowKhoaVien = 0;
-            
+
             if (Request.Unit_ID == "2") {
                 $scope.isShowQuanTri = 2;
             }
@@ -215,14 +217,12 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
 
         // Lấy thông tin chi tiết lái xe. 
         $scope.CeateNewAccount = function (imgUrl) {
-            $scope.CreateNewAccountmModel.Avatar = imgUrl;
-            if (checkNull(imgUrl)) {
-                toastr.error("Vui lòng chọn ảnh!")
-                return;
-            }
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+            if ($rootScope.CheckCookies()) {
+                $scope.CreateNewAccountmModel.Avatar = imgUrl;
+                if (checkNull(imgUrl)) {
+                    toastr.error("Vui lòng chọn ảnh!")
+                    return;
+                }
                 $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn thêm người dùng này'), function () {
                     $account.ManagerCreateNewAccount($scope.CreateNewAccountmModel, function (res) {
                         switch (res.data.ReturnCode) {
@@ -234,17 +234,9 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                         }
                     });
                 });
-            } catch (e) {
-                $scope.ClosePopup();
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error("Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.");
-                $state.go("login");
-            }
-
-
-
+            } else {
+                $modalInstance.close();
+            } 
         }
 
         // xóa hình

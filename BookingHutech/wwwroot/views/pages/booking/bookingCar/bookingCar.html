@@ -26,7 +26,16 @@
                 </ul>
             </div>
             <div class="x_content" style="display: block;">
-                <div class="col-sm-4 col-xs-4" style="float:right">
+                <div class="col-sm-3 col-xs-6" style="float:right">
+                    <div class="form-group">
+                        <button class="btn btn-warning btn-round btn-block" ng-click="CarTypeManager()">
+                            <!--ng-disabled="!isSubmitingEnable()"-->
+                            <i class="fa fa-plus-circle"></i>
+                            <span class="ng-binding">Quản lý loại xe</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-6" style="float:right">
                     <div class="form-group">
                         <button class="btn btn-primary btn-round btn-block" ng-click="AddNewCar()">
                             <!--ng-disabled="!isSubmitingEnable()"-->
@@ -34,8 +43,8 @@
                             <span class="ng-binding">Thêm xe</span>
                         </button>
                     </div>
-                </div>
-                <div class="col-md-3" style="float:left">
+                </div>  
+                <div class="col-md-3 col-xs-6" style="float:left">
                     <input type="text" class=" btn-round btn-block" placeholder="Tìm xe..." ng-model="searchText">
                 </div>
                 <div class="row">

@@ -27,50 +27,54 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         $scope.searchText = "";
         // Hàm Lấy chi tiết tài khoản của admin và chi tiết quyền. 
         $scope.GetDetailAccountInfoAndRole = function () {
-            $scope.RequestAccountID = {
-                Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
-            }
-            $scope.tableParams1 = $scope.tableParams1 = null;
-            $account.ManagerGetDetailAccountByAccountID($scope.RequestAccountID, function (res) {
-                switch (res.data.ReturnCode) {
-                    case 1:
-                        var AccountInfoResponse = res.data.Data.GetAccountInfo[0];
-                        var RoleResponse = res.data.Data.GetRoleCode;
-                        // Hiển thị thông tin account
-                        $scope.ShowAccountInfo = {
-                            Avatar: AccountInfoResponse.Avatar,
-                            FullName: AccountInfoResponse.FullName,
-                            Gender: AccountInfoResponse.Gender,
-                            Birthday: AccountInfoResponse.Birthday,
-                            Addres: AccountInfoResponse.Addres,
-                            AccountType: ConvertAccountTypeIDToName(AccountInfoResponse.AccountType),
-                            NumberPhone: AccountInfoResponse.NumberPhone,
-                            Email: AccountInfoResponse.Email,
-                            UnitName: AccountInfoResponse.UnitName,
-                        }
-                        //Cập nhật trạng thái cho quyền. 
-                        for (var i = 0; i < RoleResponse.length; i++) {
-                            // AccountStatusName
-                            if (RoleResponse[i].RoleDetail_Status === false) {
-                                RoleResponse[i].RoleDetail_Status = RoleStatus[0].RoleStatusName;
-                            } else {
-                                RoleResponse[i].RoleDetail_Status = RoleStatus[1].RoleStatusName;
-                            }
-                        }
-                        // Hiển thị thông tin quyền 
-                        $scope.tableParams1 = new NgTableParams({}, { dataset: RoleResponse });
-                        // Mặc định lấy danh sách tài khoản  người dùng theo loại tài khoản và trạng thái account.  
-                        $scope.ManagerGetListAccountRequestModel = {
-                            AccountType: 7, // Lái xe
-                            Account_Status: 1 // 1. hoạt động, 0: khóa
-                        }
-                        $scope.ManagerGetListAccount($scope.ManagerGetListAccountRequestModel);
-                        break;
+            if ($rootScope.CheckCookies()) { 
+                $scope.RequestAccountID = {
+                    Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
                 }
+                $scope.tableParams1 = $scope.tableParams1 = null;
+                $account.ManagerGetDetailAccountByAccountID($scope.RequestAccountID, function (res) {
+                    switch (res.data.ReturnCode) {
+                        case 1:
+                            var AccountInfoResponse = res.data.Data.GetAccountInfo[0];
+                            var RoleResponse = res.data.Data.GetRoleCode;
+                            // Hiển thị thông tin account
+                            $scope.ShowAccountInfo = {
+                                Avatar: AccountInfoResponse.Avatar,
+                                FullName: AccountInfoResponse.FullName,
+                                Gender: AccountInfoResponse.Gender,
+                                Birthday: AccountInfoResponse.Birthday,
+                                Addres: AccountInfoResponse.Addres,
+                                AccountType: ConvertAccountTypeIDToName(AccountInfoResponse.AccountType),
+                                NumberPhone: AccountInfoResponse.NumberPhone,
+                                Email: AccountInfoResponse.Email,
+                                UnitName: AccountInfoResponse.UnitName,
+                            }
+                            //Cập nhật trạng thái cho quyền. 
+                            for (var i = 0; i < RoleResponse.length; i++) {
+                                // AccountStatusName
+                                if (RoleResponse[i].RoleDetail_Status === false) {
+                                    RoleResponse[i].RoleDetail_Status = RoleStatus[0].RoleStatusName;
+                                } else {
+                                    RoleResponse[i].RoleDetail_Status = RoleStatus[1].RoleStatusName;
+                                }
+                            }
+                            // Hiển thị thông tin quyền 
+                            $scope.tableParams1 = new NgTableParams({}, { dataset: RoleResponse });
+                            // Mặc định lấy danh sách tài khoản  người dùng theo loại tài khoản và trạng thái account.  
+                            $scope.ManagerGetListAccountRequestModel = {
+                                AccountType: 7, // Lái xe
+                                Account_Status: 1 // 1. hoạt động, 0: khóa
+                            }
+                            $scope.ManagerGetListAccount($scope.ManagerGetListAccountRequestModel);
+                            break;
+                    }
 
-            });
+                });
+            }
         }
+
         $scope.ManagerGetListAccountResponse = []; // danh sách tài khoản trả về
+
         $scope.ManagerGetListAccount = function (request) {
             $account.ManagerGetAccountByAccountStatusAccountType(request, function (res) {
 
@@ -127,33 +131,23 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         // Hàm Lấy danh sách nhóm quyền. 
         $scope.GroupRoleResponse = [];
         $scope.GetGroupRole = function () {
-            $account.ManagerGetListGroupRole({}, function (res) {
-                switch (res.data.ReturnCode) {
-                    case 1:
-                        $scope.GroupRoleResponse = res.data.Data.ListGroupRole;
-                        $scope.ManagerGetRole();  // Hàm lấy danh sách quyền. 
-                        break;
-                }
+            if ($rootScope.CheckCookies()) {
+                $account.ManagerGetListGroupRole({}, function (res) {
+                    switch (res.data.ReturnCode) {
+                        case 1:
+                            $scope.GroupRoleResponse = res.data.Data.ListGroupRole;
+                            $scope.ManagerGetRole();  // Hàm lấy danh sách quyền. 
+                            break;
+                    }
 
-            });
+                });
+            }
+
 
         }
 
         $scope.main = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                // ném code của bạn vào trong này 
-                $scope.GetDetailAccountInfoAndRole(); // Lấy chi tiết account.   
-                // ném code của bạn vào trong này 
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                //  $state.go("login"); 
-                $rootScope.showError = true;
-            } 
+            $scope.GetDetailAccountInfoAndRole(); // Lấy chi tiết account.   
         }
 
         // kiểm tra account đẵ đăng nhập chưa, đổi mật khẩu chưa. 
@@ -164,15 +158,18 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                 $scope.goToChangePassword();
                 break;
             case 3:
-                $scope.main()
+                if ($rootScope.CheckCookies()) {
+                    $scope.main()
+                }
                 break;
             case 1:
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                //  $state.go("login"); 
-                $rootScope.showError = true;
+                //$cookies.remove('AccountInfo');
+                //$cookies.remove("AccountInfoCheckPermissions");
+                //$cookies.remove("myReload");
+                //toastr.error($rootScope.initMessage('InconrectSestion'));
+                ////  $state.go("login"); 
+                //$rootScope.showError = true;
+                if ($rootScope.CheckCookies());
                 break;
 
         }
@@ -240,58 +237,46 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
 
         //Button lưu thay đổi tên nhóm quyền. 
         $scope.Save = function (RoleRequestModel, index) {
-            $scope.UpdateGropRoleResquestModel = {
-                GroupRoleID: RoleRequestModel.GroupRoleID,
-                GroupRoleName: RoleRequestModel.GroupRoleName
-            }
-            // kiểm tra trước khi update 
-            if (checkNull($scope.UpdateGropRoleResquestModel.GroupRoleName)) {
-                toastr.error("Không được để trống!. Vui lòng nhập");
-                $scope.showmess[index] = true;
-                return;
-            }
-            // ok gọi api update thành công sẽ cập nhật lại lưới và hiển thị lại
-            $alert.showConfirmUpdateNewProfile('Đổi tên nhóm quyền!', function () {
-                $account.ManagerUpdateGroupRole($scope.UpdateGropRoleResquestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            $scope.editorEnabled[index] = false;
-                            $scope.showmess[index] = false;
-                            toastr.success("Cập nhật thành công");
-                            break;
-                    }
+            if ($rootScope.CheckCookies()) {
+                $scope.UpdateGropRoleResquestModel = {
+                    GroupRoleID: RoleRequestModel.GroupRoleID,
+                    GroupRoleName: RoleRequestModel.GroupRoleName
+                }
+                // kiểm tra trước khi update 
+                if (checkNull($scope.UpdateGropRoleResquestModel.GroupRoleName)) {
+                    toastr.error("Không được để trống!. Vui lòng nhập");
+                    $scope.showmess[index] = true;
+                    return;
+                }
+                // ok gọi api update thành công sẽ cập nhật lại lưới và hiển thị lại
+                $alert.showConfirmUpdateNewProfile('Đổi tên nhóm quyền!', function () {
+                    $account.ManagerUpdateGroupRole($scope.UpdateGropRoleResquestModel, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                $scope.editorEnabled[index] = false;
+                                $scope.showmess[index] = false;
+                                toastr.success("Cập nhật thành công");
+                                break;
+                        }
 
-                });
+                    });
 
-            }); //end
+                }); //end
+            }
 
         }
 
         // 3. Quản lý danh sách quyền
         $scope.isShowRole = false;
         $scope.ShowRole = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                // ném code của bạn vào trong này 
-                if (!$scope.isShowRole) {
-                    $scope.isShowRole = true;
-                    $scope.isShowGroupRole = false; // đóng nhóm quyền lại
-                    $scope.GetGroupRole();
+            if (!$scope.isShowRole) {
+                $scope.isShowRole = true;
+                $scope.isShowGroupRole = false; // đóng nhóm quyền lại
+                $scope.GetGroupRole();
 
-                } else {
-                    $scope.isShowRole = false;
-                }
-                // ném code của bạn vào trong này 
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                //  $state.go("login"); 
-                $rootScope.showError = true;
+            } else {
+                $scope.isShowRole = false;
             }
-
         }
         // Chỉnh sửa   quyền. 
         $scope.editorEnabledRole = [];  // ẩn hiện các button
@@ -312,9 +297,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
 
         //Button lưu thay đổi tên  quyền. 
         $scope.SaveRole = function (RoleRequestModel, index) {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+            if ($rootScope.CheckCookies()) {
                 $scope.UpdateRoleResquestModel = {
                     RoleMaster_ID: RoleRequestModel.RoleMaster_ID,
                     RoleName: RoleRequestModel.RoleName,
@@ -339,21 +322,14 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
 
                     });
                 }); //end
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                //  $state.go("login"); 
-                $rootScope.showError = true;
             }
+
+
         }
 
         //4.  Button  Mở popup thêm mới tài khoản người dùng và lái xe . 
         $scope.ManagerOpenpopupAddNewDriver = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+            if ($rootScope.CheckCookies()) {
                 var modalInstance = $modal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',
@@ -372,12 +348,6 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                 modalInstance.result.then(function () {
 
                 });
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                $rootScope.showError = true;
             }
 
         }
@@ -385,24 +355,27 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         //5. Xem chi tiết account.   
         //// Mỡ popup xem chi tiết account 
         $scope.btnOpenPopupDetailAccount = function (AccountID) {
-            var modalInstance = $modal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: '/wwwroot/views/pages/account/popupDetailAccount.html',
-                controller: 'DetailAccountController',
-                controllerAs: 'content',
-                backdrop: 'static',
-                size: 'lg',
-                resolve: {
-                    AccountIDRequest: function () {
-                        return AccountID;
-                    },
-                }
-            });
-            modalInstance.result.then(function () {
+            if ($rootScope.CheckCookies()) {
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/popupDetailAccount.html',
+                    controller: 'DetailAccountController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        AccountIDRequest: function () {
+                            return AccountID;
+                        },
+                    }
+                });
+                modalInstance.result.then(function () {
+                    
+                });
+            }
 
-            });
         }
 
         // 6. Button tìm kiếm account. 
@@ -434,27 +407,14 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         }
         // Button Tìm kiếm account
         $scope.SearchAccount = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
-                // code
+            if ($rootScope.CheckCookies()) {
                 $scope.ManagerGetListAccount($scope.SearchAccountReqModel);
-                //code
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                $rootScope.showError = true;
             }
-           
         }
 
         //7.  Button  Mở popup quản lý phòng ban . 
         $scope.OpenpopupManagerUnit = function () {
-            try {
-                var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+            if ($rootScope.CheckCookies()) {
                 var modalInstance = $modal.open({
                     animation: true,
                     ariaLabelledBy: 'modal-title',
@@ -473,13 +433,6 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                 modalInstance.result.then(function () {
 
                 });
-            } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
-                toastr.error($rootScope.initMessage('InconrectSestion'));
-                //  $state.go("login"); 
-                $rootScope.showError = true;
             }
 
         }

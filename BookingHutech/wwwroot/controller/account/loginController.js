@@ -31,7 +31,9 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
 
         }
 
-
+        $scope.btnCheckOnline = function () {
+            $rootScope.isTimeOutRequest = false;
+        }
 
         $scope.enter = function ($event) {
             var keyCode = $event.keyCode;
@@ -82,7 +84,7 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                                 ObjRoleCode
                                 
                             });  // thông tin accunt login 
-                            $cookies.put('myReload', 1);
+                            
                         }
                         //toastr.success($rootScope.initMessage('MessageChangeAccount'));
                         $scope.PutCookies();
@@ -100,8 +102,7 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                             $cookies.putObject("AccountInfo", {
                                 ObjAccountInfo,
                                 ObjRoleCode
-                            });  // thông tin accunt login 
-                            $cookies.put('myReload', 1);
+                            });  // thông tin accunt login  
                         }
                         $scope.PutCookies();
                         var audio = new Audio('../../audio/alert_message_audio.mp3');

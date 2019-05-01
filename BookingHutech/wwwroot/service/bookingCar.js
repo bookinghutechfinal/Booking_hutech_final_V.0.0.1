@@ -54,6 +54,22 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    // thêm mới loại xe
+    this.CreateNewCarType = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'Car/CreateNewCarType',
+            data: request
+        }, success, finish)
+    };
+    // thêm mới loại xe
+    this.UpdateCarType = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'Car/UpdateCarType',
+            data: request
+        }, success, finish)
+    };
 
     this.getListCarByCartypeID = function (request, success, finish) {
         $dao.call({

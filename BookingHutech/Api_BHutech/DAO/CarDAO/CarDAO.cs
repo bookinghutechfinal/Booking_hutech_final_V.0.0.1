@@ -322,6 +322,35 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 throw;
             }
         }
+
+        /// <summary>
+        /// CarTyperDAO
+        /// Anh.Tran 1/5/2019
+        /// </summary>
+        public void CarTyperDAO(string stringSql)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                int a = cmd.ExecuteNonQuery();
+                if (a != 1)
+                {
+                    LogWriter.WriteException("stringSql"+ stringSql);
+                    con.Close();
+                    throw new Exception(); 
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
     }
 }
  

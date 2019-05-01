@@ -1,56 +1,74 @@
-﻿ 
-    <link href="../../../../script/teamplate/login/metisMenu.min.css" rel="stylesheet" />
-    <link href="../../../../script/teamplate/login/sb-admin-2.css" rel="stylesheet" />
-    <link href="../../../../script/css/font-awesome.min.css" rel="stylesheet" />
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12">
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
+﻿
+<link href="../../../../script/teamplate/login/metisMenu.min.css" rel="stylesheet" />
+<link href="../../../../script/teamplate/login/sb-admin-2.css" rel="stylesheet" />
+<link href="../../../../script/css/font-awesome.min.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
 
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <center><img _ngcontent-c1="" alt="HUTECH - Login" class="img-responsive" src="../../../../images/logo/logo.png"></center>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" method="post">
-                            <fieldset>
-                                <div class="form-group">
-                                    <h5 style="color:black; text-align:left"> Tên đăng nhập</h5>
-                                    <input class="form-control" name="UserName" data-ng-model="UserName" type="text" autofocus="">
-                                    <h4 style="color:red; text-align:center">  </h4>
-                                </div>
-                                <div class="form-group has-feedback">
-                                    <h5 style="color:black; text-align:left"> Mật khẩu</h5>
-                                    <input class="form-control" name="Password" data-ng-model="Password" type="password" value="">
-                                </div>
-                                <!--<div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>-->
-                                <div class="checkbox">
-                                    <section>
-                                        Đăng nhập không được?
-                                        <a href="#/support-home">Xem hướng dẫn tại đây</a>
-                                    </section>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <button class="btn btn-lg btn-success btn-block" type="submit" data-ng-click="Login()">{{'Login'| translate}}</button>
-                                <h4 style="color:red; text-align:center"> </h4>
-                            </fieldset>
-                        </form>
-                    </div>
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <center><img _ngcontent-c1="" alt="HUTECH - Login" class="img-responsive" src="../../../../images/logo/logo.png"></center>
+                </div>
+                <div class="panel-body">
+                    <form role="form" method="post">
+                        <fieldset>
+                            <div class="form-group">
+                                <h5 style="color:black; text-align:left"> Tên đăng nhập</h5>
+                                <input class="form-control" name="UserName" data-ng-model="UserName" type="text" autofocus="">
+                                <h4 style="color:red; text-align:center">  </h4>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <h5 style="color:black; text-align:left"> Mật khẩu</h5>
+                                <input class="form-control" name="Password" data-ng-model="Password" type="password" value="">
+                            </div>
+                            <!--<div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                </label>
+                            </div>-->
+                            <div class="checkbox">
+                                <section>
+                                    Đăng nhập không được?
+                                    <a href="#/support-home">Xem hướng dẫn tại đây</a>
+                                </section>
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <button class="btn btn-lg btn-success btn-block" type="submit" data-ng-click="Login()">{{'Login'| translate}}</button>
+                            <h4 style="color:red; text-align:center"> </h4>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div id="loading" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999" ng-show="isLoading">
-        <div style="position:fixed;background-color:white;opacity:0.6;width:100%;height:100%;z-index:9999"></div>
-        <img style="position:fixed;z-index:9999;top:45%;left:48%" src="../../images/loading/loading.gif" width="100" />
+</div>
+<div id="loading" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999" ng-show="isLoading">
+    <div style="position:fixed;background-color:white;opacity:0.6;width:100%;height:100%;z-index:9999"></div>
+    <img style="position:fixed;z-index:9999;top:45%;left:48%" src="../../images/loading/loading.gif" width="100" />
+</div>
+<!--<script src="../../../../script/js/jquery.min.js"></script>-->
+<!--<script src="../../../../script/js/bootstrap.min.js"></script>-->
+<script src="../../../../script/teamplate/login/metisMenu.min.js"></script>
+<script src="../../../../script/teamplate/login/sb-admin-2.js"></script>
+<!-- Mất kết nối mạng và hệ thống có lỗi, hệ thống không connect tới DB -->
+<div id="loading" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999" ng-show="isTimeOutRequest">
+    <img style="position:fixed;z-index:9999;top:45%;left:48%" src="../../images/loading/loading.gif" width="100" />
+    <div class="x_content bs-example-popovers" style=" margin-top:auto ;position:fixed;background-color:white;opacity:0.98;width:100%;height:100%;z-index:9999;color: #0f33ef; font-family:'Poppins', sans-serif;">
+        <div style=" position:fixed;opacity:0.98;width:99%;height:26%;z-index:9999;color: #0f33ef;font-size: 132%; font-family:'Poppins', sans-serif; text-align: center; margin-top: 15%;padding: 2%;min-height: 26%" class="alert alert-warning alert-dismissible fade in" role="alert">
+
+            <strong><i class="fa fa-warning"></i> Xin lỗi! Không thể kết nối đến Server</strong>
+            <ul>
+                <li style="display:inline;">Kiểm tra lại kết nối mạng. Hoặc báo lại cho chúng tôi nếu gặp thường xuyên!</li>
+            </ul>
+            <ul>
+                <li style="display:inline;">
+                    <input type="button" ng-click="btnCheckOnline()" class="btn btn-primary" value="Đã Hiểu" />
+                </li>
+            </ul>
+        </div>
     </div>
-    <!--<script src="../../../../script/js/jquery.min.js"></script>-->
-    <!--<script src="../../../../script/js/bootstrap.min.js"></script>-->
-    <script src="../../../../script/teamplate/login/metisMenu.min.js"></script>
-    <script src="../../../../script/teamplate/login/sb-admin-2.js"></script>
+</div>
  

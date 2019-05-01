@@ -193,5 +193,45 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
                 throw;
             }
         }
+        /// <summary>
+        /// Thêm mới xe
+        /// Create by Anh.tran 26/4/2019
+        /// </summary>
+        /// <param name="UpdateCarInfoRequestModel"></param>
+        public void CreateNewCarTypeServices(CreateNewCarTypeRequestModel request)
+        {
+            try
+            {
+               
+              //  string uspCreateNewCar = String.Format(Prototype.SqlCommandStore.uspCreateNewCarType;
+                string uspCreateNewCarType = String.Format(Prototype.SqlCommandStore.uspCreateNewCarType, request.CarTypeName, request.FullNameUpdate);
+                carDAO.CarTyperDAO(uspCreateNewCarType);
+            }
+            catch (Exception ex)
+            { 
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        } 
+        /// <summary>
+        /// Thêm mới xe
+        /// Create by Anh.tran 26/4/2019
+        /// </summary>
+        /// <param name="UpdateCarInfoRequestModel"></param>
+        public void UpdateCarTypeServices(CreateNewCarTypeRequestModel request)
+        {
+            try
+            {
+               
+              //  string uspCreateNewCar = String.Format(Prototype.SqlCommandStore.uspCreateNewCarType;
+                string uspUpdateCarType = String.Format(Prototype.SqlCommandStore.uspUpdateCarType, request.CarTypeID,request.CarTypeName, request.FullNameUpdate);
+                carDAO.CarTyperDAO(uspUpdateCarType);
+            }
+            catch (Exception ex)
+            { 
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
     }
 }

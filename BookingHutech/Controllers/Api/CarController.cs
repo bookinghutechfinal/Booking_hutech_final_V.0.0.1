@@ -491,5 +491,123 @@ namespace BookingHutech.Controllers.Api
             }
         }
 
+        /// <summary>
+        /// Thêm mới loại xe
+        /// Create by Anh.tran 1/5/2019. Thêm mới loại xe
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns> 
+        [HttpPost]
+        public ApiResponse CreateNewCarType([FromBody]CreateNewCarTypeRequestModel request)
+        {
+            try
+            {
+                // kiểm tra quyền - và nguồn gọi api của WEB HAY MOBILE. 
+                if (Permissions.CheckAPIRequest(Request.Headers.GetValues(ApiHeaderKey.BHAPIWebCall.ToString()).First()) == (int)ApiRequestType.Web)
+                {
+                    try
+                    {
+                        // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+                        //JavaScriptSerializer js = new JavaScriptSerializer();
+                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+
+                        //switch (Result)
+                        //{
+                        //    case 114:
+                        //        return ApiResponse.LostSession();
+                        //    case 150:
+                        //        return ApiResponse.NotPermission();
+                        //    case 102:
+                        //        return ApiResponse.AccountDelete();
+                        //}
+                        // OK -> Đi tiếp. 
+                        try
+                        {
+                            carServices.CreateNewCarTypeServices(request);
+                            return ApiResponse.Success();
+                        }
+                        catch // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        {
+                            return ApiResponse.Error();
+                        }
+                        // END: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+
+                    }
+                    catch// Không thể kiểm tra quyền. 
+                    {
+                        return ApiResponse.Error();
+                    }
+                }
+                else  // sai header .
+                {
+                    return ApiResponse.ApiNotPermissionCall(); // Không có quyền gọi Api. 
+                }
+            }
+            catch (Exception ex)  // thiếu header. 
+            {
+                LogWriter.WriteException(ex);
+                return ApiResponse.ApiNotPermissionCall();
+            }
+        } 
+        /// <summary>
+        /// Chinh sửa loại xe
+        /// Create by Anh.tran 1/5/2019.  
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns> 
+        [HttpPost]
+        public ApiResponse UpdateCarType([FromBody]CreateNewCarTypeRequestModel request)
+        {
+            try
+            {
+                // kiểm tra quyền - và nguồn gọi api của WEB HAY MOBILE. 
+                if (Permissions.CheckAPIRequest(Request.Headers.GetValues(ApiHeaderKey.BHAPIWebCall.ToString()).First()) == (int)ApiRequestType.Web)
+                {
+                    try
+                    {
+                        // Start: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+                        //JavaScriptSerializer js = new JavaScriptSerializer();
+                        //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
+                        //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
+
+                        //switch (Result)
+                        //{
+                        //    case 114:
+                        //        return ApiResponse.LostSession();
+                        //    case 150:
+                        //        return ApiResponse.NotPermission();
+                        //    case 102:
+                        //        return ApiResponse.AccountDelete();
+                        //}
+                        // OK -> Đi tiếp. 
+                        try
+                        {
+                            carServices.UpdateCarTypeServices(request);
+                            return ApiResponse.Success();
+                        }
+                        catch // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        {
+                            return ApiResponse.Error();
+                        }
+                        // END: Kiểm tra quyền - session - quyền sử dụng - login - khóa account.  
+
+                    }
+                    catch// Không thể kiểm tra quyền. 
+                    {
+                        return ApiResponse.Error();
+                    }
+                }
+                else  // sai header .
+                {
+                    return ApiResponse.ApiNotPermissionCall(); // Không có quyền gọi Api. 
+                }
+            }
+            catch (Exception ex)  // thiếu header. 
+            {
+                LogWriter.WriteException(ex);
+                return ApiResponse.ApiNotPermissionCall();
+            }
+        }
     }
 }

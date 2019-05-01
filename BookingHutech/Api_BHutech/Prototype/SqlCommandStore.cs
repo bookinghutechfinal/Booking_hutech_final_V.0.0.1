@@ -128,7 +128,10 @@ namespace BookingHutech.Api_BHutech.Prototype
         //Create By Anh.Trần Chỉnh sửa đơn cấp phát 30/4/2019. 
         public const string uspEditRegistrationCar = "uspEditRegistrationCar";
         //Create By Anh.Trần xóa đơn cấp phát 30/4/2019. 
-        public const string uspDeleteRegistrationCar = "uspDeleteRegistrationCar"; 
+        public const string uspDeleteRegistrationCar = "uspDeleteRegistrationCar";  
+        //Create By Anh.Trần thêm mới loại xe 1/5/2019. 
+        public const string uspCreateNewCarType = "uspCreateNewCarType N'{0}',N'{1}'"; 
+        public const string uspUpdateCarType = "uspUpdateCarType {0},N'{1}',N'{2}'"; 
         
  
     }

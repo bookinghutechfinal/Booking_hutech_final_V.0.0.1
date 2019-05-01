@@ -76,5 +76,30 @@
                 });
             }
         }
+        $scope.CarTypeManager = function () {
+            if ($rootScope.CheckCookies()) {
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupManagerCarType.html',
+                    controller: 'ManagerCarTypeController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        RequestData: function () {
+                            return null;
+                        },
+                    }
+                });
+                modalInstance.result.then(function (result) {
+                    if (result) {
+                        $scope.init();
+                    }
+                });
+            }
+        }
+
 
     }]);  

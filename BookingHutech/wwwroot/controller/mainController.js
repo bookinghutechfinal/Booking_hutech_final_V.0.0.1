@@ -26,7 +26,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
         }
         $rootScope.online = false; 
         $scope.btnCheckOnline = function () {
-            $rootScope.online = true; 
+            $rootScope.isTimeOutRequest = false; 
         }
         // kiểm tra cookies
         $rootScope.CheckCookies = function () {
@@ -252,7 +252,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             closeModals();
         });
 
-        // Idle.watch(); // start set timeout
+         Idle.watch(); // start set timeout
         //end 
         //// Cảnh báo mất kết nối internet 
         //if (!$rootScope.online) {
