@@ -367,18 +367,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
         {
             try
             {
-                int roleMasterID = request.RoleMaster_ID;
-                string accountID = request.Account_ID;
-                string stringSql = "begin try"
-                                    + " begin transaction"
-                                    + " delete from RoleDetail where Account_ID='"+ accountID + "' and RoleMaster_ID = "
-                                    +
-                                    roleMasterID
-                                    + " commit"
-                                    + " end try"
-                                    + " begin catch"
-                                    + " rollback"
-                                    + " end catch";
+                string stringSql =String.Format(Prototype.SqlCommandStore.UpdateRoleDetailStatus,request.Account_ID,request.RoleMaster_ID,request.RoleDetail_Status);
                 int result = managerAccountDAO.UpdateRoleDAO(stringSql);
                 return result;
             }

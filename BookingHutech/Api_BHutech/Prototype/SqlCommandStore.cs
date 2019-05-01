@@ -123,7 +123,7 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspCreateNewUnit = "uspCreateNewUnit N'{0}',N'{1}','{2}','{3}'";  
         //Thêm mới đơn vị. Create By Anh.Trần Create 25/4/2019. 
         public const string uspEditNewUnit = "uspEditNewUnit {0}, N'{1}',N'{2}','{3}','{4}'";  
-        //Thêm mới xe. Create By Anh.Trần Create 26/4/2019. 
+        //Thêm mới xe. Create By Anh.Trần Create 26/4/2019.
         public const string uspCreateNewCar = "uspCreateNewCar";  
         //Create By Anh.Trần Chỉnh sửa đơn cấp phát 30/4/2019. 
         public const string uspEditRegistrationCar = "uspEditRegistrationCar";
@@ -131,9 +131,11 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspDeleteRegistrationCar = "uspDeleteRegistrationCar";  
         //Create By Anh.Trần thêm mới loại xe 1/5/2019. 
         public const string uspCreateNewCarType = "uspCreateNewCarType N'{0}',N'{1}'"; 
-        public const string uspUpdateCarType = "uspUpdateCarType {0},N'{1}',N'{2}'"; 
-        
- 
+        public const string uspUpdateCarType = "uspUpdateCarType {0},N'{1}',N'{2}'";
+        //update status bảng RoleDetail. Create By mr.Lam Create 29/4/2019. 
+        public const string UpdateRoleDetailStatus = "UpdateRoleDetailStatus {0},{1},{2}";
+
+
     }
 
 }
