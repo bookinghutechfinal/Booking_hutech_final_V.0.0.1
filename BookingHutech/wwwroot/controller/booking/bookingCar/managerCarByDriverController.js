@@ -31,7 +31,7 @@
                 $scope.ShowListCost = false;
 
                 var getListCostRequestModel = {
-                    AccountCreate: AccountInfo.ObjAccountInfo.Account_ID,
+                    AccountCreate: AccountInfo.Account_ID,
                     RepairStatus: 3,
                     RepairStatus1: 4,
                     RepairStatus2: 3,
@@ -116,7 +116,7 @@
                 if (So_Sanh_DateInput2(date_to, date_from)) {
 
                     var searchCostRequestModel = {
-                        AccountCreate: AccountInfo.ObjAccountInfo.Account_ID,
+                        AccountCreate: AccountInfo.Account_ID,
                         RepairStatus: repairStatus,
                         RepairStatus1: repairStatus1,
                         RepairStatus2: repairStatus2,

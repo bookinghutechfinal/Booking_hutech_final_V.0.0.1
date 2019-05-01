@@ -15,7 +15,7 @@
         $scope.getCarInfo = function () {
             if ($rootScope.CheckCookies()) {
                 var getCarInfoRequestModel = {
-                    Account_ID: AccountInfo.ObjAccountInfo.Account_ID
+                    Account_ID: AccountInfo.Account_ID
                 }
                 $BookingCar.getCarInfoByAccountID(getCarInfoRequestModel, function (res) {
 
@@ -40,7 +40,7 @@
                 angular.element('#myDate2').val("");
 
                 var request = {
-                    DriverID: AccountInfo.ObjAccountInfo.Account_ID,
+                    DriverID: AccountInfo.Account_ID,
                     Profile_Status1: 4,
                     Profile_Status2: 7,
                     Profile_Status3: 9,
@@ -83,7 +83,7 @@
                     $scope.ClearData();
 
                     var request1 = {
-                        DriverID: AccountInfo.ObjAccountInfo.Account_ID,
+                        DriverID: AccountInfo.Account_ID,
                         Profile_Status1: 10,
                         Profile_Status2: 1111,
                         Profile_Status3: 1111,

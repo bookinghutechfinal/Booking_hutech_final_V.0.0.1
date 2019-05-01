@@ -3,7 +3,7 @@
 
         try {
             var AccountInfo = $account.getAccountInfo(); // test Lấy cookies người dùng. 
-            //var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+            //var testCookies = AccountInfo.Account_ID;
 
             $scope.CarInfo = {
                 CarImage: CarInfoRequest.CarImage,

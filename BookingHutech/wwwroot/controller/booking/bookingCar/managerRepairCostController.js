@@ -24,7 +24,7 @@
                 var RequestModel = {
                     CostsTypeID: 2,
                     DateFrom: dayRequestFrom,
-                    DateTo: dayRequestTo,
+                    DateTo: '1-1-3000',
                     CarID: 0,
                     RepairStatus: 3,
                     RepairStatus1: 4,
@@ -226,7 +226,7 @@
                         let updateRepairStatusRequestModel = {
                             RepairID: request.RepairID,
                             RepairStatus: repairStatus,
-                            FullNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                            FullNameUpdate: AccountInfo.FullName,
                             Note: $rootScope.alertValue
                         }
                         $BookingCar.updateRepairStatus(updateRepairStatusRequestModel, function (res) {
