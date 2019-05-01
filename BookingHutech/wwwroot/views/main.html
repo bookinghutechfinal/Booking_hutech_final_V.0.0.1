@@ -35,35 +35,35 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li ng-show="showByPermission(500)">
                 <a href=".carSubmenu" data-toggle="collapse" aria-expanded="false">
                     <i class="fa fa-car"></i>
                     Quản lý xe
                 </a>
                 <ul class="collapse list-unstyled carSubmenu" id="carSubmenu">
-                    <li><a href="#/main/booking-car"><i class="fa fa-hand-o-right"></i>Danh sách xe</a></li>
+                    <li ng-show="showByPermission(500)"><a href="#/main/booking-car"><i class="fa fa-hand-o-right"></i>Danh sách xe</a></li>
                 </ul>
             </li>
-            <li>
+            <li ng-show="showByPermission(700)">
                 <a href=".costSubmenu" data-toggle="collapse" aria-expanded="false">
                     <i class="fa fa-money"></i>
                     Quản lý chi phí
                 </a>
                 <ul class="collapse list-unstyled costSubmenu" id="costSubmenu">
-                    <li><a href="#/main/manager-fuel-cost">  <i class="fa fa-hand-o-right"></i>Nhiên liệu</a></li>
-                    <li><a href="#/main/manager-repair-cost"> <i class="fa fa-hand-o-right"></i>Sửa chữa</a></li>
-                    <li><a href="#/main/manager-other-cost"> <i class="fa fa-hand-o-right"></i>Chi phí khác</a></li>
+                    <li ng-show="showByPermission(700)"><a href="#/main/manager-fuel-cost">  <i class="fa fa-hand-o-right"></i>Nhiên liệu</a></li>
+                    <li ng-show="showByPermission(700)"><a href="#/main/manager-repair-cost"> <i class="fa fa-hand-o-right"></i>Bảo dưỡng, sửa chữa</a></li>
+                    <li ng-show="showByPermission(700)"><a href="#/main/manager-other-cost"> <i class="fa fa-hand-o-right"></i>Chi phí khác</a></li>
                 </ul>
             </li>
-            <li>
+            <li ng-show="showByPermission(600)">
                 <a href=".reportSubmenu" data-toggle="collapse" aria-expanded="false">
                     <i class="fa fa-bar-chart"></i>
                     Thống kê
                 </a>
                 <ul class="collapse list-unstyled reportSubmenu" id="reportSubmenu">
-                    <li><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Chi phí xe</a></li>
-                    <li><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Chuyến đi</a></li>
-                    <li><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Hoạt động lái xe</a></li>
+                    <li ng-show="showByPermission(600)"><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Chi phí xe</a></li>
+                    <!--<li><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Chuyến đi</a></li>
+                    <li><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Hoạt động lái xe</a></li>-->
                 </ul>
             </li>
             <li>
@@ -76,20 +76,20 @@
                         <a href="#/main/manager-account"><i class="fa fa-hand-o-right"></i>Quản lý người dùng</a>
                     </li>
                     <li><a href="#/main/driver-manager"><i class="fa fa-hand-o-right"></i>Quản lý lái xe</a></li>
-                    <li><a href="#/main/assign-driver"><i class="fa fa-hand-o-right"></i>Phân công</a></li>
+                    <li ng-show="showByPermission(803)"><a href="#/main/assign-driver"><i class="fa fa-hand-o-right"></i>Phân công</a></li>
                     <li><a href="" ng-click="OpenPopupShowProfile()"><i class="fa fa-hand-o-right"></i>Thông tin người dùng</a></li>
                 </ul>
             </li>
-            <li>
+            <li ng-show="showByPermission(701) || showByPermission(909)">
                 <a href=".driverSubmenu" data-toggle="collapse" aria-expanded="false">
                     <i class="fa fa-user"></i>
                     Lái xe
                 </a>
                 <ul class="collapse list-unstyled driverSubmenu" id="driverSubmenu">
-                    <li>
+                    <li ng-show="showByPermission(701)">
                         <a href="#/main/manager-car-by-driver"><i class="fa fa-hand-o-right"></i>Quản lý chi phí</a>
                     </li>
-                    <li><a href="#/main/calendar-driver"><i class="fa fa-hand-o-right"></i>Lịch công tác</a></li>
+                    <li ng-show="showByPermission(909)"><a href="#/main/calendar-driver"><i class="fa fa-hand-o-right"></i>Lịch công tác</a></li>
                 </ul>
             </li>
 

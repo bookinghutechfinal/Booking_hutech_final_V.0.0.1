@@ -74,7 +74,7 @@
                             <div class="title_bk">
                                 <span style="font-weight:bold"><span class="glyphicon glyphicon-cog"></span> Cập nhật:</span> {{CarInfo.LastModifiedDate | date:'HH:mm - dd/MM/yyyy '}}
                             </div> <br />
-                            <button ng-click="updateCar()" class="btn btn-success btn-round btn-block"><i class="fa fa-edit m-right-xs"></i> Chỉnh sửa</button>
+                            <button ng-show="showByPermission(501)" ng-click="updateCar()" class="btn btn-success btn-round btn-block"><i class="fa fa-edit m-right-xs"></i> Chỉnh sửa</button>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <div class="profile_title">

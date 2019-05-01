@@ -37,7 +37,7 @@
                 <center><h3 style="color:darkslateblue" ng-show="!ShowListCost">Danh sách chi phí khác cần duyệt</h3></center>
                 <center><h3 style="color:darkslateblue" ng-show="ShowListCost">Danh sách chi phí khác đã duyệt</h3></center>
                 <hr />
-                <div class="col-md-3 col-sm-3 col-xs-12" style="float:right">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="float:right" ng-show="showByPermission(702)">
                     <div class="mb15 mt30">
                         <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
                             <span class="glyphicon glyphicon-plus-sign"></span> Thêm chi phí
@@ -138,10 +138,10 @@
                                 <td data-title="'Xử lý'" style="width:0.5%" align="left">
                                     <select class="btn btn-primary" ng-model="status" ng-change="comfirm(item,status)">
                                         <option value="">Chọn chức năng</option>
-                                        <option ng-show="item.RepairStatus==0" value="{{item.RepairStatus+1}}">Chấp nhận</option>
-                                        <option ng-show="item.RepairStatus==1" value="{{item.RepairStatus+1}}">Hoàn thành</option>
-                                        <option ng-show="item.RepairStatus==2" value="{{item.RepairStatus+1}}">Duyệt</option>
-                                        <option ng-hide="item.RepairStatus==1" value="0">Hủy</option>
+                                        <option ng-show="item.RepairStatus==0 && showByPermission(703)" value="{{item.RepairStatus+1}}">Chấp nhận</option>
+                                        <option ng-show="item.RepairStatus==1 && showByPermission(704)" value="{{item.RepairStatus+1}}">Hoàn thành</option>
+                                        <option ng-show="item.RepairStatus==2 && showByPermission(703)" value="{{item.RepairStatus+1}}">Duyệt</option>
+                                        <option ng-show="item.RepairStatus!=1 && showByPermission(703)" value="0">Hủy</option>
                                     </select>
                                 </td>
                             </tr>
