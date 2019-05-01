@@ -13,7 +13,7 @@
                 CarTypeID: CarInfoRequest.CarTypeID,
                 Expires: CarInfoRequest.Expires,
                 InsuranceExpires: CarInfoRequest.InsuranceExpires,
-                FullNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                FullNameUpdate: AccountInfo.FullName,
                 CarID: CarInfoRequest.CarID,
                 CarStatus: CarInfoRequest.CarStatus,
                 LastModifiedDate: CarInfoRequest.LastModifiedDate,

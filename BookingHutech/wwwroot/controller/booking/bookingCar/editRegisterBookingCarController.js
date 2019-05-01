@@ -1,6 +1,6 @@
 ﻿mainmodule.controller('EditRegisterBookingCarController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', '$BookingCar', '$alert', '$account', '$BookingCar', 'EditRegisterRequestData',
     function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, $BookingCar, $alert, $account, $BookingCar, EditRegisterRequestData) {
-        var AccountInfo = $account.getAccountInfo().ObjAccountInfo
+        var AccountInfo = $account.getAccountInfo();
         $scope.Titile = "Đặt Xe";
         $scope.listCarTypeReq = [];
         $scope.isCheck = false;

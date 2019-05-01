@@ -10,7 +10,8 @@ mainmodule.controller('ChangePasswordController', ['$scope', '$state', '$rootSco
             $state.go('main.home');
             return;
         };
-        var AccountInfo = $account.getAccountInfo();
+        //var AccountInfo = $account.getAccountInfo();
+        var AccountInfo = $cookies.getObject('AccountInfo');
         var result = CheckAccountLoginAndChangePass(AccountInfo);
         switch (result) {
             case 1:
@@ -18,7 +19,7 @@ mainmodule.controller('ChangePasswordController', ['$scope', '$state', '$rootSco
                 $scope.goToLogin();
                 break;
             case 2:
-                $scope.AccountName = AccountInfo.ObjAccountInfo.FullName;
+                $scope.AccountName = AccountInfo.FullName;
                 break;
             case 3:
                 $scope.goToHome();
@@ -33,13 +34,12 @@ mainmodule.controller('ChangePasswordController', ['$scope', '$state', '$rootSco
         }
         $scope.btnLoginNewAccount = function () {
             $cookies.remove('AccountInfo');
-            $cookies.remove("AccountInfoCheckPermissions");
-            $cookies.remove("myReload");
+            $cookies.remove("AccountInfoCheckPermissions"); 
             $state.go('login'); 
         }
 
         $scope.changeReq = {
-            Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
+            Account_ID: AccountInfo.Account_ID,
             Password: null,
             ConfirmPassWord: null, 
         }
@@ -76,29 +76,33 @@ mainmodule.controller('ChangePasswordController', ['$scope', '$state', '$rootSco
                     case 154:
                         toastr.error($rootScope.initMessage('PasswordAlreadyExist'));
                         break; 
-                    case 1:
-                        $scope.PutCookies = function () {
-                            var ObjAccountInfo = response.data.Data.GetAccountInfo[0];
-                            var ObjRoleCode = response.data.Data.GetRoleCode;
-                            $cookies.putObject("AccountInfoCheckPermissions", ObjAccountInfo);
-                            $cookies.putObject("AccountInfo", {
-                                ObjAccountInfo,
-                                ObjRoleCode
-                            });  // thông tin accunt login 
-                            $cookies.put('myReload', 1);
+                    case 1:  
+                        $account.RemoveAccountInfo(); 
+                        var ObjAccountInfo = response.data.Data.GetAccountInfo[0];
+                        var ObjRoleCode = [];
+                        for (var i = 0; i < response.data.Data.GetRoleCode.length; i++) {
+                            var RoleCode = {
+                                RoleCode: null
+                            }
+                            var RoleCode = {
+                                RoleCode: response.data.Data.GetRoleCode[i].RoleCode,
+                            }
+                            ObjRoleCode.push(RoleCode);
                         }
-                        $scope.PutCookies();
+                        $cookies.putObject("AccountInfo", ObjAccountInfo);
+                        $cookies.putObject("RoleCode", ObjRoleCode);
+
                         var audio = new Audio('../../audio/alert_message_audio.mp3');
                         audio.play();
                         audio.volume = 0.1; 
-                        toastr.success($rootScope.initMessage('LoginSuccess'));
+                        toastr.success($rootScope.initMessage('ChangepassSuccess'));
                         // kiểm tr loại tài khoản
                         // 2. trưởng khoa -> Quản lý hồ sơ....
                         // 1. thư ký khoa  -> Trang chủ. 
                         var result = CheckAccountType(response.data.Data.GetAccountInfo[0].AccountType);
                         switch (result) {
                             case 1:
-                                $scope.goToHome();
+                                $scope.goToHome(); 
                                 break;
                             case 2: // đổi lại sau. 
                                 $scope.goToHome();

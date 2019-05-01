@@ -199,7 +199,7 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[3].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.FullName,
                     CarID: $scope.CarInfo.CarID,
                     DriverID: $scope.CarInfo.DriverID,
                     Note: $scope.DetalRegistrationCar.Note,
@@ -223,7 +223,7 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[4].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.FullName,
                     Note: $scope.DetalRegistrationCar.Note,
                 }
                 $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
@@ -245,7 +245,7 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[5].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.FullName,
                     Note: $scope.DetalRegistrationCar.Note,
                     CarID: $scope.CarInfo.CarID,
                     DriverID: $scope.CarInfo.DriverID,
@@ -269,7 +269,7 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[6].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.FullName,
                     CarID: $scope.CarInfo.CarID,
                     DriverID: $scope.CarInfo.DriverID,
                     Note: $scope.DetalRegistrationCar.Note,
@@ -294,7 +294,7 @@ mainmodule.controller('ManagerDetailRegisterBKCarController', ['$scope', '$state
                 var AdminVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[7].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.FullName,
                     Note: $scope.DetalRegistrationCar.Note,
                     CarID: $scope.CarInfo.CarID,
                     DriverID: $scope.CarInfo.DriverID,
@@ -342,6 +342,7 @@ mainmodule.controller('PopupSearchCarController', ['$scope', '$state', '$rootSco
                     CarTypeNameRequest: SearchCarResponseModel.CarTypeNameRequest,
                     NumberPeople: SearchCarResponseModel.NumberPeople,
                 }
+                $scope.ListUserChooseCarType = angular.fromJson($scope.SearchCarRequest.CarTypeNameRequest);
                 //Lấy danh sách xe 
                 $BookingCar.SearchApproveRegistrationCar($scope.SearchCarRequest, function (response) {
                     var result = response.data.Data;

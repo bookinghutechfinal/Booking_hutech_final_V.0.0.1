@@ -254,7 +254,7 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
             CheckRole = {
                 RoleMaster_ID: RoleMasterIDRequest,
                 Account_ID: AccountIDRequest,
-                FullNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                FullNameUpdate: AccountInfo.FullName,
                 RoleDetail_Status: true
             }
             for (var i = 0; i < RoleRequest.length; i++) {
