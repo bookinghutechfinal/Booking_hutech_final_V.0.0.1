@@ -50,10 +50,13 @@ mainmodule.service('$account', ['$dao', '$cookies', '$state', function ($dao, $c
     this.getAccountInfo = function () {
         return $cookies.getObject('AccountInfo');
     }
+    this.getRoleCode = function () {
+        return $cookies.getObject('RoleCode');
+    }
 
     this.RemoveAccountInfo = function () {
-        $cookies.remove("AccountInfo");
-        $cookies.remove("AccountInfoCheckPermissions"); 
+        $cookies.remove("AccountInfo"); 
+        $cookies.remove("RoleCode"); 
     }
 
     this.KiemTraUserLogin = function () {

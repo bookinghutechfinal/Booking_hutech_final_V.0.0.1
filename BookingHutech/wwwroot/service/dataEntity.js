@@ -41,7 +41,7 @@ var CheckAccountLoginAndChangePass = function (accountInfo) {
     if (checkNull(accountInfo) == true) {
         return 1; // chưa đăng nhập. 
     }
-    else if (!checkNull(accountInfo) && accountInfo.ObjAccountInfo.IsChangePassword === false) {
+    else if (!checkNull(accountInfo) && accountInfo.IsChangePassword === false) {
         return 2; // đăng nhập rồi. chưa change
     }
     else if (checkNull(accountInfo) !== true) {

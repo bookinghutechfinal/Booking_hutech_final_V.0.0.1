@@ -24,7 +24,7 @@
         $scope.OpenPopupRegisteredBookingCar = function () { 
             if ($rootScope.CheckCookies()) {
                 $scope.reqLogout = {
-                    Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
+                    Account_ID: AccountInfo.Account_ID,
                 }
                 var modalInstance = $modal.open({
                     animation: true,

@@ -29,7 +29,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         $scope.GetDetailAccountInfoAndRole = function () {
             if ($rootScope.CheckCookies()) { 
                 $scope.RequestAccountID = {
-                    Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
+                    Account_ID: AccountInfo.Account_ID,
                 }
                 $scope.tableParams1 = $scope.tableParams1 = null;
                 $account.ManagerGetDetailAccountByAccountID($scope.RequestAccountID, function (res) {
@@ -301,7 +301,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                 $scope.UpdateRoleResquestModel = {
                     RoleMaster_ID: RoleRequestModel.RoleMaster_ID,
                     RoleName: RoleRequestModel.RoleName,
-                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.FullName,
                 }
                 // kiểm tra trước khi update 
                 if (checkNull($scope.UpdateRoleResquestModel.RoleName)) {

@@ -84,7 +84,7 @@ mainmodule.controller('ManagerCarTypeController', ['$scope', '$state', '$rootSco
             if ($rootScope.CheckCookies()) {
                 $scope.CreateNewCarTypeRequest = {
                     CarTypeName: request,
-                    FullNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    FullNameUpdate: AccountInfo.FullName,
                 }
                 if (checkNull($scope.CreateNewCarTypeRequest.CarTypeName)) {
                     toastr.error("Vui lòng nhập tên loại xe");
@@ -228,7 +228,7 @@ mainmodule.controller('ManagerCarTypeController', ['$scope', '$state', '$rootSco
                 $scope.UpdateCarTypeResquestModel = {
                     CarTypeID: CarTypeRequest.CarTypeID,
                     CarTypeName: CarTypeRequest.CarTypeName, 
-                    FullNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    FullNameUpdate: AccountInfo.FullName,
                 }
                 // kiểm tra trước khi update 
                 if (checkNull($scope.UpdateCarTypeResquestModel.CarTypeName)) {

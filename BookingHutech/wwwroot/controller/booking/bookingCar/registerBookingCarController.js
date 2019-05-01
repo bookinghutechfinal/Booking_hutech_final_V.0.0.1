@@ -17,7 +17,7 @@
 
 
         try {
-            var AccountInfo = $account.getAccountInfo().ObjAccountInfo
+            var AccountInfo = $account.getAccountInfo()
             var testCookies = AccountInfo.Account_ID;
             $scope.listCartype = [];
             var CarType = {
@@ -267,7 +267,7 @@
         // button xác nhận đăng ký. 
         $scope.btnRegisterBKCar = function () {
             try {
-                var AccountInfo = $account.getAccountInfo().ObjAccountInfo;
+                var AccountInfo = $account.getAccountInfo();
                 // lấy loại xe y/c
                 var cartyperequest = angular.toJson($scope.cartype);  
                 $scope.RegisterBKCar.DateTimeFrom = FormatDateTimeToDBRequest($scope.RegisterBKCar.DateTimeFrom);

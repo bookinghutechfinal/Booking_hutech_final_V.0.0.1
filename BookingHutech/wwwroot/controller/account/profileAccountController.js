@@ -15,7 +15,7 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
             $scope.tableParams1 = $scope.tableParams1 = null;
             $scope.ListRole = [];
             try {
-                var testCookies = AccountInfo.ObjAccountInfo.Account_ID;
+                var testCookies = AccountInfo.Account_ID;
             } catch (e) {
                 $cookies.remove('AccountInfo');
                 $cookies.remove("AccountInfoCheckPermissions");
@@ -111,7 +111,7 @@ mainmodule.controller('ProfileAccountController', ['$scope', '$state', '$rootSco
                             size: 'lg',
                             resolve: {
                                 AccountIDRequest: function () {
-                                    return AccountInfo.ObjAccountInfo.Account_ID;
+                                    return AccountInfo.Account_ID;
                                 },
                             }
                         });

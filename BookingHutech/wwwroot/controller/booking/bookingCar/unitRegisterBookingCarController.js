@@ -16,7 +16,7 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
             $scope.tableParams = $scope.tableParams = null;
             // kiểm tra Cookies và quyền thực hiện
             if ($rootScope.CheckCookies() && $rootScope.CheckPermission(904)) {  
-                GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.ObjAccountInfo.Unit_ID;
+                GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.Unit_ID;
                 $scope.UnitGetListRegister(GetListRegistrationCarRequestModel);
             }
         }
@@ -52,7 +52,7 @@ mainmodule.controller('UnitRegisterBookingCarController', ['$scope', '$state', '
                 var SearchGetListRegistrationCarRequestModel = {
                     ProfileStatus: request.ProfileStatus,
                     RegistrationCarID: request.RegistrationCarID,
-                    Unit_ID: AccountInfo.ObjAccountInfo.Unit_ID,
+                    Unit_ID: AccountInfo.Unit_ID,
                     DateTimeFrom: moment(request.DateTimeFrom, 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'),
                     DateTimeTo: moment(request.DateTimeTo + " 23:59:59", 'YYYY-MM-DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
                 }

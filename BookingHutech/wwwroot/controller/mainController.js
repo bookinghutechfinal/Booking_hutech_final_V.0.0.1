@@ -19,14 +19,17 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             return;
         };
         $scope.Error = function () {
-            $cookies.remove('AccountInfo');
-            $cookies.remove("AccountInfoCheckPermissions");
-            $cookies.remove("myReload");
+            $account.RemoveAccountInfo(); 
             $state.go('login');
         }
-        $rootScope.online = false; 
+       
         $scope.btnCheckOnline = function () {
             $rootScope.isTimeOutRequest = false; 
+            $rootScope.isLoading = false; 
+        }
+        $scope.btnCheckNoConnect = function () {
+            $rootScope.online = true;
+            localtion.reload(); 
         }
         // kiểm tra cookies
         $rootScope.CheckCookies = function () {
@@ -84,12 +87,12 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
 
 
         try {
-            var AccountInfo = $account.getAccountInfo();
+           // var AccountInfo = $account.getAccountInfo();
+            var getRoleCode = $account.getRoleCode();
             //*** Hàm 2:  kiểm tra quyền show menu & layout tương ứng. 
-            $rootScope.showByPermission = function (permissionCode) {
-                var Role = AccountInfo.ObjRoleCode;
-                for (var i = 0; i < Role.length; i++) {
-                    if (Role[i].RoleCode === permissionCode) {
+            $rootScope.showByPermission = function (permissionCode) { 
+                for (var i = 0; i < getRoleCode.length; i++) {
+                    if (getRoleCode[i].RoleCode === permissionCode) {
                         return true;
                     }
                 }
@@ -106,7 +109,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
                     $scope.goToChangePassword();
                     break;
                 case 3:
-                    $scope.UserName = AccountInfo.ObjAccountInfo.FullName;
+                    $scope.UserName = AccountInfo.FullName;
                     $rootScope.isLoading = false; 
                     break;
             }
@@ -121,7 +124,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
             try {
                 var AccountInfo = $account.getAccountInfo();
                 $scope.reqLogout = {
-                    Account_ID: AccountInfo.ObjAccountInfo.Account_ID,
+                    Account_ID: AccountInfo.Account_ID,
                 } 
                 var modalInstance = $modal.open({
                     animation: true,
@@ -142,9 +145,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
 
                 });
             } catch (e) {
-                $cookies.remove('AccountInfo');
-                $cookies.remove("AccountInfoCheckPermissions");
-                $cookies.remove("myReload");
+                $account.RemoveAccountInfo(); 
                 toastr.error($rootScope.initMessage('InconrectSestion'));
                 $state.go("login");
             }
@@ -166,7 +167,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
                     size: 'lg',
                     resolve: {
                         AccountIDRequest: function () {
-                            return AccountInfo.ObjAccountInfo.Account_ID;
+                            return AccountInfo.Account_ID;
                         },
                     }
                 });
@@ -217,9 +218,7 @@ mainmodule.controller('mainController', ['$scope', 'Idle', 'Keepalive', '$state'
         $scope.$on('IdleTimeout', function () {
             console.log('Idle timeout');
             closeModals();
-            $cookies.remove('AccountInfo');
-            $cookies.remove("AccountInfoCheckPermissions");
-            $cookies.remove("myReload");
+            $account.RemoveAccountInfo(); 
             toastr.error("Phiên làm việc của bạn đã hết hạn!");
             $scope.timeout = $modal.open({
                 animation: true,

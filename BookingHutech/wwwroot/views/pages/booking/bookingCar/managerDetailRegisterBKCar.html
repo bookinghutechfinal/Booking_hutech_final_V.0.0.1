@@ -191,7 +191,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" ng-show="showByPermission(906)"> </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12" ng-show="showByPermission(906)">
                                         <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status !== 5 && DetalRegistrationCar.Profile_Status !== 7  && DetalRegistrationCar.Profile_Status !== 8  && DetalRegistrationCar.Profile_Status !== 9 && DetalRegistrationCar.Profile_Status !== 10">
-                                            <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="AdminNotVerify()">
+                                            <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="AdminNotVerify()" ng-show="DetalRegistrationCar.Profile_Status !== 6">
                                                 <i class="glyphicon glyphicon-remove"></i>
                                                 <span>Không duyệt</span>
                                             </button>
@@ -211,11 +211,11 @@
                                     </div>
                                     <!--BGH-->
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12"  ng-show="showByPermission(905)"> </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12" ng-show="showByPermission(905)">
+                                    <div class="col-md-9 col-sm-9 col-xs-12" ng-show="showByPermission(905) && DetalRegistrationCar.Profile_Status !== 2">
                                         <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status !== 8">
                                             <button class="btn btn-danger btn-round btn-block " type="submit" ng-click="btnSchoolNotVerify()">
                                                 <i class="glyphicon glyphicon-remove"></i>
-                                                <span>BGH   Không duyệt</span>
+                                                <span>BGH Hủy</span>
                                             </button>
                                         </div>
                                         <div class="col-md-4 col-sm-6 col-xs-12" style="padding:10px" ng-show="DetalRegistrationCar.Profile_Status !== 7 && DetalRegistrationCar.Profile_Status !== 8">

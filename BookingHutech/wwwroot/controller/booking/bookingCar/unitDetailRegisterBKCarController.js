@@ -61,7 +61,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
                 }
                 GetListRegistrationCarRequestModel.RegistrationCarID = $stateParams.RegistrationCarID;
                 GetListRegistrationCarRequestModel.ProfileStatus = $stateParams.ProfileStatus;
-                GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.ObjAccountInfo.Unit_ID;
+                GetListRegistrationCarRequestModel.Unit_ID = AccountInfo.Unit_ID;
 
                 $scope.GetListRegistrationCar(GetListRegistrationCarRequestModel);
                
@@ -138,7 +138,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
                 var DeanVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[1].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.FullName,
                     Note: $scope.DetalRegistrationCar.Note,
                 }
                 $alert.showConfirmUpdateNewProfile('Xác nhận duyệt đơn cấp phát này!', function () {
@@ -161,7 +161,7 @@ mainmodule.controller('UnitDetailRegisterBKCarController', ['$scope', '$state', 
                 var DeanNotVerifyRequestModel = {
                     RegistrationCarID: GetListRegistrationCarRequestModel.RegistrationCarID,
                     Profile_Status: RegistrationStatus[2].RegistrationStatusType,
-                    UserNameUpdate: AccountInfo.ObjAccountInfo.FullName,
+                    UserNameUpdate: AccountInfo.FullName,
                     Note: $scope.DetalRegistrationCar.Note,
                 }
                 $alert.showConfirmUpdateNewProfile('Xác nhận hủy không duyệt đơn cấp phát này!', function () {
