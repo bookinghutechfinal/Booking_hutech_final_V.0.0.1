@@ -176,10 +176,7 @@
                                                                 <th  style="width:52%" align="left">Tên quyền</th>
                                                                 <th class="column-title">Trạng thái</th>
                                                                 <th class="column-title">Người cấp</th>
-                                                                <th class="column-title no-link last">
-
-                                                                </th>
-
+                                                                <th class="column-title no-link last"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -201,7 +198,7 @@
                                                                 </td>
                                                                 <td class=" ">
                                                                     <label>
-                                                                        <input type="checkbox" class="js-switch" ng-click="UpdateRole(role)" ng-checked="role.RoleDetail_Status" />
+                                                                        <input type="checkbox" class="js-switch" ng-click="UpdateRole(role)" ng-model="checkedRule" />
                                                                     </label>
                                                                 </td>
                                                             </tr>

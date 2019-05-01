@@ -99,19 +99,35 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <!--Thêm mới khoa viện-->
-                <div class="x_content" ng-show="isShowAddNewUnit">
+                <!--không có quyền-->
+                <div class="x_content bs-example-popovers" ng-show="!showByPermission(502)" style="padding-bottom: 25%;">
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong><i class="fa fa-warning"></i> Xin lỗi!</strong>
+                        <ul>
+                            <li>Bạn không có quyền thực hiện chức năng này.</li>
+                        </ul>
+                        <ul>
+                            <li>Vui lòng liên hệ quản trị viên để được hỗ trợ.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--không có quyền-->
+                <div class="x_content" ng-show="isShowAddNewUnit && showByPermission(502)">
                     <div class="x_panel">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_content">
-                                <div class="form-horizontal form-label-left input_mask"> 
+                                <div class="form-horizontal form-label-left input_mask">
                                     <div class="form-group" ng-show="isShowAddNewUnit">
                                         <div class="row">
                                             <div class="control-label col-md-2 col-sm-2 col-xs-12">Tên loại xe: <i style="color:red;">(*)</i></div>
                                             <div class="col-md-4 col-sm-4 col-xs-12" style="margin-bottom: 8px;">
-                                                <input class="form-control text-box single-line has-feedback-right" ng-model="CreateNewCarTypeModel.CarTypeName" type="text" value="" autofocus >
+                                                <input class="form-control text-box single-line has-feedback-right" ng-model="CreateNewCarTypeModel.CarTypeName" type="text" value="" autofocus>
                                                 <span class="fa fa-briefcase user-profile-icon form-control-feedback right" aria-hidden="true"></span>
                                             </div>
-                                            <div class="col-sm-3 col-md-3 col-xs-6" style="margin-bottom: 8px;">
+                                            <div class="col-sm-3 col-md-3 col-xs-6" style="margin-bottom: 8px;" ng-show="showByPermission(502)">
                                                 <button class="btn btn-primary btn-round btn-block" type="submit"
                                                         data-ng-click="btnCreateNewCarType(CreateNewCarTypeModel.CarTypeName)">
                                                     <i class="fa fa-plus-circle"></i>
@@ -127,13 +143,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
-                            </div> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!--Thêm mới khoa viện-->
-               
+
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <!--Start: danh sách quyền của account-->
                     <div class="x_content">
@@ -141,9 +157,9 @@
                             <!--Thêm mới khoa viện-->
                             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-show="!isShowEditUnit">
                                 <li role="presentation" class="active">
-                                    <a href=""   role="tab" data-toggle="tab" >Loại xe</a>
+                                    <a href="" role="tab" data-toggle="tab">Loại xe</a>
                                 </li>
-                                <li role="presentation" class="" style="float:right" ng-show="!isShowAddNewUnit">
+                                <li role="presentation" class="" style="float:right" ng-show="!isShowAddNewUnit  && showByPermission(502)">
                                     <button class="btn btn-primary btn-round btn-block" type="submit" ng-click="ShowAddNewUnit()">
                                         <i class="fa fa-plus-circle"></i>
                                         <span>Thêm Mới</span>
@@ -156,7 +172,7 @@
                                     </button>
                                 </li>
                             </ul>
-                            <!--Thêm mới khoa viện--> 
+                            <!--Thêm mới khoa viện-->
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                                     <div class="row">
@@ -194,12 +210,13 @@
                                                 </tr>
                                             </table>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--End: danh sách quyền của account-->
                     </div>
-                    <!--End: danh sách quyền của account-->
                 </div>
             </div>
         </div>
@@ -211,4 +228,3 @@
 <script src="../../../../../script/teamplate/iCheck/icheck.min.js"></script>
 <script src="../../../../../script/teamplate/switchery/dist/switchery.min.js"></script>
 <script src="../../../../../script/teamplate/build/js/custom.min.js"></script>-->
- 

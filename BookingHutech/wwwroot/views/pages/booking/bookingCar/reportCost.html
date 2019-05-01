@@ -18,17 +18,31 @@
 </style>
 <div class="clearfix">
     <div class="row">
-
-        <div class="col-md-12 col-sm-12 col-xs-12"> 
-                <div class="x_title">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_title">
+                <ul>
+                    <li><a href="#/main/home"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                    <li><a href="#/main/fuel-cost-manager"><h5>/ {{'ReportCost' | translate}}</h5></a></li>
+                </ul>
+            </div>
+            <!--không có quyền-->
+            <div class="x_content bs-example-popovers" ng-show="!showByPermission(600)" style="padding-bottom: 25%;">
+                <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <strong><i class="fa fa-warning"></i> Xin lỗi!</strong>
                     <ul>
-                        <li><a href="#/main/home"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
-                        <li><a href="#/main/fuel-cost-manager"><h5>/ {{'ReportCost' | translate}}</h5></a></li>
+                        <li>Bạn không có quyền thực hiện chức năng này.</li>
+                    </ul>
+                    <ul>
+                        <li>Vui lòng liên hệ quản trị viên để được hỗ trợ.</li>
                     </ul>
                 </div>
+            </div>
+            <!--không có quyền-->
+            <div ng-show="showByPermission(600)">
                 <div class=" " style="display: block;">
-
-
                     <div class="col-md-3 col-sm-3 col-xs-12" style="float:right">
                         <div class="mb15 mt30">
                             <button class="btn btn-info btn-sm btn-round btn-block dropdown-toggle pull-right" aria-expanded="false" data-toggle="dropdown" ng-click="export()">
@@ -47,9 +61,7 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="clearfix"></div>
-
                     <br />
                     <form>
                         <div class="form-horizontal form-label-left input_mask">
@@ -152,7 +164,8 @@
                         </table>
                     </div>
                 </div>
-            </div> 
+            </div>
+        </div>
     </div>
 </div>
 

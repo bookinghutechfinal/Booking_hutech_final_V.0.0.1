@@ -18,84 +18,100 @@
 </style>
 <div class=" class=" clearfix"">
     <div class="row">
-        <div class="col-md-12">
-            <div class="x_title">
-                <ul>
-                    <li><a href="#/main/home"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
-                    <li><a href=""><h5>/ {{'ListCar' | translate}}</h5></a></li>
-                </ul>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <!--không có quyền-->
+            <div class="x_content bs-example-popovers" ng-show="!showByPermission(500)" style="padding-bottom: 25%;">
+                <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <strong><i class="fa fa-warning"></i> Xin lỗi!</strong>
+                    <ul>
+                        <li>Bạn không có quyền thực hiện chức năng này.</li>
+                    </ul>
+                    <ul>
+                        <li>Vui lòng liên hệ quản trị viên để được hỗ trợ.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="x_content" style="display: block;">
-                <div class="col-sm-3 col-xs-6" style="float:right" ng-show="showByPermission(502)">
-                    <div class="form-group">
-                        <button class="btn btn-warning btn-round btn-block" ng-click="CarTypeManager()">
-                            <!--ng-disabled="!isSubmitingEnable()"-->
-                            <i class="fa fa-plus-circle"></i>
-                            <span class="ng-binding">Quản lý loại xe</span>
-                        </button>
-                    </div>
+            <!--không có quyền-->
+            <div ng-show="showByPermission(500)">
+                <div class="x_title">
+                    <ul>
+                        <li><a href="#/main/home"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                        <li><a href=""><h5>/ {{'ListCar' | translate}}</h5></a></li>
+                    </ul>
                 </div>
-                <div class="col-sm-3 col-xs-6" style="float:right" ng-show="showByPermission(501)">
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-round btn-block" ng-click="AddNewCar()">
-                            <!--ng-disabled="!isSubmitingEnable()"-->
-                            <i class="fa fa-plus-circle"></i>
-                            <span class="ng-binding">Thêm xe</span>
-                        </button>
+                <div class="x_content" style="display: block;">
+                    <div class="col-sm-3 col-xs-6" style="float:right" ng-show="showByPermission(502)">
+                        <div class="form-group">
+                            <button class="btn btn-warning btn-round btn-block" ng-click="CarTypeManager()">
+                                <!--ng-disabled="!isSubmitingEnable()"-->
+                                <i class="fa fa-plus-circle"></i>
+                                <span class="ng-binding">Quản lý loại xe</span>
+                            </button>
+                        </div>
                     </div>
-                </div>  
-                <div class="col-md-3 col-xs-6" style="float:left">
-                    <input type="text" class=" btn-round btn-block" placeholder="Tìm xe..." ng-model="searchText">
-                </div>
-                <div class="row">
-                    <div class="clearfix"></div>
-                    <br />
-                    <div class="col-md-4 col-sm-4 col-xs-12 profile_details" dir-paginate="data in ListCarInfo  |  itemsPerPage: numPag  | filter:searchText">
-                        <div class="well profile_view">
-                            <div class="col-sm-12">
-                                <!--<h4 class="brief"><i>Xe: {{data.CarNo}}</i></h4>-->
-                                <div class="left col-xs-7">
-                                    <h2>{{data.CarName}}</h2>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fa fa-bus"></i> Xe: {{data.CarNo}}</li>
-                                        <li><i class="fa fa-car"></i> Loại xe: {{data.CarTypeName}}</li>
-                                        <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{data.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
-                                        <li ng-show="data.CarStatus ==1"><i class="fa fa-circle text-success"></i> Hoạt động</li>
-                                        <li ng-show="data.CarStatus ==4" style="color:red"><i class="fa fa-circle text-success" style="color:red"></i> Bảo trì, sửa chữa</li>
-                                        <li ng-show="data.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Ngừng hoạt động</li>
-                                    </ul>
+                    <div class="col-sm-3 col-xs-6" style="float:right" ng-show="showByPermission(501)">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-round btn-block" ng-click="AddNewCar()">
+                                <!--ng-disabled="!isSubmitingEnable()"-->
+                                <i class="fa fa-plus-circle"></i>
+                                <span class="ng-binding">Thêm xe</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6" style="float:left">
+                        <input type="text" class=" btn-round btn-block" placeholder="Tìm xe..." ng-model="searchText">
+                    </div>
+                    <div class="row">
+                        <div class="clearfix"></div>
+                        <br />
+                        <div class="col-md-4 col-sm-4 col-xs-12 profile_details" dir-paginate="data in ListCarInfo  |  itemsPerPage: numPag  | filter:searchText">
+                            <div class="well profile_view">
+                                <div class="col-sm-12">
+                                    <!--<h4 class="brief"><i>Xe: {{data.CarNo}}</i></h4>-->
+                                    <div class="left col-xs-7">
+                                        <h2>{{data.CarName}}</h2>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-bus"></i> Xe: {{data.CarNo}}</li>
+                                            <li><i class="fa fa-car"></i> Loại xe: {{data.CarTypeName}}</li>
+                                            <li><i class="fa fa-calendar"></i> Hạn bảo hiểm: {{data.InsuranceExpires | date:'dd/MM/yyyy'}}</li>
+                                            <li ng-show="data.CarStatus ==1"><i class="fa fa-circle text-success"></i> Hoạt động</li>
+                                            <li ng-show="data.CarStatus ==4" style="color:red"><i class="fa fa-circle text-success" style="color:red"></i> Bảo trì, sửa chữa</li>
+                                            <li ng-show="data.CarStatus ==0" style="color:gray"><i class="fa fa-circle text-success" style="color:grey"></i> Ngừng hoạt động</li>
+                                        </ul>
+                                    </div>
+                                    <div class="right col-xs-5 text-center">
+                                        <a href="../../../../images/avt/{{data.CarImage}}" target="_blank"><img src="../../../../images/avt/{{data.CarImage}}" alt="{{data.CarImage}}" style="height:140px;width:auto;max-width:100%"></a>
+                                    </div>
                                 </div>
-                                <div class="right col-xs-5 text-center">
-                                    <a href="../../../../images/avt/{{data.CarImage}}" target="_blank"><img src="../../../../images/avt/{{data.CarImage}}" alt="{{data.CarImage}}" style="height:140px;width:auto;max-width:100%"></a>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 bottom text-center">
-                                <div class="col-xs-12 col-sm-4 emphasis">
-                                </div>
-                                <div class="col-xs-12 col-sm-6 emphasis">
-                                    <a class="btn btn-round btn-warning btn-md" href="#/main/detail-car/{{data.CarID}}">
-                                        Xem chi tiết <i class="fa fa-share-square-o"> </i>
-                                    </a>
+                                <div class="col-xs-12 bottom text-center">
+                                    <div class="col-xs-12 col-sm-4 emphasis">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+                                        <a class="btn btn-round btn-warning btn-md" href="#/main/detail-car/{{data.CarID}}">
+                                            Xem chi tiết <i class="fa fa-share-square-o"> </i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="clearfix"></div>
+                <div class="clearfix"></div>
 
-            <div class="row" style="float:right;">
-                <div class="col-sm-4 col-xs-4">
-                    Số lượng: <input type="number" ng-model="numPag" class="form-control" style="width: 100%;" />
-                </div>
-                <div class="col-sm-9 col-xs-8">
-                    <dir-pagination-controls boundary-links="true" direction-links="true">
-                    </dir-pagination-controls>
+                <div class="row" style="float:right;">
+                    <div class="col-sm-4 col-xs-4">
+                        Số lượng: <input type="number" ng-model="numPag" class="form-control" style="width: 100%;" />
+                    </div>
+                    <div class="col-sm-9 col-xs-8">
+                        <dir-pagination-controls boundary-links="true" direction-links="true">
+                        </dir-pagination-controls>
+                    </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
 

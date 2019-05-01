@@ -26,171 +26,190 @@
 <div class="clearfix">
     <div class="row">
 
-        <div class="col-md-12 col-sm-12 col-xs-12"> 
-                <div class="x_title">
-                    <ul>
-                        <li><a href="#/main/home"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
-                        <li><a href="#/main/manager-fuel-cost"><h5>/ {{'CostManager' | translate}}</h5></a></li>
-                        <li><a href="#/main/manager-fuel-cost"><h5>/ {{'FuelCostManager' | translate}}</h5></a></li>
-                    </ul>
-                </div>
-                <center><h3 style="color:darkslateblue" ng-show="!ShowListCost">Danh sách chi phí nhiên liệu cần duyệt</h3></center>
-                <center><h3 style="color:darkslateblue" ng-show="ShowListCost">Danh sách chi phí nhiên liệu đã duyệt</h3></center>
-                <hr />
-                <div class="col-md-3 col-sm-3 col-xs-12" style="float:right" ng-show="showByPermission(702)">
-                    <div class="mb15 mt30">
-                        <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
-                            <span class="glyphicon glyphicon-plus-sign"></span> Thêm chi phí
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_title">
+                <ul>
+                    <li><a href="#/main/home"><h5><i class="glyphicon glyphicon-home"></i> {{'Home' | translate}}</h5></a></li>
+                    <li><a href="#/main/manager-fuel-cost"><h5>/ {{'CostManager' | translate}}</h5></a></li>
+                    <li><a href="#/main/manager-fuel-cost"><h5>/ {{'FuelCostManager' | translate}}</h5></a></li>
+                </ul>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <!--không có quyền-->
+                <div class="x_content bs-example-popovers" ng-show="!showByPermission(700)" style="padding-bottom: 25%;">
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
                         </button>
+                        <strong><i class="fa fa-warning"></i> Xin lỗi!</strong>
+                        <ul>
+                            <li>Bạn không có quyền thực hiện chức năng này.</li>
+                        </ul>
+                        <ul>
+                            <li>Vui lòng liên hệ quản trị viên để được hỗ trợ.</li>
+                        </ul>
                     </div>
                 </div>
-
-                <div class="x_content" style="display: block;">
-                    <form>
-                        <div class="form-horizontal form-label-left input_mask">
-                            <div class="form-group">
-
-                                <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
-                                <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <div class='input-group date' id='myDatepicker'>
-                                        <input type="text" class="form-control ed_border" id='myDate1' />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                    <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">-->
-                                </div>
-
-                                <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
-                                <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <div class='input-group date' id='myDatepicker2'>
-                                        <input type='text' class="form-control ed_border" id='myDate2' />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                    <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_to" type="date" style="cursor:pointer">-->
-                                </div>
-
-                                <div class="control-label col-md-1 col-sm-1 col-xs-12">Xe:</div>
-                                <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <select class="form-control select2 ed_border" ng-model="searchModel.CarID" style="width: 100%;cursor:pointer">
-                                        <option value="0">{{'All' | translate }}</option>
-                                        <option ng-repeat="item in ListCarInfo" value="{{item.CarID}}">{{item.CarNo}}</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-1 col-sm-1 col-xs-12">
-                                    <br />
-                                </div>
-
-                                <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <div class="mb15 mt30">
-                                        <button class="btn btn-warning btn-round btn-block" ng-click="searchCost(searchModel)">
-                                            <span class="glyphicon glyphicon-search"></span> Xem
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <p style="color:red" ng-show="ErrorDay">* Kiểm tra chọn ngày.</p>
+                <!--không có quyền-->
+                <div ng-show="showByPermission(700)">
+                    <center><h3 style="color:darkslateblue" ng-show="!ShowListCost">Danh sách chi phí nhiên liệu cần duyệt</h3></center>
+                    <center><h3 style="color:darkslateblue" ng-show="ShowListCost">Danh sách chi phí nhiên liệu đã duyệt</h3></center>
+                    <hr />
+                    <div class="col-md-3 col-sm-3 col-xs-12" style="float:right" ng-show="showByPermission(702)">
+                        <div class="mb15 mt30">
+                            <button class="btn btn-primary btn-round btn-block" ng-click="addNewCost()">
+                                <span class="glyphicon glyphicon-plus-sign"></span> Thêm chi phí
+                            </button>
                         </div>
-                        <a ng-click="getListCost()"><i class="material-icons lentop"><span class="glyphicon glyphicon-refresh"></span></i></a>
-                    </form>
-                    <div class="clearfix"></div>
-                    <div class="table-responsive" ng-show="!ShowListCost">
-                        <table ng-table="tableParams" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="true" fixed-table-headers="scrollable-area">
-                            <tr ng-repeat="item in $data " role="none" class="hover_">
-                                <td data-title="'Xe'" style="width:6%" align="left" filter="{CarNo:'text'}" sortable="'CarNo'">
-                                    <!--filter="{CarNo:'text'}"-->
-                                    {{item.CarNo}}
-                                </td>
-                                <td data-title="'Địa điểm'" style="width:7%" align="left" sortable="'RepairAddres'">
-                                    {{item.RepairAddres}}
-                                </td>
-                                <td data-title="'Nội dung'" style="width:3%" align="left" sortable="'Content'">
-                                    {{item.Content}}
-                                </td>
-                                <td data-title="'Số lượng'" style="width:1%" align="left" sortable="'Quantity'">
-                                    <!--filter="{CarNo:'text'}"-->
-                                    {{item.Quantity}} lit
-                                </td>
-                                <td data-title="'Tổng tiền'" style="width:5%" align="left" sortable="'TotalMoney'">
-                                    {{item.TotalMoney | currency : ""}} Đ
-                                </td>
-                                <td data-title="'Ngày thực hiện'" style="width:4%" align="left" sortable="'CreateDate'">
-                                    {{item.CreateDate | date:'dd/MM/yyyy'}}
-                                </td>
-                                <td data-title="'Hóa đơn'" style="width:3%" align="left">
-                                    <a href="../../../../../images/bills/{{item.ImagerBill}}" target="_blank">
-                                        <img src="../../../../../images/bills/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
-                                    </a>
-                                </td>
-                                <td data-title="'Ghi chú'" style="width:5%" align="left">
-                                    {{item.Note}}
-                                </td>
-                                <td data-title="'Trạng thái'" style="width:7%" align="left" sortable="'RepairStatus'">
-                                    <span ng-show="item.RepairStatus==0" style="color:blue">Đề xuất</span>
-                                    <span ng-show="item.RepairStatus==1" style="color:green">Chờ thực hiện</span>
-                                    <span ng-show="item.RepairStatus==2" style="color:red">Chờ duyệt</span>
-                                </td>
-                                <td data-title="'Xử lý'" style="width:0.5%" align="left">
-                                    <select class="btn btn-primary" ng-model="status" ng-change="comfirm(item,status)">
-                                        <option value="">Chọn chức năng</option>
-                                        <option ng-show="item.RepairStatus==0 && showByPermission(703)" value="{{item.RepairStatus+1}}">Chấp nhận</option>
-                                        <option ng-show="item.RepairStatus==1 && showByPermission(704)" value="{{item.RepairStatus+1}}">Hoàn thành</option>
-                                        <option ng-show="item.RepairStatus==2 && showByPermission(703)" value="{{item.RepairStatus+1}}">Duyệt</option>
-                                        <option ng-show="item.RepairStatus!=1 && showByPermission(703)" value="0">Hủy</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
-                    <!--search cost-->
-                    <p style="color:blue;font-weight:bold" ng-show="ShowListCost && nonMess">Các đơn đã duyệt từ ngày {{datefrom | date: 'dd-MM-yyyy'}} đến ngày {{dateto | date: 'dd-MM-yyyy'}}:</p>
-                    <p style="color:blue;font-weight:bold" ng-show="ShowListCost && !nonMess">Các đơn đã duyệt gần đây:</p>
-                    <div class="table-responsive" ng-show="ShowListCost">
-                        <table ng-table="tableParams1" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="true" fixed-table-headers="scrollable-area">
-                            <tr ng-repeat="item in $data " role="none" class="hover_">
-                                <td data-title="'Xe'" style="width:5%" align="left" filter="{CarNo:'text'}" sortable="'CarNo'">
-                                    <!--filter="{CarNo:'text'}"-->
-                                    {{item.CarNo}}
-                                </td>
-                                <td data-title="'Địa điểm'" style="width:6%" align="left" sortable="'RepairAddres'">
-                                    {{item.RepairAddres}}
-                                </td>
-                                <td data-title="'Nội dung'" style="width:7%" align="left" sortable="'Content'">
-                                    {{item.Content}}
-                                </td>
-                                <td data-title="'Số lượng'" style="width:1%" align="left" sortable="'Quantity'">
-                                    <!--filter="{CarNo:'text'}"-->
-                                    {{item.Quantity}} lit
-                                </td>
-                                <td data-title="'Tổng tiền'" style="width:7%" align="left" sortable="'TotalMoney'">
-                                    {{item.TotalMoney | currency : ""}} Đ
-                                </td>
-                                <td data-title="'Ngày thực hiện'" style="width:7%" align="left" sortable="'CreateDate'">
-                                    {{item.CreateDate | date:'dd/MM/yyyy'}}
-                                </td>
-                                <td data-title="'Hóa đơn'" style="width:5%" align="left">
-                                    <a href="../../../../../images/bills/{{item.ImagerBill}}" target="_blank">
-                                        <img src="../../../../../images/bills/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
-                                    </a>
-                                </td>
-                                <td data-title="'Ghi chú'" style="width:5%" align="left">
-                                    {{item.Note}}
-                                </td>
-                                <td data-title="'Trạng thái'" style="width:8%" align="left">
-                                    <span style="color:green">Đã duyệt</span>
-                                </td>
-                            </tr>
-                        </table>
+
+                    <div class="x_content" style="display: block;">
+                        <form>
+                            <div class="form-horizontal form-label-left input_mask">
+                                <div class="form-group">
+
+                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class='input-group date' id='myDatepicker'>
+                                            <input type="text" class="form-control ed_border" id='myDate1' />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">-->
+                                    </div>
+
+                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class='input-group date' id='myDatepicker2'>
+                                            <input type='text' class="form-control ed_border" id='myDate2' />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_to" type="date" style="cursor:pointer">-->
+                                    </div>
+
+                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Xe:</div>
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <select class="form-control select2 ed_border" ng-model="searchModel.CarID" style="width: 100%;cursor:pointer">
+                                            <option value="0">{{'All' | translate }}</option>
+                                            <option ng-repeat="item in ListCarInfo" value="{{item.CarID}}">{{item.CarNo}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-1 col-sm-1 col-xs-12">
+                                        <br />
+                                    </div>
+
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class="mb15 mt30">
+                                            <button class="btn btn-warning btn-round btn-block" ng-click="searchCost(searchModel)">
+                                                <span class="glyphicon glyphicon-search"></span> Xem
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <p style="color:red" ng-show="ErrorDay">* Kiểm tra chọn ngày.</p>
+                            </div>
+                            <a ng-click="getListCost()"><i class="material-icons lentop"><span class="glyphicon glyphicon-refresh"></span></i></a>
+                        </form>
+                        <div class="clearfix"></div>
+                        <div class="table-responsive" ng-show="!ShowListCost">
+                            <table ng-table="tableParams" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="true" fixed-table-headers="scrollable-area">
+                                <tr ng-repeat="item in $data " role="none" class="hover_">
+                                    <td data-title="'Xe'" style="width:6%" align="left" filter="{CarNo:'text'}" sortable="'CarNo'">
+                                        <!--filter="{CarNo:'text'}"-->
+                                        {{item.CarNo}}
+                                    </td>
+                                    <td data-title="'Địa điểm'" style="width:7%" align="left" sortable="'RepairAddres'">
+                                        {{item.RepairAddres}}
+                                    </td>
+                                    <td data-title="'Nội dung'" style="width:3%" align="left" sortable="'Content'">
+                                        {{item.Content}}
+                                    </td>
+                                    <td data-title="'Số lượng'" style="width:1%" align="left" sortable="'Quantity'">
+                                        <!--filter="{CarNo:'text'}"-->
+                                        {{item.Quantity}} lit
+                                    </td>
+                                    <td data-title="'Tổng tiền'" style="width:5%" align="left" sortable="'TotalMoney'">
+                                        {{item.TotalMoney | currency : ""}} Đ
+                                    </td>
+                                    <td data-title="'Ngày thực hiện'" style="width:4%" align="left" sortable="'CreateDate'">
+                                        {{item.CreateDate | date:'dd/MM/yyyy'}}
+                                    </td>
+                                    <td data-title="'Hóa đơn'" style="width:3%" align="left">
+                                        <a href="../../../../../images/bills/{{item.ImagerBill}}" target="_blank">
+                                            <img src="../../../../../images/bills/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
+                                        </a>
+                                    </td>
+                                    <td data-title="'Ghi chú'" style="width:5%" align="left">
+                                        {{item.Note}}
+                                    </td>
+                                    <td data-title="'Trạng thái'" style="width:7%" align="left" sortable="'RepairStatus'">
+                                        <span ng-show="item.RepairStatus==0" style="color:blue">Đề xuất</span>
+                                        <span ng-show="item.RepairStatus==1" style="color:green">Chờ thực hiện</span>
+                                        <span ng-show="item.RepairStatus==2" style="color:red">Chờ duyệt</span>
+                                    </td>
+                                    <td data-title="'Xử lý'" style="width:0.5%" align="left">
+                                        <select class="btn btn-primary" ng-model="status" ng-change="comfirm(item,status)">
+                                            <option value="">Chọn chức năng</option>
+                                            <option ng-show="item.RepairStatus==0 && showByPermission(703)" value="{{item.RepairStatus+1}}">Chấp nhận</option>
+                                            <option ng-show="item.RepairStatus==1 && showByPermission(704)" value="{{item.RepairStatus+1}}">Hoàn thành</option>
+                                            <option ng-show="item.RepairStatus==2 && showByPermission(703)" value="{{item.RepairStatus+1}}">Duyệt</option>
+                                            <option ng-show="item.RepairStatus!=1 && showByPermission(703)" value="0">Hủy</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--search cost-->
+                        <p style="color:blue;font-weight:bold" ng-show="ShowListCost && nonMess">Các đơn đã duyệt từ ngày {{datefrom | date: 'dd-MM-yyyy'}} đến ngày {{dateto | date: 'dd-MM-yyyy'}}:</p>
+                        <p style="color:blue;font-weight:bold" ng-show="ShowListCost && !nonMess">Các đơn đã duyệt gần đây:</p>
+                        <div class="table-responsive" ng-show="ShowListCost">
+                            <table ng-table="tableParams1" class="table table-striped table-bordered jambo_table bulk_action" role="none" show-filter="true" fixed-table-headers="scrollable-area">
+                                <tr ng-repeat="item in $data " role="none" class="hover_">
+                                    <td data-title="'Xe'" style="width:5%" align="left" filter="{CarNo:'text'}" sortable="'CarNo'">
+                                        <!--filter="{CarNo:'text'}"-->
+                                        {{item.CarNo}}
+                                    </td>
+                                    <td data-title="'Địa điểm'" style="width:6%" align="left" sortable="'RepairAddres'">
+                                        {{item.RepairAddres}}
+                                    </td>
+                                    <td data-title="'Nội dung'" style="width:7%" align="left" sortable="'Content'">
+                                        {{item.Content}}
+                                    </td>
+                                    <td data-title="'Số lượng'" style="width:1%" align="left" sortable="'Quantity'">
+                                        <!--filter="{CarNo:'text'}"-->
+                                        {{item.Quantity}} lit
+                                    </td>
+                                    <td data-title="'Tổng tiền'" style="width:7%" align="left" sortable="'TotalMoney'">
+                                        {{item.TotalMoney | currency : ""}} Đ
+                                    </td>
+                                    <td data-title="'Ngày thực hiện'" style="width:7%" align="left" sortable="'CreateDate'">
+                                        {{item.CreateDate | date:'dd/MM/yyyy'}}
+                                    </td>
+                                    <td data-title="'Hóa đơn'" style="width:5%" align="left">
+                                        <a href="../../../../../images/bills/{{item.ImagerBill}}" target="_blank">
+                                            <img src="../../../../../images/bills/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
+                                        </a>
+                                    </td>
+                                    <td data-title="'Ghi chú'" style="width:5%" align="left">
+                                        {{item.Note}}
+                                    </td>
+                                    <td data-title="'Trạng thái'" style="width:8%" align="left">
+                                        <span style="color:green">Đã duyệt</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--end search cost-->
                     </div>
-                    <!--end search cost-->
-                </div> 
+                </div>
+            </div>
         </div>
     </div>
-
 </div>
 <!--Search cost-->
 <!--End: search cost-->

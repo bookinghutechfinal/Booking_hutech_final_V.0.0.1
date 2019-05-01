@@ -138,7 +138,7 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
 
         // update khóa, mở duyền
         $scope.UpdateRole = function (roleRequestModel) {
-            if ($scope.checkedRule == false) {
+            if (roleRequestModel.RoleDetail_Status == false) {
                 $alert.showConfirmUpdateCarInfo($rootScope.initMessage('Bạn muốn mở quyền cho tài khoản này?'), function () {
                     let DeleteRoleRequestModel = {
                         RoleMaster_ID: roleRequestModel.RoleMaster_ID,
@@ -150,14 +150,15 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                             case 1:
                                 toastr.success('Bạn đã cập nhật thành công.');
                                 $scope.ShowDetailAccount();
+                                $scope.checkedRule = true;
                                 break;
                             case 2:
                                 toastr.error('Bạn đã cập nhật thất bại.');
                                 break;
                         }
                     });
-                });s
-                $scope.checkedRule = true;
+                });
+                $scope.checkedRule = false;
             } else
                 $alert.showConfirmUpdateCarInfo($rootScope.initMessage('Bạn muốn hủy quyền cho tài khoản này?'), function () {
                     let DeleteRoleRequestModel = {
@@ -170,6 +171,7 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                             case 1:
                                 toastr.success('Bạn đã cập nhật thành công.');
                                 $scope.ShowDetailAccount();
+                                $scope.checkedRule = false;
                                 break;
                             case 2:
                                 toastr.error('Bạn đã cập nhật thất bại.');
@@ -177,7 +179,7 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                         }
                     });
                 });
-            $scope.checkedRule = false;
+            $scope.checkedRule = true;
 
         }
 
