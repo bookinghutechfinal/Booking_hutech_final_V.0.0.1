@@ -146,13 +146,6 @@
                                         <div class="control-label col-md-2 col-sm-2 col-xs-12">Chọn xe : <i style="color:red;">(*)</i></div>
                                         <div class="col-md-4 col-sm-4 col-xs-12">
                                             <select class="form-control ed_border" ng-model="costInfo.Car_ID" ng-change="TestInputChange(costInfo)" style="width: 100%;">
-
-
-
-
-
-
-
                                                 <!--<option selected value="all">{{'All' | translate }}</option>-->
                                                 <option selected value="">-- Vui lòng chọn --</option>
                                                 <option ng-repeat="data in ListCarInfo" value="{{data.CarID}}">
@@ -175,7 +168,6 @@
                                             </div>
                                             <span class="field-validation-valid text-danger" ng-show="angular.element('#myDate').val() === '' || angular.element('#myDate').val() === null && !TestInputChange">Vui lòng nhập!</span>
                                         </div>
-
                                         <div class="control-label col-md-6 col-sm-6 col-xs-12"></div>
                                     </div>
 
@@ -188,94 +180,76 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group" ng-show="costInfo.Done">
-                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Nội dung: </div>
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Ghi chú: </div>
                                         <div class="col-md-10 col-sm-10 col-xs-12">
-                                            <span class="fa fa-pencil-square-o form-control-feedback right" aria-hidden="true"></span>
-                                            <input class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Content" ng-change="TestInputChange(costInfo)" type="text">
-                                            <span class="field-validation-valid text-danger" ng-show="costInfo.Done">Vui lòng nhập!</span>
+                                            <textarea class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Note" ng-change="TestInputChange(costInfo)"></textarea>
                                         </div>
                                     </div>
-
-                                    <div class="form-group" ng-show="costInfo.Done">
-                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Số lượng: </div>
+                                    <br />
+                                    <!--Detail Cost-->
+                                    <!--<pre>{{DetailCost}}</pre>-->
+                                    <div class="control-label col-md-12 col-sm-12 col-xs-12"><center><h3>Nhập chi tiết</h3></center></div>
+                                    <br />
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <input type="text" placeholder="Nội dung" class="form-control text-box single-line ed_border" ng-model="DetailCost.Content" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="number" placeholder="Số lượng" class="form-control text-box single-line ed_border" ng-model="DetailCost.Quantity" />
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="number" placeholder="Tổng tiền" class="form-control text-box single-line ed_border" ng-model="DetailCost.TotalMoney" />
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <span class="fa fa-thumb-tack form-control-feedback right" aria-hidden="true"></span>
-                                            <input class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Quantity" ng-change="TestInputChange(costInfo)" type="number">
-                                            <span class="field-validation-valid text-danger" ng-show="costInfo.Done">Vui lòng nhập!</span>
-                                        </div>
-
-                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Tổng tiền: </div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <span class="glyphicon glyphicon-usd form-control-feedback right" aria-hidden="true"></span>
-                                            <input class="form-control text-box single-line ed_border" value="" ng-model="costInfo.TotalMoney" ng-change="TestInputChange(costInfo)" type="number">
-                                            <span class="field-validation-valid text-danger" ng-show="costInfo.Done">Vui lòng nhập!</span>
+                                            <button class="btn btn-info" style="width:100%" ng-click="AddMore(DetailCost)" type="reset"><i class="fa fa-edit"></i> Thêm</button>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="control-label col-md-2 col-sm-2 col-xs-12">Ghi chú: </div>
-                                    <div class="col-md-10 col-sm-10 col-xs-12">
-                                        <textarea class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Note" ng-change="TestInputChange(costInfo)"></textarea>
+                                    <div class="table-responsive col-md-12 col-sm-12 col-xs-12">
+                                        <table class="table table-striped" role="none" fixed-table-headers="scrollable-area">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nội dung</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Tổng tiền</th>
+                                                    <th>Chức năng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in DetailCost">
+                                                    <td><p>{{data.Content}}</p></td>
+                                                    <td><p>{{data.Quantity}}</p></td>
+                                                    <td><p>{{data.TotalMoney}}</p></td>
+                                                    <td><button class="btn btn-danger" ng-hide="DetailCost==null" ng-click="Delete($index)"><i class="fa fa-remove"></i> Xóa</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div>
-                                <br />
-                                <!--Detail Cost-->
-                                <!--<pre>{{DetailCost}}</pre>-->
-                                <div class="control-label col-md-12 col-sm-12 col-xs-12"><center><h3>Nhập chi tiết</h3></center></div>
-                                <br />
-                                <div class="table-responsive col-md-12 col-sm-12 col-xs-12">
-                                    <table class="table table-striped" role="none" fixed-table-headers="scrollable-area">
-                                        <tr>
-                                            <td><input type="text" placeholder="Nội dung" class="form-control text-box single-line ed_border" ng-model="DetailCost.Content" /></td>
-                                            <td><input type="number" placeholder="Số lượng" class="form-control text-box single-line ed_border" ng-model="DetailCost.Quantity" /></td>
-                                            <td><input type="number" placeholder="Tổng tiền" class="form-control text-box single-line ed_border" ng-model="DetailCost.TotalMoney" /></td>
-                                            <td><button class="btn btn-info" ng-click="AddMore(DetailCost)" type="reset"><i class="fa fa-edit"></i> Thêm</button></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <br />
-                                <div class="table-responsive col-md-12 col-sm-12 col-xs-12">
-                                    <table class="table table-striped" role="none" fixed-table-headers="scrollable-area">
-                                        <thead>
-                                            <tr>
-                                                <th>Nội dung</th>
-                                                <th>Số lượng</th>
-                                                <th>Tổng tiền</th>
-                                                <th>Chức năng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="data in DetailCost">
-                                                <td><p>{{data.Content}}</p></td>
-                                                <td><p>{{data.Quantity}}</p></td>
-                                                <td><p>{{data.TotalMoney}}</p></td>
-                                                <td><button class="btn btn-danger" ng-hide="DetailCost==null" ng-click="Delete($index)"><i class="fa fa-remove"></i> Xóa</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!--Detail Cost-->
+                                    <!--Detail Cost-->
 
-                                <div class="form-group" style="float:right">
-                                    <span ng-show="btndisabled || ErrorInput" class="field-validation-valid text-danger" style="color:red;"><i>Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*)</i></span>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10 col-sm-10 col-xs-12">
-                                        <div class="col-sm-6 col-md-6" style="margin-bottom: 1px;">
-                                            <button class="btn btn-danger btn-round btn-block"
-                                                    ng-click="ClosePopup()">
-                                                <i class="glyphicon glyphicon-remove"></i>
-                                                <span>HỦY</span>
-                                            </button>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <button class="btn Sbtn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
-                                                    ng-click="addNewCost(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)">
-                                                <i class="fa fa-plus-circle"></i>
-                                                <span>THÊM</span>
-                                            </button>
+                                    <div class="form-group" style="float:right">
+                                        <span ng-show="btndisabled || ErrorInput" class="field-validation-valid text-danger" style="color:red;"><i>Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*)</i></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10 col-sm-10 col-xs-12">
+                                            <div class="col-sm-6 col-md-6" style="margin-bottom: 1px;">
+                                                <button class="btn btn-danger btn-round btn-block"
+                                                        ng-click="ClosePopup()">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                    <span>HỦY</span>
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <button class="btn Sbtn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                        ng-click="addNewCost(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                    <span>THÊM</span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
