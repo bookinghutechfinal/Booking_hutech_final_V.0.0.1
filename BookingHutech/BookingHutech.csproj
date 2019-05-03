@@ -2549,6 +2549,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api_BHutech\Lib\Utils\Log\" />
+    <Folder Include="Log\" />
     <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>

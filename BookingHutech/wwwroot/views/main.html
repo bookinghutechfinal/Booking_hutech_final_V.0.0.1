@@ -182,7 +182,7 @@
             </ul>
             <ul>
                 <li style="display:inline;">
-                    <input type="button" ng-click="btnCheckNoConnect()" class="btn btn-primary" value="Đã Hiểu" />
+                    <input type="button"  onclick="btnCheckNoConnect()" class="btn btn-primary" value="Đã Hiểu" />
                 </li>
             </ul>
         </div>
@@ -206,3 +206,8 @@
         </div>
     </div>
 </div>
+<script>
+    function btnCheckNoConnect() {
+        location.reload(true); 
+    }
+</script>
