@@ -24,8 +24,9 @@
 
             });
         }
-
-        $scope.init();
+        if ($rootScope.CheckCookies()) {
+            $scope.init();
+        }
 
         $scope.OpenPopupRegisteredBookingCar = function () {
             if ($rootScope.CheckCookies()) {

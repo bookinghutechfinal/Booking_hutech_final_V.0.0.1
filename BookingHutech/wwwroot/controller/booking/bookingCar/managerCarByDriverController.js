@@ -1,8 +1,5 @@
 ﻿mainmodule.controller('ManagerCarByDriverController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$stateParams', '$alert', '$rootScope', 'NgTableParams', '$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $stateParams, $alert, $rootScope, NgTableParams, $account) {
-        if ($rootScope.CheckCookies()) {
-            var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
-        }
 
         // Hàm 1: khai báo các biến tiện ích
         $scope.init = function () {
@@ -21,6 +18,7 @@
 
         $scope.getListCost = function () {
             if ($rootScope.CheckCookies()) {
+                let AccountInfo = $account.getAccountInfo();
                 var request = $scope.searchModel;
                 angular.element('#myDate2').val("");
                 angular.element('#myDate1').val("");
@@ -58,6 +56,7 @@
         //Search cost by CostsTypeID, CarID, Date_from, Date_to
         $scope.searchCost = function (request) {
             if ($rootScope.CheckCookies()) {
+                let AccountInfo = $account.getAccountInfo();
                 var repairStatus = 1111;
                 var repairStatus1 = 1111;
                 var repairStatus2 = 1111;
@@ -151,8 +150,9 @@
                 }
             }
         }
-
-        $scope.init();
+        if ($rootScope.CheckCookies()) {
+            $scope.init();
+        }
 
         $scope.addNewCost = function () {
             if ($rootScope.CheckCookies()) {

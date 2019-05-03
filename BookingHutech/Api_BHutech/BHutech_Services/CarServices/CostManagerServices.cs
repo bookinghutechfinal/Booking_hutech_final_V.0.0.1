@@ -5,6 +5,7 @@ using System.Web;
 using BookingHutech.Api_BHutech.DAO.CarDAO;
 using BookingHutech.Api_BHutech.Lib;
 using BookingHutech.Api_BHutech.Lib.Helper;
+using BookingHutech.Api_BHutech.Lib.Utils;
 using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 
@@ -211,6 +212,9 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
         {
             try
             {
+                string fileName = "Bill" + helper.CreateID() + ".png";
+                request.newCost.ImagerBill = UploadFile.UploadImage(request.newCost.ImagerBill, fileName);
+
                 request.newCost.RepairID = helper.CreateID();
                 string data = "";
                 for (int i = 0; i < request.newDetailCost.Count; i++)

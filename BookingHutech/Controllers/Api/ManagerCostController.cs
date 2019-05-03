@@ -484,7 +484,7 @@ namespace BookingHutech.Controllers.Api
         /// </summary>
         /// <param name="request">UpdateRepairStatusRequestModel</param>
         [HttpPost]
-        public ApiResponse AddNewCosts(NewCostRequestModel request)
+        public ApiResponse AddNewCosts([FromBody]NewCostRequestModel request)
         {
             try
             {

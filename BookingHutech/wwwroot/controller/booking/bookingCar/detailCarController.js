@@ -110,8 +110,9 @@
                 $scope.tableParams = new NgTableParams({}, { dataset: ListCost });
             });
         }
-
-        $scope.init();
+        if ($rootScope.CheckCookies()) {
+            $scope.init();
+        }
 
         $scope.isShowActivitive = false;
         $scope.ShowActivitive = function () {//mở/đóng hoạt động gần đây

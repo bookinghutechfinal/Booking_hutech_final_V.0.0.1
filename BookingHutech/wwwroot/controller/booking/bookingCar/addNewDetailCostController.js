@@ -1,8 +1,5 @@
 ﻿mainmodule.controller('popupAddNewDetailCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance', '$account', 'DetailCost',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance, $account, DetailCost) {
-        if ($rootScope.CheckCookies()) {
-            var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
-        }
         var repairID = DetailCost.RepairID;
 
         $scope.init = function () {
@@ -24,6 +21,8 @@
                     RepairID: repairID
 
                 });
+            } else {
+                $modalInstance.close();
             }
         }
 
@@ -38,9 +37,14 @@
                     }
                     $scope.DetailCost.pop();
                 }
+            } else {
+                $modalInstance.close();
             }
         }
-        $scope.init();
+
+        if ($rootScope.CheckCookies()) {
+            $scope.init();
+        }
 
         $scope.SaveNewDetail = function (request) {
             if ($rootScope.CheckCookies()) {
@@ -54,6 +58,9 @@
                             break;
                     }
                 });
+                $modalInstance.close();
+            }
+            else {
                 $modalInstance.close();
             }
         }

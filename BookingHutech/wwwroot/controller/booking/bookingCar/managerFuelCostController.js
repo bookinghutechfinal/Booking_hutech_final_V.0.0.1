@@ -1,8 +1,5 @@
 ﻿mainmodule.controller('ManagerFuelCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$alert', '$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $alert, $account) {
-        if ($rootScope.CheckCookies()) {
-            var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
-        }
 
         $scope.init = function () {
             $scope.ClearData();
@@ -86,6 +83,7 @@
             if ($rootScope.CheckCookies()) {
                 var date_from = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
                 var date_to = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
+                var carID = angular.element('#carID').val();
                 var limit = 0;
 
                 if (date_from == "Invalid date" && date_to == "Invalid date") {
@@ -104,7 +102,7 @@
                         CostsTypeID: 1,
                         DateFrom: date_from,
                         DateTo: date_to,
-                        CarID: request.CarID,
+                        CarID: carID,
                         RepairStatus: 0,
                         RepairStatus1: 1,
                         RepairStatus2: 2,
@@ -139,8 +137,9 @@
                 }
             }
         }
-
-        $scope.init();
+        if ($rootScope.CheckCookies()) {
+            $scope.init();
+        }
 
         $scope.addNewCost = function () {
             if ($rootScope.CheckCookies()) {
@@ -191,24 +190,27 @@
                     });
                 } else {
                     $alert.showUpdateDistance($rootScope.initMessage('Bạn muốn cập nhật đơn này? Vui lòng để lại ghi chú.'), function () {
+                        if ($rootScope.CheckCookies()) {
+                            let AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
 
-                        let updateRepairStatusRequestModel = {
-                            RepairID: request.RepairID,
-                            RepairStatus: repairStatus,
-                            FullNameUpdate: AccountInfo.FullName,
-                            Note: $rootScope.alertValue
-                        }
-                        $BookingCar.updateRepairStatus(updateRepairStatusRequestModel, function (res) {
-                            switch (res.data.ReturnCode) {
-                                case 1:
-                                    toastr.success('Bạn đã cập nhật thành công.');
-                                    $scope.getListCost();
-                                    break;
-                                case 2:
-                                    toastr.success('Bạn đã cập nhật thất bại');
-                                    break;
+                            let updateRepairStatusRequestModel = {
+                                RepairID: request.RepairID,
+                                RepairStatus: repairStatus,
+                                FullNameUpdate: AccountInfo.FullName,
+                                Note: $rootScope.alertValue
                             }
-                        });
+                            $BookingCar.updateRepairStatus(updateRepairStatusRequestModel, function (res) {
+                                switch (res.data.ReturnCode) {
+                                    case 1:
+                                        toastr.success('Bạn đã cập nhật thành công.');
+                                        $scope.getListCost();
+                                        break;
+                                    case 2:
+                                        toastr.success('Bạn đã cập nhật thất bại');
+                                        break;
+                                }
+                            });
+                        }
                     });
 
                     $scope.getListCost();

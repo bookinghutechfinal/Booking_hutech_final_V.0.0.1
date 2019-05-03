@@ -68,8 +68,8 @@
                             <div class="form-horizontal form-label-left input_mask">
                                 <div class="form-group">
 
-                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
-                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label>Từ ngày:</label>
                                         <div class='input-group date' id='myDatepicker'>
                                             <input type="text" class="form-control ed_border" id='myDate1' />
                                             <span class="input-group-addon">
@@ -79,8 +79,8 @@
                                         <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">-->
                                     </div>
 
-                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
-                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label>Đến ngày:</label>
                                         <div class='input-group date' id='myDatepicker2'>
                                             <input type='text' class="form-control ed_border" id='myDate2' />
                                             <span class="input-group-addon">
@@ -90,10 +90,10 @@
                                         <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_to" type="date" style="cursor:pointer">-->
                                     </div>
 
-                                    <div class="control-label col-md-1 col-sm-1 col-xs-12">Xe:</div>
-                                    <div class="col-md-2 col-sm-2 col-xs-12">
-                                        <select class="form-control select2 ed_border" ng-model="searchModel.CarID" style="width: 100%;cursor:pointer">
-                                            <option ng-selected="selected" value="0">{{'All' | translate }}</option>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label>Xe:</label>
+                                        <select class="form-control select2 ed_border" id="carID" style="width: 100%;cursor:pointer">
+                                            <option value="0">{{'All' | translate }}</option>
                                             <option ng-repeat="item in ListCarInfo" value="{{item.CarID}}">{{item.CarNo}}</option>
                                         </select>
                                     </div>
@@ -103,6 +103,7 @@
                                     </div>
 
                                     <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <label>Xem lịch sử:</label>
                                         <div class="mb15 mt30">
                                             <button class="btn btn-warning btn-round btn-block" ng-click="searchCost(searchModel)">
                                                 <span class="glyphicon glyphicon-search"></span> Xem
@@ -132,8 +133,8 @@
                                         {{item.CreateDate | date:'dd/MM/yyyy'}}
                                     </td>
                                     <td data-title="'Hóa đơn'" style="width:5%" align="left">
-                                        <a href="../../../../../images/bills/{{item.ImagerBill}}" target="_blank">
-                                            <img src="../../../../../images/bills/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
+                                        <a href="../../../../../images/avt/{{item.ImagerBill}}" target="_blank">
+                                            <img src="../../../../../images/avt/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
                                         </a>
                                     </td>
                                     <td data-title="'Ghi chú'" style="width:5%" align="left">
@@ -176,8 +177,8 @@
                                         {{item.CreateDate | date:'dd/MM/yyyy'}}
                                     </td>
                                     <td data-title="'Hóa đơn'" style="width:5%" align="left">
-                                        <a href="../../../../../images/bills/{{item.ImagerBill}}" target="_blank">
-                                            <img src="../../../../../images/bills/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
+                                        <a href="../../../../../images/avt/{{item.ImagerBill}}" target="_blank">
+                                            <img src="../../../../../images/avt/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
                                         </a>
                                     </td>
                                     <td data-title="'Ghi chú'" style="width:5%" align="left">

@@ -1,8 +1,5 @@
 ﻿mainmodule.controller('ManagerCalendarDriverController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', '$alert', '$account', 'NgTableParams',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, $alert, $account, NgTableParams) {
-        if ($rootScope.CheckCookies()) {
-            var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
-        }
 
         $scope.init = function () {
             $scope.ClearData();
@@ -14,6 +11,7 @@
         // Hàm Lấy danh sách xe
         $scope.getCarInfo = function () {
             if ($rootScope.CheckCookies()) {
+                let AccountInfo = $account.getAccountInfo();
                 var getCarInfoRequestModel = {
                     Account_ID: AccountInfo.Account_ID
                 }
@@ -39,29 +37,32 @@
                 angular.element('#myDate1').val("");
                 angular.element('#myDate2').val("");
 
-                var request = {
-                    DriverID: AccountInfo.Account_ID,
-                    Profile_Status1: 4,
-                    Profile_Status2: 7,
-                    Profile_Status3: 9,
-                    DateFrom: '1-1-1900',
-                    DateTo: '1-1-3000'
-                }
-
-                $BookingCar.getRegistrationCarByDriverID(request, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            var result = res.data.Data.GetRegistrationCarByCarID;
-                            if (result.length == 0) {
-                                toastr.error("Bạn chưa có đơn đặt xe.");
-                            }
-                            $scope.tableParams = new NgTableParams({}, { dataset: result });
-                            break;
-                        case 2:
-                            toastr.error("Bạn chưa có đơn đặt xe.");
-                            break;
+                if ($rootScope.CheckCookies()) {
+                    let AccountInfo = $account.getAccountInfo();
+                    var request = {
+                        DriverID: AccountInfo.Account_ID,
+                        Profile_Status1: 4,
+                        Profile_Status2: 7,
+                        Profile_Status3: 9,
+                        DateFrom: '1-1-1900',
+                        DateTo: '1-1-3000'
                     }
-                });
+
+                    $BookingCar.getRegistrationCarByDriverID(request, function (res) {
+                        switch (res.data.ReturnCode) {
+                            case 1:
+                                var result = res.data.Data.GetRegistrationCarByCarID;
+                                if (result.length == 0) {
+                                    toastr.error("Bạn chưa có đơn đặt xe.");
+                                }
+                                $scope.tableParams = new NgTableParams({}, { dataset: result });
+                                break;
+                            case 2:
+                                toastr.error("Bạn chưa có đơn đặt xe.");
+                                break;
+                        }
+                    });
+                }
             }
         }
 
@@ -81,40 +82,43 @@
                     $scope.ErrorDay = false;
                     $scope.ShowListCalendar = true;
                     $scope.ClearData();
-
-                    var request1 = {
-                        DriverID: AccountInfo.Account_ID,
-                        Profile_Status1: 10,
-                        Profile_Status2: 1111,
-                        Profile_Status3: 1111,
-                        DateFrom: date_from,
-                        DateTo: date_to
-                    }
-
-                    $BookingCar.getRegistrationCarByDriverID(request1, function (res) {
-                        switch (res.data.ReturnCode) {
-                            case 1:
-                                var result = res.data.Data.GetRegistrationCarByCarID;
-                                if (result.length == 0) {
-                                    toastr.error("Không có chuyến đi nào trong khoảng thời gian này.");
-                                }
-                                $scope.datefrom = date_from;
-                                $scope.dateto = date_to;
-                                $scope.tableParams1 = new NgTableParams({}, { dataset: result });
-                                break;
-                            case 2:
-                                toastr.error("Không có chuyến đi nào trong khoảng thời gian này.");
-                                break;
+                    if ($rootScope.CheckCookies()) {
+                        let AccountInfo = $account.getAccountInfo();
+                        var request1 = {
+                            DriverID: AccountInfo.Account_ID,
+                            Profile_Status1: 10,
+                            Profile_Status2: 1111,
+                            Profile_Status3: 1111,
+                            DateFrom: date_from,
+                            DateTo: date_to
                         }
-                    });
+
+                        $BookingCar.getRegistrationCarByDriverID(request1, function (res) {
+                            switch (res.data.ReturnCode) {
+                                case 1:
+                                    var result = res.data.Data.GetRegistrationCarByCarID;
+                                    if (result.length == 0) {
+                                        toastr.error("Không có chuyến đi nào trong khoảng thời gian này.");
+                                    }
+                                    $scope.datefrom = date_from;
+                                    $scope.dateto = date_to;
+                                    $scope.tableParams1 = new NgTableParams({}, { dataset: result });
+                                    break;
+                                case 2:
+                                    toastr.error("Không có chuyến đi nào trong khoảng thời gian này.");
+                                    break;
+                            }
+                        });
+                    }
                 }
                 else {
                     $scope.ErrorDay = true;
                 }
             }
         }
-
-        $scope.init();
+        if ($rootScope.CheckCookies()) {
+            $scope.init();
+        }
 
         $scope.start = function (request) {
             if ($rootScope.CheckCookies()) {
@@ -127,19 +131,20 @@
                         DistanceBack: 0,
                         CarID: request.CarID
                     }
+                    if ($rootScope.CheckCookies()) {
+                        $BookingCar.updateRegistrationCarStatus(requestModelStart, function (res) {
 
-                    $BookingCar.updateRegistrationCarStatus(requestModelStart, function (res) {
-
-                        switch (res.data.ReturnCode) {
-                            case 1:
-                                toastr.success("Chuyến đi đã được bắt đầu.");
-                                $scope.getCalendar();
-                                break;
-                            case 6:
-                                toastr.error("Xin lỗi! Vui lòng kiểm tra lại số Km hiện tại của xe.");
-                                break;
-                        }
-                    });
+                            switch (res.data.ReturnCode) {
+                                case 1:
+                                    toastr.success("Chuyến đi đã được bắt đầu.");
+                                    $scope.getCalendar();
+                                    break;
+                                case 6:
+                                    toastr.error("Xin lỗi! Vui lòng kiểm tra lại số Km hiện tại của xe.");
+                                    break;
+                            }
+                        });
+                    }
                 });
             }
         }
@@ -155,18 +160,19 @@
                         DistanceBack: $rootScope.alertValue,
                         CarID: request.CarID
                     }
-
-                    $BookingCar.updateRegistrationCarStatus(requestModelFinish, function (res) {
-                        switch (res.data.ReturnCode) {
-                            case 1:
-                                toastr.success("Chuyến đi đã được hoàn thành.");
-                                $scope.getCalendar();
-                                break;
-                            case 6:
-                                toastr.error("Xin lỗi! Vui lòng kiểm tra lại số Km hiện tại của xe.");
-                                break;
-                        }
-                    });
+                    if ($rootScope.CheckCookies()) {
+                        $BookingCar.updateRegistrationCarStatus(requestModelFinish, function (res) {
+                            switch (res.data.ReturnCode) {
+                                case 1:
+                                    toastr.success("Chuyến đi đã được hoàn thành.");
+                                    $scope.getCalendar();
+                                    break;
+                                case 6:
+                                    toastr.error("Xin lỗi! Vui lòng kiểm tra lại số Km hiện tại của xe.");
+                                    break;
+                            }
+                        });
+                    }
                 });
             }
         }

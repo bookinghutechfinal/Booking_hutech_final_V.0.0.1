@@ -96,22 +96,19 @@
                 <div class="x_content">
                     <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
                         <div class="form-group" style="text-align: center;">
-                            <!--<div class="control-label">Chân dung: <i style="color:red;">(*)</i></div>-->
-                            <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null &&  isCheckimgUrl " style="color: orangered">Vui lòng chọn!</span>
+                            <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null && isCheckimgUrl " style="color: orangered">Vui lòng chọn!</span>
 
                             <div ng-show="!ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
                                 <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
-                                     width="200" height="200" ng-click="OpenImg(ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)" />
-                                <!--   <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />-->
-
+                                     width="200" height="200" />
+                                <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
                             </div>
                             <div class="row">
                                 <div>
                                     <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình"
-                                            onclick="document.getElementById('file1').click();" style="margin-top: 5px;" ng-disabled="ShopInfomation.StatusDisable == 7">
-
+                                            onclick="document.getElementById('file1').click();" style="margin-top: 5px;">
                                         <span class="glyphicon glyphicon-picture"></span>
-                                        Hóa đơn
+                                        Chọn Hình
                                         <i style="color:red;">(*)</i>
                                     </button>
                                     <input style="display:none;" type="file" id="file1" accept="image/*"
@@ -120,23 +117,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <!--<div id="crop-avatar">
-                            <img class="img-responsive avatar-view" src="../../../../../images/avt/user.jpg" alt="Avatar" title="Change the avatar" style="    width: 142px; ">
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <span class="field-validation-valid text-danger">Vui lòng chọn!</span>
-                            <div class="col-sm-12 col-md-12">
-                                <button class="btn Sbtn-primary btn-round btn-block" type="submit"
-                                        data-ng-click="yes()">
-                                    <i class="fa fa-plus-circle"></i>
-                                    <span>Chọn</span>
-                                    <i style="color:red;">(*)</i>
-                                </button>
-                            </div>
-                        </div>-->
                     </div>
                     <div class="col-md-10 col-sm-10 col-xs-12">
                         <div class="col-md-12 col-sm-12 col-xs-12">

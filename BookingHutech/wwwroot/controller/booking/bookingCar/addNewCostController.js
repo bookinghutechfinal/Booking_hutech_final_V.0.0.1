@@ -1,10 +1,17 @@
 ﻿mainmodule.controller('popupAddNewCostController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams', '$modalInstance', '$account',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams, $modalInstance, $account) {
-        if ($rootScope.CheckCookies()) {
-            var AccountInfo = $account.getAccountInfo(); // Lấy cookies người dùng. 
-        }
 
         $scope.init = function () {
+            $scope.ImageModel = {
+                CHAN_DUNG: {
+                    ImageName: 1,
+                    ImageData: {
+                        compressed: {
+                            dataURL: null
+                        }
+                    },
+                },
+            }
             $scope.costInfo = {
                 RepairID: null,
                 CostsTypeID: null,
@@ -18,7 +25,7 @@
                 Quantity: null,
                 TotalMoney: null,
                 RepairStatus: null,
-                ImageBill: null
+                ImagerBill: null
             }
             $scope.getListCar();
             $scope.DetailCost = [];
@@ -83,8 +90,9 @@
         $scope.ClosePopup = function () {
             $modalInstance.close();
         }
-
-        $scope.init();
+        if ($rootScope.CheckCookies()) {
+            $scope.init();
+        }
 
         $scope.btndisabled = true;
         $scope.TestInputChange = function (Request) {
@@ -103,6 +111,9 @@
                         if (checkNull(Request.RepairAddres)) {
                             $scope.btndisabled = true;
                             return;
+                        } else if (checkNull($scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)) {
+                            $scope.isCheckimgUrl = true;
+                            $scope.btndisabled = false;
                         }
             if ($scope.DetailCost.length == 0) {
                 $scope.btndisabled = true;
@@ -113,26 +124,46 @@
 
         $scope.addNewCost = function (request) {
             if ($rootScope.CheckCookies()) {
-                $scope.costInfo.AccountCreate = AccountInfo.Account_ID;
-                $scope.costInfo.FullNameUpdate = AccountInfo.FullName;
-                $scope.costInfo.RepairStatus = 2;
-                $scope.costInfo.CreateDate = FormatDateTimeToDBRequest(angular.element('#myDate').val());
-                let AddNewCostRequestModel = {
-                    newCost: $scope.costInfo,
-                    newDetailCost: $scope.DetailCost
-                }
-                $BookingCar.addNewCosts(AddNewCostRequestModel, function (res) {
-                    switch (res.data.Data) {
-                        case 1:
-                            toastr.success('Thêm mới thành công.');
-                            $modalInstance.close();
-                            break;
-                        case 2:
-                            toastr.error('Thêm mới thất bại.');
-                            $modalInstance.close();
-                            break;
+                if ($scope.CheckUploatImg($scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL)) {
+                    let AccountInfo = $account.getAccountInfo();
+                    $scope.costInfo.AccountCreate = AccountInfo.Account_ID;
+                    $scope.costInfo.FullNameUpdate = AccountInfo.FullName;
+                    $scope.costInfo.RepairStatus = 2;
+                    $scope.costInfo.CreateDate = FormatDateTimeToDBRequest(angular.element('#myDate').val());
+                    $scope.costInfo.ImagerBill = $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL;
+                    let AddNewCostRequestModel = {
+                        newCost: $scope.costInfo,
+                        newDetailCost: $scope.DetailCost
                     }
-                });
+                    $BookingCar.addNewCosts(AddNewCostRequestModel, function (res) {
+                        switch (res.data.Data) {
+                            case 1:
+                                toastr.success('Thêm mới thành công.');
+                                $modalInstance.close();
+                                break;
+                            case 2:
+                                toastr.error('Thêm mới thất bại.');
+                                $modalInstance.close();
+                                break;
+                        }
+                    });
+                }
+            } else {
+                $modalInstance.close();
             }
+        }
+
+        // check upload hình 
+        $scope.CheckUploatImg = function (imgURL) {
+            if (checkNull(imgURL)) {
+                toastr.error("Vui lòng chọn hình!");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        $scope.removeImage = function () {
+            $scope.ImageModel.CHAN_DUNG.ImageData.compressed.dataURL = "";
         }
     }]);  

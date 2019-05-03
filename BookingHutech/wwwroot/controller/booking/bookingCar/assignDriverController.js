@@ -38,34 +38,39 @@
                 }
             });
         }
-
-        $scope.init();
+        if ($rootScope.CheckCookies()) {
+            $scope.init();
+        }
 
         $scope.updateAssign = function (acountID, item) {
-            if (acountID == null) {
-                var Account_ID = item.Account_ID;
-            }
-            else
-                var Account_ID = acountID;
-            $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn cập nhật phân công?'), function () {
-                var AssignDriverManagerRequestModel = {
-                    Account_ID: Account_ID,
-                    CarID: item.CarID,
-                    FullNameUpdate: AccountInfo.FullName
+            if ($rootScope.CheckCookies()) {
+                if (acountID == null) {
+                    var Account_ID = item.Account_ID;
                 }
-                $BookingCar.AssignDriverManager(AssignDriverManagerRequestModel, function (res) {
-                    switch (res.data.ReturnCode) {
-                        case 1:
-                            toastr.success('Cập nhật thành công.');
-                            $scope.GetDriverWithCar();
-                            break;
-                        case 2:
-                            toastr.error('Cập nhật thất bại.');
-                            $scope.GetDriverWithCar();
-                            break;
+                else
+                    var Account_ID = acountID;
+                $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn cập nhật phân công?'), function () {
+                    var AssignDriverManagerRequestModel = {
+                        Account_ID: Account_ID,
+                        CarID: item.CarID,
+                        FullNameUpdate: AccountInfo.FullName
+                    }
+                    if ($rootScope.CheckCookies()) {
+                        $BookingCar.AssignDriverManager(AssignDriverManagerRequestModel, function (res) {
+                            switch (res.data.ReturnCode) {
+                                case 1:
+                                    toastr.success('Cập nhật thành công.');
+                                    $scope.GetDriverWithCar();
+                                    break;
+                                case 2:
+                                    toastr.error('Cập nhật thất bại.');
+                                    $scope.GetDriverWithCar();
+                                    break;
+                            }
+                        });
                     }
                 });
-            });
+            }
         }
     }]);
 
