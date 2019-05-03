@@ -25,13 +25,15 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                 else if (response.data.ReturnCode === 2) {
                     var audio = new Audio('../../audio/alert_message_audio.mp3');
                     audio.play();
-                    audio.volume = 0.1; 
+                    audio.volume = 0.1;
+                    $cookies.remove("AccountInfo");
+                    $cookies.remove("RoleCode"); 
                     $rootScope.isTimeOutRequest = true;
                 }
                 else if (response.data.ReturnCode === 114) {
                     toastr.error('Phiên làm việc của bạn đã hết hạn! Vui lòng đăng nhập.!');
-                    $cookies.remove('AccountInfo');
-                    $cookies.remove("AccountInfoCheckPermissions");
+                    $cookies.remove("AccountInfo");
+                    $cookies.remove("RoleCode"); 
                     $rootScope.showError = true;
 
                 }
@@ -40,8 +42,8 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                 }
                 else if (response.data.ReturnCode === 102) {
                     toastr.error('Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên để được hướng dẫn!');
-                    $cookies.remove('AccountInfo');
-                    $cookies.remove("AccountInfoCheckPermissions");
+                    $cookies.remove("AccountInfo");
+                    $cookies.remove("RoleCode"); 
                     $state.go('login');
                     //location.reload(); 
                 }
@@ -61,7 +63,7 @@ mainmodule.service('$dao', ['$http', '$cookies', '$state', '$rootScope', '$inter
                     audio.play();
                     audio.volume = 0.1;
                     $cookies.remove("AccountInfo");
-                    $cookies.remove("AccountInfoCheckPermissions");
+                    $cookies.remove("RoleCode"); 
                     $rootScope.isTimeOutRequest = true;
                 }
                 else {
