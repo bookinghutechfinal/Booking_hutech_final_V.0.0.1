@@ -9,4 +9,10 @@ namespace BookingHutech.Api_BHutech.Models.Request.AccountRequest
     {
 
     }
+
+    public class AddNewAccountRequestModel
+    {
+        public CreateNewAccountRequestModel createNewAccountRequestModel { get; set; }
+        public List<UpdateRoleRequestModel> updateRoleRequestModel { get; set; }
+    }
 }

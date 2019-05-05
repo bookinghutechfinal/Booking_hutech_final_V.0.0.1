@@ -50,7 +50,6 @@
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/switchery/dist/switchery.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/build/css/custom.min.css" rel="stylesheet" />-->
-
 <!-- Modal content-->
 <!-- Test  -->
 <div class="modal-content">
@@ -69,231 +68,229 @@
                         <div class="col-md-6">
                         </div>
                     </div>
-                    <div class="x_panel">
-                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
-                            <div class="profile_img" style="text-align:-webkit-center;">
-                                <div id="crop-avatar">
-                                    <img class="img-responsive avatar-view" src="../../../../images/avt/{{AccountDetailDetail.Avatar}}" alt="Avatar" title="Change the avatar" style="    width: 142px; ">
-                                </div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <div class="profile_img" style="text-align:-webkit-center;">
+                            <div id="crop-avatar">
+                                <img class="img-responsive avatar-view" src="../../../../images/avt/{{AccountDetailDetail.Avatar}}" alt="Avatar" title="Change the avatar" style="    width: 142px; ">
                             </div>
-                            <h3 style="text-align:-webkit-center;">{{AccountDetailDetail.FullName}}</h3>
-                            <ul class="list-unstyled user_data">
-                                <li>
-                                    <i class="fa fa-envelope"></i> {{AccountDetailDetail.Email}}
-                                </li>
-                                <li class="m-top-xs">
-                                    <i class="fa fa-calendar"></i>
-                                    <a>{{AccountDetailDetail.Birthday | date:'dd/MM/yyyy'}}</a>
-                                </li>
-                                <li class="m-top-xs">
-                                    <i class="fa fa-phone"></i>
-                                    <a>{{AccountDetailDetail.NumberPhone}}</a>
-                                </li>
-                                <li class="m-top-xs">
-                                    <i class="fa fa-map-marker user-profile-icon"></i>
-                                    <a>{{AccountDetailDetail.Addres}}</a>
-                                </li>
-                            </ul>
-
                         </div>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <div class="row">
-                                <div class="table-responsive">
-                                    <table class="table table-hover  table-striped jambo_table bulk_action ng-scope ng-table" fixed-table-headers="scrollable-area">
-                                        <!--<thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Username</th>
-                                            </tr>
-                                        </thead>-->
-                                        <tbody>
-                                        <tbody>
-                                            <tr class="even pointer">
-                                                <td ng-show="AccountDetailDetail.IsChangePassword">
-                                                    <i class="fa fa-exchange"></i>
-                                                    Đã đổi mật khẩu
-                                                </td>
-                                                <td ng-show="!AccountDetailDetail.IsChangePassword" style="color:red">
+                        <h3 style="text-align:-webkit-center;">{{AccountDetailDetail.FullName}}</h3>
+                        <ul class="list-unstyled user_data">
+                            <li>
+                                <i class="fa fa-envelope"></i> {{AccountDetailDetail.Email}}
+                            </li>
+                            <li class="m-top-xs">
+                                <i class="fa fa-calendar"></i>
+                                <a>{{AccountDetailDetail.Birthday | date:'dd/MM/yyyy'}}</a>
+                            </li>
+                            <li class="m-top-xs">
+                                <i class="fa fa-phone"></i>
+                                <a>{{AccountDetailDetail.NumberPhone}}</a>
+                            </li>
+                            <li class="m-top-xs">
+                                <i class="fa fa-map-marker user-profile-icon"></i>
+                                <a>{{AccountDetailDetail.Addres}}</a>
+                            </li>
+                        </ul>
 
-                                                    <label>Chưa đổi mật khẩu</label>
-                                                </td>
-                                                <td>
-                                                    <i class="fa fa-hand-o-right"></i>
-                                                    <label>{{AccountDetailDetail.AccountType}}</label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td ng-show="AccountDetailDetail.Verify">
-                                                    <i class="fa fa-check-square-o"></i>
-                                                    <label>  Đã duyệt</label>
-                                                </td>
-                                                <td ng-show="!AccountDetailDetail.Verify && checkupdateVerify" style="color:red">
-                                                    <i class="fa fa-square-o"></i>
-                                                    <label>  Chưa duyệt</label>
-                                                    <i ng-click="buttonVerify(AccountDetailDetail.Account_ID)" ng-show="!AccountDetailDetail.Verify && checkupdateVerify">
-                                                        <input type="checkbox" class="js-switch" ng-checked="checkupdateVerify" />
-                                                    </i>
-                                                    <i ng-show="!AccountDetailDetail.Verify && checkupdateVerify">
-                                                        <input type="checkbox" class="js-switch" ng-checked="!checkupdateVerify" />
-                                                    </i>
-                                                </td>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-hover  table-striped jambo_table bulk_action ng-scope ng-table" fixed-table-headers="scrollable-area">
+                                    <!--<thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>-->
+                                    <tbody>
+                                    <tbody>
+                                        <tr class="even pointer">
+                                            <td ng-show="AccountDetailDetail.IsChangePassword">
+                                                <i class="fa fa-exchange"></i>
+                                                Đã đổi mật khẩu
+                                            </td>
+                                            <td ng-show="!AccountDetailDetail.IsChangePassword" style="color:red">
+
+                                                <label>Chưa đổi mật khẩu</label>
+                                            </td>
+                                            <td>
+                                                <i class="fa fa-hand-o-right"></i>
+                                                <label>{{AccountDetailDetail.AccountType}}</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td ng-show="AccountDetailDetail.Verify">
+                                                <i class="fa fa-check-square-o"></i>
+                                                <label>  Đã duyệt</label>
+                                            </td>
+                                            <td ng-show="!AccountDetailDetail.Verify && checkupdateVerify" style="color:red">
+                                                <i class="fa fa-square-o"></i>
+                                                <label>  Chưa duyệt</label>
+                                                <i ng-click="buttonVerify(AccountDetailDetail.Account_ID)" ng-show="!AccountDetailDetail.Verify && checkupdateVerify">
+                                                    <input type="checkbox" class="js-switch" ng-checked="checkupdateVerify" />
+                                                </i>
+                                                <i ng-show="!AccountDetailDetail.Verify && checkupdateVerify">
+                                                    <input type="checkbox" class="js-switch" ng-checked="!checkupdateVerify" />
+                                                </i>
+                                            </td>
 
 
-                                                <td ng-show="AccountDetailDetail.AccountType =='Lái xe'">
-                                                    <i class="fa fa-external-link user-profile-icon"></i>
-                                                    <label>Số bằng lái:{{AccountDetailDetail.DriverLicenseNo}}</label>
-                                                </td>
+                                            <td ng-show="AccountDetailDetail.AccountType =='Lái xe'">
+                                                <i class="fa fa-external-link user-profile-icon"></i>
+                                                <label>Số bằng lái:{{AccountDetailDetail.DriverLicenseNo}}</label>
+                                            </td>
 
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Trạng thái:</label>
-                                                    <input type="checkbox" class="js-switch" ng-show="AccountDetailDetail.Account_Status === '1'" ng-checked="AccountDetailDetail.Account_Status === '1'" />
-                                                    <!--<i class="fa fa-circle text-success"></i>
-                                                    <label>Trạng thái:{{AccountDetailDetail.Account_Status}}</label>-->
-                                                </td>
-                                                <td ng-show="AccountDetailDetail.AccountType =='Lái xe'">
-                                                    <i class="fa fa-external-link user-profile-icon"></i>
-                                                    <label>Hạn:{{AccountDetailDetail.LicenseClass}}</label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <i class="fa fa-asterisk"></i>
-                                                    <label>Giới tính:{{AccountDetailDetail.Gender}}</label>
-                                                </td>
-                                                <td ng-show="AccountDetailDetail.AccountType =='Lái xe'">
-                                                    <i class="fa fa-external-link user-profile-icon"></i>
-                                                    <label>Hết hạn:{{AccountDetailDetail.LicenseExpires | date:'dd/MM/yyyy'}}</label>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>Trạng thái:</label>
+                                                <input type="checkbox" class="js-switch" ng-show="AccountDetailDetail.Account_Status === '1'" ng-checked="AccountDetailDetail.Account_Status === '1'" />
+                                                <!--<i class="fa fa-circle text-success"></i>
+                                                <label>Trạng thái:{{AccountDetailDetail.Account_Status}}</label>-->
+                                            </td>
+                                            <td ng-show="AccountDetailDetail.AccountType =='Lái xe'">
+                                                <i class="fa fa-external-link user-profile-icon"></i>
+                                                <label>Hạn:{{AccountDetailDetail.LicenseClass}}</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <i class="fa fa-asterisk"></i>
+                                                <label>Giới tính:{{AccountDetailDetail.Gender}}</label>
+                                            </td>
+                                            <td ng-show="AccountDetailDetail.AccountType =='Lái xe'">
+                                                <i class="fa fa-external-link user-profile-icon"></i>
+                                                <label>Hết hạn:{{AccountDetailDetail.LicenseExpires | date:'dd/MM/yyyy'}}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--Start: danh sách quyền của account-->
+                        <div class="x_content">
+                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Chi tiết quyền</a>
+                                    </li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped jambo_table bulk_action" ng-table="tableParams1">
+                                                    <thead>
+                                                        <tr class="headings">
+
+                                                            <th class="column-title">#STT</th>
+                                                            <th class="column-title" style="width:52%" align="left">Tên quyền</th>
+                                                            <th class="column-title">Trạng thái</th>
+                                                            <th class="column-title">Người cấp</th>
+                                                            <th class="column-title no-link last">
+
+                                                            </th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="even pointer" ng-repeat="role in $data ">
+                                                            <td class=" ">
+                                                                {{$index+1}}
+                                                            </td>
+                                                            <td class=" " style="width:52%" align="left">
+                                                                {{role.RoleName}}
+                                                            </td>
+                                                            <td class=" ">
+                                                                <!--<i class="fa fa-circle text-success" ng-show="role.RoleDetail_Status === 'Hoạt động'"></i>
+                                                                <i class="fa fa-circle text-success" style="color: #e65b5b" ng-show="role.RoleDetail_Status != 'Hoạt động'"> </i> -->
+                                                                <i class="fa fa-circle text-success" ng-show="role.RoleDetail_Status"> Hoạt động</i>
+                                                                <i class="fa fa-circle text-success" style="color: #e65b5b" ng-show="!role.RoleDetail_Status"> Đã khóa</i>
+                                                            </td>
+                                                            <td class=" ">
+                                                                {{role.FullNameUpdate}}
+                                                            </td>
+                                                            <td class=" ">
+                                                                <button class="btn btn-danger" ng-click="UpdateRole(role)" ng-show="role.RoleDetail_Status"><i class="fa fa-lock"></i> Khóa</button>
+                                                                <button class="btn btn-success" ng-click="UpdateRole(role)" ng-show="!role.RoleDetail_Status"><i class="fa fa-unlock"></i> Mở</button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!--Start: danh sách quyền của account-->
-                            <div class="x_content">
-                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                        <li role="presentation" class="active">
-                                            <a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Chi tiết quyền</a>
-                                        </li>
-                                    </ul>
-                                    <div id="myTabContent" class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                        </div>
+                        <!--End: danh sách quyền của account-->
+                        <!--Start: Phân quyền-->
+                        <div class="x_content" ng-show="showByPermission(801)">
+                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <!--<a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Phân quyền</a>-->
+                                        <button ng-show="!ShowLayoutDecentralization" class="btn btn-primary btn-round btn-block" ng-click="ShowDecentralization()" type="button" name="name" value="Phân Quyền">
+                                            <i class="fa fa-folder"></i>
+                                            <span class="ng-binding">Phân Quyền</span>
+                                        </button>
+                                        <button ng-show="ShowLayoutDecentralization" class="btn btn-primary btn-round btn-block" ng-click="ShowDecentralization()" type="button" name="name" value="Phân Quyền">
+                                            <i class="fa fa-folder-open-o"></i>
+                                            <span class="ng-binding">Hủy</span>
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content ngHideSample">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                        <div class="row ngHideSample" ng-show="ShowLayoutDecentralization">
                                             <div class="row">
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped jambo_table bulk_action" ng-table="tableParams1">
-                                                        <thead>
-                                                            <tr class="headings">
-
-                                                                <th class="column-title">#STT</th>
-                                                                <th class="column-title" style="width:52%" align="left">Tên quyền</th>
-                                                                <th class="column-title">Trạng thái</th>
-                                                                <th class="column-title">Người cấp</th>
-                                                                <th class="column-title no-link last">
-
-                                                                </th>
-
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr class="even pointer" ng-repeat="role in $data ">
-                                                                <td class=" ">
-                                                                    {{$index+1}}
-                                                                </td>
-                                                                <td class=" " style="width:52%" align="left">
-                                                                    {{role.RoleName}}
-                                                                </td>
-                                                                <td class=" ">
-                                                                    <!--<i class="fa fa-circle text-success" ng-show="role.RoleDetail_Status === 'Hoạt động'"></i>
-                                                                    <i class="fa fa-circle text-success" style="color: #e65b5b" ng-show="role.RoleDetail_Status != 'Hoạt động'"> </i> -->
-                                                                    <i class="fa fa-circle text-success" ng-show="role.RoleDetail_Status"> Hoạt động</i>
-                                                                    <i class="fa fa-circle text-success" style="color: #e65b5b" ng-show="!role.RoleDetail_Status"> Đã khóa</i>
-                                                                </td>
-                                                                <td class=" ">
-                                                                    {{role.FullNameUpdate}}
-                                                                </td>
-                                                                <td class=" ">
-                                                                    <button class="btn btn-danger" ng-click="UpdateRole(role)" ng-show="role.RoleDetail_Status"><i class="fa fa-lock"></i> Khóa</button>
-                                                                    <button class="btn btn-success" ng-click="UpdateRole(role)" ng-show="!role.RoleDetail_Status"><i class="fa fa-unlock"></i> Mở</button>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--End: danh sách quyền của account-->
-                            <!--Start: Phân quyền-->
-                            <div class="x_content" ng-show="showByPermission(801)">
-                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                        <li role="presentation" class="active">
-                                            <!--<a href="" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Phân quyền</a>-->
-                                            <button ng-show="!ShowLayoutDecentralization" class="btn btn-primary btn-round btn-block" ng-click="ShowDecentralization()" type="button" name="name" value="Phân Quyền">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="ng-binding">Phân Quyền</span>
-                                            </button>
-                                            <button ng-show="ShowLayoutDecentralization" class="btn btn-primary btn-round btn-block" ng-click="ShowDecentralization()" type="button" name="name" value="Phân Quyền">
-                                                <i class="fa fa-folder-open-o"></i>
-                                                <span class="ng-binding">Hủy</span>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                    <div id="myTabContent" class="tab-content ngHideSample">
-                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                                            <div class="row ngHideSample" ng-show="ShowLayoutDecentralization">
-                                                <div class="row">
-                                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-striped jambo_table bulk_action" ng-table="tableParams2"> 
-                                                                <thead>
-                                                                    <tr class="headings">
-                                                                        <th class="column-title">#STT</th>
-                                                                        <th class="column-title">Tên quyền</th>
-                                                                        <th class="column-title">Chọn quyền</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr class="even pointer" ng-repeat="listRole in $data "> 
-                                                                        <td class=" ">
-                                                                            {{$index+1}}
-                                                                        </td>
-                                                                        <td class=" ">
-                                                                            {{listRole.RoleName}}
-                                                                        </td>
-                                                                        <td class=" ">
-                                                                            <input type="checkbox" ng-checked="checkall" ng-click='updateCheck(listRole.RoleMaster_ID)' ng-model="listRole.checked">
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped jambo_table bulk_action" ng-table="tableParams2">
+                                                            <thead>
+                                                                <tr class="headings">
+                                                                    <th class="column-title">#STT</th>
+                                                                    <th class="column-title">Tên quyền</th>
+                                                                    <th class="column-title">Chọn quyền</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="even pointer" ng-repeat="listRole in $data ">
+                                                                    <td class=" ">
+                                                                        {{$index+1}}
+                                                                    </td>
+                                                                    <td class=" ">
+                                                                        {{listRole.RoleName}}
+                                                                    </td>
+                                                                    <td class=" ">
+                                                                        <input type="checkbox" ng-checked="checkall" ng-click='updateCheck(listRole.RoleMaster_ID)' ng-model="listRole.checked">
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
-                                                    <div class="col-md-5 col-sm-5 col-xs-12" style="float:right;">
-                                                        <div class="form-group">
-                                                            <button class="btn btn-warning btn-round btn-block" ng-click="Decentralization()">
-                                                                <!--ng-disabled="!isSubmitingEnable()"-->
-                                                                <i class="fa fa-plus-circle"></i>
-                                                                <span class="ng-binding">Cấp Quyền</span>
-                                                            </button>
-                                                        </div>
+                                                </div>
+                                                <div class="col-md-5 col-sm-5 col-xs-12" style="float:right;">
+                                                    <div class="form-group">
+                                                        <button class="btn btn-warning btn-round btn-block" ng-click="Decentralization()">
+                                                            <!--ng-disabled="!isSubmitingEnable()"-->
+                                                            <i class="fa fa-plus-circle"></i>
+                                                            <span class="ng-binding">Cấp Quyền</span>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <!--End: Phân quyền-->
                         </div>
+                        <!--End: Phân quyền-->
                     </div>
                 </div>
             </div>

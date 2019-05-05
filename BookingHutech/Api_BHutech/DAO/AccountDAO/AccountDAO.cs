@@ -186,5 +186,33 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             }
 
         }
+
+        /// <summary>
+        /// AddNewAccountDAO
+        /// Mr.Lam 5/5/2019
+        /// </summary>
+        public int AddNewAccountDAO(string stringSql)
+        {
+            db = new DataAccess();
+            con = new SqlConnection(db.ConnectionString());
+            try
+            {
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                int a = cmd.ExecuteNonQuery();
+                con.Close();
+                if (a == 0)
+                {
+                    return 2;
+                }
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
     }
 }
