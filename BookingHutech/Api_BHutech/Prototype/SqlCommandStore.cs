@@ -134,6 +134,8 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string uspUpdateCarType = "uspUpdateCarType {0},N'{1}',N'{2}'";
         //update status bảng RoleDetail. Create By mr.Lam Create 29/4/2019. 
         public const string UpdateRoleDetailStatus = "UpdateRoleDetailStatus {0},{1},{2}";
+        //update status bảng RoleDetail. Create By mr.Lam Create 29/4/2019. 
+        public const string uspGetListAccount = "uspGetListAccount";
 
 
     }

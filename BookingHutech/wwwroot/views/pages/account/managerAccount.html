@@ -179,15 +179,12 @@
                                         <div class="col-md-3 col-sm-3 col-xs-6 profile_details">
                                             <div class="form-group">
                                                 <label class="ng-binding">Đơn vị</label><i style="color:red;"> (*)</i>
-                                                <span class="field-validation-valid text-danger" ng-show="SearchAccountReqModel.AccountType === '' || SearchAccountReqModel.AccountType === null && isCheckAccounttype">Vui lòng chọn!</span>
-                                                <select class="form-control" ng-model="SearchAccountReqModel.AccountType" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
-                                                    <option selected="selected" value="">-- Vui lòng chọn --</option>
-                                                    <option value="1">Thư ký</option>
-                                                    <option value="2">Trưởng khoa</option>
-                                                    <option value="3">Phòng quản trị</option>
-                                                    <option value="4">Văn phòng trường</option>
-                                                    <option value="5">Ban giám hiệu</option>
-                                                    <option value="7">Lái xe</option>
+                                                <span class="field-validation-valid text-danger" ng-show="SearchAccountReqModel.Unit_ID === '' || SearchAccountReqModel.Unit_ID === null && isCheckAccounttype">Vui lòng chọn!</span>
+                                                <select class="form-control" ng-model="SearchAccountReqModel.Unit_ID" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
+                                                    <option selected="selected" value="">-- Vui lòng chọn --</option> 
+                                                    <option ng-repeat="index in ManagerGetListUnitResponse" value="{{index.Unit_ID}}">
+                                                        {{index.UnitName}}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -198,10 +195,7 @@
                                                 <select class="form-control" ng-model="SearchAccountReqModel.AccountType" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
                                                     <option selected="selected" value="">-- Vui lòng chọn --</option>
                                                     <option value="1">Nhân viên/GV</option>
-                                                    <option value="2">Lãnh đạo</option>
-                                                    <option value="3">Phòng quản trị</option>
-                                                    <option value="4">Văn phòng trường</option>
-                                                    <option value="5">Ban giám hiệu</option>
+                                                    <option value="2">Lãnh đạo</option> 
                                                     <option value="7">Lái xe</option>
                                                 </select>
                                             </div>

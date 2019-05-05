@@ -34,8 +34,33 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             cmd = new SqlCommand(sqlStore, con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("@AccountType", SqlDbType.Int).Value = request.AccountType;
-            cmd.Parameters.Add("@Account_Status", SqlDbType.NVarChar, 100).Value = request.Account_Status;
+            if(request.Unit_ID == 0)
+            {
+                cmd.Parameters.Add("@Unit_ID", SqlDbType.Int).Value = 0;
+            }
+            else
+            {
+                cmd.Parameters.Add("@Unit_ID", SqlDbType.Int).Value = request.Unit_ID;
+            }
+            if (request.AccountType == null)
+            {
+                cmd.Parameters.Add("@AccountType", SqlDbType.Int).Value = 0;
+            }
+            else
+            {
+                cmd.Parameters.Add("@AccountType", SqlDbType.Int).Value = request.AccountType;
+            }
+            if (request.Account_Status == null)
+            {
+                cmd.Parameters.Add("@Account_Status", SqlDbType.NVarChar, 100).Value = 0;
+            }
+            else
+            {
+                cmd.Parameters.Add("@Account_Status", SqlDbType.Int).Value = request.Account_Status;
+            }
+            //cmd.Parameters.Add("@Unit_ID", SqlDbType.Int).Value = request.Unit_ID;
+            //cmd.Parameters.Add("@AccountType", SqlDbType.Int).Value = request.AccountType;
+            //cmd.Parameters.Add("@Account_Status", SqlDbType.NVarChar, 100).Value = request.Account_Status;
             try
             {
                 if (cmd.Connection.State == ConnectionState.Closed)

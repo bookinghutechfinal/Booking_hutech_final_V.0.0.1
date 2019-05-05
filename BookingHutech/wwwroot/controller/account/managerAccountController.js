@@ -72,6 +72,17 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                 });
             }
         }
+        $scope.ManagerGetListUnitResponse = []; 
+        $scope.ManagerGetListUnit = function () {
+            $account.ManagerGetUnit({}, function (res) { 
+                switch (res.data.ReturnCode) {
+                    case 1:
+                        $scope.ManagerGetListUnitResponse = res.data.Data.ListUnit; 
+                        break;
+                }
+
+            });
+        }
 
         $scope.ManagerGetListAccountResponse = []; // danh sách tài khoản trả về
 
@@ -108,6 +119,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                         if ($scope.ManagerGetListAccountResponse.length === 0) {
                             toastr.success("Xin lỗi! Không có kết quả.");
                         }
+                        $scope.ManagerGetListUnit();
                         break;
                 }
 
@@ -150,8 +162,9 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
            // $scope.GetDetailAccountInfoAndRole(); // Lấy chi tiết account.
             // Mặc định lấy danh sách tài khoản  người dùng theo loại tài khoản và trạng thái account.  
             $scope.ManagerGetListAccountRequestModel = {
-                AccountType: 7, // Lái xe
-                Account_Status: 1 // 1. hoạt động, 0: khóa
+                AccountType: null, // Lái xe
+                Account_Status: null, // 1. hoạt động, 0: khóa
+                Unit_ID: null // 1. hoạt động, 0: khóa
             }
             $scope.ManagerGetListAccount($scope.ManagerGetListAccountRequestModel);
         }
@@ -391,10 +404,16 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         $scope.btndisabledSearch = false;
         $scope.messdisabled = false;
         $scope.SearchAccountReqModel = {
+            Unit_ID: null,
             AccountType: null,
             Account_Status: null
         }
         $scope.ChangeDataSearchAccount = function () {
+            if (checkNull($scope.SearchAccountReqModel.Unit_ID)) {
+                $scope.btndisabledSearch = false;
+                $scope.messdisabled = true;
+                return;
+            }
             if (checkNull($scope.SearchAccountReqModel.AccountType)) {
                 $scope.btndisabledSearch = false;
                 $scope.messdisabled = true;
