@@ -99,7 +99,7 @@ namespace BookingHutech.Controllers.Api
                             return ApiResponse.LoginFail();
                         else
                         {
-                            request.Password = EncodePassword.CreateSHA256(request.Password);
+                                request.Password = EncodePassword.CreateSHA256(request.Password);
                             // Kiểm tra đăng nhập và trả về return code.  
                             var Response = accountServices.AccountLoginServices(request);
 

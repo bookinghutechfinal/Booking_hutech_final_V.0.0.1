@@ -28,8 +28,18 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
             ManagerGetAccountByAccountStatusResponseModel managerGetAccountByAccountStatus = new ManagerGetAccountByAccountStatusResponseModel();
             try
             {
-                string stringSqlManagerGetAccountByAccountStatusAccountType = String.Format(Prototype.SqlCommandStore.uspManagerGetAccountByAccountStatusAccountType);
-                managerGetAccountByAccountStatus.GetAccountByAccountStatus = managerAccountDAO.GetAccountByAccountStatusAccountTypeDAO(stringSqlManagerGetAccountByAccountStatusAccountType, request);
+                // tìm tất cả tài khoản hoạt động
+                if(request.Account_Status == null && request.Unit_ID == 0 && request.AccountType == null)
+                {
+                    string stringSqlManagerGetListAccount = Prototype.SqlCommandStore.uspGetListAccount;
+                    managerGetAccountByAccountStatus.GetAccountByAccountStatus = managerAccountDAO.GetAccountByAccountStatusAccountTypeDAO(stringSqlManagerGetListAccount, request);
+                }
+                else
+                {
+                    string stringSqlManagerGetListAccount = Prototype.SqlCommandStore.uspManagerGetAccountByAccountStatusAccountType;
+                    managerGetAccountByAccountStatus.GetAccountByAccountStatus = managerAccountDAO.GetAccountByAccountStatusAccountTypeDAO(stringSqlManagerGetListAccount, request);
+                }
+               
                 return managerGetAccountByAccountStatus;
             }
             catch (Exception ex)
