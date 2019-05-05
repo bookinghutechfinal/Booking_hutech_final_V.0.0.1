@@ -52,7 +52,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = assignDriverServices.GetListAssignDriverService();
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -109,7 +109,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = assignDriverServices.GetDriverManageCarServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -166,7 +166,7 @@ namespace BookingHutech.Controllers.Api
                             assignDriverServices.AssignDriverManagerServices(request);
                             return ApiResponse.Success();
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -223,7 +223,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = assignDriverServices.GetListAssignedServices();
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }

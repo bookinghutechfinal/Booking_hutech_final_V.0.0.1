@@ -13,7 +13,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         static DataAccess db;
         static SqlConnection con;
         static SqlCommand cmd;
-        static SqlDataAdapter adap;
+        //static SqlDataAdapter adap;
 
         /// <summary>
         /// Create by Anh.Trần 25/5/2019. Thêm mới đơn vị

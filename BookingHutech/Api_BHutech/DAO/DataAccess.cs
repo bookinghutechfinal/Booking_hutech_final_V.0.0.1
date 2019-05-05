@@ -19,7 +19,7 @@ namespace BookingHutech.Api_BHutech.DAO
                 string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["BookingHutechConnectionString"].ConnectionString;
                 return connectionString;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
             }

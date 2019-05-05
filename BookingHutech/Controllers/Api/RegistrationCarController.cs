@@ -58,7 +58,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = registrationCarServices.GetRegistrationCarByCarIDServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -116,7 +116,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = registrationCarServices.GetRegistrationCarByDriverIDServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -174,7 +174,7 @@ namespace BookingHutech.Controllers.Api
                             registrationCarServices.UpdateRegistrationCarStatusServices(request);
                             return ApiResponse.Success();
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Values_Error();
                         }
@@ -230,7 +230,7 @@ namespace BookingHutech.Controllers.Api
                             registrationCarServices.CreateNewRegistrationCarService(request);
                             return ApiResponse.Success();
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -289,7 +289,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = registrationCarServices.ManagerGetListRegistrationCarServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -348,7 +348,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = registrationCarServices.UnitGetListRegistrationCarServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -406,7 +406,7 @@ namespace BookingHutech.Controllers.Api
                             registrationCarServices.ManagerUpdateRegistrationCarService(request);
                             return ApiResponse.Success();
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -466,7 +466,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = registrationCarServices.SearchApproveRegistrationCarServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -522,7 +522,7 @@ namespace BookingHutech.Controllers.Api
                             registrationCarServices.ManagerUpdateRegistrationCarService(request);
                             return ApiResponse.Success();
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -581,7 +581,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = registrationCarServices.SearchGetListRegistrationCarServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -639,7 +639,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = registrationCarServices.UnitSearchGetListRegistrationCarServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -695,7 +695,7 @@ namespace BookingHutech.Controllers.Api
                             registrationCarServices.EditRegistrationCarService(request);
                             return ApiResponse.Success();
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -751,7 +751,7 @@ namespace BookingHutech.Controllers.Api
                             registrationCarServices.DeleteRegistrationCarService(request);
                             return ApiResponse.Success();
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }

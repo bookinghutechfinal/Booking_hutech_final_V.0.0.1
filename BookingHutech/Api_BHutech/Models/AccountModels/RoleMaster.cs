@@ -8,7 +8,7 @@ namespace BookingHutech.Api_BHutech.Models.AccountModels
     public class RoleMaster : GroupRole
     {
         public int RoleMaster_ID { get; set; }
-        public int GroupRoleID { get; set; }
+        //public int GroupRoleID { get; set; }
         public string RoleName { get; set; }
         public int RoleCode { get; set; }
         public bool Role_Status { get; set; }

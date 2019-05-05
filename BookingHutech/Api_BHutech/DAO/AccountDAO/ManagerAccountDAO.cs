@@ -19,7 +19,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         static DataAccess db;
         static SqlConnection con;
         static SqlCommand cmd;
-        static SqlDataAdapter adap;
+        //static SqlDataAdapter adap;
 
         /// <summary>
         /// GetAccountInfoDAO Anh.Tran: Create 10/3/2019 Lấy danh sách tài khoản theo loại tài khoản và trạng thái tài khoản

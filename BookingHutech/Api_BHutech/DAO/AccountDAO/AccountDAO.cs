@@ -18,7 +18,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         static DataAccess db;
         static SqlConnection con;
         static SqlCommand cmd;
-        static SqlDataAdapter adap;
+        //static SqlDataAdapter adap;
 
         /// <summary>
         /// GetAccountInfoDAO Anh.Tran: Create 1/3/2019 
@@ -65,8 +65,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 LogWriter.WriteException(ex);
                 con.Close();
                 throw;
-            }
-            return request;
+            } 
         }
  
         /// <summary>

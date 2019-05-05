@@ -16,7 +16,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
         static DataAccess db;
         static SqlConnection con;
         static SqlCommand cmd;
-        static SqlDataAdapter adap;
+        //static SqlDataAdapter adap;
 
         /// <summary>
         /// GetListCarDAO

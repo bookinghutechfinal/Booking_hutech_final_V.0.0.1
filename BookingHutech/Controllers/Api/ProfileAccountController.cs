@@ -56,7 +56,7 @@ namespace BookingHutech.Controllers.Api
                         return ApiResponse.Success();
 
                     }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                     {
                         return ApiResponse.Error();
                     }

@@ -122,7 +122,7 @@ namespace BookingHutech.Controllers.Api
 
 
                     }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                     {
                         return ApiResponse.Error();
                     }
@@ -188,7 +188,7 @@ namespace BookingHutech.Controllers.Api
                         }
                          
                     }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                     {
                         return ApiResponse.Error();
                     }
@@ -235,7 +235,7 @@ namespace BookingHutech.Controllers.Api
                         return ApiResponse.Success(response);
 
                     }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                     {
                         return ApiResponse.Error();
                     }
@@ -308,7 +308,7 @@ namespace BookingHutech.Controllers.Api
                             return ApiResponse.LoginFail(); //  mk mới không hợp lệ 
                         } 
                     }
-                    catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                    catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                     {
                         return ApiResponse.Error();
                     }

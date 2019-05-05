@@ -55,7 +55,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = carServices.GetListCarServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -111,7 +111,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = carServices.GetListCarTypeServices();
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -169,7 +169,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = carServices.GetListCarByCarTypeIDServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }

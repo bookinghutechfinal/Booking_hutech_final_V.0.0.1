@@ -54,7 +54,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = managerReportServices.ReportCostServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }

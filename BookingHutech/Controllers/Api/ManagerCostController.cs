@@ -54,7 +54,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = costManagerServices.GetDetailRepairCostServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -112,7 +112,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = costManagerServices.GetListCostServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -170,7 +170,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = costManagerServices.GetListCostByCarIDServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -228,7 +228,7 @@ namespace BookingHutech.Controllers.Api
                             var Response = costManagerServices.GetListCostByAccountCreateServices(request);
                             return ApiResponse.Success(Response);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -285,7 +285,7 @@ namespace BookingHutech.Controllers.Api
                             costManagerServices.UpdateRepairStatusServices(request);
                             return ApiResponse.Success();
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -399,7 +399,7 @@ namespace BookingHutech.Controllers.Api
                             int result = costManagerServices.AddNewDetailCostServices(request);
                             return ApiResponse.Success(result);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -456,7 +456,7 @@ namespace BookingHutech.Controllers.Api
                             int result = costManagerServices.UpdateDetailCostServices(request);
                             return ApiResponse.Success(result);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }
@@ -513,7 +513,7 @@ namespace BookingHutech.Controllers.Api
                             int result = costManagerServices.AddNewCostsServices(request);
                             return ApiResponse.Success(result);
                         }
-                        catch (Exception ex) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
+                        catch (Exception ) // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {
                             return ApiResponse.Error();
                         }

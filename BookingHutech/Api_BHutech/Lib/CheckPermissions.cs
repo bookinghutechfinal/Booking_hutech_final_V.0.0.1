@@ -82,7 +82,7 @@ namespace BookingHutech.Api_BHutech.Lib
                 }
                 return (int)BHutechExceptionType.SUCCESS;  // Ok -> tiếp tục. 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 //LogWriter.WriteException(ex);
                 throw; // có lỗi kiểm tra quyền.
