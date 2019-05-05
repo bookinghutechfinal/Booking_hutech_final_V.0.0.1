@@ -285,17 +285,17 @@ var ConvertAccountTypeIDToName = function (accountID) {
     if (accountID === "2") {
         return AccountTypeRequest[1].AccountTypeName;
     }
-    if (accountID === "3") {
-        return AccountTypeRequest[2].AccountTypeName;
-    }
-    if (accountID === "4") {
-        return AccountTypeRequest[3].AccountTypeName;
-    } accountID
-    if (accountID === "5") {
-        return AccountTypeRequest[4].AccountTypeName;
-    } accountID
+    //if (accountID === "3") {
+    //    return AccountTypeRequest[2].AccountTypeName;
+    //}
+    //if (accountID === "4") {
+    //    return AccountTypeRequest[3].AccountTypeName;
+    //} 
+    //if (accountID === "5") {
+    //    return AccountTypeRequest[4].AccountTypeName;
+    //} 
     if (accountID === "7") {
-        return AccountTypeRequest[5].AccountTypeName;
+        return AccountTypeRequest[2].AccountTypeName;
     }
 }
 
@@ -312,19 +312,15 @@ var ConvertAccountStatusIDToName = function (accountStatusID) {
 // Request: AccountTypeName
 // Response:  RegistrationStatusType
 var ReturnAccountType = function (AccountType) {
-    if (parseInt(AccountType) == AccountTypeRequest[0].AccountType) { // THƯ KÝ
+    if (parseInt(AccountType) == AccountTypeRequest[0].AccountType) { // Nhân viên/Giang viên
         return RegistrationStatus[0].RegistrationStatusType;
     }
-    if (parseInt(AccountType) == AccountTypeRequest[1].AccountType) { // TRƯỞNG KHOA
+    if (parseInt(AccountType) == AccountTypeRequest[1].AccountType) { // Lãnh đạo
         return RegistrationStatus[1].RegistrationStatusType;
-    }
-    if (parseInt(AccountType) == AccountTypeRequest[2].AccountType) { // Quản trị
-        return RegistrationStatus[1].RegistrationStatusType;
-    }
-    if (parseInt(AccountType) == AccountTypeRequest[4].AccountType) { // BHG
-        return RegistrationStatus[5].RegistrationStatusType;
-    }
-
+    } 
+    if (parseInt(AccountType) == AccountTypeRequest[2].AccountType) { // Quản trị/BHG/LaiXe
+        return RegistrationStatus[1].RssegistrationStatusType;
+    } 
 }
 
 // Cập nhật trạng thái đơn cấp phát hiển thị lên đơn đăng ký

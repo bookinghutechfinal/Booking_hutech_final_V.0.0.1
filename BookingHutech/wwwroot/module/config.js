@@ -230,7 +230,7 @@ mainmodule.config(['$translateProvider',
             'DetailCar': 'Chi tiết xe',
             'TitileUpdateCarInfo': 'Cập nhật thông tin xe',
             'CalendarDriver': 'Lịch công tác',
-            'assignDriver': 'Phân công',
+            'assignDriver': 'Phân công lái xe',
             /* --------  Cost Manager ---------- */
             'CostManager': 'Quản lý chi phí',
             'RepairCostManager': 'Sửa chữa',

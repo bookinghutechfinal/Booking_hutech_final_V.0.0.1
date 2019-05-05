@@ -45,12 +45,12 @@ mainmodule.run(function ($window, $rootScope) {
 //};
 
 var AccountTypeRequest = [
-    { AccountType: 1, AccountTypeName: "Thư ký" },
-    { AccountType: 2, AccountTypeName: "Trưởng khoa" },
-    { AccountType: 3, AccountTypeName: "Quản trị viên" },
-    { AccountType: 4, AccountTypeName: "Văn phòng trường" },
-    { AccountType: 5, AccountTypeName: "Nhân viên BGH" },
-    { AccountType: 7, AccountTypeName: "Lái xe" },
+    { AccountType: 1, AccountTypeName: "Nhân viên/GV" },
+    { AccountType: 2, AccountTypeName: "Lãnh đạo" },
+    //{ AccountType: 3, AccountTypeName: "Quản trị viên" },
+    //{ AccountType: 4, AccountTypeName: "Văn phòng trường" },
+    //{ AccountType: 5, AccountTypeName: "Ban Giám Hiệu" },
+    { AccountType: 7, AccountTypeName: "Tài xế" },
 ]
 var Account_StatusRequest = [ 
     { Account_Status: 0, Account_StatusName: "Khóa" }, 
@@ -69,14 +69,14 @@ var RoleStatus = [
 ];
 // trạng thái đơn cấp phát.
 var RegistrationStatus = [
-    { RegistrationStatusType: 1, RegistrationStatusName: "Thư ký lập đơn" },
-    { RegistrationStatusType: 2, RegistrationStatusName: "Trưởng khoa duyệt" },
-    { RegistrationStatusType: 3, RegistrationStatusName: "Trưởng khoa hủy" },
+    { RegistrationStatusType: 1, RegistrationStatusName: "Nhân viên/GV lập đơn" },
+    { RegistrationStatusType: 2, RegistrationStatusName: "Lãnh đạo duyệt" },
+    { RegistrationStatusType: 3, RegistrationStatusName: "Lãnh đạo không duyệt" },
     { RegistrationStatusType: 4, RegistrationStatusName: "Phòng quản trị duyệt" },
-    { RegistrationStatusType: 5, RegistrationStatusName: "Phòng quản trị hủy" },
-    { RegistrationStatusType: 6, RegistrationStatusName: "Chờ trường duyệt" },
-    { RegistrationStatusType: 7, RegistrationStatusName: "trường duyệt" },
-    { RegistrationStatusType: 8, RegistrationStatusName: "Trường không duyệt" },
+    { RegistrationStatusType: 5, RegistrationStatusName: "Phòng quản trị không duyệt" },
+    { RegistrationStatusType: 6, RegistrationStatusName: "Chờ BGH duyệt" },
+    { RegistrationStatusType: 7, RegistrationStatusName: "BGH đã duyệt" },
+    { RegistrationStatusType: 8, RegistrationStatusName: "BHG không duyệt" },
     { RegistrationStatusType: 9, RegistrationStatusName: "Đang thực hiện" },
     { RegistrationStatusType: 10, RegistrationStatusName: "Hoàn thành" },
 ];

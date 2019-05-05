@@ -119,27 +119,27 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
         }
         $scope.btndisabled = true;
         $scope.isDriver = false;
-        $scope.isShowQuanTri = 0;
-        $scope.isShowBGH = 0;
-        $scope.isShowLaiXe = 0;
-        $scope.isShowKhoaVien = 0;
+        //$scope.isShowQuanTri = 0;
+        //$scope.isShowBGH = 0;
+        //$scope.isShowLaiXe = 0;
+        //$scope.isShowKhoaVien = 0;
         $scope.TestInputChange = function (Request) {
-            $scope.isShowQuanTri = 0;
-            $scope.isShowBGH = 0;
-            $scope.isShowLaiXe = 0;
-            $scope.isShowKhoaVien = 0;
+            //$scope.isShowQuanTri = 0;
+            //$scope.isShowBGH = 0;
+            //$scope.isShowLaiXe = 0;
+            //$scope.isShowKhoaVien = 0;
 
-            if (Request.Unit_ID == "2") {
-                $scope.isShowQuanTri = 2;
-            }
-            if (Request.Unit_ID == "3") {
-                $scope.isShowBGH = 3;
-            }
-            if (Request.Unit_ID == "4") {
-                $scope.isShowLaiXe = 4;
-            } else {
-                $scope.isShowKhoaVien = 1;
-            }
+            //if (Request.Unit_ID == "2") {
+            //    $scope.isShowQuanTri = 2;
+            //}
+            //if (Request.Unit_ID == "3") {
+            //    $scope.isShowBGH = 3;
+            //}
+            //if (Request.Unit_ID == "4") {
+            //    $scope.isShowLaiXe = 4;
+            //} else {
+            //    $scope.isShowKhoaVien = 1;
+            //}
             // check show theo loại tài khoa
             if (Request.AccountType === "7") {
                 $scope.isDriver = true;
@@ -230,6 +230,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                                 // $state.go('Admin.ProductManager');
                                 toastr.success("Đã thêm thành công");
                                 //$state.reload();
+                                $modalInstance.close();
                                 break;
                         }
                     });

@@ -17,10 +17,7 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                 return;
             };
 
-            $scope.ClosePopup = function () {
-                $modalInstance.close(false);
-
-            }
+           
 
             $scope.main = function () {
                 $scope.ipFullName = false;
@@ -47,7 +44,10 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                     "Avatar": EditProfileRequestData.Avatar,
                     "AvatarNew": null,
                 };
+                $scope.ClosePopup = function () {
+                    $modalInstance.close($scope.EditProfiAccount.Account_ID);
 
+                }
                 // img 
                 $scope.ImageModel = {
                     CHAN_DUNG: {
@@ -170,7 +170,7 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                                 switch (res.data.ReturnCode) {
                                     case 1:
                                         toastr.success("Đã cập nhật thành công");
-                                        $modalInstance.close(true);
+                                        $modalInstance.close($scope.EditProfiAccount.Account_ID);
                                         $scope.isShowRegisterSuccess = true;
                                         $scope.EditProfiAccount.Birthday = moment($scope.EditProfiAccount.Birthday, 'YYYY-MM-DD').format('DD-MM-YYYY');
                                         $scope.EditProfiAccount.LicenseExpires = moment($scope.EditProfiAccount.LicenseExpires, 'YYYY-MM-DD').format('DD-MM-YYYY');
@@ -179,7 +179,7 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                             });
                         });
                     } else {
-                        $modalInstance.close(false); 
+                        $modalInstance.close($scope.EditProfiAccount.Account_ID); 
                     } 
                     
                 } 

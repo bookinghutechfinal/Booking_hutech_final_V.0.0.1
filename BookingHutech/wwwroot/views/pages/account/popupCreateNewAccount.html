@@ -228,7 +228,7 @@
                                             <div class="col-md-4 col-sm-4 col-xs-12">
                                                 <select class="form-control" ng-model="CreateNewAccountmModel.AccountType" ng-change="TestInputChange(CreateNewAccountmModel)">
                                                     <option selected value="">-- Vui lòng chọn --</option>
-                                                    <option value="1" ng-show="isShowKhoaVien == 1 &&  isShowQuanTri !== 2  &&  isShowBGH !== 3  ">
+                                                    <!--<option value="1" ng-show="isShowKhoaVien == 1 &&  isShowQuanTri !== 2  &&  isShowBGH !== 3  ">
                                                         Thư ký
                                                     </option>
                                                     <option value="2" ng-show="isShowKhoaVien == 1  &&  isShowQuanTri !== 2  &&  isShowBGH !== 3  ">
@@ -242,16 +242,16 @@
                                                     </option>
                                                     <option value="7" ng-show="isShowLaiXe == 4 ">
                                                         Lái xe
-                                                    </option>
+                                                    </option>-->
                                                     <!--{ AccountType: 1, AccountTypeName: "Thư ký" },
                                                     { AccountType: 2, AccountTypeName: "Trưởng khoa" },
                                                     { AccountType: 3, AccountTypeName: "Phòng quản trị" },
                                                     { AccountType: 4, AccountTypeName: "Văn phòng trường" },
                                                     { AccountType: 5, AccountTypeName: "Ban giám hiệu" },
                                                     { AccountType: 7, AccountTypeName: "Lái xe" },-->
-                                                    <!--<option ng-repeat="index in AccountType" value="{{index.AccountType}}" ng-show="CreateNewAccountmModel.Unit_ID !=== '' || CreateNewAccountmModel.Unit_ID !=== null">
+                                                    <option ng-repeat="index in AccountType" value="{{index.AccountType}}" ng-show="CreateNewAccountmModel.Unit_ID !=== '' || CreateNewAccountmModel.Unit_ID !=== null">
                                                         {{index.AccountTypeName}}
-                                                    </option>-->
+                                                    </option>
                                                 </select>
                                                 <span class="field-validation-valid text-danger" ng-show="CreateNewAccountmModel.AccountType === '' || CreateNewAccountmModel.AccountType === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
                                             </div>

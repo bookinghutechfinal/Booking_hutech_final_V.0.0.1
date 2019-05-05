@@ -147,7 +147,13 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
         }
 
         $scope.main = function () {
-            $scope.GetDetailAccountInfoAndRole(); // Lấy chi tiết account.   
+           // $scope.GetDetailAccountInfoAndRole(); // Lấy chi tiết account.
+            // Mặc định lấy danh sách tài khoản  người dùng theo loại tài khoản và trạng thái account.  
+            $scope.ManagerGetListAccountRequestModel = {
+                AccountType: 7, // Lái xe
+                Account_Status: 1 // 1. hoạt động, 0: khóa
+            }
+            $scope.ManagerGetListAccount($scope.ManagerGetListAccountRequestModel);
         }
 
         // kiểm tra account đẵ đăng nhập chưa, đổi mật khẩu chưa. 
@@ -377,6 +383,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
             }
 
         }
+      
 
         // 6. Button tìm kiếm account. 
         $scope.isCheckAccounttype = false;

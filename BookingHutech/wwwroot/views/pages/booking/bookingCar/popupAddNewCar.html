@@ -93,133 +93,132 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_content">
-                    <!--không có quyền-->
-                    <div class="x_content bs-example-popovers" ng-show="!showByPermission(501)" style="padding-bottom: 25%;">
-                        <div class="alert alert-warning alert-dismissible fade in" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <strong><i class="fa fa-warning"></i> Xin lỗi!</strong>
-                            <ul>
-                                <li>Bạn không có quyền thực hiện chức năng này.</li>
-                            </ul>
-                            <ul>
-                                <li>Vui lòng liên hệ quản trị viên để được hỗ trợ.</li>
-                            </ul>
-                        </div>
+                <!--không có quyền-->
+                <div class="x_content bs-example-popovers" ng-show="!showByPermission(501)" style="padding-bottom: 25%;">
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong><i class="fa fa-warning"></i> Xin lỗi!</strong>
+                        <ul>
+                            <li>Bạn không có quyền thực hiện chức năng này.</li>
+                        </ul>
+                        <ul>
+                            <li>Vui lòng liên hệ quản trị viên để được hỗ trợ.</li>
+                        </ul>
                     </div>
-                    <!--không có quyền-->
-                    <div ng-show="showByPermission(501)">
-                        <div class="x_panel">
-                            <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
-                                <div class="form-group" style="text-align: center;">
-                                    <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null && isCheckimgUrl " style="color: orangered">Vui lòng chọn!</span>
+                </div>
+                <!--không có quyền-->
+                <div ng-show="showByPermission(501)">
+                    <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
+                        <div class="form-group" style="text-align: center;">
+                            <span ng-show="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL ==='' || ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null && isCheckimgUrl " style="color: orangered">Vui lòng chọn!</span>
 
-                                    <div ng-show="!ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
-                                        <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
-                                             width="200" height="200" />
-                                        <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
-                                    </div>
-                                    <div class="row">
-                                        <div>
-                                            <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình"
-                                                    onclick="document.getElementById('file1').click();" style="margin-top: 5px;">
-                                                <span class="glyphicon glyphicon-picture"></span>
-                                                Chọn Hình
-                                                <i style="color:red;">(*)</i>
-                                            </button>
-                                            <input style="display:none;" type="file" id="file1" accept="image/*"
-                                                   ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
-                                                   resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
-                                        </div>
-                                    </div>
+                            <div ng-show="!ImageModel.CHAN_DUNG.ImageData.compressed.dataURL =='' || !ImageModel.CHAN_DUNG.ImageData.compressed.dataURL === null  ">
+                                <img style="width:auto; max-width: -webkit-fill-available;" ng-src="{{ImageModel.CHAN_DUNG.ImageData.compressed.dataURL}}"
+                                     width="200" height="200" />
+                                <img class="delete" type="button" value="xóa" ng-click="removeImage()" src="../../../../images/icon/close_delete-512.png" id="imgremove" style="width: 30px" />
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <button class="btn btn-payment" id="loadFileXml" value="Chọn Hình"
+                                            onclick="document.getElementById('file1').click();" style="margin-top: 5px;">
+                                        <span class="glyphicon glyphicon-picture"></span>
+                                        Chọn Hình
+                                        <i style="color:red;">(*)</i>
+                                    </button>
+                                    <input style="display:none;" type="file" id="file1" accept="image/*"
+                                           ng-model="ImageModel.CHAN_DUNG.ImageData.compressed.dataURL" image="ImageModel.CHAN_DUNG.ImageData" resize-max-height="600"
+                                           resize-max-width="600" resize-quality="0.7" resize-type="image/jpg" ng-image-compress />
                                 </div>
                             </div>
-                            <div class="col-md-10 col-sm-10 col-xs-12">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div class="x_content">
-                                        <div class="form-horizontal form-label-left input_mask">
-                                            <div class="form-group">
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_content">
+                                <div class="form-horizontal form-label-left input_mask">
+                                    <div class="form-group">
 
-                                                <div class="control-label col-md-2 col-sm-2 col-xs-12">Tên xe : <i style="color:red;">(*)</i></div>
-                                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                                    <span class="fa fa-car form-control-feedback right" aria-hidden="true"></span>
-                                                    <input class="form-control text-box single-line ed_border" value="" ng-model="CarInfo.CarName" ng-change="TestInputChange(CarInfo)" type="text">
-                                                    <span class="field-validation-valid text-danger" ng-show="CarInfo.CarName === '' || CarInfo.CarName === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                                </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Tên xe : <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <span class="fa fa-car form-control-feedback right" aria-hidden="true"></span>
+                                            <input class="form-control text-box single-line ed_border" value="" ng-model="CarInfo.CarName" ng-change="TestInputChange(CarInfo)" type="text">
+                                            <span class="field-validation-valid text-danger" ng-show="CarInfo.CarName === '' || CarInfo.CarName === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
 
-                                                <div class="control-label col-md-2 col-sm-2 col-xs-12">Loại xe : <i style="color:red;">(*)</i></div>
-                                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                                    <select class="form-control ed_border" ng-model="CarInfo.CarTypeID" ng-change="TestInputChange(CarInfo)" style="width: 100%;">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Loại xe : <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <select class="form-control ed_border" ng-model="CarInfo.CarTypeID" ng-change="TestInputChange(CarInfo)" style="width: 100%;">
+
+
+
                                                         <!--<option selected value="all">{{'All' | translate }}</option>-->
-                                                        <option selected value="">-- Vui lòng chọn --</option>
-                                                        <option ng-repeat="data in listCarType" value="{{data.CarTypeID}}">
-                                                            {{data.CarTypeName}}
-                                                        </option>
-                                                    </select>
-                                                    <span class="field-validation-valid text-danger" ng-show="CarInfo.CarTypeID === '' || CarInfo.CarTypeID === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
-                                                </div>
-                                            </div>
+                                                <option selected value="">-- Vui lòng chọn --</option>
+                                                <option ng-repeat="data in listCarType" value="{{data.CarTypeID}}">
+                                                    {{data.CarTypeName}}
+                                                </option>
+                                            </select>
+                                            <span class="field-validation-valid text-danger" ng-show="CarInfo.CarTypeID === '' || CarInfo.CarTypeID === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng chọn!</span>
+                                        </div>
+                                    </div>
 
-                                            <div class="form-group">
-                                                <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạn bảo hiểm: <i style="color:red;">(*)</i></div>
-                                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                                    <div class='input-group date' id='myDatepicker1'>
-                                                        <input type='text' class="form-control ed_border" id="myDate1" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
-                                                    <span class="field-validation-valid text-danger" ng-show="angular.element('#myDate1').val() === '' || angular.element('#myDate1').val() === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                                </div>
-                                                <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạn đăng kiểm: <i style="color:red;">(*)</i></div>
-                                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                                    <div class='input-group date' id='myDatepicker2'>
-                                                        <input type='text' class="form-control ed_border" id="myDate2" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
-                                                    <span class="field-validation-valid text-danger" ng-show="angular.element('#myDate2').val() === '' || angular.element('#myDate2').val() === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                                </div>
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạn bảo hiểm: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <div class='input-group date' id='myDatepicker1'>
+                                                <input type='text' class="form-control ed_border" id="myDate1" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
                                             </div>
+                                            <span class="field-validation-valid text-danger" ng-show="angular.element('#myDate1').val() === '' || angular.element('#myDate1').val() === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Hạn đăng kiểm: <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <div class='input-group date' id='myDatepicker2'>
+                                                <input type='text' class="form-control ed_border" id="myDate2" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                            <span class="field-validation-valid text-danger" ng-show="angular.element('#myDate2').val() === '' || angular.element('#myDate2').val() === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                    </div>
 
-                                            <div class="form-group">
-                                                <div class="control-label col-md-2 col-sm-2 col-xs-12">Biển số : <i style="color:red;">(*)</i></div>
-                                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                                    <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
-                                                    <input class="form-control text-box single-line ed_border" value="" ng-model="CarInfo.CarNo" ng-change="TestInputChange(CarInfo)" type="text">
-                                                    <span class="field-validation-valid text-danger" ng-show="CarInfo.CarNo === '' || CarInfo.CarNo === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
-                                                </div>
-                                            </div>
+                                    <div class="form-group">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Biển số : <i style="color:red;">(*)</i></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
+                                            <input class="form-control text-box single-line ed_border" value="" ng-model="CarInfo.CarNo" ng-change="TestInputChange(CarInfo)" type="text">
+                                            <span class="field-validation-valid text-danger" ng-show="CarInfo.CarNo === '' || CarInfo.CarNo === null && !TestInputChange"><i class="fa fa-warning"></i>Vui lòng nhập!</span>
+                                        </div>
+                                    </div>
 
-                                            <div class=" col-md-12 col-sm-12 col-xs-12 form-group" ng-show="btndisabled">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                                                <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-warning ngHideSample" style="float: right; height: 34px; padding: inherit; text-align:center">
-                                                    <h6>
-                                                        <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
-                                                    </h6>
-                                                </div>
+                                    <div class=" col-md-12 col-sm-12 col-xs-12 form-group" ng-show="btndisabled">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                        <div class=" col-md-9 col-sm-9 col-xs-12 form-group alert alert-warning ngHideSample" style="float: right; height: 34px; padding: inherit; text-align:center">
+                                            <h6>
+                                                <i class="fa fa-warning"> Vui lòng nhập đầy đủ thông tin vào các trường bắt buộc (*) !. </i>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-12 col-md-12 col-xs-12">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
+                                        <div class=" col-md-9 col-sm-9 col-xs-12 form-group">
+                                            <div class="col-sm-6 col-md-6 col-xs-6" style="margin-bottom: 1px;">
+                                                <button class="btn btn-danger btn-round btn-block"
+                                                        ng-click="ClosePopup()">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                    <span>HỦY</span>
+                                                </button>
                                             </div>
-                                            <div class="form-group col-sm-12 col-md-12 col-xs-12">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> </label>
-                                                <div class=" col-md-9 col-sm-9 col-xs-12 form-group">
-                                                    <div class="col-sm-6 col-md-6 col-xs-6" style="margin-bottom: 1px;">
-                                                        <button class="btn btn-danger btn-round btn-block"
-                                                                ng-click="ClosePopup()">
-                                                            <i class="glyphicon glyphicon-remove"></i>
-                                                            <span>HỦY</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-sm-6 col-md-6 col-xs-6" ng-show="showByPermission(501)">
-                                                        <button class="btn Sbtn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
-                                                                ng-click="addNewCar()">
-                                                            <i class="fa fa-plus-circle"></i>
-                                                            <span>THÊM</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                            <div class="col-sm-6 col-md-6 col-xs-6" ng-show="showByPermission(501)">
+                                                <button class="btn Sbtn-primary btn-round btn-block" type="submit" ng-disabled="btndisabled"
+                                                        ng-click="addNewCar()">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                    <span>THÊM</span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

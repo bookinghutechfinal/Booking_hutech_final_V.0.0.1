@@ -125,9 +125,16 @@
                                 <label>{{'Status'| translate}}<i style="color:red;">(*)</i></label>
                                 <select class="form-control select2 ed_border" ng-model="SearchRegisterCar.ProfileStatus" style="width: 100%;">
                                     <option selected="selected" value="">{{'SearchChooseStatusRegter'| translate}}</option>
-                                    <option value="1">Chờ trưởng khoa duyệt</option>
-                                    <option value="2">Trưởng khoa duyệt</option>
-                                    <option value="3">Trưởng khoa hủy</option>
+                                    <option value="1">Chờ Lãnh đạo duyệt</option>
+                                    <option value="2">Chờ quản trị duyệt</option>
+                                    <option value="4">Quản trị đã duyệt</option>
+                                    <option value="6">Chờ BGH duyệt</option>
+                                    <option value="7">BGH đã duyệt</option>
+                                    <option value="3">Lãnh đạo không duyệt</option>
+                                    <option value="5">Quản trị không duyệt</option>  
+                                    <option value="8">BGH không duyệt</option>
+                                    <option value="9">Đang thực hiện</option>
+                                    <option value="10">Hoàn thành</option>
                                 </select>
                                 <span class="field-validation-valid text-danger ngHideSample" ng-show="SearchRegisterCar.ProfileStatus === '' || SearchRegisterCar.ProfileStatus === null && isCheckProfile_Status">{{'MessPleaseChoose' | translate}}</span>
                             </div>
@@ -146,8 +153,7 @@
                                 </div>
                             </div>
                             <div class="col-md-5 col-sm-5 col-xs-12">
-                            </div> 
-
+                            </div>  
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -180,9 +186,9 @@
                                     {{item.RouteBack}}
                                 </td>
                                 <td data-title="'Trạng thái'" style="width:10%"   align="left">
-                                    <h5 ng-show="item.Profile_Status === 1" style="color:brown"> Chờ khoa duyệt</h5>
+                                    <h5 ng-show="item.Profile_Status === 1" style="color:brown"> Chờ Lãnh đạo duyệt</h5>
                                     <h5 ng-show="item.Profile_Status === 2" style="color:olivedrab"> Chờ quản trị duyệt</h5> <!--Khoa đã duyệt rồi-->
-                                    <h5 ng-show="item.Profile_Status === 3" style="color:red"> Trưởng khoa đã hủy</h5>
+                                    <h5 ng-show="item.Profile_Status === 3" style="color:red"> Lãnh đạo đã hủy</h5>
                                     <h5 ng-show="item.Profile_Status === 4" style="color:blue"> Quản trị đã duyệt </h5>
                                     <h5 ng-show="item.Profile_Status === 5" style="color:red"> Quản trị không duyệt </h5>
                                     <h5 ng-show="item.Profile_Status === 6" style="color:blue"> Chờ BGH duyệt </h5>

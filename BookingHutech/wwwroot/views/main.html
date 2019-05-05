@@ -1,16 +1,28 @@
-﻿
+﻿<style>
+    .footer {
+        background-color: #2a2725;
+        color: white;
+        left: 0;
+        bottom: 0;
+        width: 100%; 
+    }
+    
+</style>
 <div class="wrapper">
     <!-- Sidebar Holder -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>BookingHutech</h3>
+            <h3>Booking Hutech</h3>
             <h3 style="font-size:15px" ng-click="OpenPopupShowProfile()">
                 <a href="">
-                    <i class="fa fa-circle text-success"></i> Hi!{{UserName}} <i class="fa fa-eye"></i>
+                    <i class="fa fa-circle text-success"></i> {{UserName}} <i class="fa fa-eye"></i>
                 </a>
             </h3>
             <strong>
                 BH
+            </strong>
+            <strong>
+                <a href="" ng-click="OpenPopupShowProfile()"> <i class="fa fa-user"></i><i style="font-size:0.5em">Profile</i></a>
             </strong>
         </div>
 
@@ -20,6 +32,29 @@
                     <i class="glyphicon glyphicon-home"></i>
                     Trang Chủ
                 </a>
+            </li>
+            <li  ng-show="showByPermission(800)">
+                <a href=".accountSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="fa fa-group"></i>
+                    Quản lý tài khoản
+                </a>
+                <ul class="collapse list-unstyled accountSubmenu" id="accountSubmenu">
+                    <li>
+                        <a href="#/main/manager-account"><i class="fa fa-hand-o-right"></i>Tài khoản người dùng</a>
+                    </li>
+                </ul>
+            </li>
+            <li ng-show="showByPermission(500)">
+                <a href=".carSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="fa fa-car"></i>
+                    Quản lý xe
+                </a>
+                <ul class="collapse list-unstyled carSubmenu" id="carSubmenu">
+                    <li ng-show="showByPermission(500)"><a href="#/main/booking-car"><i class="fa fa-hand-o-right"></i>Danh sách xe</a></li>
+                </ul>
+                <ul class="collapse list-unstyled carSubmenu" id="carSubmenu">
+                    <li ng-show="showByPermission(803)"><a href="#/main/assign-driver"><i class="fa fa-hand-o-right"></i>Phân công lái xe</a></li>
+                </ul>
             </li>
             <li>
                 <a href=".registerSubmenu" data-toggle="collapse" aria-expanded="false" ng-show="showByPermission(900) || showByPermission(904)">
@@ -33,15 +68,6 @@
                     <li ng-show="showByPermission(904)">
                         <a href="#/main/unitRegister-BookingCar"> <i class="fa fa-hand-o-right"></i>Chờ đề xuất</a>
                     </li>
-                </ul>
-            </li>
-            <li ng-show="showByPermission(500)">
-                <a href=".carSubmenu" data-toggle="collapse" aria-expanded="false">
-                    <i class="fa fa-car"></i>
-                    Quản lý xe
-                </a>
-                <ul class="collapse list-unstyled carSubmenu" id="carSubmenu">
-                    <li ng-show="showByPermission(500)"><a href="#/main/booking-car"><i class="fa fa-hand-o-right"></i>Danh sách xe</a></li>
                 </ul>
             </li>
             <li ng-show="showByPermission(700)">
@@ -63,21 +89,7 @@
                 <ul class="collapse list-unstyled reportSubmenu" id="reportSubmenu">
                     <li ng-show="showByPermission(600)"><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Chi phí xe</a></li>
                     <!--<li><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Chuyến đi</a></li>
-                    <li><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Hoạt động lái xe</a></li>-->
-                </ul>
-            </li>
-            <li>
-                <a href=".accountSubmenu" data-toggle="collapse" aria-expanded="false">
-                    <i class="fa fa-group"></i>
-                    Quản lý tài khoản
-                </a>
-                <ul class="collapse list-unstyled accountSubmenu" id="accountSubmenu">
-                    <li ng-show="showByPermission(800)">
-                        <a href="#/main/manager-account"><i class="fa fa-hand-o-right"></i>Quản lý người dùng</a>
-                    </li>
-                    <!--<li><a href="#/main/driver-manager"><i class="fa fa-hand-o-right"></i>Quản lý lái xe</a></li>-->
-                    <li ng-show="showByPermission(803)"><a href="#/main/assign-driver"><i class="fa fa-hand-o-right"></i>Phân công</a></li>
-                    <li><a href="" ng-click="OpenPopupShowProfile()"><i class="fa fa-hand-o-right"></i>Thông tin người dùng</a></li>
+            <li><a href="#/main/report-cost"><i class="fa fa-hand-o-right"></i>Hoạt động lái xe</a></li>-->
                 </ul>
             </li>
             <li ng-show="showByPermission(701) || showByPermission(909)">
@@ -94,11 +106,11 @@
             </li>
 
             <!--<li>
-                <a href="#">
-                    <i class="glyphicon glyphicon-send"></i>
-                    Hỗ trợ
-                </a>
-            </li>-->
+        <a href="#">
+            <i class="glyphicon glyphicon-send"></i>
+            Hỗ trợ
+        </a>
+    </li>-->
             <li>
                 <a href="" ng-click="logout()">
                     <i class="fa fa-sign-out"></i>
@@ -112,30 +124,31 @@
     <!-- Page Content Holder -->
     <div id="content" class="container">
         <div class="container">
-            <div class="navbar-header" style="width: -webkit-fill-available;">
-                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="margin-left: 8px;">
+            <div class="navbar-header" style="width: -webkit-fill-available; background-color: #2a2725;">
+                <button type="button" id="sidebarCollapse" class="btn btn-secondary navbar-btn" style="margin-left: 8px;">
                     <i class="glyphicon glyphicon-align-left"></i>
                     <span>Menu</span>
                 </button>
             </div>
             <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                </ul>
-            </div>-->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Page</a></li>
+                <li><a href="#">Page</a></li>
+                <li><a href="#">Page</a></li>
+                <li><a href="#">Page</a></li>
+            </ul>
+        </div>-->
         </div>
         <nav class="navbar navbar-default ">
-            <div class="container-fluid ">
+            <!--<div class="container-fluid ">-->
                 <div ui-view></div>
-            </div>
-        </nav>
+            <!--</div>-->
+        </nav> 
+    </div>
+</div>
+<div class="navbar-header " style="width: -webkit-fill-available;padding: 5px;background-color: #2a2826;">
+    <div class="col-sm-12 footer " ng-include="'wwwroot/views/common/footer/footer.html'"  >
 
-        <div class="col-sm-12" ng-include="'wwwroot/views/common/footer/footer.html'">
-
-        </div>
     </div>
 </div>
 
@@ -182,7 +195,7 @@
             </ul>
             <ul>
                 <li style="display:inline;">
-                    <input type="button"  onclick="btnCheckNoConnect()" class="btn btn-primary" value="Đã Hiểu" />
+                    <input type="button" onclick="btnCheckNoConnect()" class="btn btn-primary" value="Đã Hiểu" />
                 </li>
             </ul>
         </div>
@@ -208,6 +221,6 @@
 </div>
 <script>
     function btnCheckNoConnect() {
-        location.reload(true); 
+        location.reload(true);
     }
 </script>

@@ -1,6 +1,6 @@
 ﻿
-mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'AccountIDRequest', 'NgTableParams', '$account','$alert',
-    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountIDRequest, NgTableParams, $account, $alert) {
+mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScope', '$cookies', 'toastr', '$modalInstance', 'AccountIDRequest', 'NgTableParams', '$account', '$alert','$modal',
+    function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountIDRequest, NgTableParams, $account, $alert, $modal) {
 
         var AccountInfo = $account.getAccountInfo();
 
@@ -8,7 +8,7 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
         $scope.Titile = "Chi tiết tài khoản";
         $scope.ClosePopup = function () {
             $modalInstance.close();
-            location.reload();
+            
         }
         if (checkNull(AccountIDRequest)) {
             $modalInstance.close();
@@ -52,7 +52,9 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
                             Verify: AccountInfoResponse.Verify,
                             IsChangePassword: AccountInfoResponse.IsChangePassword,
                             AccountType: AccountInfoResponse.AccountType,
+                            AccountTypeName: AccountInfoResponse.AccountTypeName,
                             UnitName: AccountInfoResponse.UnitName,
+                            Unit_ID: AccountInfoResponse.Unit_ID,
                             Manager: AccountInfoResponse.Manager,
                             EmailManager: AccountInfoResponse.EmailManager,
                             NumberPhoneManager: AccountInfoResponse.NumberPhoneManager,
@@ -64,22 +66,22 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
 
                         //Cập nhật loại tài khoản 
                         if ($scope.AccountDetailDetail.AccountType === "1") {
-                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[0].AccountTypeName;
+                            $scope.AccountDetailDetail.AccountTypeName = AccountTypeRequest[0].AccountTypeName;
                         }           
                         if ($scope.AccountDetailDetail.AccountType === "2") {
-                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[1].AccountTypeName;
+                            $scope.AccountDetailDetail.AccountTypeName = AccountTypeRequest[1].AccountTypeName;
                         }           
-                        if ($scope.AccountDetailDetail.AccountType === "3") {
-                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[2].AccountTypeName;
-                        }           
-                        if ($scope.AccountDetailDetail.AccountType === "4") {
-                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[3].AccountTypeName;
-                        }           
-                        if ($scope.AccountDetailDetail.AccountType === "5") {
-                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[4].AccountTypeName;
-                        }           
+                        //if ($scope.AccountDetailDetail.AccountType === "3") {
+                        //    $scope.AccountDetailDetail.AccountType = AccountTypeRequest[2].AccountTypeName;
+                        //}           
+                        //if ($scope.AccountDetailDetail.AccountType === "4") {
+                        //    $scope.AccountDetailDetail.AccountType = AccountTypeRequest[3].AccountTypeName;
+                        //}           
+                        //if ($scope.AccountDetailDetail.AccountType === "5") {
+                        //    $scope.AccountDetailDetail.AccountType = AccountTypeRequest[4].AccountTypeName;
+                        //}           
                         if ($scope.AccountDetailDetail.AccountType === "7") {
-                            $scope.AccountDetailDetail.AccountType = AccountTypeRequest[5].AccountTypeName;
+                            $scope.AccountDetailDetail.AccountTypeName = AccountTypeRequest[2].AccountTypeName;
                         }
 
                         //Cập nhật giới tính
@@ -308,6 +310,54 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
             }); //end
 
         }
-        
+
+        // Button chỉnh sửa thông tin account.  
+        $scope.EditProfileAccount = function () {
+            $modalInstance.close();
+            if ($rootScope.CheckCookies()) {
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/account/popupEditProfileAccount.html',
+                    controller: 'EditProfileAccountController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        EditProfileRequestData: function () {
+                            return $scope.AccountDetailDetail ;
+                        },
+                    }
+                });
+                modalInstance.result.then(function (Account_ID) {
+                    if ($rootScope.CheckCookies()) {
+                        if ($rootScope.CheckCookies()) {
+                            var modalInstance = $modal.open({
+                                animation: true,
+                                ariaLabelledBy: 'modal-title',
+                                ariaDescribedBy: 'modal-body',
+                                templateUrl: '/wwwroot/views/pages/account/popupDetailAccount.html',
+                                controller: 'DetailAccountController',
+                                controllerAs: 'content',
+                                backdrop: 'static',
+                                size: 'lg',
+                                resolve: {
+                                    AccountIDRequest: function () {
+                                        return Account_ID;
+                                    },
+                                }
+                            });
+                            modalInstance.result.then(function () {
+
+                            });
+                        }
+                         
+                    }
+                });
+            } else {
+                $modalInstance.close();
+            }
+        }
 
     }]);  
