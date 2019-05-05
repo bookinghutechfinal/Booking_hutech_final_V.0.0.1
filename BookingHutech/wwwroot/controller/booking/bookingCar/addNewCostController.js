@@ -50,6 +50,8 @@
                 else {
                     $scope.btndisabled = false;
                 }
+            } else {
+                $modalInstance.close();
             }
         }
 
@@ -68,6 +70,8 @@
                     $scope.btndisabled = true;
                     return;
                 }
+            } else {
+                $modalInstance.close();
             }
         }
 
@@ -92,6 +96,8 @@
         }
         if ($rootScope.CheckCookies()) {
             $scope.init();
+        } else {
+            $modalInstance.close();
         }
 
         $scope.btndisabled = true;

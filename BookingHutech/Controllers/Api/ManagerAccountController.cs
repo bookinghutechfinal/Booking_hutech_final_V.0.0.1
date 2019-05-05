@@ -153,8 +153,8 @@ namespace BookingHutech.Controllers.Api
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPatch]
-        public ApiResponse ManagerCreateNewAccount([FromBody] CreateNewAccountRequestModel request)
+        [HttpPost]
+        public ApiResponse ManagerCreateNewAccount([FromBody] AddNewAccountRequestModel request)
         {
 
             try
@@ -168,7 +168,7 @@ namespace BookingHutech.Controllers.Api
                         //JavaScriptSerializer js = new JavaScriptSerializer();
                         //CookieHeaderValue CookieAccountInfo = Request.Headers.GetCookies("AccountInfoCheckPermissions").FirstOrDefault();
                         //int Result = checkPermissions.ResponseCheckPermissions(115, CookieAccountInfo);
-                        request.Password = EncodePassword.CreateSHA256(request.Password);
+                        request.createNewAccountRequestModel.Password = EncodePassword.CreateSHA256(request.createNewAccountRequestModel.Password);
                         //switch (Result)
                         //{
                         //    case 114:
@@ -181,8 +181,8 @@ namespace BookingHutech.Controllers.Api
                         // OK -> Đi tiếp. 
                         try
                         {
-                            accountServices.ManagerCreateNewAccountServices(request);
-                            return ApiResponse.Success();
+                            var response = accountServices.ManagerCreateNewAccountServices(request);
+                            return ApiResponse.Success(response);
                         }
                         catch // Thực hiện gọi hàm truy vấn ở lớp trên bị lỗi. 
                         {

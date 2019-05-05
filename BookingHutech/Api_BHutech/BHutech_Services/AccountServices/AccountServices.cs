@@ -104,26 +104,42 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.AccountServices
         ///  request.Verify = true; 
         /// </summary>
         /// <param name="request"></param>
-        public void ManagerCreateNewAccountServices(CreateNewAccountRequestModel request)
+        public int ManagerCreateNewAccountServices(AddNewAccountRequestModel request)
         {
-
             try
             {
-
-                request.Account_ID = helper.CreateID();
-                request.Verify = true;
+                request.createNewAccountRequestModel.Account_ID = helper.CreateID();
+                request.createNewAccountRequestModel.Verify = true;
                 string fileName = "Avatar" + helper.CreateID() + ".png";
-                request.Avatar =  UploadFile.UploadImage(request.Avatar, fileName);   
-                string stringSqluspCreateNewAccount = String.Format(Prototype.SqlCommandStore.uspCreateNewAccount);
-                accountDAO.CreateNewAccountDAO(stringSqluspCreateNewAccount, request);
+                request.createNewAccountRequestModel.Avatar = UploadFile.UploadImage(request.createNewAccountRequestModel.Avatar, fileName);
+                string data = "";
+                for (int i = 0; i < request.updateRoleRequestModel.Count; i++)
+                {
+                    if (i == request.updateRoleRequestModel.Count - 1)
+                        data = data + "('" + request.createNewAccountRequestModel.Account_ID + "'" + "," + request.updateRoleRequestModel[i].RoleMaster_ID + ",'" + request.updateRoleRequestModel[i].RoleDetail_Status + "', getDate(), getDate(),N'" + request.updateRoleRequestModel[i].FullNameUpdate + "')";
+                    else
+                        data = data + "('" + request.createNewAccountRequestModel.Account_ID + "'" + "," + request.updateRoleRequestModel[i].RoleMaster_ID + ",'" + request.updateRoleRequestModel[i].RoleDetail_Status + "', getDate(), getDate(),N'" + request.updateRoleRequestModel[i].FullNameUpdate + "'),";
+                }
+                string stringSql = "begin try"
+                                    + " begin transaction"
+                                    + " INSERT INTO  Account(Avatar, Account_ID, Unit_ID, FullName, UserName, Password, Gender, BirthDay, NumberPhone, Addres, Email, CreateDate, LastModifiedDate, IsChangePassword, Account_Status, Verify, AccountType, DriverLicenseNo, LicenseClass, LicenseExpires)"
+                                    + " Values('" + request.createNewAccountRequestModel.Avatar + "', '" + request.createNewAccountRequestModel.Account_ID + "', " + request.createNewAccountRequestModel.Unit_ID + ", N'" + request.createNewAccountRequestModel.FullName + "', '" + request.createNewAccountRequestModel.UserName + "', '" + request.createNewAccountRequestModel.Password + "', " + request.createNewAccountRequestModel.Gender + ", '" + request.createNewAccountRequestModel.Birthday + "', '" + request.createNewAccountRequestModel.NumberPhone + "', N'" + request.createNewAccountRequestModel.Addres + "', '" + request.createNewAccountRequestModel.Email + "', GETDATE(), GETDATE(), 0, 1, '"+ request.createNewAccountRequestModel.Verify +"', '" + request.createNewAccountRequestModel.AccountType + "', '" + request.createNewAccountRequestModel.DriverLicenseNo + "', '" + request.createNewAccountRequestModel.LicenseClass + "', '" + request.createNewAccountRequestModel.LicenseExpires + "')"
+                                    + " insert into RoleDetail (Account_ID, RoleMaster_ID, RoleDetail_Status, CreateDate, LastModifiedDate, FullNameUpdate)"
+                                    + " values " +
+                                    data
+                                    + " commit"
+                                    + " end try"
+                                    + " begin catch"
+                                    + " rollback"
+                                    + " end catch";
+                int result = accountDAO.AddNewAccountDAO(stringSql);
+                return result;
             }
             catch (Exception ex)
             {
-                UploadFile.DeleteImage(request.Avatar);
                 LogWriter.WriteException(ex);
                 throw;
             }
-
         }
 
         /// <summary>

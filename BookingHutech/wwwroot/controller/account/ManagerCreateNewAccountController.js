@@ -28,6 +28,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ManagerGetListUnitResponse = res.data.Data.ListUnit;
+                        $scope.GetRole();
                         //var RoleResponse = res.data.Data.GetRoleCode; 
                         //// Hiển thị thông tin account
                         //$scope.ShowAccountInfo = {
@@ -91,7 +92,45 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
             $scope.AccountType = AccountTypeRequest;
             $scope.ManagerGetListUnitResponse = [];
             $scope.ManagerGetListUnit();
+            $scope.tableParams2 = $scope.tableParams2 = null;
         }
+
+        var RoleRequest = [];
+        // Hàm 2: Lấy ds quyền chưa cấp cho account
+        $scope.GetRole = function () {
+            var Account_IDRequest = {
+                Account_ID: '',
+            }
+            $account.ManagerGetDetailRoleAccountByAccountID(Account_IDRequest, function (res) {
+
+                switch (res.data.ReturnCode) {
+                    case 1:
+                        $scope.ListRole = res.data.Data.RoleMasterByAccountID;
+                        $scope.tableParams2 = new NgTableParams({}, { dataset: $scope.ListRole });
+                        break;
+                }
+
+            });
+        }
+
+        // Cập nhật chọn quyền để cấp
+        $scope.updateCheck = function (RoleMasterIDRequest) {
+            CheckRole = {
+                RoleMaster_ID: RoleMasterIDRequest,
+                Account_ID: null,
+                FullNameUpdate: AccountInfo.FullName,
+                RoleDetail_Status: true
+            }
+            for (var i = 0; i < RoleRequest.length; i++) {
+                if (RoleRequest[i].RoleMaster_ID == RoleMasterIDRequest) {
+                    RoleRequest.splice(i, 1);
+                    $scope.TestInputChange($scope.CreateNewAccountmModel);
+                    return;
+                }
+            }
+            RoleRequest.push(CheckRole);
+            $scope.TestInputChange($scope.CreateNewAccountmModel);
+        };
 
         // kiểm tra account đẵ đăng nhập chưa, đổi mật khẩu chưa. 
         var result = CheckAccountLoginAndChangePass(AccountInfo);
@@ -152,6 +191,9 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 } else if (checkNull(Request.LicenseExpires)) {
                     $scope.btndisabled = true;
                     return;
+                } else if (RoleRequest.length == 0) {
+                    $scope.btndisabled = true;
+                    return;
                 }
                 else {
                     $scope.btndisabled = false;
@@ -191,6 +233,9 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 } else if (checkNull(Request.AccountType)) {
                     $scope.btndisabled = true;
                     return;
+                } else if (RoleRequest.length==0) {
+                    $scope.btndisabled = true;
+                    return;
                 }
                 else {
                     $scope.btndisabled = false;
@@ -223,8 +268,12 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                     toastr.error("Vui lòng chọn ảnh!")
                     return;
                 }
+                let AddNewAccountRequestModel = {
+                    createNewAccountRequestModel: $scope.CreateNewAccountmModel,
+                    updateRoleRequestModel: RoleRequest,
+                }
                 $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn thêm người dùng này'), function () {
-                    $account.ManagerCreateNewAccount($scope.CreateNewAccountmModel, function (res) {
+                    $account.ManagerCreateNewAccount(AddNewAccountRequestModel, function (res) {
                         switch (res.data.ReturnCode) {
                             case 1:
                                 // $state.go('Admin.ProductManager');
