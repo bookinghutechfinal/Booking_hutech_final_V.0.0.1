@@ -43,6 +43,7 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                     "LicenseExpires": EditProfileRequestData.LicenseExpires,
                     "Avatar": EditProfileRequestData.Avatar,
                     "AvatarNew": null,
+                    "Account_Status": EditProfileRequestData.Account_Status
                 };
                 $scope.ClosePopup = function () {
                     $modalInstance.close($scope.EditProfiAccount.Account_ID);

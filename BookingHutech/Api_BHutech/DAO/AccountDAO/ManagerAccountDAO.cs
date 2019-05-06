@@ -522,6 +522,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             cmd.Parameters.Add("@Addres", SqlDbType.NVarChar, 100).Value = request.Addres;
             cmd.Parameters.Add("@Email", SqlDbType.VarChar, 20).Value = request.Email;
             cmd.Parameters.Add("@AccountType", SqlDbType.Char, 1).Value = request.AccountType;
+            cmd.Parameters.Add("@Account_Status", SqlDbType.Char, 1).Value = request.Account_Status;
 
             if (request.DriverLicenseNo == null)
                 cmd.Parameters.Add("@DriverLicenseNo", SqlDbType.NChar, 20).Value = DBNull.Value;
