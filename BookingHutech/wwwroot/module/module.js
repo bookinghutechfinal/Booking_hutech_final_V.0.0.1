@@ -13,6 +13,7 @@
         'textAngular',
         'ng-fusioncharts',  /*Anh Create 14/3/2019*/
         'angularUtils.directives.dirPagination', /*Anh.Create 25/3/2019. Phân trang*/
+        'ngMaterial',
     ]);
 //Set timeout
 angular.module('BHutechAppModule').config(['KeepaliveProvider', 'IdleProvider', function (KeepaliveProvider, IdleProvider) {

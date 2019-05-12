@@ -215,8 +215,10 @@
                                                                 {{role.FullNameUpdate}}
                                                             </td>
                                                             <td class=" ">
-                                                                <button class="btn btn-danger" ng-click="UpdateRole(role)" ng-show="role.RoleDetail_Status"><i class="fa fa-lock"></i> Khóa</button>
-                                                                <button class="btn btn-success" ng-click="UpdateRole(role)" ng-show="!role.RoleDetail_Status"><i class="fa fa-unlock"></i> Mở</button>
+                                                                <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-show="role.RoleDetail_Status" ng-model="true" ng-click="UpdateRole(role)"></md-switch>
+                                                                <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-show="!role.RoleDetail_Status" ng-model="false" ng-click="UpdateRole(role)"></md-switch>
+                                                                <!--<button class="btn btn-danger" ng-click="UpdateRole(role)" ng-show="role.RoleDetail_Status"><i class="fa fa-lock"></i> Khóa</button>
+                                                                <button class="btn btn-success" ng-click="UpdateRole(role)" ng-show="!role.RoleDetail_Status"><i class="fa fa-unlock"></i> Mở</button>-->
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -267,7 +269,8 @@
                                                                         {{listRole.RoleName}}
                                                                     </td>
                                                                     <td class=" ">
-                                                                        <input type="checkbox" ng-checked="checkall" ng-click='updateCheck(listRole.RoleMaster_ID)' ng-model="listRole.checked">
+                                                                        <!--<input type="checkbox" ng-checked="checkall" ng-click='updateCheck(listRole.RoleMaster_ID)' ng-model="listRole.checked">-->
+                                                                        <md-checkbox aria-label="Checkbox 1" ng-model="listRole.checked" ng-click='updateCheck(listRole.RoleMaster_ID)'></md-checkbox>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

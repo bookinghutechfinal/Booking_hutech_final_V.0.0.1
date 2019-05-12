@@ -92,7 +92,6 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
             $scope.AccountType = AccountTypeRequest;
             $scope.ManagerGetListUnitResponse = [];
             $scope.ManagerGetListUnit();
-            $scope.tableParams2 = $scope.tableParams2 = null;
         }
 
         var RoleRequest = [];
@@ -106,7 +105,6 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ListRole = res.data.Data.RoleMasterByAccountID;
-                        $scope.tableParams2 = new NgTableParams({}, { dataset: $scope.ListRole });
                         break;
                 }
 

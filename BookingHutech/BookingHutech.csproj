@@ -374,6 +374,8 @@
     <Content Include="images\support\54ab57ffea6b7dc23c3864320e8a4cdc.png" />
     <Content Include="images\support\99e1e13ab03ae19ef10bc40b7dd42af4.png" />
     <Content Include="Log\Ex_BHutechLog.txt" />
+    <Content Include="script\bower-material-master\angular-material.min.css" />
+    <Content Include="script\bower-material-master\angular-material.min.js" />
     <Content Include="script\css\style4.css" />
     <Content Include="script\js\jquery-1.12.0.min.js" />
     <Content Include="script\js\jquery.zoom.js" />

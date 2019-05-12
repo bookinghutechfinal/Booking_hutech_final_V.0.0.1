@@ -63,81 +63,127 @@
                     </div>
                     <div class="clearfix"></div>
                     <br />
-                    <form>
+                    <form name="projectForm">
                         <div class="form-horizontal form-label-left input_mask">
                             <div class="form-group">
-
-                                <div class="control-label col-md-1 col-sm-1 col-xs-12">Chọn:</div>
-                                <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <select class="form-control select2 ed_border" ng-model="ReportCost.ReportType" style="width: 100%;cursor:pointer">
+                                <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <!--<select class="form-control select2 ed_border" ng-model="ReportCost.ReportType" style="width: 100%;cursor:pointer">
                                         <option value="1" selected>Thống kê tháng</option>
                                         <option value="2">Thống kê ngày</option>
                                         <option value="3">Thống kê năm</option>
-                                    </select>
+                                    </select>-->
+                                    <md-input-container style="width:100%">
+                                        <label>Chọn chức năng</label>
+                                        <md-select ng-model="ReportCost.ReportType" required>
+                                            <md-option ng-value="1" ng-disabled="$index === 1">
+                                                Thống kê tháng
+                                            </md-option>
+                                            <md-option ng-value="2" ng-disabled="$index === 2">
+                                                Thống kê ngày
+                                            </md-option>
+                                            <md-option ng-value="3" ng-disabled="$index === 3">
+                                                Thống kê năm
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
                                 </div>
 
-                                <div ng-show="ReportCost.ReportType==1" class="control-label col-md-1 col-sm-1 col-xs-12">Tháng:</div>
-                                <div ng-show="ReportCost.ReportType==1" class="col-md-2 col-sm-2 col-xs-12">
+                                <div ng-show="ReportCost.ReportType==1" class="col-md-3 col-sm-3 col-xs-12">
                                     <!--<input class="form-control ed_border" type="number" ng-model="ReportCost.Month" />-->
-                                    <select ng-model="ReportCost.Month" class="form-control select2 ed_border">
-                                        <option value="1" selected>Tháng 1</option>
-                                        <option value="2">Tháng 2</option>
-                                        <option value="3">Tháng 3</option>
-                                        <option value="4">Tháng 4</option>
-                                        <option value="5">Tháng 5</option>
-                                        <option value="6">Tháng 6</option>
-                                        <option value="7">Tháng 7</option>
-                                        <option value="8">Tháng 8</option>
-                                        <option value="9">Tháng 9</option>
-                                        <option value="10">Tháng 10</option>
-                                        <option value="11">Tháng 11</option>
-                                        <option value="12">Tháng 12</option>
-                                    </select>
-                                    <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">-->
+                                    <md-input-container style="width:100%">
+                                        <label>Chọn tháng</label>
+                                        <md-select ng-model="ReportCost.Month" required>
+                                            <md-option ng-value="1" ng-disabled="$index === 1">
+                                                Tháng 1
+                                            </md-option>
+                                            <md-option ng-value="2" ng-disabled="$index === 2">
+                                                Tháng 2
+                                            </md-option>
+                                            <md-option ng-value="3" ng-disabled="$index === 3">
+                                                Tháng 3
+                                            </md-option>
+                                            <md-option ng-value="4" ng-disabled="$index === 4">
+                                                Tháng 4
+                                            </md-option>
+                                            <md-option ng-value="5" ng-disabled="$index === 5">
+                                                Tháng 5
+                                            </md-option>
+                                            <md-option ng-value="6" ng-disabled="$index === 6">
+                                                Tháng 6
+                                            </md-option>
+                                            <md-option ng-value="7" ng-disabled="$index === 7">
+                                                Tháng 7
+                                            </md-option>
+                                            <md-option ng-value="8" ng-disabled="$index === 8">
+                                                Tháng 8
+                                            </md-option>
+                                            <md-option ng-value="9" ng-disabled="$index === 9">
+                                                Tháng 9
+                                            </md-option>
+                                            <md-option ng-value="10" ng-disabled="$index === 10">
+                                                Tháng 10
+                                            </md-option>
+                                            <md-option ng-value="11" ng-disabled="$index === 11">
+                                                Tháng 11
+                                            </md-option>
+                                            <md-option ng-value="12" ng-disabled="$index === 12">
+                                                Tháng 12
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
                                 </div>
 
-                                <div ng-show="ReportCost.ReportType==1 || ReportCost.ReportType==3" class="control-label col-md-1 col-sm-1 col-xs-12">Năm:</div>
-                                <div ng-show="ReportCost.ReportType==1 || ReportCost.ReportType==3" class="col-md-2 col-sm-2 col-xs-12">
-                                    <input class="form-control ed_border" type="number" ng-model="ReportCost.Year" />
-                                    <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_to" type="date" style="cursor:pointer">-->
+                                <div ng-show="ReportCost.ReportType==1 || ReportCost.ReportType==3" class="col-md-3 col-sm-3 col-xs-12">
+                                    <!--<input class="form-control ed_border" type="number" ng-model="ReportCost.Year" />-->
+                                    <md-input-container style="width:100%">
+                                        <label>Năm</label>
+                                        <input ng-model="ReportCost.Year" name="Year" required>
+                                    </md-input-container>
                                 </div>
 
-                                <div ng-show="ReportCost.ReportType==2" class="control-label col-md-1 col-sm-1 col-xs-12">Từ ngày:</div>
-                                <div ng-show="ReportCost.ReportType==2" class="col-md-2 col-sm-2 col-xs-12">
-                                    <div class='input-group date' id='myDatepicker'>
+                                <div ng-show="ReportCost.ReportType==2" class="col-md-3 col-sm-3 col-xs-12">
+                                    <!--<div class='input-group date' id='myDatepicker'>
                                         <input type="text" class="form-control ed_border" id='myDate1' />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
+                                    </div>-->
+                                    <div layout="column" flex-order="1" flex-order-gt-sm="0" style="width:100%">
+                                        <md-input-container>
+                                            <label>Từ ngày</label>
+                                            <md-datepicker ng-model="ReportRequestModel.DateFrom" required></md-datepicker>
+                                        </md-input-container>
                                     </div>
                                     <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_from" type="date" style="cursor:pointer">-->
                                 </div>
 
-                                <div ng-show="ReportCost.ReportType==2" class="control-label col-md-1 col-sm-1 col-xs-12">Đến ngày:</div>
-                                <div ng-show="ReportCost.ReportType==2" class="col-md-2 col-sm-2 col-xs-12">
-                                    <div class='input-group date' id='myDatepicker2'>
+                                <div ng-show="ReportCost.ReportType==2" class="col-md-3 col-sm-3 col-xs-12">
+                                    <!--<div class='input-group date' id='myDatepicker2'>
                                         <input type='text' class="form-control ed_border" id='myDate2' />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
+                                    </div>-->
+                                    <div layout="column" flex-order="1" flex-order-gt-sm="1" style="width:100%">
+                                        <md-input-container>
+                                            <label>Đến ngày</label>
+                                            <md-datepicker ng-model="ReportRequestModel.DateTo" required></md-datepicker>
+                                        </md-input-container>
                                     </div>
                                     <!--<input class="form-control ed_border" value="" ng-model="searchModel.Date_to" type="date" style="cursor:pointer">-->
                                 </div>
-
-                                <div class="col-md-1 col-sm-1 col-xs-12">
-                                    <br />
-                                </div>
-
-                                <div class="col-md-2 col-sm-2 col-xs-12">
-                                    <div class="mb15 mt30">
-                                        <button class="btn btn-warning btn-round btn-block" ng-click="reportCostType(ReportCost)">
-                                            <span class="glyphicon glyphicon-search"></span> Xem
-                                        </button>
-                                    </div>
-                                </div>
-
                             </div>
                             <!--<p style="color:red" ng-show="messChoose">* Vui lòng chọn chức năng.</p>-->
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-12">
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="mb15 mt30">
+                                <button class="btn btn-warning btn-round btn-block" ng-click="reportCostType(ReportCost)">
+                                    <span class="glyphicon glyphicon-search"></span> Xem
+                                </button>
+                            </div>
                         </div>
                     </form>
                     <div class="clearfix"></div>

@@ -3,7 +3,6 @@ mainmodule.controller('DetailAccountController', ['$scope', '$state', '$rootScop
     function ($scope, $state, $rootScope, $cookies, toastr, $modalInstance, AccountIDRequest, NgTableParams, $account, $alert, $modal) {
 
         var AccountInfo = $account.getAccountInfo();
-
         // AccountIDRequest: Tham số nhận dữ liệu từ màn hình quản lý lái xe.
         $scope.Titile = "Chi tiết tài khoản";
         $scope.ClosePopup = function () {

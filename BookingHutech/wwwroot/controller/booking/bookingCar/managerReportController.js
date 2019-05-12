@@ -63,10 +63,10 @@
                 if (request.ReportType == 3) {
                     $scope.ReportRequestModel.Year = request.Year;
                 }
-                if (request.ReportType == 2) {
-                    $scope.ReportRequestModel.DateFrom = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
-                    $scope.ReportRequestModel.DateTo = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
-                }
+                //if (request.ReportType == 2) {
+                //    $scope.ReportRequestModel.DateFrom = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
+                //    $scope.ReportRequestModel.DateTo = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
+                //}
 
                 $BookingCar.reportCost($scope.ReportRequestModel, function (response) {
                     if (response.data.ReturnCode == 1) {

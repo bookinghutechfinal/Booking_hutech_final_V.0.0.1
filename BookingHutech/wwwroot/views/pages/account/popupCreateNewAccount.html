@@ -293,7 +293,7 @@
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <div class="table-responsive">
-                                                <table class="table table-striped jambo_table bulk_action" ng-table="tableParams2">
+                                                <table class="table table-striped jambo_table bulk_action">
                                                     <thead>
                                                         <tr class="headings">
                                                             <th class="column-title">#STT</th>
@@ -302,7 +302,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr class="even pointer" ng-repeat="listRole in $data ">
+                                                        <tr class="even pointer" ng-repeat="listRole in ListRole ">
                                                             <td class=" ">
                                                                 {{$index+1}}
                                                             </td>
@@ -310,7 +310,7 @@
                                                                 {{listRole.RoleName}}
                                                             </td>
                                                             <td class=" ">
-                                                                <input type="checkbox" ng-checked="checkall" ng-click='updateCheck(listRole.RoleMaster_ID)' ng-model="listRole.checked">
+                                                                <md-checkbox aria-label="Checkbox 1" ng-model="listRole.checked" ng-click='updateCheck(listRole.RoleMaster_ID)'></md-checkbox>
                                                             </td>
                                                         </tr>
                                                     </tbody>
