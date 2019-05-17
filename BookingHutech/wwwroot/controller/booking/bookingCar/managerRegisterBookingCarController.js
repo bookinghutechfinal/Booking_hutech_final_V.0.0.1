@@ -180,5 +180,27 @@ mainmodule.controller('ManagerRegisterBookingCarController', ['$scope', '$state'
                 );
         }
 
+        $scope.OpenPopupManagerRegisteredBookingCar = function () {
+            if ($rootScope.CheckCookies()) { 
+                var modalInstance = $modal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: '/wwwroot/views/pages/booking/bookingCar/popupAdminAndSchoolRegisterBKCController.html',
+                    controller: 'AdminAndSchoolRegisterBookingCarController',
+                    controllerAs: 'content',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        RequestData: function () {
+                            return null;
+                        },
+                    }
+                });
+                modalInstance.result.then(function () {
+
+                });
+            }
+        }
     }]);
  
