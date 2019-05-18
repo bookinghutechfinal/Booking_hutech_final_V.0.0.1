@@ -16,7 +16,7 @@
                 Year: 2019,
             }
         }
-
+        $scope.AutoComplete = ["Đổ xăng", "Thay nhớt", "Bảo trì", "Sửa máy", "Thay lốp", "BOT", "z", "x", "n", ",", "d", "a", "h", "k", "o"];
         $scope.reportCost = function () {
             if ($rootScope.CheckCookies()) {
                 $scope.ReportCostData = [];

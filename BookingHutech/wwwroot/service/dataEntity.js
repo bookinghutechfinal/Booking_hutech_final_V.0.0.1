@@ -365,3 +365,11 @@ var CheckProfileRegisterCar = function (profileStatusID) {
         return true;
     return false
 }
+
+var YearData = function (year) {
+    let yearData = [];
+    for (let i = 2019; i <= year; i++) {
+        yearData.push(i);
+    }
+    return yearData;
+}

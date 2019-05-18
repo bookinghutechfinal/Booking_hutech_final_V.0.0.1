@@ -44,6 +44,9 @@
                     Quantity: request.Quantity,
                     TotalMoney: request.TotalMoney
                 });
+                //$scope.DetailCost.Content = '';
+                //$scope.DetailCost.Quantity = '';
+                //$scope.DetailCost.TotalMoney = '';
                 if (checkNull($scope.costInfo.CostsTypeID) || checkNull($scope.costInfo.Car_ID) || checkNull($scope.costInfo.RepairAddres)) {
                     $scope.btndisabled = true;
                 }

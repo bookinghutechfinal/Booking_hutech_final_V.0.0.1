@@ -78,6 +78,10 @@
     .ed_border {
         border-radius: 5px
     }
+    .textBox {
+        width: 100%;
+        margin: 3px 0;
+    }
 </style>
 <!--<link href="../../../../../script/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../../../../../script/teamplate/iCheck/skins/flat/green.css" rel="stylesheet" />
@@ -172,18 +176,30 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ: <i style="color:red;">(*)</i></div>
-                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12"><!--Địa chỉ: <i style="color:red;">(*)</i>--></div>
+                                        <!--<div class="col-md-10 col-sm-10 col-xs-12">
                                             <span class="fa fa-map-marker form-control-feedback right" aria-hidden="true"></span>
                                             <input class="form-control text-box single-line ed_border" value="" ng-model="costInfo.RepairAddres" ng-change="TestInputChange(costInfo)" type="text">
                                             <span class="field-validation-valid text-danger" ng-show="costInfo.RepairAddres === '' || costInfo.RepairAddres === null && !TestInputChange">Vui lòng nhập!</span>
+                                        </div>-->
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <md-input-container class="textBox">
+                                                <label>Địa chỉ</label>
+                                                <input required ng-model="costInfo.RepairAddres" ng-change="TestInputChange(costInfo)">
+                                                <div ng-show="costInfo.RepairAddres === '' || costInfo.RepairAddres === null && !TestInputChange" ng-message="required">Vui lòng nhập.</div>
+                                            </md-input-container>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="control-label col-md-2 col-sm-2 col-xs-12">Ghi chú: </div>
+                                        <div class="control-label col-md-2 col-sm-2 col-xs-12"></div>
                                         <div class="col-md-10 col-sm-10 col-xs-12">
-                                            <textarea class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Note" ng-change="TestInputChange(costInfo)"></textarea>
+                                            <!--<textarea class="form-control text-box single-line ed_border" value="" ng-model="costInfo.Note" ng-change="TestInputChange(costInfo)"></textarea>-->
+                                            <md-input-container class="textBox">
+                                                <label>Ghi chú</label>
+                                                <input required ng-model="costInfo.Note" ng-change="TestInputChange(costInfo)">
+                                                <div ng-show="costInfo.RepairAddres === '' || costInfo.RepairAddres === null && !TestInputChange" ng-message="required">Vui lòng nhập.</div>
+                                            </md-input-container>
                                         </div>
                                     </div>
                                     <br />
@@ -191,25 +207,40 @@
                                     <!--<pre>{{DetailCost}}</pre>-->
                                     <div class="control-label col-md-12 col-sm-12 col-xs-12"><center><h3>Nhập chi tiết</h3></center></div>
                                     <br />
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <input type="text" placeholder="Nội dung" class="form-control text-box single-line ed_border" ng-model="DetailCost.Content" />
                                         </div>
+                                    </div>-->
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <md-input-container class="textBox">
+                                            <label>Nội dung</label>
+                                            <input required ng-model="DetailCost.Content">
+                                        </md-input-container>
                                     </div>
-                                    <div class="form-group">
+                                    <div>
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <input type="number" placeholder="Số lượng" class="form-control text-box single-line ed_border" ng-model="DetailCost.Quantity" />
+                                            <!--<input type="number" placeholder="Số lượng" class="form-control text-box single-line ed_border" ng-model="DetailCost.Quantity" />-->
+                                            <md-input-container class="textBox">
+                                                <label>Số lượng</label>
+                                                <input required ng-model="DetailCost.Quantity" type="number">
+                                            </md-input-container>
                                         </div>
                                         <div class="col-md-1 col-sm-1 col-xs-12"></div>
                                         <div class="col-md-3 col-sm-3 col-xs-12">
-                                            <input type="number" placeholder="Tổng tiền" class="form-control text-box single-line ed_border" ng-model="DetailCost.TotalMoney" />
+                                            <!--<input type="number" placeholder="Tổng tiền" class="form-control text-box single-line ed_border" ng-model="DetailCost.TotalMoney" />-->
+                                            <md-input-container class="textBox">
+                                                <label>Tổng tiền</label>
+                                                <input required ng-model="DetailCost.TotalMoney" type="number">
+                                            </md-input-container>
                                         </div>
                                         <div class="col-md-1 col-sm-1 col-xs-12"></div>
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <button class="btn btn-info" style="width:100%" ng-click="AddMore(DetailCost)" type="reset"><i class="fa fa-edit"></i> Thêm</button>
+                                            <!--<button class="btn btn-info" style="width:100%" ng-click="AddMore(DetailCost)" type="reset"><i class="fa fa-edit"></i> Thêm</button>-->
+                                            <md-button class="md-raised md-primary" style="width:100%" ng-click="AddMore(DetailCost)" type="reset"><i class="fa fa-edit"></i> Thêm</md-button>
                                         </div>
                                     </div>
-                                    <div class="table-responsive col-md-12 col-sm-12 col-xs-12">
+                                    <div class="table-responsive col-md-12 col-sm-12 col-xs-12" ng-hide="DetailCost.length==0">
                                         <table class="table table-striped" role="none" fixed-table-headers="scrollable-area">
                                             <thead>
                                                 <tr>
@@ -224,7 +255,8 @@
                                                     <td><p>{{data.Content}}</p></td>
                                                     <td><p>{{data.Quantity}}</p></td>
                                                     <td><p>{{data.TotalMoney}}</p></td>
-                                                    <td><button class="btn btn-danger" ng-hide="DetailCost==null" ng-click="Delete($index)"><i class="fa fa-remove"></i> Xóa</button></td>
+                                                    <td><!--<button class="btn btn-danger" ng-hide="DetailCost==null" ng-click="Delete($index)"><i class="fa fa-remove"></i> Xóa</button>--></td>
+                                                    <td><md-button class="md-raised md-warn" ng-hide="DetailCost==null" ng-click="Delete($index)"><i class="fa fa-remove"></i> Xóa</md-button></td>
                                                 </tr>
                                             </tbody>
                                         </table>

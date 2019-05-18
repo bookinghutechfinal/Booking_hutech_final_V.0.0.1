@@ -62,6 +62,14 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
             Finish = 10 //Hoàn thành
         }
 
+        public enum CostStatus
+        {
+            Offer = 0,
+            WaitComplete = 1,
+            WaitVerify = 2, //trưởng khoa duyệt
+            Verify = 3, //trưởng khoa hủy
+        }
+
         public enum AssignStatus
         {
             deleted = 0,

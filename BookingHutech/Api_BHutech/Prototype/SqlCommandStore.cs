@@ -59,9 +59,9 @@ namespace BookingHutech.Api_BHutech.Prototype
         //Update CarStatus. Create By Mr.Lam Create 28/3/2019. 
         public const string uspUpdateCarStatus = "uspUpdateCarStatus";
         //Get RegristrationCar by CarID. Create By Mr.Lam Create 28/3/2019. 
-        public const string uspGetRegistrationCarByCarID = "uspGetRegistrationCarByCarID {0},{1}";
+        public const string uspGetRegistrationCarByCarID = "uspGetRegistrationCarByCarID {0},{1},{2},{3}";
         //Update CarStatus. Create By Mr.Lam Create 28/3/2019. 
-        public const string uspGetListCostByCarID = "uspGetListCostByCarID {0}";
+        public const string uspGetListCostByCarID = "uspGetListCostByCarID {0},{1},{2},{3}";
         //Get car info by AccountID and AssignStatus. Create By Mr.Lam Create 8/4/2019. 
         public const string uspGetCarInfoByAccountID = "uspGetCarInfoByAccountID {0},{1}";
         //Get car info by AccountID and AssignStatus. Create By Mr.Lam Create 8/4/2019. 
@@ -136,8 +136,9 @@ namespace BookingHutech.Api_BHutech.Prototype
         public const string UpdateRoleDetailStatus = "UpdateRoleDetailStatus {0},{1},{2}";
         //update status bảng RoleDetail. Create By mr.Lam Create 29/4/2019. 
         public const string uspGetListAccount = "uspGetListAccount";
-
-
+        //Thong ke so chuyen di theo thang va tat ca chuyen di. Create By mr.Lam Create 15/5/2019. 
+        public const string uspRegistrationCarByCarIDReport = "uspRegistrationCarByCarIDReport {0}, {1}, {2}, {3}";
+        
     }
 
 }

@@ -145,7 +145,6 @@
                                     toastr.success('Cập nhật thông tin xe thành công.');
                                     // $modalInstance.close();
                                     $scope.isShowRegisterSuccess = true;
-                                    break;
                             }
                         });
                     });

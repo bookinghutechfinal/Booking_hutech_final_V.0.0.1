@@ -12,6 +12,7 @@ using BookingHutech.Api_BHutech.Models.Request.BookingCarRequest;
 using BookingHutech.Api_BHutech.Models.BookingCar;
 using static BookingHutech.Api_BHutech.Lib.Enum.BookingType;
 using BookingHutech.Api_BHutech.Lib.Helper;
+using BookingHutech.Api_BHutech.Models.Response.BookingCarResponse;
 
 namespace BookingHutech.Api_BHutech.CarServices.CarServices
 {
@@ -229,6 +230,68 @@ namespace BookingHutech.Api_BHutech.CarServices.CarServices
             }
             catch (Exception ex)
             { 
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Mr.Lam 8/3/2019
+        /// RegistrationCarByCarIDReportServices
+        /// </summary>
+        /// <param name="">GetReportDetailCarRequestModel</param>
+        /// <returns>ListCarResponseModel</returns> 
+        public List<GetReportDetailCarResponseModel> RegistrationCarByCarIDReportServices(GetReportDetailCarRequestModel request)
+        {
+
+            List<GetReportDetailCarResponseModel> result = new List<GetReportDetailCarResponseModel>();
+            try
+            {
+                string uspRegistrationCarByCarIDReport = String.Format(Prototype.SqlCommandStore.uspRegistrationCarByCarIDReport, request.CarID, request.Profile_Status,request.Month,request.Year);
+                result = carDAO.RegistrationCarByCarIDReportDAO(uspRegistrationCarByCarIDReport);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Mr.Lam 16/5/2019
+        /// Get car info
+        /// </summary>
+        /// <param name="">GetCarInfoRequestModel</param>
+        /// <returns>CarInfo</returns> 
+        public GetCarDetail GetCarDetailServices(GetReportDetailCarRequestModel request)
+        {
+            GetCarDetail result = new GetCarDetail();
+            ListCarResponseModel listCar = new ListCarResponseModel();
+            AssignDriverDAO assignDriverDAO = new AssignDriverDAO();
+            RegistrationCarDAO registrationCarDAO = new RegistrationCarDAO();
+            ManagerCostDAO managerCostDAO = new ManagerCostDAO();
+            try
+            {
+                string uspGetCarInfo = String.Format(Prototype.SqlCommandStore.uspGetCarInfo, request.CarID);
+                string uspGetRegistrationCarByCarID = String.Format(Prototype.SqlCommandStore.uspGetRegistrationCarByCarID, request.CarID, (Int32)BookingStatus.Finish, request.Month,request.Year);
+                string uspGetListCostByCarID = String.Format(Prototype.SqlCommandStore.uspGetListCostByCarID, request.CarID, (Int32)CostStatus.Verify, request.Month, request.Year);
+                string uspGetDriverManageCar = String.Format(Prototype.SqlCommandStore.uspGetDriverManageCar, request.CarID);
+                string uspRegistrationCarByCarIDReport = String.Format(Prototype.SqlCommandStore.uspRegistrationCarByCarIDReport, request.CarID, (Int32)BookingStatus.Finish, request.Month, request.Year);
+
+                result.ListCarInfo = carDAO.GetListCarDAO(uspGetCarInfo);
+                if (result.ListCarInfo.Count() != 0)
+                {
+                    result.ListRegistrationCarByCarID = registrationCarDAO.GetRegistrationCarDAO(uspGetRegistrationCarByCarID);
+                    result.ListAssignDriverInfo = assignDriverDAO.GetListAssignDriverDAO(uspGetDriverManageCar);
+                    result.ListRepairCostByCarID = managerCostDAO.GetListRepairCostDAO(uspGetListCostByCarID);
+                    result.ListReportDetailCarResponseModel = carDAO.RegistrationCarByCarIDReportDAO(uspRegistrationCarByCarIDReport);
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
                 LogWriter.WriteException(ex);
                 throw;
             }

@@ -16,6 +16,13 @@ mainmodule.service('$BookingCar', ['$dao', '$cookies', '$state', function ($dao,
             data: request
         }, success, finish)
     };
+    this.getCarDetail = function (request, success, finish) {
+        $dao.call({
+            method: 'POST',
+            operater: 'Car/GetCarDetail',
+            data: request
+        }, success, finish)
+    };
     this.getListCarType = function (request, success, finish) {
             $dao.call({
                 method: 'GET',
