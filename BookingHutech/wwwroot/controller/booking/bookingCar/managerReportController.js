@@ -1,4 +1,5 @@
-﻿mainmodule.controller('ManagerReportController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams',
+﻿ 
+mainmodule.controller('ManagerReportController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams) {
 
         $scope.Init = function () {
@@ -99,4 +100,29 @@
             //"data": $scope.dataChart
             "data": $scope.ReportCostData
         };
+
+
+        // anh xuat ex 
+        var mystyle = {
+            sheetid: 'Chi phí hoạt động xe',
+            headers: true,
+            caption: {
+                title: 'Báo cáo chi phí xe',
+                style: 'font-size: 200px;'  
+            }, 
+            column: {
+                style: 'font-size:20px'
+            },
+            columns: [ 
+                { columnid: 'label', title: 'Tên xe'}, 
+                { columnid: 'value', title: 'Tổng tiền'},
+            ],
+            
+        }; 
+
+        $scope.exportData = function () {
+            alasql('SELECT * INTO XLS("alexa.xls",?) FROM ?', [mystyle, listReportCost]);
+        };
+          
     }]);  
+
