@@ -54,6 +54,9 @@
         font-size: 11px;
         height: 29px;
     }
+    .ed_border {
+        border-radius: 5px
+    }
 </style>
 <div class="clearfix">
     <div class="row">
@@ -180,7 +183,7 @@
                                             <div class="form-group">
                                                 <label class="ng-binding">Đơn vị</label><i style="color:red;"> (*)</i>
                                                 <span class="field-validation-valid text-danger" ng-show="SearchAccountReqModel.Unit_ID === '' || SearchAccountReqModel.Unit_ID === null && isCheckAccounttype">Vui lòng chọn!</span>
-                                                <select class="form-control" ng-model="SearchAccountReqModel.Unit_ID" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
+                                                <select class="form-control ed_border" ng-model="SearchAccountReqModel.Unit_ID" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
                                                     <option selected="selected" value="">-- Vui lòng chọn --</option> 
                                                     <option ng-repeat="index in ManagerGetListUnitResponse" value="{{index.Unit_ID}}">
                                                         {{index.UnitName}}
@@ -192,7 +195,7 @@
                                             <div class="form-group">
                                                 <label class="ng-binding">Chức vụ</label><i style="color:red;"> (*)</i>
                                                 <span class="field-validation-valid text-danger" ng-show="SearchAccountReqModel.AccountType === '' || SearchAccountReqModel.AccountType === null && isCheckAccounttype">Vui lòng chọn!</span>
-                                                <select class="form-control" ng-model="SearchAccountReqModel.AccountType" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
+                                                <select class="form-control ed_border" ng-model="SearchAccountReqModel.AccountType" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
                                                     <option selected="selected" value="">-- Vui lòng chọn --</option>
                                                     <option value="1">Nhân viên/GV</option>
                                                     <option value="2">Lãnh đạo</option> 
@@ -204,7 +207,7 @@
                                             <div class="form-group">
                                                 <label class="ng-binding">Trạng thái</label><i style="color:red;"> (*)</i>
                                                 <span class="field-validation-valid text-danger" ng-show="SearchAccountReqModel.Account_Status === '' || SearchAccountReqModel.Account_Status === null && isCheckAccountstatus">Vui lòng chọn!</span>
-                                                <select class="form-control" ng-model="SearchAccountReqModel.Account_Status" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
+                                                <select class="form-control ed_border" ng-model="SearchAccountReqModel.Account_Status" ng-change="ChangeDataSearchAccount()" style="width: 100%;">
                                                     <option value="">-- Vui lòng chọn --</option>
                                                     <option selected="selected" value="1">Hoạt động</option>
                                                     <option value="0">Khóa</option>

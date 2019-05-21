@@ -224,6 +224,7 @@
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetListRegistrationCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetRegistrationCarByDriverIDRequestModel.cs" />
+    <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\GetReportDetailCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\ReportCostRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchApproveRegistrationCarRequestModel.cs" />
     <Compile Include="Api_BHutech\Models\Request\BookingCarRequest\SearchCarRequestModel.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Api_BHutech\Models\Response\AccountResponse\UpdateGroupRoleResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\GetDetailRegistrationResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\GetRegistrationCarByCarIDResponseModel.cs" />
+    <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\GetReportDetailCarResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ListRepairCostResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\ManagerGetDriverByAccountStatusResponseModel.cs" />
     <Compile Include="Api_BHutech\Models\Response\BookingCarResponse\GetListRegistrationCarResponseModel.cs" />

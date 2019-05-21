@@ -517,7 +517,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             cmd.Parameters.Add("@Unit_ID", SqlDbType.Int).Value = request.Unit_ID;
             cmd.Parameters.Add("@FullName", SqlDbType.NVarChar, 50).Value = request.FullName;
             cmd.Parameters.Add("@Gender", SqlDbType.TinyInt).Value = request.Gender;
-            cmd.Parameters.Add("@BirthDay", SqlDbType.DateTime).Value = request.Birthday;
+            cmd.Parameters.Add("@BirthDay", SqlDbType.DateTime).Value = DateTime.Now;
             cmd.Parameters.Add("@NumberPhone", SqlDbType.Char, 12).Value = request.NumberPhone;
             cmd.Parameters.Add("@Addres", SqlDbType.NVarChar, 100).Value = request.Addres;
             cmd.Parameters.Add("@Email", SqlDbType.VarChar, 20).Value = request.Email;

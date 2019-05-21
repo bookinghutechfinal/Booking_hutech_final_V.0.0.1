@@ -92,7 +92,7 @@ mainmodule.controller('ManagerAccountController', ['$scope', '$state', '$rootSco
                 switch (res.data.ReturnCode) {
                     case 1:
                         $scope.ManagerGetListAccountResponse = res.data.Data.GetAccountByAccountStatus;
-                        $scope.numPag = 6; // số lượng item trên 1 trang 
+                        $scope.numPag = 9; // số lượng item trên 1 trang 
                         //Cập nhật trạng thái cho quyền. 
                         for (var i = 0; i < $scope.ManagerGetListAccountResponse.length; i++) {
                             $scope.ManagerGetListAccountResponse[i].AccountType = ConvertAccountTypeIDToName($scope.ManagerGetListAccountResponse[i].AccountType);

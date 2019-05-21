@@ -78,18 +78,18 @@
                                 <li>
                                     <i class="fa fa-envelope"></i> {{AccountDetailDetail.Email}}
                                 </li>
-                                <li class="m-top-xs">
+                                <!--<li class="m-top-xs">
                                     <i class="fa fa-calendar"></i>
                                     <a>{{AccountDetailDetail.Birthday | date:'dd/MM/yyyy'}}</a>
-                                </li>
+                                </li>-->
                                 <li class="m-top-xs">
                                     <i class="fa fa-phone"></i>
                                     <a>{{AccountDetailDetail.NumberPhone}}</a>
                                 </li>
-                                <li class="m-top-xs">
+                                <!--<li class="m-top-xs">
                                     <i class="fa fa-map-marker user-profile-icon"></i>
                                     <a>{{AccountDetailDetail.Addres}}</a>
-                                </li>
+                                </li>-->
                             </ul>
                             <div class="col-sm-12 col-lg-12">
                                 <button style="font-size: 11px;" ng-click="EditProfileAccount()" class="btn btn-success btn-round btn-block"><i class="fa fa-edit m-right-xs"></i> Chỉnh sửa</button>
@@ -118,12 +118,6 @@
 
                                                 <label>Chưa đổi mật khẩu</label>
                                             </td>
-                                            <td>
-                                                <i class="fa fa-hand-o-right"></i>
-                                                <label>{{AccountDetailDetail.AccountTypeName}}</label>
-                                            </td>
-                                        </tr>
-                                        <tr>
                                             <td ng-show="AccountDetailDetail.Verify">
                                                 <i class="fa fa-check-square-o"></i>
                                                 <label>  Đã duyệt</label>
@@ -138,7 +132,12 @@
                                                     <input type="checkbox" class="js-switch" ng-checked="!checkupdateVerify" />
                                                 </i>
                                             </td>
-
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <i class="fa fa-hand-o-right"></i>
+                                                <label>{{AccountDetailDetail.AccountTypeName}}</label>
+                                            </td>
                                             <td ng-show="AccountDetailDetail.AccountType =='7'">
                                                 <i class="fa fa-external-link user-profile-icon"></i>
                                                 <label>Số bằng lái:{{AccountDetailDetail.DriverLicenseNo}}</label>
@@ -146,21 +145,15 @@
 
                                         </tr>
                                         <tr>
-                                            <td>
+                                            <!--<td>
                                                 <label>Trạng thái:</label>
                                                 <input type="checkbox" class="js-switch" ng-show="AccountDetailDetail.Account_Status === '1'" ng-checked="AccountDetailDetail.Account_Status === '1'" />
-                                                <!--<i class="fa fa-circle text-success"></i>
-                                                <label>Trạng thái:{{AccountDetailDetail.Account_Status}}</label>-->
-                                            </td>
+                                                <i class="fa fa-circle text-success"></i>
+                                                <label>Trạng thái:{{AccountDetailDetail.Account_Status}}</label>
+                                            </td>-->
                                             <td ng-show="AccountDetailDetail.AccountType =='7'">
                                                 <i class="fa fa-external-link user-profile-icon"></i>
-                                                <label>Hạn:{{AccountDetailDetail.LicenseClass}}</label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <i class="fa fa-asterisk"></i>
-                                                <label>Giới tính:{{AccountDetailDetail.Gender}}</label>
+                                                <label>Hạng:{{AccountDetailDetail.LicenseClass}}</label>
                                             </td>
                                             <td ng-show="AccountDetailDetail.AccountType =='7'">
                                                 <i class="fa fa-external-link user-profile-icon"></i>
@@ -215,10 +208,8 @@
                                                                 {{role.FullNameUpdate}}
                                                             </td>
                                                             <td class=" ">
-                                                                <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-show="role.RoleDetail_Status" ng-model="true" ng-click="UpdateRole(role)"></md-switch>
-                                                                <md-switch class="md-primary" md-no-ink aria-label="Switch No Ink" ng-show="!role.RoleDetail_Status" ng-model="false" ng-click="UpdateRole(role)"></md-switch>
-                                                                <!--<button class="btn btn-danger" ng-click="UpdateRole(role)" ng-show="role.RoleDetail_Status"><i class="fa fa-lock"></i> Khóa</button>
-                                                                <button class="btn btn-success" ng-click="UpdateRole(role)" ng-show="!role.RoleDetail_Status"><i class="fa fa-unlock"></i> Mở</button>-->
+                                                                <button class="btn btn-danger" ng-click="UpdateRole(role)" ng-show="role.RoleDetail_Status"><i class="fa fa-lock"></i> Khóa</button>
+                                                                <button class="btn btn-success" ng-click="UpdateRole(role)" ng-show="!role.RoleDetail_Status"><i class="fa fa-unlock"></i> Mở</button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -300,31 +291,31 @@
         </div>
     </div>
 
-<!--<div class="modal-footer">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="col-sm-6" style="margin-bottom: 1px;">
-                <div class="mb15 mt30">
-                    <button class="btn btn-danger btn-round btn-block" type="submit"
-                            ng-click="ClosePopup()">
-                        <i class="glyphicon glyphicon-remove"></i>
-                        <span>HỦY</span>
-                    </button>
+    <!--<div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-6" style="margin-bottom: 1px;">
+                    <div class="mb15 mt30">
+                        <button class="btn btn-danger btn-round btn-block" type="submit"
+                                ng-click="ClosePopup()">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            <span>HỦY</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="mb15 mt30">
-                    <button class="btn btn-primary btn-round btn-block" type="submit"
-                            data-ng-click="yes()">
-                        <i class="glyphicon glyphicon-ok"></i>
-                        <span>XÁC NHẬN</span>
-                    </button>
+                <div class="col-sm-6">
+                    <div class="mb15 mt30">
+                        <button class="btn btn-primary btn-round btn-block" type="submit"
+                                data-ng-click="yes()">
+                            <i class="glyphicon glyphicon-ok"></i>
+                            <span>XÁC NHẬN</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-</div>-->
+    </div>-->
 </div>
 <!--<script src="../../../../../script/js/jquery.min.js"></script>
 <script src="../../../../../script/js/bootstrap.min.js"></script>

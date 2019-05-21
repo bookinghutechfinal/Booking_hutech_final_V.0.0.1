@@ -109,7 +109,7 @@
                                                     </center>
                                                 </td>
                                                 <td style="text-align:center">
-                                                    <button class="btn btn-danger" ng-click="updateAssign(acountID,item)"><i class="fa fa-remove"></i> Hủy</button>
+                                                    <button ng-hide="item.FullName==''" class="btn btn-danger" ng-click="updateAssign(acountID,item)"><i class="fa fa-remove"></i> Hủy</button>
                                                 </td>
                                             </tr>
                                         </table>

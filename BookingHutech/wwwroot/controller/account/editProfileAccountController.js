@@ -31,9 +31,9 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                     "FullName": EditProfileRequestData.FullName,
                     "NumberPhone": parseInt(EditProfileRequestData.NumberPhone),
                     "Email": EditProfileRequestData.Email,
-                    "Addres": EditProfileRequestData.Addres,
-                    "Gender": EditProfileRequestData.Gender,
-                    "Birthday": EditProfileRequestData.Birthday,
+                    "Addres": "Null",
+                    "Gender": "Null",
+                    "Birthday": "Null",
                     "Unit_ID": EditProfileRequestData.Unit_ID,
                     "UnitName": EditProfileRequestData.UnitName,
                     "AccountType": EditProfileRequestData.AccountType,
@@ -93,22 +93,13 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
                     if (checkNull(Request.FullName)) {
                         $scope.btndisabled = true;
                         return;
-                    } else if (checkNull(Request.Gender)) {
-                        $scope.btndisabled = true;
-                        return;
                     } else if (checkNull(Request.NumberPhone)) {
                         $scope.btndisabled = true;
                         return;
                     } else if (checkNull(Request.Email)) {
                         $scope.btndisabled = true;
                         return;
-                    } else if (checkNull(Request.Addres)) {
-                        $scope.btndisabled = true;
-                        return;
-                    } else if (checkNull(Request.Birthday)) {
-                        $scope.btndisabled = true;
-                        return;
-                    } else if (checkNull(Request.Unit_ID)) {
+                    }  else if (checkNull(Request.Unit_ID)) {
                         $scope.btndisabled = true;
                         return;
                     } else if (checkNull(Request.AccountType)) {
@@ -139,7 +130,7 @@ mainmodule.controller('EditProfileAccountController', ['$scope', '$state', '$roo
             $scope.EditProfileAccount = function () {
 
                 try {
-                    $scope.EditProfiAccount.Birthday = moment(angular.element('#Birthday').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                    $scope.EditProfiAccount.Birthday = "Null";
                     $scope.EditProfiAccount.LicenseExpires = moment(angular.element('#LicenseExpires').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
                 } catch (e) {
                     toastr.error("Ngày sinh không hợp lệ. Vui lòng kiểm tra lại");

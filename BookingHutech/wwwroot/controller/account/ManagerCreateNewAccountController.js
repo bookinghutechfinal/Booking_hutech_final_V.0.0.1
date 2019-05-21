@@ -66,9 +66,9 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 "FullName": null,
                 "NumberPhone": null,
                 "Email": null,
-                "Addres": null,
-                "Gender": null,
-                "BirthDay": null,
+                "Addres": "Null",
+                "Gender": "Null",
+                "BirthDay": "Null",
                 "UserName": null,
                 "Password": "Bookinghutech@123",
                 "Unit_ID": null,
@@ -204,22 +204,27 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                 if (checkNull(Request.FullName)) {
                     $scope.btndisabled = true;
                     return;
-                } else if (checkNull(Request.Gender)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.NumberPhone)) {
+                }
+                //else if (checkNull(Request.Gender)) {
+                //    $scope.btndisabled = true;
+                //    return;
+                //}
+                else if (checkNull(Request.NumberPhone)) {
                     $scope.btndisabled = true;
                     return;
                 } else if (checkNull(Request.Email)) {
                     $scope.btndisabled = true;
                     return;
-                } else if (checkNull(Request.Addres)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.BirthDay)) {
-                    $scope.btndisabled = true;
-                    return;
-                } else if (checkNull(Request.UserName)) {
+                }
+                //else if (checkNull(Request.Addres)) {
+                //    $scope.btndisabled = true;
+                //    return;
+                //} 
+                //    else if (checkNull(Request.BirthDay)) {
+                //    $scope.btndisabled = true;
+                //    return;
+                //}
+                else if (checkNull(Request.UserName)) {
                     $scope.btndisabled = true;
                     return;
                 } else if (checkNull(Request.Password)) {

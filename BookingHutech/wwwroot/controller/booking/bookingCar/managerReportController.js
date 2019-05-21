@@ -1,11 +1,10 @@
-﻿ 
-mainmodule.controller('ManagerReportController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams',
+﻿mainmodule.controller('ManagerReportController', ['$scope', '$state', '$rootScope', '$modal', '$cookies', 'toastr', '$BookingCar', 'NgTableParams',
     function ($scope, $state, $rootScope, $modal, $cookies, toastr, $BookingCar, NgTableParams) {
 
         $scope.Init = function () {
             let today = new Date();
             $scope.ReportRequestModel = {
-                Month: today.getMonth()+1,
+                Month: today.getMonth() + 1,
                 Year: today.getFullYear(),
                 ReportType: 1,
                 YearQuarter: 1,
@@ -64,10 +63,10 @@ mainmodule.controller('ManagerReportController', ['$scope', '$state', '$rootScop
                 if (request.ReportType == 3) {
                     $scope.ReportRequestModel.Year = request.Year;
                 }
-                //if (request.ReportType == 2) {
-                //    $scope.ReportRequestModel.DateFrom = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
-                //    $scope.ReportRequestModel.DateTo = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
-                //}
+                if (request.ReportType == 2) {
+                    $scope.ReportRequestModel.DateFrom = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
+                    $scope.ReportRequestModel.DateTo = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
+                }
 
                 $BookingCar.reportCost($scope.ReportRequestModel, function (response) {
                     if (response.data.ReturnCode == 1) {
@@ -100,29 +99,4 @@ mainmodule.controller('ManagerReportController', ['$scope', '$state', '$rootScop
             //"data": $scope.dataChart
             "data": $scope.ReportCostData
         };
-
-
-        // anh xuat ex 
-        var mystyle = {
-            sheetid: 'Chi phí hoạt động xe',
-            headers: true,
-            caption: {
-                title: 'Báo cáo chi phí xe',
-                style: 'font-size: 200px;'  
-            }, 
-            column: {
-                style: 'font-size:20px'
-            },
-            columns: [ 
-                { columnid: 'label', title: 'Tên xe'}, 
-                { columnid: 'value', title: 'Tổng tiền'},
-            ],
-            
-        }; 
-
-        $scope.exportData = function () {
-            alasql('SELECT * INTO XLS("alexa.xls",?) FROM ?', [mystyle, listReportCost]);
-        };
-          
     }]);  
-

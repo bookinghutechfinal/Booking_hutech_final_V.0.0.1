@@ -31,7 +31,21 @@
 
     .detailMess {
         font-size: 12px;
-        font-weight: bold;
+    }
+
+    .list_driver {
+        border-left: 3px solid;
+        font-family: inherit;
+        margin-top: auto;
+        background: #f5f7fa;
+        padding: 7px;
+        display: block;
+        background-color: #d6dde7;
+        font-size: 13px;
+        height: auto;
+        border-color: #9cb4c5;
+        color: #305d8c;
+        margin-bottom: 20px;
     }
 </style>
 <div class="clearfix">
@@ -97,48 +111,123 @@
                                     <div class="col-md-6">
                                         <h2>Tình hình hoạt động</h2>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                            <span>{{myDataSource.chart.subCaption}}</span> <b class="caret"></b>
-                                        </div>
+                                </div>
+                                <br />
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <!--<input class="form-control ed_border" type="number" ng-model="ReportCost.Month" />-->
+                                    <md-input-container style="width:100%">
+                                        <label>Chọn tháng</label>
+                                        <md-select ng-model="MonthSelected" required>
+                                            <md-option ng-value="1" ng-disabled="$index === 1">
+                                                Tháng 1
+                                            </md-option>
+                                            <md-option ng-value="2" ng-disabled="$index === 2">
+                                                Tháng 2
+                                            </md-option>
+                                            <md-option ng-value="3" ng-disabled="$index === 3">
+                                                Tháng 3
+                                            </md-option>
+                                            <md-option ng-value="4" ng-disabled="$index === 4">
+                                                Tháng 4
+                                            </md-option>
+                                            <md-option ng-value="5" ng-disabled="$index === 5">
+                                                Tháng 5
+                                            </md-option>
+                                            <md-option ng-value="6" ng-disabled="$index === 6">
+                                                Tháng 6
+                                            </md-option>
+                                            <md-option ng-value="7" ng-disabled="$index === 7">
+                                                Tháng 7
+                                            </md-option>
+                                            <md-option ng-value="8" ng-disabled="$index === 8">
+                                                Tháng 8
+                                            </md-option>
+                                            <md-option ng-value="9" ng-disabled="$index === 9">
+                                                Tháng 9
+                                            </md-option>
+                                            <md-option ng-value="10" ng-disabled="$index === 10">
+                                                Tháng 10
+                                            </md-option>
+                                            <md-option ng-value="11" ng-disabled="$index === 11">
+                                                Tháng 11
+                                            </md-option>
+                                            <md-option ng-value="12" ng-disabled="$index === 12">
+                                                Tháng 12
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <!--<input class="form-control ed_border" type="number" ng-model="ReportCost.Year" />-->
+                                    <!--<md-input-container style="width:100%">
+                                        <label>Năm</label>
+                                        <input ng-model="YearSelected" name="Year" required>
+                                    </md-input-container>-->
+                                    <md-input-container style="width:100%">
+                                        <label>Chọn năm</label>
+                                        <md-select ng-model="YearSelected" required>
+                                            <md-option ng-repeat="year in YearData" ng-value="{{year}}" ng-disabled="$index === year">
+                                                {{year}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div class="col-md-1 col-sm-1 col-xs-12">
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="mb15 mt30">
+                                        <button class="btn btn-warning btn-round btn-block" ng-click="getCarDetail()" style="margin-top:8px">
+                                            <span class="glyphicon glyphicon-search"></span> Xem
+                                        </button>
                                     </div>
                                 </div>
-                                <!-- start Biểu đồ -->
-                                <div fusioncharts id="my-chart-id" width="100%" height="400" type="column2d" dataSource="{{myDataSource}}"></div>
+                                <div class="clearfix"></div>
+                                <div class="row tile_count">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
+                                        <center>
+                                            <span class="count_top"><i class="fa fa-bus"></i> Tổng số chuyến</span>
+                                            <div class="count green">{{ReportKM[0].SumKM}}</div>
+                                            <!--<span class="count_bottom"><i class="green">4% </i> From last Week</span>-->
+                                        </center>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
+                                        <center>
+                                            <span class="count_top"><i class="fa fa-dashboard"></i> Tổng số KM</span>
+                                            <div class="count">{{ReportKM[0].SumKMMonth | number:0}}</div>
+                                            <!--<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>-->
+                                        </center>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
+                                        <center>
+                                            <span class="count_top"><i class="fa fa-bus"></i> Số chuyến {{ReportKM[1].MonthDone}}/{{ReportKM[1].YearDone}}</span>
+                                            <div class="count green">{{ReportKM[1].SumKM}}</div>
+                                            <!--<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>-->
+                                        </center>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 tile_stats_count">
+                                        <center>
+                                            <span class="count_top"><i class="fa fa-dashboard"></i> Số KM {{ReportKM[1].MonthDone}}/{{ReportKM[1].YearDone}}</span>
+                                            <div class="count">{{ReportKM[1].SumKMMonth | number:0}}</div>
+                                            <!--<span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>-->
+                                        </center>
+                                    </div>
+                                </div>
+                                <hr />
+                                <!--<div ng-hide="activitiveCar.length==0">
+                                     start Biểu đồ
+                                    <div fusioncharts id="my-chart-id" width="100%" height="400" type="column2d" dataSource="{{myDataSource}}"></div>
+                                </div>-->
                                 <!-- end of Biểu đồ -->
-                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                        <li role="presentation" class="active">
-                                            <button ng-show="!isShowActivitive" class="btn btn-primary btn-round btn-block col-xs-6" ng-click="ShowActivitive()" type="button">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="ng-binding">Hoạt động</span>
-                                            </button>
-                                            <button ng-show="isShowActivitive" class="btn btn-warning btn-round btn-block col-xs-6" ng-click="ShowActivitive()" type="button">
-                                                <i class="fa fa-folder-open-o"></i>
-                                                <span class="ng-binding">Hoạt động</span>
-                                            </button>
-                                        </li>
-                                        <li role="presentation" class="active">
-                                            <button ng-show="!isShowCost" class="btn btn-primary btn-round btn-block col-xs-6" ng-click="ShowCost()" type="button">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="ng-binding">Chi phí</span>
-                                            </button>
-                                            <button ng-show="isShowCost" class="btn btn-warning btn-round btn-block col-xs-6" ng-click="ShowCost()" type="button">
-                                                <i class="fa fa-folder-open-o"></i>
-                                                <span class="ng-binding">Chi phí</span>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                    <div id="myTabContent" class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab" ng-show="isShowActivitive">
-                                            <!-- start recent activity -->
+                                <md-tabs md-dynamic-height md-border-bottom>
+                                    <md-tab label="Hoạt động">
+                                        <md-content class="md-padding">
                                             <ul class="messages">
                                                 <li ng-repeat="data in activitiveCar">
                                                     <span class="glyphicon glyphicon-send"></span>
                                                     <div class="message_date">
-                                                        <h3 class="date text-info">{{data.DateTimeFrom | date:'dd'}}</h3>
-                                                        <p class="month">Tháng {{data.DateTimeFrom | date:'MM'}}</p>
+                                                        <h3 class="date text-info">{{data.DateTimeTo | date:'dd'}}</h3>
+                                                        <p class="month">Tháng {{data.DateTimeTo | date:'MM'}}</p>
                                                     </div>
                                                     <div class="message_wrapper">
                                                         <h4 class="heading">Đơn bị yêu cầu: {{data.UnitRequest}}</h4>
@@ -149,53 +238,44 @@
                                                     </div>
                                                 </li>
                                             </ul>
-                                            <center>
-                                                <a href=""><h4></h4></a>
-                                            </center>
-                                            <!-- end recent activity -->
-                                        </div>
-                                        <div id="myTabContent" class="tab-content">
-                                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="home-tab" ng-show="isShowCost">
-
-                                                <!-- start user projects -->
-                                                <div class="table-responsive">
-                                                    <table ng-table="tableParams" class="table table-striped table-bordered" role="none" show-filter="false" fixed-table-headers="scrollable-area">
-                                                        <tr ng-repeat="item in $data | limitTo : 10" role="none" class="hover_">
-                                                            <td data-title="'Địa điểm'" style="width:10%" align="left" sortable="'RepairAddres'">
-                                                                {{item.RepairAddres}}
-                                                            </td>
-                                                            <td data-title="'Nội dung'" style="width:5%" align="left" sortable="'Content'">
-                                                                {{item.Content}}
-                                                            </td>
-                                                            <td data-title="'Số lượng'" style="width:2%" align="left" sortable="'Quantity'">
-                                                                <!--filter="{CarNo:'text'}"-->
-                                                                {{item.Quantity}} lit
-                                                            </td>
-                                                            <td data-title="'Tổng tiền'" style="width:5%" align="left" sortable="'TotalMoney'">
-                                                                {{item.TotalMoney | currency : ""}} Đ
-                                                            </td>
-                                                            <td data-title="'Ngày'" style="width:3%" align="left" sortable="'CreateDate'">
-                                                                {{item.CreateDate | date:'dd/MM/yyyy'}}
-                                                            </td>
-                                                            <td data-title="'Hóa đơn'" style="width:5%" align="left">
-                                                                <a href="../../../../../images/avt/{{item.ImagerBill}}" target="_blank">
-                                                                    <img src="../../../../../images/avt/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
-                                                                </a>
-                                                            </td>
-                                                            <td data-title="'Ghi chú'" style="width:5%" align="left">
-                                                                {{item.Note}}
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                                <center>
-                                                    <a href=""><h4></h4></a>
-                                                </center>
-                                                <!-- end user projects -->
+                                        </md-content>
+                                    </md-tab>
+                                    <md-tab label="Chi phí">
+                                        <md-content class="md-padding">
+                                            <div class="table-responsive">
+                                                <table ng-table="tableParams" class="table table-striped table-bordered" role="none" show-filter="false" fixed-table-headers="scrollable-area">
+                                                    <tr ng-repeat="item in $data" role="none" class="hover_">
+                                                        <td data-title="'Địa điểm'" style="width:10%" align="left" sortable="'RepairAddres'">
+                                                            {{item.RepairAddres}}
+                                                        </td>
+                                                        <td data-title="'Nội dung'" style="width:5%" align="left" sortable="'Content'">
+                                                            {{item.Content}}
+                                                        </td>
+                                                        <td data-title="'Số lượng'" style="width:2%" align="left" sortable="'Quantity'">
+                                                            <!--filter="{CarNo:'text'}"-->
+                                                            {{item.Quantity}} lit
+                                                        </td>
+                                                        <td data-title="'Tổng tiền'" style="width:5%" align="left" sortable="'TotalMoney'">
+                                                            {{item.TotalMoney | currency : ""}} Đ
+                                                        </td>
+                                                        <td data-title="'Ngày'" style="width:3%" align="left" sortable="'CreateDate'">
+                                                            {{item.CreateDate | date:'dd/MM/yyyy'}}
+                                                        </td>
+                                                        <td data-title="'Hóa đơn'" style="width:5%" align="left">
+                                                            <a href="../../../../../images/avt/{{item.ImagerBill}}" target="_blank">
+                                                                <img src="../../../../../images/avt/{{item.ImagerBill}}" ng-show="item.ImagerBill!=''" class="avatar" alt="Avatar">
+                                                            </a>
+                                                        </td>
+                                                        <td data-title="'Ghi chú'" style="width:5%" align="left">
+                                                            {{item.Note}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </md-content>
+                                    </md-tab>
+                                </md-tabs>
+
                             </div>
                         </div>
                     </div>

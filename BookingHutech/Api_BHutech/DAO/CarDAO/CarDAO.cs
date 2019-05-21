@@ -130,7 +130,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 }
                 cmd.ExecuteNonQuery();
                 res.ReturnCode = (UpdateCarStatusResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
-                if (res.ReturnCode != UpdateCarStatusResponseType.Success)
+                if (res.ReturnCode == UpdateCarStatusResponseType.Success)
                 {
                     LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, res.ReturnCode, (int)res.ReturnCode));
                     throw new Exception();
@@ -233,7 +233,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 }
                 cmd.ExecuteNonQuery();
                 response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
-                if (response.ReturnCode != GroupRoleResponseType.Success)
+                if (response.ReturnCode == GroupRoleResponseType.Success)
                 {
                     LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, response.ReturnCode, response.ReturnCode));
                     throw new Exception();
@@ -336,13 +336,59 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 con.Open();
                 cmd = new SqlCommand(stringSql, con);
                 int a = cmd.ExecuteNonQuery();
-                if (a != 1)
+                if (a == 1)
                 {
                     LogWriter.WriteException("stringSql"+ stringSql);
                     con.Close();
                     throw new Exception(); 
                 }
                 con.Close();
+            }
+            catch (Exception ex)
+            {
+                LogWriter.WriteException(ex);
+                con.Close();
+                throw;
+            }
+        }
+
+        /// <summary>
+        ///  uspRegistrationCarByCarIDReport. 
+        /// </summary>
+        /// <param name="stringSql"></param>
+        /// <returns>GetReportDetailCarResponseModel</returns>
+        public List<GetReportDetailCarResponseModel> RegistrationCarByCarIDReportDAO(String stringSql)
+        {
+            try
+            {
+                List<GetReportDetailCarResponseModel> result = new List<GetReportDetailCarResponseModel>();
+                GetReportDetailCarResponseModel getReportDetailCarResponseModel;
+                db = new DataAccess();
+                con = new SqlConnection(db.ConnectionString());
+                con.Open();
+                cmd = new SqlCommand(stringSql, con);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    getReportDetailCarResponseModel = new GetReportDetailCarResponseModel();
+                    getReportDetailCarResponseModel.SumKM = reader["SumKM"]?.ToString() != "" ? Int32.Parse(reader["SumKM"].ToString()) : 0;
+                    getReportDetailCarResponseModel.SumKMMonth = reader["SumKMMonth"]?.ToString() != "" ? Int32.Parse(reader["SumKMMonth"].ToString()) : 0;
+                    getReportDetailCarResponseModel.MonthDone = reader["MonthDone"]?.ToString() != "" ? Int32.Parse(reader["MonthDone"].ToString()) : -1;
+                    getReportDetailCarResponseModel.YearDone = reader["YearDone"]?.ToString() != "" ? Int32.Parse(reader["YearDone"].ToString()) : -1;
+                    result.Add(getReportDetailCarResponseModel);
+                }
+                reader.NextResult();
+                while (reader.Read())
+                {
+                    getReportDetailCarResponseModel = new GetReportDetailCarResponseModel();
+                    getReportDetailCarResponseModel.SumKM = reader["SumKM"]?.ToString() != "" ? Int32.Parse(reader["SumKM"].ToString()) : 0;
+                    getReportDetailCarResponseModel.SumKMMonth = reader["SumKMMonth"]?.ToString() != "" ? Int32.Parse(reader["SumKMMonth"].ToString()) : 0;
+                    getReportDetailCarResponseModel.MonthDone = reader["MonthDone"]?.ToString() != "" ? Int32.Parse(reader["MonthDone"].ToString()) : -1;
+                    getReportDetailCarResponseModel.YearDone = reader["YearDone"]?.ToString() != "" ? Int32.Parse(reader["YearDone"].ToString()) : -1;
+                    result.Add(getReportDetailCarResponseModel);
+                }
+                con.Close();
+                return result;
             }
             catch (Exception ex)
             {
