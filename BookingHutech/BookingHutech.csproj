@@ -1054,7 +1054,6 @@
     <Content Include="wwwroot\controller\booking\bookingCar\assignDriverController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\editRegisterBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerCarTypeController.js" />
-    <Content Include="wwwroot\controller\booking\bookingCar\adminAndSchoolRegisterBookingCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\unitDetailRegisterBKCarController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerOtherCostController.js" />
     <Content Include="wwwroot\controller\booking\bookingCar\managerFuelCostController.js" />
@@ -1543,7 +1542,6 @@
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupAddNewCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupEditRegisterBookingCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\popupManagerCarType.html" />
-    <Content Include="wwwroot\views\pages\booking\bookingCar\popupAdminAndSchoolRegisterBKCController.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\unitDetailRegisterBKCar.html" />
     <Content Include="wwwroot\views\pages\booking\bookingCar\ManagerDriver.html" />
     <Content Include="wwwroot\views\pages\account\popupCreateNewAccount.html" />

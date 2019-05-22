@@ -17,9 +17,9 @@
     ]);
 //Set timeout
 angular.module('BHutechAppModule').config(['KeepaliveProvider', 'IdleProvider', function (KeepaliveProvider, IdleProvider) {
-    //IdleProvider.idle(5);
-    IdleProvider.timeout(1800); // 30p
-    KeepaliveProvider.interval(10);
+    IdleProvider.idle(1800);
+    IdleProvider.timeout(5); // 30p 1800
+   // KeepaliveProvider.interval(5);
 
     IdleProvider.interrupt('keydown wheel mousedown touchstart touchmove scroll');
 }]);
