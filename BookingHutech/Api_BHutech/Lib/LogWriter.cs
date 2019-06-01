@@ -32,12 +32,6 @@ namespace BookingHutech.Api_BHutech.Lib
         {
             try
             {
-                //string strLogPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); 
-                //string strLogPath = Path.GetDirectoryName("E:/BOOKING_HUTECH"); OK
-                //string strLogPath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/Api_BHutech/Lib/Utils/Log/Log");
-                //string strLogPath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/Api_BHutech/Lib/Utils/Log/Log");
-                // string strLogPath = Path.GetDirectoryName("/Api_BHutech/Lib/Utils/Log/");
-                // string strLogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"/Api_BHutech/Lib/Utils/Log/");
                 string strLogPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Log"), "Ex_BHutechLog.txt");
                 CheckAndSplitFile(strLogPath, UInt32.MaxValue);
                 DoWriteException(strLogPath, ex);
@@ -52,15 +46,68 @@ namespace BookingHutech.Api_BHutech.Lib
             }
         }
 
+        /// <summary>
+        /// Create by anh.tran
+        /// </summary>
+        /// <param name="functionName">tên hàm</param>
+        /// <param name="store">câu lệnh truy vấn</param>
+        /// <param name="strReq">giá trị đầu vào | null</param>
+        /// <param name="strRes">giá trị trả về | null</param>
+        /// <param name="ex">chi tiết lỗi | null</param>
+        /// <param name="des">mô tả cho lỗi</param>
+        public static void MyWriteLogData(string functionName, string store, string strReq, string strRes, Exception ex, string des)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                string strLogPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Log"), "Ex_BHutechLog.txt");
+                CheckAndSplitFile(strLogPath, UInt32.MaxValue);
+
+                sb.AppendLine("BEGIN MESSAGE [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "] --------------------------------------------");
+                sb.AppendLine(string.Format("FUNCTION NAME: {0}", functionName));
+                sb.AppendLine(string.Format("STORE: {0}", store));
+                sb.AppendLine(string.Format("REQUEST: {0}", strReq));
+                sb.AppendLine(string.Format("RESPONSE: {0}", strRes));
+                sb.AppendLine(string.Format("DESCRIPTION: {0}", des));
+                sb.AppendLine(string.Format("EXCEPTION DETAILS: {0}", ex));
+
+                sb.Append("END MESSAGE ---------------------------------------------------------------------\r\n");
+                using (StreamWriter wr = new StreamWriter(strLogPath, true, Encoding.UTF8))
+                {
+                    wr.WriteLine(sb.ToString()); 
+                }
+            }
+            catch(Exception objExc)
+            {
+                StringBuilder sb = new StringBuilder();
+                string strLogPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Log"), "Ex_BHutechLog.txt");
+                CheckAndSplitFile(strLogPath, UInt32.MaxValue);
+
+                sb.AppendLine("BEGIN MESSAGE [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "] --------------------------------------------");
+                sb.AppendLine(string.Format("FUNCTION NAME: {0}", functionName));
+                sb.AppendLine(string.Format("STORE: {0}", store));
+                sb.AppendLine(string.Format("REQUEST: {0}", strReq));
+                sb.AppendLine(string.Format("RESPONSE: {0}", strRes));
+                sb.AppendLine(string.Format("DESCRIPTION: {0}", des));
+                sb.AppendLine(string.Format("Write Log Fail: {0}", objExc));
+                sb.AppendLine(string.Format("EXCEPTION DETAILS: {0}", ex));
+
+                sb.Append("END MESSAGE ---------------------------------------------------------------------\r\n");
+                using (StreamWriter wr = new StreamWriter(strLogPath, true, Encoding.UTF8))
+                {
+                    wr.WriteLine(sb.ToString());
+                }
+            }
+        }
+
 
         public static void WriteLogMsg(string strLogContent)
         {
             try
             {
-
-                //string strLogPath = Path.GetDirectoryName("E:/BOOKING_HUTECH/BookingHutech_Final_v1.1.8/BookingHutech_Final/BookingHutech/Api_BHutech/Lib/Utils/Log/Log");
-                string strLogPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Log"), "ExStore_Log.txt");
-                CheckAndSplitFile(strLogPath, UInt32.MaxValue);
+                string strLogPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                strLogPath = Path.Combine(strLogPath, "ExStore_Log.txt");
+                CheckAndSplitFile(strLogPath, FILESIZE);
                 DoWriteException(strLogPath, strLogContent);
 
             }
@@ -108,19 +155,19 @@ namespace BookingHutech.Api_BHutech.Lib
         /// <summary>
         /// Writes an exception to log file and split file if current file's size is greater than FileSize parameter.
         /// </summary>
-        public static void WriteException(Exception ex, long FileSize)
-        {
-            try
-            {
-                string strLogPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                CheckAndSplitFile(strLogPath, FileSize);
-                DoWriteException(strLogPath, ex);
-            }
-            catch
-            {
-                return;
-            }
-        }
+        //public static void WriteException(Exception ex, long FileSize)
+        //{
+        //    try
+        //    {
+        //        string strLogPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        //        CheckAndSplitFile(strLogPath, FileSize);
+        //        DoWriteException(strLogPath, ex);
+        //    }
+        //    catch
+        //    {
+        //        return;
+        //    }
+        //}
 
         ///// <summary>
         ///// Writes an exception to log file and split file if current file's size is greater than default file's size.
@@ -297,10 +344,11 @@ namespace BookingHutech.Api_BHutech.Lib
         /// execute function writelog to text log
         /// </summary>
         /// <param name="functionName">string</param>
+        /// <param name="store">string</param>
         /// <param name="strLogPath">string</param>
         /// <param name="strReq">string</param>
         /// <param name="strRes">string</param>
-        private static void DoWriteLogData(string functionName, string strLogPath, string strReq, string strRes)
+        private static void DoWriteLogData(string functionName, string store, string strLogPath, string strReq, string strRes)
         {
             try
             {
@@ -308,6 +356,7 @@ namespace BookingHutech.Api_BHutech.Lib
 
                 sb.AppendLine("BEGIN MESSAGE [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "] --------------------------------------------");
                 sb.AppendLine(string.Format("FUNCTION NAME: {0}", functionName));
+                sb.AppendLine(string.Format("STORE: {0}", store));
                 sb.AppendLine(string.Format("REQUEST: {0}", strReq));
                 sb.AppendLine(string.Format("RESPONSE: {0}", strRes));
                 sb.Append("END MESSAGE ---------------------------------------------------------------------\r\n");

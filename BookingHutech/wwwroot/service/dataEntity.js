@@ -320,7 +320,9 @@ var ReturnAccountType = function (AccountType) {
     } 
     if (parseInt(AccountType) == AccountTypeRequest[2].AccountType) { // Quản trị/BHG/LaiXe
         return RegistrationStatus[1].RssegistrationStatusType;
-    } 
+    } else {
+        return 1; 
+    }
 }
 
 // Cập nhật trạng thái đơn cấp phát hiển thị lên đơn đăng ký

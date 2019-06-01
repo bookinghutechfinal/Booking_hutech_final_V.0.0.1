@@ -214,7 +214,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Exc SP = " + stringSql + " fail. Exception detail = ( " + ex.ToString() + " )");
                 con.Close();
                 throw;
             }
@@ -268,7 +268,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Exc SP = " + stringSql + " fail. Exception detail = ( " + ex.ToString() + " )");
                 con.Close();
                 throw;
             }
@@ -328,7 +328,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Exc SP = " + stringSql + " fail. Exception details = ( " + ex.ToString() + " )");
                 con.Close();
                 throw;
             }
@@ -374,7 +374,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Request = " + request.ToString() + ". Exc SP = " + sqlStore + " fail. Exception details = ( " + ex.ToString() + " )"); 
                 throw;
             }
             finally
@@ -424,7 +424,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Request = " + request.ToString() + ". Exc SP = " + sqlStore + " fail. Exception details = ( " + ex.ToString() + " )");
                 throw;
             }
             finally
@@ -458,7 +458,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Request = " + request.ToString() + ". Exc SP = " + sqlStore + " fail. Exception details = ( " + ex.ToString() + " )");
                 throw;
             }
             finally

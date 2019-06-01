@@ -317,7 +317,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Exc SP = "+ stringSql + " fail. Exception detail = ( " + ex.ToString() + " )" );
                 con.Close();
                 throw;
             }
@@ -338,7 +338,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 int a = cmd.ExecuteNonQuery();
                 if (a == 1)
                 {
-                    LogWriter.WriteException("stringSql"+ stringSql);
+                    LogWriter.WriteException("Exc SP = " + stringSql);
                     con.Close();
                     throw new Exception(); 
                 }
@@ -346,7 +346,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Exc SP = " + stringSql + " fail. Exception detail = ( " + ex + " )");
                 con.Close();
                 throw;
             }
@@ -392,7 +392,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Exc SP = " + stringSql + " fail. Exception detail = ( " + ex + " )");
                 con.Close();
                 throw;
             }

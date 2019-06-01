@@ -285,7 +285,8 @@
                                 var audio = new Audio('../../audio/alert_message_audio.mp3');
                                 audio.play();
                                 audio.volume = 0.1; 
-                                $scope.isShowRegisterSuccess = true;
+                                //$scope.isShowRegisterSuccess = true;
+                                $modalInstance.close();
                                 toastr.success("Đăng ký thành công");
                                 break;
                         }

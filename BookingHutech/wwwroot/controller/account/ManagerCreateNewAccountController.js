@@ -84,7 +84,7 @@ mainmodule.controller('ManagerCreateNewAccountController', ['$scope', '$state', 
                     ImageName: 1,
                     ImageData: {
                         compressed: {
-                            dataURL: null
+                            dataURL: noImageAvatar,
                         }
                     },
                 },

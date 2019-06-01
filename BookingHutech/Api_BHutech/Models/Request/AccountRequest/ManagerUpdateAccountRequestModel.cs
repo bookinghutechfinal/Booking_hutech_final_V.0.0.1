@@ -17,5 +17,13 @@ namespace BookingHutech.Api_BHutech.Models.Request.AccountRequest
         public DateTime? LastModifiedDate { get; set; }
         public GroupRoleResponseType ReturnCode { get; set; }
         public ManagerUpdateAccountRequestModel() { }
+
+        public override string ToString()
+        {
+            return "ManagerUpdateAccountRequestModel with Account_ID = " + this.Account_ID +
+                "| Account_Status = " + this.Account_Status +
+                "| AccountType = " + this.AccountType +
+                "| ReturnCode = " + this.ReturnCode; 
+        }
     }
 }

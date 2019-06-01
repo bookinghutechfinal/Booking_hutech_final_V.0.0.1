@@ -155,13 +155,14 @@
 
                                 <td data-title="'Trạng thái'" style="width:7%" align="left">
                                     <i ng-show="item.CarStatus === 2" style="color:blue">Xe trống</i>
-                                    <i ng-show="item.CarStatus === 1" style="color:red">Hoạt động</i>
+                                    <i ng-show="item.CarStatus === 1" style="color:red">Hoạt động / Đang chờ BGH duyệt</i>
                                 </td>
                                 <td style="width:1%" align="left">
-                                    <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" ng-show="item.DriverID !== 'NULL' " type="submit" ng-click="btnApproveRegistrationCar(item)" style="width: fit-content;height: auto; background-color: blue;">
+                                    <button class="btn btn-primary btn-round btn-block  col-md-6 col-sm-6 col-xs-12" ng-show="item.DriverID !== 'NULL' && item.CarStatus !== 1 " type="submit" ng-click="btnApproveRegistrationCar(item)" style="width: fit-content;height: auto; background-color: blue;">
                                         <i class="glyphicon glyphicon-ok"></i>
                                         <span>Cấp</span>
                                     </button>
+                                    <i class="fa fa-warning" ng-show="item.DriverID !== 'NULL' && item.CarStatus == 1 " style="color:orangered">Vui lòng chọn xe khác.</i>
                                     <i class="fa fa-warning" ng-show="item.DriverID == 'NULL'" style="color:orangered">Vui lòng phân công lái xe trước khi cấp xe.</i>
                                 </td>
                             </tr>

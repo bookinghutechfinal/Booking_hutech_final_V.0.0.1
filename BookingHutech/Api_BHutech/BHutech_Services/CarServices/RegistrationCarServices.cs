@@ -186,8 +186,8 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                     strSQLQuery = String.Format(Prototype.SqlCommandStore.uspUnitGetDetailRegistrationCarByNotRatify, request.RegistrationCarID, request.Unit_ID);
                     result.ListRegistrationCar = registrationCarDAO.GetDetailRegistrationByProfileCarNotRatifyDAO(strSQLQuery);
                 }
-                   // Xem chi tiết đơn có trạng thái QT đã duyệt, chờ BGH duyệt, BGH Không duyệt. đang thực hiện, hoàn thành, của khoa/ viện
-                else if (request.RegistrationCarID != null && request.ProfileStatus == (int)BookingStatus.AdminVerify || request.ProfileStatus == (int)BookingStatus.WaitingForSchoolVerify || request.ProfileStatus == (int)BookingStatus.SchoolVerify  || request.ProfileStatus == (int)BookingStatus.SchoolNotVerify || request.ProfileStatus == (int)BookingStatus.Processing || request.ProfileStatus == (int)BookingStatus.Finish)
+                // Xem chi tiết đơn có trạng thái QT đã duyệt, chờ BGH duyệt, BGH Không duyệt. đang thực hiện, hoàn thành, của khoa/ viện
+                else if (request.RegistrationCarID != null && request.ProfileStatus == (int)BookingStatus.AdminVerify || request.ProfileStatus == (int)BookingStatus.WaitingForSchoolVerify || request.ProfileStatus == (int)BookingStatus.SchoolVerify || request.ProfileStatus == (int)BookingStatus.SchoolNotVerify || request.ProfileStatus == (int)BookingStatus.Processing || request.ProfileStatus == (int)BookingStatus.Finish)
                 {
                     strSQLQuery = String.Format(Prototype.SqlCommandStore.uspGetDetailRegistrationCarByRatify, request.RegistrationCarID);
                     result.ListRegistrationCar = registrationCarDAO.GetDetailRegistrationByProfileCarRatifyDAO(strSQLQuery);
@@ -205,7 +205,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 throw;
             }
         }
-         
+
         /// <summary>
         /// 
         /// </summary>
@@ -215,6 +215,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
         {
             Helper helper = new Helper();
             SearchApproveRegistrationCar result = new SearchApproveRegistrationCar();
+            List<CarInfo> listCarResult = null;
             try
             {
                 // lấy danh sách xe hoạt động
@@ -224,15 +225,25 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 result.ListCar = carDAO.GetListCarApproveRegistrationCarDAO(uspGetListCarApproveRegistrationCar); //danh sách xe còn hoạt động
                 result.ListRegistrationCar = registrationCarDAO.GetListRegistrationCarDAO(uspGetListRegistrationApproveRegistrationCar); // đơn cấp phát đã duyệt, chờ trường duyệt, chờ đi.
 
-
-                // 
-                return helper.SearchApproveRegistrationCar(request, result);
+                #region lấy danh sách xe trống.  
+                try
+                {
+                    listCarResult = new List<CarInfo>();
+                    listCarResult = helper.SearchApproveRegistrationCar(request, result);
+                }
+                catch (Exception ex)
+                {
+                    LogWriter.WriteException("Exc function SearchApproveRegistrationCar fail. Detail exception = ( " + ex.ToString() + " )");
+                    throw; 
+                }
+                #endregion
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
-                throw;
+                LogWriter.WriteException(request.ToString() +". Exc function SearchApproveRegistrationCarServices fail. Detail exception = (" + ex.ToString() + " )");
+                throw; 
             }
+            return listCarResult;
 
         }
 
@@ -278,11 +289,11 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 {
                     request.DateTimeFrom = String.Format("{0:yyyy-MM-dd}", request.DateTimeFrom);
                     request.DateTimeTo = String.Format("{0:yyyy-MM-dd}", request.DateTimeTo);
-                    strSQLQuery =  Prototype.SqlCommandStore.uspSearchRegisterCar+" '"+ request.DateTimeFrom + "', '" + request.DateTimeTo + "','"+request.ProfileStatus+"' ";
+                    strSQLQuery = Prototype.SqlCommandStore.uspSearchRegisterCar + " '" + request.DateTimeFrom + "', '" + request.DateTimeTo + "','" + request.ProfileStatus + "' ";
                     result.ListRegistrationCar = registrationCarDAO.GetListRegistrationCarDAO(strSQLQuery);
                 }
                 // tìm kiếm theo mã đơn cấp phát
-                else if(request.RegistrationCarID != null)
+                else if (request.RegistrationCarID != null)
                 {
                     strSQLQuery = String.Format(Prototype.SqlCommandStore.uspSearchRegisterCarByRegistrationCarID, request.RegistrationCarID);
                     result.ListRegistrationCar = registrationCarDAO.GetListRegistrationCarDAO(strSQLQuery);
@@ -319,7 +330,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 {
                     request.DateTimeFrom = String.Format("{0:yyyy-MM-dd}", request.DateTimeFrom);
                     request.DateTimeTo = String.Format("{0:yyyy-MM-dd}", request.DateTimeTo);
-                    strSQLQuery = Prototype.SqlCommandStore.uspUnitSearchRegisterCar + " '" + request.DateTimeFrom + "', '" + request.DateTimeTo + "','" + request.ProfileStatus + "', '"+request.Unit_ID+"' ";
+                    strSQLQuery = Prototype.SqlCommandStore.uspUnitSearchRegisterCar + " '" + request.DateTimeFrom + "', '" + request.DateTimeTo + "','" + request.ProfileStatus + "', '" + request.Unit_ID + "' ";
                     result.ListRegistrationCar = registrationCarDAO.GetListRegistrationCarDAO(strSQLQuery);
                 }
                 // tìm kiếm theo mã đơn cấp phát
@@ -355,7 +366,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
                 if (!helper.CheckStatusProfileCar(request.Profile_Status))
                 {
                     throw new Exception("Profile_Status = " + request.Profile_Status + " != BookingStatus");
-                } 
+                }
                 string uspEditRegistrationCar = String.Format(Prototype.SqlCommandStore.uspEditRegistrationCar);
                 registrationCarDAO.EditRegistrationCarDAO(uspEditRegistrationCar, request);
             }
@@ -372,7 +383,7 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
         public void DeleteRegistrationCarService(DeleteRegistrationCarRequestModel request)
         {
             try
-            { 
+            {
                 string uspDeleteRegistrationCar = String.Format(Prototype.SqlCommandStore.uspDeleteRegistrationCar);
                 registrationCarDAO.DeleteRegistrationCarDAO(uspDeleteRegistrationCar, request);
             }

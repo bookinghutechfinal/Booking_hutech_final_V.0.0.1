@@ -9,5 +9,10 @@ namespace BookingHutech.Api_BHutech.Models.Request.BookingCarRequest
     {
         public DateTime? DateTimeFrom { get; set; }
         public DateTime? DateTimeTo { get; set; }
+
+        public override string ToString()
+        {
+            return "SearchApproveRegistrationCarRequestModel with DateTimeFrom = " + this.DateTimeFrom + " | DateTimeTo = " + this.DateTimeTo; 
+        }
     }
 }

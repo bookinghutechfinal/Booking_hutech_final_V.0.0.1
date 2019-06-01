@@ -16,5 +16,18 @@ namespace BookingHutech.Api_BHutech.Models.Request.BookingCarRequest
         public int? CarTypeID { get; set; } // anh. update 19/4/2019
         public String DriverID { get; set; } // anh. update 19/4/2019
         public String Note { get; set; } // anh. update 19/4/2019
+
+        public override string ToString()
+        {
+            return "UpdateRegistrationCarStatusRequestModel with RegistrationCarID = " + this.RegistrationCarID +
+                "| Profile_Status = " + this.Profile_Status +
+                "| DistanceTo = " + this.DistanceTo +
+                "| DistanceBack = " + this.DistanceBack +
+                "| CarID = " + this.CarID +
+                "| UserNameUpdate = " + this.UserNameUpdate +
+                "| CarTypeID = " + this.CarTypeID +
+                "| DriverID = " + this.DriverID +
+                "| Note = " + this.Note;  
+        }
     }
 }
