@@ -99,8 +99,14 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 while (reader.Read())
                 {
                     GetRoleCode roleCode = new GetRoleCode();
-                    roleCode.RoleCode = Int32.Parse(reader["RoleCode"].ToString());
-                    roleCode.RoleDetail_Status = bool.Parse(reader["RoleDetail_Status"].ToString());
+                    if(reader["RoleCode"] != DBNull.Value)
+                    {
+                        roleCode.RoleCode = Int32.Parse(reader["RoleCode"].ToString());
+                    }
+                   if(reader["RoleDetail_Status"] != DBNull.Value)
+                    {
+                        roleCode.RoleDetail_Status = bool.Parse(reader["RoleDetail_Status"].ToString());
+                    } 
                     hsRoleCode.Add(roleCode);
                 }
                 con.Close();
