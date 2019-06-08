@@ -193,7 +193,14 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                string exception = $@"
+(*)Ex SP: {sqlStore} fail.
+
+(*)Request data: {request.RequestData}.
+
+(*)Detail exception: {ex.ToString()}
+";
+                LogWriter.WriteLogMsg(exception);
                 throw;
             }
             finally

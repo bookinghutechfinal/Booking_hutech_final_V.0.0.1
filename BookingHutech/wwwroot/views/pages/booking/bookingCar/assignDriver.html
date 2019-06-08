@@ -121,6 +121,7 @@
                                         <ul class="list-unstyled user_data">
                                             <li ng-repeat="data in ManagerGetListAccountResponse"><i class="glyphicon glyphicon-hourglass"></i> {{data.FullName}} ({{data.Account_ID}})</li>
                                         </ul>
+                                        <h6 style="color:red" ng-show="ManagerGetListAccountResponse.length===0">Tất cả lái xe đã được phân công.</h6>
                                     </div>
                                     <br />
                                     <div class=" list_driver">

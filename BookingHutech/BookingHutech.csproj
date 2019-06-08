@@ -182,6 +182,7 @@
     <Compile Include="Api_BHutech\Lib\LogWriter.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\BHutechException.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\DataEntity.cs" />
+    <Compile Include="Api_BHutech\Lib\Utils\SendEmail.cs" />
     <Compile Include="Api_BHutech\Lib\Utils\UploadFile.cs" />
     <Compile Include="Api_BHutech\Models\AccountInfo.cs" />
     <Compile Include="Api_BHutech\Models\AccountModels\GroupRole.cs" />

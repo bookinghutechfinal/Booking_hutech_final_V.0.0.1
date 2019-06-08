@@ -11,6 +11,7 @@
                 DateFrom: today,
                 DateTo: today
             }
+            $scope.subCaption = `Thang ${$scope.ReportRequestModel.Month}/${$scope.ReportRequestModel.Year}`;
             $scope.reportCost();
             $scope.ReportCost = {
                 Year: 2019,
@@ -59,13 +60,16 @@
                 if (request.ReportType == 1) {
                     $scope.ReportRequestModel.Year = request.Year;
                     $scope.ReportRequestModel.Month = request.Month;
+                    $scope.subCaption = `Tháng ${$scope.ReportRequestModel.Month}/${$scope.ReportRequestModel.Year}`;
                 }
                 if (request.ReportType == 3) {
                     $scope.ReportRequestModel.Year = request.Year;
+                    $scope.subCaption = `Năm ${$scope.ReportRequestModel.Year}`;
                 }
                 if (request.ReportType == 2) {
                     $scope.ReportRequestModel.DateFrom = FormatDateTimeToDBRequest(angular.element('#myDate1').val());
                     $scope.ReportRequestModel.DateTo = FormatDateTimeToDBRequest(angular.element('#myDate2').val());
+                    $scope.subCaption = `Từ ngày ${$scope.ReportRequestModel.DateFrom} - ${$scope.ReportRequestModel.DateTo}`;
                 }
 
                 $BookingCar.reportCost($scope.ReportRequestModel, function (response) {
@@ -88,9 +92,31 @@
             }
         }
 
+        var mystyle = {
+            sheetid: 'Chi phí hoạt động xe',
+            headers: true,
+            caption: {
+                title: 'Báo cáo chi phí xe',
+                style: 'font-size: 200px;'
+            },
+            column: {
+                style: 'font-size:20px'
+            },
+            columns: [
+                { columnid: 'label', title: 'Tên xe' },
+                { columnid: 'value', title: 'Tổng tiền' },
+            ],
+
+        };
+
+        $scope.exportData = function () {
+            alasql('SELECT * INTO XLS("alexa.xls",?) FROM ?', [mystyle, listReportCost]);
+        };
+
         $scope.myDataSource = {
             "chart": {
                 "caption": "Thống kê chi phí xe",
+                "subCaption": $scope.subCaption,
                 "xAxisName": "Xe",
                 "yAxisName": "Tổng tiền",
                 "numberSuffix": "",

@@ -213,7 +213,7 @@
                         }
                     });
 
-                    $scope.getListCost();
+$scope.getListCost();
                 }
             }
         }

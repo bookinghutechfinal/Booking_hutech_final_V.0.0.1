@@ -49,7 +49,7 @@
                 }
                 else
                     var Account_ID = acountID;
-                $alert.showConfirmUpdateNewProfile($rootScope.initMessage('Bạn muốn cập nhật phân công?'), function () {
+                $alert.showUpdateAssignDriver($rootScope.initMessage('Bạn muốn cập nhật phân công?'), function () {
                     var AssignDriverManagerRequestModel = {
                         Account_ID: Account_ID,
                         CarID: item.CarID,
@@ -69,7 +69,7 @@
                             }
                         });
                     }
-                });
+                }, $scope.GetDriverWithCar());
             }
         }
     }]);

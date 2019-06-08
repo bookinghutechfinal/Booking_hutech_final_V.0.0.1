@@ -130,6 +130,26 @@ mainmodule.service('$alert', ['SweetAlert', '$rootScope', function (SweetAlert, 
         });
     }
 
+    this.showUpdateAssignDriver = function (mesg, ok, cancel) {
+        SweetAlert.swal({
+            title: '',
+            text: mesg,
+            type: "success",
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: $rootScope.initMessage('Yes'),
+            cancelButtonText: $rootScope.initMessage('No'),
+            closeOnConfirm: true
+        }, function (IsOk) {
+            if (IsOk) {
+                ok();
+            }
+            else {
+                cancel;
+            }
+        });
+    }
+
     this.showConfirmUpdateCarInfo = function (mesg, ok) {
         SweetAlert.swal({
             title: '',
@@ -147,11 +167,11 @@ mainmodule.service('$alert', ['SweetAlert', '$rootScope', function (SweetAlert, 
         });
     }
 
-    this.showUpdateDistance = function (mesg, ok) {
+    this.showUpdateDistance = function (mesg, ok, cancel) {
         SweetAlert.swal({
             title: '',
-            text: mesg, 
-            type: "input", 
+            text: mesg,
+            type: "input",
             showConfirmButton: true,
             showCancelButton: true,
             confirmButtonText: $rootScope.initMessage('Cập nhật'),
@@ -161,6 +181,9 @@ mainmodule.service('$alert', ['SweetAlert', '$rootScope', function (SweetAlert, 
             if (IsOk) {
                 $rootScope.alertValue = IsOk;
                 ok();
+            }
+            else {
+                cancel;
             };
         });
     }
