@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using BookingHutech.Api_BHutech.Models.BookingCar; 
+using BookingHutech.Api_BHutech.Models.BookingCar;
 
 namespace BookingHutech.Api_BHutech.Models.BookingCar
 {
@@ -21,6 +21,23 @@ namespace BookingHutech.Api_BHutech.Models.BookingCar
 
 
         public CarInfo() { }
+
+        public override string ToString()
+        {
+            return "CarInfo with CarID = " + this.CarID +
+            "| CarName = " + this.CarName +
+            "| CarNo = " + this.CarNo +
+            "| CarStatus = " + this.CarStatus +
+            "| Expires = " + this.Expires +
+            "| InsuranceExpires" + this.InsuranceExpires +
+            "| DriverID" + this.DriverID +
+            "| FullNameDriver" + this.FullNameDriver +
+            "| CarTypeID" + this.CarTypeID +
+            "| CarTypeName" + this.CarTypeName +
+            "| CreateDate" + this.CreateDate +
+            "| LastModifiedDate" + this.LastModifiedDate +
+            "| FullNameUpdate" + this.FullNameUpdate;
+        }
 
     }
 }

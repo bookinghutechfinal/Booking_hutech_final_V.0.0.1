@@ -17,6 +17,9 @@ namespace BookingHutech.Api_BHutech.Lib.Enum
             EmptyCar = 2, // xe trống.
             NotEmptyCar = 3, // có người booking
             Maintenance = 4,  // bảo trì, sửa chữa
+            // Anh create new
+            WaitingForSchoolVerify = 6  // chờ ban giám hiệu duyệt. 
+            //end 
         }
         public enum ApiRequestType
         {

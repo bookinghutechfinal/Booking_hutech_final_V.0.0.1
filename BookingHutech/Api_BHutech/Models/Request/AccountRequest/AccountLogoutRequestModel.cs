@@ -11,5 +11,9 @@ namespace BookingHutech.Api_BHutech.Models.Request.AccountRequest
 
         public AccountLogoutRequestModel() { }
 
+        public override string ToString()
+        {
+            return "AccountLogoutRequestModel with Account_id = " + this.Account_ID; 
+        }
     }
 }

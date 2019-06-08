@@ -34,7 +34,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             cmd = new SqlCommand(sqlStore, con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            if(request.Unit_ID == 0)
+            if (request.Unit_ID == 0)
             {
                 cmd.Parameters.Add("@Unit_ID", SqlDbType.Int).Value = 0;
             }
@@ -76,12 +76,23 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     accountLoginResponseModel.Avatar = reader["Avatar"].ToString();
                     accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
                     accountLoginResponseModel.FullName = reader["FullName"].ToString();
-                    accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
+                    if (reader["Gender"] != DBNull.Value)
+                    {
+                        accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
+                    }
+
                     accountLoginResponseModel.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
                     accountLoginResponseModel.Addres = reader["Addres"].ToString();
-                    accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
+                    if (reader["IsChangePassword"] != DBNull.Value)
+                    {
+                        accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
+                    }
+
                     accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
-                    accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
+                    if (reader["Verify"] != DBNull.Value)
+                    {
+                        accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
+                    }
                     accountLoginResponseModel.AccountType = reader["AccountType"].ToString();
                     req.Add(accountLoginResponseModel);
                 }
@@ -91,7 +102,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("GetAccountByAccountStatusAccountTypeDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -99,38 +110,6 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 cmd.Connection.Close();
             }
 
-            ////
-            //db = new DataAccess();
-            //con = new SqlConnection(db.ConnectionString());
-            //List<AccountInfo> request = new List<AccountInfo>();
-            //try
-            //{
-            //    con.Open();
-            //    cmd = new SqlCommand(stringSql, con);
-            //    SqlDataReader reader = cmd.ExecuteReader();
-            //    while (reader.Read())
-            //    {
-            //        AccountInfo accountLoginResponseModel = new AccountInfo();
-            //        accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
-            //        accountLoginResponseModel.FullName = reader["FullName"].ToString();
-            //        accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
-            //        accountLoginResponseModel.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
-            //        accountLoginResponseModel.Addres = reader["Addres"].ToString();
-            //        accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
-            //        accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
-            //        accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
-            //        accountLoginResponseModel.AccountType = reader["AccountType"].ToString();
-            //        request.Add(accountLoginResponseModel);
-            //    }
-            //    con.Close();
-            //    return request;
-            //}
-            //catch (Exception ex)
-            //{
-            //    LogWriter.WriteException(ex);
-            //    con.Close();
-            //    throw;
-            //}
         }
 
         /// <summary>
@@ -155,18 +134,31 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     accountLoginResponseModel.Avatar = reader["Avatar"].ToString();
                     accountLoginResponseModel.Account_ID = reader["Account_ID"].ToString();
                     accountLoginResponseModel.FullName = reader["FullName"].ToString();
-                    accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
+                    if (reader["Gender"] != DBNull.Value)
+                    {
+                        accountLoginResponseModel.Gender = int.Parse(reader["Gender"].ToString());
+                    }
                     accountLoginResponseModel.Birthday = reader["Birthday"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["Birthday"].ToString());
                     accountLoginResponseModel.NumberPhone = reader["NumberPhone"].ToString() == "" ? null : reader["NumberPhone"].ToString();
                     accountLoginResponseModel.Addres = reader["Addres"].ToString() == "" ? null : reader["Addres"].ToString();
                     accountLoginResponseModel.Email = reader["Email"].ToString() == "" ? null : reader["Email"].ToString();
                     accountLoginResponseModel.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
                     accountLoginResponseModel.LastModifiedDate = reader["LastModifiedDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
-                    accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
+                    if (reader["IsChangePassword"] != DBNull.Value)
+                    {
+                        accountLoginResponseModel.IsChangePassword = bool.Parse(reader["IsChangePassword"].ToString());
+                    }
+
                     accountLoginResponseModel.Account_Status = reader["Account_Status"].ToString();
-                    accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
+                    if (reader["Verify"] != DBNull.Value)
+                    {
+                        accountLoginResponseModel.Verify = bool.Parse(reader["Verify"].ToString());
+                    }
                     accountLoginResponseModel.AccountType = reader["AccountType"].ToString();
-                    accountLoginResponseModel.Unit_ID = int.Parse(reader["Unit_ID"].ToString());
+                    if (reader["Unit_ID"] != DBNull.Value)
+                    {
+                        accountLoginResponseModel.Unit_ID = int.Parse(reader["Unit_ID"].ToString());
+                    }
                     accountLoginResponseModel.UnitName = reader["UnitName"].ToString();
                     accountLoginResponseModel.Manager = reader["Manager"].ToString();
                     accountLoginResponseModel.EmailManager = reader["EmailManager"].ToString();
@@ -181,7 +173,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("GetDetailAccountByAccountIDDAO", sqlStore, null, null, ex, "Exc SP = " + sqlStore + " fail");
                 con.Close();
                 throw;
             }
@@ -206,8 +198,15 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 while (reader.Read())
                 {
                     GetRoleCode roleCode = new GetRoleCode();
-                    roleCode.RoleCode = Int32.Parse(reader["RoleCode"].ToString());
-                    roleCode.RoleMaster_ID = Int32.Parse(reader["RoleMaster_ID"].ToString());
+                    if (reader["RoleCode"] != DBNull.Value)
+                    {
+                        roleCode.RoleCode = Int32.Parse(reader["RoleCode"].ToString());
+                    }
+                    if (reader["RoleMaster_ID"] != DBNull.Value)
+                    {
+                        roleCode.RoleMaster_ID = Int32.Parse(reader["RoleMaster_ID"].ToString());
+                    }
+
                     roleCode.RoleName = reader["RoleName"].ToString() == "" ? null : reader["RoleName"].ToString();
                     roleCode.RoleDetail_Status = bool.Parse(reader["RoleDetail_Status"].ToString() == "" ? null : reader["RoleDetail_Status"].ToString());
                     roleCode.FullNameUpdate = reader["FullNameUpdate"].ToString() == "" ? null : reader["FullNameUpdate"].ToString();
@@ -218,7 +217,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("GetDetailRoleCodeByAccountIDDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 throw;
             }
             return hsRoleCode;
@@ -248,9 +247,13 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     cmd.Connection.Open();
                 }
                 cmd.ExecuteNonQuery();
-                res.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                res.ReturnCode = GroupRoleResponseType.Fail;
+                if (cmd.Parameters["@Return"].Value != DBNull.Value)
+                {
+                    res.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                }
                 if (res.ReturnCode != GroupRoleResponseType.Success)
-                { 
+                {
                     throw new Exception();
                 }
                 return res;
@@ -258,7 +261,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("ManagerUpdateGroupRoleDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -298,7 +301,10 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 while (reader.Read())
                 {
                     Models.AccountModels.GroupRole groupRole = new Models.AccountModels.GroupRole();
-                    groupRole.GroupRoleID = Int32.Parse(reader["GroupRoleID"].ToString());
+                    if (reader["GroupRoleID"] != DBNull.Value)
+                    {
+                        groupRole.GroupRoleID = Int32.Parse(reader["GroupRoleID"].ToString());
+                    }
                     groupRole.GroupRoleName = reader["GroupRoleName"].ToString();
                     listGroupRoles.Add(groupRole);
                 }
@@ -308,7 +314,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("ManagerGetGroupRoleDAO", sqlStore, null, null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -339,8 +345,11 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Models.AccountModels.RoleMaster roleMaster = new Models.AccountModels.RoleMaster(); 
-                    roleMaster.RoleMaster_ID = Int32.Parse(reader["RoleMaster_ID"].ToString());
+                    Models.AccountModels.RoleMaster roleMaster = new Models.AccountModels.RoleMaster();
+                    if (reader["RoleMaster_ID"] != DBNull.Value)
+                    {
+                        roleMaster.RoleMaster_ID = Int32.Parse(reader["RoleMaster_ID"].ToString());
+                    }
                     roleMaster.RoleName = reader["RoleName"].ToString();
                     listRoleMasters.Add(roleMaster);
                 }
@@ -349,7 +358,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("ManagerGetRoleMasterByAccountIDDAO", sqlStore, null, null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -384,10 +393,14 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                     cmd.Connection.Open();
                 }
                 cmd.ExecuteNonQuery();
-                res.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                res.ReturnCode = GroupRoleResponseType.Fail;
+                if (cmd.Parameters["@Return"].Value != DBNull.Value)
+                {
+                    res.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                }
                 if (res.ReturnCode != GroupRoleResponseType.Success)
                 {
-                    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, res.ReturnCode, (int)res.ReturnCode));
+                    LogWriter.MyWriteLogData("ManagerUpdateRoleMasterDAO", sqlStore, request.ToString(), "DB Return code = (" + (int)res.ReturnCode + ")", null, "Exc SP = " + sqlStore + " fail");
                     throw new Exception();
                 }
                 // #
@@ -408,7 +421,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("ManagerUpdateRoleMasterDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -448,7 +461,10 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 while (reader.Read())
                 {
                     Models.AccountModels.Unit unit = new Models.AccountModels.Unit();
-                    unit.Unit_ID = Int32.Parse(reader["Unit_ID"].ToString());
+                    if (reader["Unit_ID"] != DBNull.Value) { }
+                    {
+                        unit.Unit_ID = Int32.Parse(reader["Unit_ID"].ToString());
+                    } 
                     unit.UnitName = reader["UnitName"].ToString();
                     unit.UnitManager = reader["UnitManager"].ToString();
                     unit.EmailManage = reader["EmailManage"].ToString();
@@ -460,7 +476,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("ManagerGetUnitDAO", sqlStore, null, null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -492,7 +508,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.WriteException("Function ManagerUpdateAccountDAO fail. Exc SP = " + StrQuery + " fail. Exception detail = ( " + ex.ToString() + " )");
                 throw;
             }
             finally
@@ -547,7 +563,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("EditProfileAccountDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -564,14 +580,13 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
         /// <param name="request"></param>
         public void ChangePasswordDAO(String sqlStore, ManagerUpdateAccountRequestModel request)
         {
-            ManagerUpdateAccountRequestModel req = new ManagerUpdateAccountRequestModel(); 
+            ManagerUpdateAccountRequestModel req = new ManagerUpdateAccountRequestModel();
             db = new DataAccess();
             con = new SqlConnection(db.ConnectionString());
             cmd = new SqlCommand(sqlStore, con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@Account_ID", SqlDbType.VarChar,10).Value = request.Account_ID;
+            cmd.Parameters.Add("@Account_ID", SqlDbType.VarChar, 10).Value = request.Account_ID;
             cmd.Parameters.Add("@Password", SqlDbType.Char, 200).Value = request.Password;
-
             cmd.Parameters.Add("@Return", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             try
             {
@@ -581,18 +596,22 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
                 }
 
                 SqlDataReader reader = cmd.ExecuteReader();
-                req.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                req.ReturnCode = GroupRoleResponseType.Fail; 
+                if(cmd.Parameters["@Return"].Value != DBNull.Value)
+                {
+                    req.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                } 
                 if (req.ReturnCode != GroupRoleResponseType.Success)
                 {
-                    LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, req.ReturnCode, (int)req.ReturnCode));
+                    LogWriter.MyWriteLogData("EditProfileAccountDAO", sqlStore, request.ToString(), "DB Return = " + req.ReturnCode, null, "Exc SP = " + sqlStore + " fail");
                     throw new Exception();
-                } 
-                con.Close(); 
+                }
+                con.Close();
             }
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("ChangePasswordDAO", sqlStore, request.ToString(), "DB Return = " + req.ReturnCode, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -623,7 +642,7 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("UpdateRoleDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }

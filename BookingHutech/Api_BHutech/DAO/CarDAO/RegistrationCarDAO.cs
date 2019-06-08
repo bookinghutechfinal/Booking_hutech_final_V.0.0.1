@@ -48,13 +48,19 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     registrationCarInfo.Leader = reader["Leader"].ToString();
                     registrationCarInfo.DateTimeFrom = reader["DateTimeFrom"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["DateTimeFrom"].ToString());
                     registrationCarInfo.DateTimeTo = reader["DateTimeTo"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["DateTimeTo"].ToString());
-                    registrationCarInfo.NumberPeople = Int32.Parse(reader["NumberPeople"].ToString());
+                    if (reader["NumberPeople"] != DBNull.Value)
+                    {
+                        registrationCarInfo.NumberPeople = Int32.Parse(reader["NumberPeople"].ToString());
+                    }
                     registrationCarInfo.RouteTo = reader["RouteTo"].ToString();
                     registrationCarInfo.RouteBack = reader["RouteBack"].ToString();
                     registrationCarInfo.DistanceTo = reader["DistanceTo"].ToString() == "" ? (int?)null : Int32.Parse(reader["DistanceTo"].ToString());
                     registrationCarInfo.DistanceBack = reader["DistanceBack"].ToString() == "" ? (int?)null : Int32.Parse(reader["DistanceBack"].ToString());
                     registrationCarInfo.DistanceTotal = reader["DistanceTotal"].ToString() == "" ? (int?)null : Int32.Parse(reader["DistanceTotal"].ToString());
-                    registrationCarInfo.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    if (reader["Profile_Status"] != DBNull.Value)
+                    {
+                        registrationCarInfo.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    }
                     registrationCarInfo.CreatDay = reader["CreatDay"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreatDay"].ToString());
                     //registrationCarInfo.ReceiveDate = reader["ReceiveDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["ReceiveDate"].ToString());
                     registrationCarInfo.LastModifiedDate = reader["LastModifiedDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
@@ -72,7 +78,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("GetRegistrationCarDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }
@@ -106,7 +112,11 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     cmd.Connection.Open();
                 }
                 cmd.ExecuteNonQuery();
-                response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                response.ReturnCode = GroupRoleResponseType.Fail;
+                if (cmd.Parameters["@Return"].Value != DBNull.Value)
+                {
+                    response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                }
                 if (response.ReturnCode != GroupRoleResponseType.Success)
                 {
                     LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, response.ReturnCode, response.ReturnCode));
@@ -118,7 +128,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("UpdateRegistrationCarStatusDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -168,7 +178,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("CreateNewRegistrationCarDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -204,7 +214,10 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     getListRegistration.DateTimeTo = reader["DateTimeTo"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["DateTimeTo"].ToString());
                     getListRegistration.RouteTo = reader["RouteTo"].ToString();
                     getListRegistration.RouteBack = reader["RouteBack"].ToString();
-                    getListRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    if (reader["Profile_Status"] != DBNull.Value)
+                    {
+                        getListRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    } 
                     // getListRegistration.CarID = Int32.Parse(reader["CarID"].ToString());                    
                     getListRegistration.CarID = reader["CarID"].ToString() == "" ? 0 : Int32.Parse(reader["CarID"].ToString());
                     result.Add(getListRegistration);
@@ -214,7 +227,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("GetListRegistrationCarDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }
@@ -249,16 +262,33 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     getDetailRegistration.DateTimeTo = reader["DateTimeTo"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["DateTimeTo"].ToString());
                     getDetailRegistration.RouteTo = reader["RouteTo"].ToString();
                     getDetailRegistration.RouteBack = reader["RouteBack"].ToString();
-                    getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    if (reader["Profile_Status"] !=DBNull.Value)
+                    {
+                        getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    } 
                     getDetailRegistration.UnitRequest = reader["UnitRequest"].ToString();
                     getDetailRegistration.Reason = reader["Reason"].ToString();
                     getDetailRegistration.Leader = reader["Leader"].ToString();
                     getDetailRegistration.EmailLeader = reader["EmailLeader"].ToString();
                     getDetailRegistration.NumberPhoneLeader = reader["NumberPhoneLeader"].ToString();
-                    getDetailRegistration.NumberPeople = Int32.Parse(reader["NumberPeople"].ToString());
-                    getDetailRegistration.PlanDistanceTo = Int32.Parse(reader["PlanDistanceTo"].ToString());
-                    getDetailRegistration.PlanDistanceBack = Int32.Parse(reader["PlanDistanceBack"].ToString());
-                    getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    if (reader["NumberPeople"] != DBNull.Value)
+                    {
+                        getDetailRegistration.NumberPeople = Int32.Parse(reader["NumberPeople"].ToString());
+                    }
+                     
+                    if (reader["PlanDistanceTo"] != DBNull.Value)
+                    {
+                        getDetailRegistration.PlanDistanceTo = Int32.Parse(reader["PlanDistanceTo"].ToString());
+                    }
+                     
+                    if (reader["PlanDistanceBack"] != DBNull.Value)
+                    {
+                        getDetailRegistration.PlanDistanceBack = Int32.Parse(reader["PlanDistanceBack"].ToString());
+                    }  
+                    if (reader["Profile_Status"] != DBNull.Value)
+                    {
+                        getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    } 
                     getDetailRegistration.CarTypeNameRequest = reader["CarTypeNameRequest"].ToString();
                     getDetailRegistration.Note = reader["Note"].ToString();
                     result.Add(getDetailRegistration);
@@ -267,8 +297,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 return result;
             }
             catch (Exception ex)
-            {
-                LogWriter.WriteException(ex);
+            { 
+                LogWriter.MyWriteLogData("GetDetailRegistrationByProfileCarNotRatifyDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }
@@ -303,20 +333,41 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     getDetailRegistration.DateTimeTo = reader["DateTimeTo"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["DateTimeTo"].ToString());
                     getDetailRegistration.RouteTo = reader["RouteTo"].ToString();
                     getDetailRegistration.RouteBack = reader["RouteBack"].ToString();
-                    getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    if (reader["Profile_Status"] != DBNull.Value)
+                    {
+                        getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    } 
                     getDetailRegistration.UnitRequest = reader["UnitRequest"].ToString();
                     getDetailRegistration.Reason = reader["Reason"].ToString();
                     getDetailRegistration.Leader = reader["Leader"].ToString();
                     getDetailRegistration.EmailLeader = reader["EmailLeader"].ToString();
                     getDetailRegistration.NumberPhoneLeader = reader["NumberPhoneLeader"].ToString();
+                    if (reader["Profile_Status"] != DBNull.Value)
+                    {
+                        getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    }
                     getDetailRegistration.NumberPeople = Int32.Parse(reader["NumberPeople"].ToString());
-                    getDetailRegistration.PlanDistanceTo = Int32.Parse(reader["PlanDistanceTo"].ToString());
-                    getDetailRegistration.PlanDistanceBack = Int32.Parse(reader["PlanDistanceBack"].ToString());
-                    getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    if (reader["PlanDistanceTo"] != DBNull.Value)
+                    {
+                        getDetailRegistration.PlanDistanceTo = Int32.Parse(reader["PlanDistanceTo"].ToString());
+                    }
+                   
+                    if (reader["PlanDistanceBack"] != DBNull.Value)
+                    {
+                        getDetailRegistration.PlanDistanceBack = Int32.Parse(reader["PlanDistanceBack"].ToString());
+                    }
+                   
+                    if (reader["Profile_Status"] != DBNull.Value)
+                    {
+                        getDetailRegistration.Profile_Status = Int32.Parse(reader["Profile_Status"].ToString());
+                    } 
                     getDetailRegistration.CarTypeNameRequest = reader["CarTypeNameRequest"].ToString();
                     getDetailRegistration.CarImage = reader["CarImage"].ToString();
-                    getDetailRegistration.CarID = Int32.Parse(reader["CarID"].ToString());
-                    getDetailRegistration.CarNo =reader["CarNo"].ToString();
+                    if (reader["CarID"] != DBNull.Value)
+                    {
+                        getDetailRegistration.CarID = Int32.Parse(reader["CarID"].ToString());
+                    } 
+                    getDetailRegistration.CarNo = reader["CarNo"].ToString();
                     getDetailRegistration.FullNameDriver = reader["FullNameDriver"].ToString();
                     getDetailRegistration.Note = reader["Note"].ToString();
                     getDetailRegistration.CarTypeName = reader["CarTypeName"].ToString();
@@ -327,8 +378,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 return result;
             }
             catch (Exception ex)
-            {
-                LogWriter.WriteException(ex);
+            { 
+                LogWriter.MyWriteLogData("GetDetailRegistrationByProfileCarRatifyDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }
@@ -350,10 +401,10 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
 
             cmd.Parameters.Add("@RegistrationCarID", SqlDbType.VarChar, 10).Value = request.RegistrationCarID;
             cmd.Parameters.Add("@Profile_Status", SqlDbType.Int).Value = request.Profile_Status;
-            cmd.Parameters.Add("@UserNameUpdate", SqlDbType.Char, 20).Value = request.UserNameUpdate;  
+            cmd.Parameters.Add("@UserNameUpdate", SqlDbType.Char, 20).Value = request.UserNameUpdate;
             cmd.Parameters.Add("@CarID", SqlDbType.Int).Value = request.CarID == null ? (int?)null : request.CarID;
-            cmd.Parameters.Add("@DriverID", SqlDbType.NVarChar, 20).Value =  request.DriverID;
-            cmd.Parameters.Add("@Note", SqlDbType.NText).Value =  request.Note;
+            cmd.Parameters.Add("@DriverID", SqlDbType.NVarChar, 20).Value = request.DriverID;
+            cmd.Parameters.Add("@Note", SqlDbType.NText).Value = request.Note;
 
             try
             {
@@ -362,7 +413,6 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     cmd.Connection.Open();
                 }
                 int result = cmd.ExecuteNonQuery();
-                //response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
                 if (result != (int)GroupRoleResponseType.Success)
                 {
                     LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, response.ReturnCode, response.ReturnCode));
@@ -374,7 +424,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("ManagerUpdateRegistrationCarDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -423,8 +473,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                con.Close();
-                LogWriter.WriteException(ex);
+                con.Close(); 
+                LogWriter.MyWriteLogData("EditRegistrationCarDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -445,7 +495,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@RegistrationCarID", SqlDbType.VarChar, 10).Value = request.RegistrationCarID;
-            
+
             try
             {
                 if (cmd.Connection.State == ConnectionState.Closed)
@@ -457,8 +507,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                con.Close();
-                LogWriter.WriteException(ex);
+                con.Close(); 
+                LogWriter.MyWriteLogData("DeleteRegistrationCarDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally

@@ -33,6 +33,11 @@ namespace BookingHutech.Api_BHutech.Models
         public string LicenseClass { get; set; } // hạn bằng lái.  
         public DateTime? LicenseExpires { get; set; } // ngày hết hạn. 
 
+        public override string ToString()
+        {
+            return "Account_ID = " + this.Account_ID +
+                "| FullName = " + this.FullName;
+        }
 
 
     }

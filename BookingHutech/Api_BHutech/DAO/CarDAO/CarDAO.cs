@@ -18,7 +18,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
     public class CarDAO
     {
         static DataAccess db;
-        static SqlConnection con; 
+        static SqlConnection con;
         static SqlCommand cmd;
         //static SqlDataAdapter adap;
 
@@ -34,7 +34,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             List<CarInfo> result = new List<CarInfo>();
             CarInfo carInfo;
             try
-            { 
+            {
                 con.Open();
                 cmd = new SqlCommand(stringSql, con);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -44,30 +44,37 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     carInfo.CarID = Int32.Parse(reader["CarID"].ToString());
                     carInfo.CarName = reader["CarName"].ToString();
                     carInfo.CarNo = reader["CarNo"].ToString();
-                    carInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    if (reader["CarTypeID"] != DBNull.Value)
+                    {
+                        carInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    }
+
                     carInfo.CarTypeName = reader["CarTypeName"].ToString();
                     carInfo.CarImage = reader["CarImage"].ToString();
-                    carInfo.CarStatus =  Int32.Parse(reader["CarStatus"].ToString());
+                    if (reader["CarStatus"] != DBNull.Value)
+                    {
+                        carInfo.CarStatus = Int32.Parse(reader["CarStatus"].ToString());
+                    }
                     carInfo.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
-                    carInfo.LastModifiedDate = reader["LastModifiedDate"].ToString() ==""? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    carInfo.LastModifiedDate = reader["LastModifiedDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
                     carInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
                     carInfo.Expires = reader["Expires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["Expires"].ToString());
                     carInfo.InsuranceExpires = reader["InsuranceExpires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["InsuranceExpires"].ToString());
 
 
-                    result.Add(carInfo) ;
-                } 
+                    result.Add(carInfo);
+                }
                 con.Close();
                 return result;
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex); 
+                LogWriter.MyWriteLogData("GetListCarDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }
         }
-        
+
 
         /// <summary>
         ///  Lấy danh sách loại xe. 
@@ -88,10 +95,19 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 while (reader.Read())
                 {
                     carTypeInfo = new CarTypeInfo();
-                    carTypeInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    if (reader["CarTypeID"] != DBNull.Value)
+                    {
+                        carTypeInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    }
                     carTypeInfo.CarTypeName = reader["CarTypeName"].ToString();
-                    carTypeInfo.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
-                    carTypeInfo.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    if (reader["CreateDate"] != DBNull.Value)
+                    {
+                        carTypeInfo.CreateDate = DateTime.Parse(reader["CreateDate"].ToString());
+                    }
+                    if (reader["LastModifiedDate"] != DBNull.Value)
+                    {
+                        carTypeInfo.LastModifiedDate = DateTime.Parse(reader["LastModifiedDate"].ToString());
+                    }
                     carTypeInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
                     result.Add(carTypeInfo);
                 }
@@ -100,11 +116,12 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("GetListCarTypeDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }
         }
+
         /// <summary>
         /// UpdateCarStatusDAO
         /// Mr.Lam
@@ -129,7 +146,11 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     cmd.Connection.Open();
                 }
                 cmd.ExecuteNonQuery();
-                res.ReturnCode = (UpdateCarStatusResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                res.ReturnCode = UpdateCarStatusResponseType.Fail;
+                if (cmd.Parameters["@Return"].Value != DBNull.Value)
+                {
+                    res.ReturnCode = (UpdateCarStatusResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                }
                 if (res.ReturnCode == UpdateCarStatusResponseType.Success)
                 {
                     LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, res.ReturnCode, (int)res.ReturnCode));
@@ -140,7 +161,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("UpdateCarStatusDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -165,7 +186,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.Add("@CarID", SqlDbType.Int).Value = request.CarID;
-            cmd.Parameters.Add("@CarName", SqlDbType.NVarChar,50).Value = request.CarName;
+            cmd.Parameters.Add("@CarName", SqlDbType.NVarChar, 50).Value = request.CarName;
             cmd.Parameters.Add("@CarNo", SqlDbType.NVarChar, 50).Value = request.CarNo;
             cmd.Parameters.Add("@CarTypeID", SqlDbType.Int).Value = request.CarTypeID;
             cmd.Parameters.Add("@CarImage", SqlDbType.NVarChar, 50).Value = request.CarImage;
@@ -181,7 +202,12 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     cmd.Connection.Open();
                 }
                 cmd.ExecuteNonQuery();
-                response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+
+                response.ReturnCode = GroupRoleResponseType.Fail;
+                if (cmd.Parameters["@Return"].Value != DBNull.Value)
+                {
+                    response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                }
                 if (response.ReturnCode != GroupRoleResponseType.Success)
                 {
                     LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, response.ReturnCode, response.ReturnCode));
@@ -193,14 +219,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                string exception = $@"
-(*)Ex SP: {sqlStore} fail.
-
-(*)Request data: {request.RequestData}.
-
-(*)Detail exception: {ex.ToString()}
-";
-                LogWriter.WriteLogMsg(exception);
+                LogWriter.MyWriteLogData("UpdateCarStatusDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -208,7 +227,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 cmd.Connection.Close();
             }
         }
-         /// <summary>
+        /// <summary>
         /// Thêm mới xe
         /// Create by Anh.Tran 26/4/2019
         /// </summary>
@@ -222,8 +241,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             con = new SqlConnection(db.ConnectionString());
             cmd = new SqlCommand(sqlStore, con);
             cmd.CommandType = CommandType.StoredProcedure;
-             
-            cmd.Parameters.Add("@CarName", SqlDbType.NVarChar,50).Value = request.CarName;
+
+            cmd.Parameters.Add("@CarName", SqlDbType.NVarChar, 50).Value = request.CarName;
             cmd.Parameters.Add("@CarNo", SqlDbType.NVarChar, 50).Value = request.CarNo;
             cmd.Parameters.Add("@CarTypeID", SqlDbType.Int).Value = request.CarTypeID;
             cmd.Parameters.Add("@CarImage", SqlDbType.NVarChar, 50).Value = request.CarImage;
@@ -239,8 +258,12 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     cmd.Connection.Open();
                 }
                 cmd.ExecuteNonQuery();
-                response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
-                if (response.ReturnCode == GroupRoleResponseType.Success)
+                response.ReturnCode = GroupRoleResponseType.Fail; 
+                if(cmd.Parameters["@Return"].Value != DBNull.Value)
+                {
+                    response.ReturnCode = (GroupRoleResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
+                } 
+                if (response.ReturnCode != GroupRoleResponseType.Success)
                 {
                     LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, response.ReturnCode, response.ReturnCode));
                     throw new Exception();
@@ -251,7 +274,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             catch (Exception ex)
             {
                 con.Close();
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("CreateNewCarDAO", sqlStore, request.ToString(), null, ex, "Exc SP = " + sqlStore + " fail");
                 throw;
             }
             finally
@@ -280,34 +303,51 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 while (reader.Read())
                 {
                     carInfo = new CarInfo();
-                    carInfo.CarID = Int32.Parse(reader["CarID"].ToString());
+                    if (reader["CarID"] != DBNull.Value)
+                    {
+                        carInfo.CarID = Int32.Parse(reader["CarID"].ToString());
+                    } 
                     carInfo.CarName = reader["CarName"].ToString();
                     carInfo.CarNo = reader["CarNo"].ToString();
-                    carInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    if (reader["CarTypeID"] != DBNull.Value)
+                    {
+                        carInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    } 
                     carInfo.CarTypeName = reader["CarTypeName"].ToString();
                     carInfo.CarImage = reader["CarImage"].ToString();
-                    carInfo.CarStatus = Int32.Parse(reader["CarStatus"].ToString());
+                    if (reader["CarStatus"] != DBNull.Value)
+                    {
+                        carInfo.CarStatus = Int32.Parse(reader["CarStatus"].ToString());
+                    } 
                     carInfo.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
                     carInfo.LastModifiedDate = reader["LastModifiedDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
-                    carInfo.FullNameUpdate = reader["FullNameUpdate"].ToString(); 
+                    carInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
                     carInfo.Expires = reader["Expires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["Expires"].ToString());
                     carInfo.InsuranceExpires = reader["InsuranceExpires"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["InsuranceExpires"].ToString());
                     carInfo.DriverID = reader["DriverID"].ToString();
-                    carInfo.FullNameDriver = reader["FullNameDriver"].ToString(); 
+                    carInfo.FullNameDriver = reader["FullNameDriver"].ToString();
 
                     result.Add(carInfo);
-                } 
+                }
                 reader.NextResult();
                 while (reader.Read())
                 {
                     carInfo = new CarInfo();
-                    carInfo.CarID = Int32.Parse(reader["CarID"].ToString());
-                    carInfo.CarName = reader["CarName"].ToString();
+                    if (reader["CarName"] != DBNull.Value)
+                    {
+                        carInfo.CarName = reader["CarName"].ToString();
+                    } 
                     carInfo.CarNo = reader["CarNo"].ToString();
-                    carInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    if (reader["CarTypeID"] != DBNull.Value)
+                    {
+                        carInfo.CarTypeID = Int32.Parse(reader["CarTypeID"].ToString());
+                    } 
                     carInfo.CarTypeName = reader["CarTypeName"].ToString();
                     carInfo.CarImage = reader["CarImage"].ToString();
-                    carInfo.CarStatus = Int32.Parse(reader["CarStatus"].ToString());
+                    if (reader["CarStatus"] != DBNull.Value)
+                    {
+                        carInfo.CarStatus = Int32.Parse(reader["CarStatus"].ToString());
+                    } 
                     carInfo.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
                     carInfo.LastModifiedDate = reader["LastModifiedDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["LastModifiedDate"].ToString());
                     carInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
@@ -324,7 +364,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+
+                LogWriter.MyWriteLogData("GetListCarApproveRegistrationCarDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }
@@ -345,15 +386,15 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 int a = cmd.ExecuteNonQuery();
                 if (a == 1)
                 {
-                    LogWriter.WriteException("stringSql"+ stringSql);
+                    LogWriter.MyWriteLogData("CarTyperDAO", stringSql, null, null, null, "Exc SP = " + stringSql + " fail");
                     con.Close();
-                    throw new Exception(); 
+                    throw new Exception();
                 }
                 con.Close();
             }
             catch (Exception ex)
-            {
-                LogWriter.WriteException(ex);
+            { 
+                LogWriter.MyWriteLogData("CarTyperDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }
@@ -399,11 +440,11 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
+                LogWriter.MyWriteLogData("RegistrationCarByCarIDReportDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 con.Close();
                 throw;
             }
         }
     }
 }
- 
+

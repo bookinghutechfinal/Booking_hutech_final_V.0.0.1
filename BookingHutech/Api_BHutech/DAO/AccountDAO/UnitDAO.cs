@@ -35,8 +35,8 @@ namespace BookingHutech.Api_BHutech.DAO.AccountDAO
             }
             catch (Exception ex)
             {
-                con.Close();
-                LogWriter.WriteException(ex);
+                con.Close(); 
+                LogWriter.MyWriteLogData("ChangePasswordDAO", StrQuery, null, null, ex, "Exc SP = " + StrQuery + " fail");
                 throw;
             }
             finally

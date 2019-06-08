@@ -38,5 +38,17 @@ namespace BookingHutech.Api_BHutech.Models.BookingCar
         public String CarTypeNameRequest { get; set; } //ds loại xe mong muốn.
 
         public RegistrationCarInfo() { }
+
+        public override string ToString()
+        {
+            return "RegistrationCarInfo with RegistrationCarID = " + this.RegistrationCarID +
+                "| Unit_ID = " + this.Unit_ID +
+                "| Account_ID = " + this.Account_ID +
+                "| UnitRequest = " + this.UnitRequest +
+                "| DateTimeFrom = " + this.DateTimeFrom +
+                "| DateTimeTo = " + this.DateTimeTo +
+                "| DistanceBack = " + this.DistanceBack +
+                "| DistanceTo = " + this.DistanceTo;  
+        }
     }
 }
