@@ -35,7 +35,10 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 {
                     reportCost = new ReportCost();
                     reportCost.label = reader["CarNo"].ToString();
-                    reportCost.value = Int32.Parse(reader["TotalCost"].ToString());
+                    if (reader["TotalCost"] != DBNull.Value)
+                    {
+                        reportCost.value = Int32.Parse(reader["TotalCost"].ToString());
+                    }
                     
                     result.Add(reportCost);
                 }
@@ -44,7 +47,10 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 {
                     reportCost = new ReportCost();
                     reportCost.label = reader["CarNo"].ToString();
-                    reportCost.value = Int32.Parse(reader["TotalCost"].ToString());
+                    if (reader["TotalCost"] != DBNull.Value)
+                    {
+                        reportCost.value = Int32.Parse(reader["TotalCost"].ToString());
+                    }
 
                     result.Add(reportCost);
                 }
@@ -53,8 +59,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
                 con.Close();
+                LogWriter.MyWriteLogData("ReportCostDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 throw;
             }
         }

@@ -204,14 +204,14 @@
                                                     <span ng-show="item.RepairStatus==1" style="color:green">Chờ thực hiện</span>
                                                     <span ng-show="item.RepairStatus==2" style="color:red">Chờ duyệt</span>
                                                 </td>
-                                                <td data-title="'Xử lý'" style="width:0.5%" align="left">
+                                                <!--<td data-title="'Xử lý'" style="width:0.5%" align="left">
                                                     <select class="btn btn-primary" ng-model="status" ng-change="comfirm(item,status)">
                                                         <option value="">Chọn chức năng</option>
                                                         <option ng-show="item.RepairStatus==0 || item.RepairStatus==2">Sửa</option>
                                                         <option ng-show="item.RepairStatus==0">Xóa</option>
                                                         <option ng-show="item.RepairStatus==1" value="{{item.RepairStatus+1}}">Hoàn thành</option>
                                                     </select>
-                                                </td>
+                                                </td>-->
                                             </tr>
                                         </table>
                                     </div>

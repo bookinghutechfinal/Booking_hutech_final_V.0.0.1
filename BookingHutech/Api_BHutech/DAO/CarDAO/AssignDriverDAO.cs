@@ -38,9 +38,15 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 {
                     assignDriverInfo = new AssignDriverInfo();
                     assignDriverInfo.Account_ID = reader["Account_ID"].ToString();
-                    assignDriverInfo.CarID = Int32.Parse(reader["CarID"].ToString());
+                    if(reader["CarID"] != DBNull.Value)
+                    {
+                        assignDriverInfo.CarID = Int32.Parse(reader["CarID"].ToString());
+                    }
                     assignDriverInfo.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
-                    assignDriverInfo.AssignStatus = Int32.Parse(reader["AssignStatus"].ToString());
+                    if (reader["AssignStatus"] != DBNull.Value)
+                    {
+                        assignDriverInfo.AssignStatus = Int32.Parse(reader["AssignStatus"].ToString());
+                    }
                     assignDriverInfo.FullName = reader["FullName"].ToString();
                     assignDriverInfo.CarNo = reader["CarNo"].ToString();
                     assignDriverInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
@@ -52,9 +58,15 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 {
                     assignDriverInfo = new AssignDriverInfo();
                     assignDriverInfo.Account_ID = reader["Account_ID"].ToString();
-                    assignDriverInfo.CarID = Int32.Parse(reader["CarID"].ToString());
+                    if (reader["CarID"] != DBNull.Value)
+                    {
+                        assignDriverInfo.CarID = Int32.Parse(reader["CarID"].ToString());
+                    }
                     assignDriverInfo.CreateDate = reader["CreateDate"].ToString() == "" ? (DateTime?)null : DateTime.Parse(reader["CreateDate"].ToString());
-                    assignDriverInfo.AssignStatus = Int32.Parse(reader["AssignStatus"].ToString());
+                    if (reader["AssignStatus"] != DBNull.Value)
+                    {
+                        assignDriverInfo.AssignStatus = Int32.Parse(reader["AssignStatus"].ToString());
+                    }
                     assignDriverInfo.FullName = reader["FullName"].ToString();
                     assignDriverInfo.CarNo = reader["CarNo"].ToString();
                     assignDriverInfo.FullNameUpdate = reader["FullNameUpdate"].ToString();
@@ -66,8 +78,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
                 con.Close();
+                LogWriter.MyWriteLogData("GetListAssignDriverDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 throw;
             }
         }
@@ -89,8 +101,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
                 con.Close();
+                LogWriter.MyWriteLogData("AssignDriverManagerDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 throw;
             }
         }

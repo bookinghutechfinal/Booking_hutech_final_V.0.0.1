@@ -36,8 +36,14 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 {
                     listRepairCost = new ListRepairCost();
                     listRepairCost.RepairID = reader["RepairID"].ToString();
-                    listRepairCost.Car_ID = Int32.Parse(reader["Car_ID"].ToString());
-                    listRepairCost.CostsTypeID = Int32.Parse(reader["CostsTypeID"].ToString());
+                    if (reader["Car_ID"] != DBNull.Value)
+                    {
+                        listRepairCost.Car_ID = Int32.Parse(reader["Car_ID"].ToString());
+                    }
+                    if (reader["CostsTypeID"] != DBNull.Value)
+                    {
+                        listRepairCost.CostsTypeID = Int32.Parse(reader["CostsTypeID"].ToString());
+                    }
                     listRepairCost.RepairAddres = reader["RepairAddres"].ToString();
                     listRepairCost.Note = reader["Note"].ToString();
                     listRepairCost.ImagerBill = reader["ImagerBill"].ToString();
@@ -47,14 +53,26 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                     listRepairCost.CarImage = reader["CarImage"].ToString();
                     listRepairCost.CarNo = reader["CarNo"].ToString();
                     listRepairCost.AccountCreate = reader["AccountCreate"].ToString();
-                    listRepairCost.RepairStatus = Int32.Parse(reader["RepairStatus"].ToString());
+                    if (reader["RepairStatus"] != DBNull.Value)
+                    {
+                        listRepairCost.RepairStatus = Int32.Parse(reader["RepairStatus"].ToString());
+                    }
                     if (reader.FieldCount > 13)
                     {
-                        listRepairCost.RepairDetailID = Int32.Parse(reader["RepairDetailID"].ToString());
+                        if (reader["RepairDetailID"] != DBNull.Value)
+                        {
+                            listRepairCost.RepairDetailID = Int32.Parse(reader["RepairDetailID"].ToString());
+                        }
                         listRepairCost.CostsTypeName = reader["CostsTypeName"].ToString();
                         listRepairCost.Content = reader["Content"].ToString();
-                        listRepairCost.TotalMoney = decimal.Parse(reader["TotalMoney"].ToString());
-                        listRepairCost.Quantity = Int32.Parse(reader["Quantity"].ToString());
+                        if (reader["TotalMoney"] != DBNull.Value)
+                        {
+                            listRepairCost.TotalMoney = decimal.Parse(reader["TotalMoney"].ToString());
+                        }
+                        if (reader["Quantity"] != DBNull.Value)
+                        {
+                            listRepairCost.Quantity = Int32.Parse(reader["Quantity"].ToString());
+                        }
                     }
 
                     result.Add(listRepairCost);
@@ -64,8 +82,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
                 con.Close();
+                LogWriter.MyWriteLogData("GetListRepairCostDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 throw;
             }
         }
@@ -87,8 +105,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
                 con.Close();
+                LogWriter.MyWriteLogData("UpdateRepairStatusDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 throw;
             }
         }
@@ -115,8 +133,8 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
             }
             catch (Exception ex)
             {
-                LogWriter.WriteException(ex);
                 con.Close();
+                LogWriter.MyWriteLogData("AddNewCostDAO", stringSql, null, null, ex, "Exc SP = " + stringSql + " fail");
                 throw;
             }
         }

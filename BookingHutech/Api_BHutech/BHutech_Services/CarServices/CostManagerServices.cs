@@ -114,8 +114,8 @@ namespace BookingHutech.Api_BHutech.BHutech_Services.CarServices
             {
                 string uspUpdateRepairStatus = String.Format(Prototype.SqlCommandStore.uspUpdateRepairStatus,request.RepairID,request.RepairStatus,request.FullNameUpdate,request.Note);
                 managerCostDAO.UpdateRepairStatusDAO(uspUpdateRepairStatus);
-                var listEmail = new[] { "lamdinhit@gmail.com", "blue20297@gmail.com" };
-                SendEmail.Email(listEmail, "Duyệt chi phí thành công.", "Chi phí của bạn đã được duyệt.");
+                //var listEmail = new[] { "lamdinhit@gmail.com", "blue20297@gmail.com" };
+                //SendEmail.Email(listEmail, "Duyệt chi phí thành công.", "Chi phí của bạn đã được duyệt.");
             }
             catch (Exception ex)
             {
