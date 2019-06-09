@@ -119,10 +119,9 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
                 {
                     if (ListRegistrationCar[i].CarID == Car_ID)
                     {
-                        if (So_Sanh_Datetime(dateTime, ListRegistrationCar[i].DateTimeFrom) == 1)
+                        if (So_Sanh_Datetime(dateTime, ListRegistrationCar[i].DateTimeFrom) == 1
+                            && So_Sanh_Datetime(dateTime, ListRegistrationCar[i].DateTimeTo) == 2)
                             return true;
-                        else
-                            return false;
                     }
                 }
             }
@@ -300,6 +299,7 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
                         if (ListCarAndListRegCar.ListCar[i].CarID == ListCarAndListRegCar.ListRegistrationCar[j].CarID)
                         {
                             count++;
+                            break;
                         }
                     }
                     if (count != 0) // có tham gia vào đơn cấp phát nào chưa.
