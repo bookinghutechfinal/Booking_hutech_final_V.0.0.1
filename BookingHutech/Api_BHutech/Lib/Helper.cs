@@ -119,11 +119,10 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
                 {
                     if (ListRegistrationCar[i].CarID == Car_ID)
                     {
-                        if (So_Sanh_Datetime(dateTime, ListRegistrationCar[i].DateTimeFrom) == 1 &&
-                            So_Sanh_Datetime(dateTime, ListRegistrationCar[i].DateTimeFrom) == 2)
-                        {
+                        if (So_Sanh_Datetime(dateTime, ListRegistrationCar[i].DateTimeFrom) == 1)
                             return true;
-                        }
+                        else
+                            return false;
                     }
                 }
             }
@@ -356,9 +355,9 @@ namespace BookingHutech.Api_BHutech.Lib.Helper
             return listCarApproveRegistration; // danh sách xe có thể book.
         }
         // hàm kiểm tra cập nhật trạng thái cho xe khi tìm kiếm xe trống.  
-        public int CheckStatusCarResult (int profileStatus )
+        public int CheckStatusCarResult(int profileStatus)
         {
-            if(profileStatus == 6)
+            if (profileStatus == 6)
                 return (int)BookingType.CarType.WaitingForSchoolVerify;  // chờ BGH duyệt
             return (int)BookingType.CarType.EmptyCar; // trống; 
         }
