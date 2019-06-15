@@ -151,7 +151,7 @@ namespace BookingHutech.Api_BHutech.DAO.CarDAO
                 {
                     res.ReturnCode = (UpdateCarStatusResponseType)Convert.ToInt32(cmd.Parameters["@Return"].Value);
                 }
-                if (res.ReturnCode == UpdateCarStatusResponseType.Success)
+                if (res.ReturnCode != UpdateCarStatusResponseType.Success)
                 {
                     LogWriter.WriteLogMsg(string.Format(SqlCommandStore.ExcuteSpFail, sqlStore, res.ReturnCode, (int)res.ReturnCode));
                     throw new Exception();

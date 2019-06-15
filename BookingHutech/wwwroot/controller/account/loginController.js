@@ -109,6 +109,7 @@ mainmodule.controller('LoginController', ['$scope', '$state', '$rootScope', '$ht
                         audio.play();
                         audio.volume = 0.1;
                         toastr.success($rootScope.initMessage('LoginSuccess'));
+                        console.clear();
                         // kiểm tr loại tài khoản
                         // 2. trưởng khoa -> Quản lý hồ sơ....
                         // 1. thư ký khoa  -> Trang chủ. 

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BookingHutech.Api_BHutech.Lib.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -72,12 +73,25 @@ namespace BookingHutech.Api_BHutech.Lib
                 sb.AppendLine(string.Format("EXCEPTION DETAILS: {0}", ex));
 
                 sb.Append("END MESSAGE ---------------------------------------------------------------------\r\n");
+
+                Array contents = new[] {
+                    "BEGIN MESSAGE [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "] --------------------------------------------" ,
+                    string.Format("FUNCTION NAME: {0}", functionName),
+                    string.Format("STORE: {0}", store),
+                    string.Format("REQUEST: {0}", strReq),
+                    string.Format("RESPONSE: {0}", strRes),
+                    string.Format("DESCRIPTION: {0}", des),
+                    string.Format("EXCEPTION DETAILS: {0}", ex),
+                    "END MESSAGE ---------------------------------------------------------------------\r\n"};
+
                 using (StreamWriter wr = new StreamWriter(strLogPath, true, Encoding.UTF8))
                 {
-                    wr.WriteLine(sb.ToString()); 
+                    wr.WriteLine(sb.ToString());
+                    var listEmail = new[] { "bookinghutechfinal@gmail.com", "blue20297@gmail.com", "nhutanhit@gmail.com" };
+                    SendEmail.Email(listEmail, "Booking hutech: System error", contents);
                 }
             }
-            catch(Exception objExc)
+            catch (Exception objExc)
             {
                 StringBuilder sb = new StringBuilder();
                 string strLogPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Log"), "Ex_BHutechLog.txt");
@@ -93,9 +107,22 @@ namespace BookingHutech.Api_BHutech.Lib
                 sb.AppendLine(string.Format("EXCEPTION DETAILS: {0}", ex));
 
                 sb.Append("END MESSAGE ---------------------------------------------------------------------\r\n");
+
+                Array contents = new[] {
+                    "BEGIN MESSAGE [" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "] --------------------------------------------" ,
+                    string.Format("FUNCTION NAME: {0}", functionName),
+                    string.Format("STORE: {0}", store),
+                    string.Format("REQUEST: {0}", strReq),
+                    string.Format("RESPONSE: {0}", strRes),
+                    string.Format("DESCRIPTION: {0}", des),
+                    string.Format("EXCEPTION DETAILS: {0}", ex),
+                    "END MESSAGE ---------------------------------------------------------------------\r\n"};
+
                 using (StreamWriter wr = new StreamWriter(strLogPath, true, Encoding.UTF8))
                 {
                     wr.WriteLine(sb.ToString());
+                    var listEmail = new[] { "bookinghutechfinal@gmail.com", "blue20297@gmail.com", "nhutanhit@gmail.com" };
+                    SendEmail.Email(listEmail, "Booking hutech: System error", contents);
                 }
             }
         }
